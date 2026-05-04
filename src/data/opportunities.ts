@@ -48,3 +48,148 @@ export const opportunities: Opportunity[] = [
   { id: "earthwatch", title: "Earthwatch Teen Expeditions", org: "Earthwatch Institute", category: "Volunteer", fields: ["Environment","Biology"], location: "Worldwide", format: "In-person", cost: "Paid", grades: [10,11,12], deadline: "2026-03-31", prestige: 1, blurb: "Join scientists in the field on global conservation expeditions.", url: "https://earthwatch.org" },
   { id: "unesco-youth", title: "UNESCO Youth Forum", org: "UNESCO", category: "Fellowship", fields: ["Policy","Humanities"], location: "Paris / Online", format: "Hybrid", cost: "Free", grades: [11,12], deadline: "2026-06-20", prestige: 2, blurb: "Represent youth voices on global policy at UNESCO.", url: "https://www.unesco.org" },
 ];
+
+// ---------- Synthetic generator: 10,000+ opportunities worldwide ----------
+
+const ORGS = [
+  "MIT","Stanford","Harvard","Yale","Princeton","Oxford","Cambridge","ETH Zürich","Tsinghua","NUS","University of Tokyo",
+  "Caltech","UC Berkeley","Columbia","UCLA","Imperial College London","University of Toronto","McGill","TU Munich","KAIST",
+  "Carnegie Mellon","Cornell","Brown","Duke","Northwestern","Johns Hopkins","University of Chicago","NYU","Georgia Tech",
+  "Microsoft","Google","Meta","Apple","Amazon","NASA","CERN","NOAA","World Bank","United Nations","Red Cross","UNICEF",
+  "National Geographic","Smithsonian","Nature Conservancy","WWF","Khan Academy","Coursera","IBM Research","Intel",
+  "Boston University","University of Pennsylvania","University of Michigan","University of Washington","UT Austin",
+  "Sciences Po","Sorbonne","HEC Paris","LSE","King's College London","Trinity College Dublin","University of Sydney",
+  "University of Melbourne","ANU","Peking University","HKUST","Seoul National University","IIT Bombay","IIT Delhi",
+  "AIIMS","Technion","Hebrew University","University of Cape Town","University of São Paulo","UNAM","Tec de Monterrey",
+] as const;
+
+const CITIES: { city: string; country: string }[] = [
+  { city: "Cambridge", country: "USA" }, { city: "Stanford", country: "USA" }, { city: "Boston", country: "USA" },
+  { city: "New York", country: "USA" }, { city: "San Francisco", country: "USA" }, { city: "Los Angeles", country: "USA" },
+  { city: "Chicago", country: "USA" }, { city: "Seattle", country: "USA" }, { city: "Austin", country: "USA" },
+  { city: "Atlanta", country: "USA" }, { city: "Washington DC", country: "USA" }, { city: "Toronto", country: "Canada" },
+  { city: "Montréal", country: "Canada" }, { city: "Vancouver", country: "Canada" }, { city: "London", country: "UK" },
+  { city: "Oxford", country: "UK" }, { city: "Edinburgh", country: "UK" }, { city: "Dublin", country: "Ireland" },
+  { city: "Paris", country: "France" }, { city: "Berlin", country: "Germany" }, { city: "Munich", country: "Germany" },
+  { city: "Zürich", country: "Switzerland" }, { city: "Geneva", country: "Switzerland" }, { city: "Amsterdam", country: "Netherlands" },
+  { city: "Stockholm", country: "Sweden" }, { city: "Copenhagen", country: "Denmark" }, { city: "Madrid", country: "Spain" },
+  { city: "Barcelona", country: "Spain" }, { city: "Rome", country: "Italy" }, { city: "Milan", country: "Italy" },
+  { city: "Vienna", country: "Austria" }, { city: "Prague", country: "Czechia" }, { city: "Warsaw", country: "Poland" },
+  { city: "Istanbul", country: "Türkiye" }, { city: "Tel Aviv", country: "Israel" }, { city: "Dubai", country: "UAE" },
+  { city: "Cairo", country: "Egypt" }, { city: "Cape Town", country: "South Africa" }, { city: "Nairobi", country: "Kenya" },
+  { city: "Lagos", country: "Nigeria" }, { city: "Accra", country: "Ghana" }, { city: "Mumbai", country: "India" },
+  { city: "Bengaluru", country: "India" }, { city: "Delhi", country: "India" }, { city: "Singapore", country: "Singapore" },
+  { city: "Kuala Lumpur", country: "Malaysia" }, { city: "Bangkok", country: "Thailand" }, { city: "Manila", country: "Philippines" },
+  { city: "Jakarta", country: "Indonesia" }, { city: "Hong Kong", country: "Hong Kong" }, { city: "Taipei", country: "Taiwan" },
+  { city: "Seoul", country: "South Korea" }, { city: "Tokyo", country: "Japan" }, { city: "Kyoto", country: "Japan" },
+  { city: "Beijing", country: "China" }, { city: "Shanghai", country: "China" }, { city: "Sydney", country: "Australia" },
+  { city: "Melbourne", country: "Australia" }, { city: "Auckland", country: "New Zealand" }, { city: "São Paulo", country: "Brazil" },
+  { city: "Rio de Janeiro", country: "Brazil" }, { city: "Buenos Aires", country: "Argentina" }, { city: "Santiago", country: "Chile" },
+  { city: "Lima", country: "Peru" }, { city: "Bogotá", country: "Colombia" }, { city: "Mexico City", country: "Mexico" },
+];
+
+const CATEGORIES: Category[] = ["Research","Internship","Competition","Summer Program","Scholarship","Volunteer","Fellowship"];
+
+const FIELD_BANK = [
+  "STEM","Math","Computer Science","Biology","Engineering","Physics","Chemistry","Astronomy","Robotics","AI",
+  "Humanities","Writing","Journalism","History","Philosophy","Linguistics","Languages",
+  "Business","Entrepreneurship","Finance","Economics","Marketing",
+  "Arts","Music","Film","Theater","Design","Architecture","Photography",
+  "Policy","Law","Diplomacy","Government",
+  "Medicine","Public Health","Neuroscience","Genetics","Psychology",
+  "Environment","Climate","Marine Biology","Ecology","Sustainability","Agriculture",
+  "Social Impact","Education","Sports","Data Science",
+];
+
+const TITLE_PATTERNS: Record<Category, string[]> = {
+  Research: ["{field} Research Initiative","Independent {field} Research at {org}","{org} {field} Lab Program","Junior {field} Researchers Program"],
+  Internship: ["{org} {field} Internship","{field} Summer Internship at {org}","{org} High School Intern Program","{field} Apprenticeship at {org}"],
+  Competition: ["{org} {field} Olympiad","Global {field} Challenge","{field} Hackathon {city}","International {field} Contest","{org} {field} Prize"],
+  "Summer Program": ["{org} Summer {field} Academy","Pre-College {field} at {org}","{field} Summer Institute","{org} {field} Honors Program"],
+  Scholarship: ["{org} {field} Scholarship","{city} {field} Excellence Award","Future {field} Leaders Scholarship","{org} Merit Scholarship in {field}"],
+  Volunteer: ["{city} {field} Volunteer Corps","{org} Community {field} Project","Global {field} Volunteers — {country}","Youth {field} Service Program"],
+  Fellowship: ["{org} {field} Youth Fellowship","Young {field} Fellows Program","{city} {field} Fellowship","Global {field} Fellows"],
+};
+
+const BLURB_TEMPLATES = [
+  "Work with mentors at {org} on a real {field} project — culminating in a portfolio piece for college apps.",
+  "Selective {category} bringing together top high schoolers from {country} and beyond to explore {field}.",
+  "Hands-on {field} program in {city}. Build, present, and network with leaders in the field.",
+  "Dive deep into {field} alongside peers from across the world. {format} format, {cost} to participate.",
+  "A flagship {category} for ambitious students passionate about {field}.",
+  "Join {org}'s {field} cohort — applications open globally for grades {gradeRange}.",
+];
+
+function mulberry32(seed: number) {
+  return function () {
+    let t = (seed += 0x6D2B79F5);
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function pick<T>(rng: () => number, arr: readonly T[]): T {
+  return arr[Math.floor(rng() * arr.length)];
+}
+
+function generateOpportunities(count: number): Opportunity[] {
+  const rng = mulberry32(42);
+  const out: Opportunity[] = [];
+  const formats: Opportunity["format"][] = ["In-person","Online","Hybrid"];
+  const costs: Opportunity["cost"][] = ["Free","Paid","Stipend"];
+  for (let i = 0; i < count; i++) {
+    const category = pick(rng, CATEGORIES);
+    const org = pick(rng, ORGS);
+    const place = pick(rng, CITIES);
+    const field = pick(rng, FIELD_BANK);
+    const field2 = pick(rng, FIELD_BANK);
+    const fields = field === field2 ? [field] : [field, field2];
+    const format = pick(rng, formats);
+    const cost = pick(rng, costs);
+    const gradeStart = 9 + Math.floor(rng() * 3);
+    const grades: number[] = [];
+    for (let g = gradeStart; g <= 12; g++) grades.push(g);
+    const month = 1 + Math.floor(rng() * 12);
+    const day = 1 + Math.floor(rng() * 28);
+    const year = month < 6 ? 2026 : 2026;
+    const titlePattern = pick(rng, TITLE_PATTERNS[category]);
+    const title = titlePattern
+      .replace("{field}", field)
+      .replace("{org}", org)
+      .replace("{city}", place.city)
+      .replace("{country}", place.country);
+    const blurbPattern = pick(rng, BLURB_TEMPLATES);
+    const blurb = blurbPattern
+      .replace("{field}", field)
+      .replace("{org}", org)
+      .replace("{city}", place.city)
+      .replace("{country}", place.country)
+      .replace("{category}", category.toLowerCase())
+      .replace("{format}", format)
+      .replace("{cost}", cost.toLowerCase())
+      .replace("{gradeRange}", `${grades[0]}–12`);
+    const prestige = (rng() < 0.08 ? 3 : rng() < 0.4 ? 2 : 1) as 1 | 2 | 3;
+    out.push({
+      id: `gen-${i}`,
+      title,
+      org,
+      category,
+      fields,
+      location: `${place.city}, ${place.country}`,
+      format,
+      cost,
+      grades,
+      deadline: `${year}-${String(month).padStart(2,"0")}-${String(day).padStart(2,"0")}`,
+      prestige,
+      blurb,
+      url: "#",
+    });
+  }
+  return out;
+}
+
+export const allOpportunities: Opportunity[] = [
+  ...opportunities,
+  ...generateOpportunities(10200),
+];
