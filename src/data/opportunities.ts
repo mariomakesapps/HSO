@@ -170,6 +170,7 @@ function generateOpportunities(count: number): Opportunity[] {
       .replace("{cost}", cost.toLowerCase())
       .replace("{gradeRange}", `${grades[0]}–12`);
     const prestige = (rng() < 0.08 ? 3 : rng() < 0.4 ? 2 : 1) as 1 | 2 | 3;
+    const searchQuery = encodeURIComponent(`${title} ${org} high school program`);
     out.push({
       id: `gen-${i}`,
       title,
@@ -183,7 +184,7 @@ function generateOpportunities(count: number): Opportunity[] {
       deadline: `${year}-${String(month).padStart(2,"0")}-${String(day).padStart(2,"0")}`,
       prestige,
       blurb,
-      url: "#",
+      url: `https://www.google.com/search?q=${searchQuery}`,
     });
   }
   return out;
