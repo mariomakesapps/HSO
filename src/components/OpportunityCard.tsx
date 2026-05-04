@@ -28,12 +28,25 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
   const fav = s.favorites.includes(opp.id);
   const deadline = new Date(opp.deadline);
   const daysLeft = Math.ceil((deadline.getTime() - Date.now()) / 86400000);
+  const isClosed = daysLeft <= 0;
+  const linkUrl =
+    opp.url && opp.url !== "#"
+      ? opp.url
+      : `https://www.google.com/search?q=${encodeURIComponent(`${opp.title} ${opp.org} high school`)}`;
 
   return (
     <article
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-editorial animate-fade-up"
+      className={cn(
+        "group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-editorial animate-fade-up",
+        isClosed && "opacity-50 grayscale hover:opacity-90 hover:grayscale-0"
+      )}
       style={{ animationDelay: `${Math.min(index * 40, 300)}ms` }}
     >
+      {isClosed && (
+        <span className="absolute right-3 top-3 z-10 rounded-full bg-foreground/80 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-background">
+          Closed
+        </span>
+      )}
       <div className="flex items-start justify-between gap-3 p-5 pb-3">
         <span className={cn("rounded-full px-3 py-1 text-xs font-semibold tracking-wide uppercase", accentByCategory[opp.category])}>
           {opp.category}
@@ -118,12 +131,12 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
         </div>
 
         <a
-          href={opp.url && opp.url !== "#" ? opp.url : `https://www.google.com/search?q=${encodeURIComponent(`${opp.title} ${opp.org}`)}`}
+          href={linkUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-foreground underline-offset-4 hover:text-coral hover:underline"
         >
-          Visit program <ExternalLink className="h-3.5 w-3.5" />
+          {isClosed ? "View details" : "Visit program"} <ExternalLink className="h-3.5 w-3.5" />
         </a>
       </div>
     </article>
