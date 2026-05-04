@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import hsoLogo from "@/assets/hso-logo.png";
 
-const SEEN_KEY = "atlas-intro-seen-session";
+const SEEN_KEY = "hso-intro-seen-session";
 
 export function IntroSplash() {
   const [show, setShow] = useState(() => {
@@ -20,7 +20,7 @@ export function IntroSplash() {
 
   return (
     <div
-      className="atlas-intro fixed inset-0 z-[100] flex flex-col items-center justify-center bg-ink text-cream"
+      className="hso-intro fixed inset-0 z-[100] flex flex-col items-center justify-center bg-ink text-cream"
       aria-hidden="true"
     >
       <div className="absolute -right-32 -top-32 h-[420px] w-[420px] rounded-full bg-gradient-coral opacity-30 blur-3xl" />
@@ -30,16 +30,16 @@ export function IntroSplash() {
         <img
           src={hsoLogo}
           alt="HSO logo"
-          className="atlas-intro-compass mb-6 h-24 w-24 rounded-3xl object-cover shadow-2xl"
+          className="hso-intro-mark mb-6 h-28 w-28 rounded-3xl object-cover shadow-2xl"
         />
-        <h1 className="atlas-intro-logo font-display text-6xl font-semibold tracking-tight sm:text-8xl">
+        <h1 className="hso-intro-logo font-display text-7xl font-semibold tracking-tight sm:text-9xl">
           HSO
         </h1>
-        <div className="atlas-intro-line mt-4 h-px w-40 bg-coral" />
-        <p className="atlas-intro-tagline mt-5 text-xs uppercase tracking-[0.4em] text-cream/70 sm:text-sm">
+        <div className="hso-intro-line mt-4 h-px w-40 bg-coral" />
+        <p className="hso-intro-tagline mt-5 text-xs uppercase tracking-[0.4em] text-cream/70 sm:text-sm">
           High School Opportunity Finder
         </p>
-        <p className="atlas-intro-tagline mt-3 max-w-md text-sm text-cream/60" style={{ animationDelay: "0.4s" }}>
+        <p className="hso-intro-tagline mt-3 max-w-md text-sm text-cream/60" style={{ animationDelay: "0.4s" }}>
           10,000+ programs · worldwide
         </p>
       </div>
