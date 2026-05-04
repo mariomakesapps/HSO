@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { Bookmark, Compass, Sparkles } from "lucide-react";
+import { Bookmark, Sparkles } from "lucide-react";
+import hsoLogo from "@/assets/hso-logo.png";
 import { allOpportunities as opportunities } from "@/data/opportunities";
 import { OpportunityCard } from "@/components/OpportunityCard";
 import { Filters, FilterState } from "@/components/Filters";
@@ -52,7 +53,7 @@ const Index = () => {
       <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur animate-fade-up">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="#" className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-ink text-cream transition-transform duration-700 hover:rotate-180"><Compass className="h-5 w-5" /></span>
+            <img src={hsoLogo} alt="Atlas HSO logo" className="h-9 w-9 rounded-xl object-cover transition-transform duration-700 hover:rotate-12" />
             <span className="font-display text-2xl font-semibold tracking-tight">Atlas</span>
             <span className="ml-1 hidden text-xs uppercase tracking-[0.2em] text-muted-foreground sm:inline">High School Opportunity Finder</span>
           </a>
