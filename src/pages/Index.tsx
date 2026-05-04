@@ -6,6 +6,7 @@ import { Filters, FilterState } from "@/components/Filters";
 import { CollectionsPanel } from "@/components/CollectionsPanel";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/store/collections";
+import { IntroSplash } from "@/components/IntroSplash";
 
 const Index = () => {
   const [filters, setFilters] = useState<FilterState>({
@@ -40,6 +41,7 @@ const Index = () => {
 
   return (
     <div className={`min-h-screen bg-background bg-grain transition-opacity duration-700 ${mounted ? "opacity-100" : "opacity-0"}`}>
+      <IntroSplash />
       {/* Nav */}
       <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur animate-fade-up">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
