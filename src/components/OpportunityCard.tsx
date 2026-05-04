@@ -118,12 +118,12 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
         </div>
 
         <a
-          href={opp.url}
+          href={opp.url && opp.url !== "#" ? opp.url : `https://www.google.com/search?q=${encodeURIComponent(`${opp.title} ${opp.org}`)}`}
           target="_blank"
-          rel="noreferrer"
+          rel="noopener noreferrer"
           className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-foreground underline-offset-4 hover:text-coral hover:underline"
         >
-          Learn more <ExternalLink className="h-3.5 w-3.5" />
+          Visit program <ExternalLink className="h-3.5 w-3.5" />
         </a>
       </div>
     </article>
