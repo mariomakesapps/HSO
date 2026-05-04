@@ -20,7 +20,7 @@ const Index = () => {
 
   const filtered = useMemo(() => {
     const q = filters.query.trim().toLowerCase();
-    return opportunities.filter((o) => {
+    const list = opportunities.filter((o) => {
       if (filters.category !== "All" && o.category !== filters.category) return false;
       if (filters.grade !== "All" && !o.grades.includes(filters.grade as number)) return false;
       if (filters.cost !== "All" && o.cost !== filters.cost) return false;
@@ -30,6 +30,12 @@ const Index = () => {
         if (!hay.includes(q)) return false;
       }
       return true;
+    });
+    const now = Date.now();
+    return list.slice().sort((a, b) => {
+      const aClosed = new Date(a.deadline).getTime() < now ? 1 : 0;
+      const bClosed = new Date(b.deadline).getTime() < now ? 1 : 0;
+      return aClosed - bClosed;
     });
   }, [filters]);
 
