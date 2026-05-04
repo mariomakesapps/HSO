@@ -53,8 +53,8 @@ const Index = () => {
       <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur animate-fade-up">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <a href="#" className="flex items-center gap-2">
-            <img src={hsoLogo} alt="Atlas HSO logo" className="h-9 w-9 rounded-xl object-cover transition-transform duration-700 hover:rotate-12" />
-            <span className="font-display text-2xl font-semibold tracking-tight">Atlas</span>
+            <img src={hsoLogo} alt="HSO HSO logo" className="h-9 w-9 rounded-xl object-cover transition-transform duration-700 hover:rotate-12" />
+            <span className="font-display text-2xl font-semibold tracking-tight">HSO</span>
             <span className="ml-1 hidden text-xs uppercase tracking-[0.2em] text-muted-foreground sm:inline">High School Opportunity Finder</span>
           </a>
           <Button onClick={() => setShowShelf(true)} variant="outline" className="rounded-full border-foreground/20 bg-card hover:bg-ink hover:text-cream">
@@ -81,7 +81,7 @@ const Index = () => {
               The <em className="text-coral not-italic">High School Opportunity Finder</em> — <span className="italic text-sage">10,000+ programs, worldwide.</span>
             </h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Atlas indexes internships, research, scholarships, summer programs, competitions and fellowships from every continent — built for high schoolers preparing for college.
+              HSO indexes internships, research, scholarships, summer programs, competitions and fellowships from every continent — built for high schoolers preparing for college.
             </p>
             <div className="mt-10">
               <Filters value={filters} onChange={setFilters} />
@@ -152,7 +152,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t border-border bg-secondary/40">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-6 py-10 sm:flex-row sm:items-center">
-          <p className="font-display text-xl">Atlas — for the curious.</p>
+          <p className="font-display text-xl">HSO — for the curious.</p>
           <p className="text-sm text-muted-foreground">Save, organize, and share opportunities with friends.</p>
         </div>
       </footer>
