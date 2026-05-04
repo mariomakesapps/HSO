@@ -33,7 +33,7 @@ export function IntroSplash() {
           className="atlas-intro-compass mb-6 h-24 w-24 rounded-3xl object-cover shadow-2xl"
         />
         <h1 className="atlas-intro-logo font-display text-6xl font-semibold tracking-tight sm:text-8xl">
-          Atlas
+          HSO
         </h1>
         <div className="atlas-intro-line mt-4 h-px w-40 bg-coral" />
         <p className="atlas-intro-tagline mt-5 text-xs uppercase tracking-[0.4em] text-cream/70 sm:text-sm">
