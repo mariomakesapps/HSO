@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Compass } from "lucide-react";
+import hsoLogo from "@/assets/hso-logo.png";
 
 const SEEN_KEY = "atlas-intro-seen-session";
 
@@ -27,9 +27,11 @@ export function IntroSplash() {
       <div className="absolute -left-32 bottom-0 h-[360px] w-[360px] rounded-full bg-sage/30 blur-3xl" />
 
       <div className="relative flex flex-col items-center px-6 text-center">
-        <span className="atlas-intro-compass mb-6 grid h-16 w-16 place-items-center rounded-2xl bg-cream text-ink">
-          <Compass className="h-8 w-8" />
-        </span>
+        <img
+          src={hsoLogo}
+          alt="HSO logo"
+          className="atlas-intro-compass mb-6 h-24 w-24 rounded-3xl object-cover shadow-2xl"
+        />
         <h1 className="atlas-intro-logo font-display text-6xl font-semibold tracking-tight sm:text-8xl">
           Atlas
         </h1>
