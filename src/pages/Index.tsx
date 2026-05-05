@@ -1,5 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import { Bookmark, Sparkles } from "lucide-react";
+import { Bookmark, LogOut, Sparkles } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import type { Session } from "@supabase/supabase-js";
+import { supabase } from "@/integrations/supabase/client";
 import hsoLogo from "@/assets/hso-logo.png";
 import { allOpportunities as opportunities } from "@/data/opportunities";
 import { OpportunityCard } from "@/components/OpportunityCard";
@@ -7,7 +10,7 @@ import { Filters, FilterState } from "@/components/Filters";
 import { CollectionsPanel } from "@/components/CollectionsPanel";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/store/collections";
-import { IntroSplash } from "@/components/IntroSplash";
+import { IntroSplash, clearIntroSeen } from "@/components/IntroSplash";
 
 const Index = () => {
   const [filters, setFilters] = useState<FilterState>({
@@ -17,6 +20,18 @@ const Index = () => {
   const [visible, setVisible] = useState(48);
   const [mounted, setMounted] = useState(false);
   useEffect(() => { setMounted(true); }, []);
+  const [session, setSession] = useState<Session | null>(null);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, s) => setSession(s));
+    supabase.auth.getSession().then(({ data }) => setSession(data.session));
+    return () => sub.subscription.unsubscribe();
+  }, []);
+  const onSignOut = async () => {
+    await supabase.auth.signOut();
+    clearIntroSeen();
+    navigate("/auth");
+  };
   const s = useStore();
 
   const filtered = useMemo(() => {
@@ -57,13 +72,25 @@ const Index = () => {
             <span className="font-display text-2xl font-semibold tracking-tight">HSO</span>
             <span className="ml-1 hidden text-xs uppercase tracking-[0.2em] text-muted-foreground sm:inline">High School Opportunity Finder</span>
           </a>
-          <Button onClick={() => setShowShelf(true)} variant="outline" className="rounded-full border-foreground/20 bg-card hover:bg-ink hover:text-cream">
-            <Bookmark className="mr-2 h-4 w-4" />
-            My Shelf
-            {totalSaved > 0 && (
-              <span className="ml-2 rounded-full bg-coral px-2 py-0.5 text-xs font-semibold text-coral-foreground">{totalSaved}</span>
+          <div className="flex items-center gap-2">
+            <Button onClick={() => setShowShelf(true)} variant="outline" className="rounded-full border-foreground/20 bg-card hover:bg-ink hover:text-cream">
+              <Bookmark className="mr-2 h-4 w-4" />
+              My Shelf
+              {totalSaved > 0 && (
+                <span className="ml-2 rounded-full bg-coral px-2 py-0.5 text-xs font-semibold text-coral-foreground">{totalSaved}</span>
+              )}
+            </Button>
+            {session ? (
+              <Button onClick={onSignOut} variant="outline" className="rounded-full border-foreground/20 bg-card hover:bg-ink hover:text-cream">
+                <LogOut className="mr-2 h-4 w-4" />
+                Sign out
+              </Button>
+            ) : (
+              <Button onClick={() => navigate("/auth")} variant="outline" className="rounded-full border-foreground/20 bg-card hover:bg-ink hover:text-cream">
+                Sign in
+              </Button>
             )}
-          </Button>
+          </div>
         </div>
       </header>
 

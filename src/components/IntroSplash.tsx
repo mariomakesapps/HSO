@@ -1,17 +1,24 @@
 import { useEffect, useState } from "react";
 import hsoLogo from "@/assets/hso-logo.png";
 
-const SEEN_KEY = "hso-intro-seen-session";
+export const INTRO_SEEN_KEY = "hso-intro-seen-session";
+
+export function clearIntroSeen() {
+  try {
+    sessionStorage.removeItem(INTRO_SEEN_KEY);
+    localStorage.removeItem(INTRO_SEEN_KEY);
+  } catch {}
+}
 
 export function IntroSplash() {
   const [show, setShow] = useState(() => {
     if (typeof window === "undefined") return false;
-    return sessionStorage.getItem(SEEN_KEY) !== "1";
+    return sessionStorage.getItem(INTRO_SEEN_KEY) !== "1";
   });
 
   useEffect(() => {
     if (!show) return;
-    sessionStorage.setItem(SEEN_KEY, "1");
+    sessionStorage.setItem(INTRO_SEEN_KEY, "1");
     const t = setTimeout(() => setShow(false), 3100);
     return () => clearTimeout(t);
   }, [show]);
