@@ -34,11 +34,13 @@ export function IntroSplash() {
       <div className="absolute -left-32 bottom-0 h-[360px] w-[360px] rounded-full bg-sage/30 blur-3xl" />
 
       <div className="relative flex flex-col items-center px-6 text-center">
-        <img
-          src={hsoLogo}
-          alt="HSO logo"
-          className="hso-intro-mark mb-6 h-28 w-28 rounded-3xl object-cover shadow-2xl"
-        />
+        <span className="hso-intro-mark relative mb-6 inline-block h-28 w-28 overflow-hidden rounded-3xl shadow-2xl">
+          <img
+            src={hsoLogo}
+            alt="HSO logo"
+            className="absolute inset-0 h-full w-full scale-[1.35] object-cover"
+          />
+        </span>
         <h1 className="hso-intro-logo font-display text-6xl font-semibold tracking-tight sm:text-8xl md:text-9xl">
           HSO
         </h1>

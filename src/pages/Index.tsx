@@ -68,7 +68,13 @@ const Index = () => {
       <header className="sticky top-0 z-30 border-b border-coral/30 bg-gradient-to-r from-coral/15 via-cream/80 to-sage/20 backdrop-blur-md shadow-soft animate-fade-up">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 md:py-4">
           <a href="#" className="flex items-center gap-2">
-            <img src={hsoLogo} alt="HSO logo" className="h-10 w-10 rounded-xl object-cover shadow-sog ring-1 ring-foreground/10 transition-transform duration-700 hover:rotate-6 hover:scale-105" />
+            <span className="relative inline-block h-10 w-10 overflow-hidden rounded-xl ring-1 ring-foreground/10 shadow-soft">
+              <img
+                src={hsoLogo}
+                alt="HSO logo"
+                className="absolute inset-0 h-full w-full scale-[1.35] object-cover transition-transform duration-700 hover:rotate-6 hover:scale-[1.45]"
+              />
+            </span>
             <span className="font-display text-2xl font-semibold tracking-tight">
               <span className="text-ink">H</span><span className="text-coral">S</span><span className="text-sage">O</span>
             </span>

@@ -61,7 +61,9 @@ const Auth = () => {
     <div className="min-h-screen bg-background bg-grain flex items-center justify-center px-6">
       <div className="w-full max-w-md rounded-3xl border border-border bg-card p-8 shadow-editorial">
         <a href="/" className="flex items-center gap-2 mb-8">
-          <img src={hsoLogo} alt="HSO logo" className="h-9 w-9 rounded-xl object-cover" />
+          <span className="relative inline-block h-9 w-9 overflow-hidden rounded-xl ring-1 ring-foreground/10">
+            <img src={hsoLogo} alt="HSO logo" className="absolute inset-0 h-full w-full scale-[1.35] object-cover" />
+          </span>
           <span className="font-display text-2xl font-semibold tracking-tight">HSO</span>
         </a>
         <h1 className="font-display text-3xl tracking-tight">
