@@ -39,10 +39,10 @@ export function SiteHeader() {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 transition-[box-shadow,border-color] duration-200 ${
+        className={`sticky top-0 z-50 backdrop-blur-md bg-background/80 transition-[box-shadow,border-color,background-color] duration-200 ${
           scrolled
-            ? "border-b border-border/80 bg-background/85 shadow-sm backdrop-blur-md"
-            : "border-b border-transparent bg-background/70 backdrop-blur-sm"
+            ? "border-b border-border/60 shadow-sm"
+            : "border-b border-border/30"
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 md:py-4">
