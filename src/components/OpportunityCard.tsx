@@ -1,10 +1,11 @@
-import { Bookmark, BookmarkCheck, ExternalLink, FolderPlus, MapPin, GraduationCap, DollarSign } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Bookmark, BookmarkCheck, ExternalLink, FolderPlus, MapPin, GraduationCap, DollarSign, Lock } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import { Opportunity } from "@/data/opportunities";
 import { store, useStore } from "@/store/collections";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
+import { useAuthSession, authRedirectHref } from "@/hooks/useAuthSession";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,12 +28,22 @@ const CATEGORY_BADGE: Record<string, string> = {
 
 export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: number }) {
   const s = useStore();
+  const { isAuthed } = useAuthSession();
+  const navigate = useNavigate();
   const fav = s.favorites.includes(opp.id);
   const dl = getDeadlineStatus(opp.deadline);
   const isClosed = dl.status === "closed";
   const linkUrl = opp.url && opp.url !== "#"
     ? opp.url
     : `https://duckduckgo.com/?q=${encodeURIComponent(`${opp.title} ${opp.org} high school`)}`;
+
+  const requireAuth = (e: React.MouseEvent) => {
+    if (!isAuthed) {
+      e.preventDefault();
+      toast.message("Sign in to unlock", { description: "Create a free account to save favorites and visit official program links." });
+      navigate(authRedirectHref(`/opportunities/${opp.id}`));
+    }
+  };
 
   return (
     <article
@@ -53,6 +64,7 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
           </span>
         </div>
         <div className="-mr-2 -mt-1 flex items-center">
+          {isAuthed ? (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg text-muted-foreground hover:text-ink">
@@ -81,10 +93,16 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
               })}
             </DropdownMenuContent>
           </DropdownMenu>
+          ) : (
+            <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg text-muted-foreground hover:text-ink" onClick={requireAuth} aria-label="Sign in to use collections">
+              <FolderPlus className="h-4 w-4" />
+            </Button>
+          )}
           <Button
             variant="ghost" size="icon"
             className="h-8 w-8 rounded-lg text-muted-foreground hover:text-coral"
             onClick={() => {
+              if (!isAuthed) { requireAuth({ preventDefault: () => {} } as any); return; }
               store.toggleFavorite(opp.id);
               toast.success(fav ? "Removed from favorites" : "Saved to favorites");
             }}
@@ -121,12 +139,22 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
         <Link to={`/opportunities/${opp.id}`} className="text-sm font-medium text-muted-foreground hover:text-ink">
           Details
         </Link>
-        <a
-          href={linkUrl} target="_blank" rel="noopener noreferrer"
-          className="ml-auto inline-flex items-center gap-1.5 rounded-lg bg-ink px-3.5 py-2 text-sm font-semibold text-cream transition-colors hover:bg-coral"
-        >
-          Visit program <ExternalLink className="h-3.5 w-3.5" />
-        </a>
+        {isAuthed ? (
+          <a
+            href={linkUrl} target="_blank" rel="noopener noreferrer"
+            className="ml-auto inline-flex items-center gap-1.5 rounded-lg bg-ink px-3.5 py-2 text-sm font-semibold text-cream transition-colors hover:bg-coral"
+          >
+            Visit program <ExternalLink className="h-3.5 w-3.5" />
+          </a>
+        ) : (
+          <Link
+            to={authRedirectHref(`/opportunities/${opp.id}`)}
+            className="ml-auto inline-flex items-center gap-1.5 rounded-lg border border-border bg-secondary px-3.5 py-2 text-sm font-semibold text-foreground transition-colors hover:border-ink/40 hover:text-ink"
+            title="Sign in to view link"
+          >
+            <Lock className="h-3.5 w-3.5" /> Sign in to view link
+          </Link>
+        )}
       </div>
     </article>
   );
