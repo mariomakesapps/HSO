@@ -7,7 +7,7 @@ import type { Category } from "@/data/opportunities";
 import { OpportunityCard } from "@/components/OpportunityCard";
 import { FilterState } from "@/components/Filters";
 import { ExtraFilters, DEFAULT_EXTRA, ExtraFilterState } from "@/components/ExtraFilters";
-import { SortBar, SortKey } from "@/components/SortBar";
+import { SortBar, SortKey, SORT_OPTIONS } from "@/components/SortBar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetFooter } from "@/components/ui/sheet";
