@@ -27,28 +27,24 @@ export function ExtraFilters({ value, onChange }: { value: ExtraFilterState; onC
 
   return (
     <div className="flex flex-wrap gap-2 text-sm">
-      <Pill>
-        Field
+      <Pill label="Field">
         <select value={value.field} onChange={(e) => onChange({ ...value, field: e.target.value })} className="cursor-pointer bg-transparent font-semibold text-foreground outline-none">
           <option value="All">All</option>
           {fields.map((f) => <option key={f} value={f}>{f}</option>)}
         </select>
       </Pill>
-      <Pill>
-        Country
+      <Pill label="Country">
         <select value={value.country} onChange={(e) => onChange({ ...value, country: e.target.value })} className="cursor-pointer bg-transparent font-semibold text-foreground outline-none">
           <option value="All">All</option>
           {countries.map((c) => <option key={c} value={c}>{c}</option>)}
         </select>
       </Pill>
-      <Pill>
-        Status
+      <Pill label="Status">
         <select value={value.status} onChange={(e) => onChange({ ...value, status: e.target.value as ExtraFilterState["status"] })} className="cursor-pointer bg-transparent font-semibold text-foreground outline-none">
           {(["All","Open","Closing soon","Rolling","Closed"] as const).map((s) => <option key={s} value={s}>{s}</option>)}
         </select>
       </Pill>
-      <Pill>
-        Deadline
+      <Pill label="Deadline">
         <select value={value.deadlineMonth} onChange={(e) => onChange({ ...value, deadlineMonth: e.target.value })} className="cursor-pointer bg-transparent font-semibold text-foreground outline-none">
           <option value="All">Any month</option>
           {MONTHS.map((m, i) => <option key={m} value={String(i+1)}>{m}</option>)}
@@ -62,11 +58,11 @@ export function ExtraFilters({ value, onChange }: { value: ExtraFilterState; onC
   );
 }
 
-function Pill({ children }: { children: React.ReactNode }) {
+function Pill({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 shadow-soft transition-colors hover:border-foreground">
-      <span className="text-muted-foreground">{(Array.isArray(children) ? children[0] : children) as any}</span>
-      {(Array.isArray(children) ? children.slice(1) : null) as any}
+      <span className="text-muted-foreground">{label}</span>
+      {children}
     </label>
   );
 }
