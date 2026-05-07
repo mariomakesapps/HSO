@@ -1,53 +1,46 @@
-## Mobile-first redesign
+# HSO Upgrade Plan
 
-The current home page is built desktop-first: the hero is huge, the rotated spotlight card overflows, the nav buttons wrap, the filter row pushes off-screen, and the shelf panel doesn't fit small viewports. This plan restructures everything below `md` (tablet) and `sm` (phone) breakpoints without touching data or business logic.
+This is a large scope (15 items). I'll break it into 4 phases so each ships clean and reviewable. Item 1 (copy: "10,000+" → "300+ curated opportunities, growing weekly") was already shipped in the previous turn — confirmed gone from `index.html`, hero, spotlight stat card, and intro splash.
 
-### 1. Nav (`src/pages/Index.tsx` header)
-- Hide the "High School Opportunity Finder" tagline below `sm` (already partly done — verify).
-- On mobile: collapse "My Shelf" and "Sign in/out" to icon-only buttons (keep the saved-count badge on the bookmark icon).
-- Reduce header padding from `py-4` to `py-3` on mobile.
-- Use `px-4` on mobile, `px-6` from `md` up.
+## Phase 1 — Static pages, trust, navigation, SEO basics
+- **About page** (`/about`) — what HSO is, opportunity types covered, editorial copy.
+- **Contact & Corrections** (`/contact`) — form with reason types (outdated deadline, missing opportunity, broken link, general).
+- **Privacy** (`/privacy`) — accounts, saved favorites/collections, Lovable Cloud (Supabase) backend, Google sign-in mention.
+- **Terms** (`/terms`) — verify deadlines/eligibility/cost on official sites; HSO is a discovery layer.
+- **"How HSO works"** section under hero on Index (4 steps with icons).
+- **Source / trust** section with the provided copy + 4 badges (Official links, Updated weekly, Student-focused, Global opportunities).
+- **Footer + header nav** updated: About, Contact, Submit Opportunity, Privacy, Terms.
+- **`public/robots.txt`** points to `/sitemap.xml`; **`public/sitemap.xml`** lists all routes including category pages.
 
-### 2. Hero (`src/pages/Index.tsx` hero section)
-- Drop padding from `py-20 lg:py-28` to `py-10 sm:py-16 lg:py-28`.
-- Headline: `text-3xl sm:text-5xl lg:text-7xl` (was `text-5xl … lg:text-7xl`).
-- Hide the rotated Spotlight card and the "10,000+" badge below `lg`. Replace with a compact inline "Spotlight" strip that sits above the filters on mobile (one-line org + title + chevron link).
-- Filters render directly under the headline on mobile, no two-column grid.
+## Phase 2 — Submit Opportunity + Contact backend
+- **Supabase tables**: `opportunity_submissions` and `contact_messages`. RLS: anyone can INSERT (anon), no SELECT for anon. (Admin review can be added later.)
+- **Submit Opportunity** modal/page (`/submit`) with full form, zod validation, success toast "Thanks — we'll review this opportunity."
+- **Contact page** writes to `contact_messages`.
+- Header gets a small "Submit" button; footer gets a link too.
 
-### 3. Filters (`src/components/Filters.tsx`)
-- Search input: full width, sticky under the nav on mobile (`sticky top-[64px] z-20`), shrink height to `h-12` on mobile.
-- Category chips: keep horizontal scroll, add `snap-x snap-mandatory` and `snap-start` on each chip.
-- Replace the three Grade / Cost / Format selects with a single **"Filters"** button on mobile that opens a shadcn `Sheet` (bottom drawer) containing the three selects stacked vertically + a "Reset" + "Apply" footer. Above `md`, keep the inline pills.
-- Show an active-filter count badge on the Filters button when any non-"All" value is set.
+## Phase 3 — Opportunity UX upgrades
+- **Deadline status helper** (`src/lib/deadline.ts`): Open / Closing soon (<30d) / Closed / Rolling. Used on cards.
+- **Sorting bar** above results: Recommended, Deadline soon, Newest added, Free first, Online first, Highest prestige. (Newest = stable insertion order from dataset.)
+- **Extra filters**: Field/interest (multi), Country/location, Application status, Free/aid only, Deadline month.
+- **Opportunity detail page** (`/opportunities/:id`) — full info, official link CTA, save, add to collection, related opportunities (same category/fields).
+- **Homepage strips**: "Deadline Soon" and "Recently Added" compact horizontal scrollers above the main grid.
+- **Category pages** (`/categories/:slug`) for summer-programs, internships, scholarships, research, competitions, volunteer, fellowships. Each: H1, intro paragraph, filtered grid, cross-links to siblings, dynamic `<title>` and `<meta description>` via `react-helmet-async` (already in stack? — will add if missing).
 
-### 4. Cards grid (`src/pages/Index.tsx` results section)
-- Grid: `grid-cols-1 md:grid-cols-2 lg:grid-cols-3` (currently `sm:grid-cols-2`, which kicks in at 640px and squishes phones in landscape and small tablets).
-- Reduce gap on mobile: `gap-4 md:gap-6`.
-- Section padding: `px-4 py-10 md:px-6 md:py-16`.
+## Phase 4 — Account features
+- **Deadline reminders preferences**: `reminder_preferences` table (user_id, opp_id, intervals[]). UI on opportunity detail + collections. Email sending left as TODO with clear comments + an unhooked edge function stub `send-deadline-reminders` (cron-ready).
+- **Shareable collections**: add `is_public boolean` and `slug` to existing collections store. Public route `/collections/:id` shows read-only collection (no owner email/profile data exposed). Persist collections to Supabase (currently localStorage) so public links work cross-device. Keep local fallback for signed-out users.
 
-### 5. Opportunity card (`src/components/OpportunityCard.tsx`)
-- Title: `text-xl sm:text-2xl` with `break-words`.
-- Bottom meta grid stays 2-col but tightens spacing.
-- Replace the bare "Visit program" link with a full-width pill button at the bottom on mobile (still inline link style on `sm+`). Increases tap target to ~44px.
-- Ensure the dropdown + favorite buttons are at least 40×40 on touch.
+---
 
-### 6. My Shelf panel (`src/components/CollectionsPanel.tsx`)
-- Convert to shadcn `Sheet` with `side="right"` on desktop and `side="bottom"` (full-height) on mobile, OR make the existing panel `inset-0` full-screen below `sm`.
-- Add a sticky close button in the header.
+## Technical notes (for reference)
 
-### 7. Global polish
-- Audit every section for `overflow-x-hidden` on `<body>` / root container.
-- Replace any `px-6` with `px-4 md:px-6` at the page level.
-- Add `text-balance` + `break-words` on long headings.
-- Verify at 320, 390, 414, 768, 834, 1024, 1280px viewports — no horizontal scroll, all CTAs reachable, search visible above the fold.
+- New deps: `react-helmet-async` for per-page SEO. Possibly `date-fns` (likely already present).
+- Routes added in `src/App.tsx`: `/about`, `/contact`, `/privacy`, `/terms`, `/submit`, `/opportunities/:id`, `/categories/:slug`, `/collections/:id`.
+- Sitemap is a static file in `public/` — fine since routes are known. Will be regenerated if categories change.
+- All copy stays editorial (font-display, italic accents, coral/sage/ink palette). No new colors.
+- Mobile: every new section uses the same responsive patterns already in `Index.tsx`.
+- Existing behaviors preserved: auth flow, favorites store, filters component, intro splash.
 
-### Out of scope
-- No data, auth, routing, or copy changes.
-- Visual language (fonts, coral/sage/ink palette, grain texture, animations) stays identical.
+## Confirmation needed
 
-### Files touched
-- `src/pages/Index.tsx`
-- `src/components/Filters.tsx`
-- `src/components/OpportunityCard.tsx`
-- `src/components/CollectionsPanel.tsx`
-- possibly `src/index.css` for one or two utility additions
+Before I start: do you want me to ship **all 4 phases in this single run** (large change set, ~15-20 files), or **phase by phase** so you can review each? Phase-by-phase is safer; all-at-once is faster but harder to review.
