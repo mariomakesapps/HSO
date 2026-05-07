@@ -27,7 +27,7 @@ export function IntroSplash() {
 
   return (
     <div
-      className="hso-intro fixed inset-0 z-[100] flex flex-col items-center justify-center bg-ink text-cream"
+      className="hso-intro fixed inset-0 z-[100] flex flex-col items-center justify-center overflow-hidden bg-ink text-cream"
       aria-hidden="true"
     >
       <div className="absolute -right-32 -top-32 h-[420px] w-[420px] rounded-full bg-gradient-coral opacity-30 blur-3xl" />
@@ -39,7 +39,7 @@ export function IntroSplash() {
           alt="HSO logo"
           className="hso-intro-mark mb-6 h-28 w-28 rounded-3xl object-cover shadow-2xl"
         />
-        <h1 className="hso-intro-logo font-display text-7xl font-semibold tracking-tight sm:text-9xl">
+        <h1 className="hso-intro-logo font-display text-6xl font-semibold tracking-tight sm:text-8xl md:text-9xl">
           HSO
         </h1>
         <div className="hso-intro-line mt-4 h-px w-40 bg-coral" />
