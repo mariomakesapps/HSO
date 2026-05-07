@@ -21,6 +21,7 @@ export function SiteHeader() {
   const [session, setSession] = useState<Session | null>(null);
   const [showShelf, setShowShelf] = useState(false);
   const navigate = useNavigate();
+  const scrolled = useScrolled();
   const s = useStore();
   const totalSaved = s.favorites.length + s.collections.reduce((n, c) => n + c.opportunityIds.length, 0);
 
@@ -37,7 +38,13 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur-md">
+      <header
+        className={`sticky top-0 z-40 transition-[box-shadow,border-color] duration-200 ${
+          scrolled
+            ? "border-b border-border/80 bg-background/85 shadow-sm backdrop-blur-md"
+            : "border-b border-transparent bg-background/70 backdrop-blur-sm"
+        }`}
+      >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 md:py-4">
           <Link to="/" aria-label="HSO — High School Opportunity" className="group flex items-center font-display text-2xl font-bold tracking-tight leading-none">
             <span className="text-ink">H</span>
