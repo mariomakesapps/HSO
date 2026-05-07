@@ -376,7 +376,13 @@ function RefinePanel({
   };
 
   return (
-    <div className="rounded-3xl border border-border/70 bg-card/70 p-4 shadow-soft backdrop-blur-sm sm:p-5">
+    <div className="rounded-3xl border border-border/70 bg-cream/80 p-5 shadow-soft backdrop-blur-sm sm:p-6">
+      <div className="mb-4 flex flex-wrap items-end justify-between gap-2">
+        <div>
+          <p className="font-display text-lg font-medium text-ink">Refine your search</p>
+          <p className="text-xs text-muted-foreground">Interest · Grade · Cost · Format · Location · Deadline</p>
+        </div>
+      </div>
       <div className="flex flex-wrap items-center gap-3">
         <Button
           variant="outline"
