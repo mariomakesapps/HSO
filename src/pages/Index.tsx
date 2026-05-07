@@ -57,8 +57,8 @@ const Index = () => {
       <div className="hso-bg-blobs" aria-hidden="true">
         <span className="b1" /><span className="b2" /><span className="b3" /><span className="b4" />
       </div>
-      <div className="relative z-10">
       <SiteHeader />
+      <div className="relative z-10 pt-16 md:pt-[72px]">
 
       {/* Hero */}
       <section>
