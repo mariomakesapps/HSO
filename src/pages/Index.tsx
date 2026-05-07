@@ -254,6 +254,15 @@ function SheetSelect({ label, value, options, onChange }: { label: string; value
   );
 }
 
+function SheetField({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-1.5">
+      <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{label}</span>
+      {children}
+    </div>
+  );
+}
+
 function Badge({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
     <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground">
