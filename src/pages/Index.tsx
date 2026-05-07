@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
-import { Search, ShieldCheck, Calendar, GraduationCap, Globe, Filter as FilterIcon, BookmarkPlus, ExternalLink, SlidersHorizontal } from "lucide-react";
+import { Search, ShieldCheck, Calendar, GraduationCap, Globe, Filter as FilterIcon, BookmarkPlus, ExternalLink, SlidersHorizontal, Lock, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useAuthSession } from "@/hooks/useAuthSession";
 import { allOpportunities as opportunities } from "@/data/opportunities";
 import type { Category } from "@/data/opportunities";
 import { OpportunityCard } from "@/components/OpportunityCard";
@@ -20,6 +21,7 @@ import { useSEO } from "@/lib/seo";
 const CATEGORY_CHIPS: (Category | "All")[] = ["All", "Summer Program", "Internship", "Research", "Scholarship", "Competition", "Volunteer", "Fellowship"];
 
 const Index = () => {
+  const { isAuthed, loading: authLoading } = useAuthSession();
   useSEO({
     title: "HSO — High School Opportunity Finder",
     description: "Browse 300+ curated internships, research, scholarships, summer programs, competitions and fellowships for high schoolers — growing weekly.",
@@ -62,6 +64,23 @@ const Index = () => {
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             Internships, research, scholarships, summer programs, competitions, and fellowships — curated and linked to official program pages.
           </p>
+
+          {!authLoading && !isAuthed && (
+            <div className="mx-auto mt-6 flex max-w-2xl flex-col items-center justify-between gap-3 rounded-2xl border border-border bg-card px-4 py-3 text-left shadow-soft sm:flex-row sm:px-5">
+              <p className="flex items-start gap-2.5 text-sm text-foreground sm:items-center">
+                <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-coral/10 text-coral sm:mt-0">
+                  <Sparkles className="h-3.5 w-3.5" />
+                </span>
+                <span>
+                  <span className="font-semibold text-ink">Create a free account</span>
+                  <span className="text-muted-foreground"> to unlock links, save favorites, and build collections.</span>
+                </span>
+              </p>
+              <Link to="/auth" className="w-full shrink-0 rounded-lg bg-ink px-4 py-2 text-center text-sm font-semibold text-cream hover:bg-coral sm:w-auto">
+                Sign up free
+              </Link>
+            </div>
+          )}
 
           {/* Search */}
           <form className="mx-auto mt-8 max-w-2xl" onSubmit={(e) => e.preventDefault()}>
