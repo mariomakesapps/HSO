@@ -1,8 +1,10 @@
-import { Bookmark, BookmarkCheck, ExternalLink, FolderPlus, MapPin, CalendarDays } from "lucide-react";
+import { Bookmark, BookmarkCheck, ExternalLink, FolderPlus, MapPin, CalendarDays, Info } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Opportunity } from "@/data/opportunities";
 import { store, useStore } from "@/store/collections";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -26,9 +28,8 @@ const accentByCategory: Record<string, string> = {
 export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: number }) {
   const s = useStore();
   const fav = s.favorites.includes(opp.id);
-  const deadline = new Date(opp.deadline);
-  const daysLeft = Math.ceil((deadline.getTime() - Date.now()) / 86400000);
-  const isClosed = daysLeft <= 0;
+  const dl = getDeadlineStatus(opp.deadline);
+  const isClosed = dl.status === "closed";
   const linkUrl =
     opp.url && opp.url !== "#"
       ? opp.url
@@ -55,11 +56,9 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
       )}
       style={{ animationDelay: `${Math.min(index * 40, 300)}ms` }}
     >
-      {isClosed && (
-        <span className="absolute right-3 top-3 z-10 rounded-full bg-foreground/80 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-background">
-          Closed
-        </span>
-      )}
+      <span className={cn("absolute right-3 top-3 z-10 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider", STATUS_STYLES[dl.status])}>
+        {dl.status === "open" ? "Open" : dl.status === "closing-soon" ? "Closing soon" : dl.status === "rolling" ? "Rolling" : "Closed"}
+      </span>
       <div className="flex items-start justify-between gap-3 p-4 pb-3 sm:p-5">
         <span className={cn("rounded-full px-3 py-1 text-xs font-semibold tracking-wide uppercase", accentByCategory[opp.category])}>
           {opp.category}
@@ -131,9 +130,7 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
           </div>
           <div className="flex items-center gap-1.5">
             <CalendarDays className="h-3.5 w-3.5" />
-            <span className={cn(daysLeft < 30 && daysLeft > 0 && "text-coral font-semibold")}>
-              {daysLeft > 0 ? `${daysLeft}d left` : "Closed"}
-            </span>
+            <span className={cn(dl.status === "closing-soon" && "text-coral font-semibold")}>{dl.label}</span>
           </div>
           <div className="flex items-center gap-1.5">
             <span className="font-semibold">{opp.cost}</span>
@@ -143,16 +140,24 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
           </div>
         </div>
 
+        <div className="mt-5 flex items-center gap-3">
+        <Link
+          to={`/opportunities/${opp.id}`}
+          className="inline-flex items-center gap-1 text-sm font-semibold text-foreground underline-offset-4 hover:text-coral hover:underline"
+        >
+          <Info className="h-3.5 w-3.5" /> Details
+        </Link>
         <a
           href={linkUrl}
           target="_blank"
           rel="noopener noreferrer"
           onClick={openLink}
           title={linkUrl}
-          className="mt-5 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-ink px-4 py-3 text-sm font-semibold text-cream transition-colors hover:bg-coral hover:text-coral-foreground sm:w-auto sm:justify-start sm:bg-transparent sm:px-0 sm:py-0 sm:text-foreground sm:underline-offset-4 sm:hover:bg-transparent sm:hover:text-coral sm:hover:underline"
+          className="ml-auto inline-flex items-center justify-center gap-1.5 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-cream transition-colors hover:bg-coral hover:text-coral-foreground"
         >
-          {isClosed ? "View details" : "Visit program"} <ExternalLink className="h-3.5 w-3.5" />
+          {isClosed ? "View page" : "Apply"} <ExternalLink className="h-3.5 w-3.5" />
         </a>
+        </div>
       </div>
     </article>
   );

@@ -3,8 +3,9 @@ import { store, useStore } from "@/store/collections";
 import { opportunities } from "@/data/opportunities";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Plus, Share2, Trash2, X } from "lucide-react";
+import { Plus, Share2, Trash2, X, Link2 } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 
 const EMOJIS = ["✨","🌞","🚀","🧪","📚","🎨","🌍","💡","🏆","🩺"];
 
@@ -31,6 +32,25 @@ export function CollectionsPanel({ onClose }: { onClose: () => void }) {
     const text = `${c.emoji} ${c.name}\n\n• ${titles || "(empty)"}`;
     navigator.clipboard.writeText(text);
     toast.success("Collection copied to clipboard — share with friends!");
+  };
+
+  const publish = async (id: string) => {
+    const c = s.collections.find((x) => x.id === id);
+    if (!c) return;
+    const { data: sess } = await supabase.auth.getSession();
+    if (!sess.session) { toast.error("Sign in to publish a public link"); return; }
+    const slug = `${c.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}-${Math.random().toString(36).slice(2, 7)}`;
+    const { error } = await supabase.from("shared_collections").insert({
+      slug,
+      user_id: sess.session.user.id,
+      name: c.name,
+      emoji: c.emoji,
+      opportunity_ids: c.opportunityIds,
+    } as any);
+    if (error) { toast.error("Couldn't publish"); return; }
+    const url = `${window.location.origin}/collections/${slug}`;
+    await navigator.clipboard.writeText(url);
+    toast.success("Public link copied!");
   };
 
   return (
@@ -79,6 +99,7 @@ export function CollectionsPanel({ onClose }: { onClose: () => void }) {
             <div className="flex items-center justify-between">
               <p className="font-display text-xl"><span className="mr-2">{c.emoji}</span>{c.name}</p>
               <div className="flex items-center gap-1">
+                <Button variant="ghost" size="icon" onClick={() => publish(c.id)} title="Publish public link"><Link2 className="h-4 w-4" /></Button>
                 <Button variant="ghost" size="icon" onClick={() => share(c.id)}><Share2 className="h-4 w-4" /></Button>
                 <Button variant="ghost" size="icon" onClick={() => store.deleteCollection(c.id)}><Trash2 className="h-4 w-4" /></Button>
               </div>

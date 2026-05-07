@@ -14,7 +14,141 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      contact_messages: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          message: string
+          reason: string
+          related_url: string | null
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          message: string
+          reason: string
+          related_url?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          message?: string
+          reason?: string
+          related_url?: string | null
+        }
+        Relationships: []
+      }
+      opportunity_submissions: {
+        Row: {
+          category: string
+          cost: string | null
+          created_at: string
+          deadline: string | null
+          description: string
+          format: string | null
+          grades: number[] | null
+          id: string
+          org: string
+          status: string
+          submitter_email: string
+          title: string
+          url: string
+        }
+        Insert: {
+          category: string
+          cost?: string | null
+          created_at?: string
+          deadline?: string | null
+          description: string
+          format?: string | null
+          grades?: number[] | null
+          id?: string
+          org: string
+          status?: string
+          submitter_email: string
+          title: string
+          url: string
+        }
+        Update: {
+          category?: string
+          cost?: string | null
+          created_at?: string
+          deadline?: string | null
+          description?: string
+          format?: string | null
+          grades?: number[] | null
+          id?: string
+          org?: string
+          status?: string
+          submitter_email?: string
+          title?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      reminder_preferences: {
+        Row: {
+          created_at: string
+          id: string
+          intervals: number[]
+          opportunity_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          intervals?: number[]
+          opportunity_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          intervals?: number[]
+          opportunity_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      shared_collections: {
+        Row: {
+          created_at: string
+          emoji: string
+          id: string
+          name: string
+          opportunity_ids: string[]
+          slug: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          emoji?: string
+          id?: string
+          name: string
+          opportunity_ids?: string[]
+          slug: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          emoji?: string
+          id?: string
+          name?: string
+          opportunity_ids?: string[]
+          slug?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
