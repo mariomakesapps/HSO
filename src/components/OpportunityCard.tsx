@@ -1,4 +1,4 @@
-import { Bookmark, BookmarkCheck, ExternalLink, FolderPlus, MapPin, CalendarDays, Info } from "lucide-react";
+import { Bookmark, BookmarkCheck, ExternalLink, FolderPlus, MapPin, GraduationCap, DollarSign } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Opportunity } from "@/data/opportunities";
 import { store, useStore } from "@/store/collections";
@@ -15,14 +15,14 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
 
-const accentByCategory: Record<string, string> = {
-  Research: "bg-sage text-sage-foreground",
-  Internship: "bg-ink text-cream",
-  Competition: "bg-coral text-coral-foreground",
-  "Summer Program": "bg-ochre text-ochre-foreground",
-  Scholarship: "bg-sage text-sage-foreground",
-  Volunteer: "bg-ink text-cream",
-  Fellowship: "bg-coral text-coral-foreground",
+const CATEGORY_BADGE: Record<string, string> = {
+  Research: "bg-sage/15 text-sage border border-sage/30",
+  Internship: "bg-ink/10 text-ink border border-ink/20",
+  Competition: "bg-coral/15 text-coral border border-coral/30",
+  "Summer Program": "bg-ochre/20 text-ink border border-ochre/40",
+  Scholarship: "bg-sage/15 text-sage border border-sage/30",
+  Volunteer: "bg-ink/10 text-ink border border-ink/20",
+  Fellowship: "bg-coral/15 text-coral border border-coral/30",
 };
 
 export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: number }) {
@@ -30,52 +30,39 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
   const fav = s.favorites.includes(opp.id);
   const dl = getDeadlineStatus(opp.deadline);
   const isClosed = dl.status === "closed";
-  const linkUrl =
-    opp.url && opp.url !== "#"
-      ? opp.url
-      : `https://duckduckgo.com/?q=${encodeURIComponent(`${opp.title} ${opp.org} high school`)}&kl=us-en`;
-
-  const openLink = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const win = window.open(linkUrl, "_blank", "noopener,noreferrer");
-    if (!win) {
-      try {
-        if (window.top) window.top.location.href = linkUrl;
-        else window.location.href = linkUrl;
-      } catch {
-        window.location.href = linkUrl;
-      }
-    }
-  };
+  const linkUrl = opp.url && opp.url !== "#"
+    ? opp.url
+    : `https://duckduckgo.com/?q=${encodeURIComponent(`${opp.title} ${opp.org} high school`)}`;
 
   return (
     <article
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-all duration-500 hover:-translate-y-1 hover:shadow-editorial animate-fade-up",
-        isClosed && "opacity-50 grayscale hover:opacity-90 hover:grayscale-0"
+        "group flex flex-col rounded-2xl border border-border bg-card p-5 transition-all duration-200 hover:border-ink/30 hover:shadow-soft",
+        isClosed && "opacity-70"
       )}
-      style={{ animationDelay: `${Math.min(index * 40, 300)}ms` }}
+      style={{ animationDelay: `${Math.min(index * 30, 240)}ms` }}
     >
-      <span className={cn("absolute right-3 top-3 z-10 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider", STATUS_STYLES[dl.status])}>
-        {dl.status === "open" ? "Open" : dl.status === "closing-soon" ? "Closing soon" : dl.status === "rolling" ? "Rolling" : "Closed"}
-      </span>
-      <div className="flex items-start justify-between gap-3 p-4 pb-3 sm:p-5">
-        <span className={cn("rounded-full px-3 py-1 text-xs font-semibold tracking-wide uppercase", accentByCategory[opp.category])}>
-          {opp.category}
-        </span>
-        <div className="flex items-center gap-1">
+      {/* Top row: category + status + actions */}
+      <div className="flex items-start justify-between gap-3">
+        <div className="flex flex-wrap items-center gap-2">
+          <span className={cn("rounded-md px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide", CATEGORY_BADGE[opp.category])}>
+            {opp.category}
+          </span>
+          <span className={cn("rounded-md px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide", STATUS_STYLES[dl.status])}>
+            {dl.status === "open" ? "Open" : dl.status === "closing-soon" ? "Closing soon" : dl.status === "rolling" ? "Rolling" : "Closed"}
+          </span>
+        </div>
+        <div className="-mr-2 -mt-1 flex items-center">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+              <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg text-muted-foreground hover:text-ink">
                 <FolderPlus className="h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
               <DropdownMenuLabel>Add to collection</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              {s.collections.length === 0 && (
-                <DropdownMenuItem disabled>No collections yet</DropdownMenuItem>
-              )}
+              {s.collections.length === 0 && <DropdownMenuItem disabled>No collections yet</DropdownMenuItem>}
               {s.collections.map((c) => {
                 const inIt = c.opportunityIds.includes(opp.id);
                 return (
@@ -95,70 +82,61 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
             </DropdownMenuContent>
           </DropdownMenu>
           <Button
-            variant="ghost"
-            size="icon"
-            className="h-8 w-8 rounded-full"
+            variant="ghost" size="icon"
+            className="h-8 w-8 rounded-lg text-muted-foreground hover:text-coral"
             onClick={() => {
               store.toggleFavorite(opp.id);
               toast.success(fav ? "Removed from favorites" : "Saved to favorites");
             }}
+            aria-label={fav ? "Unsave" : "Save"}
           >
             {fav ? <BookmarkCheck className="h-4 w-4 text-coral" /> : <Bookmark className="h-4 w-4" />}
           </Button>
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col px-4 pb-4 sm:px-5 sm:pb-5">
-        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{opp.org}</p>
-        <h3 className="mt-2 font-display text-xl leading-tight text-foreground text-balance break-words sm:text-2xl">
+      {/* Title + org */}
+      <Link to={`/opportunities/${opp.id}`} className="mt-3 block">
+        <h3 className="font-display text-lg font-semibold leading-snug text-ink group-hover:text-coral sm:text-xl">
           {opp.title}
         </h3>
-        <p className="mt-3 text-sm leading-relaxed text-muted-foreground line-clamp-3">{opp.blurb}</p>
+        <p className="mt-1 text-sm text-muted-foreground">{opp.org}</p>
+      </Link>
 
-        <div className="mt-4 flex flex-wrap gap-1.5">
-          {opp.fields.slice(0, 3).map((f) => (
-            <span key={f} className="rounded-full bg-secondary px-2.5 py-0.5 text-[11px] font-medium text-secondary-foreground">
-              {f}
-            </span>
-          ))}
-        </div>
+      {/* Description */}
+      <p className="mt-3 text-sm leading-relaxed text-foreground/80 line-clamp-3">{opp.blurb}</p>
 
-        <div className="mt-5 grid grid-cols-2 gap-3 border-t border-border pt-4 text-xs text-muted-foreground">
-          <div className="flex items-center gap-1.5">
-            <MapPin className="h-3.5 w-3.5" />
-            <span className="truncate">{opp.location}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <CalendarDays className="h-3.5 w-3.5" />
-            <span className={cn(dl.status === "closing-soon" && "text-coral font-semibold")}>{dl.label}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="font-semibold">{opp.cost}</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span>Grades {opp.grades[0]}–{opp.grades[opp.grades.length - 1]}</span>
-          </div>
-        </div>
+      {/* Meta */}
+      <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-muted-foreground">
+        <Meta icon={<MapPin className="h-3.5 w-3.5" />}>{opp.location}</Meta>
+        <Meta icon={<DollarSign className="h-3.5 w-3.5" />}>{opp.cost}</Meta>
+        <Meta icon={<GraduationCap className="h-3.5 w-3.5" />}>Grades {opp.grades[0]}–{opp.grades[opp.grades.length - 1]}</Meta>
+        <Meta>
+          <span className={cn(dl.status === "closing-soon" && "font-semibold text-coral")}>{dl.label}</span>
+        </Meta>
+      </div>
 
-        <div className="mt-5 flex items-center gap-3">
-        <Link
-          to={`/opportunities/${opp.id}`}
-          className="inline-flex items-center gap-1 text-sm font-semibold text-foreground underline-offset-4 hover:text-coral hover:underline"
-        >
-          <Info className="h-3.5 w-3.5" /> Details
+      {/* Actions */}
+      <div className="mt-5 flex items-center gap-2 border-t border-border pt-4">
+        <Link to={`/opportunities/${opp.id}`} className="text-sm font-medium text-muted-foreground hover:text-ink">
+          Details
         </Link>
         <a
-          href={linkUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={openLink}
-          title={linkUrl}
-          className="ml-auto inline-flex items-center justify-center gap-1.5 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-cream transition-colors hover:bg-coral hover:text-coral-foreground"
+          href={linkUrl} target="_blank" rel="noopener noreferrer"
+          className="ml-auto inline-flex items-center gap-1.5 rounded-lg bg-ink px-3.5 py-2 text-sm font-semibold text-cream transition-colors hover:bg-coral"
         >
-          {isClosed ? "View page" : "Apply"} <ExternalLink className="h-3.5 w-3.5" />
+          Visit program <ExternalLink className="h-3.5 w-3.5" />
         </a>
-        </div>
       </div>
     </article>
+  );
+}
+
+function Meta({ icon, children }: { icon?: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <div className="flex items-center gap-1.5 truncate">
+      {icon}
+      <span className="truncate">{children}</span>
+    </div>
   );
 }

@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Bookmark, LogOut, Plus } from "lucide-react";
+import { Bookmark, LogOut } from "lucide-react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
-import hsoLogo from "@/assets/hso-logo.png";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/store/collections";
 import { CollectionsPanel } from "@/components/CollectionsPanel";
@@ -30,36 +29,35 @@ export function SiteHeader() {
 
   return (
     <>
-      <header className="sticky top-0 z-30 border-b border-coral/30 bg-gradient-to-r from-coral/15 via-cream/80 to-sage/20 backdrop-blur-md shadow-soft">
+      <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 md:py-4">
-          <Link to="/" className="flex items-center gap-2">
-            <span className="relative inline-block h-10 w-10 overflow-hidden rounded-xl ring-1 ring-foreground/10 shadow-soft">
-              <img src={hsoLogo} alt="HSO logo" className="absolute inset-0 h-full w-full scale-[1.35] object-cover transition-transform duration-700 hover:rotate-6 hover:scale-[1.45]" />
+          <Link to="/" className="flex items-center gap-2.5">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-ink text-cream font-display text-base font-bold tracking-tight">
+              H
             </span>
-            <span className="font-display text-2xl font-semibold tracking-tight">
-              <span className="text-ink">H</span><span className="text-coral">S</span><span className="text-sage">O</span>
-            </span>
+            <span className="font-display text-xl font-semibold tracking-tight text-ink">HSO</span>
           </Link>
-          <nav className="hidden items-center gap-5 text-sm text-foreground/80 md:flex">
+          <nav className="hidden items-center gap-6 text-sm font-medium text-foreground/75 md:flex">
             <Link to="/" className="hover:text-coral">Discover</Link>
             <Link to="/about" className="hover:text-coral">About</Link>
             <Link to="/submit" className="hover:text-coral">Submit</Link>
             <Link to="/contact" className="hover:text-coral">Contact</Link>
           </nav>
           <div className="flex items-center gap-2">
-            <Button asChild variant="outline" size="sm" className="hidden rounded-full border-foreground/20 bg-card hover:bg-coral hover:text-coral-foreground sm:inline-flex">
-              <Link to="/submit"><Plus className="mr-1 h-4 w-4" /> Submit</Link>
+            <Button onClick={() => setShowShelf(true)} variant="ghost" size="sm" className="relative hidden rounded-lg sm:inline-flex">
+              <Bookmark className="mr-1.5 h-4 w-4" /> My Shelf
+              {totalSaved > 0 && <span className="ml-1.5 rounded-md bg-coral/15 px-1.5 py-0.5 text-[10px] font-semibold text-coral">{totalSaved}</span>}
             </Button>
-            <Button onClick={() => setShowShelf(true)} variant="outline" size="icon" aria-label="My Shelf" className="relative rounded-full border-foreground/20 bg-card hover:bg-ink hover:text-cream">
+            <Button onClick={() => setShowShelf(true)} variant="ghost" size="icon" aria-label="My Shelf" className="relative rounded-lg sm:hidden">
               <Bookmark className="h-4 w-4" />
               {totalSaved > 0 && <span className="absolute -right-1 -top-1 rounded-full bg-coral px-1.5 py-0.5 text-[10px] font-semibold text-coral-foreground">{totalSaved}</span>}
             </Button>
             {session ? (
-              <Button onClick={onSignOut} variant="outline" size="icon" aria-label="Sign out" className="rounded-full border-foreground/20 bg-card hover:bg-ink hover:text-cream">
+              <Button onClick={onSignOut} variant="ghost" size="icon" aria-label="Sign out" className="rounded-lg">
                 <LogOut className="h-4 w-4" />
               </Button>
             ) : (
-              <Button onClick={() => navigate("/auth")} variant="outline" className="rounded-full border-foreground/20 bg-card hover:bg-ink hover:text-cream">Sign in</Button>
+              <Button onClick={() => navigate("/auth")} size="sm" className="rounded-lg bg-ink text-cream hover:bg-ink/90">Sign in</Button>
             )}
           </div>
         </div>
