@@ -6,6 +6,11 @@
 
 html, body { overflow-x: hidden; }
 
+html { scroll-padding-top: 140px; }
+@media (min-width: 768px) {
+  html { scroll-padding-top: 156px; }
+}
+
 body {
   background-color: hsl(var(--background));
   background-image:
