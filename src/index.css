@@ -15,7 +15,7 @@ body {
   background-color: hsl(var(--background));
   background-image:
     radial-gradient(900px 500px at 8% -10%, hsl(var(--coral) / 0.10), transparent 60%),
-    radial-gradient(700px 420px at 95% 5%, hsl(var(--sky) / 0.14), transparent 65%),
+    radial-gradient(700px 420px at 95% 5%, hsl(var(--sage) / 0.12), transparent 65%),
     radial-gradient(800px 500px at 100% 95%, hsl(var(--sage) / 0.10), transparent 65%),
     radial-gradient(700px 420px at 0% 90%, hsl(var(--sunny) / 0.12), transparent 65%);
   background-attachment: fixed;
