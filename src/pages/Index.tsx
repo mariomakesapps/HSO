@@ -65,11 +65,13 @@ const Index = () => {
     <div className={`min-h-screen bg-background bg-grain transition-opacity duration-700 ${mounted ? "opacity-100" : "opacity-0"}`}>
       <IntroSplash />
       {/* Nav */}
-      <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur animate-fade-up">
+      <header className="sticky top-0 z-30 border-b border-coral/30 bg-gradient-to-r from-coral/15 via-cream/80 to-sage/20 backdrop-blur-md shadow-soft animate-fade-up">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 md:py-4">
           <a href="#" className="flex items-center gap-2">
-            <img src={hsoLogo} alt="HSO HSO logo" className="h-9 w-9 rounded-xl object-cover transition-transform duration-700 hover:rotate-12" />
-            <span className="font-display text-2xl font-semibold tracking-tight">HSO</span>
+            <img src={hsoLogo} alt="HSO logo" className="h-10 w-10 rounded-xl object-cover shadow-sog ring-1 ring-foreground/10 transition-transform duration-700 hover:rotate-6 hover:scale-105" />
+            <span className="font-display text-2xl font-semibold tracking-tight">
+              <span className="text-ink">H</span><span className="text-coral">S</span><span className="text-sage">O</span>
+            </span>
             <span className="ml-1 hidden text-xs uppercase tracking-[0.2em] text-muted-foreground sm:inline">High School Opportunity Finder</span>
           </a>
           <div className="flex items-center gap-2">
