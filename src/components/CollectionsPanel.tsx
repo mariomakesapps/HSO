@@ -34,8 +34,8 @@ export function CollectionsPanel({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <aside className="fixed inset-y-0 right-0 z-50 flex w-full max-w-md flex-col border-l border-border bg-background shadow-editorial animate-fade-up">
-      <header className="flex items-center justify-between border-b border-border px-6 py-5">
+    <aside className="fixed inset-0 z-50 flex w-full flex-col border-border bg-background shadow-editorial animate-fade-up sm:inset-y-0 sm:left-auto sm:right-0 sm:max-w-md sm:border-l">
+      <header className="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-background px-4 py-4 sm:px-6 sm:py-5">
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Your shelf</p>
           <h2 className="font-display text-2xl">Collections</h2>
@@ -45,7 +45,7 @@ export function CollectionsPanel({ onClose }: { onClose: () => void }) {
         </Button>
       </header>
 
-      <div className="flex-1 space-y-6 overflow-y-auto px-6 py-6">
+      <div className="flex-1 space-y-6 overflow-y-auto px-4 py-5 sm:px-6 sm:py-6">
         <div className="rounded-2xl border border-border bg-card p-4">
           <p className="text-sm font-semibold">New collection</p>
           <div className="mt-3 flex gap-2">

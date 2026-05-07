@@ -111,7 +111,7 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
 
       <div className="flex flex-1 flex-col px-5 pb-5">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{opp.org}</p>
-        <h3 className="mt-2 font-display text-2xl leading-tight text-foreground text-balance">
+        <h3 className="mt-2 font-display text-xl leading-tight text-foreground text-balance break-words sm:text-2xl">
           {opp.title}
         </h3>
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground line-clamp-3">{opp.blurb}</p>
@@ -149,7 +149,7 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
           rel="noopener noreferrer"
           onClick={openLink}
           title={linkUrl}
-          className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-foreground underline-offset-4 hover:text-coral hover:underline"
+          className="mt-5 inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-ink px-4 py-3 text-sm font-semibold text-cream transition-colors hover:bg-coral hover:text-coral-foreground sm:w-auto sm:justify-start sm:bg-transparent sm:px-0 sm:py-0 sm:text-foreground sm:underline-offset-4 sm:hover:bg-transparent sm:hover:text-coral sm:hover:underline"
         >
           {isClosed ? "View details" : "Visit program"} <ExternalLink className="h-3.5 w-3.5" />
         </a>
