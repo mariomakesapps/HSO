@@ -346,4 +346,24 @@ export const opportunities: Opportunity[] = [
   { id: "ut-stem", title: "UT Austin Texas Spirit Science Camps", org: "UT Austin", category: "Summer Program", fields: ["STEM"] as any, location: "Austin, USA", format: "In-person", cost: "Paid", grades: [9,10,11,12], deadline: "2026-04-15", prestige: 1, blurb: "Pre-college STEM camps at UT.", url: "https://cns.utexas.edu/outreach/summer-programs" },
 ];
 
-export const allOpportunities: Opportunity[] = opportunities;
+// US-focused: keep opportunities available to U.S. high schoolers (USA, Worldwide, Online).
+const US_ELIGIBLE = /(USA|Worldwide|Online|Multiple, USA)/i;
+export const allOpportunities: Opportunity[] = opportunities.filter((o) =>
+  US_ELIGIBLE.test(o.location)
+);
+
+// Map a US location string to a region.
+export function locationRegion(location: string): "Northeast" | "South" | "Midwest" | "West" | "Online" | "Hybrid" | "Nationwide" | "Other" {
+  const l = location.toLowerCase();
+  if (l.includes("online") && !l.includes("usa")) return "Online";
+  const NE = ["new york","boston","cambridge","philadelphia","providence","ithaca","new haven","princeton","baltimore","washington dc","pittsburgh","amherst","natick","belmont","brooklyn","lenox","virginia"];
+  const SOUTH = ["atlanta","nashville","austin","texas","lubbock","fairfax","ashburn","bethesda"];
+  const MIDWEST = ["ann arbor","chicago","evanston","south bend","upton","lemont","oak ridge","batavia","iowa city","gambier","interlochen"];
+  const WEST = ["los angeles","stanford","berkeley","menlo park","pasadena","california","seattle","portland","aspen","park city","idyllwild","valencia","south sf"];
+  if (NE.some((c) => l.includes(c))) return "Northeast";
+  if (SOUTH.some((c) => l.includes(c))) return "South";
+  if (MIDWEST.some((c) => l.includes(c))) return "Midwest";
+  if (WEST.some((c) => l.includes(c))) return "West";
+  if (l.includes("worldwide") || l === "usa" || l.includes("multiple")) return "Nationwide";
+  return "Other";
+}
