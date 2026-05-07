@@ -7,10 +7,11 @@ import type { Category } from "@/data/opportunities";
 import { OpportunityCard } from "@/components/OpportunityCard";
 import { FilterState } from "@/components/Filters";
 import { ExtraFilters, DEFAULT_EXTRA, ExtraFilterState } from "@/components/ExtraFilters";
-import { SortBar, SortKey } from "@/components/SortBar";
+import { SortBar, SortKey, SORT_OPTIONS } from "@/components/SortBar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetFooter } from "@/components/ui/sheet";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { applyFilters, applySort } from "@/lib/filterSort";
@@ -123,110 +124,37 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Strips */}
-      <section className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 sm:pt-12">
-        <Strip title="Closing soon" items={deadlineSoon} />
-        <div className="mt-10">
-          <Strip title="Recently added" items={recentlyAdded} />
-        </div>
+      {/* Featured opportunities */}
+      <section className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 sm:pt-14">
+        <FeaturedShelf closingSoon={deadlineSoon} newlyAdded={recentlyAdded} />
       </section>
 
       {/* Results */}
       <section id="results" className="scroll-mt-20">
-        {/* Compact sticky filter bar (no duplicate search) */}
-        <div className="sticky top-[57px] z-20 border-y border-border/70 bg-background/85 backdrop-blur-md md:top-[65px]">
-          <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-2.5 sm:px-6">
-            <p className="hidden text-sm font-medium text-foreground sm:block">
-              <span className="text-ink">{filtered.length.toLocaleString()}</span>{" "}
-              <span className="text-muted-foreground">opportunities</span>
-            </p>
-
-            {/* Category chips — scrollable */}
-            <div className="-mx-1 flex flex-1 snap-x snap-mandatory gap-2 overflow-x-auto px-1 scrollbar-none">
-              {CATEGORY_CHIPS.map((c) => {
-                const active = filters.category === c;
-                return (
-                  <button
-                    key={c}
-                    onClick={() => setFilters({ ...filters, category: c })}
-                    className={`shrink-0 snap-start whitespace-nowrap rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
-                      active
-                        ? "border-ink bg-ink text-cream"
-                        : "border-border bg-card/80 text-foreground hover:border-ink/40"
-                    }`}
-                  >
-                    {c}
-                  </button>
-                );
-              })}
-            </div>
-
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setShowAdvanced((v) => !v)}
-              className="hidden h-9 shrink-0 rounded-lg md:inline-flex"
-            >
-              <FilterIcon className="mr-1.5 h-4 w-4" />
-              Filters
-            </Button>
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="outline" size="sm" className="h-9 shrink-0 rounded-lg md:hidden">
-                  <SlidersHorizontal className="mr-1 h-4 w-4" /> Filters
-                </Button>
-              </SheetTrigger>
-                <SheetContent side="bottom" className="max-h-[85vh] overflow-y-auto rounded-t-3xl">
-                  <SheetHeader className="text-left">
-                    <SheetTitle className="font-display text-2xl">Filters</SheetTitle>
-                  </SheetHeader>
-                  <div className="mt-5 space-y-5">
-                    <SheetSelect label="Grade" value={String(filters.grade)} options={[["All","All grades"],["9","9th"],["10","10th"],["11","11th"],["12","12th"]]} onChange={(v) => setFilters({ ...filters, grade: v === "All" ? "All" : Number(v) })} />
-                    <SheetSelect label="Cost" value={filters.cost} options={[["All","All"],["Free","Free"],["Paid","Paid"],["Stipend","Stipend / Paid"]]} onChange={(v) => setFilters({ ...filters, cost: v as FilterState["cost"] })} />
-                    <SheetSelect label="Format" value={filters.format} options={[["All","All"],["In-person","In-person"],["Online","Online"],["Hybrid","Hybrid"]]} onChange={(v) => setFilters({ ...filters, format: v as FilterState["format"] })} />
-                    <div className="border-t border-border pt-5">
-                      <p className="mb-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">Advanced</p>
-                      <ExtraFilters value={extra} onChange={setExtra} />
-                    </div>
-                  </div>
-                  <SheetFooter className="mt-6 flex-row gap-2">
-                    <Button
-                      variant="outline"
-                      className="flex-1 rounded-xl"
-                      onClick={() => { setFilters({ ...filters, grade: "All", cost: "All", format: "All" }); setExtra(DEFAULT_EXTRA); }}
-                    >
-                      Reset
-                    </Button>
-                    <SheetTrigger asChild>
-                      <Button className="flex-1 rounded-xl bg-ink text-cream hover:bg-ink/90">Show {filtered.length.toLocaleString()} results</Button>
-                    </SheetTrigger>
-                  </SheetFooter>
-                </SheetContent>
-              </Sheet>
-          </div>
-          {showAdvanced && (
-            <div className="hidden border-t border-border/60 bg-background/70 md:block">
-              <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6">
-                <ExtraFilters value={extra} onChange={setExtra} />
-              </div>
-            </div>
-          )}
-        </div>
-
         {/* Results body */}
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
-          <div className="mb-5 flex items-end justify-between gap-3">
+          <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
             <div>
-              <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">All opportunities</p>
-              <h2 className="font-display text-2xl font-semibold tracking-tight sm:text-3xl">
-                {filtered.length.toLocaleString()} matches
+              <p className="text-xs uppercase tracking-[0.18em] text-sage">Explore Opportunities</p>
+              <h2 className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+                Showing {filtered.length.toLocaleString()}+ opportunities
               </h2>
+              <p className="mt-1 text-sm text-muted-foreground">Refine your search when you know what you're looking for.</p>
             </div>
           </div>
 
-          <div className="mb-6">
-            <SortBar value={sort} onChange={setSort} count={filtered.length} />
-          </div>
+          {/* Refine your search panel */}
+          <RefinePanel
+            filters={filters}
+            setFilters={setFilters}
+            extra={extra}
+            setExtra={setExtra}
+            sort={sort}
+            setSort={setSort}
+            showAdvanced={showAdvanced}
+            setShowAdvanced={setShowAdvanced}
+            count={filtered.length}
+          />
 
           {filtered.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-border bg-card p-10 text-center">
@@ -235,7 +163,7 @@ const Index = () => {
           </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+              <div className="mt-6 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
                 {shown.map((o, i) => <OpportunityCard key={o.id} opp={o} index={i} />)}
               </div>
               {visible < filtered.length && (
@@ -326,31 +254,187 @@ function Badge({ icon, label }: { icon: React.ReactNode; label: string }) {
   );
 }
 
-function Strip({ title, items }: { title: string; items: typeof opportunities }) {
-  if (items.length === 0) return null;
-  return (
-    <div>
-      <div className="flex items-end justify-between">
-        <h3 className="font-display text-xl font-semibold tracking-tight sm:text-2xl">{title}</h3>
-        <Link to="#results" className="text-sm font-medium text-muted-foreground hover:text-coral">See all →</Link>
-      </div>
-      <div className="-mx-4 mt-4 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0">
-        {items.map((o) => {
-          const dl = getDeadlineStatus(o.deadline);
-          return (
-            <Link key={o.id} to={`/opportunities/${o.id}`} className="group flex w-[260px] shrink-0 snap-start flex-col rounded-2xl border border-border bg-card p-4 transition-all hover:border-ink/30 hover:shadow-soft">
+function FeaturedShelf({ closingSoon, newlyAdded }: { closingSoon: typeof opportunities; newlyAdded: typeof opportunities }) {
+  const renderShelf = (items: typeof opportunities, accent: "coral" | "sage") => (
+    <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 lg:grid-cols-3">
+      {items.map((o) => {
+        const dl = getDeadlineStatus(o.deadline);
+        const accentBar = accent === "coral" ? "bg-coral" : "bg-sage";
+        return (
+          <Link
+            key={o.id}
+            to={`/opportunities/${o.id}`}
+            className="group relative flex w-[280px] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-all hover:-translate-y-0.5 hover:border-ink/20 hover:shadow-md sm:w-auto"
+          >
+            <span className={`block h-1 w-full ${accentBar}`} aria-hidden="true" />
+            <div className="flex flex-1 flex-col p-5">
               <div className="flex items-center justify-between gap-2">
-                <span className="rounded-md bg-secondary px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide">{o.category}</span>
-                <span className={`rounded-md px-2 py-0.5 text-[10px] font-semibold uppercase ${STATUS_STYLES[dl.status]}`}>
-                  {dl.status === "closing-soon" ? "Soon" : dl.status === "open" ? "Open" : dl.status === "rolling" ? "Rolling" : "Closed"}
+                <span className="rounded-full bg-secondary px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-foreground">{o.category}</span>
+                <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${STATUS_STYLES[dl.status]}`}>
+                  {dl.label}
                 </span>
               </div>
-              <p className="mt-3 font-display text-lg font-semibold leading-tight text-ink group-hover:text-coral">{o.title}</p>
-              <p className="mt-1 text-xs text-muted-foreground">{o.org}</p>
-            </Link>
-          );
-        })}
+              <h4 className="mt-3 font-display text-lg font-semibold leading-snug tracking-tight text-ink group-hover:text-coral">{o.title}</h4>
+              <p className="mt-1 text-xs font-medium text-muted-foreground">{o.org}</p>
+              <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-foreground/75">{o.blurb}</p>
+              <div className="mt-3 flex items-center gap-2 text-[11px] text-muted-foreground">
+                <span>{o.location}</span>
+                <span aria-hidden="true">·</span>
+                <span>{o.cost}</span>
+              </div>
+            </div>
+          </Link>
+        );
+      })}
+    </div>
+  );
+
+  return (
+    <div>
+      <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="text-xs uppercase tracking-[0.18em] text-coral">Featured opportunities</p>
+          <h2 className="mt-1 font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
+            Start with programs worth checking today.
+          </h2>
+        </div>
       </div>
+
+      <Tabs defaultValue="closing" className="mt-5">
+        <TabsList className="h-auto rounded-full bg-card p-1 shadow-soft">
+          <TabsTrigger
+            value="closing"
+            className="rounded-full px-4 py-2 text-sm font-semibold data-[state=active]:bg-coral data-[state=active]:text-coral-foreground data-[state=active]:shadow-sm"
+          >
+            Closing Soon
+          </TabsTrigger>
+          <TabsTrigger
+            value="new"
+            className="rounded-full px-4 py-2 text-sm font-semibold data-[state=active]:bg-sage data-[state=active]:text-sage-foreground data-[state=active]:shadow-sm"
+          >
+            Newly Added
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="closing" className="mt-5">
+          <p className="mb-4 text-sm text-muted-foreground">A few deadlines worth catching.</p>
+          {renderShelf(closingSoon, "coral")}
+        </TabsContent>
+        <TabsContent value="new" className="mt-5">
+          <p className="mb-4 text-sm text-muted-foreground">Freshly added programs to explore.</p>
+          {renderShelf(newlyAdded, "sage")}
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
+}
+
+function RefinePanel({
+  filters, setFilters, extra, setExtra, sort, setSort, showAdvanced, setShowAdvanced, count,
+}: {
+  filters: FilterState;
+  setFilters: (v: FilterState) => void;
+  extra: ExtraFilterState;
+  setExtra: (v: ExtraFilterState) => void;
+  sort: SortKey;
+  setSort: (v: SortKey) => void;
+  showAdvanced: boolean;
+  setShowAdvanced: (v: boolean | ((p: boolean) => boolean)) => void;
+  count: number;
+}) {
+  const activeChips: { key: string; label: string; clear: () => void }[] = [];
+  if (filters.category !== "All") activeChips.push({ key: "cat", label: filters.category, clear: () => setFilters({ ...filters, category: "All" }) });
+  if (filters.grade !== "All") activeChips.push({ key: "grade", label: `Grade ${filters.grade}`, clear: () => setFilters({ ...filters, grade: "All" }) });
+  if (filters.cost !== "All") activeChips.push({ key: "cost", label: filters.cost, clear: () => setFilters({ ...filters, cost: "All" }) });
+  if (filters.format !== "All") activeChips.push({ key: "format", label: filters.format, clear: () => setFilters({ ...filters, format: "All" }) });
+  if (extra.country !== "All") activeChips.push({ key: "country", label: extra.country, clear: () => setExtra({ ...extra, country: "All" }) });
+  if (extra.field !== "All") activeChips.push({ key: "field", label: extra.field, clear: () => setExtra({ ...extra, field: "All" }) });
+  if (extra.deadlineMonth !== "All") activeChips.push({ key: "month", label: `Deadline: month ${extra.deadlineMonth}`, clear: () => setExtra({ ...extra, deadlineMonth: "All" }) });
+  if (extra.freeOnly) activeChips.push({ key: "free", label: "Free only", clear: () => setExtra({ ...extra, freeOnly: false }) });
+
+  const clearAll = () => {
+    setFilters({ ...filters, category: "All", grade: "All", cost: "All", format: "All" });
+    setExtra(DEFAULT_EXTRA);
+  };
+
+  return (
+    <div className="rounded-3xl border border-border/70 bg-card/70 p-4 shadow-soft backdrop-blur-sm sm:p-5">
+      <div className="flex flex-wrap items-center gap-3">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => setShowAdvanced((v) => !v)}
+          className="hidden h-9 rounded-full border-border/80 bg-background px-4 text-sm font-semibold text-ink hover:border-ink/40 md:inline-flex"
+        >
+          <SlidersHorizontal className="mr-1.5 h-4 w-4 text-coral" />
+          Refine results
+        </Button>
+
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline" size="sm" className="h-9 rounded-full border-border/80 bg-background px-4 text-sm font-semibold md:hidden">
+              <SlidersHorizontal className="mr-1.5 h-4 w-4 text-coral" /> Refine
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="bottom" className="max-h-[85vh] overflow-y-auto rounded-t-3xl">
+            <SheetHeader className="text-left">
+              <SheetTitle className="font-display text-2xl">Refine your search</SheetTitle>
+            </SheetHeader>
+            <div className="mt-5 space-y-5">
+              <SheetSelect label="Grade" value={String(filters.grade)} options={[["All","All grades"],["9","9th"],["10","10th"],["11","11th"],["12","12th"]]} onChange={(v) => setFilters({ ...filters, grade: v === "All" ? "All" : Number(v) })} />
+              <SheetSelect label="Cost" value={filters.cost} options={[["All","All"],["Free","Free"],["Paid","Paid"],["Stipend","Stipend / Paid"]]} onChange={(v) => setFilters({ ...filters, cost: v as FilterState["cost"] })} />
+              <SheetSelect label="Format" value={filters.format} options={[["All","All"],["In-person","In-person"],["Online","Online"],["Hybrid","Hybrid"]]} onChange={(v) => setFilters({ ...filters, format: v as FilterState["format"] })} />
+              <div className="border-t border-border pt-5">
+                <p className="mb-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">More</p>
+                <ExtraFilters value={extra} onChange={setExtra} />
+              </div>
+            </div>
+            <SheetFooter className="mt-6 flex-row gap-2">
+              <Button variant="outline" className="flex-1 rounded-xl" onClick={clearAll}>Reset</Button>
+              <SheetTrigger asChild>
+                <Button className="flex-1 rounded-xl bg-ink text-cream hover:bg-ink/90">Show {count.toLocaleString()} results</Button>
+              </SheetTrigger>
+            </SheetFooter>
+          </SheetContent>
+        </Sheet>
+
+        <div className="ml-auto flex items-center gap-2 text-sm">
+          <span className="hidden text-muted-foreground sm:inline">Sort by</span>
+          <select
+            value={sort}
+            onChange={(e) => setSort(e.target.value as SortKey)}
+            className="h-9 cursor-pointer rounded-full border border-border/80 bg-background px-3 text-sm font-semibold text-ink outline-none focus:border-coral"
+          >
+            {SORT_OPTIONS.map((o) => (
+              <option key={o.value} value={o.value}>{o.label}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      {activeChips.length > 0 && (
+        <div className="mt-4 flex flex-wrap items-center gap-2">
+          <span className="text-xs font-medium text-muted-foreground">Active:</span>
+          {activeChips.map((c) => (
+            <button
+              key={c.key}
+              onClick={c.clear}
+              className="inline-flex items-center gap-1.5 rounded-full border border-coral/30 bg-coral/10 px-3 py-1 text-xs font-semibold text-coral transition-colors hover:bg-coral/15"
+            >
+              {c.label}
+              <span aria-hidden="true">×</span>
+            </button>
+          ))}
+          <button onClick={clearAll} className="text-xs font-medium text-muted-foreground underline-offset-4 hover:text-ink hover:underline">
+            Clear all
+          </button>
+        </div>
+      )}
+
+      {showAdvanced && (
+        <div className="mt-4 hidden border-t border-border/60 pt-4 md:block">
+          <ExtraFilters value={extra} onChange={setExtra} />
+        </div>
+      )}
     </div>
   );
 }
