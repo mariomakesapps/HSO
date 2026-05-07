@@ -11,7 +11,6 @@ import { SortBar, SortKey } from "@/components/SortBar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetFooter } from "@/components/ui/sheet";
-import { IntroSplash } from "@/components/IntroSplash";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { applyFilters, applySort } from "@/lib/filterSort";
@@ -49,7 +48,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <IntroSplash />
       <SiteHeader />
 
       {/* Hero */}
