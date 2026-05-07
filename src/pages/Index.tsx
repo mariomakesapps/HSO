@@ -113,8 +113,8 @@ const Index = () => {
 
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border">
-        <div className="absolute -right-40 -top-40 h-[420px] w-[420px] rounded-full bg-gradient-coral opacity-30 blur-3xl" />
-        <div className="absolute -left-40 bottom-0 h-[320px] w-[320px] rounded-full bg-sage/40 blur-3xl" />
+        <div className="pointer-events-none absolute -right-32 -top-32 h-[280px] w-[280px] rounded-full bg-gradient-coral opacity-30 blur-3xl sm:h-[420px] sm:w-[420px]" />
+        <div className="pointer-events-none absolute -left-32 bottom-0 h-[220px] w-[220px] rounded-full bg-sage/40 blur-3xl sm:h-[320px] sm:w-[320px]" />
 
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-10 sm:px-6 sm:py-14 md:py-16 lg:grid-cols-12 lg:gap-12 lg:py-28">
           <div className="min-w-0 lg:col-span-7 animate-fade-up" style={{ animationDelay: "80ms" }}>
