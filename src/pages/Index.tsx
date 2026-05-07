@@ -273,7 +273,7 @@ const CATEGORY_ACCENT: Record<string, { strip: string; tint: string; chip: strin
 
 function FeaturedShelf({ closingSoon, newlyAdded, standouts }: { closingSoon: typeof opportunities; newlyAdded: typeof opportunities; standouts: typeof opportunities }) {
   const renderShelf = (items: typeof opportunities) => (
-    <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 lg:grid-cols-3">
+    <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 lg:grid-cols-3">
       {items.map((o) => {
         const dl = getDeadlineStatus(o.deadline);
         const accent = CATEGORY_ACCENT[o.category] ?? CATEGORY_ACCENT.Research;
@@ -281,7 +281,7 @@ function FeaturedShelf({ closingSoon, newlyAdded, standouts }: { closingSoon: ty
           <Link
             key={o.id}
             to={`/opportunities/${o.id}`}
-            className="group relative flex w-[280px] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-border/70 bg-card shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-ink/20 hover:shadow-editorial sm:w-auto"
+            className="group relative flex w-[85vw] max-w-[340px] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-border/70 bg-card shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-ink/20 hover:shadow-editorial sm:w-auto sm:max-w-none"
           >
             <span aria-hidden="true" className={`pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b ${accent.tint} to-transparent`} />
             <span aria-hidden="true" className={`absolute right-5 top-5 h-2 w-2 rounded-full ${accent.strip}`} />
