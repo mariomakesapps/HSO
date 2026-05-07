@@ -1,40 +1,53 @@
-## Why links are getting blocked
+## Mobile-first redesign
 
-Two causes:
+The current home page is built desktop-first: the hero is huge, the rotated spotlight card overflows, the nav buttons wrap, the filter row pushes off-screen, and the shelf panel doesn't fit small viewports. This plan restructures everything below `md` (tablet) and `sm` (phone) breakpoints without touching data or business logic.
 
-1. **Most "Visit program" links are Google search URLs.** The 10,000+ synthetic opportunities all use `https://www.google.com/search?q=...` (see `src/data/opportunities.ts:187`) and the card falls back to a Google search whenever `url` is `#` or missing (see `src/components/OpportunityCard.tsx:32-35`). When opened from inside the Lovable preview iframe, the browser/Google often blocks this navigation and shows "This page is blocked." Even outside the preview, sending users to a Google results page is poor UX.
-2. **`target="_blank"` from a sandboxed iframe** is sometimes blocked by the browser as a popup. We need to use a safer click handler.
+### 1. Nav (`src/pages/Index.tsx` header)
+- Hide the "High School Opportunity Finder" tagline below `sm` (already partly done — verify).
+- On mobile: collapse "My Shelf" and "Sign in/out" to icon-only buttons (keep the saved-count badge on the bookmark icon).
+- Reduce header padding from `py-4` to `py-3` on mobile.
+- Use `px-4` on mobile, `px-6` from `md` up.
 
-## The fix
+### 2. Hero (`src/pages/Index.tsx` hero section)
+- Drop padding from `py-20 lg:py-28` to `py-10 sm:py-16 lg:py-28`.
+- Headline: `text-3xl sm:text-5xl lg:text-7xl` (was `text-5xl … lg:text-7xl`).
+- Hide the rotated Spotlight card and the "10,000+" badge below `lg`. Replace with a compact inline "Spotlight" strip that sits above the filters on mobile (one-line org + title + chevron link).
+- Filters render directly under the headline on mobile, no two-column grid.
 
-### 1. Replace the Google-search fallback with DuckDuckGo's redirect
+### 3. Filters (`src/components/Filters.tsx`)
+- Search input: full width, sticky under the nav on mobile (`sticky top-[64px] z-20`), shrink height to `h-12` on mobile.
+- Category chips: keep horizontal scroll, add `snap-x snap-mandatory` and `snap-start` on each chip.
+- Replace the three Grade / Cost / Format selects with a single **"Filters"** button on mobile that opens a shadcn `Sheet` (bottom drawer) containing the three selects stacked vertically + a "Reset" + "Apply" footer. Above `md`, keep the inline pills.
+- Show an active-filter count badge on the Filters button when any non-"All" value is set.
 
-DuckDuckGo's `https://duckduckgo.com/?q=...` (with `&kl=us-en`) is not blocked in iframes/popups and works reliably. For the 10k synthetic items in `src/data/opportunities.ts` (line ~187), switch:
+### 4. Cards grid (`src/pages/Index.tsx` results section)
+- Grid: `grid-cols-1 md:grid-cols-2 lg:grid-cols-3` (currently `sm:grid-cols-2`, which kicks in at 640px and squishes phones in landscape and small tablets).
+- Reduce gap on mobile: `gap-4 md:gap-6`.
+- Section padding: `px-4 py-10 md:px-6 md:py-16`.
 
-```text
-https://www.google.com/search?q=...   →   https://duckduckgo.com/?q=...
-```
+### 5. Opportunity card (`src/components/OpportunityCard.tsx`)
+- Title: `text-xl sm:text-2xl` with `break-words`.
+- Bottom meta grid stays 2-col but tightens spacing.
+- Replace the bare "Visit program" link with a full-width pill button at the bottom on mobile (still inline link style on `sm+`). Increases tap target to ~44px.
+- Ensure the dropdown + favorite buttons are at least 40×40 on touch.
 
-Apply the same change to the fallback in `OpportunityCard.tsx` (lines 32–35).
+### 6. My Shelf panel (`src/components/CollectionsPanel.tsx`)
+- Convert to shadcn `Sheet` with `side="right"` on desktop and `side="bottom"` (full-height) on mobile, OR make the existing panel `inset-0` full-screen below `sm`.
+- Add a sticky close button in the header.
 
-### 2. Make link clicks resilient in the preview iframe
+### 7. Global polish
+- Audit every section for `overflow-x-hidden` on `<body>` / root container.
+- Replace any `px-6` with `px-4 md:px-6` at the page level.
+- Add `text-balance` + `break-words` on long headings.
+- Verify at 320, 390, 414, 768, 834, 1024, 1280px viewports — no horizontal scroll, all CTAs reachable, search visible above the fold.
 
-In `src/components/OpportunityCard.tsx`, change the "Visit program" anchor to use an `onClick` handler that:
+### Out of scope
+- No data, auth, routing, or copy changes.
+- Visual language (fonts, coral/sage/ink palette, grain texture, animations) stays identical.
 
-- Calls `window.open(url, '_blank', 'noopener,noreferrer')`.
-- If the returned window is `null` (popup blocked), falls back to `window.top.location.href = url` so it opens in the parent tab instead of being silently blocked.
-- Keep the `<a href>` so right-click / copy-link still works.
-
-### 3. (Small polish) Show the destination on hover
-
-Add `title={linkUrl}` on the link so users can see where it goes before clicking. No behavior change.
-
-## Files to edit
-
-- `src/components/OpportunityCard.tsx` — new click handler, DuckDuckGo fallback, `title` attribute.
-- `src/data/opportunities.ts` — change the synthetic generator's `url:` (line ~187) from Google to DuckDuckGo.
-
-## Out of scope
-
-- Curating real URLs for all 10,000 synthetic items (not feasible). DuckDuckGo search is the pragmatic fallback.
-- The 18 hand-picked entries (RSI, TASP, etc.) already have real URLs and will continue to work.
+### Files touched
+- `src/pages/Index.tsx`
+- `src/components/Filters.tsx`
+- `src/components/OpportunityCard.tsx`
+- `src/components/CollectionsPanel.tsx`
+- possibly `src/index.css` for one or two utility additions
