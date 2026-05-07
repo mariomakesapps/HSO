@@ -22,7 +22,7 @@ const CATEGORY_CHIPS: (Category | "All")[] = ["All", "Summer Program", "Internsh
 const Index = () => {
   const { isAuthed, loading: authLoading } = useAuthSession();
   useSEO({
-    title: "HSO — High School Opportunity Finder",
+    title: "HSO — Find opportunities that match your spark",
     description: "Browse 300+ curated internships, research, scholarships, summer programs, competitions and fellowships for high schoolers — growing weekly.",
   });
 
@@ -47,20 +47,21 @@ const Index = () => {
   const recentlyAdded = useMemo(() => opportunities.slice(-6).reverse(), []);
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background">
+      <div className="hso-bg-blobs" aria-hidden="true">
+        <span className="b1" /><span className="b2" /><span className="b3" /><span className="b4" />
+      </div>
+      <div className="relative z-10">
       <SiteHeader />
 
       {/* Hero */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-3xl px-4 pb-10 pt-12 text-center sm:px-6 sm:pb-14 sm:pt-20">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-coral" /> 300+ curated opportunities · Updated weekly
-          </span>
-          <h1 className="mt-5 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl md:text-6xl">
-            Find your next high school <span className="text-coral">opportunity.</span>
+      <section>
+        <div className="mx-auto max-w-3xl px-4 pb-10 pt-10 text-center sm:px-6 sm:pb-14 sm:pt-16">
+          <h1 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl md:text-6xl">
+            Find opportunities that match your <span className="text-coral">spark.</span>
           </h1>
           <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Internships, research, scholarships, summer programs, competitions, and fellowships — curated and linked to official program pages.
+            Explore curated internships, research programs, scholarships, competitions, summer programs, volunteer work, and fellowships for high school students.
           </p>
 
           {!authLoading && !isAuthed && (
@@ -115,11 +116,15 @@ const Index = () => {
               );
             })}
           </div>
+
+          <p className="mt-6 inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
+            <span className="h-1.5 w-1.5 rounded-full bg-coral" /> 300+ curated opportunities, growing weekly.
+          </p>
         </div>
       </section>
 
       {/* Strips */}
-      <section className="mx-auto max-w-7xl px-4 pt-12 sm:px-6 sm:pt-16">
+      <section className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 sm:pt-12">
         <Strip title="Closing soon" items={deadlineSoon} />
         <div className="mt-10">
           <Strip title="Recently added" items={recentlyAdded} />
@@ -128,37 +133,49 @@ const Index = () => {
 
       {/* Results */}
       <section id="results" className="scroll-mt-20">
-        {/* Sticky filter bar */}
-        <div className="sticky top-[57px] z-20 border-y border-border bg-background/90 backdrop-blur-md md:top-[65px]">
-          <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6">
-            {/* Row 1: search + advanced toggle */}
-            <div className="flex items-center gap-2">
-              <div className="relative flex-1">
-                <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-                <Input
-                  value={filters.query}
-                  onChange={(e) => setFilters({ ...filters, query: e.target.value })}
-                  placeholder="Search programs, fields, organizations…"
-                  className="h-11 w-full rounded-xl border-border bg-card pl-10 pr-4 text-sm focus-visible:ring-coral"
-                />
-              </div>
-              {/* Desktop: advanced toggle */}
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setShowAdvanced((v) => !v)}
-                className="hidden h-11 shrink-0 rounded-xl md:inline-flex"
-              >
-                <FilterIcon className="mr-1.5 h-4 w-4" />
-                {showAdvanced ? "Hide" : "More"} filters
-              </Button>
-              {/* Mobile: bottom sheet */}
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button variant="outline" size="sm" className="h-11 shrink-0 rounded-xl md:hidden">
-                    <SlidersHorizontal className="h-4 w-4" />
-                  </Button>
-                </SheetTrigger>
+        {/* Compact sticky filter bar (no duplicate search) */}
+        <div className="sticky top-[57px] z-20 border-y border-border/70 bg-background/85 backdrop-blur-md md:top-[65px]">
+          <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-2.5 sm:px-6">
+            <p className="hidden text-sm font-medium text-foreground sm:block">
+              <span className="text-ink">{filtered.length.toLocaleString()}</span>{" "}
+              <span className="text-muted-foreground">opportunities</span>
+            </p>
+
+            {/* Category chips — scrollable */}
+            <div className="-mx-1 flex flex-1 snap-x snap-mandatory gap-2 overflow-x-auto px-1 scrollbar-none">
+              {CATEGORY_CHIPS.map((c) => {
+                const active = filters.category === c;
+                return (
+                  <button
+                    key={c}
+                    onClick={() => setFilters({ ...filters, category: c })}
+                    className={`shrink-0 snap-start whitespace-nowrap rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
+                      active
+                        ? "border-ink bg-ink text-cream"
+                        : "border-border bg-card/80 text-foreground hover:border-ink/40"
+                    }`}
+                  >
+                    {c}
+                  </button>
+                );
+              })}
+            </div>
+
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setShowAdvanced((v) => !v)}
+              className="hidden h-9 shrink-0 rounded-lg md:inline-flex"
+            >
+              <FilterIcon className="mr-1.5 h-4 w-4" />
+              Filters
+            </Button>
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="outline" size="sm" className="h-9 shrink-0 rounded-lg md:hidden">
+                  <SlidersHorizontal className="mr-1 h-4 w-4" /> Filters
+                </Button>
+              </SheetTrigger>
                 <SheetContent side="bottom" className="max-h-[85vh] overflow-y-auto rounded-t-3xl">
                   <SheetHeader className="text-left">
                     <SheetTitle className="font-display text-2xl">Filters</SheetTitle>
@@ -186,35 +203,14 @@ const Index = () => {
                   </SheetFooter>
                 </SheetContent>
               </Sheet>
-            </div>
-
-            {/* Row 2: category chips */}
-            <div className="-mx-4 mt-3 flex snap-x snap-mandatory gap-2 overflow-x-auto px-4 pb-1 scrollbar-none sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0">
-              {CATEGORY_CHIPS.map((c) => {
-                const active = filters.category === c;
-                return (
-                  <button
-                    key={c}
-                    onClick={() => setFilters({ ...filters, category: c })}
-                    className={`shrink-0 snap-start whitespace-nowrap rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
-                      active
-                        ? "border-ink bg-ink text-cream"
-                        : "border-border bg-card text-foreground hover:border-ink/40"
-                    }`}
-                  >
-                    {c}
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Row 3: advanced filters (desktop only, when expanded) */}
-            {showAdvanced && (
-              <div className="mt-3 hidden md:block">
+          </div>
+          {showAdvanced && (
+            <div className="hidden border-t border-border/60 bg-background/70 md:block">
+              <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6">
                 <ExtraFilters value={extra} onChange={setExtra} />
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
 
         {/* Results body */}
@@ -290,6 +286,7 @@ const Index = () => {
       </section>
 
       <SiteFooter />
+      </div>
     </div>
   );
 };
