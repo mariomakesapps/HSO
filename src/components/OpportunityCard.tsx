@@ -37,7 +37,7 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
   return (
     <article
       className={cn(
-        "group flex flex-col rounded-2xl border border-border bg-card p-5 transition-all duration-200 hover:border-ink/30 hover:shadow-soft",
+        "group flex h-full flex-col rounded-2xl border border-border bg-card p-5 transition-all duration-200 hover:border-ink/30 hover:shadow-soft",
         isClosed && "opacity-70"
       )}
       style={{ animationDelay: `${Math.min(index * 30, 240)}ms` }}
@@ -107,7 +107,7 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
       <p className="mt-3 text-sm leading-relaxed text-foreground/80 line-clamp-3">{opp.blurb}</p>
 
       {/* Meta */}
-      <div className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-xs text-muted-foreground">
+      <div className="mt-auto grid grid-cols-2 gap-x-4 gap-y-2 pt-4 text-xs text-muted-foreground">
         <Meta icon={<MapPin className="h-3.5 w-3.5" />}>{opp.location}</Meta>
         <Meta icon={<DollarSign className="h-3.5 w-3.5" />}>{opp.cost}</Meta>
         <Meta icon={<GraduationCap className="h-3.5 w-3.5" />}>Grades {opp.grades[0]}–{opp.grades[opp.grades.length - 1]}</Meta>
@@ -117,7 +117,7 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
       </div>
 
       {/* Actions */}
-      <div className="mt-5 flex items-center gap-2 border-t border-border pt-4">
+      <div className="mt-4 flex items-center gap-2 border-t border-border pt-4">
         <Link to={`/opportunities/${opp.id}`} className="text-sm font-medium text-muted-foreground hover:text-ink">
           Details
         </Link>
