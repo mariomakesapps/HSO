@@ -22,6 +22,8 @@ export default {
         coral: { DEFAULT: "hsl(var(--coral))", foreground: "hsl(var(--coral-foreground))" },
         sage: { DEFAULT: "hsl(var(--sage))", foreground: "hsl(var(--sage-foreground))" },
         ochre: { DEFAULT: "hsl(var(--ochre))", foreground: "hsl(var(--ochre-foreground))" },
+        sunny: "hsl(var(--sunny))",
+        sky: "hsl(var(--sky))",
         ink: "hsl(var(--ink))",
         cream: "hsl(var(--cream))",
         primary: {

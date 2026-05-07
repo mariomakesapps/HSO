@@ -6,6 +6,40 @@
 
 html, body { overflow-x: hidden; }
 
+body {
+  background-color: hsl(var(--background));
+  background-image:
+    radial-gradient(900px 500px at 8% -10%, hsl(var(--coral) / 0.10), transparent 60%),
+    radial-gradient(700px 420px at 95% 5%, hsl(var(--sky) / 0.14), transparent 65%),
+    radial-gradient(800px 500px at 100% 95%, hsl(var(--sage) / 0.10), transparent 65%),
+    radial-gradient(700px 420px at 0% 90%, hsl(var(--sunny) / 0.12), transparent 65%);
+  background-attachment: fixed;
+}
+
+.hso-reveal {
+  display: inline-block;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: max-width 350ms cubic-bezier(0.22, 1, 0.36, 1);
+  vertical-align: baseline;
+}
+.hso-reveal-inner {
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 200ms ease, transform 250ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.group:hover .hso-reveal,
+.group:focus-visible .hso-reveal { max-width: 8ch; }
+.group:hover .hso-reveal-inner,
+.group:focus-visible .hso-reveal-inner { opacity: 1; transform: translateX(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hso-reveal, .hso-reveal-inner { transition: none !important; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
@@ -42,6 +76,8 @@ All colors MUST be HSL.
     --ochre-foreground: 222 47% 13%;
     --ink: 222 47% 13%;
     --cream: 36 30% 98%;
+    --sunny: 46 92% 70%;
+    --sky: 205 85% 72%;
 
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 0% 100%;

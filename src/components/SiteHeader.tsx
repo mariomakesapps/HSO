@@ -29,11 +29,19 @@ export function SiteHeader() {
     <>
       <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 md:py-4">
-          <Link to="/" className="flex items-center gap-2.5">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-ink text-cream font-display text-base font-bold tracking-tight">
-              H
+          <Link to="/" aria-label="HSO — High School Opportunity" className="group flex items-center font-display text-2xl font-bold tracking-tight leading-none">
+            <span className="text-ink">H</span>
+            <span className="hso-reveal">
+              <span className="hso-reveal-inner text-ink">igh&nbsp;</span>
             </span>
-            <span className="font-display text-xl font-semibold tracking-tight text-ink">HSO</span>
+            <span className="text-coral">S</span>
+            <span className="hso-reveal">
+              <span className="hso-reveal-inner text-ink">chool&nbsp;</span>
+            </span>
+            <span className="text-sage">O</span>
+            <span className="hso-reveal">
+              <span className="hso-reveal-inner text-ink">pportunity</span>
+            </span>
           </Link>
           <nav className="hidden items-center gap-6 text-sm font-medium text-foreground/75 md:flex">
             <Link to="/" className="hover:text-coral">Discover</Link>
