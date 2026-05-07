@@ -1,4 +1,5 @@
 import type { Opportunity } from "@/data/opportunities";
+import { locationRegion } from "@/data/opportunities";
 import type { FilterState } from "@/components/Filters";
 import type { ExtraFilterState } from "@/components/ExtraFilters";
 import type { SortKey } from "@/components/SortBar";
@@ -17,8 +18,13 @@ export function applyFilters(
     if (filters.format !== "All" && o.format !== filters.format) return false;
     if (extra.field !== "All" && !o.fields.includes(extra.field)) return false;
     if (extra.country !== "All") {
-      const parts = o.location.split(",").map((p) => p.trim());
-      if (parts[parts.length - 1] !== extra.country) return false;
+      if (extra.country === "Hybrid") {
+        if (o.format !== "Hybrid") return false;
+      } else if (extra.country === "Online") {
+        if (o.format !== "Online" && locationRegion(o.location) !== "Online") return false;
+      } else {
+        if (locationRegion(o.location) !== extra.country) return false;
+      }
     }
     if (extra.freeOnly && !(o.cost === "Free" || o.cost === "Stipend")) return false;
     if (extra.deadlineMonth !== "All") {
