@@ -113,31 +113,39 @@ const Index = () => {
 
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border">
-        <div className="absolute -right-40 -top-40 h-[420px] w-[420px] rounded-full bg-gradient-coral opacity-30 blur-3xl" />
-        <div className="absolute -left-40 bottom-0 h-[320px] w-[320px] rounded-full bg-sage/40 blur-3xl" />
+        <div className="pointer-events-none absolute -right-32 -top-32 h-[280px] w-[280px] rounded-full bg-gradient-coral opacity-30 blur-3xl sm:h-[420px] sm:w-[420px]" />
+        <div className="pointer-events-none absolute -left-32 bottom-0 h-[220px] w-[220px] rounded-full bg-sage/40 blur-3xl sm:h-[320px] sm:w-[320px]" />
 
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-10 sm:py-16 md:px-6 lg:grid-cols-12 lg:gap-12 lg:py-28">
-          <div className="lg:col-span-7 animate-fade-up" style={{ animationDelay: "80ms" }}>
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-10 sm:px-6 sm:py-14 md:py-16 lg:grid-cols-12 lg:gap-12 lg:py-28">
+          <div className="min-w-0 lg:col-span-7 animate-fade-up" style={{ animationDelay: "80ms" }}>
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
               <Sparkles className="h-3.5 w-3.5 text-coral" /> Curated · Updated weekly
             </span>
-            <h1 className="mt-4 font-display text-3xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-7xl text-balance">
-              The <em className="text-coral not-italic">High School Opportunity Finder</em> — <span className="italic text-sage">10,000+ programs, worldwide.</span>
+            <h1
+              className="mt-4 font-display font-semibold leading-[1.05] tracking-tight text-foreground text-balance break-words [hyphens:auto]"
+              style={{ fontSize: "clamp(1.875rem, 6.2vw + 0.5rem, 4.75rem)" }}
+            >
+              The <em className="text-coral not-italic">High School Opportunity Finder</em>
+              <span className="block sm:inline"> — </span>
+              <span className="italic text-sage">10,000+ programs, worldwide.</span>
             </h1>
-            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground sm:mt-6 sm:text-lg">
+            <p
+              className="mt-4 max-w-xl leading-relaxed text-muted-foreground sm:mt-6"
+              style={{ fontSize: "clamp(0.95rem, 0.4vw + 0.85rem, 1.125rem)" }}
+            >
               HSO indexes internships, research, scholarships, summer programs, competitions and fellowships from every continent — built for high schoolers preparing for college.
             </p>
 
-            {/* Mobile-only spotlight strip */}
+            {/* Mobile + tablet spotlight strip */}
             {featured && (
               <a
                 href="#results"
-                className="mt-6 flex items-start gap-3 rounded-2xl border border-border bg-card p-4 shadow-soft lg:hidden"
+                className="mt-6 flex items-start gap-3 rounded-2xl border border-border bg-card p-4 shadow-soft transition-shadow hover:shadow-editorial lg:hidden"
               >
-                <span className="mt-0.5 rounded-full bg-coral px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-coral-foreground">Spotlight</span>
+                <span className="mt-0.5 shrink-0 rounded-full bg-coral px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-coral-foreground">Spotlight</span>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-xs uppercase tracking-[0.18em] text-muted-foreground">{featured.org}</p>
-                  <p className="truncate font-display text-base text-foreground">{featured.title}</p>
+                  <p className="truncate font-display text-base text-foreground sm:text-lg">{featured.title}</p>
                 </div>
               </a>
             )}
@@ -147,12 +155,12 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="relative hidden lg:col-span-5 lg:block animate-fade-up" style={{ animationDelay: "240ms" }}>
+          <div className="relative hidden min-w-0 lg:col-span-5 lg:block animate-fade-up" style={{ animationDelay: "240ms" }}>
             <div className="relative ml-auto max-w-md rotate-1 rounded-3xl border border-border bg-card p-6 shadow-editorial transition-transform duration-500 hover:rotate-0 hover:-translate-y-1">
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Spotlight · This month</p>
               {featured && (
                 <>
-                  <h3 className="mt-3 font-display text-3xl leading-tight text-balance">{featured.title}</h3>
+                  <h3 className="mt-3 font-display text-2xl leading-tight text-balance xl:text-3xl">{featured.title}</h3>
                   <p className="mt-2 text-sm text-muted-foreground">{featured.org} · {featured.location}</p>
                   <p className="mt-4 text-sm leading-relaxed">{featured.blurb}</p>
                   <div className="mt-5 flex flex-wrap gap-2">
@@ -163,7 +171,7 @@ const Index = () => {
                 </>
               )}
             </div>
-            <div className="absolute -bottom-6 -left-2 hidden -rotate-3 rounded-2xl bg-ink px-5 py-4 text-cream shadow-editorial sm:block">
+            <div className="absolute -bottom-6 -left-2 -rotate-3 rounded-2xl bg-ink px-5 py-4 text-cream shadow-editorial">
               <p className="font-display text-2xl">10,000+</p>
               <p className="text-xs uppercase tracking-[0.2em] opacity-80">live opportunities</p>
             </div>
@@ -172,33 +180,36 @@ const Index = () => {
       </section>
 
       {/* Results */}
-      <section id="results" className="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-16">
+      <section id="results" className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 md:py-16">
         <div className="mb-6 flex items-end justify-between md:mb-8">
-          <div>
+          <div className="min-w-0">
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Discover</p>
-            <h2 className="font-display text-2xl tracking-tight sm:text-4xl">
+            <h2
+              className="font-display tracking-tight"
+              style={{ fontSize: "clamp(1.5rem, 2.5vw + 0.8rem, 2.5rem)" }}
+            >
               {filtered.length.toLocaleString()} opportunit{filtered.length === 1 ? "y" : "ies"} for you
             </h2>
           </div>
         </div>
 
         {filtered.length === 0 ? (
-          <div className="rounded-3xl border border-dashed border-border bg-card p-16 text-center">
-            <p className="font-display text-2xl">Nothing matches yet.</p>
-            <p className="mt-2 text-muted-foreground">Try widening your filters or clearing the search.</p>
+          <div className="rounded-3xl border border-dashed border-border bg-card p-8 text-center sm:p-12 md:p-16">
+            <p className="font-display text-xl sm:text-2xl">Nothing matches yet.</p>
+            <p className="mt-2 text-sm text-muted-foreground sm:text-base">Try widening your filters or clearing the search.</p>
           </div>
         ) : (
           <>
-            <div className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
+            <div className="grid gap-4 sm:gap-5 md:grid-cols-2 md:gap-6 xl:grid-cols-3">
               {shown.map((o, i) => (
                 <OpportunityCard key={o.id} opp={o} index={i} />
               ))}
             </div>
             {visible < rest.length && (
-              <div className="mt-12 flex justify-center">
+              <div className="mt-10 flex justify-center sm:mt-12">
                 <Button
                   onClick={() => setVisible((v) => v + 48)}
-                  className="rounded-full bg-ink px-8 py-6 text-cream hover:bg-coral hover:text-coral-foreground"
+                  className="rounded-full bg-ink px-6 py-5 text-cream hover:bg-coral hover:text-coral-foreground sm:px-8 sm:py-6"
                 >
                   Load more · {(rest.length - visible).toLocaleString()} remaining
                 </Button>
@@ -210,7 +221,7 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="border-t border-border bg-secondary/40">
-        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-6 py-10 sm:flex-row sm:items-center">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-3 px-4 py-8 sm:flex-row sm:items-center sm:gap-4 sm:px-6 sm:py-10">
           <p className="font-display text-xl">HSO — for the curious.</p>
           <p className="text-sm text-muted-foreground">Save, organize, and share opportunities with friends.</p>
         </div>
