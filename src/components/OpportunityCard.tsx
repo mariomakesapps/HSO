@@ -32,7 +32,20 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
   const linkUrl =
     opp.url && opp.url !== "#"
       ? opp.url
-      : `https://www.google.com/search?q=${encodeURIComponent(`${opp.title} ${opp.org} high school`)}`;
+      : `https://duckduckgo.com/?q=${encodeURIComponent(`${opp.title} ${opp.org} high school`)}&kl=us-en`;
+
+  const openLink = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const win = window.open(linkUrl, "_blank", "noopener,noreferrer");
+    if (!win) {
+      try {
+        if (window.top) window.top.location.href = linkUrl;
+        else window.location.href = linkUrl;
+      } catch {
+        window.location.href = linkUrl;
+      }
+    }
+  };
 
   return (
     <article
@@ -134,6 +147,8 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
           href={linkUrl}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={openLink}
+          title={linkUrl}
           className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-foreground underline-offset-4 hover:text-coral hover:underline"
         >
           {isClosed ? "View details" : "Visit program"} <ExternalLink className="h-3.5 w-3.5" />
