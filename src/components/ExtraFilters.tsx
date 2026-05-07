@@ -2,7 +2,7 @@ import { allOpportunities } from "@/data/opportunities";
 
 export type ExtraFilterState = {
   field: string;
-  country: string;
+  country: string; // repurposed: region (All U.S. | Northeast | South | Midwest | West | Online | Hybrid)
   status: "All" | "Open" | "Closing soon" | "Rolling" | "Closed";
   freeOnly: boolean;
   deadlineMonth: string; // "All" or "1".."12"
@@ -20,10 +20,7 @@ const MONTHS = ["January","February","March","April","May","June","July","August
 
 export function ExtraFilters({ value, onChange }: { value: ExtraFilterState; onChange: (v: ExtraFilterState) => void }) {
   const fields = Array.from(new Set(allOpportunities.flatMap((o) => o.fields))).sort();
-  const countries = Array.from(new Set(allOpportunities.map((o) => {
-    const parts = o.location.split(",").map((p) => p.trim());
-    return parts[parts.length - 1];
-  }))).sort();
+  const regions = ["All", "Northeast", "South", "Midwest", "West", "Online", "Hybrid"];
 
   return (
     <div className="flex flex-wrap gap-2 text-sm">
@@ -33,10 +30,9 @@ export function ExtraFilters({ value, onChange }: { value: ExtraFilterState; onC
           {fields.map((f) => <option key={f} value={f}>{f}</option>)}
         </select>
       </Pill>
-      <Pill label="Country">
+      <Pill label="Region">
         <select value={value.country} onChange={(e) => onChange({ ...value, country: e.target.value })} className="cursor-pointer bg-transparent font-semibold text-foreground outline-none">
-          <option value="All">All</option>
-          {countries.map((c) => <option key={c} value={c}>{c}</option>)}
+          {regions.map((c) => <option key={c} value={c}>{c === "All" ? "All U.S." : c}</option>)}
         </select>
       </Pill>
       <Pill label="Status">
