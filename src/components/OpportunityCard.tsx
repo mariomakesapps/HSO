@@ -60,7 +60,7 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
           Closed
         </span>
       )}
-      <div className="flex items-start justify-between gap-3 p-5 pb-3">
+      <div className="flex items-start justify-between gap-3 p-4 pb-3 sm:p-5">
         <span className={cn("rounded-full px-3 py-1 text-xs font-semibold tracking-wide uppercase", accentByCategory[opp.category])}>
           {opp.category}
         </span>
@@ -109,7 +109,7 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col px-5 pb-5">
+      <div className="flex flex-1 flex-col px-4 pb-4 sm:px-5 sm:pb-5">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{opp.org}</p>
         <h3 className="mt-2 font-display text-xl leading-tight text-foreground text-balance break-words sm:text-2xl">
           {opp.title}
