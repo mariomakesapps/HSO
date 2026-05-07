@@ -66,14 +66,26 @@ const Index = () => {
       <IntroSplash />
       {/* Nav */}
       <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur animate-fade-up">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 md:px-6 md:py-4">
           <a href="#" className="flex items-center gap-2">
             <img src={hsoLogo} alt="HSO HSO logo" className="h-9 w-9 rounded-xl object-cover transition-transform duration-700 hover:rotate-12" />
             <span className="font-display text-2xl font-semibold tracking-tight">HSO</span>
             <span className="ml-1 hidden text-xs uppercase tracking-[0.2em] text-muted-foreground sm:inline">High School Opportunity Finder</span>
           </a>
           <div className="flex items-center gap-2">
-            <Button onClick={() => setShowShelf(true)} variant="outline" className="rounded-full border-foreground/20 bg-card hover:bg-ink hover:text-cream">
+            <Button
+              onClick={() => setShowShelf(true)}
+              variant="outline"
+              size="icon"
+              aria-label="My Shelf"
+              className="relative rounded-full border-foreground/20 bg-card hover:bg-ink hover:text-cream sm:hidden"
+            >
+              <Bookmark className="h-4 w-4" />
+              {totalSaved > 0 && (
+                <span className="absolute -right-1 -top-1 rounded-full bg-coral px-1.5 py-0.5 text-[10px] font-semibold text-coral-foreground">{totalSaved}</span>
+              )}
+            </Button>
+            <Button onClick={() => setShowShelf(true)} variant="outline" className="hidden rounded-full border-foreground/20 bg-card hover:bg-ink hover:text-cream sm:inline-flex">
               <Bookmark className="mr-2 h-4 w-4" />
               My Shelf
               {totalSaved > 0 && (
@@ -81,10 +93,15 @@ const Index = () => {
               )}
             </Button>
             {session ? (
-              <Button onClick={onSignOut} variant="outline" className="rounded-full border-foreground/20 bg-card hover:bg-ink hover:text-cream">
-                <LogOut className="mr-2 h-4 w-4" />
-                Sign out
-              </Button>
+              <>
+                <Button onClick={onSignOut} variant="outline" size="icon" aria-label="Sign out" className="rounded-full border-foreground/20 bg-card hover:bg-ink hover:text-cream sm:hidden">
+                  <LogOut className="h-4 w-4" />
+                </Button>
+                <Button onClick={onSignOut} variant="outline" className="hidden rounded-full border-foreground/20 bg-card hover:bg-ink hover:text-cream sm:inline-flex">
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Sign out
+                </Button>
+              </>
             ) : (
               <Button onClick={() => navigate("/auth")} variant="outline" className="rounded-full border-foreground/20 bg-card hover:bg-ink hover:text-cream">
                 Sign in
@@ -99,23 +116,38 @@ const Index = () => {
         <div className="absolute -right-40 -top-40 h-[420px] w-[420px] rounded-full bg-gradient-coral opacity-30 blur-3xl" />
         <div className="absolute -left-40 bottom-0 h-[320px] w-[320px] rounded-full bg-sage/40 blur-3xl" />
 
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-20 lg:grid-cols-12 lg:py-28">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 py-10 sm:py-16 md:px-6 lg:grid-cols-12 lg:gap-12 lg:py-28">
           <div className="lg:col-span-7 animate-fade-up" style={{ animationDelay: "80ms" }}>
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
               <Sparkles className="h-3.5 w-3.5 text-coral" /> Curated · Updated weekly
             </span>
-            <h1 className="mt-5 font-display text-5xl font-semibold leading-[1.02] tracking-tight text-foreground sm:text-6xl lg:text-7xl text-balance">
+            <h1 className="mt-4 font-display text-3xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-7xl text-balance">
               The <em className="text-coral not-italic">High School Opportunity Finder</em> — <span className="italic text-sage">10,000+ programs, worldwide.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground sm:mt-6 sm:text-lg">
               HSO indexes internships, research, scholarships, summer programs, competitions and fellowships from every continent — built for high schoolers preparing for college.
             </p>
-            <div className="mt-10">
+
+            {/* Mobile-only spotlight strip */}
+            {featured && (
+              <a
+                href="#results"
+                className="mt-6 flex items-start gap-3 rounded-2xl border border-border bg-card p-4 shadow-soft lg:hidden"
+              >
+                <span className="mt-0.5 rounded-full bg-coral px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-coral-foreground">Spotlight</span>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-xs uppercase tracking-[0.18em] text-muted-foreground">{featured.org}</p>
+                  <p className="truncate font-display text-base text-foreground">{featured.title}</p>
+                </div>
+              </a>
+            )}
+
+            <div className="mt-6 sm:mt-10">
               <Filters value={filters} onChange={setFilters} />
             </div>
           </div>
 
-          <div className="relative lg:col-span-5 animate-fade-up" style={{ animationDelay: "240ms" }}>
+          <div className="relative hidden lg:col-span-5 lg:block animate-fade-up" style={{ animationDelay: "240ms" }}>
             <div className="relative ml-auto max-w-md rotate-1 rounded-3xl border border-border bg-card p-6 shadow-editorial transition-transform duration-500 hover:rotate-0 hover:-translate-y-1">
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Spotlight · This month</p>
               {featured && (
@@ -140,11 +172,11 @@ const Index = () => {
       </section>
 
       {/* Results */}
-      <section className="mx-auto max-w-7xl px-6 py-16">
-        <div className="mb-8 flex items-end justify-between">
+      <section id="results" className="mx-auto max-w-7xl px-4 py-10 md:px-6 md:py-16">
+        <div className="mb-6 flex items-end justify-between md:mb-8">
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Discover</p>
-            <h2 className="font-display text-4xl tracking-tight">
+            <h2 className="font-display text-2xl tracking-tight sm:text-4xl">
               {filtered.length.toLocaleString()} opportunit{filtered.length === 1 ? "y" : "ies"} for you
             </h2>
           </div>
@@ -157,7 +189,7 @@ const Index = () => {
           </div>
         ) : (
           <>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
               {shown.map((o, i) => (
                 <OpportunityCard key={o.id} opp={o} index={i} />
               ))}
