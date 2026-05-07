@@ -126,6 +126,8 @@ export function SiteHeader() {
           </div>
         </div>
       </header>
+      {/* Spacer to offset fixed header height */}
+      <div aria-hidden="true" className="h-[60px] md:h-[72px]" />
       {showShelf && <CollectionsPanel onClose={() => setShowShelf(false)} />}
     </>
   );
