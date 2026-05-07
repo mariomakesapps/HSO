@@ -184,7 +184,7 @@ function generateOpportunities(count: number): Opportunity[] {
       deadline: `${year}-${String(month).padStart(2,"0")}-${String(day).padStart(2,"0")}`,
       prestige,
       blurb,
-      url: `https://www.google.com/search?q=${searchQuery}`,
+      url: `https://duckduckgo.com/?q=${searchQuery}&kl=us-en`,
     });
   }
   return out;
