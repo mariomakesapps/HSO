@@ -1,4 +1,5 @@
 import { allOpportunities } from "@/data/opportunities";
+import { FilterDropdown } from "@/components/FilterDropdown";
 
 export type ExtraFilterState = {
   field: string;
@@ -24,41 +25,36 @@ export function ExtraFilters({ value, onChange }: { value: ExtraFilterState; onC
 
   return (
     <div className="flex flex-wrap gap-2 text-sm">
-      <Pill label="Field">
-        <select value={value.field} onChange={(e) => onChange({ ...value, field: e.target.value })} className="cursor-pointer bg-transparent font-semibold text-foreground outline-none">
-          <option value="All">All</option>
-          {fields.map((f) => <option key={f} value={f}>{f}</option>)}
-        </select>
-      </Pill>
-      <Pill label="Region">
-        <select value={value.country} onChange={(e) => onChange({ ...value, country: e.target.value })} className="cursor-pointer bg-transparent font-semibold text-foreground outline-none">
-          {regions.map((c) => <option key={c} value={c}>{c === "All" ? "All U.S." : c}</option>)}
-        </select>
-      </Pill>
-      <Pill label="Status">
-        <select value={value.status} onChange={(e) => onChange({ ...value, status: e.target.value as ExtraFilterState["status"] })} className="cursor-pointer bg-transparent font-semibold text-foreground outline-none">
-          {(["All","Open","Closing soon","Rolling","Closed"] as const).map((s) => <option key={s} value={s}>{s}</option>)}
-        </select>
-      </Pill>
-      <Pill label="Deadline">
-        <select value={value.deadlineMonth} onChange={(e) => onChange({ ...value, deadlineMonth: e.target.value })} className="cursor-pointer bg-transparent font-semibold text-foreground outline-none">
-          <option value="All">Any month</option>
-          {MONTHS.map((m, i) => <option key={m} value={String(i+1)}>{m}</option>)}
-        </select>
-      </Pill>
+      <FilterDropdown
+        label="Field"
+        value={value.field}
+        searchable
+        searchPlaceholder="Search fields…"
+        onChange={(v) => onChange({ ...value, field: v })}
+        options={[{ value: "All", label: "All fields" }, ...fields.map((f) => ({ value: f, label: f }))]}
+      />
+      <FilterDropdown
+        label="Region"
+        value={value.country}
+        onChange={(v) => onChange({ ...value, country: v })}
+        options={regions.map((c) => ({ value: c, label: c === "All" ? "All U.S." : c }))}
+      />
+      <FilterDropdown
+        label="Status"
+        value={value.status}
+        onChange={(v) => onChange({ ...value, status: v as ExtraFilterState["status"] })}
+        options={(["All","Open","Closing soon","Rolling","Closed"] as const).map((s) => ({ value: s, label: s }))}
+      />
+      <FilterDropdown
+        label="Deadline"
+        value={value.deadlineMonth}
+        onChange={(v) => onChange({ ...value, deadlineMonth: v })}
+        options={[{ value: "All", label: "Any month" }, ...MONTHS.map((m, i) => ({ value: String(i+1), label: m }))]}
+      />
       <label className={`flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2 shadow-soft transition-colors ${value.freeOnly ? "border-coral bg-coral/10 text-coral" : "border-border bg-card text-foreground hover:border-foreground"}`}>
         <input type="checkbox" checked={value.freeOnly} onChange={(e) => onChange({ ...value, freeOnly: e.target.checked })} className="h-3.5 w-3.5 accent-coral" />
         Free / aid available
       </label>
     </div>
-  );
-}
-
-function Pill({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <label className="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 shadow-soft transition-colors hover:border-foreground">
-      <span className="text-muted-foreground">{label}</span>
-      {children}
-    </label>
   );
 }
