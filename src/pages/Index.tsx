@@ -52,7 +52,7 @@ const Index = () => {
   );
 
   return (
-    <div className="relative min-h-screen bg-background">
+    <div className="relative min-h-screen overflow-x-hidden bg-background">
       <div className="hso-bg-blobs" aria-hidden="true">
         <span className="b1" /><span className="b2" /><span className="b3" /><span className="b4" />
       </div>
@@ -61,40 +61,41 @@ const Index = () => {
 
       {/* Hero */}
       <section>
-        <div className="mx-auto max-w-3xl px-4 pb-10 pt-10 text-center sm:px-6 sm:pb-14 sm:pt-16">
-          <h1 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl md:text-6xl">
+        <div className="mx-auto max-w-3xl px-4 pb-8 pt-8 text-center sm:px-6 sm:pb-14 sm:pt-16">
+          <h1 className="font-display text-balance text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl md:text-6xl">
             Find opportunities that match your <span className="text-coral">spark.</span>
           </h1>
-          <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Explore curated internships, research programs, scholarships, competitions, summer programs, volunteer work, and fellowships for high school students.
+          <p className="mx-auto mt-4 max-w-xl text-balance text-sm leading-relaxed text-muted-foreground sm:text-lg">
+            <span className="sm:hidden">Browse curated internships, research, scholarships, competitions, and summer programs for U.S. high schoolers.</span>
+            <span className="hidden sm:inline">Explore curated internships, research programs, scholarships, competitions, summer programs, volunteer work, and fellowships for high school students in the U.S.</span>
           </p>
 
           {!authLoading && !isAuthed && (
-            <div className="mx-auto mt-6 flex max-w-2xl flex-col items-center justify-between gap-3 rounded-2xl border border-border bg-card px-4 py-3 text-left shadow-soft sm:flex-row sm:px-5">
+            <div className="mx-auto mt-6 flex w-full max-w-2xl flex-col items-stretch gap-3 rounded-2xl border border-border bg-card px-4 py-3 text-left shadow-soft sm:flex-row sm:items-center sm:justify-between sm:px-5">
               <p className="flex items-start gap-2.5 text-sm text-foreground sm:items-center">
                 <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-coral/10 text-coral sm:mt-0">
                   <Sparkles className="h-3.5 w-3.5" />
                 </span>
                 <span>
                   <span className="font-semibold text-ink">Create a free account</span>
-                  <span className="text-muted-foreground"> to unlock links, save favorites, and build collections.</span>
+                  <span className="text-muted-foreground"> to unlock links and save favorites.</span>
                 </span>
               </p>
-              <Link to="/auth" className="w-full shrink-0 rounded-lg bg-ink px-4 py-2 text-center text-sm font-semibold text-cream hover:bg-coral sm:w-auto">
+              <Link to="/auth" className="w-full shrink-0 rounded-lg bg-ink px-4 py-2.5 text-center text-sm font-semibold text-cream hover:bg-coral sm:w-auto">
                 Sign up free
               </Link>
             </div>
           )}
 
           {/* Search */}
-          <form className="mx-auto mt-8 max-w-2xl" onSubmit={(e) => e.preventDefault()}>
+          <form className="mx-auto mt-7 w-full max-w-2xl" onSubmit={(e) => e.preventDefault()}>
             <div className="relative">
               <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
               <Input
                 value={filters.query}
                 onChange={(e) => setFilters({ ...filters, query: e.target.value })}
-                placeholder="Search programs, fields, organizations…"
-                className="h-14 rounded-2xl border-border bg-card pl-12 pr-32 text-base shadow-soft focus-visible:ring-coral"
+                placeholder="Search opportunities…"
+                className="h-13 w-full rounded-2xl border-border bg-card pl-11 pr-4 text-base shadow-soft focus-visible:ring-coral sm:h-14 sm:pl-12 sm:pr-32"
               />
               <a href="#results" className="absolute right-2 top-1/2 hidden -translate-y-1/2 rounded-xl bg-ink px-5 py-2.5 text-sm font-semibold text-cream hover:bg-coral sm:block">
                 Search
@@ -103,47 +104,49 @@ const Index = () => {
           </form>
 
           {/* Category chips */}
-          <div className="mx-auto mt-5 flex max-w-2xl flex-wrap justify-center gap-2">
-            {CATEGORY_CHIPS.map((c) => {
-              const active = filters.category === c;
-              return (
-                <button
-                  key={c}
-                  onClick={() => setFilters({ ...filters, category: c })}
-                  className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
-                    active
-                      ? "border-ink bg-ink text-cream"
-                      : "border-border bg-card text-foreground hover:border-ink/40"
-                  }`}
-                >
-                  {c}
-                </button>
-              );
-            })}
+          <div className="-mx-4 mt-5 sm:mx-auto sm:max-w-2xl">
+            <div className="flex gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0">
+              {CATEGORY_CHIPS.map((c) => {
+                const active = filters.category === c;
+                return (
+                  <button
+                    key={c}
+                    onClick={() => setFilters({ ...filters, category: c })}
+                    className={`shrink-0 rounded-full border px-3.5 py-1.5 text-sm font-medium transition-colors ${
+                      active
+                        ? "border-ink bg-ink text-cream"
+                        : "border-border bg-card text-foreground hover:border-ink/40"
+                    }`}
+                  >
+                    {c}
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           <p className="mt-6 inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-coral" /> 300+ curated opportunities, growing weekly.
+            <span className="h-1.5 w-1.5 rounded-full bg-coral" /> Curated opportunities for high school students in the U.S.
           </p>
         </div>
       </section>
 
       {/* Featured opportunities */}
-      <section className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 sm:pt-14">
+      <section className="mx-auto w-full max-w-7xl px-4 pt-8 sm:px-6 sm:pt-14">
         <FeaturedShelf closingSoon={deadlineSoon} newlyAdded={recentlyAdded} standouts={standouts} />
       </section>
 
       {/* Results */}
       <section id="results" className="scroll-mt-20">
         {/* Results body */}
-        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
+        <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 sm:py-12">
           <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
             <div>
               <p className="text-xs uppercase tracking-[0.18em] text-sage">Explore Opportunities</p>
               <h2 className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
                 Explore {filtered.length.toLocaleString()} opportunities
               </h2>
-              <p className="mt-1 text-sm text-muted-foreground">Use filters when you know what you're looking for, or browse freely.</p>
+              <p className="mt-1 text-sm text-muted-foreground">Use filters to narrow your search.</p>
             </div>
           </div>
 
@@ -270,7 +273,7 @@ const CATEGORY_ACCENT: Record<string, { strip: string; tint: string; chip: strin
 
 function FeaturedShelf({ closingSoon, newlyAdded, standouts }: { closingSoon: typeof opportunities; newlyAdded: typeof opportunities; standouts: typeof opportunities }) {
   const renderShelf = (items: typeof opportunities) => (
-    <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 lg:grid-cols-3">
+    <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 lg:grid-cols-3">
       {items.map((o) => {
         const dl = getDeadlineStatus(o.deadline);
         const accent = CATEGORY_ACCENT[o.category] ?? CATEGORY_ACCENT.Research;
@@ -278,7 +281,7 @@ function FeaturedShelf({ closingSoon, newlyAdded, standouts }: { closingSoon: ty
           <Link
             key={o.id}
             to={`/opportunities/${o.id}`}
-            className="group relative flex w-[280px] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-border/70 bg-card shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-ink/20 hover:shadow-editorial sm:w-auto"
+            className="group relative flex w-[85vw] max-w-[340px] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-border/70 bg-card shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-ink/20 hover:shadow-editorial sm:w-auto sm:max-w-none"
           >
             <span aria-hidden="true" className={`pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b ${accent.tint} to-transparent`} />
             <span aria-hidden="true" className={`absolute right-5 top-5 h-2 w-2 rounded-full ${accent.strip}`} />
