@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Search, ShieldCheck, Calendar, GraduationCap, Globe, Filter as FilterIcon, BookmarkPlus, ExternalLink, SlidersHorizontal, Lock, Sparkles } from "lucide-react";
+import { Search, ShieldCheck, Calendar, GraduationCap, Globe, Filter as FilterIcon, BookmarkPlus, ExternalLink, SlidersHorizontal, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useAuthSession } from "@/hooks/useAuthSession";
 import { allOpportunities as opportunities } from "@/data/opportunities";
