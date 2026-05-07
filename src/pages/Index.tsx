@@ -1,14 +1,15 @@
 import { useEffect, useMemo, useState } from "react";
-import { Search, ShieldCheck, Calendar, GraduationCap, Globe, Filter as FilterIcon, BookmarkPlus, ExternalLink } from "lucide-react";
+import { Search, ShieldCheck, Calendar, GraduationCap, Globe, Filter as FilterIcon, BookmarkPlus, ExternalLink, SlidersHorizontal, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import { allOpportunities as opportunities } from "@/data/opportunities";
 import type { Category } from "@/data/opportunities";
 import { OpportunityCard } from "@/components/OpportunityCard";
-import { Filters, FilterState } from "@/components/Filters";
+import { FilterState } from "@/components/Filters";
 import { ExtraFilters, DEFAULT_EXTRA, ExtraFilterState } from "@/components/ExtraFilters";
 import { SortBar, SortKey } from "@/components/SortBar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetFooter } from "@/components/ui/sheet";
 import { IntroSplash } from "@/components/IntroSplash";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
