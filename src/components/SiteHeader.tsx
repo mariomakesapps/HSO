@@ -45,7 +45,7 @@ export function SiteHeader() {
   return (
     <>
       <header
-        className={`sticky top-0 z-50 w-full backdrop-blur-md bg-cream/85 transition-[box-shadow,border-color] duration-200 ${
+        className={`fixed inset-x-0 top-0 z-[100] w-full backdrop-blur-md bg-cream/85 transition-[box-shadow,border-color] duration-200 ${
           scrolled ? "border-b border-border/60 shadow-sm" : "border-b border-border/30"
         }`}
       >
@@ -126,6 +126,8 @@ export function SiteHeader() {
           </div>
         </div>
       </header>
+      {/* Spacer to offset fixed header height */}
+      <div aria-hidden="true" className="h-[60px] md:h-[72px]" />
       {showShelf && <CollectionsPanel onClose={() => setShowShelf(false)} />}
     </>
   );
