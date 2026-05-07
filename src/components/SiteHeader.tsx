@@ -6,7 +6,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/store/collections";
 import { CollectionsPanel } from "@/components/CollectionsPanel";
-import { clearIntroSeen } from "@/components/IntroSplash";
 
 export function SiteHeader() {
   const [session, setSession] = useState<Session | null>(null);
@@ -23,7 +22,6 @@ export function SiteHeader() {
 
   const onSignOut = async () => {
     await supabase.auth.signOut();
-    clearIntroSeen();
     navigate("/auth");
   };
 
