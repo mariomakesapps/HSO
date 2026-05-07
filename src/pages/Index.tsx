@@ -135,7 +135,7 @@ const Index = () => {
             >
               The <em className="text-coral not-italic">High School Opportunity Finder</em>
               <span className="block sm:inline"> — </span>
-              <span className="italic text-sage">10,000+ programs, worldwide.</span>
+              <span className="italic text-sage">300+ curated opportunities, growing weekly.</span>
             </h1>
             <p
               className="mt-4 max-w-xl leading-relaxed text-muted-foreground sm:mt-6"
@@ -180,8 +180,8 @@ const Index = () => {
               )}
             </div>
             <div className="absolute -bottom-6 -left-2 -rotate-3 rounded-2xl bg-ink px-5 py-4 text-cream shadow-editorial">
-              <p className="font-display text-2xl">10,000+</p>
-              <p className="text-xs uppercase tracking-[0.2em] opacity-80">live opportunities</p>
+              <p className="font-display text-2xl">300+</p>
+              <p className="text-xs uppercase tracking-[0.2em] opacity-80">curated opportunities</p>
             </div>
           </div>
         </div>

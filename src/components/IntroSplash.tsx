@@ -189,7 +189,7 @@ export function IntroSplash() {
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 0.9, delay: 3.5, ease }}
             >
-              10,000+ programs, worldwide.
+              300+ curated opportunities, growing weekly.
             </motion.p>
           </div>
         </motion.div>
