@@ -46,6 +46,10 @@ const Index = () => {
     []
   );
   const recentlyAdded = useMemo(() => opportunities.slice(-6).reverse(), []);
+  const standouts = useMemo(
+    () => opportunities.filter((o) => o.prestige === 3).slice(0, 6),
+    []
+  );
 
   return (
     <div className="relative min-h-screen bg-background">
@@ -126,7 +130,7 @@ const Index = () => {
 
       {/* Featured opportunities */}
       <section className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 sm:pt-14">
-        <FeaturedShelf closingSoon={deadlineSoon} newlyAdded={recentlyAdded} />
+        <FeaturedShelf closingSoon={deadlineSoon} newlyAdded={recentlyAdded} standouts={standouts} />
       </section>
 
       {/* Results */}
@@ -137,9 +141,9 @@ const Index = () => {
             <div>
               <p className="text-xs uppercase tracking-[0.18em] text-sage">Explore Opportunities</p>
               <h2 className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-                Showing {filtered.length.toLocaleString()}+ opportunities
+                Explore {filtered.length.toLocaleString()} opportunities
               </h2>
-              <p className="mt-1 text-sm text-muted-foreground">Refine your search when you know what you're looking for.</p>
+              <p className="mt-1 text-sm text-muted-foreground">Use filters when you know what you're looking for, or browse freely.</p>
             </div>
           </div>
 
