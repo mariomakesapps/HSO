@@ -417,10 +417,16 @@ function RefinePanel({
             <SheetHeader className="text-left">
               <SheetTitle className="font-display text-2xl">Refine your search</SheetTitle>
             </SheetHeader>
-            <div className="mt-5 space-y-5">
-              <SheetSelect label="Grade" value={String(filters.grade)} options={[["All","All grades"],["9","9th"],["10","10th"],["11","11th"],["12","12th"]]} onChange={(v) => setFilters({ ...filters, grade: v === "All" ? "All" : Number(v) })} />
-              <SheetSelect label="Cost" value={filters.cost} options={[["All","All"],["Free","Free"],["Paid","Paid"],["Stipend","Stipend / Paid"]]} onChange={(v) => setFilters({ ...filters, cost: v as FilterState["cost"] })} />
-              <SheetSelect label="Format" value={filters.format} options={[["All","All"],["In-person","In-person"],["Online","Online"],["Hybrid","Hybrid"]]} onChange={(v) => setFilters({ ...filters, format: v as FilterState["format"] })} />
+            <div className="mt-5 space-y-3">
+              <SheetField label="Grade">
+                <FilterDropdown fullWidth label="Grade" value={String(filters.grade)} onChange={(v) => setFilters({ ...filters, grade: v === "All" ? "All" : Number(v) })} options={[{value:"All",label:"All grades"},{value:"9",label:"9th"},{value:"10",label:"10th"},{value:"11",label:"11th"},{value:"12",label:"12th"}]} />
+              </SheetField>
+              <SheetField label="Cost">
+                <FilterDropdown fullWidth label="Cost" value={filters.cost} onChange={(v) => setFilters({ ...filters, cost: v as FilterState["cost"] })} options={[{value:"All",label:"All"},{value:"Free",label:"Free"},{value:"Paid",label:"Paid"},{value:"Stipend",label:"Stipend / Paid"}]} />
+              </SheetField>
+              <SheetField label="Format">
+                <FilterDropdown fullWidth label="Format" value={filters.format} onChange={(v) => setFilters({ ...filters, format: v as FilterState["format"] })} options={[{value:"All",label:"All"},{value:"In-person",label:"In-person"},{value:"Online",label:"Online"},{value:"Hybrid",label:"Hybrid"}]} />
+              </SheetField>
               <div className="border-t border-border pt-5">
                 <p className="mb-3 text-xs uppercase tracking-[0.2em] text-muted-foreground">More</p>
                 <ExtraFilters value={extra} onChange={setExtra} />
