@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Bookmark, LogOut, Plus } from "lucide-react";
+import { Bookmark, LogOut } from "lucide-react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
-import hsoLogo from "@/assets/hso-logo.png";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/store/collections";
 import { CollectionsPanel } from "@/components/CollectionsPanel";
