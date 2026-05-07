@@ -7,6 +7,16 @@ import { Button } from "@/components/ui/button";
 import { useStore } from "@/store/collections";
 import { CollectionsPanel } from "@/components/CollectionsPanel";
 
+function useScrolled(threshold = 8) {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > threshold);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [threshold]);
+  return scrolled;
+}
 export function SiteHeader() {
   const [session, setSession] = useState<Session | null>(null);
   const [showShelf, setShowShelf] = useState(false);
