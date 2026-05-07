@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetFooter } from "@/components/ui/sheet";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { FilterDropdown } from "@/components/FilterDropdown";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { applyFilters, applySort } from "@/lib/filterSort";
@@ -425,17 +426,14 @@ function RefinePanel({
           </SheetContent>
         </Sheet>
 
-        <div className="ml-auto flex items-center gap-2 text-sm">
-          <span className="hidden text-muted-foreground sm:inline">Sort by</span>
-          <select
+        <div className="ml-auto">
+          <FilterDropdown
+            label="Sort by"
             value={sort}
-            onChange={(e) => setSort(e.target.value as SortKey)}
-            className="h-9 cursor-pointer rounded-full border border-border/80 bg-background px-3 text-sm font-semibold text-ink outline-none focus:border-coral"
-          >
-            {SORT_OPTIONS.map((o) => (
-              <option key={o.value} value={o.value}>{o.label}</option>
-            ))}
-          </select>
+            onChange={(v) => setSort(v as SortKey)}
+            options={SORT_OPTIONS.map((o) => ({ value: o.value, label: o.label }))}
+            align="end"
+          />
         </div>
       </div>
 
