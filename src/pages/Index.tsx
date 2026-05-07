@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Search, ShieldCheck, Calendar, GraduationCap, Globe, Filter as FilterIcon, BookmarkPlus, ExternalLink, SlidersHorizontal, X } from "lucide-react";
+import { Search, ShieldCheck, Calendar, GraduationCap, Globe, Filter as FilterIcon, BookmarkPlus, ExternalLink, SlidersHorizontal } from "lucide-react";
 import { Link } from "react-router-dom";
 import { allOpportunities as opportunities } from "@/data/opportunities";
 import type { Category } from "@/data/opportunities";
@@ -284,6 +284,23 @@ function Step({ icon, title, body }: { icon: React.ReactNode; title: string; bod
       <p className="mt-4 font-display text-lg font-semibold">{title}</p>
       <p className="mt-1 text-sm text-muted-foreground">{body}</p>
     </div>
+  );
+}
+
+function SheetSelect({ label, value, options, onChange }: { label: string; value: string; options: [string,string][]; onChange: (v: string) => void }) {
+  return (
+    <label className="flex flex-col gap-1.5">
+      <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">{label}</span>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="h-12 rounded-xl border border-border bg-card px-4 text-base font-semibold text-foreground outline-none focus:border-foreground"
+      >
+        {options.map(([v, l]) => (
+          <option key={v} value={v}>{l}</option>
+        ))}
+      </select>
+    </label>
   );
 }
 
