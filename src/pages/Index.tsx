@@ -46,6 +46,10 @@ const Index = () => {
     []
   );
   const recentlyAdded = useMemo(() => opportunities.slice(-6).reverse(), []);
+  const standouts = useMemo(
+    () => opportunities.filter((o) => o.prestige === 3).slice(0, 6),
+    []
+  );
 
   return (
     <div className="relative min-h-screen bg-background">
@@ -126,7 +130,7 @@ const Index = () => {
 
       {/* Featured opportunities */}
       <section className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 sm:pt-14">
-        <FeaturedShelf closingSoon={deadlineSoon} newlyAdded={recentlyAdded} />
+        <FeaturedShelf closingSoon={deadlineSoon} newlyAdded={recentlyAdded} standouts={standouts} />
       </section>
 
       {/* Results */}
@@ -137,9 +141,9 @@ const Index = () => {
             <div>
               <p className="text-xs uppercase tracking-[0.18em] text-sage">Explore Opportunities</p>
               <h2 className="font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-                Showing {filtered.length.toLocaleString()}+ opportunities
+                Explore {filtered.length.toLocaleString()} opportunities
               </h2>
-              <p className="mt-1 text-sm text-muted-foreground">Refine your search when you know what you're looking for.</p>
+              <p className="mt-1 text-sm text-muted-foreground">Use filters when you know what you're looking for, or browse freely.</p>
             </div>
           </div>
 
@@ -254,30 +258,41 @@ function Badge({ icon, label }: { icon: React.ReactNode; label: string }) {
   );
 }
 
-function FeaturedShelf({ closingSoon, newlyAdded }: { closingSoon: typeof opportunities; newlyAdded: typeof opportunities }) {
-  const renderShelf = (items: typeof opportunities, accent: "coral" | "sage") => (
+const CATEGORY_ACCENT: Record<string, { strip: string; tint: string; chip: string }> = {
+  Research:         { strip: "bg-sage",   tint: "from-sage/8",   chip: "bg-sage/10 text-sage border-sage/20" },
+  Internship:       { strip: "bg-sky",    tint: "from-sky/15",   chip: "bg-sky/15 text-ink border-sky/30" },
+  Competition:      { strip: "bg-coral",  tint: "from-coral/8",  chip: "bg-coral/10 text-coral border-coral/20" },
+  "Summer Program": { strip: "bg-ochre",  tint: "from-ochre/15", chip: "bg-ochre/15 text-ink border-ochre/30" },
+  Scholarship:      { strip: "bg-sunny",  tint: "from-sunny/20", chip: "bg-sunny/25 text-ink border-sunny/40" },
+  Volunteer:        { strip: "bg-sage",   tint: "from-sage/8",   chip: "bg-sage/10 text-sage border-sage/20" },
+  Fellowship:       { strip: "bg-coral",  tint: "from-coral/8",  chip: "bg-coral/10 text-coral border-coral/20" },
+};
+
+function FeaturedShelf({ closingSoon, newlyAdded, standouts }: { closingSoon: typeof opportunities; newlyAdded: typeof opportunities; standouts: typeof opportunities }) {
+  const renderShelf = (items: typeof opportunities) => (
     <div className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 lg:grid-cols-3">
       {items.map((o) => {
         const dl = getDeadlineStatus(o.deadline);
-        const accentBar = accent === "coral" ? "bg-coral" : "bg-sage";
+        const accent = CATEGORY_ACCENT[o.category] ?? CATEGORY_ACCENT.Research;
         return (
           <Link
             key={o.id}
             to={`/opportunities/${o.id}`}
-            className="group relative flex w-[280px] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition-all hover:-translate-y-0.5 hover:border-ink/20 hover:shadow-md sm:w-auto"
+            className="group relative flex w-[280px] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-border/70 bg-card shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-ink/20 hover:shadow-editorial sm:w-auto"
           >
-            <span className={`block h-1 w-full ${accentBar}`} aria-hidden="true" />
-            <div className="flex flex-1 flex-col p-5">
+            <span aria-hidden="true" className={`pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b ${accent.tint} to-transparent`} />
+            <span aria-hidden="true" className={`absolute right-5 top-5 h-2 w-2 rounded-full ${accent.strip}`} />
+            <div className="relative flex flex-1 flex-col p-5">
               <div className="flex items-center justify-between gap-2">
-                <span className="rounded-full bg-secondary px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-foreground">{o.category}</span>
+                <span className={`rounded-full border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${accent.chip}`}>{o.category}</span>
                 <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold ${STATUS_STYLES[dl.status]}`}>
                   {dl.label}
                 </span>
               </div>
-              <h4 className="mt-3 font-display text-lg font-semibold leading-snug tracking-tight text-ink group-hover:text-coral">{o.title}</h4>
+              <h4 className="mt-4 font-display text-lg font-medium leading-snug tracking-tight text-ink group-hover:text-coral">{o.title}</h4>
               <p className="mt-1 text-xs font-medium text-muted-foreground">{o.org}</p>
-              <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-foreground/75">{o.blurb}</p>
-              <div className="mt-3 flex items-center gap-2 text-[11px] text-muted-foreground">
+              <p className="mt-3 line-clamp-2 text-sm leading-relaxed text-foreground/70">{o.blurb}</p>
+              <div className="mt-4 flex items-center gap-2 text-[11px] text-muted-foreground">
                 <span>{o.location}</span>
                 <span aria-hidden="true">·</span>
                 <span>{o.cost}</span>
@@ -289,39 +304,43 @@ function FeaturedShelf({ closingSoon, newlyAdded }: { closingSoon: typeof opport
     </div>
   );
 
+  const tabBase = "relative rounded-none border-0 bg-transparent px-1 pb-2 pt-1 text-sm font-medium text-muted-foreground shadow-none transition-colors hover:text-ink data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:text-ink";
+
   return (
     <div>
       <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-xs uppercase tracking-[0.18em] text-coral">Featured opportunities</p>
-          <h2 className="mt-1 font-display text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-            Start with programs worth checking today.
+          <h2 className="mt-1 font-display text-2xl font-medium tracking-tight text-ink sm:text-3xl">
+            Programs worth a closer look.
           </h2>
+          <p className="mt-2 text-sm text-muted-foreground">A rotating mix of deadlines, new finds, and standout opportunities.</p>
         </div>
       </div>
 
-      <Tabs defaultValue="closing" className="mt-5">
-        <TabsList className="h-auto rounded-full bg-card p-1 shadow-soft">
-          <TabsTrigger
-            value="closing"
-            className="rounded-full px-4 py-2 text-sm font-semibold data-[state=active]:bg-coral data-[state=active]:text-coral-foreground data-[state=active]:shadow-sm"
-          >
+      <Tabs defaultValue="closing" className="mt-6">
+        <TabsList className="h-auto justify-start gap-6 rounded-none border-b border-border/60 bg-transparent p-0">
+          <TabsTrigger value="closing" className={`${tabBase} data-[state=active]:after:bg-coral after:absolute after:inset-x-0 after:-bottom-px after:h-[2px] after:rounded-full after:bg-transparent after:transition-colors`}>
             Closing Soon
           </TabsTrigger>
-          <TabsTrigger
-            value="new"
-            className="rounded-full px-4 py-2 text-sm font-semibold data-[state=active]:bg-sage data-[state=active]:text-sage-foreground data-[state=active]:shadow-sm"
-          >
-            Newly Added
+          <TabsTrigger value="new" className={`${tabBase} data-[state=active]:after:bg-sage after:absolute after:inset-x-0 after:-bottom-px after:h-[2px] after:rounded-full after:bg-transparent after:transition-colors`}>
+            New Finds
+          </TabsTrigger>
+          <TabsTrigger value="standouts" className={`${tabBase} data-[state=active]:after:bg-ochre after:absolute after:inset-x-0 after:-bottom-px after:h-[2px] after:rounded-full after:bg-transparent after:transition-colors`}>
+            Standouts
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="closing" className="mt-5">
-          <p className="mb-4 text-sm text-muted-foreground">A few deadlines worth catching.</p>
-          {renderShelf(closingSoon, "coral")}
+        <TabsContent value="closing" className="mt-6 animate-in fade-in-50 duration-300">
+          <p className="mb-4 text-sm text-muted-foreground">A few deadlines worth catching this week.</p>
+          {renderShelf(closingSoon)}
         </TabsContent>
-        <TabsContent value="new" className="mt-5">
+        <TabsContent value="new" className="mt-6 animate-in fade-in-50 duration-300">
           <p className="mb-4 text-sm text-muted-foreground">Freshly added programs to explore.</p>
-          {renderShelf(newlyAdded, "sage")}
+          {renderShelf(newlyAdded)}
+        </TabsContent>
+        <TabsContent value="standouts" className="mt-6 animate-in fade-in-50 duration-300">
+          <p className="mb-4 text-sm text-muted-foreground">The most prestigious picks from our catalog.</p>
+          {renderShelf(standouts)}
         </TabsContent>
       </Tabs>
     </div>
@@ -357,7 +376,13 @@ function RefinePanel({
   };
 
   return (
-    <div className="rounded-3xl border border-border/70 bg-card/70 p-4 shadow-soft backdrop-blur-sm sm:p-5">
+    <div className="rounded-3xl border border-border/70 bg-cream/80 p-5 shadow-soft backdrop-blur-sm sm:p-6">
+      <div className="mb-4 flex flex-wrap items-end justify-between gap-2">
+        <div>
+          <p className="font-display text-lg font-medium text-ink">Refine your search</p>
+          <p className="text-xs text-muted-foreground">Interest · Grade · Cost · Format · Location · Deadline</p>
+        </div>
+      </div>
       <div className="flex flex-wrap items-center gap-3">
         <Button
           variant="outline"

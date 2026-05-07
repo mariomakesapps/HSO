@@ -147,10 +147,10 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
         ) : (
           <Link
             to={authRedirectHref(`/opportunities/${opp.id}`)}
-            className="ml-auto inline-flex items-center gap-1.5 rounded-md border border-border bg-secondary px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:border-ink/40 hover:text-ink"
+            className="ml-auto inline-flex items-center gap-1.5 rounded-md border border-border/60 bg-muted/40 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-ink/30 hover:bg-muted/60 hover:text-ink"
             title="Sign in to view link"
           >
-            <Lock className="h-3 w-3" /> Sign in to view link
+            <Lock className="h-3 w-3" /> Sign in to view
           </Link>
         )}
       </div>
