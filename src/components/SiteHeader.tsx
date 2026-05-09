@@ -68,11 +68,19 @@ export function SiteHeader() {
           <div className="flex shrink-0 items-center gap-1 sm:gap-2">
             <Button onClick={() => setShowShelf(true)} variant="ghost" size="sm" className="relative hidden rounded-lg md:inline-flex">
               <Bookmark className="mr-1.5 h-4 w-4" /> My Shelf
-              {totalSaved > 0 && <span className="ml-1.5 rounded-md bg-coral/15 px-1.5 py-0.5 text-[10px] font-semibold text-coral">{totalSaved}</span>}
+              {totalSaved > 0 && (
+                <span className="ml-1.5 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-coral px-1.5 text-[10px] font-bold leading-none text-coral-foreground">
+                  {totalSaved}
+                </span>
+              )}
             </Button>
             <Button onClick={() => setShowShelf(true)} variant="ghost" size="icon" aria-label="My Shelf" className="relative rounded-lg md:hidden">
               <Bookmark className="h-4 w-4" />
-              {totalSaved > 0 && <span className="absolute -right-1 -top-1 rounded-full bg-coral px-1.5 py-0.5 text-[10px] font-semibold text-coral-foreground">{totalSaved}</span>}
+              {totalSaved > 0 && (
+                <span className="absolute -right-1 -top-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-coral px-1 text-[10px] font-bold leading-none text-coral-foreground">
+                  {totalSaved}
+                </span>
+              )}
             </Button>
 
             {session ? (
