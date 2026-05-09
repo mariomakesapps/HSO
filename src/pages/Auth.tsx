@@ -60,7 +60,7 @@ const Auth = () => {
   const onGoogle = async () => {
     setLoading(true);
     rememberAuthReturnTo(redirectTo);
-    const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin + redirectTo });
+    const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin + "/auth" });
     if (result.error) {
       toast({ title: "Google sign-in failed", description: String(result.error), variant: "destructive" });
       setLoading(false);
@@ -68,14 +68,11 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background bg-grain flex items-center justify-center px-6">
+    <div className="flex min-h-[calc(100vh-60px)] items-center justify-center bg-background bg-grain px-6 py-10 md:min-h-[calc(100vh-72px)]">
       <div className="w-full max-w-md rounded-3xl border border-border bg-card p-8 shadow-editorial">
-        <a href="/" className="flex items-center gap-2 mb-8">
-          <span className="relative inline-block h-9 w-9 overflow-hidden rounded-xl ring-1 ring-foreground/10">
-            <img src={hsoLogo} alt="HSO logo" className="absolute inset-0 h-full w-full scale-[1.35] object-cover" />
-          </span>
-          <span className="font-display text-2xl font-semibold tracking-tight">HSO</span>
-        </a>
+        <Link to="/" className="mb-8 inline-flex items-center font-display text-3xl font-semibold leading-none tracking-tight" aria-label="HSO home">
+          <span className="text-ink">H</span><span className="text-coral">S</span><span className="text-sage">O</span>
+        </Link>
         <h1 className="font-display text-3xl tracking-tight">
           {mode === "signin" ? "Welcome back" : "Create your account"}
         </h1>
@@ -115,6 +112,11 @@ const Auth = () => {
             {mode === "signin" ? "Create account" : "Sign in"}
           </button>
         </p>
+        {signupSent && (
+          <Link to="/" className="mt-4 block text-center text-sm font-medium text-coral underline-offset-4 hover:underline">
+            Back to homepage
+          </Link>
+        )}
       </div>
     </div>
   );
