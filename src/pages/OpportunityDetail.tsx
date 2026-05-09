@@ -1,7 +1,6 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ExternalLink, Bookmark, BookmarkCheck, Bell, ArrowLeft, Lock } from "lucide-react";
 import { useEffect, useState } from "react";
-import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useSEO } from "@/lib/seo";
 import { allOpportunities } from "@/data/opportunities";
@@ -45,8 +44,7 @@ const OpportunityDetail = () => {
   if (!opp) {
     return (
       <div className="min-h-screen bg-background bg-grain">
-        <SiteHeader />
-        <main className="mx-auto max-w-2xl px-6 py-20 text-center">
+          <main className="mx-auto max-w-2xl px-6 py-20 text-center">
           <h1 className="font-display text-4xl">Opportunity not found</h1>
           <Link to="/" className="mt-6 inline-block text-coral underline">Back to discover</Link>
         </main>
@@ -73,7 +71,6 @@ const OpportunityDetail = () => {
 
   return (
     <div className="min-h-screen bg-background bg-grain">
-      <SiteHeader />
       <main className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
         <button onClick={() => navigate(-1)} className="mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-coral">
           <ArrowLeft className="h-4 w-4" /> Back

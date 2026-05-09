@@ -1,6 +1,5 @@
 import { useMemo, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useSEO } from "@/lib/seo";
 import { CATEGORY_META, CATEGORY_SLUGS, CategorySlug } from "@/lib/categories";
@@ -24,7 +23,6 @@ const Category = () => {
 
   return (
     <div className="min-h-screen bg-background bg-grain">
-      <SiteHeader />
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Category</p>
         <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-6xl">{meta.h1}</h1>

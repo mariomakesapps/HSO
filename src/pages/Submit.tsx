@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { z } from "zod";
-import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useSEO } from "@/lib/seo";
 import { Button } from "@/components/ui/button";
@@ -66,7 +65,6 @@ const Submit = () => {
 
   return (
     <div className="min-h-screen bg-background bg-grain">
-      <SiteHeader />
       <main className="mx-auto max-w-2xl px-4 py-14 sm:px-6 sm:py-20">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Contribute</p>
         <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-5xl">Submit an opportunity</h1>
