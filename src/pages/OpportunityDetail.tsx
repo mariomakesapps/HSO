@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { ExternalLink, Bookmark, BookmarkCheck, Bell, ArrowLeft, Lock } from "lucide-react";
+import { ExternalLink, Bookmark, BookmarkCheck, Bell, ArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -101,15 +101,9 @@ const OpportunityDetail = () => {
         </div>
 
         <div className="mt-8 flex flex-wrap gap-3">
-          {userId ? (
-            <a href={opp.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-cream hover:bg-coral hover:text-coral-foreground">
-              Apply on official site <ExternalLink className="h-4 w-4" />
-            </a>
-          ) : (
-            <Link to={authRedirectHref(`/opportunities/${opp.id}`)} className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-5 py-3 text-sm font-semibold text-foreground hover:border-ink/40 hover:text-ink">
-              <Lock className="h-4 w-4" /> Sign in to view link
-            </Link>
-          )}
+          <a href={opp.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-cream hover:bg-coral hover:text-coral-foreground">
+            Visit official program <ExternalLink className="h-4 w-4" />
+          </a>
           <Button variant="outline" className="rounded-full" onClick={() => {
             if (!userId) { navigate(authRedirectHref(`/opportunities/${opp.id}`)); return; }
             store.toggleFavorite(opp.id);
