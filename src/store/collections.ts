@@ -1,4 +1,5 @@
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useSyncExternalStore } from "react";
+import { opportunities } from "@/data/opportunities";
 
 export type Collection = {
   id: string;
@@ -13,27 +14,60 @@ type State = {
   collections: Collection[];
 };
 
-const KEY = "atlas-collections-v1";
+const LEGACY_KEY = "atlas-collections-v1";
+const BASE = "hso-shelf-v2";
 const listeners = new Set<() => void>();
 
-function load(): State {
-  if (typeof window === "undefined") return { favorites: [], collections: [] };
-  try {
-    const raw = localStorage.getItem(KEY);
-    if (raw) return JSON.parse(raw);
-  } catch {}
+let userKey = "anon";
+
+function storageKey() {
+  return `${BASE}:${userKey}`;
+}
+
+function emptyState(): State {
+  return { favorites: [], collections: [] };
+}
+
+function sanitize(s: State): State {
+  const validIds = new Set(opportunities.map((o) => o.id));
   return {
-    favorites: [],
-    collections: [
-      { id: "starter", name: "Dream Summer", emoji: "🌞", opportunityIds: [], createdAt: Date.now() },
-    ],
+    favorites: (s.favorites ?? []).filter((id) => validIds.has(id)),
+    collections: (s.collections ?? []).map((c) => ({
+      ...c,
+      opportunityIds: (c.opportunityIds ?? []).filter((id) => validIds.has(id)),
+    })),
   };
+}
+
+function load(): State {
+  if (typeof window === "undefined") return emptyState();
+  try {
+    const raw = localStorage.getItem(storageKey());
+    if (raw) return sanitize(JSON.parse(raw));
+  } catch {}
+  // One-time migration from legacy key for the anonymous bucket only.
+  if (userKey === "anon") {
+    try {
+      const legacy = localStorage.getItem(LEGACY_KEY);
+      if (legacy) {
+        const parsed = sanitize(JSON.parse(legacy));
+        // Drop any seeded empty starter collection.
+        parsed.collections = parsed.collections.filter(
+          (c) => !(c.id === "starter" && c.opportunityIds.length === 0)
+        );
+        localStorage.setItem(storageKey(), JSON.stringify(parsed));
+        localStorage.removeItem(LEGACY_KEY);
+        return parsed;
+      }
+    } catch {}
+  }
+  return emptyState();
 }
 
 let state: State = load();
 
 function persist() {
-  localStorage.setItem(KEY, JSON.stringify(state));
+  try { localStorage.setItem(storageKey(), JSON.stringify(state)); } catch {}
   listeners.forEach((l) => l());
 }
 
@@ -51,6 +85,13 @@ export function useStore() {
 }
 
 export const store = {
+  setUser(uid: string | null) {
+    const next = uid ?? "anon";
+    if (next === userKey) return;
+    userKey = next;
+    state = load();
+    listeners.forEach((l) => l());
+  },
   toggleFavorite(id: string) {
     state = {
       ...state,
@@ -58,6 +99,11 @@ export const store = {
         ? state.favorites.filter((x) => x !== id)
         : [...state.favorites, id],
     };
+    persist();
+  },
+  removeFavorite(id: string) {
+    if (!state.favorites.includes(id)) return;
+    state = { ...state, favorites: state.favorites.filter((x) => x !== id) };
     persist();
   },
   isFavorite(id: string) {
@@ -86,6 +132,17 @@ export const store = {
             : [...c.opportunityIds, oppId],
         };
       }),
+    };
+    persist();
+  },
+  removeFromCollection(collectionId: string, oppId: string) {
+    state = {
+      ...state,
+      collections: state.collections.map((c) =>
+        c.id === collectionId
+          ? { ...c, opportunityIds: c.opportunityIds.filter((x) => x !== oppId) }
+          : c
+      ),
     };
     persist();
   },
