@@ -48,7 +48,7 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
   return (
     <article
       className={cn(
-        "group flex h-full flex-col rounded-xl border border-border bg-card p-4 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-coral/40 hover:shadow-md",
+        "group flex h-full transform-gpu flex-col rounded-xl border border-border bg-card p-4 shadow-sm transition-[transform,box-shadow,border-color] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform hover:-translate-y-0.5 hover:border-coral/40 hover:shadow-md",
         isClosed && "opacity-70"
       )}
     >
