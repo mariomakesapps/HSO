@@ -15,6 +15,7 @@ import Submit from "./pages/Submit.tsx";
 import Category from "./pages/Category.tsx";
 import OpportunityDetail from "./pages/OpportunityDetail.tsx";
 import SharedCollection from "./pages/SharedCollection.tsx";
+import Profile from "./pages/Profile.tsx";
 
 const queryClient = new QueryClient();
 
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/categories/:slug" element={<Category />} />
           <Route path="/opportunities/:id" element={<OpportunityDetail />} />
           <Route path="/collections/:id" element={<SharedCollection />} />
+          <Route path="/profile" element={<Profile />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
