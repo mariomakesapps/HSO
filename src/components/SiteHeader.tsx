@@ -38,8 +38,14 @@ export function SiteHeader() {
   const totalSaved = s.favorites.length + s.collections.reduce((n, c) => n + c.opportunityIds.length, 0);
 
   useEffect(() => {
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, sess) => setSession(sess));
-    supabase.auth.getSession().then(({ data }) => setSession(data.session));
+    const { data: sub } = supabase.auth.onAuthStateChange((_e, sess) => {
+      setSession(sess);
+      import("@/store/collections").then(({ store }) => store.setUser(sess?.user.id ?? null));
+    });
+    supabase.auth.getSession().then(({ data }) => {
+      setSession(data.session);
+      import("@/store/collections").then(({ store }) => store.setUser(data.session?.user.id ?? null));
+    });
     return () => sub.subscription.unsubscribe();
   }, []);
 
