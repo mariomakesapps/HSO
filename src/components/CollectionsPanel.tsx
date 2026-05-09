@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { store, useStore } from "@/store/collections";
 import { opportunities } from "@/data/opportunities";
 import { Button } from "@/components/ui/button";
@@ -13,6 +13,17 @@ export function CollectionsPanel({ onClose }: { onClose: () => void }) {
   const s = useStore();
   const [name, setName] = useState("");
   const [emoji, setEmoji] = useState("✨");
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose]);
 
   const create = () => {
     if (!name.trim()) return;
@@ -54,7 +65,19 @@ export function CollectionsPanel({ onClose }: { onClose: () => void }) {
   };
 
   return (
-    <aside className="fixed inset-0 z-50 flex w-full flex-col border-border bg-background shadow-editorial animate-fade-up sm:inset-y-0 sm:left-auto sm:right-0 sm:max-w-md sm:border-l">
+    <>
+      {/* Backdrop — click to close */}
+      <button
+        type="button"
+        aria-label="Close shelf"
+        onClick={onClose}
+        className="fixed inset-0 z-40 hidden bg-ink/30 backdrop-blur-[2px] animate-fade-up sm:block"
+      />
+      <aside
+        role="dialog"
+        aria-modal="true"
+        className="fixed inset-0 z-50 flex w-full flex-col border-border bg-background shadow-editorial animate-fade-up sm:inset-y-0 sm:left-auto sm:right-0 sm:max-w-md sm:border-l"
+      >
       <header className="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-background px-4 py-4 sm:px-6 sm:py-5">
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Your shelf</p>
@@ -117,6 +140,7 @@ export function CollectionsPanel({ onClose }: { onClose: () => void }) {
           </div>
         ))}
       </div>
-    </aside>
+      </aside>
+    </>
   );
 }
