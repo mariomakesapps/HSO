@@ -20,19 +20,24 @@ export function CollectionsPanel({ open, onOpenChange }: { open: boolean; onOpen
   const requestClose = useCallback(() => onOpenChange(false), [onOpenChange]);
 
   useEffect(() => {
-    let raf = 0;
+    let raf1 = 0;
+    let raf2 = 0;
     let timeout = 0;
 
     if (open) {
       setRendered(true);
-      raf = window.requestAnimationFrame(() => setEntered(true));
+      // Double rAF so the browser commits the initial off-screen position before transitioning in.
+      raf1 = window.requestAnimationFrame(() => {
+        raf2 = window.requestAnimationFrame(() => setEntered(true));
+      });
     } else {
       setEntered(false);
       timeout = window.setTimeout(() => setRendered(false), 360);
     }
 
     return () => {
-      window.cancelAnimationFrame(raf);
+      window.cancelAnimationFrame(raf1);
+      window.cancelAnimationFrame(raf2);
       window.clearTimeout(timeout);
     };
   }, [open]);
