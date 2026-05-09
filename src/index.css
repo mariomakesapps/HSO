@@ -23,6 +23,21 @@ body {
   background-attachment: fixed;
 }
 
+/* Smoother default easing for any element using Tailwind transition utilities */
+.transition,
+.transition-all,
+.transition-colors,
+.transition-opacity,
+.transition-transform,
+.transition-shadow {
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Reduce paint cost from the fixed gradient on lower-power devices */
+@media (max-width: 768px) {
+  body { background-attachment: scroll; }
+}
+
 .hso-reveal {
   display: inline-block;
   max-width: 0;
