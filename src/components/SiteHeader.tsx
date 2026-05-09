@@ -60,7 +60,6 @@ export function SiteHeader() {
           </Link>
 
           <nav className="hidden items-center gap-6 text-sm font-medium text-foreground/75 md:flex">
-            <Link to="/" className="hover:text-coral">Discover</Link>
             <Link to="/about" className="hover:text-coral">About</Link>
             <Link to="/submit" className="hover:text-coral">Submit</Link>
             <Link to="/contact" className="hover:text-coral">Contact</Link>
@@ -98,7 +97,6 @@ export function SiteHeader() {
                   <SheetTitle className="font-display text-xl font-medium text-ink">Menu</SheetTitle>
                 </SheetHeader>
                 <nav className="mt-4 grid gap-1 text-base font-medium text-ink">
-                  <Link to="/" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">Discover</Link>
                   <Link to="/about" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">About</Link>
                   <Link to="/submit" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">Submit</Link>
                   <Link to="/contact" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">Contact</Link>
