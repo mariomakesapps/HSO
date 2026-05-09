@@ -27,7 +27,7 @@ export function CollectionsPanel({ open, onOpenChange }: { open: boolean; onOpen
       raf = window.requestAnimationFrame(() => setEntered(true));
     } else {
       setEntered(false);
-      timeout = window.setTimeout(() => setRendered(false), 260);
+      timeout = window.setTimeout(() => setRendered(false), 360);
     }
 
     return () => {
@@ -97,12 +97,12 @@ export function CollectionsPanel({ open, onOpenChange }: { open: boolean; onOpen
         type="button"
         aria-label="Close shelf"
         onClick={requestClose}
-        className={`fixed inset-x-0 bottom-0 top-[60px] z-[80] bg-ink/30 backdrop-blur-[2px] transition-opacity duration-200 md:top-[72px] ${entered ? "opacity-100" : "opacity-0"}`}
+        className={`fixed inset-x-0 bottom-0 top-[60px] z-[80] bg-ink/30 backdrop-blur-[2px] transition-opacity duration-300 ease-out md:top-[72px] ${entered ? "opacity-100" : "opacity-0"}`}
       />
       <aside
         role="dialog"
         aria-modal="true"
-        className={`fixed bottom-0 right-0 top-[60px] z-[90] flex w-[min(92vw,28rem)] flex-col border-l border-border bg-background shadow-editorial transition-transform duration-300 ease-out md:top-[72px] ${entered ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed bottom-0 right-0 top-[60px] z-[90] flex w-[min(92vw,28rem)] transform-gpu flex-col border-l border-border bg-background shadow-editorial transition-transform duration-[360ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform md:top-[72px] ${entered ? "translate-x-0" : "translate-x-full"}`}
       >
       <header className="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-background px-4 py-4 sm:px-6 sm:py-5">
         <div>
