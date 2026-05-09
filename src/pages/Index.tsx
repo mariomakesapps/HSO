@@ -79,7 +79,7 @@ const Index = () => {
                 </span>
                 <span>
                   <span className="font-semibold text-ink">Create a free account</span>
-                  <span className="text-muted-foreground"> to unlock links and save favorites.</span>
+                  <span className="text-muted-foreground"> to save opportunities and build folders.</span>
                 </span>
               </p>
               <Link to="/auth" className="w-full shrink-0 rounded-lg bg-ink px-4 py-2.5 text-center text-sm font-semibold text-cream hover:bg-coral sm:w-auto">
