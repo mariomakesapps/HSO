@@ -3,7 +3,8 @@ import { store, useStore } from "@/store/collections";
 import { opportunities } from "@/data/opportunities";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Plus, Share2, Trash2, X, Link2 } from "lucide-react";
+import { Plus, Share2, Trash2, X, Link2, Bookmark } from "lucide-react";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -130,6 +131,25 @@ export function CollectionsPanel({ open, onOpenChange }: { open: boolean; onOpen
           </div>
         </div>
 
+        {s.favorites.length === 0 && s.collections.every((c) => c.opportunityIds.length === 0) && (
+          <div className="rounded-2xl border border-dashed border-border bg-card/60 p-6 text-center">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-coral/10 text-coral">
+              <Bookmark className="h-5 w-5" />
+            </div>
+            <p className="mt-3 font-display text-lg">No saved opportunities yet</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Save programs you’re interested in and they’ll appear here.
+            </p>
+            <Link
+              to="/"
+              onClick={requestClose}
+              className="mt-4 inline-flex items-center justify-center rounded-xl bg-ink px-4 py-2 text-sm font-semibold text-cream transition-colors hover:bg-coral"
+            >
+              Explore opportunities
+            </Link>
+          </div>
+        )}
+
         {s.favorites.length > 0 && (
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Favorites · {s.favorites.length}</p>
@@ -137,7 +157,21 @@ export function CollectionsPanel({ open, onOpenChange }: { open: boolean; onOpen
               {s.favorites.map((id) => {
                 const o = opportunities.find((x) => x.id === id);
                 if (!o) return null;
-                return <li key={id} className="rounded-lg bg-secondary px-3 py-2 text-sm">{o.title}</li>;
+                return (
+                  <li key={id} className="flex items-center gap-2 rounded-lg bg-secondary px-3 py-2 text-sm">
+                    <Link to={`/opportunities/${o.id}`} onClick={requestClose} className="flex-1 truncate hover:text-coral">
+                      {o.title}
+                    </Link>
+                    <button
+                      type="button"
+                      aria-label={`Remove ${o.title} from favorites`}
+                      onClick={() => { store.removeFavorite(o.id); toast.success("Removed from favorites"); }}
+                      className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-coral/10 hover:text-coral"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </li>
+                );
               })}
             </ul>
           </div>
@@ -159,7 +193,21 @@ export function CollectionsPanel({ open, onOpenChange }: { open: boolean; onOpen
                 {c.opportunityIds.map((id) => {
                   const o = opportunities.find((x) => x.id === id);
                   if (!o) return null;
-                  return <li key={id} className="rounded-lg bg-secondary px-3 py-2 text-sm">{o.title}</li>;
+                  return (
+                    <li key={id} className="flex items-center gap-2 rounded-lg bg-secondary px-3 py-2 text-sm">
+                      <Link to={`/opportunities/${o.id}`} onClick={requestClose} className="flex-1 truncate hover:text-coral">
+                        {o.title}
+                      </Link>
+                      <button
+                        type="button"
+                        aria-label={`Remove ${o.title} from ${c.name}`}
+                        onClick={() => { store.removeFromCollection(c.id, o.id); toast.success(`Removed from ${c.name}`); }}
+                        className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-coral/10 hover:text-coral"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    </li>
+                  );
                 })}
               </ul>
             )}
