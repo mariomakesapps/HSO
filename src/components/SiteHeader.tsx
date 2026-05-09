@@ -92,7 +92,7 @@ export function SiteHeader() {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="top" className="border-b border-border/60 bg-cream/95 backdrop-blur-md p-6">
+              <SheetContent side="top" className="top-[60px] border-b border-border/60 bg-cream/95 p-6 backdrop-blur-md md:top-[72px]">
                 <SheetHeader className="text-left">
                   <SheetTitle className="font-display text-xl font-medium text-ink">Menu</SheetTitle>
                 </SheetHeader>
@@ -124,8 +124,6 @@ export function SiteHeader() {
           </div>
         </div>
       </header>
-      {/* Spacer to offset fixed header height */}
-      <div aria-hidden="true" className="h-[60px] md:h-[72px]" />
       {showShelf && <CollectionsPanel onClose={() => setShowShelf(false)} />}
     </>
   );
