@@ -1,4 +1,4 @@
-import { Bookmark, BookmarkCheck, ExternalLink, FolderPlus, MapPin, GraduationCap, DollarSign, Lock, Monitor } from "lucide-react";
+import { Bookmark, BookmarkCheck, ExternalLink, FolderPlus, MapPin, GraduationCap, DollarSign, Monitor } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Opportunity } from "@/data/opportunities";
 import { store, useStore } from "@/store/collections";
@@ -40,7 +40,7 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
   const requireAuth = (e: React.MouseEvent) => {
     if (!isAuthed) {
       e.preventDefault();
-      toast.message("Sign in to unlock", { description: "Create a free account to save favorites and visit official program links." });
+      toast.message("Sign in required", { description: "Create a free account to save opportunities and build folders." });
       navigate(authRedirectHref(`/opportunities/${opp.id}`));
     }
   };
@@ -137,22 +137,12 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
         <Link to={`/opportunities/${opp.id}`} className="text-xs font-medium text-muted-foreground hover:text-ink">
           Details
         </Link>
-        {isAuthed ? (
-          <a
-            href={linkUrl} target="_blank" rel="noopener noreferrer"
-            className="ml-auto inline-flex items-center gap-1.5 rounded-md bg-ink px-3 py-1.5 text-xs font-semibold text-cream transition-colors hover:bg-coral"
-          >
-            Visit program <ExternalLink className="h-3 w-3" />
-          </a>
-        ) : (
-          <Link
-            to={authRedirectHref(`/opportunities/${opp.id}`)}
-            className="ml-auto inline-flex items-center gap-1.5 rounded-md border border-border/60 bg-muted/40 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-ink/30 hover:bg-muted/60 hover:text-ink"
-            title="Sign in to view link"
-          >
-            <Lock className="h-3 w-3" /> Sign in to view
-          </Link>
-        )}
+        <a
+          href={linkUrl} target="_blank" rel="noopener noreferrer"
+          className="ml-auto inline-flex items-center gap-1.5 rounded-md bg-ink px-3 py-1.5 text-xs font-semibold text-cream transition-colors hover:bg-coral"
+        >
+          Visit program <ExternalLink className="h-3 w-3" />
+        </a>
       </div>
     </article>
   );
