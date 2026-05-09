@@ -21,6 +21,10 @@ export function consumeAuthReturnTo(fallback = "/") {
   return stored ?? fallback;
 }
 
+export function clearAuthReturnTo() {
+  sessionStorage.removeItem(AUTH_RETURN_KEY);
+}
+
 export function useAuthSession() {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
