@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { store, useStore } from "@/store/collections";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { authRedirectHref } from "@/hooks/useAuthSession";
+import { authRedirectHref, rememberAuthReturnTo } from "@/hooks/useAuthSession";
 
 const OpportunityDetail = () => {
   const { id } = useParams();
@@ -58,7 +58,7 @@ const OpportunityDetail = () => {
     .slice(0, 3);
 
   const toggleInterval = async (n: number) => {
-    if (!userId) { toast.info("Sign in to save reminders"); navigate("/auth"); return; }
+    if (!userId) { toast.info("Sign in to save reminders"); rememberAuthReturnTo(`/opportunities/${opp.id}`); navigate(authRedirectHref(`/opportunities/${opp.id}`), { state: { returnTo: `/opportunities/${opp.id}` } }); return; }
     const next = intervals.includes(n) ? intervals.filter((x) => x !== n) : [...intervals, n].sort((a,b) => b-a);
     setIntervals(next);
     // NOTE: email sending is not yet wired up. To activate, deploy a `send-deadline-reminders`
@@ -103,12 +103,12 @@ const OpportunityDetail = () => {
               Apply on official site <ExternalLink className="h-4 w-4" />
             </a>
           ) : (
-            <Link to={authRedirectHref(`/opportunities/${opp.id}`)} className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-5 py-3 text-sm font-semibold text-foreground hover:border-ink/40 hover:text-ink">
+            <Link to={authRedirectHref(`/opportunities/${opp.id}`)} state={{ returnTo: `/opportunities/${opp.id}` }} onClick={() => rememberAuthReturnTo(`/opportunities/${opp.id}`)} className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-5 py-3 text-sm font-semibold text-foreground hover:border-ink/40 hover:text-ink">
               <Lock className="h-4 w-4" /> Sign in to view link
             </Link>
           )}
           <Button variant="outline" className="rounded-full" onClick={() => {
-            if (!userId) { navigate(authRedirectHref(`/opportunities/${opp.id}`)); return; }
+            if (!userId) { rememberAuthReturnTo(`/opportunities/${opp.id}`); navigate(authRedirectHref(`/opportunities/${opp.id}`), { state: { returnTo: `/opportunities/${opp.id}` } }); return; }
             store.toggleFavorite(opp.id);
             toast.success(fav ? "Removed from favorites" : "Saved to favorites");
           }}>

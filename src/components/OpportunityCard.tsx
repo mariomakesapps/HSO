@@ -5,7 +5,7 @@ import { store, useStore } from "@/store/collections";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
-import { useAuthSession, authRedirectHref } from "@/hooks/useAuthSession";
+import { useAuthSession, authRedirectHref, rememberAuthReturnTo } from "@/hooks/useAuthSession";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -40,8 +40,9 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
   const requireAuth = (e: React.MouseEvent) => {
     if (!isAuthed) {
       e.preventDefault();
+      rememberAuthReturnTo(`/opportunities/${opp.id}`);
       toast.message("Sign in to unlock", { description: "Create a free account to save favorites and visit official program links." });
-      navigate(authRedirectHref(`/opportunities/${opp.id}`));
+      navigate(authRedirectHref(`/opportunities/${opp.id}`), { state: { returnTo: `/opportunities/${opp.id}` } });
     }
   };
 
@@ -147,6 +148,8 @@ export function OpportunityCard({ opp, index = 0 }: { opp: Opportunity; index?: 
         ) : (
           <Link
             to={authRedirectHref(`/opportunities/${opp.id}`)}
+            state={{ returnTo: `/opportunities/${opp.id}` }}
+            onClick={() => rememberAuthReturnTo(`/opportunities/${opp.id}`)}
             className="ml-auto inline-flex items-center gap-1.5 rounded-md border border-border/60 bg-muted/40 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-ink/30 hover:bg-muted/60 hover:text-ink"
             title="Sign in to view link"
           >

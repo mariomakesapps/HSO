@@ -2,6 +2,29 @@ import { useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 
+const AUTH_RETURN_KEY = "authReturnTo";
+
+export function sanitizeAuthReturnTo(value?: string | null) {
+  if (!value) return null;
+  try {
+    const url = new URL(value, window.location.origin);
+    if (url.origin !== window.location.origin || url.pathname === "/auth") return null;
+    return `${url.pathname}${url.search}${url.hash}` || "/";
+  } catch {
+    return value.startsWith("/") && !value.startsWith("//") && value !== "/auth" ? value : null;
+  }
+}
+
+export function consumeAuthReturnTo(fallback = "/") {
+  const stored = sanitizeAuthReturnTo(sessionStorage.getItem(AUTH_RETURN_KEY));
+  sessionStorage.removeItem(AUTH_RETURN_KEY);
+  return stored ?? fallback;
+}
+
+export function clearAuthReturnTo() {
+  sessionStorage.removeItem(AUTH_RETURN_KEY);
+}
+
 export function useAuthSession() {
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
@@ -24,5 +47,12 @@ export function useAuthSession() {
 /** Build an /auth URL that returns the user to the current page after sign-in. */
 export function authRedirectHref(returnTo?: string) {
   const path = returnTo ?? (typeof window !== "undefined" ? window.location.pathname + window.location.search : "/");
-  return `/auth?redirect=${encodeURIComponent(path)}`;
+  const safePath = sanitizeAuthReturnTo(path) ?? "/";
+  return `/auth?redirect=${encodeURIComponent(safePath)}`;
+}
+
+export function rememberAuthReturnTo(returnTo?: string) {
+  const safePath = sanitizeAuthReturnTo(returnTo ?? (window.location.pathname + window.location.search)) ?? "/";
+  sessionStorage.setItem(AUTH_RETURN_KEY, safePath);
+  return safePath;
 }
