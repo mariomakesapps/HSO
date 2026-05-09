@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { Button } from "@/components/ui/button";
@@ -62,12 +63,18 @@ const Auth = () => {
   return (
     <div className="min-h-screen bg-background bg-grain flex items-center justify-center px-6">
       <div className="w-full max-w-md rounded-3xl border border-border bg-card p-8 shadow-editorial">
-        <a href="/" className="flex items-center gap-2 mb-8">
-          <span className="relative inline-block h-9 w-9 overflow-hidden rounded-xl ring-1 ring-foreground/10">
-            <img src={hsoLogo} alt="HSO logo" className="absolute inset-0 h-full w-full scale-[1.35] object-cover" />
-          </span>
-          <span className="font-display text-2xl font-semibold tracking-tight">HSO</span>
-        </a>
+        <div className="mb-6 flex items-center justify-between">
+          <Button variant="ghost" size="icon" onClick={() => navigate("/")} className="rounded-full" aria-label="Go back">
+            <ArrowLeft className="h-5 w-5 text-muted-foreground" />
+          </Button>
+          <a href="/" className="flex items-center gap-2">
+            <span className="relative inline-block h-9 w-9 overflow-hidden rounded-xl ring-1 ring-foreground/10">
+              <img src={hsoLogo} alt="HSO logo" className="absolute inset-0 h-full w-full scale-[1.35] object-cover" />
+            </span>
+            <span className="font-display text-2xl font-semibold tracking-tight">HSO</span>
+          </a>
+          <div className="w-9" />
+        </div>
         <h1 className="font-display text-3xl tracking-tight">
           {mode === "signin" ? "Welcome back" : "Create your account"}
         </h1>
