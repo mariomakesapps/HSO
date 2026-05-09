@@ -1,4 +1,3 @@
-import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useSEO } from "@/lib/seo";
 
@@ -6,7 +5,6 @@ const Terms = () => {
   useSEO({ title: "Terms — HSO", description: "Terms of use for HSO. Always confirm program details on official sites." });
   return (
     <div className="min-h-screen bg-background bg-grain">
-      <SiteHeader />
       <main className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Legal</p>
         <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-5xl">Terms of use</h1>
