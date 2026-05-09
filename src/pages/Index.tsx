@@ -291,7 +291,7 @@ function FeaturedShelf({ closingSoon, newlyAdded, standouts }: { closingSoon: ty
           <Link
             key={o.id}
             to={`/opportunities/${o.id}`}
-            className="group relative flex w-[85vw] max-w-[340px] shrink-0 snap-start flex-col overflow-hidden rounded-2xl border border-border/70 bg-card shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-ink/20 hover:shadow-editorial sm:w-auto sm:max-w-none"
+            className="group relative flex w-[85vw] max-w-[340px] shrink-0 transform-gpu snap-start flex-col overflow-hidden rounded-2xl border border-border/70 bg-card shadow-soft transition-[transform,box-shadow,border-color] duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform hover:-translate-y-1 hover:border-ink/20 hover:shadow-editorial sm:w-auto sm:max-w-none"
           >
             <span aria-hidden="true" className={`pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b ${accent.tint} to-transparent`} />
             <span aria-hidden="true" className={`absolute right-5 top-5 h-2 w-2 rounded-full ${accent.strip}`} />
