@@ -1,28 +1,32 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
-import hsoLogo from "@/assets/hso-logo.png";
+import { clearAuthReturnTo, consumeAuthReturnTo, rememberAuthReturnTo, sanitizeAuthReturnTo } from "@/hooks/useAuthSession";
 
 const Auth = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
-  const redirectTo = searchParams.get("redirect") || "/";
+  const locationState = location.state as { returnTo?: string } | null;
+  const redirectTo = sanitizeAuthReturnTo(locationState?.returnTo) ?? sanitizeAuthReturnTo(searchParams.get("redirect")) ?? "/";
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [signupSent, setSignupSent] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate(redirectTo, { replace: true });
-    });
     const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
-      if (session) navigate(redirectTo, { replace: true });
+      if (session) navigate(consumeAuthReturnTo(redirectTo), { replace: true });
+    });
+    rememberAuthReturnTo(redirectTo);
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session) navigate(consumeAuthReturnTo(redirectTo), { replace: true });
     });
     return () => sub.subscription.unsubscribe();
   }, [navigate, redirectTo]);
@@ -38,10 +42,13 @@ const Auth = () => {
           options: { emailRedirectTo: window.location.origin + redirectTo },
         });
         if (error) throw error;
+        setSignupSent(true);
+        clearAuthReturnTo();
         toast({ title: "Check your email", description: "Confirm your address to finish signing up." });
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
+        navigate(consumeAuthReturnTo(redirectTo), { replace: true });
       }
     } catch (err: any) {
       toast({ title: "Authentication error", description: err.message ?? String(err), variant: "destructive" });
@@ -52,6 +59,7 @@ const Auth = () => {
 
   const onGoogle = async () => {
     setLoading(true);
+    rememberAuthReturnTo(redirectTo);
     const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin + redirectTo });
     if (result.error) {
       toast({ title: "Google sign-in failed", description: String(result.error), variant: "destructive" });
