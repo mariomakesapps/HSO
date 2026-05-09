@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { ExternalLink, Bookmark, BookmarkCheck, Bell, ArrowLeft, Lock } from "lucide-react";
+import { ExternalLink, Bookmark, BookmarkCheck, Bell, ArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
