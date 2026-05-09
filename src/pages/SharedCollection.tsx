@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useSEO } from "@/lib/seo";
 import { supabase } from "@/integrations/supabase/client";
@@ -33,6 +34,7 @@ const SharedCollection = () => {
 
   return (
     <div className="min-h-screen bg-background bg-grain">
+      <SiteHeader />
       <main className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-16">
         {loading && <p className="text-muted-foreground">Loading…</p>}
         {notFound && (

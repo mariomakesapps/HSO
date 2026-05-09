@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ExternalLink, Bookmark, BookmarkCheck, Bell, ArrowLeft, Lock } from "lucide-react";
 import { useEffect, useState } from "react";
+import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useSEO } from "@/lib/seo";
 import { allOpportunities } from "@/data/opportunities";
@@ -10,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { store, useStore } from "@/store/collections";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { authRedirectHref, rememberAuthReturnTo } from "@/hooks/useAuthSession";
+import { authRedirectHref } from "@/hooks/useAuthSession";
 
 const OpportunityDetail = () => {
   const { id } = useParams();
@@ -44,7 +45,8 @@ const OpportunityDetail = () => {
   if (!opp) {
     return (
       <div className="min-h-screen bg-background bg-grain">
-          <main className="mx-auto max-w-2xl px-6 py-20 text-center">
+        <SiteHeader />
+        <main className="mx-auto max-w-2xl px-6 py-20 text-center">
           <h1 className="font-display text-4xl">Opportunity not found</h1>
           <Link to="/" className="mt-6 inline-block text-coral underline">Back to discover</Link>
         </main>
@@ -58,7 +60,7 @@ const OpportunityDetail = () => {
     .slice(0, 3);
 
   const toggleInterval = async (n: number) => {
-    if (!userId) { toast.info("Sign in to save reminders"); rememberAuthReturnTo(`/opportunities/${opp.id}`); navigate(authRedirectHref(`/opportunities/${opp.id}`), { state: { returnTo: `/opportunities/${opp.id}` } }); return; }
+    if (!userId) { toast.info("Sign in to save reminders"); navigate("/auth"); return; }
     const next = intervals.includes(n) ? intervals.filter((x) => x !== n) : [...intervals, n].sort((a,b) => b-a);
     setIntervals(next);
     // NOTE: email sending is not yet wired up. To activate, deploy a `send-deadline-reminders`
@@ -71,6 +73,7 @@ const OpportunityDetail = () => {
 
   return (
     <div className="min-h-screen bg-background bg-grain">
+      <SiteHeader />
       <main className="mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-14">
         <button onClick={() => navigate(-1)} className="mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-coral">
           <ArrowLeft className="h-4 w-4" /> Back
@@ -103,12 +106,12 @@ const OpportunityDetail = () => {
               Apply on official site <ExternalLink className="h-4 w-4" />
             </a>
           ) : (
-            <Link to={authRedirectHref(`/opportunities/${opp.id}`)} state={{ returnTo: `/opportunities/${opp.id}` }} onClick={() => rememberAuthReturnTo(`/opportunities/${opp.id}`)} className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-5 py-3 text-sm font-semibold text-foreground hover:border-ink/40 hover:text-ink">
+            <Link to={authRedirectHref(`/opportunities/${opp.id}`)} className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-5 py-3 text-sm font-semibold text-foreground hover:border-ink/40 hover:text-ink">
               <Lock className="h-4 w-4" /> Sign in to view link
             </Link>
           )}
           <Button variant="outline" className="rounded-full" onClick={() => {
-            if (!userId) { rememberAuthReturnTo(`/opportunities/${opp.id}`); navigate(authRedirectHref(`/opportunities/${opp.id}`), { state: { returnTo: `/opportunities/${opp.id}` } }); return; }
+            if (!userId) { navigate(authRedirectHref(`/opportunities/${opp.id}`)); return; }
             store.toggleFavorite(opp.id);
             toast.success(fav ? "Removed from favorites" : "Saved to favorites");
           }}>

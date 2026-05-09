@@ -37,7 +37,7 @@ export function SiteHeader() {
   const onSignOut = async () => {
     await supabase.auth.signOut();
     setMenuOpen(false);
-    navigate("/");
+    navigate("/auth");
   };
 
   const close = () => setMenuOpen(false);
@@ -45,22 +45,27 @@ export function SiteHeader() {
   return (
     <>
       <header
-        className={`fixed left-0 right-0 top-0 z-[100] w-full border-b border-border/60 bg-background/85 backdrop-blur-md transition-[box-shadow] duration-200 ${
-          scrolled ? "shadow-sm" : ""
+        className={`fixed inset-x-0 top-0 z-[100] w-full backdrop-blur-md bg-cream/85 transition-[box-shadow,border-color] duration-200 ${
+          scrolled ? "border-b border-border/60 shadow-sm" : "border-b border-border/30"
         }`}
       >
-        <div className="mx-auto grid h-[60px] max-w-7xl grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 px-4 sm:px-6 md:h-[72px]">
-          <Link to="/" aria-label="HSO — High School Opportunity" className="flex min-w-0 shrink-0 items-center justify-self-start font-display text-2xl font-bold leading-none tracking-tight sm:text-3xl">
-            <span className="text-ink">H</span><span className="text-coral">S</span><span className="text-sage">O</span>
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-3 md:px-6 md:py-4">
+          <Link to="/" aria-label="HSO — High School Opportunity" className="group flex shrink-0 items-center font-display text-xl font-bold leading-none tracking-tight sm:text-2xl">
+            <span className="text-ink">H</span>
+            <span className="hso-reveal"><span className="hso-reveal-inner text-ink">igh&nbsp;</span></span>
+            <span className="text-coral">S</span>
+            <span className="hso-reveal"><span className="hso-reveal-inner text-ink">chool&nbsp;</span></span>
+            <span className="text-sage">O</span>
+            <span className="hso-reveal"><span className="hso-reveal-inner text-ink">pportunity</span></span>
           </Link>
 
-          <nav className="hidden items-center gap-6 justify-self-center text-sm font-medium text-foreground/75 md:flex">
+          <nav className="hidden items-center gap-6 text-sm font-medium text-foreground/75 md:flex">
             <Link to="/about" className="hover:text-coral">About</Link>
             <Link to="/submit" className="hover:text-coral">Submit</Link>
             <Link to="/contact" className="hover:text-coral">Contact</Link>
           </nav>
 
-          <div className="flex shrink-0 items-center justify-self-end gap-1 sm:gap-2">
+          <div className="flex shrink-0 items-center gap-1 sm:gap-2">
             <Button onClick={() => setShowShelf(true)} variant="ghost" size="sm" className="relative hidden rounded-lg md:inline-flex">
               <Bookmark className="mr-1.5 h-4 w-4" /> My Shelf
               {totalSaved > 0 && <span className="ml-1.5 rounded-md bg-coral/15 px-1.5 py-0.5 text-[10px] font-semibold text-coral">{totalSaved}</span>}
@@ -87,7 +92,7 @@ export function SiteHeader() {
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="top" className="top-[60px] border-b border-border/60 bg-cream/95 p-6 backdrop-blur-md md:top-[72px]">
+              <SheetContent side="top" className="border-b border-border/60 bg-cream/95 backdrop-blur-md p-6">
                 <SheetHeader className="text-left">
                   <SheetTitle className="font-display text-xl font-medium text-ink">Menu</SheetTitle>
                 </SheetHeader>
@@ -119,6 +124,8 @@ export function SiteHeader() {
           </div>
         </div>
       </header>
+      {/* Spacer to offset fixed header height */}
+      <div aria-hidden="true" className="h-[60px] md:h-[72px]" />
       {showShelf && <CollectionsPanel onClose={() => setShowShelf(false)} />}
     </>
   );
