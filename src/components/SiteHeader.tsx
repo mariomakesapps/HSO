@@ -113,7 +113,11 @@ export function SiteHeader() {
                     className="flex items-center justify-between rounded-xl px-3 py-3 text-left hover:bg-coral/10 hover:text-coral"
                   >
                     <span className="inline-flex items-center gap-2"><Bookmark className="h-4 w-4" /> My Shelf</span>
-                    {totalSaved > 0 && <span className="rounded-md bg-coral/15 px-2 py-0.5 text-xs font-semibold text-coral">{totalSaved}</span>}
+                    {totalSaved > 0 && (
+                      <span className="inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-coral px-1.5 text-xs font-bold leading-none text-coral-foreground">
+                        {totalSaved}
+                      </span>
+                    )}
                   </button>
                 </nav>
                 <div className="mt-4 border-t border-border/60 pt-4">
