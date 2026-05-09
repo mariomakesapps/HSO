@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { store, useStore } from "@/store/collections";
 import { opportunities } from "@/data/opportunities";
 import { Button } from "@/components/ui/button";
@@ -9,13 +9,37 @@ import { supabase } from "@/integrations/supabase/client";
 
 const EMOJIS = ["✨","🌞","🚀","🧪","📚","🎨","🌍","💡","🏆","🩺"];
 
-export function CollectionsPanel({ onClose }: { onClose: () => void }) {
+export function CollectionsPanel({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const s = useStore();
   const [name, setName] = useState("");
   const [emoji, setEmoji] = useState("✨");
+  const [rendered, setRendered] = useState(open);
+  const [entered, setEntered] = useState(false);
+
+  const requestClose = useCallback(() => onOpenChange(false), [onOpenChange]);
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    let raf = 0;
+    let timeout = 0;
+
+    if (open) {
+      setRendered(true);
+      raf = window.requestAnimationFrame(() => setEntered(true));
+    } else {
+      setEntered(false);
+      timeout = window.setTimeout(() => setRendered(false), 260);
+    }
+
+    return () => {
+      window.cancelAnimationFrame(raf);
+      window.clearTimeout(timeout);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!rendered) return;
+
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") requestClose(); };
     window.addEventListener("keydown", onKey);
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -23,7 +47,9 @@ export function CollectionsPanel({ onClose }: { onClose: () => void }) {
       window.removeEventListener("keydown", onKey);
       document.body.style.overflow = prev;
     };
-  }, [onClose]);
+  }, [rendered, requestClose]);
+
+  if (!rendered) return null;
 
   const create = () => {
     if (!name.trim()) return;
