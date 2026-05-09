@@ -48,7 +48,6 @@ export function useAuthSession() {
 export function authRedirectHref(returnTo?: string) {
   const path = returnTo ?? (typeof window !== "undefined" ? window.location.pathname + window.location.search : "/");
   const safePath = sanitizeAuthReturnTo(path) ?? "/";
-  if (typeof window !== "undefined") sessionStorage.setItem(AUTH_RETURN_KEY, safePath);
   return `/auth?redirect=${encodeURIComponent(safePath)}`;
 }
 
