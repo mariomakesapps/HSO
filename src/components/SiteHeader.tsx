@@ -1,12 +1,21 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Bookmark, LogOut, Menu } from "lucide-react";
+import { Bookmark, LogOut, Menu, User as UserIcon } from "lucide-react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/store/collections";
 import { CollectionsPanel } from "@/components/CollectionsPanel";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { toast } from "sonner";
 
 function useScrolled(threshold = 8) {
   const [scrolled, setScrolled] = useState(false);
@@ -37,10 +46,14 @@ export function SiteHeader() {
   const onSignOut = async () => {
     await supabase.auth.signOut();
     setMenuOpen(false);
-    navigate("/auth");
+    toast.success("Signed out");
+    navigate("/");
   };
 
   const close = () => setMenuOpen(false);
+
+  const userEmail = session?.user.email ?? "";
+  const userInitial = (userEmail[0] || "?").toUpperCase();
 
   return (
     <>
@@ -84,9 +97,51 @@ export function SiteHeader() {
             </Button>
 
             {session ? (
-              <Button onClick={onSignOut} variant="ghost" size="icon" aria-label="Sign out" className="hidden rounded-lg md:inline-flex">
-                <LogOut className="h-4 w-4" />
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button
+                    aria-label="Open profile menu"
+                    className="hidden h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-coral to-ochre text-sm font-bold text-cream shadow-soft outline-none ring-coral/40 transition-transform duration-200 hover:scale-105 focus-visible:ring-2 md:inline-flex"
+                  >
+                    {userInitial}
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  align="end"
+                  sideOffset={8}
+                  className="w-56 rounded-2xl border-border/60 bg-cream/95 p-1.5 shadow-editorial backdrop-blur-md"
+                >
+                  <DropdownMenuLabel className="px-2 py-2">
+                    <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Signed in</p>
+                    <p className="mt-0.5 truncate text-sm font-medium text-ink">{userEmail}</p>
+                  </DropdownMenuLabel>
+                  <DropdownMenuSeparator className="bg-border/60" />
+                  <DropdownMenuItem
+                    onSelect={() => navigate("/profile")}
+                    className="cursor-pointer rounded-xl px-2 py-2 focus:bg-coral/10 focus:text-coral"
+                  >
+                    <UserIcon className="mr-2 h-4 w-4" /> Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onSelect={(e) => { e.preventDefault(); setShowShelf(true); }}
+                    className="cursor-pointer rounded-xl px-2 py-2 focus:bg-coral/10 focus:text-coral"
+                  >
+                    <Bookmark className="mr-2 h-4 w-4" /> My Shelf
+                    {totalSaved > 0 && (
+                      <span className="ml-auto inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-coral px-1.5 text-[10px] font-bold leading-none text-coral-foreground">
+                        {totalSaved}
+                      </span>
+                    )}
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator className="bg-border/60" />
+                  <DropdownMenuItem
+                    onSelect={onSignOut}
+                    className="cursor-pointer rounded-xl px-2 py-2 text-coral focus:bg-coral/10 focus:text-coral"
+                  >
+                    <LogOut className="mr-2 h-4 w-4" /> Sign out
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             ) : (
               <Button onClick={() => navigate("/auth")} size="sm" className="hidden rounded-lg bg-ink text-cream hover:bg-ink/90 md:inline-flex">
                 Sign in
@@ -122,9 +177,23 @@ export function SiteHeader() {
                 </nav>
                 <div className="mt-4 border-t border-border/60 pt-4">
                   {session ? (
-                    <Button onClick={onSignOut} variant="outline" className="w-full rounded-xl">
-                      <LogOut className="mr-2 h-4 w-4" /> Sign out
-                    </Button>
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-3 rounded-xl bg-cream/60 px-3 py-2">
+                        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-coral to-ochre text-sm font-bold text-cream">
+                          {userInitial}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-[10px] uppercase tracking-[0.18em] text-muted-foreground">Signed in</p>
+                          <p className="truncate text-sm font-medium text-ink">{userEmail}</p>
+                        </div>
+                      </div>
+                      <Link to="/profile" onClick={close} className="flex items-center gap-2 rounded-xl px-3 py-3 text-base font-medium text-ink hover:bg-coral/10 hover:text-coral">
+                        <UserIcon className="h-4 w-4" /> Profile
+                      </Link>
+                      <button onClick={onSignOut} className="flex w-full items-center gap-2 rounded-xl px-3 py-3 text-left text-base font-medium text-coral hover:bg-coral/10">
+                        <LogOut className="h-4 w-4" /> Sign out
+                      </button>
+                    </div>
                   ) : (
                     <Button onClick={() => { close(); navigate("/auth"); }} className="w-full rounded-xl bg-ink text-cream hover:bg-ink/90">
                       Sign in
