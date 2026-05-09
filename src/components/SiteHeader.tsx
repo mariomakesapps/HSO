@@ -50,13 +50,8 @@ export function SiteHeader() {
         }`}
       >
         <div className="mx-auto grid h-[60px] max-w-7xl grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 px-4 sm:px-6 md:h-[72px]">
-          <Link to="/" aria-label="HSO — High School Opportunity" className="group flex min-w-0 shrink-0 items-center justify-self-start font-display text-xl font-bold leading-none tracking-tight sm:text-2xl">
-            <span className="text-ink">H</span>
-            <span className="hso-reveal"><span className="hso-reveal-inner text-ink">igh&nbsp;</span></span>
-            <span className="text-coral">S</span>
-            <span className="hso-reveal"><span className="hso-reveal-inner text-ink">chool&nbsp;</span></span>
-            <span className="text-sage">O</span>
-            <span className="hso-reveal"><span className="hso-reveal-inner text-ink">pportunity</span></span>
+          <Link to="/" aria-label="HSO — High School Opportunity" className="flex min-w-0 shrink-0 items-center justify-self-start font-display text-2xl font-bold leading-none tracking-tight sm:text-3xl">
+            <span className="text-ink">H</span><span className="text-coral">S</span><span className="text-sage">O</span>
           </Link>
 
           <nav className="hidden items-center gap-6 justify-self-center text-sm font-medium text-foreground/75 md:flex">
