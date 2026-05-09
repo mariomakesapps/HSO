@@ -66,7 +66,7 @@ export function SiteHeader() {
           </nav>
 
           <div className="flex shrink-0 items-center gap-1 sm:gap-2">
-            <Button onClick={() => setShowShelf(true)} variant="ghost" size="sm" className="relative hidden rounded-lg md:inline-flex">
+            <Button onClick={() => setShowShelf((open) => !open)} variant="ghost" size="sm" className="relative hidden rounded-lg md:inline-flex" aria-expanded={showShelf}>
               <Bookmark className="mr-1.5 h-4 w-4" /> My Shelf
               {totalSaved > 0 && (
                 <span className="ml-1.5 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-coral px-1.5 text-[10px] font-bold leading-none text-coral-foreground">
@@ -74,7 +74,7 @@ export function SiteHeader() {
                 </span>
               )}
             </Button>
-            <Button onClick={() => setShowShelf(true)} variant="ghost" size="icon" aria-label="My Shelf" className="relative rounded-lg md:hidden">
+            <Button onClick={() => setShowShelf((open) => !open)} variant="ghost" size="icon" aria-label="My Shelf" aria-expanded={showShelf} className="relative rounded-lg md:hidden">
               <Bookmark className="h-4 w-4" />
               {totalSaved > 0 && (
                 <span className="absolute -right-1 -top-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-coral px-1 text-[10px] font-bold leading-none text-coral-foreground">
@@ -138,7 +138,7 @@ export function SiteHeader() {
       </header>
       {/* Spacer to offset fixed header height */}
       <div aria-hidden="true" className="h-[60px] md:h-[72px]" />
-      {showShelf && <CollectionsPanel onClose={() => setShowShelf(false)} />}
+      <CollectionsPanel open={showShelf} onOpenChange={setShowShelf} />
     </>
   );
 }
