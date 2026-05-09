@@ -96,20 +96,20 @@ export function CollectionsPanel({ open, onOpenChange }: { open: boolean; onOpen
       <button
         type="button"
         aria-label="Close shelf"
-        onClick={onClose}
-        className="fixed inset-0 z-40 hidden bg-ink/30 backdrop-blur-[2px] animate-fade-up sm:block"
+        onClick={requestClose}
+        className={`fixed inset-x-0 bottom-0 top-[60px] z-[80] bg-ink/30 backdrop-blur-[2px] transition-opacity duration-200 md:top-[72px] ${entered ? "opacity-100" : "opacity-0"}`}
       />
       <aside
         role="dialog"
         aria-modal="true"
-        className="fixed inset-0 z-50 flex w-full flex-col border-border bg-background shadow-editorial animate-fade-up sm:inset-y-0 sm:left-auto sm:right-0 sm:max-w-md sm:border-l"
+        className={`fixed bottom-0 right-0 top-[60px] z-[90] flex w-[min(92vw,28rem)] flex-col border-l border-border bg-background shadow-editorial transition-transform duration-300 ease-out md:top-[72px] ${entered ? "translate-x-0" : "translate-x-full"}`}
       >
       <header className="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-background px-4 py-4 sm:px-6 sm:py-5">
         <div>
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Your shelf</p>
           <h2 className="font-display text-2xl">Collections</h2>
         </div>
-        <Button variant="ghost" size="icon" onClick={onClose}>
+        <Button variant="ghost" size="icon" onClick={requestClose}>
           <X className="h-5 w-5" />
         </Button>
       </header>
