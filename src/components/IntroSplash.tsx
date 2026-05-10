@@ -34,7 +34,7 @@ const IntroSplash = () => {
   return (
     <div
       aria-hidden
-      className={`fixed inset-0 z-[100] flex items-center justify-center bg-coral text-cream ${leaving ? "hso-splash-leave" : ""}`}
+      className={`fixed inset-0 z-[100] flex items-center justify-center bg-ink text-cream ${leaving ? "hso-splash-leave" : ""}`}
       style={{ willChange: "transform" }}
     >
       {/* subtle radial gradient texture */}
@@ -42,20 +42,20 @@ const IntroSplash = () => {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(900px 500px at 20% 30%, hsl(var(--ochre) / 0.5), transparent 60%), radial-gradient(700px 500px at 85% 75%, hsl(var(--sage) / 0.35), transparent 60%)",
+            "radial-gradient(900px 500px at 20% 30%, hsl(var(--coral) / 0.18), transparent 60%), radial-gradient(700px 500px at 85% 75%, hsl(var(--sage) / 0.18), transparent 60%)",
         }}
       />
 
       <div className="relative flex flex-col items-center">
-        <span className="mb-5 text-[10px] font-medium uppercase tracking-[0.5em] text-cream/80 hso-splash-tag">
+        <span className="mb-5 text-[10px] font-medium uppercase tracking-[0.5em] text-cream/70 hso-splash-tag">
           High School Opportunities
         </span>
 
         <div className="flex items-end gap-1 sm:gap-2">
           {[
-            { ch: "H", color: "text-cream" },
-            { ch: "S", color: "text-sunny" },
-            { ch: "O", color: "text-sky" },
+            { ch: "H", color: "text-coral" },
+            { ch: "S", color: "text-sage" },
+            { ch: "O", color: "text-cream" },
           ].map(({ ch, color }, i) => (
             <span key={ch} className={`hso-splash-letter-mask font-sans text-[22vw] leading-[0.85] sm:text-[18vw] md:text-[14vw] ${color}`} style={{ fontWeight: 800 }}>
               <span
@@ -68,7 +68,7 @@ const IntroSplash = () => {
           ))}
         </div>
 
-        <div className="mt-8 h-[2px] w-0 bg-gradient-to-r from-cream via-sunny to-sky hso-splash-line" />
+        <div className="mt-8 h-[2px] w-0 bg-gradient-to-r from-coral via-sage to-cream hso-splash-line" />
       </div>
     </div>
   );
