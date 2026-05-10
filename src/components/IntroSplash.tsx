@@ -53,15 +53,13 @@ const IntroSplash = () => {
 
         <div className="flex items-end gap-1 sm:gap-2">
           {["H", "S", "O"].map((ch, i) => (
-            <span
-              key={ch}
-              className="hso-splash-letter font-display text-[22vw] leading-[0.85] sm:text-[18vw] md:text-[14vw]"
-              style={{
-                animationDelay: `${0.15 + i * 0.18}s`,
-                fontWeight: 700,
-              }}
-            >
-              {ch}
+            <span key={ch} className="hso-splash-letter-mask font-display text-[22vw] leading-[0.85] sm:text-[18vw] md:text-[14vw]" style={{ fontWeight: 700 }}>
+              <span
+                className="hso-splash-letter"
+                style={{ animationDelay: `${0.15 + i * 0.18}s` }}
+              >
+                {ch}
+              </span>
             </span>
           ))}
         </div>
