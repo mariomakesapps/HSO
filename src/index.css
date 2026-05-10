@@ -268,8 +268,6 @@ All colors MUST be HSL.
   display: inline-block;
   transform: translateY(110%);
   will-change: transform, opacity;
-  /* clip the letter to its own box so it slides up from below */
-  clip-path: inset(0 0 -10% 0);
   animation: hso-splash-letter-in 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 .hso-splash-tag {
