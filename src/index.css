@@ -246,6 +246,48 @@ All colors MUST be HSL.
 .hso-intro-tagline { animation: hso-tagline-in 1.2s cubic-bezier(0.22, 1, 0.36, 1) both; }
 .hso-intro-mark { animation: hso-mark-in 1.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
+/* New LVN-style splash */
+@keyframes hso-splash-letter-in {
+  0% { transform: translateY(110%); opacity: 0; }
+  60% { opacity: 1; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes hso-splash-line-grow {
+  0% { width: 0; }
+  100% { width: 8rem; }
+}
+@keyframes hso-splash-tag-in {
+  0% { opacity: 0; letter-spacing: 1em; }
+  100% { opacity: 1; letter-spacing: 0.5em; }
+}
+@keyframes hso-splash-leave {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-101%); }
+}
+.hso-splash-letter {
+  display: inline-block;
+  transform: translateY(110%);
+  will-change: transform, opacity;
+  /* clip the letter to its own box so it slides up from below */
+  clip-path: inset(0 0 -10% 0);
+  animation: hso-splash-letter-in 0.95s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hso-splash-tag {
+  animation: hso-splash-tag-in 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+}
+.hso-splash-line {
+  animation: hso-splash-line-grow 0.8s cubic-bezier(0.77, 0, 0.18, 1) 0.85s both;
+}
+.hso-splash-leave {
+  animation: hso-splash-leave 0.9s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+}
+/* Letters are inside an overflow-hidden flex; wrap them */
+.hso-splash-letter-mask {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 0.85;
+}
+
 /* Subtle scrollbar for dropdowns */
 .hso-scroll {
   scrollbar-width: thin;
