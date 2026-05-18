@@ -84,8 +84,8 @@ function WarmRouteCache() {
       return () => window.cancelIdleCallback(idleId);
     }
 
-    const timeoutId = window.setTimeout(warm, 650);
-    return () => window.clearTimeout(timeoutId);
+    const timeoutId = setTimeout(warm, 650);
+    return () => clearTimeout(timeoutId);
   }, []);
 
   return null;
