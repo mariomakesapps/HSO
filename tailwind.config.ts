@@ -66,8 +66,8 @@ export default {
         },
       },
       fontFamily: {
-        display: ["Fraunces", "Georgia", "serif"],
-        sans: ["Inter", "ui-sans-serif", "system-ui"],
+        display: ["Outfit", "Aptos Display", "Segoe UI Variable Display", "ui-sans-serif", "system-ui"],
+        sans: ["Outfit", "Aptos", "Segoe UI", "ui-sans-serif", "system-ui"],
       },
       backgroundImage: {
         "gradient-warm": "var(--gradient-warm)",

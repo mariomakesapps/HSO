@@ -9,6 +9,11 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
+    "links:improve": "node scripts/improve-opportunity-links.mjs --apply",
+    "links:precision": "node scripts/improve-opportunity-link-precision.mjs --apply",
+    "links:verify": "node scripts/repair-missing-opportunity-links.mjs --apply",
+    "links:audit": "node scripts/audit-opportunity-links.mjs",
+    "links:intent": "node scripts/audit-opportunity-link-intent.mjs",
     "test": "vitest run",
     "test:watch": "vitest"
   },
