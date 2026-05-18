@@ -341,7 +341,7 @@ async function enrichCollections(rows: any[], currentUserId = userId): Promise<C
 
   return rows.map((row) => {
     const collection = mapCollection(row, items);
-    const owner = users.get(row.owner_id);
+    const owner = users.get(row.owner_id) as { username?: string; avatar_url?: string } | undefined;
     return {
       ...collection,
       owner_username: owner?.username ?? "HSO student",
