@@ -1,6 +1,5 @@
-import { useMemo, useState } from "react";
+﻿import { useMemo, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
-import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { useSEO } from "@/lib/seo";
 import { CATEGORY_META, CATEGORY_SLUGS, CategorySlug } from "@/lib/categories";
@@ -23,8 +22,7 @@ const Category = () => {
   }, [meta.category, sort, indexMap]);
 
   return (
-    <div className="min-h-screen bg-background bg-grain">
-      <SiteHeader />
+    <div className="min-h-screen">
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Category</p>
         <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-6xl">{meta.h1}</h1>
@@ -38,7 +36,7 @@ const Category = () => {
           {list.map((o, i) => <OpportunityCard key={o.id} opp={o} index={i} />)}
         </div>
 
-        <section className="mt-16 rounded-3xl border border-border bg-card p-6 sm:p-10">
+        <section className="hso-glass-panel mt-16 rounded-3xl p-6 sm:p-10">
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Browse more categories</p>
           <div className="mt-4 flex flex-wrap gap-2">
             {CATEGORY_SLUGS.filter((s) => s !== slug).map((s) => (
@@ -54,3 +52,4 @@ const Category = () => {
   );
 };
 export default Category;
+

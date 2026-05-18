@@ -1,47 +1,51 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+﻿import { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { ArrowLeft, Bookmark, FolderHeart, Sparkles } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable/index";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
+import { localSignIn, localSignUp, useAuthSession } from "@/hooks/useAuthSession";
 
 const Auth = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [searchParams] = useSearchParams();
-  const redirectTo = searchParams.get("redirect") || "/";
+  const rawRedirect = searchParams.get("redirect") || (location.state as { returnTo?: string } | null)?.returnTo || sessionStorage.getItem("hso-auth-return-to") || "/";
+  const redirectTo = rawRedirect.startsWith("/") && !rawRedirect.startsWith("/auth") ? rawRedirect : "/";
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const { isAuthed } = useAuthSession();
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate(redirectTo, { replace: true });
-    });
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
-      if (session) navigate(redirectTo, { replace: true });
-    });
-    return () => sub.subscription.unsubscribe();
-  }, [navigate, redirectTo]);
+    sessionStorage.setItem("hso-auth-return-to", redirectTo);
+    if (isAuthed) {
+      sessionStorage.removeItem("hso-auth-return-to");
+      navigate(redirectTo, { replace: true });
+    }
+  }, [isAuthed, navigate, redirectTo]);
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
       if (mode === "signup") {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: { emailRedirectTo: window.location.origin + redirectTo },
-        });
-        if (error) throw error;
-        toast({ title: "Check your email", description: "Confirm your address to finish signing up." });
+        if (password !== confirmPassword) {
+          toast({ title: "Passwords do not match", description: "Retype your password so both fields match.", variant: "destructive" });
+          setLoading(false);
+          return;
+        }
+        await localSignUp(email, password);
+        toast({ title: "Account created", description: "You're signed in and ready to save opportunities." });
+        sessionStorage.removeItem("hso-auth-return-to");
+        navigate(redirectTo, { replace: true });
       } else {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) throw error;
+        await localSignIn(email, password);
+        sessionStorage.removeItem("hso-auth-return-to");
+        navigate(redirectTo, { replace: true });
       }
     } catch (err: any) {
       toast({ title: "Authentication error", description: err.message ?? String(err), variant: "destructive" });
@@ -50,16 +54,12 @@ const Auth = () => {
     }
   };
 
-  const onGoogle = async () => {
-    setLoading(true);
-    const result = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin + redirectTo });
-    if (result.error) {
-      toast({ title: "Google sign-in failed", description: String(result.error), variant: "destructive" });
-      setLoading(false);
-    }
-  };
-
   const isSignup = mode === "signup";
+  const switchMode = () => {
+    setMode(isSignup ? "signin" : "signup");
+    setPassword("");
+    setConfirmPassword("");
+  };
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-cream">
@@ -72,8 +72,8 @@ const Auth = () => {
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl items-center justify-center px-4 py-10 sm:px-6">
-        <div className="grid w-full grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_minmax(0,440px)] lg:gap-12">
-          {/* Left brand panel — desktop only */}
+        <div className="grid w-full min-w-0 grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_minmax(0,440px)] lg:gap-12">
+          {/* Left brand panel  -  desktop only */}
           <aside className="hidden lg:block">
             <Link to="/" className="inline-flex items-baseline font-display text-3xl font-bold leading-none tracking-tight">
               <span className="text-ink">H</span>
@@ -85,7 +85,7 @@ const Auth = () => {
               ready when you are.
             </h2>
             <p className="mt-5 max-w-md text-base text-foreground/70">
-              HSO is a curated discovery space for U.S. high schoolers — internships, research, scholarships, summer programs, and more.
+              HSO is a curated discovery space for U.S. high schoolers  -  internships, research, scholarships, summer programs, and more.
             </p>
             <ul className="mt-8 space-y-4">
               <Feature icon={<Bookmark className="h-4 w-4" />} title="Save your favorite opportunities" desc="One tap to bookmark anything that catches your eye." />
@@ -95,8 +95,8 @@ const Auth = () => {
           </aside>
 
           {/* Auth card */}
-          <div className="w-full">
-            <div className="rounded-[22px] border border-border/60 bg-card/80 p-6 shadow-editorial backdrop-blur-md sm:p-8">
+          <div className="w-full min-w-0">
+            <div className="mx-auto w-full max-w-md rounded-[22px] border border-border/60 bg-card/80 p-5 shadow-editorial backdrop-blur-md sm:p-8">
               {/* Top bar: back + wordmark */}
               <div className="mb-6 flex items-center justify-between">
                 <Button
@@ -146,38 +146,37 @@ const Auth = () => {
                     className="h-11 rounded-xl border-border/70 bg-background/70 px-4 text-base focus-visible:border-coral focus-visible:ring-2 focus-visible:ring-coral/30"
                   />
                 </div>
+                {isSignup && (
+                  <div className="space-y-1.5">
+                    <Label htmlFor="confirm-password" className="text-xs font-semibold uppercase tracking-[0.12em] text-foreground/70">Retype password</Label>
+                    <Input
+                      id="confirm-password"
+                      type="password"
+                      autoComplete="new-password"
+                      required
+                      minLength={6}
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      placeholder="Type it one more time"
+                      className="h-11 rounded-xl border-border/70 bg-background/70 px-4 text-base focus-visible:border-coral focus-visible:ring-2 focus-visible:ring-coral/30"
+                    />
+                  </div>
+                )}
                 <Button
                   type="submit"
                   disabled={loading}
                   className="h-11 w-full rounded-xl bg-ink text-cream shadow-soft transition-all duration-200 hover:bg-coral hover:text-coral-foreground hover:shadow-md"
                 >
-                  {loading ? "Please wait…" : isSignup ? "Create account" : "Sign in"}
+                  {loading ? "Please wait..." : isSignup ? "Create account" : "Sign in"}
                 </Button>
               </form>
-
-              {/* Divider */}
-              <div className="my-6 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.22em] text-muted-foreground/70">
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
-                or
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
-              </div>
-
-              <Button
-                onClick={onGoogle}
-                disabled={loading}
-                variant="outline"
-                className="h-11 w-full rounded-xl border-border/70 bg-background/60 text-foreground hover:bg-secondary"
-              >
-                <GoogleG className="mr-2 h-4 w-4" />
-                Continue with Google
-              </Button>
 
               <p className="mt-6 text-center text-sm text-foreground/70">
                 {isSignup ? "Already have an account?" : "New here?"}{" "}
                 <button
                   type="button"
                   className="font-semibold text-ink underline-offset-4 transition-colors hover:text-coral hover:underline"
-                  onClick={() => setMode(isSignup ? "signin" : "signup")}
+                  onClick={switchMode}
                 >
                   {isSignup ? "Sign in" : "Create account"}
                 </button>
@@ -185,7 +184,7 @@ const Auth = () => {
             </div>
 
             <p className="mt-4 text-center text-xs text-muted-foreground">
-              Browsing programs and links is always free — accounts are just for saving and folders.
+              Browsing programs and links is always free  -  accounts are just for saving and folders.
             </p>
           </div>
         </div>
@@ -206,15 +205,5 @@ function Feature({ icon, title, desc }: { icon: React.ReactNode; title: string; 
   );
 }
 
-function GoogleG({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 48 48" className={className} aria-hidden="true">
-      <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
-      <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
-      <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
-      <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
-    </svg>
-  );
-}
-
 export default Auth;
+

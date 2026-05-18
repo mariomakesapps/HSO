@@ -11,7 +11,7 @@ export function FilterDropdown({
   options,
   onChange,
   searchable = false,
-  searchPlaceholder = "Search…",
+  searchPlaceholder = "Search...",
   className,
   align = "start",
   fullWidth = false,
@@ -51,14 +51,14 @@ export function FilterDropdown({
         <button
           type="button"
           className={cn(
-            "group inline-flex h-11 min-w-0 items-center gap-2 rounded-full border border-border/80 bg-card px-4 text-sm shadow-soft transition-colors hover:border-ink/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral/40 sm:h-10",
+            "group inline-flex h-11 min-w-0 items-center gap-2 rounded-full border border-border/80 bg-card/90 px-4 text-sm font-medium shadow-soft transition-[transform,border-color,background-color] hover:-translate-y-0.5 hover:border-ink/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-coral/40 active:translate-y-0 sm:h-10",
             fullWidth && "w-full justify-between",
             className,
           )}
           aria-expanded={open}
         >
           <span className="truncate">
-            <span className="text-muted-foreground">{label} · </span>
+            <span className="text-muted-foreground">{label} / </span>
             <span className="font-semibold text-ink">{selected?.label ?? "All"}</span>
           </span>
           <ChevronDown
@@ -72,7 +72,7 @@ export function FilterDropdown({
       <PopoverContent
         align={align}
         sideOffset={6}
-        className="w-[var(--radix-popover-trigger-width)] min-w-[200px] max-w-[320px] rounded-xl border-border/70 bg-cream p-0 text-ink shadow-editorial"
+        className="w-[var(--radix-popover-trigger-width)] min-w-[220px] max-w-[340px] rounded-2xl border-border/70 bg-cream/96 p-0 text-ink shadow-editorial backdrop-blur-md"
       >
         {searchable && (
           <div className="border-b border-border/60 p-2">
@@ -103,7 +103,7 @@ export function FilterDropdown({
                     setOpen(false);
                   }}
                   className={cn(
-                    "flex w-full items-center justify-between gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors",
+                    "flex w-full items-center justify-between gap-2 rounded-xl px-3 py-2 text-left text-sm transition-colors",
                     active
                       ? "bg-coral/10 font-semibold text-ink"
                       : "text-foreground hover:bg-ink/5",

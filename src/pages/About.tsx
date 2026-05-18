@@ -1,24 +1,22 @@
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
+﻿import { SiteFooter } from "@/components/SiteFooter";
 import { useSEO } from "@/lib/seo";
 import { Link } from "react-router-dom";
 import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
 
 const About = () => {
   useSEO({
-    title: "About HSO — High School Opportunity Finder",
+    title: "About HSO  -  High School Opportunity Finder",
     description: "HSO helps high school students discover internships, research, scholarships, competitions, summer programs, volunteer roles, and fellowships worldwide.",
   });
   return (
-    <div className="min-h-screen bg-background bg-grain">
-      <SiteHeader />
+    <div className="min-h-screen">
       <main className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">About</p>
         <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-6xl">
           A discovery layer for <em className="text-coral not-italic">ambitious</em> high schoolers.
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-          HSO is a curated index of opportunities open to high school students — internships, research programs, scholarships, competitions, summer programs, volunteer roles, and fellowships from universities, nonprofits, companies, and competition organizers around the world.
+          HSO is a curated index of opportunities open to high school students  -  internships, research programs, scholarships, competitions, summer programs, volunteer roles, and fellowships from universities, nonprofits, companies, and competition organizers around the world.
         </p>
         <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
           We started HSO because the best opportunities are often hidden in PDFs, departmental pages, and word-of-mouth. Students with the most resources find them. We want every motivated student to have the same map.
@@ -35,9 +33,9 @@ const About = () => {
         </ul>
         <h2 className="mt-12 font-display text-2xl">How HSO is built</h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          Every listing links to the official program page. We don't run programs — we point you to them. Our editors review submissions weekly and remove broken or outdated entries.
+          Every listing links to the official program page. We don't run programs  -  we point you to them. Our editors review submissions weekly and remove broken or outdated entries.
         </p>
-        <div className="mt-12 rounded-2xl border border-border bg-card p-6">
+        <div className="hso-glass-panel mt-12 rounded-2xl p-6">
           <p className="font-display text-xl">Have an opportunity to add?</p>
           <p className="mt-1 text-muted-foreground">Help other students by submitting one.</p>
           <Link to="/submit" className="mt-4 inline-flex rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-cream hover:bg-coral hover:text-coral-foreground">Submit an opportunity</Link>
@@ -48,3 +46,4 @@ const About = () => {
   );
 };
 export default About;
+
