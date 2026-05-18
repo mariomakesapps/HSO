@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Suspense, lazy, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Bookmark, LogOut, Menu, User as UserIcon } from "lucide-react";
-import type { Session } from "@supabase/supabase-js";
-import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
-import { useStore } from "@/store/collections";
-import { CollectionsPanel } from "@/components/CollectionsPanel";
+import { useShelfCount } from "@/store/collections";
+import { localSignOut, useAuthSession } from "@/hooks/useAuthSession";
+import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import {
   DropdownMenu,
@@ -16,6 +15,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
+
+const CollectionsPanel = lazy(() => import("@/components/CollectionsPanel").then((module) => ({ default: module.CollectionsPanel })));
 
 function useScrolled(threshold = 8) {
   const [scrolled, setScrolled] = useState(false);
@@ -29,47 +30,57 @@ function useScrolled(threshold = 8) {
 }
 
 export function SiteHeader() {
-  const [session, setSession] = useState<Session | null>(null);
+  const { session } = useAuthSession();
   const [showShelf, setShowShelf] = useState(false);
+  const [shelfPanelLoaded, setShelfPanelLoaded] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const scrolled = useScrolled();
-  const s = useStore();
-  const totalSaved = s.favorites.length + s.collections.reduce((n, c) => n + c.opportunityIds.length, 0);
+  const totalSaved = useShelfCount();
 
   useEffect(() => {
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, sess) => {
-      setSession(sess);
-      import("@/store/collections").then(({ store }) => store.setUser(sess?.user.id ?? null));
-    });
-    supabase.auth.getSession().then(({ data }) => {
-      setSession(data.session);
-      import("@/store/collections").then(({ store }) => store.setUser(data.session?.user.id ?? null));
-    });
-    return () => sub.subscription.unsubscribe();
-  }, []);
+    if (showShelf) setShelfPanelLoaded(true);
+  }, [showShelf]);
 
   const onSignOut = async () => {
-    await supabase.auth.signOut();
-    setMenuOpen(false);
-    toast.success("Signed out");
-    navigate("/");
+    try {
+      await localSignOut();
+      setMenuOpen(false);
+      toast.success("Signed out");
+      navigate("/");
+    } catch (error: any) {
+      toast.error(error.message ?? "Could not sign out");
+    }
   };
 
   const close = () => setMenuOpen(false);
+  const goAuth = () => {
+    const returnTo = location.pathname + location.search;
+    if (returnTo !== "/auth") {
+      sessionStorage.setItem("hso-auth-return-to", returnTo);
+    }
+    navigate("/auth", { state: { returnTo } });
+  };
 
   const userEmail = session?.user.email ?? "";
   const userInitial = (userEmail[0] || "?").toUpperCase();
+  const navClass = (path: string) =>
+    cn(
+      "rounded-full px-3 py-1.5 transition-[background-color,color,transform] duration-200 hover:bg-coral/10 hover:text-coral active:scale-[0.98]",
+      location.pathname === path && "bg-ink text-cream shadow-[0_12px_26px_-22px_hsl(var(--ink)/0.8)] hover:bg-ink hover:text-cream",
+    );
 
   return (
     <>
-      <header
-        className={`fixed inset-x-0 top-0 z-[100] w-full backdrop-blur-md bg-cream/85 transition-[box-shadow,border-color] duration-200 ${
-          scrolled ? "border-b border-border/60 shadow-sm" : "border-b border-border/30"
-        }`}
-      >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-4 py-3 md:px-6 md:py-4">
-          <Link to="/" aria-label="HSO — High School Opportunity" className="group flex shrink-0 items-center font-display text-xl font-bold leading-none tracking-tight sm:text-2xl">
+      <header className="fixed inset-x-0 top-0 z-[100] w-full px-2 pt-2 transition-transform duration-300">
+        <div
+          className={cn(
+            "hso-nav-shell mx-auto grid max-w-[1400px] grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-[1.35rem] px-3 py-2 md:px-4 md:py-2.5",
+            scrolled && "shadow-[inset_0_1px_0_hsl(0_0%_100%/0.76),0_18px_56px_-36px_hsl(var(--ink)/0.58)]",
+          )}
+        >
+          <Link to="/" aria-label="HSO - High School Opportunity" className="group flex shrink-0 items-center font-display text-xl font-black leading-none tracking-tight sm:text-2xl">
             <span className="text-ink">H</span>
             <span className="hso-reveal"><span className="hso-reveal-inner text-ink">igh&nbsp;</span></span>
             <span className="text-coral">S</span>
@@ -78,25 +89,26 @@ export function SiteHeader() {
             <span className="hso-reveal"><span className="hso-reveal-inner text-ink">pportunity</span></span>
           </Link>
 
-          <nav className="hidden items-center gap-6 text-sm font-medium text-foreground/75 md:flex">
-            <Link to="/about" className="hover:text-coral">About</Link>
-            <Link to="/submit" className="hover:text-coral">Submit</Link>
-            <Link to="/contact" className="hover:text-coral">Contact</Link>
+          <nav className="hidden items-center justify-center gap-1 rounded-full border border-white/65 bg-card/45 px-1.5 py-1 text-sm font-bold text-foreground/75 shadow-[inset_0_1px_0_hsl(0_0%_100%/0.65)] md:flex">
+            <Link to="/about" className={navClass("/about")}>About</Link>
+            <Link to="/submit" className={navClass("/submit")}>Submit</Link>
+            <Link to="/collections" className={navClass("/collections")}>Collections</Link>
+            <Link to="/contact" className={navClass("/contact")}>Contact</Link>
           </nav>
 
-          <div className="flex shrink-0 items-center gap-1 sm:gap-2">
-            <Button onClick={() => setShowShelf((open) => !open)} variant="ghost" size="sm" className="relative hidden rounded-lg md:inline-flex" aria-expanded={showShelf}>
+          <div className="flex shrink-0 items-center justify-end gap-1 sm:gap-2">
+            <Button onClick={() => setShowShelf((open) => !open)} variant="ghost" size="sm" className="group relative hidden rounded-full font-bold md:inline-flex" aria-expanded={showShelf}>
               <Bookmark className="mr-1.5 h-4 w-4" /> My Shelf
               {totalSaved > 0 && (
-                <span className="ml-1.5 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-coral px-1.5 text-[10px] font-bold leading-none text-coral-foreground">
+                <span className="ml-1.5 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-coral px-1.5 text-[10px] font-bold leading-none text-coral-foreground ring-1 ring-coral/20 transition-colors group-hover:bg-cream group-hover:text-coral group-hover:ring-coral/45">
                   {totalSaved}
                 </span>
               )}
             </Button>
-            <Button onClick={() => setShowShelf((open) => !open)} variant="ghost" size="icon" aria-label="My Shelf" aria-expanded={showShelf} className="relative rounded-lg md:hidden">
+            <Button onClick={() => setShowShelf((open) => !open)} variant="ghost" size="icon" aria-label="My Shelf" aria-expanded={showShelf} className="group relative rounded-lg md:hidden">
               <Bookmark className="h-4 w-4" />
               {totalSaved > 0 && (
-                <span className="absolute -right-1 -top-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-coral px-1 text-[10px] font-bold leading-none text-coral-foreground">
+                <span className="absolute -right-1 -top-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-coral px-1 text-[10px] font-bold leading-none text-coral-foreground ring-1 ring-coral/20 transition-colors group-hover:bg-cream group-hover:text-coral group-hover:ring-coral/45">
                   {totalSaved}
                 </span>
               )}
@@ -107,7 +119,7 @@ export function SiteHeader() {
                 <DropdownMenuTrigger asChild>
                   <button
                     aria-label="Open profile menu"
-                    className="hidden h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-coral to-ochre text-sm font-bold text-cream shadow-soft outline-none ring-coral/40 transition-transform duration-200 hover:scale-105 focus-visible:ring-2 md:inline-flex"
+                    className="hidden h-9 w-9 items-center justify-center rounded-full bg-ink text-sm font-bold text-cream shadow-soft outline-none ring-coral/40 transition-transform duration-200 hover:-translate-y-0.5 hover:bg-coral focus-visible:ring-2 md:inline-flex"
                   >
                     {userInitial}
                   </button>
@@ -149,7 +161,7 @@ export function SiteHeader() {
                 </DropdownMenuContent>
               </DropdownMenu>
             ) : (
-              <Button onClick={() => navigate("/auth")} size="sm" className="hidden rounded-lg bg-ink text-cream hover:bg-ink/90 md:inline-flex">
+              <Button onClick={goAuth} size="sm" className="hidden rounded-full bg-ink px-5 font-bold text-cream shadow-[0_14px_28px_-22px_hsl(var(--ink)/0.8)] transition-transform hover:-translate-y-0.5 hover:bg-coral active:scale-[0.98] active:translate-y-0 md:inline-flex">
                 Sign in
               </Button>
             )}
@@ -168,6 +180,7 @@ export function SiteHeader() {
                 <nav className="mt-4 grid gap-1 text-base font-medium text-ink">
                   <Link to="/about" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">About</Link>
                   <Link to="/submit" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">Submit</Link>
+                  <Link to="/collections" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">Collections</Link>
                   <Link to="/contact" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">Contact</Link>
                   <button
                     onClick={() => { close(); setShowShelf(true); }}
@@ -201,7 +214,7 @@ export function SiteHeader() {
                       </button>
                     </div>
                   ) : (
-                    <Button onClick={() => { close(); navigate("/auth"); }} className="w-full rounded-xl bg-ink text-cream hover:bg-ink/90">
+                    <Button onClick={() => { close(); goAuth(); }} className="w-full rounded-xl bg-ink text-cream hover:bg-ink/90">
                       Sign in
                     </Button>
                   )}
@@ -212,8 +225,12 @@ export function SiteHeader() {
         </div>
       </header>
       {/* Spacer to offset fixed header height */}
-      <div aria-hidden="true" className="h-[60px] md:h-[72px]" />
-      <CollectionsPanel open={showShelf} onOpenChange={setShowShelf} />
+      <div aria-hidden="true" className="h-[64px] md:h-[76px]" />
+      {shelfPanelLoaded && (
+        <Suspense fallback={null}>
+          <CollectionsPanel open={showShelf} onOpenChange={setShowShelf} />
+        </Suspense>
+      )}
     </>
   );
 }

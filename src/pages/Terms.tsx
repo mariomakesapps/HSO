@@ -1,19 +1,17 @@
-import { SiteHeader } from "@/components/SiteHeader";
-import { SiteFooter } from "@/components/SiteFooter";
+﻿import { SiteFooter } from "@/components/SiteFooter";
 import { useSEO } from "@/lib/seo";
 
 const Terms = () => {
-  useSEO({ title: "Terms — HSO", description: "Terms of use for HSO. Always confirm program details on official sites." });
+  useSEO({ title: "Terms  -  HSO", description: "Terms of use for HSO. Always confirm program details on official sites." });
   return (
-    <div className="min-h-screen bg-background bg-grain">
-      <SiteHeader />
+    <div className="min-h-screen">
       <main className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Legal</p>
         <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-5xl">Terms of use</h1>
         <p className="mt-2 text-sm text-muted-foreground">Last updated: {new Date().toLocaleDateString()}</p>
-        <section className="mt-8 space-y-4 leading-relaxed text-foreground">
+        <section className="hso-glass-panel mt-8 space-y-4 rounded-[1.75rem] p-6 leading-relaxed text-foreground">
           <h2 className="font-display text-2xl">What HSO is</h2>
-          <p>HSO is an editorial discovery directory. We link to opportunities run by third parties — universities, nonprofits, companies, competitions, and scholarship providers.</p>
+          <p>HSO is an editorial discovery directory. We link to opportunities run by third parties  -  universities, nonprofits, companies, competitions, and scholarship providers.</p>
           <h2 className="font-display text-2xl">Always verify</h2>
           <p>Deadlines, eligibility, costs, format, and requirements change. <strong>Before applying, you must confirm every detail on the official program website.</strong> HSO is not responsible for outdated or inaccurate information surfaced from third-party sources.</p>
           <h2 className="font-display text-2xl">Acceptable use</h2>
@@ -29,3 +27,4 @@ const Terms = () => {
   );
 };
 export default Terms;
+
