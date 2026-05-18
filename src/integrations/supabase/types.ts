@@ -14,6 +14,252 @@ export type Database = {
   }
   public: {
     Tables: {
+      collection_bookmarks: {
+        Row: {
+          collection_id: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          collection_id: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          collection_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "collection_bookmarks_collection_id_fkey"
+            columns: ["collection_id"]
+            isOneToOne: false
+            referencedRelation: "collections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      collection_comments: {
+        Row: {
+          body: string
+          collection_id: string
+          created_at: string
+          id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          body: string
+          collection_id: string
+          created_at?: string
+          id?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          body?: string
+          collection_id?: string
+          created_at?: string
+          id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "collection_comments_collection_id_fkey"
+            columns: ["collection_id"]
+            isOneToOne: false
+            referencedRelation: "collections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      collection_items: {
+        Row: {
+          collection_id: string
+          created_at: string
+          id: string
+          note: string
+          opportunity_id: string
+          position: number
+          updated_at: string
+        }
+        Insert: {
+          collection_id: string
+          created_at?: string
+          id?: string
+          note?: string
+          opportunity_id: string
+          position?: number
+          updated_at?: string
+        }
+        Update: {
+          collection_id?: string
+          created_at?: string
+          id?: string
+          note?: string
+          opportunity_id?: string
+          position?: number
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "collection_items_collection_id_fkey"
+            columns: ["collection_id"]
+            isOneToOne: false
+            referencedRelation: "collections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      collection_likes: {
+        Row: {
+          collection_id: string
+          created_at: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          collection_id: string
+          created_at?: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          collection_id?: string
+          created_at?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "collection_likes_collection_id_fkey"
+            columns: ["collection_id"]
+            isOneToOne: false
+            referencedRelation: "collections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      collection_links: {
+        Row: {
+          collection_id: string
+          created_at: string
+          expires_at: string | null
+          id: string
+          permission: Database["public"]["Enums"]["collection_permission"]
+          share_token: string
+        }
+        Insert: {
+          collection_id: string
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          permission?: Database["public"]["Enums"]["collection_permission"]
+          share_token?: string
+        }
+        Update: {
+          collection_id?: string
+          created_at?: string
+          expires_at?: string | null
+          id?: string
+          permission?: Database["public"]["Enums"]["collection_permission"]
+          share_token?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "collection_links_collection_id_fkey"
+            columns: ["collection_id"]
+            isOneToOne: false
+            referencedRelation: "collections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      collection_shares: {
+        Row: {
+          collection_id: string
+          created_at: string
+          id: string
+          permission: Database["public"]["Enums"]["collection_permission"]
+          shared_with_user_id: string
+        }
+        Insert: {
+          collection_id: string
+          created_at?: string
+          id?: string
+          permission?: Database["public"]["Enums"]["collection_permission"]
+          shared_with_user_id: string
+        }
+        Update: {
+          collection_id?: string
+          created_at?: string
+          id?: string
+          permission?: Database["public"]["Enums"]["collection_permission"]
+          shared_with_user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "collection_shares_collection_id_fkey"
+            columns: ["collection_id"]
+            isOneToOne: false
+            referencedRelation: "collections"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      collections: {
+        Row: {
+          categories: string[]
+          cover_gradient: string
+          cover_image: string | null
+          created_at: string
+          description: string
+          id: string
+          intended_majors: string[]
+          is_published: boolean
+          owner_id: string
+          tags: string[]
+          title: string
+          updated_at: string
+          visibility: Database["public"]["Enums"]["collection_visibility"]
+        }
+        Insert: {
+          categories?: string[]
+          cover_gradient?: string
+          cover_image?: string | null
+          created_at?: string
+          description?: string
+          id?: string
+          intended_majors?: string[]
+          is_published?: boolean
+          owner_id: string
+          tags?: string[]
+          title: string
+          updated_at?: string
+          visibility?: Database["public"]["Enums"]["collection_visibility"]
+        }
+        Update: {
+          categories?: string[]
+          cover_gradient?: string
+          cover_image?: string | null
+          created_at?: string
+          description?: string
+          id?: string
+          intended_majors?: string[]
+          is_published?: boolean
+          owner_id?: string
+          tags?: string[]
+          title?: string
+          updated_at?: string
+          visibility?: Database["public"]["Enums"]["collection_visibility"]
+        }
+        Relationships: []
+      }
       contact_messages: {
         Row: {
           created_at: string
@@ -116,6 +362,27 @@ export type Database = {
         }
         Relationships: []
       }
+      saved_opportunities: {
+        Row: {
+          created_at: string
+          id: string
+          opportunity_id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          opportunity_id: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          opportunity_id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       shared_collections: {
         Row: {
           created_at: string
@@ -149,15 +416,104 @@ export type Database = {
         }
         Relationships: []
       }
+      users: {
+        Row: {
+          avatar_url: string | null
+          created_at: string
+          id: string
+          role: string
+          username: string
+        }
+        Insert: {
+          avatar_url?: string | null
+          created_at?: string
+          id: string
+          role?: string
+          username: string
+        }
+        Update: {
+          avatar_url?: string | null
+          created_at?: string
+          id?: string
+          role?: string
+          username?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      can_edit_collection: {
+        Args: { p_collection_id: string }
+        Returns: boolean
+      }
+      can_view_collection: {
+        Args: { p_collection_id: string }
+        Returns: boolean
+      }
+      create_collection_share_link: {
+        Args: {
+          p_collection_id: string
+          p_expires_at?: string
+          p_permission?: Database["public"]["Enums"]["collection_permission"]
+        }
+        Returns: {
+          collection_id: string
+          created_at: string
+          expires_at: string | null
+          id: string
+          permission: Database["public"]["Enums"]["collection_permission"]
+          share_token: string
+        }
+        SetofOptions: {
+          from: "*"
+          to: "collection_links"
+          isOneToOne: true
+          isSetofReturn: false
+        }
+      }
+      get_collection_by_share_token: {
+        Args: { p_share_token: string }
+        Returns: {
+          categories: string[]
+          cover_gradient: string
+          cover_image: string
+          created_at: string
+          description: string
+          id: string
+          intended_majors: string[]
+          is_published: boolean
+          owner_id: string
+          owner_username: string
+          permission: Database["public"]["Enums"]["collection_permission"]
+          tags: string[]
+          title: string
+          updated_at: string
+          visibility: Database["public"]["Enums"]["collection_visibility"]
+        }[]
+      }
+      get_collection_items_by_share_token: {
+        Args: { p_share_token: string }
+        Returns: {
+          collection_id: string
+          created_at: string
+          item_id: string
+          item_position: number
+          note: string
+          opportunity_id: string
+          updated_at: string
+        }[]
+      }
     }
     Enums: {
-      [_ in never]: never
+      collection_permission: "view" | "edit"
+      collection_visibility:
+        | "only_me"
+        | "anyone_with_link"
+        | "specific_people"
+        | "public"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -284,6 +640,14 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      collection_permission: ["view", "edit"],
+      collection_visibility: [
+        "only_me",
+        "anyone_with_link",
+        "specific_people",
+        "public",
+      ],
+    },
   },
 } as const
