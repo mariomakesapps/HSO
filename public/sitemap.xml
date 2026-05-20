@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://findyourspark-app.lovable.app/</loc><priority>1.0</priority></url>
-  <url><loc>https://findyourspark-app.lovable.app/auth</loc></url>
-  <url><loc>https://findyourspark-app.lovable.app/about</loc></url>
-  <url><loc>https://findyourspark-app.lovable.app/contact</loc></url>
-  <url><loc>https://findyourspark-app.lovable.app/submit</loc></url>
-  <url><loc>https://findyourspark-app.lovable.app/privacy</loc></url>
-  <url><loc>https://findyourspark-app.lovable.app/terms</loc></url>
-  <url><loc>https://findyourspark-app.lovable.app/categories/summer-programs</loc></url>
-  <url><loc>https://findyourspark-app.lovable.app/categories/internships</loc></url>
-  <url><loc>https://findyourspark-app.lovable.app/categories/scholarships</loc></url>
-  <url><loc>https://findyourspark-app.lovable.app/categories/research</loc></url>
-  <url><loc>https://findyourspark-app.lovable.app/categories/competitions</loc></url>
-  <url><loc>https://findyourspark-app.lovable.app/categories/volunteer</loc></url>
-  <url><loc>https://findyourspark-app.lovable.app/categories/fellowships</loc></url>
+  <url><loc>https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/about</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/contact</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/submit</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/collections</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/auth</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/privacy</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/terms</loc><changefreq>yearly</changefreq><priority>0.2</priority></url>
+  <url><loc>https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/categories/summer-programs</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/categories/internships</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/categories/scholarships</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/categories/research</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/categories/competitions</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/categories/volunteer</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/categories/fellowships</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
 </urlset>
