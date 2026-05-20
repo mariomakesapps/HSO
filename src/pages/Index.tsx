@@ -28,6 +28,7 @@ import { applyFilters, applySort } from "@/lib/filterSort";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { useSEO } from "@/lib/seo";
 import { cn } from "@/lib/utils";
+import { SEO } from "@/components/SEO";
 
 const CATEGORY_CHIPS: (Category | "All")[] = [
   "All",
@@ -127,6 +128,17 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden text-foreground">
+      <SEO
+        title="HSO — Find high school opportunities"
+        description="Browse curated internships, research, scholarships, competitions, summer programs, volunteer work, and fellowships for high school students."
+        path="/"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          name: "HSO",
+          url: "https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/",
+        }}
+      />
       <div className="relative z-10">
         <Hero
           isAuthed={isAuthed}
