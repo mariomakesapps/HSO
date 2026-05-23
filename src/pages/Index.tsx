@@ -24,6 +24,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetFooter
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { FilterDropdown } from "@/components/FilterDropdown";
 import { SiteFooter } from "@/components/SiteFooter";
+import { ReturnToFiltersButton } from "@/components/ReturnToFiltersButton";
 import { applyFilters, applySort } from "@/lib/filterSort";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { useSEO } from "@/lib/seo";
@@ -152,7 +153,7 @@ const Index = () => {
 
         <section id="results" className="scroll-mt-24">
           <div className="mx-auto grid w-full max-w-[1400px] gap-6 px-4 py-10 sm:px-6 lg:grid-cols-[320px_minmax(0,1fr)] lg:py-16">
-            <aside className="lg:sticky lg:top-24 lg:self-start">
+            <aside id="filters-section" className="scroll-mt-24 lg:sticky lg:top-24 lg:self-start">
               <RefinePanel
                 filters={filters}
                 setFilters={setFilters}
@@ -244,6 +245,7 @@ const Index = () => {
         <HowItWorks />
         <TrustBand />
         <SiteFooter />
+        <ReturnToFiltersButton targetId="filters-section" />
       </div>
     </div>
   );
