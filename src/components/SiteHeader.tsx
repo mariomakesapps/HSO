@@ -76,17 +76,17 @@ export function SiteHeader() {
       <header className="fixed inset-x-0 top-0 z-[100] w-full px-2 pt-2 transition-transform duration-300">
         <div
           className={cn(
-            "hso-nav-shell mx-auto grid max-w-[1400px] grid-cols-[1fr_auto_1fr] items-center gap-2 rounded-[1.35rem] px-3 py-2 md:px-4 md:py-2.5",
+            "hso-nav-shell mx-auto flex h-14 max-w-[1400px] items-center justify-between gap-2 rounded-2xl px-4 md:grid md:h-auto md:grid-cols-[1fr_auto_1fr] md:rounded-[1.35rem] md:px-4 md:py-2.5",
             scrolled && "shadow-[inset_0_1px_0_hsl(0_0%_100%/0.76),0_18px_56px_-36px_hsl(var(--ink)/0.58)]",
           )}
         >
           <Link to="/" aria-label="HSO - High School Opportunity" className="group flex shrink-0 items-center font-display text-xl font-black leading-none tracking-tight sm:text-2xl">
             <span className="text-ink">H</span>
-            <span className="hso-reveal"><span className="hso-reveal-inner text-ink">igh&nbsp;</span></span>
+            <span className="hso-reveal hidden md:inline"><span className="hso-reveal-inner text-ink">igh&nbsp;</span></span>
             <span className="text-coral">S</span>
-            <span className="hso-reveal"><span className="hso-reveal-inner text-ink">chool&nbsp;</span></span>
+            <span className="hso-reveal hidden md:inline"><span className="hso-reveal-inner text-ink">chool&nbsp;</span></span>
             <span className="text-sage">O</span>
-            <span className="hso-reveal"><span className="hso-reveal-inner text-ink">pportunity</span></span>
+            <span className="hso-reveal hidden md:inline"><span className="hso-reveal-inner text-ink">pportunity</span></span>
           </Link>
 
           <nav className="hidden items-center justify-center gap-1 rounded-full border border-white/65 bg-card/45 px-1.5 py-1 text-sm font-bold text-foreground/75 shadow-[inset_0_1px_0_hsl(0_0%_100%/0.65)] md:flex">
@@ -96,7 +96,7 @@ export function SiteHeader() {
             <Link to="/contact" className={navClass("/contact")}>Contact</Link>
           </nav>
 
-          <div className="flex shrink-0 items-center justify-end gap-1 sm:gap-2">
+          <div className="flex shrink-0 items-center justify-end gap-1 md:gap-2">
             <Button onClick={() => setShowShelf((open) => !open)} variant="ghost" size="sm" className="group relative hidden rounded-full font-bold md:inline-flex" aria-expanded={showShelf}>
               <Bookmark className="mr-1.5 h-4 w-4" /> My Shelf
               {totalSaved > 0 && (
@@ -105,14 +105,24 @@ export function SiteHeader() {
                 </span>
               )}
             </Button>
-            <Button onClick={() => setShowShelf((open) => !open)} variant="ghost" size="icon" aria-label="My Shelf" aria-expanded={showShelf} className="group relative rounded-lg md:hidden">
-              <Bookmark className="h-4 w-4" />
+            <Button onClick={() => setShowShelf((open) => !open)} variant="ghost" size="icon" aria-label="My Shelf" aria-expanded={showShelf} className="group relative h-9 w-9 rounded-full md:hidden">
+              <Bookmark className="h-[18px] w-[18px]" />
               {totalSaved > 0 && (
-                <span className="absolute -right-1 -top-1 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-coral px-1 text-[10px] font-bold leading-none text-coral-foreground ring-1 ring-coral/20 transition-colors group-hover:bg-cream group-hover:text-coral group-hover:ring-coral/45">
+                <span className="absolute -right-0.5 -top-0.5 inline-flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-coral px-1 text-[10px] font-bold leading-none text-coral-foreground ring-1 ring-cream">
                   {totalSaved}
                 </span>
               )}
             </Button>
+
+            {session && (
+              <button
+                onClick={() => navigate("/profile")}
+                aria-label="Profile"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-ink text-xs font-bold text-cream shadow-soft transition-transform hover:-translate-y-0.5 hover:bg-coral md:hidden"
+              >
+                {userInitial}
+              </button>
+            )}
 
             {session ? (
               <DropdownMenu>
@@ -169,8 +179,8 @@ export function SiteHeader() {
             {/* Mobile menu */}
             <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
               <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" aria-label="Open menu" className="rounded-lg md:hidden">
-                  <Menu className="h-5 w-5" />
+                <Button variant="ghost" size="icon" aria-label="Open menu" className="h-9 w-9 rounded-full md:hidden">
+                  <Menu className="h-[18px] w-[18px]" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="top" className="border-b border-border/60 bg-cream/95 backdrop-blur-md p-6">
