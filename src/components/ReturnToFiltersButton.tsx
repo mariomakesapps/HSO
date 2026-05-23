@@ -32,7 +32,7 @@ export function ReturnToFiltersButton({ targetId = "filters-section" }: { target
       tabIndex={show ? 0 : -1}
       className={cn(
         "group fixed right-4 z-40 inline-flex items-center gap-2 rounded-full border border-white/70 bg-cream/85 px-4 py-2.5 text-sm font-bold text-ink shadow-[inset_0_1px_0_hsl(0_0%_100%/0.75),0_18px_36px_-20px_hsl(var(--ink)/0.45)] backdrop-blur-xl transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-coral/40 hover:text-coral active:scale-[0.97] motion-reduce:transition-none",
-        "bottom-[calc(1rem+env(safe-area-inset-bottom))] sm:bottom-6 md:right-6 lg:hidden",
+        "bottom-[calc(1rem+env(safe-area-inset-bottom))] sm:bottom-6 md:right-6 lg:bottom-8 lg:right-8",
         show
           ? "pointer-events-auto translate-y-0 opacity-100"
           : "pointer-events-none translate-y-3 opacity-0",
