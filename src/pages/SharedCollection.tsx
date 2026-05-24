@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, ExternalLink, Lock } from "lucide-react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Button } from "@/components/ui/button";
@@ -27,6 +27,16 @@ type SharedCollectionRow = {
 
 const SharedCollection = () => {
   const { id, token } = useParams<{ id?: string; token?: string }>();
+  const navigate = useNavigate();
+  const goBack = () => {
+    // If the user landed here from another HSO page, walk back so the
+    // previous Collections tab + scroll position are restored.
+    if (window.history.length > 1 && document.referrer.includes(window.location.host)) {
+      navigate(-1);
+    } else {
+      navigate("/collections");
+    }
+  };
   const [collection, setCollection] = useState<SharedCollectionRow | null>(null);
   const [opportunityIds, setOpportunityIds] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
@@ -139,9 +149,13 @@ const SharedCollection = () => {
   return (
     <div className="min-h-screen text-foreground">
       <main className="mx-auto w-full max-w-[1180px] px-4 pb-24 pt-8 md:px-6 md:pt-12">
-        <Link to="/collections" className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-coral">
+        <button
+          type="button"
+          onClick={goBack}
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-coral"
+        >
           <ArrowLeft className="h-4 w-4" /> Collections
-        </Link>
+        </button>
 
         <section className="hso-glass-panel hso-surface-grid mt-5 overflow-hidden rounded-[2rem]">
           <div
