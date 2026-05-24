@@ -11,7 +11,7 @@ import {
   SlidersHorizontal,
   Sparkles,
 } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { useAuthSession } from "@/hooks/useAuthSession";
 import { allOpportunities as opportunities } from "@/data/opportunities";
 import type { Category, Opportunity } from "@/data/opportunities";
@@ -55,20 +55,33 @@ const CATEGORY_ACCENT: Record<string, { strip: string; tint: string; chip: strin
 const Index = () => {
   const { isAuthed, loading: authLoading } = useAuthSession();
   useSEO({
-    title: "HSO - Find high school opportunities",
+    title: "HSO | High School Opportunity",
     description:
-      "Browse curated internships, research programs, scholarships, competitions, summer programs, volunteer work, and fellowships for high school students.",
+      "Find high school internships, research programs, scholarships, competitions, volunteer opportunities, and summer programs across the U.S.",
   });
 
-  const [filters, setFilters] = useState<FilterState>({
-    query: "",
-    category: "All",
-    grade: "All",
-    cost: "All",
-    format: "All",
-  });
-  const [extra, setExtra] = useState<ExtraFilterState>(DEFAULT_EXTRA);
-  const [sort, setSort] = useState<SortKey>("recommended");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initial = useRef(true);
+
+  const [filters, setFilters] = useState<FilterState>(() => ({
+    query: searchParams.get("q") ?? "",
+    category: (searchParams.get("category") as FilterState["category"]) || "All",
+    grade: searchParams.get("grade") && searchParams.get("grade") !== "All"
+      ? (Number(searchParams.get("grade")) as FilterState["grade"])
+      : "All",
+    cost: (searchParams.get("cost") as FilterState["cost"]) || "All",
+    format: (searchParams.get("format") as FilterState["format"]) || "All",
+  }));
+  const [extra, setExtra] = useState<ExtraFilterState>(() => ({
+    field: searchParams.get("field") || "All",
+    country: searchParams.get("state") || "All",
+    status: (searchParams.get("status") as ExtraFilterState["status"]) || "All",
+    freeOnly: searchParams.get("free") === "1",
+    deadlineMonth: searchParams.get("month") || "All",
+  }));
+  const [sort, setSort] = useState<SortKey>(
+    (searchParams.get("sort") as SortKey) || "recommended",
+  );
   const [visible, setVisible] = useState(48);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const loadMoreRef = useRef<HTMLDivElement | null>(null);
@@ -86,6 +99,27 @@ const Index = () => {
   useEffect(() => {
     setVisible(48);
   }, [deferredFilters, deferredExtra, deferredSort]);
+
+  // Sync state -> URL (replace so we don't pollute history).
+  useEffect(() => {
+    if (initial.current) {
+      initial.current = false;
+      return;
+    }
+    const p = new URLSearchParams();
+    if (filters.query) p.set("q", filters.query);
+    if (filters.category !== "All") p.set("category", filters.category);
+    if (filters.grade !== "All") p.set("grade", String(filters.grade));
+    if (filters.cost !== "All") p.set("cost", filters.cost);
+    if (filters.format !== "All") p.set("format", filters.format);
+    if (extra.field !== "All") p.set("field", extra.field);
+    if (extra.country !== "All") p.set("state", extra.country);
+    if (extra.status !== "All") p.set("status", extra.status);
+    if (extra.freeOnly) p.set("free", "1");
+    if (extra.deadlineMonth !== "All") p.set("month", extra.deadlineMonth);
+    if (sort !== "recommended") p.set("sort", sort);
+    setSearchParams(p, { replace: true });
+  }, [filters, extra, sort, setSearchParams]);
 
   useEffect(() => {
     const target = loadMoreRef.current;
