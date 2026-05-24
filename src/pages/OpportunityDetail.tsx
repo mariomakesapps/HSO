@@ -25,8 +25,10 @@ const OpportunityDetail = () => {
   const [intervals, setIntervals] = useState<number[]>([]);
 
   useSEO({
-    title: opp ? `${opp.title}  -  ${opp.org} | HSO` : "Opportunity not found  -  HSO",
-    description: opp ? `${opp.blurb} Apply at ${opp.org}.` : undefined,
+    title: opp ? `${opp.title} | HSO` : "Opportunity not found | HSO",
+    description: opp
+      ? `View details, eligibility, deadline, cost, and official link for ${opp.title}.`
+      : undefined,
   });
 
   useEffect(() => {
