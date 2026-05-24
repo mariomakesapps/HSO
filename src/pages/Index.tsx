@@ -164,14 +164,14 @@ const Index = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden text-foreground">
       <SEO
-        title="HSO — Find high school opportunities"
-        description="Browse curated internships, research, scholarships, competitions, summer programs, volunteer work, and fellowships for high school students."
+        title="HSO | High School Opportunity"
+        description="Find high school internships, research programs, scholarships, competitions, volunteer opportunities, and summer programs across the U.S."
         path="/"
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "WebSite",
           name: "HSO",
-          url: "https://test-site-38dju7y6dhj7feyh7dhe.lovable.app/",
+          url: "https://highschoolopportunity.org/",
         }}
       />
       <div className="relative z-10">
