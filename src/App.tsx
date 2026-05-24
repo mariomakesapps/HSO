@@ -1,6 +1,6 @@
-import { Suspense, lazy, useEffect, useRef } from "react";
+import { Suspense, lazy, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Outlet, Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -38,33 +38,6 @@ function PageFallback() {
       </div>
     </div>
   );
-}
-
-const STARTUP_HOME_PATHS = new Set([
-  "/about",
-  "/contact",
-  "/collections",
-  "/privacy",
-  "/profile",
-  "/submit",
-  "/terms",
-]);
-
-function StartupHomeRedirect() {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const checked = useRef(false);
-
-  useEffect(() => {
-    if (checked.current) return;
-    checked.current = true;
-
-    if (STARTUP_HOME_PATHS.has(location.pathname)) {
-      navigate("/", { replace: true });
-    }
-  }, [location.pathname, navigate]);
-
-  return null;
 }
 
 function WarmRouteCache() {
@@ -107,7 +80,6 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <StartupHomeRedirect />
         <WarmRouteCache />
         <ScrollToTop />
         <Suspense fallback={<PageFallback />}>
