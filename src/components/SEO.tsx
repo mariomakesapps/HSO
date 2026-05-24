@@ -1,6 +1,6 @@
 import { Helmet } from "react-helmet-async";
 
-const SITE_URL = "https://test-site-38dju7y6dhj7feyh7dhe.lovable.app";
+const SITE_URL = "https://highschoolopportunity.org";
 const DEFAULT_IMAGE = `${SITE_URL}/placeholder.svg`;
 
 export interface SEOProps {
