@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import {
   Bookmark,
   Copy,
@@ -58,6 +58,16 @@ export default function Collections() {
   const shelf = useStore();
   const { user, loading } = useAuthSession();
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tabParam = searchParams.get("tab");
+  const activeTab =
+    tabParam === "shared" || tabParam === "explore" || tabParam === "mine" ? tabParam : "mine";
+  const handleTabChange = (value: string) => {
+    const next = new URLSearchParams(searchParams);
+    if (value === "mine") next.delete("tab");
+    else next.set("tab", value);
+    setSearchParams(next, { replace: true });
+  };
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tags, setTags] = useState("");
@@ -205,7 +215,7 @@ export default function Collections() {
           </div>
         </section>
 
-        <Tabs defaultValue="mine" className="mt-8">
+        <Tabs value={activeTab} onValueChange={handleTabChange} className="mt-8">
           <TabsList className="hso-nav-shell h-auto flex-wrap rounded-full p-1">
             <TabsTrigger value="mine" className="rounded-full px-4 py-2 data-[state=active]:bg-ink data-[state=active]:text-cream">My Collections</TabsTrigger>
             <TabsTrigger value="shared" className="rounded-full px-4 py-2 data-[state=active]:bg-ink data-[state=active]:text-cream">Shared With Me</TabsTrigger>
