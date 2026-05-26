@@ -313,11 +313,13 @@ function subscribeRealtime() {
 }
 
 async function requireUser() {
-  if (userId) return userId;
-  const { data } = await supabase.auth.getUser();
-  userId = data.user?.id ?? null;
-  if (!userId) throw new Error("Sign in to use cloud collections.");
-  return userId;
+  // Always re-validate against the auth server so we use the live JWT for RLS.
+  const { data, error } = await supabase.auth.getUser();
+  if (error) throw new Error("Sign in to use cloud collections.");
+  const uid = data.user?.id ?? null;
+  userId = uid;
+  if (!uid) throw new Error("Sign in to use cloud collections.");
+  return uid;
 }
 
 async function enrichCollections(rows: any[], currentUserId = userId): Promise<CollectionSummary[]> {
