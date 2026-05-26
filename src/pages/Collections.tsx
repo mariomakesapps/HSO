@@ -651,10 +651,6 @@ function ExploreCardImpl({ collection, onRefresh }: { collection: CollectionSumm
   };
 
   const toggleBookmark = async () => {
-    if (isSample) {
-      toast.success("This is an HSO recommended folder. Open it to browse the programs.");
-      return;
-    }
     if (!user) {
       navigate(authRedirectHref("/collections"));
       return;
