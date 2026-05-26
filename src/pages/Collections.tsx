@@ -313,7 +313,10 @@ export default function Collections() {
                 {visiblePublic.map((collection) => <ExploreCard key={collection.id} collection={collection} onRefresh={refreshExplore} />)}
               </div>
             ) : (
-              <EmptyState title="No public collections match that" body="Try a broader search or come back after students publish more collections." />
+              <EmptyState
+                title={publicCollections.length === 0 ? "No public collections yet" : "No collections match that"}
+                body={publicCollections.length === 0 ? "Create one and publish it to HSO to share with the community." : "Try a broader search or different filter."}
+              />
             )}
           </TabsContent>
         </Tabs>
