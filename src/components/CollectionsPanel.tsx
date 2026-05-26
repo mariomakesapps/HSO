@@ -125,7 +125,22 @@ export function CollectionsPanel({ open, onOpenChange }: { open: boolean; onOpen
             <p className="text-sm font-semibold">New collection</p>
             <div className="mt-3 flex gap-2">
               <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="Dream Summer 2026..." onKeyDown={(e) => e.key === "Enter" && create()} />
-              <Button onClick={create} className="bg-ink text-cream hover:bg-ink/90"><Plus className="h-4 w-4" /></Button>
+              <Button onClick={create} className="bg-ink text-cream hover:bg-ink/90" aria-label="Create collection"><Plus className="h-4 w-4" /></Button>
+            </div>
+            <div className="mt-2 flex items-center gap-2">
+              <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-secondary text-muted-foreground">
+                {visibility === "only_me" ? <Lock className="h-4 w-4" /> : visibility === "anyone_with_link" ? <Link2 className="h-4 w-4" /> : <Sparkles className="h-4 w-4" />}
+              </span>
+              <select
+                value={visibility}
+                onChange={(e) => setVisibility(e.target.value as typeof visibility)}
+                className="h-8 flex-1 rounded-md border border-input bg-background px-2 text-xs"
+                aria-label="Collection visibility"
+              >
+                <option value="only_me">Private — only you can see this</option>
+                <option value="anyone_with_link">Anyone with link — shareable by link</option>
+                <option value="public">Public — shows in Explore</option>
+              </select>
             </div>
           </div>
 
