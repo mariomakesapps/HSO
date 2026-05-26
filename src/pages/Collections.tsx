@@ -240,6 +240,7 @@ export default function Collections() {
                     <Input value={categories} onChange={(event) => setCategories(event.target.value)} placeholder="Categories: internships, research" className="rounded-xl" />
                     <Input value={coverImage} onChange={(event) => setCoverImage(event.target.value)} placeholder="Cover image URL, optional" className="rounded-xl" />
                     <GradientPicker value={coverGradient} onChange={setCoverGradient} />
+                    <VisibilityPicker value={visibility} onChange={setVisibility} />
                     <Button type="submit" className="w-full rounded-xl bg-ink text-cream hover:bg-coral">
                       <Plus className="mr-2 h-4 w-4" /> Create collection
                     </Button>
