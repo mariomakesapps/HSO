@@ -26,7 +26,6 @@ import { useSEO } from "@/lib/seo";
 import { authRedirectHref, useAuthSession } from "@/hooks/useAuthSession";
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
 import { Collection, CollectionSummary, store, useStore } from "@/store/collections";
-import { sampleCollections } from "@/data/sampleCollections";
 
 const coverGradients = [
   "linear-gradient(135deg, #132019 0%, #df6b54 48%, #d9eadf 100%)",
@@ -75,6 +74,7 @@ export default function Collections() {
   const [categories, setCategories] = useState("");
   const [coverImage, setCoverImage] = useState("");
   const [coverGradient, setCoverGradient] = useState(coverGradients[0]);
+  const [visibility, setVisibility] = useState<"only_me" | "anyone_with_link" | "public">("only_me");
   const [publicCollections, setPublicCollections] = useState<CollectionSummary[]>([]);
   const [sharedCollections, setSharedCollections] = useState<CollectionSummary[]>([]);
   const [query, setQuery] = useState("");
@@ -120,10 +120,7 @@ export default function Collections() {
     };
   }, [needsOpportunityLookup, opportunityById]);
 
-  const exploreCollections = useMemo(() => {
-    const realIds = new Set(publicCollections.map((collection) => collection.id));
-    return [...publicCollections, ...sampleCollections.filter((collection) => !realIds.has(collection.id))];
-  }, [publicCollections]);
+  const exploreCollections = publicCollections;
 
   const visiblePublic = useMemo(() => {
     const normalizedQuery = debouncedQuery.trim().toLowerCase();
@@ -157,6 +154,7 @@ export default function Collections() {
     }
     if (!title.trim()) return;
     try {
+      const isPublic = visibility === "public";
       await store.createCollection(title, "", {
         description,
         cover_image: coverImage.trim() || null,
@@ -164,6 +162,8 @@ export default function Collections() {
         tags: listFromText(tags),
         intended_majors: listFromText(majors),
         categories: listFromText(categories),
+        visibility,
+        is_published: isPublic,
       });
       setTitle("");
       setDescription("");
@@ -172,9 +172,12 @@ export default function Collections() {
       setCategories("");
       setCoverImage("");
       setCoverGradient(coverGradients[0]);
+      setVisibility("only_me");
       toast.success("Collection created");
+      void refreshExplore();
     } catch (error: any) {
-      toast.error(error.message ?? "Could not create collection");
+      console.error("Create collection failed", error);
+      toast.error("Collection could not be created. Please try again.");
     }
   };
 
@@ -237,6 +240,7 @@ export default function Collections() {
                     <Input value={categories} onChange={(event) => setCategories(event.target.value)} placeholder="Categories: internships, research" className="rounded-xl" />
                     <Input value={coverImage} onChange={(event) => setCoverImage(event.target.value)} placeholder="Cover image URL, optional" className="rounded-xl" />
                     <GradientPicker value={coverGradient} onChange={setCoverGradient} />
+                    <VisibilityPicker value={visibility} onChange={setVisibility} />
                     <Button type="submit" className="w-full rounded-xl bg-ink text-cream hover:bg-coral">
                       <Plus className="mr-2 h-4 w-4" /> Create collection
                     </Button>
@@ -309,7 +313,10 @@ export default function Collections() {
                 {visiblePublic.map((collection) => <ExploreCard key={collection.id} collection={collection} onRefresh={refreshExplore} />)}
               </div>
             ) : (
-              <EmptyState title="No public collections match that" body="Try a broader search or come back after students publish more collections." />
+              <EmptyState
+                title={publicCollections.length === 0 ? "No public collections yet" : "No collections match that"}
+                body={publicCollections.length === 0 ? "Create one and publish it to HSO to share with the community." : "Try a broader search or different filter."}
+              />
             )}
           </TabsContent>
         </Tabs>
@@ -585,15 +592,55 @@ function GradientPicker({ value, onChange }: { value: string; onChange: (value: 
 }
 
 function ExploreCard({ collection, onRefresh }: { collection: CollectionSummary; onRefresh: () => Promise<void> }) {
+  return <ExploreCardImpl collection={collection} onRefresh={onRefresh} />;
+}
+
+function VisibilityPicker({
+  value,
+  onChange,
+}: {
+  value: "only_me" | "anyone_with_link" | "public";
+  onChange: (value: "only_me" | "anyone_with_link" | "public") => void;
+}) {
+  const options: { value: "only_me" | "anyone_with_link" | "public"; label: string; hint: string; Icon: typeof Lock }[] = [
+    { value: "only_me", label: "Private", hint: "Only you can see this", Icon: Lock },
+    { value: "anyone_with_link", label: "Anyone with link", hint: "Share via copy link", Icon: Link2 },
+    { value: "public", label: "Public on HSO", hint: "Visible in Explore Collections", Icon: Sparkles },
+  ];
+  return (
+    <div className="space-y-2">
+      <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted-foreground">Visibility</p>
+      <div className="grid gap-2">
+        {options.map(({ value: optValue, label, hint, Icon }) => {
+          const active = value === optValue;
+          return (
+            <button
+              key={optValue}
+              type="button"
+              onClick={() => onChange(optValue)}
+              aria-pressed={active}
+              className={`flex items-start gap-3 rounded-xl border p-3 text-left transition-colors ${
+                active ? "border-ink bg-cream shadow-[0_10px_24px_-22px_hsl(var(--ink)/0.55)]" : "border-border/70 bg-background/70 hover:border-ink/40"
+              }`}
+            >
+              <Icon className={`mt-0.5 h-4 w-4 ${active ? "text-coral" : "text-muted-foreground"}`} />
+              <span className="min-w-0">
+                <span className="block text-sm font-bold text-ink">{label}</span>
+                <span className="block text-xs text-muted-foreground">{hint}</span>
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function ExploreCardImpl({ collection, onRefresh }: { collection: CollectionSummary; onRefresh: () => Promise<void> }) {
   const { user } = useAuthSession();
   const navigate = useNavigate();
-  const isSample = collection.id.startsWith("sample-");
 
   const toggleLike = async () => {
-    if (isSample) {
-      toast.success("This is an HSO recommended folder. Open it to browse the programs.");
-      return;
-    }
     if (!user) {
       navigate(authRedirectHref("/collections"));
       return;
@@ -607,10 +654,6 @@ function ExploreCard({ collection, onRefresh }: { collection: CollectionSummary;
   };
 
   const toggleBookmark = async () => {
-    if (isSample) {
-      toast.success("This is an HSO recommended folder. Open it to browse the programs.");
-      return;
-    }
     if (!user) {
       navigate(authRedirectHref("/collections"));
       return;
