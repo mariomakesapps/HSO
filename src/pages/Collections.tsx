@@ -26,7 +26,6 @@ import { useSEO } from "@/lib/seo";
 import { authRedirectHref, useAuthSession } from "@/hooks/useAuthSession";
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
 import { Collection, CollectionSummary, store, useStore } from "@/store/collections";
-import { sampleCollections } from "@/data/sampleCollections";
 
 const coverGradients = [
   "linear-gradient(135deg, #132019 0%, #df6b54 48%, #d9eadf 100%)",
@@ -75,6 +74,7 @@ export default function Collections() {
   const [categories, setCategories] = useState("");
   const [coverImage, setCoverImage] = useState("");
   const [coverGradient, setCoverGradient] = useState(coverGradients[0]);
+  const [visibility, setVisibility] = useState<"only_me" | "anyone_with_link" | "public">("only_me");
   const [publicCollections, setPublicCollections] = useState<CollectionSummary[]>([]);
   const [sharedCollections, setSharedCollections] = useState<CollectionSummary[]>([]);
   const [query, setQuery] = useState("");
@@ -120,10 +120,7 @@ export default function Collections() {
     };
   }, [needsOpportunityLookup, opportunityById]);
 
-  const exploreCollections = useMemo(() => {
-    const realIds = new Set(publicCollections.map((collection) => collection.id));
-    return [...publicCollections, ...sampleCollections.filter((collection) => !realIds.has(collection.id))];
-  }, [publicCollections]);
+  const exploreCollections = publicCollections;
 
   const visiblePublic = useMemo(() => {
     const normalizedQuery = debouncedQuery.trim().toLowerCase();
@@ -157,6 +154,7 @@ export default function Collections() {
     }
     if (!title.trim()) return;
     try {
+      const isPublic = visibility === "public";
       await store.createCollection(title, "", {
         description,
         cover_image: coverImage.trim() || null,
@@ -164,6 +162,8 @@ export default function Collections() {
         tags: listFromText(tags),
         intended_majors: listFromText(majors),
         categories: listFromText(categories),
+        visibility,
+        is_published: isPublic,
       });
       setTitle("");
       setDescription("");
@@ -172,9 +172,12 @@ export default function Collections() {
       setCategories("");
       setCoverImage("");
       setCoverGradient(coverGradients[0]);
+      setVisibility("only_me");
       toast.success("Collection created");
+      void refreshExplore();
     } catch (error: any) {
-      toast.error(error.message ?? "Could not create collection");
+      console.error("Create collection failed", error);
+      toast.error("Collection could not be created. Please try again.");
     }
   };
 
