@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Bookmark, Plus, Share2, Trash2, X } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Bookmark, Link2, Lock, Plus, Share2, Sparkles, Trash2, X } from "lucide-react";
 import { opportunities } from "@/data/opportunities";
 import { store, useStore } from "@/store/collections";
+import { authRedirectHref, useAuthSession } from "@/hooks/useAuthSession";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
@@ -11,7 +12,10 @@ const opportunityById = new Map(opportunities.map((opportunity) => [opportunity.
 
 export function CollectionsPanel({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const s = useStore();
+  const { user } = useAuthSession();
+  const navigate = useNavigate();
   const [name, setName] = useState("");
+  const [visibility, setVisibility] = useState<"only_me" | "anyone_with_link" | "public">("only_me");
   const [rendered, setRendered] = useState(open);
   const [entered, setEntered] = useState(false);
 
@@ -58,14 +62,26 @@ export function CollectionsPanel({ open, onOpenChange }: { open: boolean; onOpen
 
   const create = () => {
     if (!name.trim()) return;
+    if (!user) {
+      onOpenChange(false);
+      navigate(authRedirectHref(window.location.pathname + window.location.search));
+      return;
+    }
     const nextName = name.trim();
+    const nextVisibility = visibility;
     setName("");
+    setVisibility("only_me");
     void store
-      .createCollection(nextName)
+      .createCollection(nextName, "", {
+        visibility: nextVisibility,
+        is_published: nextVisibility === "public",
+      })
       .then(() => toast.success("Collection created"))
       .catch((error: any) => {
         setName(nextName);
-        toast.error(error.message ?? "Could not create collection");
+        setVisibility(nextVisibility);
+        console.error("Create collection failed", error);
+        toast.error("Collection could not be created. Please try again.");
       });
   };
 
