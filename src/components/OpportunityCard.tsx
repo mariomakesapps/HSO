@@ -3,7 +3,6 @@ import {
   BookmarkCheck,
   DollarSign,
   ExternalLink,
-  FolderPlus,
   GraduationCap,
   MapPin,
   Monitor,
@@ -11,19 +10,11 @@ import {
 import { memo } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Opportunity } from "@/data/opportunities";
-import { store, useCollections, useFavoriteStatus } from "@/store/collections";
+import { store, useFavoriteStatus } from "@/store/collections";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { useAuthSession, authRedirectHref } from "@/hooks/useAuthSession";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
 
 const CATEGORY_BADGE: Record<string, string> = {
@@ -47,7 +38,6 @@ const CATEGORY_STRIP: Record<string, string> = {
 };
 
 function OpportunityCardComponent({ opp, index = 0 }: { opp: Opportunity; index?: number }) {
-  const collections = useCollections();
   const { isAuthed } = useAuthSession();
   const navigate = useNavigate();
   const fav = useFavoriteStatus(opp.id);
