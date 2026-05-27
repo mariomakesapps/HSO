@@ -58,8 +58,8 @@ export default function Profile() {
           </div>
           <div className="hso-elevated-surface rounded-2xl p-5">
             <FolderHeart className="h-5 w-5 text-sage" />
-            <p className="mt-3 font-display text-3xl leading-none">{shelf.collections.length}</p>
-            <p className="mt-1 text-sm text-muted-foreground">Collections</p>
+            <p className="mt-3 font-display text-3xl leading-none">{shelf.savedCurated.length}</p>
+            <p className="mt-1 text-sm text-muted-foreground">Saved collections</p>
           </div>
         </div>
 
