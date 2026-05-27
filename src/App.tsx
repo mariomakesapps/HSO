@@ -95,7 +95,6 @@ const App = () => (
               <Route path="/categories/:slug" element={<Category />} />
               <Route path="/opportunities/:id" element={<OpportunityDetail />} />
               <Route path="/collections" element={<Collections />} />
-              <Route path="/collections/share/:token" element={<SharedCollection />} />
               <Route path="/collections/:id" element={<SharedCollection />} />
               <Route path="/profile" element={<Profile />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

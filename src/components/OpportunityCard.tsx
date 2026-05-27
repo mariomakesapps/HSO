@@ -93,54 +93,6 @@ function OpportunityCardComponent({ opp, index = 0 }: { opp: Opportunity; index?
         </div>
 
         <div className="-mr-1.5 -mt-1 flex items-center">
-          {isAuthed ? (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="h-8 w-8 rounded-full text-muted-foreground/75 transition-[transform,background-color,color] hover:-translate-y-0.5 hover:bg-ink/5 hover:text-ink active:scale-[0.96]"
-                  aria-label="Add to collection"
-                >
-                  <FolderPlus className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56 rounded-2xl border-border/70 bg-cream/95 p-1.5 shadow-editorial backdrop-blur-md">
-                <DropdownMenuLabel className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Add to collection</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                {collections.length === 0 && <DropdownMenuItem disabled>No collections yet</DropdownMenuItem>}
-                {collections.map((c) => {
-                  const inIt = c.opportunityIds.includes(opp.id);
-                  return (
-                    <DropdownMenuItem
-                      key={c.id}
-                      onClick={() => {
-                        void store.toggleInCollection(c.id, opp.id).catch((error: any) => {
-                          toast.error(error.message ?? "Could not update collection");
-                        });
-                        toast.success(inIt ? `Removed from ${c.name}` : `Added to ${c.name}`);
-                      }}
-                      className="rounded-xl"
-                    >
-                      <span className="flex-1">{c.name}</span>
-                      {inIt && <span className="text-xs font-semibold text-coral">Added</span>}
-                    </DropdownMenuItem>
-                  );
-                })}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          ) : (
-            <Button
-              variant="ghost"
-              size="icon"
-              className="h-8 w-8 rounded-full text-muted-foreground/75 transition-transform hover:-translate-y-0.5 hover:bg-ink/5 hover:text-ink active:scale-[0.96]"
-              onClick={requireAuth}
-              aria-label="Sign in to use collections"
-            >
-              <FolderPlus className="h-4 w-4" />
-            </Button>
-          )}
-
           <Button
             variant="ghost"
             size="icon"
