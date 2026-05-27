@@ -287,6 +287,48 @@ export type Database = {
         }
         Relationships: []
       }
+      curated_collection_likes: {
+        Row: {
+          created_at: string
+          curated_id: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          curated_id: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          curated_id?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      curated_collection_saves: {
+        Row: {
+          created_at: string
+          curated_id: string
+          id: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          curated_id: string
+          id?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          curated_id?: string
+          id?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       email_send_log: {
         Row: {
           created_at: string
