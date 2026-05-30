@@ -260,7 +260,7 @@ const Auth = () => {
             </p>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 };
