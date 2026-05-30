@@ -32,6 +32,7 @@ const Category = () => {
           <SortBar value={sort} onChange={setSort} count={list.length} />
         </div>
 
+        <h2 className="sr-only">Programs</h2>
         <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {list.map((o, i) => <OpportunityCard key={o.id} opp={o} index={i} />)}
         </div>
