@@ -174,7 +174,7 @@ const Index = () => {
           url: "https://highschoolopportunity.org/",
         }}
       />
-      <div className="relative z-10">
+      <main className="relative z-10">
         <Hero
           isAuthed={isAuthed}
           authLoading={authLoading}
@@ -280,7 +280,7 @@ const Index = () => {
         <TrustBand />
         <SiteFooter />
         <ReturnToFiltersButton targetId="filters-section" />
-      </div>
+      </main>
     </div>
   );
 };
