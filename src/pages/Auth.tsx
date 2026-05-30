@@ -122,7 +122,7 @@ const Auth = () => {
         <span className="b4" />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl items-center justify-center px-4 py-10 sm:px-6">
+      <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl items-center justify-center px-4 py-10 sm:px-6">
         <div className="grid w-full min-w-0 grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_minmax(0,440px)] lg:gap-12">
           <aside className="hidden lg:block">
             <Link to="/" className="inline-flex items-baseline font-display text-3xl font-bold leading-none tracking-tight">
@@ -260,7 +260,7 @@ const Auth = () => {
             </p>
           </div>
         </div>
-      </div>
+      </main>
     </div>
   );
 };
