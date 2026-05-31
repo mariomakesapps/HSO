@@ -53,25 +53,25 @@ const Contact = () => {
         <p className="mt-3 text-muted-foreground">Spotted an outdated deadline or a broken link? Tell us and it will be saved to the HSO backend.</p>
 
         <form onSubmit={onSubmit} className="hso-glass-panel mt-8 space-y-5 rounded-[1.75rem] p-5 sm:p-6">
-          <label className="block">
-            <span className="mb-1.5 block text-sm font-semibold">Reason *</span>
-            <select name="reason" required defaultValue="" className="h-10 w-full rounded-full border border-border bg-card px-4 text-sm font-semibold text-foreground outline-none focus:border-foreground">
+          <div className="block">
+            <label htmlFor="contact-reason" className="mb-1.5 block text-sm font-semibold">Reason *</label>
+            <select id="contact-reason" name="reason" required defaultValue="" className="h-10 w-full rounded-full border border-border bg-card px-4 text-sm font-semibold text-foreground outline-none focus:border-foreground">
               <option value="" disabled>Select...</option>
               {["Outdated deadline", "Missing opportunity", "Broken link", "General contact"].map((r) => <option key={r}>{r}</option>)}
             </select>
-          </label>
-          <label className="block">
-            <span className="mb-1.5 block text-sm font-semibold">Your email *</span>
-            <Input name="email" type="email" required className="rounded-full" />
-          </label>
-          <label className="block">
-            <span className="mb-1.5 block text-sm font-semibold">Related URL, if any</span>
-            <Input name="related_url" type="url" placeholder="https://..." className="rounded-full" />
-          </label>
-          <label className="block">
-            <span className="mb-1.5 block text-sm font-semibold">Message *</span>
-            <Textarea name="message" required maxLength={2000} rows={5} className="rounded-2xl" />
-          </label>
+          </div>
+          <div className="block">
+            <label htmlFor="contact-email" className="mb-1.5 block text-sm font-semibold">Your email *</label>
+            <Input id="contact-email" name="email" type="email" required className="rounded-full" />
+          </div>
+          <div className="block">
+            <label htmlFor="contact-related-url" className="mb-1.5 block text-sm font-semibold">Related URL, if any</label>
+            <Input id="contact-related-url" name="related_url" type="url" placeholder="https://..." className="rounded-full" />
+          </div>
+          <div className="block">
+            <label htmlFor="contact-message" className="mb-1.5 block text-sm font-semibold">Message *</label>
+            <Textarea id="contact-message" name="message" required maxLength={2000} rows={5} className="rounded-2xl" />
+          </div>
           <Button type="submit" disabled={submitting} className="w-full rounded-full bg-ink py-6 text-cream hover:bg-coral hover:text-coral-foreground">
             {submitting ? "Saving..." : "Send message"}
           </Button>
