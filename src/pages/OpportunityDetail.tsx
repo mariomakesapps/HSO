@@ -2,7 +2,7 @@
 import { ExternalLink, Bookmark, BookmarkCheck, Bell, ArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { SiteFooter } from "@/components/SiteFooter";
-import { useSEO } from "@/lib/seo";
+import { SEO } from "@/components/SEO";
 import { allOpportunities } from "@/data/opportunities";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { OpportunityCard } from "@/components/OpportunityCard";
@@ -23,13 +23,6 @@ const OpportunityDetail = () => {
   const fav = !!opp && s.favorites.includes(opp.id);
   const { user } = useAuthSession();
   const [intervals, setIntervals] = useState<number[]>([]);
-
-  useSEO({
-    title: opp ? `${opp.title} | HSO` : "Opportunity not found | HSO",
-    description: opp
-      ? `View details, eligibility, deadline, cost, and official link for ${opp.title}.`
-      : undefined,
-  });
 
   useEffect(() => {
     if (!user || !opp) return;
@@ -56,6 +49,7 @@ const OpportunityDetail = () => {
   if (!opp) {
     return (
       <div className="min-h-screen text-foreground">
+        <SEO title="Opportunity not found | HSO" path={`/opportunities/${id ?? ""}`} noindex />
         <main className="mx-auto max-w-2xl px-6 py-20 text-center">
           <div className="hso-glass-panel rounded-[2rem] p-8">
             <h1 className="font-display text-4xl font-semibold text-ink">Opportunity not found</h1>
@@ -95,6 +89,22 @@ const OpportunityDetail = () => {
 
   return (
     <div className="min-h-screen text-foreground">
+      <SEO
+        title={`${opp.title} | HSO`}
+        description={`View details, eligibility, deadline, cost, and official link for ${opp.title} by ${opp.org}.`}
+        path={`/opportunities/${opp.id}`}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "EducationalOccupationalProgram",
+          name: opp.title,
+          description: opp.blurb,
+          url: `https://highschoolopportunity.org/opportunities/${opp.id}`,
+          provider: { "@type": "Organization", name: opp.org },
+          educationalProgramMode: opp.format,
+          occupationalCategory: opp.category,
+          ...(opp.deadline ? { applicationDeadline: opp.deadline } : {}),
+        }}
+      />
       <main className="mx-auto w-full max-w-[1100px] overflow-hidden px-3 py-10 sm:px-6 sm:py-14">
         <section className="hso-detail-shell hso-glass-panel hso-surface-grid relative mx-auto max-w-full overflow-hidden rounded-[1.75rem] p-5 sm:rounded-[2rem] sm:p-8">
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,hsl(var(--coral)/0.08),transparent_34%,hsl(var(--sage)/0.08))]" />
