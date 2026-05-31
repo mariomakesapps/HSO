@@ -27,7 +27,6 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { ReturnToFiltersButton } from "@/components/ReturnToFiltersButton";
 import { applyFilters, applySort } from "@/lib/filterSort";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
-import { useSEO } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 import { SEO } from "@/components/SEO";
 
