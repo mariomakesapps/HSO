@@ -21,7 +21,9 @@ const CuratedCollectionDetail = () => {
 
   useSEO({
     title: collection ? `${collection.title} - HSO Collection` : "Collection - HSO",
-    description: collection?.description || "Open a curated HSO opportunity collection.",
+    description:
+      collection?.description ||
+      "Browse a curated HSO collection of high school opportunities — internships, research programs, scholarships, competitions, and summer programs hand-picked by editors.",
   });
 
   const opportunities = useMemo(
