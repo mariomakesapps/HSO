@@ -54,11 +54,6 @@ const CATEGORY_ACCENT: Record<string, { strip: string; tint: string; chip: strin
 
 const Index = () => {
   const { isAuthed, loading: authLoading } = useAuthSession();
-  useSEO({
-    title: "HSO | High School Opportunity",
-    description:
-      "Find high school internships, research programs, scholarships, competitions, volunteer opportunities, and summer programs across the U.S.",
-  });
 
   const [searchParams, setSearchParams] = useSearchParams();
   const initial = useRef(true);
