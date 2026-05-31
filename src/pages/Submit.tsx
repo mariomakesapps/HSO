@@ -94,8 +94,8 @@ const Submit = () => {
             </div>
           </div>
           <div>
-            <label className="mb-1.5 block text-sm font-semibold">Short description</label>
-            <Textarea name="description" required maxLength={1000} rows={4} placeholder="What is this program? Who is it for?" className="rounded-2xl" />
+            <label htmlFor="submit-description" className="mb-1.5 block text-sm font-semibold">Short description</label>
+            <Textarea id="submit-description" name="description" required maxLength={1000} rows={4} placeholder="What is this program? Who is it for?" className="rounded-2xl" />
           </div>
           <Field label="Your email" name="submitter_email" type="email" required placeholder="you@school.edu" />
 
@@ -111,23 +111,25 @@ const Submit = () => {
 };
 
 function Field({ label, ...props }: { label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
+  const id = `submit-${props.name}`;
   return (
-    <label className="block">
-      <span className="mb-1.5 block text-sm font-semibold">{label}{props.required && " *"}</span>
-      <Input {...props} className="rounded-full" />
-    </label>
+    <div className="block">
+      <label htmlFor={id} className="mb-1.5 block text-sm font-semibold">{label}{props.required && " *"}</label>
+      <Input id={id} {...props} className="rounded-full" />
+    </div>
   );
 }
 
 function SelectField({ label, name, options, required }: { label: string; name: string; options: string[]; required?: boolean }) {
+  const id = `submit-${name}`;
   return (
-    <label className="block">
-      <span className="mb-1.5 block text-sm font-semibold">{label}{required && " *"}</span>
-      <select name={name} required={required} defaultValue="" className="h-10 w-full rounded-full border border-border bg-card px-4 text-sm font-semibold text-foreground outline-none focus:border-foreground">
+    <div className="block">
+      <label htmlFor={id} className="mb-1.5 block text-sm font-semibold">{label}{required && " *"}</label>
+      <select id={id} name={name} required={required} defaultValue="" className="h-10 w-full rounded-full border border-border bg-card px-4 text-sm font-semibold text-foreground outline-none focus:border-foreground">
         <option value="" disabled>Select...</option>
         {options.map((o) => <option key={o} value={o}>{o}</option>)}
       </select>
-    </label>
+    </div>
   );
 }
 
