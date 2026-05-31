@@ -1,8 +1,14 @@
-﻿import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { useSEO } from "@/lib/seo";
 
 const NotFound = () => {
   const location = useLocation();
+  useSEO({
+    title: "Page not found (404) — HSO",
+    description:
+      "We couldn't find that page on HSO. Head back to the home page to browse curated high school opportunities — internships, scholarships, research, and more.",
+  });
 
   useEffect(() => {
     console.error("404 Error: User attempted to access non-existent route:", location.pathname);
@@ -22,4 +28,3 @@ const NotFound = () => {
 };
 
 export default NotFound;
-

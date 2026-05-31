@@ -1,7 +1,8 @@
 import { Helmet } from "react-helmet-async";
 
 const SITE_URL = "https://highschoolopportunity.org";
-const DEFAULT_IMAGE = `${SITE_URL}/placeholder.svg`;
+const DEFAULT_IMAGE =
+  "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/0e11dfe0-3788-4791-9d6e-a65bde1d2eac/id-preview-8315797c--1d457116-e22e-435a-848f-964237590be5.lovable.app-1779151559224.png";
 
 export interface SEOProps {
   title: string;
