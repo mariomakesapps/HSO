@@ -1,7 +1,7 @@
 ﻿import { useMemo, useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
-import { useSEO } from "@/lib/seo";
+import { SEO } from "@/components/SEO";
 import { CATEGORY_META, CATEGORY_SLUGS, CategorySlug } from "@/lib/categories";
 import { allOpportunities } from "@/data/opportunities";
 import { OpportunityCard } from "@/components/OpportunityCard";
@@ -12,7 +12,6 @@ const Category = () => {
   const { slug } = useParams<{ slug: CategorySlug }>();
   const meta = slug ? CATEGORY_META[slug] : undefined;
   if (!slug || !meta) return <Navigate to="/" replace />;
-  useSEO({ title: meta.title, description: meta.description });
 
   const [sort, setSort] = useState<SortKey>("recommended");
   const indexMap = useMemo(() => new Map(allOpportunities.map((o, i) => [o.id, i])), []);
@@ -23,6 +22,28 @@ const Category = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title={meta.title}
+        description={meta.description}
+        path={`/categories/${slug}`}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "CollectionPage",
+          name: meta.h1,
+          description: meta.description,
+          url: `https://highschoolopportunity.org/categories/${slug}`,
+          mainEntity: {
+            "@type": "ItemList",
+            numberOfItems: list.length,
+            itemListElement: list.slice(0, 20).map((o, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              url: `https://highschoolopportunity.org/opportunities/${o.id}`,
+              name: o.title,
+            })),
+          },
+        }}
+      />
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Category</p>
         <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-6xl">{meta.h1}</h1>
