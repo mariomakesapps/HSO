@@ -26,6 +26,54 @@ async function ensureUserProfile(session: Session | null) {
     );
 }
 
+/**
+ * Fire-and-forget welcome email for a newly created account.
+ * Sends at most once per user via a localStorage marker keyed by user id,
+ * so logins or session refreshes never re-trigger it.
+ */
+async function sendWelcomeEmailIfNew(session: Session | null) {
+  const user = session?.user;
+  if (!user?.email) return;
+
+  // Only consider this a "new account" if the user was created very recently.
+  // This guards against firing on first sign-in after older accounts auth state restores.
+  const createdAt = user.created_at ? new Date(user.created_at).getTime() : 0;
+  const ageMs = Date.now() - createdAt;
+  if (!createdAt || ageMs > 1000 * 60 * 60 * 24) return; // older than 24h -> skip
+
+  const markerKey = `hso-welcome-sent:${user.id}`;
+  try {
+    if (localStorage.getItem(markerKey)) return;
+    // Mark immediately to avoid races from multiple tabs / auth events.
+    localStorage.setItem(markerKey, "1");
+  } catch {
+    // localStorage unavailable — proceed without dedupe rather than block.
+  }
+
+  const metadata = (user.user_metadata ?? {}) as Record<string, any>;
+  const rawName: string | undefined =
+    metadata.first_name || metadata.given_name || metadata.name || metadata.full_name;
+  const firstName = rawName ? String(rawName).trim().split(/\s+/)[0] : undefined;
+
+  try {
+    const { error } = await supabase.functions.invoke("send-transactional-email", {
+      body: {
+        templateName: "welcome",
+        recipientEmail: user.email,
+        idempotencyKey: `welcome-${user.id}`,
+        templateData: firstName ? { firstName } : {},
+      },
+    });
+    if (error) {
+      if (import.meta.env.DEV) console.error("[welcome email] send failed", error);
+      try { localStorage.removeItem(markerKey); } catch { /* noop */ }
+    }
+  } catch (err) {
+    if (import.meta.env.DEV) console.error("[welcome email] send threw", err);
+    try { localStorage.removeItem(markerKey); } catch { /* noop */ }
+  }
+}
+
 function publishSession(session: Session | null) {
   cachedSession = session;
   store.setUser(session?.user.id ?? null);
@@ -47,6 +95,9 @@ async function initializeAuth() {
     store.setUser(session?.user.id ?? null);
     setTimeout(() => {
       void ensureUserProfile(session);
+      if (_event === "SIGNED_IN") {
+        void sendWelcomeEmailIfNew(session);
+      }
       window.dispatchEvent(new Event(AUTH_EVENT));
     }, 0);
   });
