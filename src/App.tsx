@@ -1,6 +1,6 @@
 import { Suspense, lazy, useEffect } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -26,18 +26,9 @@ const Unsubscribe = lazy(() => import("./pages/Unsubscribe.tsx"));
 
 function PageFallback() {
   return (
-    <div className="mx-auto w-full max-w-[1180px] px-4 py-10 sm:px-6">
-      <div className="hso-glass-panel animate-pulse rounded-[2rem] p-6">
-        <div className="h-3 w-32 rounded-full bg-muted" />
-        <div className="mt-5 h-10 w-3/5 max-w-xl rounded-2xl bg-muted" />
-        <div className="mt-4 h-4 w-4/5 max-w-2xl rounded-full bg-muted" />
-        <div className="mt-8 grid gap-4 md:grid-cols-3">
-          <div className="h-32 rounded-2xl bg-muted/70" />
-          <div className="h-32 rounded-2xl bg-muted/70" />
-          <div className="h-32 rounded-2xl bg-muted/70" />
-        </div>
-      </div>
-    </div>
+    // Reserve a stable chunk of viewport height so the layout doesn't
+    // jump as the lazy route resolves. No skeleton, no flash.
+    <div aria-hidden="true" className="min-h-[70vh]" />
   );
 }
 
@@ -51,6 +42,8 @@ function WarmRouteCache() {
       void import("./pages/Profile.tsx");
       void import("./pages/Submit.tsx");
       void import("./pages/Terms.tsx");
+      void import("./pages/Category.tsx");
+      void import("./pages/OpportunityDetail.tsx");
     };
 
     if ("requestIdleCallback" in window) {
@@ -65,15 +58,24 @@ function WarmRouteCache() {
   return null;
 }
 
-const AppShell = () => (
-  <>
-    <div className="hso-professional-bg" aria-hidden="true" />
-    <div className="relative z-10">
-      <SiteHeader />
-      <Outlet />
-    </div>
-  </>
-);
+const AppShell = () => {
+  const location = useLocation();
+  return (
+    <>
+      <div className="hso-professional-bg" aria-hidden="true" />
+      <div className="relative z-10">
+        <SiteHeader />
+        {/* Suspense lives INSIDE the shell so the header stays mounted
+            during lazy route loads — no nav flicker on page changes. */}
+        <Suspense fallback={<PageFallback />}>
+          <div key={location.pathname} className="hso-route-fade">
+            <Outlet />
+          </div>
+        </Suspense>
+      </div>
+    </>
+  );
+};
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -83,11 +85,17 @@ const App = () => (
       <BrowserRouter>
         <WarmRouteCache />
         <ScrollToTop />
-        <Suspense fallback={<PageFallback />}>
-          <Routes>
-            <Route path="/auth" element={<Auth />} />
-            <Route element={<AppShell />}>
-              <Route path="/" element={<Index />} />
+        <Routes>
+          <Route
+            path="/auth"
+            element={
+              <Suspense fallback={<PageFallback />}>
+                <Auth />
+              </Suspense>
+            }
+          />
+          <Route element={<AppShell />}>
+            <Route path="/" element={<Index />} />
               <Route path="/about" element={<About />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/privacy" element={<Privacy />} />
@@ -101,9 +109,8 @@ const App = () => (
               <Route path="/unsubscribe" element={<Unsubscribe />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
-            </Route>
-          </Routes>
-        </Suspense>
+          </Route>
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
