@@ -30,8 +30,9 @@ async function ensureUserProfile(session: Session | null) {
  * Fire-and-forget welcome email for a newly created account.
  * Sends at most once per user via a localStorage marker keyed by user id,
  * so logins or session refreshes never re-trigger it.
+ * Exported for tests.
  */
-async function sendWelcomeEmailIfNew(session: Session | null) {
+export async function sendWelcomeEmailIfNew(session: Session | null) {
   const user = session?.user;
   if (!user?.email) return;
 
