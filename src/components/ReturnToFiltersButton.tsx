@@ -8,12 +8,28 @@ export function ReturnToFiltersButton({ targetId = "filters-section" }: { target
   useEffect(() => {
     const el = document.getElementById(targetId);
     if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setShow(!entry.isIntersecting && entry.boundingClientRect.top < 0),
-      { rootMargin: "-80px 0px 0px 0px", threshold: 0 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
+    let raf = 0;
+    const compute = () => {
+      raf = 0;
+      // Show once the user has scrolled meaningfully past the top of the
+      // filters section. Using the element's offsetTop keeps this correct
+      // even when the filters panel is sticky on desktop (where the
+      // bounding rect would otherwise stay pinned in view).
+      const threshold = el.offsetTop + 240;
+      setShow(window.scrollY > threshold);
+    };
+    const onScroll = () => {
+      if (raf) return;
+      raf = window.requestAnimationFrame(compute);
+    };
+    compute();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, [targetId]);
 
   const handleClick = () => {
