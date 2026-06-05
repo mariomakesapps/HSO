@@ -2,15 +2,18 @@ import { useEffect, useLayoutEffect, useRef } from "react";
 import { useLocation, useNavigationType } from "react-router-dom";
 
 /**
- * On PUSH/REPLACE navigations: scroll to top.
- * On POP (browser back/forward): restore the previous scroll position
- * for that history entry so users return to exactly where they were.
+ * Scroll behavior:
+ * - Only scroll to top when the pathname truly changes (real route change).
+ * - Ignore search-param and hash changes (filters, tabs, modals, etc.).
+ * - On POP (browser back/forward): restore the previous scroll position
+ *   for that history entry so users return to exactly where they were.
  */
 const ScrollToTop = () => {
   const { key, pathname } = useLocation();
   const navType = useNavigationType();
   const positions = useRef<Map<string, number>>(new Map());
   const prevKey = useRef<string>(key);
+  const prevPathname = useRef<string>(pathname);
 
   // Disable the browser's own scroll restoration; we manage it.
   useEffect(() => {
@@ -35,10 +38,12 @@ const ScrollToTop = () => {
     if (navType === "POP") {
       const y = positions.current.get(key) ?? 0;
       window.scrollTo({ top: y, left: 0, behavior: "auto" });
-    } else {
+      prevPathname.current = pathname;
+    } else if (prevPathname.current !== pathname) {
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      prevPathname.current = pathname;
     }
-    // pathname intentionally included so same-key replacements still reset
+    // Same-pathname changes (search/hash) preserve current scroll position.
   }, [key, pathname, navType]);
 
   return null;
