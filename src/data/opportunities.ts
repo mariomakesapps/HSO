@@ -1,6 +1,7 @@
 import { stateOpportunities } from "@/data/stateOpportunities";
 import { additionalUsOpportunities } from "@/data/additionalUsOpportunities";
 import { generatedBulkOpportunities } from "@/data/generatedBulkOpportunities";
+import { importedVolunteerOpportunities } from "@/data/importedVolunteerOpportunities";
 import { opportunityLinkQuality } from "@/data/linkQuality.generated";
 import { opportunityLinkVerification } from "@/data/linkVerification.generated";
 import { opportunityLinkPrecision } from "@/data/linkPrecision.generated";
