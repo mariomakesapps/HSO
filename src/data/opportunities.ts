@@ -364,6 +364,7 @@ export const opportunities: Opportunity[] = [
   ...additionalUsOpportunities,
   ...stateOpportunities,
   ...generatedBulkOpportunities,
+  ...importedVolunteerOpportunities,
 ];
 
 for (const opportunity of opportunities) {
