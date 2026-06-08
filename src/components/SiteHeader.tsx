@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Bookmark, LogOut, Menu, User as UserIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useShelfCount } from "@/store/collections";
-import { localSignOut, useAuthSession } from "@/hooks/useAuthSession";
+import { authRedirectHref, localSignOut, useAuthSession } from "@/hooks/useAuthSession";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -57,10 +57,13 @@ export function SiteHeader() {
   const close = () => setMenuOpen(false);
   const goAuth = () => {
     const returnTo = location.pathname + location.search;
-    if (returnTo !== "/auth") {
-      sessionStorage.setItem("hso-auth-return-to", returnTo);
+    if (returnTo.startsWith("/auth")) {
+      navigate("/auth");
+      return;
     }
-    navigate("/auth", { state: { returnTo } });
+    // authRedirectHref saves the current scroll position so ScrollToTop can
+    // restore it after the user finishes signing in.
+    navigate(authRedirectHref(returnTo));
   };
 
   const userEmail = session?.user.email ?? "";
