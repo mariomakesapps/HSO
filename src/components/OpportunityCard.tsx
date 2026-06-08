@@ -48,13 +48,24 @@ function OpportunityCardComponent({ opp, index = 0 }: { opp: Opportunity; index?
       ? opp.url
       : `https://duckduckgo.com/?q=${encodeURIComponent(`${opp.title} ${opp.org} high school`)}`;
 
-  const requireAuth = (e: React.MouseEvent) => {
+  const handleFavorite = async () => {
     if (!isAuthed) {
-      e.preventDefault();
-      toast.message("Sign in required", {
-        description: "Create a free account to save opportunities and build folders.",
+      // Do NOT auto-redirect. Show a toast with an explicit action button.
+      toast.message("Sign-in required", {
+        description: "Create a free account to save opportunities to your shelf.",
+        action: {
+          label: "Sign in to save",
+          onClick: () => navigate(authRedirectHref()),
+        },
       });
-      navigate(authRedirectHref(`/opportunities/${opp.id}`));
+      return;
+    }
+    const wasFav = fav;
+    try {
+      await store.toggleFavorite(opp.id);
+      toast.success(wasFav ? "Removed from favorites" : "Saved to My Shelf");
+    } catch (error: any) {
+      toast.error(error?.message ?? "Could not save opportunity");
     }
   };
 
@@ -97,15 +108,10 @@ function OpportunityCardComponent({ opp, index = 0 }: { opp: Opportunity; index?
             variant="ghost"
             size="icon"
             className="h-8 w-8 rounded-full border border-transparent text-muted-foreground/75 transition-[transform,border-color,background-color,color] hover:-translate-y-0.5 hover:border-coral/30 hover:bg-coral/10 hover:text-coral active:scale-[0.96]"
-            onClick={() => {
-              if (!isAuthed) {
-                requireAuth({ preventDefault: () => {} } as React.MouseEvent);
-                return;
-              }
-              void store.toggleFavorite(opp.id).catch((error: any) => {
-                toast.error(error.message ?? "Could not save opportunity");
-              });
-              toast.success(fav ? "Removed from favorites" : "Saved to favorites");
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              void handleFavorite();
             }}
             aria-label={fav ? "Unsave" : "Save"}
           >
