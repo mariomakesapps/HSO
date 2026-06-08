@@ -426,6 +426,49 @@ for (const opportunity of opportunities) {
   }
 }
 
+// Category cleanup pass.
+// Many bulk-imported listings are mis-tagged (e.g., volunteer food-rescue
+// shifts labeled "Scholarship"). Reclassify based on the title + blurb so
+// students don't see service shifts inside the Scholarship tab.
+const SCHOLARSHIP_WORDS =
+  /\b(scholarship|financial aid|tuition (award|grant|funding)?|award money|cash award|college funding|merit (award|scholarship)|need-based (aid|award)|bursary)\b/i;
+const VOLUNTEER_WORDS =
+  /\b(volunteer(s|ing)?|community service|service[- ]learning|food (pantry|bank|rescue|drive)|soup kitchen|meal delivery|bread run|collect bread|redistribut(e|ion)|donation sorting|shelter|cleanup|clean[- ]up|park clean|library (helper|volunteer)|museum volunteer|blood drive|animal shelter|hospice|community outreach|mentor(ing)? volunteer|tutoring volunteer|event support)\b/i;
+
+export function reclassifyCategory(
+  current: Category,
+  title: string,
+  blurb: string,
+): Category {
+  const text = `${title} ${blurb}`;
+  const looksScholarship = SCHOLARSHIP_WORDS.test(text);
+  const looksVolunteer = VOLUNTEER_WORDS.test(text);
+  const titleLooksVolunteer = VOLUNTEER_WORDS.test(title);
+
+  // Title-level volunteer language is a hard signal — a volunteer shift whose
+  // blurb mentions "community service hours toward a scholarship" is still
+  // a volunteer role, not a scholarship.
+  if (titleLooksVolunteer) return "Volunteer";
+
+  // Strong volunteer signal wins over weak/incorrect Scholarship tag.
+  if (looksVolunteer && !looksScholarship) return "Volunteer";
+
+  // Scholarship tag must be backed by money/aid language.
+  if (current === "Scholarship" && !looksScholarship) {
+    return looksVolunteer ? "Volunteer" : "Fellowship";
+  }
+
+  return current;
+}
+
+for (const opportunity of opportunities) {
+  opportunity.category = reclassifyCategory(
+    opportunity.category,
+    opportunity.title,
+    opportunity.blurb,
+  );
+}
+
 // US-focused: keep opportunities available to U.S. high schoolers (USA, Worldwide, Online).
 const US_ELIGIBLE = /(USA|Worldwide|Online|Multiple, USA)/i;
 export const allOpportunities: Opportunity[] = opportunities.filter((o) =>
