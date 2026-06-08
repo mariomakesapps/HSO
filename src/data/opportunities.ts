@@ -433,7 +433,7 @@ for (const opportunity of opportunities) {
 const SCHOLARSHIP_WORDS =
   /\b(scholarship|financial aid|tuition (award|grant|funding)?|award money|cash award|college funding|merit (award|scholarship)|need-based (aid|award)|bursary)\b/i;
 const VOLUNTEER_WORDS =
-  /\b(volunteer(ing)?|community service|service[- ]learning|food (pantry|bank|rescue|drive)|soup kitchen|meal delivery|bread run|collect bread|redistribut(e|ion)|donation sorting|shelter|cleanup|clean[- ]up|park clean|library (helper|volunteer)|museum volunteer|blood drive|animal shelter|hospice|community outreach|mentor(ing)? volunteer|tutoring volunteer|event support)\b/i;
+  /\b(volunteer(s|ing)?|community service|service[- ]learning|food (pantry|bank|rescue|drive)|soup kitchen|meal delivery|bread run|collect bread|redistribut(e|ion)|donation sorting|shelter|cleanup|clean[- ]up|park clean|library (helper|volunteer)|museum volunteer|blood drive|animal shelter|hospice|community outreach|mentor(ing)? volunteer|tutoring volunteer|event support)\b/i;
 
 export function reclassifyCategory(
   current: Category,
