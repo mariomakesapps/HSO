@@ -179,10 +179,9 @@ const Index = () => {
           <FeaturedShelf closingSoon={deadlineSoon} newlyAdded={recentlyAdded} standouts={standouts} />
         </section>
 
-        <section id="results" className="scroll-mt-24">
+        <section id="opportunity-filters" className="scroll-mt-28">
           <div className="mx-auto grid w-full max-w-[1400px] gap-6 px-4 py-10 sm:px-6 lg:grid-cols-[320px_minmax(0,1fr)] lg:py-16">
-            <aside id="filters-section" className="scroll-mt-24 lg:sticky lg:top-24 lg:self-start">
-              <span id="opportunity-filters" aria-hidden="true" className="block" />
+            <aside id="filters-section" className="scroll-mt-28 lg:sticky lg:top-24 lg:self-start">
               <RefinePanel
                 filters={filters}
                 setFilters={setFilters}
@@ -274,7 +273,7 @@ const Index = () => {
         <HowItWorks />
         <TrustBand />
         <SiteFooter />
-        <ReturnToFiltersButton targetId="filters-section" />
+        <ReturnToFiltersButton targetId="opportunity-filters" />
       </main>
     </div>
   );
