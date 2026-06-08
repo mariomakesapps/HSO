@@ -42,6 +42,42 @@ function isStudentFriendlyVolunteer(opp: { title: string; blurb: string; url?: s
 const cleanedVolunteerOpportunities = importedVolunteerOpportunities.filter(
   isStudentFriendlyVolunteer,
 );
+
+// Drop listings whose title/blurb/location reveal a non-U.S. program even when
+// the imported `location` field claims a U.S. state (the volunteer feed often
+// pairs Hong Kong listings with random U.S. cities).
+const NON_US_PATTERNS: RegExp[] = [
+  /\bhong kong\b/i,
+  /\bfortress hill\b/i,
+  /\bkowloon\b/i,
+  /\bwan chai\b/i,
+  /\bcauseway bay\b/i,
+  /\bmong kok\b/i,
+  /\btsim sha tsui\b/i,
+  /\bsha tin\b/i,
+  /\btseung kwan o\b/i,
+  /\bwhampoa\b/i,
+  /\badmiralty,? hk\b/i,
+  /\bhk island\b/i,
+  /\bhkfoodworks\b/i,
+  /\bfeeding hong kong\b/i,
+  /\bhandsonhongkong\b/i,
+  /\b(london|manchester|birmingham|edinburgh|glasgow)\b/i,
+  /\b(toronto|vancouver|montreal|ottawa|calgary)\b/i,
+  /\b(sydney|melbourne|brisbane|perth)\b/i,
+  /\b(singapore|mumbai|delhi|bangalore|chennai|kolkata)\b/i,
+  /\b(united kingdom|u\.k\.|\buk\b)\b/i,
+  /\b(canada|australia|india|new zealand|ireland|scotland)\b/i,
+  /\b(europe|asia|africa|south america)\b/i,
+];
+function isUsBased(opp: { title: string; blurb: string; location: string; url?: string }) {
+  const haystack = `${opp.title} ${opp.blurb} ${opp.location} ${opp.url ?? ""}`;
+  for (const re of NON_US_PATTERNS) {
+    if (re.test(haystack)) return false;
+  }
+  return true;
+}
+const usOnlyVolunteerOpportunities = cleanedVolunteerOpportunities.filter(isUsBased);
 import { opportunityLinkQuality } from "@/data/linkQuality.generated";
 import { opportunityLinkVerification } from "@/data/linkVerification.generated";
 import { opportunityLinkPrecision } from "@/data/linkPrecision.generated";
@@ -404,7 +440,7 @@ export const opportunities: Opportunity[] = [
   ...additionalUsOpportunities,
   ...stateOpportunities,
   ...generatedBulkOpportunities,
-  ...cleanedVolunteerOpportunities,
+  ...usOnlyVolunteerOpportunities,
 ];
 
 for (const opportunity of opportunities) {
@@ -472,7 +508,7 @@ for (const opportunity of opportunities) {
 // US-focused: keep opportunities available to U.S. high schoolers (USA, Worldwide, Online).
 const US_ELIGIBLE = /(USA|Worldwide|Online|Multiple, USA)/i;
 export const allOpportunities: Opportunity[] = opportunities.filter((o) =>
-  US_ELIGIBLE.test(o.location)
+  US_ELIGIBLE.test(o.location) && isUsBased(o)
 );
 
 // Map a US location string to a state-like filter bucket.
