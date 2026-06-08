@@ -443,6 +443,12 @@ export function reclassifyCategory(
   const text = `${title} ${blurb}`;
   const looksScholarship = SCHOLARSHIP_WORDS.test(text);
   const looksVolunteer = VOLUNTEER_WORDS.test(text);
+  const titleLooksVolunteer = VOLUNTEER_WORDS.test(title);
+
+  // Title-level volunteer language is a hard signal — a volunteer shift whose
+  // blurb mentions "community service hours toward a scholarship" is still
+  // a volunteer role, not a scholarship.
+  if (titleLooksVolunteer) return "Volunteer";
 
   // Strong volunteer signal wins over weak/incorrect Scholarship tag.
   if (looksVolunteer && !looksScholarship) return "Volunteer";
