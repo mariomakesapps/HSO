@@ -139,12 +139,24 @@ const OpportunityDetail = () => {
               <a href={opp.url} target="_blank" rel="noopener noreferrer" className="inline-flex w-full max-w-full items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-bold text-cream shadow-[0_18px_36px_-26px_hsl(var(--ink)/0.7)] transition-transform hover:-translate-y-0.5 hover:bg-coral hover:text-coral-foreground active:scale-[0.98] sm:w-auto sm:justify-start">
                 Visit official program <ExternalLink className="h-4 w-4" />
               </a>
-              <Button variant="outline" className="w-full rounded-full border-white/65 bg-card/72 font-bold shadow-[inset_0_1px_0_hsl(0_0%_100%/0.72)] transition-transform hover:-translate-y-0.5 active:scale-[0.98] sm:w-auto" onClick={() => {
-                if (!user) { navigate(authRedirectHref(`/opportunities/${opp.id}`)); return; }
-                void store.toggleFavorite(opp.id).catch((error: any) => {
-                  toast.error(error.message ?? "Could not save opportunity");
-                });
-                toast.success(fav ? "Removed from favorites" : "Saved to favorites");
+              <Button variant="outline" className="w-full rounded-full border-white/65 bg-card/72 font-bold shadow-[inset_0_1px_0_hsl(0_0%_100%/0.72)] transition-transform hover:-translate-y-0.5 active:scale-[0.98] sm:w-auto" onClick={async () => {
+                if (!user) {
+                  toast.message("Sign-in required", {
+                    description: "Create a free account to save opportunities to your shelf.",
+                    action: {
+                      label: "Sign in to save",
+                      onClick: () => navigate(authRedirectHref(`/opportunities/${opp.id}`)),
+                    },
+                  });
+                  return;
+                }
+                const wasFav = fav;
+                try {
+                  await store.toggleFavorite(opp.id);
+                  toast.success(wasFav ? "Removed from favorites" : "Saved to My Shelf");
+                } catch (error: any) {
+                  toast.error(error?.message ?? "Could not save opportunity");
+                }
               }}>
                 {fav ? <BookmarkCheck className="mr-2 h-4 w-4 text-coral" /> : <Bookmark className="mr-2 h-4 w-4" />}
                 {fav ? "Saved" : "Save"}

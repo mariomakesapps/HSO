@@ -40,7 +40,30 @@ const ScrollToTop = () => {
       window.scrollTo({ top: y, left: 0, behavior: "auto" });
       prevPathname.current = pathname;
     } else if (prevPathname.current !== pathname) {
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      // If we just returned from /auth, restore the scroll position the
+      // user had before they were sent to sign in.
+      let restored = false;
+      try {
+        const raw = sessionStorage.getItem("hso-auth-return-scroll");
+        if (raw) {
+          const saved = JSON.parse(raw) as { path?: string; y?: number };
+          const here = pathname + window.location.search;
+          if (
+            saved?.path &&
+            typeof saved.y === "number" &&
+            (saved.path === here || saved.path === pathname || here.startsWith(saved.path))
+          ) {
+            window.scrollTo({ top: saved.y, left: 0, behavior: "auto" });
+            restored = true;
+          }
+          sessionStorage.removeItem("hso-auth-return-scroll");
+        }
+      } catch {
+        /* ignore */
+      }
+      if (!restored) {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }
       prevPathname.current = pathname;
     }
     // Same-pathname changes (search/hash) preserve current scroll position.

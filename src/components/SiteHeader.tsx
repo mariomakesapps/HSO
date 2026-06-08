@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Bookmark, LogOut, Menu, User as UserIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useShelfCount } from "@/store/collections";
-import { localSignOut, useAuthSession } from "@/hooks/useAuthSession";
+import { authRedirectHref, localSignOut, useAuthSession } from "@/hooks/useAuthSession";
 import { cn } from "@/lib/utils";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -57,10 +57,13 @@ export function SiteHeader() {
   const close = () => setMenuOpen(false);
   const goAuth = () => {
     const returnTo = location.pathname + location.search;
-    if (returnTo !== "/auth") {
-      sessionStorage.setItem("hso-auth-return-to", returnTo);
+    if (returnTo.startsWith("/auth")) {
+      navigate("/auth");
+      return;
     }
-    navigate("/auth", { state: { returnTo } });
+    // authRedirectHref saves the current scroll position so ScrollToTop can
+    // restore it after the user finishes signing in.
+    navigate(authRedirectHref(returnTo));
   };
 
   const userEmail = session?.user.email ?? "";
@@ -80,7 +83,27 @@ export function SiteHeader() {
             scrolled && "shadow-[inset_0_1px_0_hsl(0_0%_100%/0.76),0_18px_56px_-36px_hsl(var(--ink)/0.58)]",
           )}
         >
-          <Link to="/" aria-label="HSO - High School Opportunity" className="group flex shrink-0 items-center font-display text-xl font-black leading-none tracking-tight sm:text-2xl">
+          <Link
+            to="/"
+            aria-label="HSO - High School Opportunity"
+            onClick={(e) => {
+              // If already on the homepage, prevent navigation noise and just
+              // scroll smoothly to the top. Otherwise let the router navigate
+              // normally — ScrollToTop will reset position.
+              if (location.pathname === "/") {
+                e.preventDefault();
+                const prefersReduced = window.matchMedia(
+                  "(prefers-reduced-motion: reduce)",
+                ).matches;
+                window.scrollTo({
+                  top: 0,
+                  left: 0,
+                  behavior: prefersReduced ? "auto" : "smooth",
+                });
+              }
+            }}
+            className="group flex shrink-0 items-center font-display text-xl font-black leading-none tracking-tight sm:text-2xl"
+          >
             <span className="text-ink">H</span>
             <span className="hso-reveal hidden md:inline"><span className="hso-reveal-inner text-ink">igh&nbsp;</span></span>
             <span className="text-coral">S</span>

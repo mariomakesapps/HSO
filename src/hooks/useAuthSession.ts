@@ -195,6 +195,14 @@ export function authRedirectHref(returnTo?: string) {
   const path = candidate.startsWith("/") && !candidate.startsWith("/auth") ? candidate : "/";
   if (typeof window !== "undefined") {
     sessionStorage.setItem("hso-auth-return-to", path);
+    try {
+      sessionStorage.setItem(
+        "hso-auth-return-scroll",
+        JSON.stringify({ path, y: window.scrollY }),
+      );
+    } catch {
+      /* ignore storage errors */
+    }
   }
   return `/auth?redirect=${encodeURIComponent(path)}`;
 }

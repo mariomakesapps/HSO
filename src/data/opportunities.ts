@@ -2,6 +2,46 @@ import { stateOpportunities } from "@/data/stateOpportunities";
 import { additionalUsOpportunities } from "@/data/additionalUsOpportunities";
 import { generatedBulkOpportunities } from "@/data/generatedBulkOpportunities";
 import { importedVolunteerOpportunities } from "@/data/importedVolunteerOpportunities";
+
+// Heuristic cleanup for the bulk-imported volunteer feed. Removes one-off
+// labor shifts (sports tournaments, race-day, parking, warehouse), adult-only
+// roles, listings with broken/empty links, and listings that don't read as
+// meaningful opportunities for high school students.
+const VOLUNTEER_BLOCK_PATTERNS: RegExp[] = [
+  /\b3v3\b/i,
+  /\b4v4\b/i,
+  /\b5v5\b/i,
+  /\bbartend(er|ing)\b/i,
+  /\b21\+\b/,
+  /\b18\+\b/,
+  /must be (18|21)/i,
+  /adults?\s*only/i,
+  /\bwarehouse\b/i,
+  /\bload[- ]?(in|out)\b/i,
+  /\bparking attendant\b/i,
+  /\brace[- ]day\b/i,
+  /\btournament shift\b/i,
+];
+const VOLUNTEER_KEEP_KEYWORDS = [
+  "teen", "youth", "student", "high school", "highschool", "mentor", "tutor",
+  "school", "education", "learn", "kid", "child", "library", "museum",
+  "conservation", "environment", "leadership", "service", "service-learning",
+  "hospital", "animal", "food bank", "garden", "park", "community", "literacy",
+  "college access", "arts", "music", "science", "stem", "civic", "health",
+  "mentorship", "tutoring",
+];
+function isStudentFriendlyVolunteer(opp: { title: string; blurb: string; url?: string; fields?: string[] }) {
+  const url = (opp.url ?? "").trim();
+  if (!url || url === "#") return false;
+  const haystack = `${opp.title} ${opp.blurb} ${(opp.fields ?? []).join(" ")}`.toLowerCase();
+  for (const re of VOLUNTEER_BLOCK_PATTERNS) {
+    if (re.test(opp.title) || re.test(opp.blurb)) return false;
+  }
+  return VOLUNTEER_KEEP_KEYWORDS.some((k) => haystack.includes(k));
+}
+const cleanedVolunteerOpportunities = importedVolunteerOpportunities.filter(
+  isStudentFriendlyVolunteer,
+);
 import { opportunityLinkQuality } from "@/data/linkQuality.generated";
 import { opportunityLinkVerification } from "@/data/linkVerification.generated";
 import { opportunityLinkPrecision } from "@/data/linkPrecision.generated";
@@ -364,7 +404,7 @@ export const opportunities: Opportunity[] = [
   ...additionalUsOpportunities,
   ...stateOpportunities,
   ...generatedBulkOpportunities,
-  ...importedVolunteerOpportunities,
+  ...cleanedVolunteerOpportunities,
 ];
 
 for (const opportunity of opportunities) {
