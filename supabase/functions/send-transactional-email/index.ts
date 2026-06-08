@@ -25,9 +25,10 @@ function generateToken(): string {
     .join('')
 }
 
-// Auth note: this function uses verify_jwt = true in config.toml, so Supabase's
-// gateway validates the caller's JWT (anon or service_role) before the request
-// reaches this code. No in-function auth check is needed.
+// Auth note: verify_jwt = true in config.toml validates the JWT signature at
+// the gateway, but that includes the public anon key. To prevent abuse of our
+// email-sending infrastructure by unauthenticated actors, we additionally
+// require the caller to present an authenticated end-user or service-role JWT.
 
 Deno.serve(async (req) => {
   // Handle CORS preflight
@@ -46,6 +47,39 @@ Deno.serve(async (req) => {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       }
+    )
+  }
+
+  // Require an authenticated caller (end-user or service-role). Reject anon JWTs.
+  const authHeader = req.headers.get('Authorization') ?? ''
+  const token = authHeader.toLowerCase().startsWith('bearer ')
+    ? authHeader.slice(7).trim()
+    : ''
+  if (!token) {
+    return new Response(
+      JSON.stringify({ error: 'Authentication required' }),
+      { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+    )
+  }
+  try {
+    const [, payloadB64] = token.split('.')
+    const padded = payloadB64 + '='.repeat((4 - (payloadB64.length % 4)) % 4)
+    const claims = JSON.parse(
+      atob(padded.replace(/-/g, '+').replace(/_/g, '/'))
+    ) as { role?: string; sub?: string }
+    const role = claims.role
+    const isServiceRole = role === 'service_role'
+    const isAuthenticatedUser = role === 'authenticated' && !!claims.sub
+    if (!isServiceRole && !isAuthenticatedUser) {
+      return new Response(
+        JSON.stringify({ error: 'Authenticated user required' }),
+        { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      )
+    }
+  } catch {
+    return new Response(
+      JSON.stringify({ error: 'Invalid authorization token' }),
+      { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     )
   }
 
