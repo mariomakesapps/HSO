@@ -25,6 +25,8 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { FilterDropdown } from "@/components/FilterDropdown";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ReturnToFiltersButton } from "@/components/ReturnToFiltersButton";
+import { Pagination } from "@/components/Pagination";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { applyFilters, applySort } from "@/lib/filterSort";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { cn } from "@/lib/utils";
@@ -76,9 +78,13 @@ const Index = () => {
   const [sort, setSort] = useState<SortKey>(
     (searchParams.get("sort") as SortKey) || "recommended",
   );
-  const [visible, setVisible] = useState(48);
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const loadMoreRef = useRef<HTMLDivElement | null>(null);
+  const isMobile = useIsMobile();
+  const pageSize = isMobile ? 12 : 24;
+  const [page, setPage] = useState(() => {
+    const raw = Number(searchParams.get("page"));
+    return Number.isFinite(raw) && raw > 0 ? Math.floor(raw) : 1;
+  });
   const deferredFilters = useDeferredValue(filters);
   const deferredExtra = useDeferredValue(extra);
   const deferredSort = useDeferredValue(sort);
@@ -88,11 +94,22 @@ const Index = () => {
     () => applySort(applyFilters(opportunities, deferredFilters, deferredExtra), deferredSort, indexMap),
     [deferredFilters, deferredExtra, deferredSort, indexMap],
   );
-  const shown = filtered.slice(0, visible);
+  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+  const safePage = Math.min(page, totalPages);
+  const shown = useMemo(
+    () => filtered.slice((safePage - 1) * pageSize, safePage * pageSize),
+    [filtered, safePage, pageSize],
+  );
 
+  // Reset to page 1 whenever filters/sort change.
   useEffect(() => {
-    setVisible(48);
+    setPage(1);
   }, [deferredFilters, deferredExtra, deferredSort]);
+
+  // Clamp page if filtered set shrinks below the current page.
+  useEffect(() => {
+    if (page > totalPages) setPage(totalPages);
+  }, [page, totalPages]);
 
   // Sync state -> URL (replace so we don't pollute history).
   useEffect(() => {
@@ -112,23 +129,19 @@ const Index = () => {
     if (extra.freeOnly) p.set("free", "1");
     if (extra.deadlineMonth !== "All") p.set("month", extra.deadlineMonth);
     if (sort !== "recommended") p.set("sort", sort);
+    if (safePage > 1) p.set("page", String(safePage));
     setSearchParams(p, { replace: true });
-  }, [filters, extra, sort, setSearchParams]);
+  }, [filters, extra, sort, safePage, setSearchParams]);
 
-  useEffect(() => {
-    const target = loadMoreRef.current;
-    if (!target || visible >= filtered.length) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible((current) => Math.min(current + 48, filtered.length));
-        }
-      },
-      { rootMargin: "700px 0px" },
-    );
-    observer.observe(target);
-    return () => observer.disconnect();
-  }, [filtered.length, visible]);
+  const goToPage = (next: number) => {
+    const clamped = Math.min(Math.max(1, next), totalPages);
+    setPage(clamped);
+    window.requestAnimationFrame(() => {
+      document
+        .getElementById("opportunity-results")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  };
 
   const deadlineSoon = useMemo(
     () =>
@@ -247,24 +260,24 @@ const Index = () => {
                   setExtra(DEFAULT_EXTRA);
                 }} />
               ) : (
-                <>
+                <div id="opportunity-results" className="scroll-mt-28">
                   <div className="mt-6 grid grid-cols-1 gap-4 xl:grid-cols-2">
                     {shown.map((o, i) => (
                       <OpportunityCard key={o.id} opp={o} index={i} />
                     ))}
                   </div>
-                  {visible < filtered.length && (
-                    <div ref={loadMoreRef} className="mt-10 flex justify-center">
-                      <Button
-                        onClick={() => setVisible((v) => Math.min(v + 48, filtered.length))}
-                        className="h-12 rounded-full bg-ink px-7 text-cream shadow-[0_18px_36px_-24px_hsl(var(--ink)/0.55)] transition-transform hover:-translate-y-0.5 hover:bg-coral active:translate-y-0"
-                      >
-                        Load more
-                        <span className="ml-2 text-cream/70">{(filtered.length - visible).toLocaleString()} left</span>
-                      </Button>
-                    </div>
-                  )}
-                </>
+                  <p className="mt-6 text-center text-xs font-medium text-muted-foreground">
+                    Showing {((safePage - 1) * pageSize + 1).toLocaleString()}–
+                    {Math.min(safePage * pageSize, filtered.length).toLocaleString()} of{" "}
+                    {filtered.length.toLocaleString()}
+                  </p>
+                  <Pagination
+                    page={safePage}
+                    totalPages={totalPages}
+                    onChange={goToPage}
+                    isMobile={isMobile}
+                  />
+                </div>
               )}
             </div>
           </div>
