@@ -667,6 +667,14 @@ export type Database = {
           updated_at: string
         }[]
       }
+      get_curated_collection_counts: {
+        Args: never
+        Returns: {
+          curated_id: string
+          like_count: number
+          save_count: number
+        }[]
+      }
       move_to_dlq: {
         Args: {
           dlq_name: string
