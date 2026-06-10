@@ -29,6 +29,12 @@ const Submit = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
+    if (String(fd.get("website") || "").trim() !== "") {
+      toast.success("Thanks - submitted for review.");
+      (e.target as HTMLFormElement).reset();
+      setGrades([9, 10, 11, 12]);
+      return;
+    }
     const raw = {
       title: String(fd.get("title") || ""),
       org: String(fd.get("org") || ""),
@@ -47,14 +53,20 @@ const Submit = () => {
       return;
     }
     setSubmitting(true);
-    const payload = { ...parsed.data, deadline: parsed.data.deadline || null };
-    const { error } = await (supabase as any).from("opportunity_submissions").insert(payload);
+    const dbPayload = { ...parsed.data, deadline: parsed.data.deadline || null };
+    const [dbResult, emailResult] = await Promise.all([
+      (supabase as any).from("opportunity_submissions").insert(dbPayload),
+      supabase.functions.invoke("send-form-notification", {
+        body: { type: "opportunity", ...parsed.data, deadline: parsed.data.deadline || "" },
+      }),
+    ]);
     setSubmitting(false);
-    if (error) {
-      toast.error(error.message ?? "Could not submit opportunity");
+    if (emailResult.error) {
+      console.error("Submit email failed", emailResult.error, dbResult?.error);
+      toast.error("Something went wrong. Please try again or email us directly at highschoolopportunity@gmail.com.");
       return;
     }
-    toast.success("Thanks - submitted for review.");
+    toast.success("Thanks — your submission was sent.");
     (e.target as HTMLFormElement).reset();
     setGrades([9, 10, 11, 12]);
   };
@@ -71,6 +83,15 @@ const Submit = () => {
         <p className="mt-3 text-muted-foreground">Help other students. Submissions are saved to the HSO backend for review.</p>
 
         <form onSubmit={onSubmit} className="hso-glass-panel mt-8 space-y-5 rounded-[1.75rem] p-5 sm:p-6">
+          {/* Honeypot — hidden from real users */}
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="hidden"
+          />
           <Field label="Program name" name="title" required />
           <Field label="Organization" name="org" required />
           <Row>
