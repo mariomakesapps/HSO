@@ -37,16 +37,6 @@ const CATEGORY_STRIP: Record<string, string> = {
   Fellowship: "bg-coral",
 };
 
-const COST_LABEL: Record<string, string> = {
-  Free: "Free",
-  Paid: "Fee-based",
-  Stipend: "Earns stipend",
-};
-
-function costLabel(cost: string) {
-  return COST_LABEL[cost] ?? cost;
-}
-
 function OpportunityCardComponent({ opp, index = 0 }: { opp: Opportunity; index?: number }) {
   const { isAuthed } = useAuthSession();
   const navigate = useNavigate();
@@ -142,7 +132,7 @@ function OpportunityCardComponent({ opp, index = 0 }: { opp: Opportunity; index?
       <div className="relative mt-5 grid grid-cols-2 gap-x-3 gap-y-2 border-t border-border/70 pt-4 text-[11px] font-medium text-muted-foreground">
         <Meta icon={<MapPin className="h-3.5 w-3.5" />}>{opp.location}</Meta>
         {opp.format && <Meta icon={<Monitor className="h-3.5 w-3.5" />}>{opp.format}</Meta>}
-        <Meta icon={<DollarSign className="h-3.5 w-3.5" />}>{costLabel(opp.cost)}</Meta>
+        <Meta icon={<DollarSign className="h-3.5 w-3.5" />}>{opp.cost}</Meta>
         <Meta icon={<GraduationCap className="h-3.5 w-3.5" />}>
           Gr {opp.grades[0]}-{opp.grades[opp.grades.length - 1]}
         </Meta>
