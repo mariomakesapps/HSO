@@ -37,6 +37,16 @@ const CATEGORY_STRIP: Record<string, string> = {
   Fellowship: "bg-coral",
 };
 
+const COST_LABEL: Record<string, string> = {
+  Free: "Free",
+  Paid: "Fee-based",
+  Stipend: "Earns stipend",
+};
+
+function costLabel(cost: string) {
+  return COST_LABEL[cost] ?? cost;
+}
+
 function OpportunityCardComponent({ opp, index = 0 }: { opp: Opportunity; index?: number }) {
   const { isAuthed } = useAuthSession();
   const navigate = useNavigate();
