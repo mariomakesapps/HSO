@@ -58,7 +58,7 @@ export function Filters({ value, onChange }: { value: FilterState; onChange: (v:
       {/* Desktop / tablet: inline pills */}
       <div className="hidden flex-wrap gap-2 md:flex">
         <Select label="Grade" value={String(value.grade)} options={[["All","All"],["9","9th"],["10","10th"],["11","11th"],["12","12th"]]} onChange={(v) => onChange({ ...value, grade: v === "All" ? "All" : Number(v) })} />
-        <Select label="Cost" value={value.cost} options={[["All","All"],["Free","Free"],["Paid","Paid"],["Stipend","Stipend / Paid to me"]]} onChange={(v) => onChange({ ...value, cost: v as FilterState["cost"] })} />
+        <Select label="Cost" value={value.cost} options={[["All","All"],["Free","Free"],["Paid","Fee-based"],["Stipend","Earns stipend"]]} onChange={(v) => onChange({ ...value, cost: v as FilterState["cost"] })} />
         <Select label="Format" value={value.format} options={[["All","All"],["In-person","In-person"],["Online","Online"],["Hybrid","Hybrid"]]} onChange={(v) => onChange({ ...value, format: v as FilterState["format"] })} />
       </div>
 
@@ -82,7 +82,7 @@ export function Filters({ value, onChange }: { value: FilterState; onChange: (v:
             </SheetHeader>
             <div className="mt-4 space-y-3">
               <SheetSelect label="Grade" value={String(value.grade)} options={[["All","All"],["9","9th"],["10","10th"],["11","11th"],["12","12th"]]} onChange={(v) => onChange({ ...value, grade: v === "All" ? "All" : Number(v) })} />
-              <SheetSelect label="Cost" value={value.cost} options={[["All","All"],["Free","Free"],["Paid","Paid"],["Stipend","Stipend / Paid"]]} onChange={(v) => onChange({ ...value, cost: v as FilterState["cost"] })} />
+              <SheetSelect label="Cost" value={value.cost} options={[["All","All"],["Free","Free"],["Paid","Fee-based"],["Stipend","Earns stipend"]]} onChange={(v) => onChange({ ...value, cost: v as FilterState["cost"] })} />
               <SheetSelect label="Format" value={value.format} options={[["All","All"],["In-person","In-person"],["Online","Online"],["Hybrid","Hybrid"]]} onChange={(v) => onChange({ ...value, format: v as FilterState["format"] })} />
             </div>
             <SheetFooter className="mt-6 flex-row gap-2">
