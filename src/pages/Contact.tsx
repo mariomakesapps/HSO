@@ -22,6 +22,12 @@ const Contact = () => {
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
+    // Honeypot — bots tend to fill every field
+    if (String(fd.get("website") || "").trim() !== "") {
+      toast.success("Thanks - message sent.");
+      (e.target as HTMLFormElement).reset();
+      return;
+    }
     const raw = {
       reason: String(fd.get("reason") || "") as any,
       email: String(fd.get("email") || ""),
@@ -34,14 +40,21 @@ const Contact = () => {
       return;
     }
     setSubmitting(true);
-    const payload = { ...parsed.data, related_url: parsed.data.related_url || null };
-    const { error } = await (supabase as any).from("contact_messages").insert(payload);
+    const dbPayload = { ...parsed.data, related_url: parsed.data.related_url || null };
+    // Store a record (best-effort) and notify the team via email.
+    const [dbResult, emailResult] = await Promise.all([
+      (supabase as any).from("contact_messages").insert(dbPayload),
+      supabase.functions.invoke("send-form-notification", {
+        body: { type: "contact", ...parsed.data },
+      }),
+    ]);
     setSubmitting(false);
-    if (error) {
-      toast.error(error.message ?? "Could not send message");
+    if (emailResult.error) {
+      console.error("Contact email failed", emailResult.error, dbResult?.error);
+      toast.error("Something went wrong. Please try again or email us directly at highschoolopportunity@gmail.com.");
       return;
     }
-    toast.success("Thanks - message sent.");
+    toast.success("Thanks — your message was sent.");
     (e.target as HTMLFormElement).reset();
   };
 
@@ -53,6 +66,15 @@ const Contact = () => {
         <p className="mt-3 text-muted-foreground">Spotted an outdated deadline or a broken link? Tell us and it will be saved to the HSO backend.</p>
 
         <form onSubmit={onSubmit} className="hso-glass-panel mt-8 space-y-5 rounded-[1.75rem] p-5 sm:p-6">
+          {/* Honeypot — hidden from real users */}
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            className="hidden"
+          />
           <div className="block">
             <label htmlFor="contact-reason" className="mb-1.5 block text-sm font-semibold">Reason *</label>
             <select id="contact-reason" name="reason" required defaultValue="" className="h-10 w-full rounded-full border border-border bg-card px-4 text-sm font-semibold text-foreground outline-none focus:border-foreground">
