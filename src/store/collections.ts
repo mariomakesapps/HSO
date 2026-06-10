@@ -5,6 +5,7 @@ type State = {
   favorites: string[];
   savedCurated: string[];
   likedCurated: string[];
+  curatedCounts: Record<string, { likes: number; saves: number }>;
   loading: boolean;
   error: string | null;
 };
@@ -17,6 +18,7 @@ let state: State = {
   favorites: [],
   savedCurated: [],
   likedCurated: [],
+  curatedCounts: {},
   loading: false,
   error: null,
 };
@@ -69,6 +71,28 @@ export function useCuratedLikedStatus(curatedId: string) {
     () => state.likedCurated.includes(curatedId),
     () => state.likedCurated.includes(curatedId),
   );
+}
+
+export function useCuratedCounts() {
+  return useSyncExternalStore(subscribe, () => state.curatedCounts, () => state.curatedCounts);
+}
+
+export async function loadCuratedCounts() {
+  try {
+    const { data, error } = await (supabase as any).rpc("get_curated_collection_counts");
+    if (error || !Array.isArray(data)) return;
+    const next: Record<string, { likes: number; saves: number }> = {};
+    for (const row of data as any[]) {
+      if (!row?.curated_id) continue;
+      next[row.curated_id] = {
+        likes: Number(row.like_count ?? 0),
+        saves: Number(row.save_count ?? 0),
+      };
+    }
+    setState({ curatedCounts: next });
+  } catch {
+    // silent — counts are non-critical
+  }
 }
 
 async function loadCloudState() {
@@ -142,12 +166,15 @@ export const store = {
     const exists = state.savedCurated.includes(curatedId);
     const previous = state.savedCurated;
     const next = exists ? previous.filter((x) => x !== curatedId) : [...previous, curatedId];
-    setState({ savedCurated: next });
+    const prevCounts = state.curatedCounts;
+    const prevCount = prevCounts[curatedId] ?? { likes: 0, saves: 0 };
+    const nextCount = { ...prevCount, saves: Math.max(0, prevCount.saves + (exists ? -1 : 1)) };
+    setState({ savedCurated: next, curatedCounts: { ...prevCounts, [curatedId]: nextCount } });
     const result = exists
       ? await db.from("curated_collection_saves").delete().eq("user_id", uid).eq("curated_id", curatedId)
       : await db.from("curated_collection_saves").upsert({ user_id: uid, curated_id: curatedId }, { onConflict: "user_id,curated_id" });
     if (result.error) {
-      setState({ savedCurated: previous });
+      setState({ savedCurated: previous, curatedCounts: prevCounts });
       throw result.error;
     }
   },
@@ -157,12 +184,15 @@ export const store = {
     const exists = state.likedCurated.includes(curatedId);
     const previous = state.likedCurated;
     const next = exists ? previous.filter((x) => x !== curatedId) : [...previous, curatedId];
-    setState({ likedCurated: next });
+    const prevCounts = state.curatedCounts;
+    const prevCount = prevCounts[curatedId] ?? { likes: 0, saves: 0 };
+    const nextCount = { ...prevCount, likes: Math.max(0, prevCount.likes + (exists ? -1 : 1)) };
+    setState({ likedCurated: next, curatedCounts: { ...prevCounts, [curatedId]: nextCount } });
     const result = exists
       ? await db.from("curated_collection_likes").delete().eq("user_id", uid).eq("curated_id", curatedId)
       : await db.from("curated_collection_likes").upsert({ user_id: uid, curated_id: curatedId }, { onConflict: "user_id,curated_id" });
     if (result.error) {
-      setState({ likedCurated: previous });
+      setState({ likedCurated: previous, curatedCounts: prevCounts });
       throw result.error;
     }
   },

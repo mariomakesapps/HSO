@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { ArrowLeft, Bookmark, BookmarkCheck, Heart, Lock } from "lucide-react";
 import { toast } from "sonner";
@@ -7,8 +7,14 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { OpportunityCard } from "@/components/OpportunityCard";
 import { allOpportunities } from "@/data/opportunities";
 import { getCuratedCollection } from "@/data/curatedCollections";
-import { authRedirectHref, useAuthSession } from "@/hooks/useAuthSession";
-import { store, useCuratedLikedStatus, useCuratedSavedStatus } from "@/store/collections";
+import { useAuthSession } from "@/hooks/useAuthSession";
+import {
+  loadCuratedCounts,
+  store,
+  useCuratedCounts,
+  useCuratedLikedStatus,
+  useCuratedSavedStatus,
+} from "@/store/collections";
 import { useSEO } from "@/lib/seo";
 
 const CuratedCollectionDetail = () => {
@@ -18,6 +24,10 @@ const CuratedCollectionDetail = () => {
   const collection = id ? getCuratedCollection(id) : undefined;
   const saved = useCuratedSavedStatus(collection?.id ?? "");
   const liked = useCuratedLikedStatus(collection?.id ?? "");
+  const counts = useCuratedCounts();
+  const likeCount = collection ? counts[collection.id]?.likes ?? 0 : 0;
+
+  useEffect(() => { void loadCuratedCounts(); }, []);
 
   useSEO({
     title: collection ? `${collection.title} - HSO Collection` : "Collection - HSO",
@@ -26,9 +36,16 @@ const CuratedCollectionDetail = () => {
       "Browse a curated HSO collection of high school opportunities — internships, research programs, scholarships, competitions, and summer programs hand-picked by editors.",
   });
 
-  const opportunities = useMemo(
+  const allOpps = useMemo(
     () => (collection?.opportunityIds ?? []).map((oid) => allOpportunities.find((o) => o.id === oid)).filter(Boolean),
     [collection],
+  );
+
+  const [filterCat, setFilterCat] = useState<string>("All");
+  const cats = useMemo(() => Array.from(new Set(allOpps.map((o: any) => o.category))), [allOpps]);
+  const opportunities = useMemo(
+    () => filterCat === "All" ? allOpps : allOpps.filter((o: any) => o.category === filterCat),
+    [allOpps, filterCat],
   );
 
   const goBack = () => {
@@ -54,16 +71,24 @@ const CuratedCollectionDetail = () => {
     );
   }
 
-  const requireAuth = () => navigate(authRedirectHref(`/collections/${collection.id}`));
+  const requireSignIn = () => {
+    toast.error("Sign-in required", {
+      description: "Create a free HSO account to like or save collections.",
+      action: {
+        label: "Sign in",
+        onClick: () => navigate(`/auth?redirect=${encodeURIComponent(`/collections/${collection.id}`)}`),
+      },
+    });
+  };
 
   const onSave = () => {
-    if (!user) return requireAuth();
+    if (!user) return requireSignIn();
     void store.toggleCuratedSave(collection.id)
       .then(() => toast.success(saved ? "Removed from your shelf" : "Saved to your shelf"))
       .catch((err: any) => toast.error(err.message ?? "Could not save collection"));
   };
   const onLike = () => {
-    if (!user) return requireAuth();
+    if (!user) return requireSignIn();
     void store.toggleCuratedLike(collection.id)
       .catch((err: any) => toast.error(err.message ?? "Could not update like"));
   };
@@ -92,18 +117,30 @@ const CuratedCollectionDetail = () => {
                 {saved ? "Saved" : "Save to shelf"}
               </Button>
               <Button onClick={onLike} variant="outline" className="rounded-full">
-                <Heart className={`mr-2 h-4 w-4 ${liked ? "fill-coral text-coral" : ""}`} /> {liked ? "Liked" : "Like"}
+                <Heart className={`mr-2 h-4 w-4 ${liked ? "fill-coral text-coral" : ""}`} />
+                {liked ? "Liked" : "Like"} · {likeCount}
               </Button>
             </div>
           </div>
         </section>
 
         <section className="mt-8">
-          <div className="flex items-end justify-between gap-4">
+          <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-sage">In this collection</p>
-              <h2 className="font-display text-3xl font-semibold text-ink">{opportunities.length} opportunities</h2>
+              <h2 className="font-display text-3xl font-semibold text-ink">{opportunities.length} of {allOpps.length} opportunities</h2>
             </div>
+            {cats.length > 1 && (
+              <select
+                value={filterCat}
+                onChange={(e) => setFilterCat(e.target.value)}
+                className="rounded-lg border border-border bg-background px-3 py-2 text-sm font-semibold text-ink"
+                aria-label="Filter by type"
+              >
+                <option value="All">All types</option>
+                {cats.map((c) => <option key={c as string} value={c as string}>{c as string}</option>)}
+              </select>
+            )}
           </div>
           {opportunities.length ? (
             <div className="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
