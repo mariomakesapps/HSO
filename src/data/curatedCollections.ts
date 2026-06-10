@@ -7,6 +7,8 @@ export type CuratedCollection = {
   intended_majors: string[];
   categories: string[];
   opportunityIds: string[];
+  career_path?: string;
+  is_active?: boolean;
 };
 
 export type CuratedSection = {
@@ -24,7 +26,8 @@ const c = (
   intended_majors: string[],
   categories: string[],
   opportunityIds: string[],
-): CuratedCollection => ({ id, title, description, cover_gradient: gradient, tags, intended_majors, categories, opportunityIds });
+  career_path?: string,
+): CuratedCollection => ({ id, title, description, cover_gradient: gradient, tags, intended_majors, categories, opportunityIds, career_path, is_active: true });
 
 export const curatedSections: CuratedSection[] = [
   {
