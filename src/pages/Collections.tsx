@@ -4,6 +4,7 @@ import { Bookmark, BookmarkCheck, Heart } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { SiteFooter } from "@/components/SiteFooter";
+import { FilterDropdown, type DropdownOption } from "@/components/FilterDropdown";
 import { useSEO } from "@/lib/seo";
 import { useAuthSession } from "@/hooks/useAuthSession";
 import {
@@ -14,6 +15,7 @@ import {
   intendedMajors,
   type CuratedCollection,
 } from "@/data/curatedCollections";
+import { allOpportunities, locationState } from "@/data/opportunities";
 import {
   loadCuratedCounts,
   store,
@@ -29,6 +31,32 @@ const SORTS: { key: SortKey; label: string }[] = [
   { key: "most-liked", label: "Most liked" },
   { key: "most-saved", label: "Most saved" },
 ];
+
+const toOptions = (values: string[]): DropdownOption[] => [
+  { value: "All", label: "All" },
+  ...values.map((v) => ({ value: v, label: v })),
+];
+
+// Precompute the set of US states represented by each curated collection so we
+// can filter by location without scanning opportunities on every keystroke.
+const opportunityById = new Map(allOpportunities.map((o) => [o.id, o]));
+const collectionStates = new Map<string, Set<string>>();
+const collectionHasFree = new Map<string, boolean>();
+for (const c of curatedCollections) {
+  const states = new Set<string>();
+  let hasFree = false;
+  for (const oid of c.opportunityIds) {
+    const o = opportunityById.get(oid);
+    if (!o) continue;
+    states.add(locationState(o.location));
+    if (o.cost === "Free" || o.cost === "Stipend") hasFree = true;
+  }
+  collectionStates.set(c.id, states);
+  collectionHasFree.set(c.id, hasFree);
+}
+const ALL_LOCATIONS = Array.from(
+  new Set(curatedCollections.flatMap((c) => Array.from(collectionStates.get(c.id) ?? []))),
+).sort();
 
 function signInRequiredToast(navigate: ReturnType<typeof useNavigate>, returnTo: string) {
   toast.error("Sign-in required", {
@@ -55,6 +83,8 @@ export default function Collections() {
   const [major, setMajor] = useState<string>("All");
   const [career, setCareer] = useState<string>("All");
   const [type, setType] = useState<string>("All");
+  const [location, setLocation] = useState<string>("All");
+  const [freeOnly, setFreeOnly] = useState<boolean>(false);
   const [sort, setSort] = useState<SortKey>("featured");
 
   const filtered = useMemo<CuratedCollection[]>(() => {
@@ -63,6 +93,8 @@ export default function Collections() {
       if (major !== "All" && !c.intended_majors.includes(major)) return false;
       if (career !== "All" && c.career_path !== career) return false;
       if (type !== "All" && !c.categories.includes(type)) return false;
+      if (location !== "All" && !(collectionStates.get(c.id)?.has(location))) return false;
+      if (freeOnly && !collectionHasFree.get(c.id)) return false;
       return true;
     });
     if (sort === "most-liked") {
@@ -72,9 +104,16 @@ export default function Collections() {
       return base.slice().sort((a, b) => (counts[b.id]?.saves ?? 0) - (counts[a.id]?.saves ?? 0));
     }
     return base;
-  }, [major, career, type, sort, counts]);
+  }, [major, career, type, location, freeOnly, sort, counts]);
 
-  const filtersActive = major !== "All" || career !== "All" || type !== "All" || sort !== "featured";
+  const filtersActive =
+    major !== "All" || career !== "All" || type !== "All" ||
+    location !== "All" || freeOnly || sort !== "featured";
+
+  const resetFilters = () => {
+    setMajor("All"); setCareer("All"); setType("All");
+    setLocation("All"); setFreeOnly(false); setSort("featured");
+  };
 
   return (
     <div className="min-h-screen text-foreground">
@@ -92,31 +131,73 @@ export default function Collections() {
           </div>
         </section>
 
-        <div className="mt-8 rounded-[1.5rem] border border-border bg-card/70 p-4 sm:p-5">
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <FilterSelect label="Major" value={major} onChange={setMajor} options={intendedMajors} />
-            <FilterSelect label="Career path" value={career} onChange={setCareer} options={careerPaths} />
-            <FilterSelect label="Type" value={type} onChange={setType} options={collectionCategories} />
-            <div>
-              <label className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">Sort</label>
-              <select
-                value={sort}
-                onChange={(e) => setSort(e.target.value as SortKey)}
-                className="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm font-semibold text-ink"
-              >
-                {SORTS.map((s) => <option key={s.key} value={s.key}>{s.label}</option>)}
-              </select>
-            </div>
+        <div className="mt-8 rounded-[1.5rem] border border-border/70 bg-cream/80 px-3 py-3 shadow-soft backdrop-blur-sm sm:px-4 sm:py-4">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+            <FilterDropdown
+              label="Major"
+              value={major}
+              onChange={setMajor}
+              options={toOptions(intendedMajors)}
+              searchable
+              searchPlaceholder="Search majors"
+              className="w-full sm:w-auto"
+              fullWidth
+            />
+            <FilterDropdown
+              label="Career"
+              value={career}
+              onChange={setCareer}
+              options={toOptions(careerPaths)}
+              className="w-full sm:w-auto"
+              fullWidth
+            />
+            <FilterDropdown
+              label="Type"
+              value={type}
+              onChange={setType}
+              options={toOptions(collectionCategories)}
+              className="w-full sm:w-auto"
+              fullWidth
+            />
+            <FilterDropdown
+              label="Location"
+              value={location}
+              onChange={setLocation}
+              options={toOptions(ALL_LOCATIONS)}
+              searchable
+              searchPlaceholder="Search states"
+              className="w-full sm:w-auto"
+              fullWidth
+            />
+            <FilterDropdown
+              label="Sort"
+              value={sort}
+              onChange={(v) => setSort(v as SortKey)}
+              options={SORTS.map((s) => ({ value: s.key, label: s.label }))}
+              className="w-full sm:w-auto"
+              fullWidth
+              align="end"
+            />
+            <button
+              type="button"
+              onClick={() => setFreeOnly((v) => !v)}
+              aria-pressed={freeOnly}
+              className={
+                "inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border px-4 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-coral/40 sm:h-10 sm:w-auto " +
+                (freeOnly
+                  ? "border-coral/60 bg-coral/10 text-coral"
+                  : "border-border/80 bg-card/90 text-ink hover:border-ink/30")
+              }
+            >
+              <span className={"inline-block h-2 w-2 rounded-full " + (freeOnly ? "bg-coral" : "bg-muted-foreground/40")} />
+              Free only
+            </button>
           </div>
           <div className="mt-3 flex items-center justify-between text-xs text-muted-foreground">
             <span>{filtered.length} {filtered.length === 1 ? "collection" : "collections"}</span>
             {filtersActive && (
-              <button
-                type="button"
-                onClick={() => { setMajor("All"); setCareer("All"); setType("All"); setSort("featured"); }}
-                className="font-semibold text-coral hover:underline"
-              >
-                Reset
+              <button type="button" onClick={resetFilters} className="font-semibold text-coral hover:underline">
+                Reset filters
               </button>
             )}
           </div>
@@ -162,22 +243,6 @@ export default function Collections() {
         )}
       </main>
       <SiteFooter />
-    </div>
-  );
-}
-
-function FilterSelect({ label, value, onChange, options }: { label: string; value: string; onChange: (v: string) => void; options: string[] }) {
-  return (
-    <div>
-      <label className="text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">{label}</label>
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm font-semibold text-ink"
-      >
-        <option value="All">All</option>
-        {options.map((o) => <option key={o} value={o}>{o}</option>)}
-      </select>
     </div>
   );
 }
