@@ -22,7 +22,7 @@ const schema = z.object({
 });
 
 const Submit = () => {
-  useSEO({ title: "Submit an opportunity - HSO", description: "Suggest a high school opportunity for HSO's curated directory." });
+  useSEO({ title: "Submit an Opportunity | HSO", description: "Suggest a U.S.-based high school opportunity for HSO's curated directory of internships, scholarships, research, and summer programs." });
   const [submitting, setSubmitting] = useState(false);
   const [grades, setGrades] = useState<number[]>([9, 10, 11, 12]);
 

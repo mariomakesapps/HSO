@@ -2,7 +2,7 @@
 import { useSEO } from "@/lib/seo";
 
 const Terms = () => {
-  useSEO({ title: "Terms  -  HSO", description: "Terms of use for HSO. Always confirm program details on official sites." });
+  useSEO({ title: "Terms of Use | HSO", description: "Terms of use for HSO. Always confirm program details on the official opportunity websites we link to." });
   return (
     <div className="min-h-screen">
       <main className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">

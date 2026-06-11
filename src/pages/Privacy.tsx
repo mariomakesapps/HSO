@@ -2,7 +2,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { useSEO } from "@/lib/seo";
 
 const Privacy = () => {
-  useSEO({ title: "Privacy - HSO", description: "How HSO handles accounts, saved favorites, collections, and sign-in data." });
+  useSEO({ title: "Privacy Policy | HSO", description: "How HSO handles accounts, saved favorites, collections, and sign-in data for high school students." });
   return (
     <div className="min-h-screen">
       <main className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">

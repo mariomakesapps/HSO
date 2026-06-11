@@ -16,7 +16,7 @@ const schema = z.object({
 });
 
 const Contact = () => {
-  useSEO({ title: "Contact & corrections - HSO", description: "Report an outdated deadline, broken link, or missing opportunity, or get in touch with HSO." });
+  useSEO({ title: "Contact HSO | High School Opportunity", description: "Report an outdated deadline, broken link, or missing opportunity, or get in touch with the HSO team." });
   const [submitting, setSubmitting] = useState(false);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
