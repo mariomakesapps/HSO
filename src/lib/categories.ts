@@ -35,7 +35,7 @@ export const CATEGORY_META: Record<CategorySlug, {
     title: "Scholarships for High School Students — HSO",
     h1: "Scholarships for high school students",
     intro: "Merit, need-based, and identity-focused scholarships you can apply to before or during senior year.",
-    description: "Browse merit, need-based, and identity-focused scholarships open to high school students worldwide.",
+    description: "Browse merit, need-based, and identity-focused scholarships open to U.S. high school students.",
   },
   research: {
     category: "Research",
@@ -48,15 +48,15 @@ export const CATEGORY_META: Record<CategorySlug, {
     category: "Competition",
     title: "Academic Competitions for High Schoolers — HSO",
     h1: "Academic competitions for high schoolers",
-    intro: "Olympiads, science fairs, writing contests, and entrepreneurship challenges with global reach.",
-    description: "Find olympiads, science fairs, writing contests, and entrepreneurship competitions for high schoolers.",
+    intro: "Olympiads, science fairs, writing contests, and entrepreneurship challenges open to U.S. high school students.",
+    description: "Find olympiads, science fairs, writing contests, and entrepreneurship competitions for U.S. high schoolers.",
   },
   volunteer: {
     category: "Volunteer",
     title: "Volunteer Opportunities for High Schoolers — HSO",
     h1: "Volunteer opportunities for high schoolers",
-    intro: "Service, conservation, and community programs — local and global.",
-    description: "Service, conservation, and global community volunteer opportunities for high school students.",
+    intro: "Service, conservation, and community programs across the United States.",
+    description: "U.S.-based service, conservation, and community volunteer opportunities for high school students.",
   },
   fellowships: {
     category: "Fellowship",

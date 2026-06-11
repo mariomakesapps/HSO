@@ -172,7 +172,7 @@ const Index = () => {
     <div className="relative min-h-screen overflow-x-hidden text-foreground">
       <SEO
         title="HSO | High School Opportunity"
-        description="Find high school internships, research programs, scholarships, competitions, volunteer opportunities, and summer programs across the U.S."
+        description="Find U.S.-based internships, scholarships, research programs, competitions, volunteer opportunities, and summer programs for high school students."
         path="/"
         jsonLd={{
           "@context": "https://schema.org",

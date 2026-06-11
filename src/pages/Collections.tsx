@@ -70,8 +70,8 @@ function signInRequiredToast(navigate: ReturnType<typeof useNavigate>, returnTo:
 
 export default function Collections() {
   useSEO({
-    title: "Curated Collections - HSO",
-    description: "Hand-picked opportunity lists for different majors, careers, and goals.",
+    title: "Curated Collections | HSO",
+    description: "HSO-curated lists of U.S.-based high school opportunities, hand-picked by major, career path, and goal.",
   });
 
   useEffect(() => {

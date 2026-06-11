@@ -26,23 +26,34 @@ const Category = () => {
         title={meta.title}
         description={meta.description}
         path={`/categories/${slug}`}
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "CollectionPage",
-          name: meta.h1,
-          description: meta.description,
-          url: `https://highschoolopportunity.org/categories/${slug}`,
-          mainEntity: {
-            "@type": "ItemList",
-            numberOfItems: list.length,
-            itemListElement: list.slice(0, 20).map((o, i) => ({
-              "@type": "ListItem",
-              position: i + 1,
-              url: `https://highschoolopportunity.org/opportunities/${o.id}`,
-              name: o.title,
-            })),
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            name: meta.h1,
+            description: meta.description,
+            url: `https://highschoolopportunity.org/categories/${slug}`,
+            mainEntity: {
+              "@type": "ItemList",
+              numberOfItems: list.length,
+              itemListElement: list.slice(0, 20).map((o, i) => ({
+                "@type": "ListItem",
+                position: i + 1,
+                url: `https://highschoolopportunity.org/opportunities/${o.id}`,
+                name: o.title,
+              })),
+            },
           },
-        }}
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "HSO", item: "https://highschoolopportunity.org/" },
+              { "@type": "ListItem", position: 2, name: "Categories", item: "https://highschoolopportunity.org/" },
+              { "@type": "ListItem", position: 3, name: meta.h1, item: `https://highschoolopportunity.org/categories/${slug}` },
+            ],
+          },
+        ]}
       />
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Category</p>
