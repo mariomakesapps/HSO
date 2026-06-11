@@ -70,6 +70,13 @@ const OpportunityDetail = () => {
     .filter((o) => o.id !== opp.id && (o.category === opp.category || o.fields.some((f) => opp.fields.includes(f))))
     .slice(0, 3);
 
+  // SEO quality gate: only index opportunity pages that are U.S.-eligible, have a
+  // working direct link, complete core fields, and are not flagged for review.
+  const hasCoreFields = !!(opp.title && opp.org && opp.location && opp.blurb);
+  const linkOk =
+    !!opp.url && opp.url.startsWith("http") && opp.url !== "#" && opp.link_quality !== "broken";
+  const seoNoindex = !hasCoreFields || !linkOk || opp.requiresReview === true;
+
   const toggleInterval = async (n: number) => {
     if (!user) { toast.info("Sign in to save reminders"); navigate(authRedirectHref(`/opportunities/${opp.id}`)); return; }
     const next = intervals.includes(n) ? intervals.filter((x) => x !== n) : [...intervals, n].sort((a,b) => b-a);
@@ -91,19 +98,31 @@ const OpportunityDetail = () => {
     <div className="min-h-screen text-foreground">
       <SEO
         title={`${opp.title} | HSO`}
-        description={`View details, eligibility, deadline, cost, and official link for ${opp.title} by ${opp.org}.`}
+        description={`${opp.title} by ${opp.org} — eligibility, deadline, cost, and the official application link for this U.S. high school opportunity.`}
         path={`/opportunities/${opp.id}`}
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "EducationalOccupationalProgram",
-          name: opp.title,
-          description: opp.blurb,
-          url: `https://highschoolopportunity.org/opportunities/${opp.id}`,
-          provider: { "@type": "Organization", name: opp.org },
-          educationalProgramMode: opp.format,
-          occupationalCategory: opp.category,
-          ...(opp.deadline ? { applicationDeadline: opp.deadline } : {}),
-        }}
+        noindex={seoNoindex}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "EducationalOccupationalProgram",
+            name: opp.title,
+            description: opp.blurb,
+            url: `https://highschoolopportunity.org/opportunities/${opp.id}`,
+            provider: { "@type": "Organization", name: opp.org },
+            educationalProgramMode: opp.format,
+            occupationalCategory: opp.category,
+            ...(opp.deadline ? { applicationDeadline: opp.deadline } : {}),
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "HSO", item: "https://highschoolopportunity.org/" },
+              { "@type": "ListItem", position: 2, name: opp.category, item: "https://highschoolopportunity.org/" },
+              { "@type": "ListItem", position: 3, name: opp.title, item: `https://highschoolopportunity.org/opportunities/${opp.id}` },
+            ],
+          },
+        ]}
       />
       <main className="mx-auto w-full max-w-[1100px] overflow-hidden px-3 py-10 sm:px-6 sm:py-14">
         <section className="hso-detail-shell hso-glass-panel hso-surface-grid relative mx-auto max-w-full overflow-hidden rounded-[1.75rem] p-5 sm:rounded-[2rem] sm:p-8">
