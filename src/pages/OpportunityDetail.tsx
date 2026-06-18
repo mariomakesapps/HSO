@@ -7,6 +7,7 @@ import { allOpportunities } from "@/data/opportunities";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { OpportunityCard } from "@/components/OpportunityCard";
 import { Button } from "@/components/ui/button";
+import { slugForCategory, CATEGORY_META } from "@/lib/categories";
 import { store, useStore } from "@/store/collections";
 import { toast } from "sonner";
 import { authRedirectHref, useAuthSession } from "@/hooks/useAuthSession";
@@ -97,8 +98,8 @@ const OpportunityDetail = () => {
   return (
     <div className="min-h-screen text-foreground">
       <SEO
-        title={`${opp.title} | HSO`}
-        description={`${opp.title} by ${opp.org} — eligibility, deadline, cost, and the official application link for this U.S. high school opportunity.`}
+        title={`${opp.title} — ${opp.category} for High School Students | HSO`}
+        description={`${opp.title} by ${opp.org}: ${opp.category.toLowerCase()} for high school students in ${opp.location}. Eligibility, deadline, cost, and the official application link.`}
         path={`/opportunities/${opp.id}`}
         noindex={seoNoindex}
         jsonLd={[
