@@ -61,21 +61,24 @@ Deno.serve(async (req) => {
       { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
     )
   }
+  let callerIsServiceRole = false
+  let callerEmail: string | null = null
   try {
     const [, payloadB64] = token.split('.')
     const padded = payloadB64 + '='.repeat((4 - (payloadB64.length % 4)) % 4)
     const claims = JSON.parse(
       atob(padded.replace(/-/g, '+').replace(/_/g, '/'))
-    ) as { role?: string; sub?: string }
+    ) as { role?: string; sub?: string; email?: string }
     const role = claims.role
-    const isServiceRole = role === 'service_role'
+    callerIsServiceRole = role === 'service_role'
     const isAuthenticatedUser = role === 'authenticated' && !!claims.sub
-    if (!isServiceRole && !isAuthenticatedUser) {
+    if (!callerIsServiceRole && !isAuthenticatedUser) {
       return new Response(
         JSON.stringify({ error: 'Authenticated user required' }),
         { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     }
+    callerEmail = typeof claims.email === 'string' ? claims.email.toLowerCase() : null
   } catch {
     return new Response(
       JSON.stringify({ error: 'Invalid authorization token' }),
@@ -149,6 +152,19 @@ Deno.serve(async (req) => {
         headers: { ...corsHeaders, 'Content-Type': 'application/json' },
       }
     )
+  }
+
+  // For end-user callers, restrict recipient to:
+  //  - the template's fixed `to` (e.g., admin notification destinations), or
+  //  - the caller's own authenticated email address.
+  // Service role bypasses this — it is used for system-initiated sends.
+  if (!callerIsServiceRole && !template.to) {
+    if (!callerEmail || effectiveRecipient.toLowerCase() !== callerEmail) {
+      return new Response(
+        JSON.stringify({ error: 'Recipient must match the authenticated user' }),
+        { status: 403, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+      )
+    }
   }
 
   // Create Supabase client with service role (bypasses RLS)
