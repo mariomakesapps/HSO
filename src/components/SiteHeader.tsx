@@ -79,7 +79,7 @@ export function SiteHeader() {
       <header className="fixed inset-x-0 top-0 z-[100] w-full px-2 pt-2 transition-transform duration-300">
         <div
           className={cn(
-            "hso-nav-shell mx-auto flex h-14 max-w-[1400px] items-center justify-between gap-2 rounded-2xl px-4 md:grid md:h-auto md:grid-cols-[1fr_auto_1fr] md:rounded-[1.35rem] md:px-4 md:py-2.5",
+            "hso-nav-shell mx-auto flex h-16 max-w-[1400px] items-center justify-between gap-2 overflow-visible rounded-2xl px-4 md:grid md:h-auto md:grid-cols-[1fr_auto_1fr] md:rounded-[1.35rem] md:px-4 md:py-2.5",
             scrolled && "shadow-[inset_0_1px_0_hsl(0_0%_100%/0.76),0_18px_56px_-36px_hsl(var(--ink)/0.58)]",
           )}
         >
@@ -102,7 +102,7 @@ export function SiteHeader() {
                 });
               }
             }}
-            className="group flex shrink-0 items-center font-display text-xl font-black leading-none tracking-tight sm:text-2xl"
+            className="group flex shrink-0 items-center overflow-visible py-1 font-display text-xl font-black leading-[1.15] tracking-tight sm:text-2xl"
           >
             <span className="text-ink">H</span>
             <span className="hso-reveal hidden md:inline"><span className="hso-reveal-inner text-ink">igh&nbsp;</span></span>
@@ -258,7 +258,7 @@ export function SiteHeader() {
         </div>
       </header>
       {/* Spacer to offset fixed header height */}
-      <div aria-hidden="true" className="h-[64px] md:h-[76px]" />
+      <div aria-hidden="true" className="h-[72px] md:h-[76px]" />
       {shelfPanelLoaded && (
         <Suspense fallback={null}>
           <CollectionsPanel open={showShelf} onOpenChange={setShowShelf} />
