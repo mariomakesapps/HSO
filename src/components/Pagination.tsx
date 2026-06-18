@@ -1,5 +1,12 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface Props {
   page: number;
@@ -28,11 +35,42 @@ export function Pagination({ page, totalPages, onChange, isMobile }: Props) {
   const baseBtn =
     "inline-flex items-center justify-center h-10 min-w-10 px-3 rounded-full border text-sm font-bold transition-[transform,border-color,background-color,color] disabled:cursor-not-allowed disabled:opacity-40 hover:-translate-y-0.5 active:translate-y-0";
 
+  const pageOptions = Array.from({ length: totalPages }, (_, i) => i + 1);
+  const handleJump = (value: string) => {
+    const n = parseInt(value, 10);
+    if (Number.isNaN(n)) return;
+    const clamped = Math.min(Math.max(1, n), totalPages);
+    if (clamped !== page) onChange(clamped);
+  };
+
+  const pagePicker = (
+    <div className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-card/72 px-3 py-1.5 text-sm font-bold text-ink shadow-[inset_0_1px_0_hsl(0_0%_100%/0.65)] backdrop-blur-md">
+      <span className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Go to</span>
+      <Select value={String(page)} onValueChange={handleJump}>
+        <SelectTrigger
+          aria-label="Jump to page"
+          className="h-8 w-[5.25rem] rounded-full border-ink/15 bg-cream/80 px-3 text-sm font-bold text-ink focus:ring-coral/40 focus:ring-offset-0"
+        >
+          <SelectValue />
+        </SelectTrigger>
+        <SelectContent className="max-h-72 rounded-2xl border-border/60 bg-cream/95 backdrop-blur-md">
+          {pageOptions.map((p) => (
+            <SelectItem key={p} value={String(p)} className="rounded-xl text-sm font-medium">
+              Page {p}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+      <span className="text-xs font-medium text-muted-foreground">of {totalPages}</span>
+    </div>
+  );
+
   return (
     <nav
       aria-label="Opportunity pagination"
-      className="mt-10 flex flex-wrap items-center justify-center gap-2"
+      className="mt-10 flex flex-col items-center justify-center gap-3"
     >
+      <div className="flex flex-wrap items-center justify-center gap-2">
       <button
         type="button"
         aria-label="Go to previous page"
@@ -87,6 +125,8 @@ export function Pagination({ page, totalPages, onChange, isMobile }: Props) {
         <span className="mr-1 hidden sm:inline">Next</span>
         <ChevronRight className="h-4 w-4" aria-hidden />
       </button>
+      </div>
+      {pagePicker}
     </nav>
   );
 }
