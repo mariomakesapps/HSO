@@ -7,6 +7,7 @@ import { allOpportunities } from "@/data/opportunities";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { OpportunityCard } from "@/components/OpportunityCard";
 import { Button } from "@/components/ui/button";
+import { slugForCategory, CATEGORY_META } from "@/lib/categories";
 import { store, useStore } from "@/store/collections";
 import { toast } from "sonner";
 import { authRedirectHref, useAuthSession } from "@/hooks/useAuthSession";
@@ -97,8 +98,8 @@ const OpportunityDetail = () => {
   return (
     <div className="min-h-screen text-foreground">
       <SEO
-        title={`${opp.title} | HSO`}
-        description={`${opp.title} by ${opp.org} — eligibility, deadline, cost, and the official application link for this U.S. high school opportunity.`}
+        title={`${opp.title} — ${opp.category} for High School Students | HSO`}
+        description={`${opp.title} by ${opp.org}: ${opp.category.toLowerCase()} for high school students in ${opp.location}. Eligibility, deadline, cost, and the official application link.`}
         path={`/opportunities/${opp.id}`}
         noindex={seoNoindex}
         jsonLd={[
@@ -209,6 +210,31 @@ const OpportunityDetail = () => {
             </div>
           </section>
         )}
+
+        {(() => {
+          const catSlug = slugForCategory(opp.category);
+          if (!catSlug) return null;
+          const catMeta = CATEGORY_META[catSlug];
+          return (
+            <section className="mt-12">
+              <div className="hso-glass-panel rounded-3xl p-6 sm:p-8">
+                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Keep exploring</p>
+                <h2 className="mt-2 font-display text-2xl font-semibold text-ink">
+                  Browse more {catMeta.h1.toLowerCase()}
+                </h2>
+                <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+                  {catMeta.intro}
+                </p>
+                <Link
+                  to={`/categories/${catSlug}`}
+                  className="mt-5 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-cream transition-transform hover:-translate-y-0.5 hover:bg-coral"
+                >
+                  See all {catMeta.h1.toLowerCase()}
+                </Link>
+              </div>
+            </section>
+          );
+        })()}
       </main>
       <SiteFooter />
     </div>

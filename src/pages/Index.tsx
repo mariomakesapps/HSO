@@ -31,6 +31,7 @@ import { applyFilters, applySort } from "@/lib/filterSort";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { cn } from "@/lib/utils";
 import { SEO } from "@/components/SEO";
+import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
 
 const CATEGORY_CHIPS: (Category | "All")[] = [
   "All",
@@ -171,8 +172,8 @@ const Index = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden text-foreground">
       <SEO
-        title="HSO | High School Opportunity"
-        description="Find U.S.-based internships, scholarships, research programs, competitions, volunteer opportunities, and summer programs for high school students."
+        title="High School Internships, Summer Programs & Scholarships | HSO"
+        description="HSO is the free U.S. opportunity finder for high school students — internships, summer programs, scholarships, research, competitions, and volunteer opportunities, all curated and deadline-tracked."
         path="/"
         jsonLd={{
           "@context": "https://schema.org",
@@ -285,6 +286,7 @@ const Index = () => {
 
         <HowItWorks />
         <TrustBand />
+        <PopularSearches />
         <SiteFooter />
         <ReturnToFiltersButton targetId="opportunity-filters" />
       </main>
@@ -789,6 +791,38 @@ function Badge({ icon, label }: { icon: React.ReactNode; label: string }) {
       <span className="text-coral">{icon}</span>
       {label}
     </span>
+  );
+}
+
+function PopularSearches() {
+  return (
+    <section className="border-t border-border/55 bg-cream/30">
+      <div className="mx-auto max-w-[1400px] px-4 py-12 sm:px-6 lg:py-16">
+        <p className="text-xs font-bold uppercase tracking-[0.22em] text-sage">Popular searches</p>
+        <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
+          Students also look for
+        </h2>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          Jump straight into the most-searched lanes — every category is filtered, deadline-tracked, and links straight to the official program.
+        </p>
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {CATEGORY_SLUGS.map((s) => (
+            <Link
+              key={s}
+              to={`/categories/${s}`}
+              className="hso-elevated-surface group flex flex-col rounded-2xl p-5 transition-transform hover:-translate-y-0.5"
+            >
+              <span className="font-display text-lg font-semibold text-ink group-hover:text-coral">
+                {CATEGORY_META[s].h1}
+              </span>
+              <span className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                {CATEGORY_META[s].intro}
+              </span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }
 
