@@ -31,6 +31,7 @@ import { applyFilters, applySort } from "@/lib/filterSort";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { cn } from "@/lib/utils";
 import { SEO } from "@/components/SEO";
+import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
 
 const CATEGORY_CHIPS: (Category | "All")[] = [
   "All",
@@ -285,6 +286,7 @@ const Index = () => {
 
         <HowItWorks />
         <TrustBand />
+        <PopularSearches />
         <SiteFooter />
         <ReturnToFiltersButton targetId="opportunity-filters" />
       </main>
