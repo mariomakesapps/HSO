@@ -210,6 +210,31 @@ const OpportunityDetail = () => {
             </div>
           </section>
         )}
+
+        {(() => {
+          const catSlug = slugForCategory(opp.category);
+          if (!catSlug) return null;
+          const catMeta = CATEGORY_META[catSlug];
+          return (
+            <section className="mt-12">
+              <div className="hso-glass-panel rounded-3xl p-6 sm:p-8">
+                <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Keep exploring</p>
+                <h2 className="mt-2 font-display text-2xl font-semibold text-ink">
+                  Browse more {catMeta.h1.toLowerCase()}
+                </h2>
+                <p className="mt-2 text-base leading-relaxed text-muted-foreground">
+                  {catMeta.intro}
+                </p>
+                <Link
+                  to={`/categories/${catSlug}`}
+                  className="mt-5 inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-cream transition-transform hover:-translate-y-0.5 hover:bg-coral"
+                >
+                  See all {catMeta.h1.toLowerCase()}
+                </Link>
+              </div>
+            </section>
+          );
+        })()}
       </main>
       <SiteFooter />
     </div>
