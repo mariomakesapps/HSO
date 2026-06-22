@@ -340,7 +340,7 @@ function Hero({
           </div>
 
           <div className="hso-glass-panel mt-9 grid max-w-full grid-cols-3 items-stretch overflow-hidden rounded-[1.35rem] px-2 py-4 sm:max-w-2xl sm:px-3">
-            <Metric value={`${opportunities.length}+`} label="Programs" />
+            <Metric value="3500+" label="Programs" sub="(and growing!)" />
             <Metric value="50" label="States" />
             <Metric value="Official" label="Links" />
           </div>
@@ -426,10 +426,11 @@ function WorkflowStep({ index, label }: { index: string; label: string }) {
   );
 }
 
-function Metric({ value, label }: { value: string; label: string }) {
+function Metric({ value, label, sub }: { value: string; label: string; sub?: string }) {
   return (
     <div className="relative flex min-w-0 flex-col items-center justify-center px-2 text-center after:absolute after:right-0 after:top-1/2 after:hidden after:h-12 after:w-px after:-translate-y-1/2 after:bg-border/70 last:after:hidden min-[420px]:after:block sm:px-4">
       <p className="max-w-full truncate font-display text-[1.35rem] font-semibold leading-none text-ink sm:text-2xl">{value}</p>
+      {sub && <p className="mt-0.5 max-w-full truncate text-[9px] font-bold text-coral sm:text-[11px]">{sub}</p>}
       <p className="mt-2 max-w-full truncate text-[9px] font-bold uppercase tracking-[0.16em] text-muted-foreground sm:text-xs sm:tracking-[0.18em]">{label}</p>
     </div>
   );
