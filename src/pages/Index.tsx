@@ -430,7 +430,7 @@ function Metric({ value, label, sub }: { value: string; label: string; sub?: str
   return (
     <div className="relative flex min-w-0 flex-col items-center justify-center px-2 text-center after:absolute after:right-0 after:top-1/2 after:hidden after:h-12 after:w-px after:-translate-y-1/2 after:bg-border/70 last:after:hidden min-[420px]:after:block sm:px-4">
       <p className="max-w-full truncate font-display text-[1.35rem] font-semibold leading-none text-ink sm:text-2xl">{value}</p>
-      {sub && <p className="mt-0.5 max-w-full truncate text-[9px] font-bold text-[hsl(var(--coral))] sm:text-[11px]">{sub}</p>}
+      {sub && <p className="mt-0.5 max-w-full truncate text-[9px] font-bold text-coral sm:text-[11px]">{sub}</p>}
       <p className="mt-2 max-w-full truncate text-[9px] font-bold uppercase tracking-[0.16em] text-muted-foreground sm:text-xs sm:tracking-[0.18em]">{label}</p>
     </div>
   );
