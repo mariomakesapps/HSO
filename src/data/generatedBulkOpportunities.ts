@@ -10931,30 +10931,6 @@ export const generatedBulkOpportunities: Opportunity[] = [
     "url": "https://www.our415.org/services/1251"
   },
   {
-    "id": "sf-our415-2401-education",
-    "title": "Education - Archbishop Riordan High School",
-    "org": "Archbishop Riordan High School",
-    "category": "Scholarship",
-    "fields": [
-      "San Francisco",
-      "College Access",
-      "Education"
-    ],
-    "location": "San Francisco, California, USA",
-    "format": "In-person",
-    "cost": "Paid",
-    "grades": [
-      9,
-      10,
-      11,
-      12
-    ],
-    "deadline": null,
-    "prestige": 1,
-    "blurb": "Serves: Highschool Fee based, with Financial Aid Program Categories: Education. Focus: Tutoring and Homework Help.",
-    "url": "https://www.our415.org/services/2401"
-  },
-  {
     "id": "sf-our415-1864-education",
     "title": "Education - Arise Educational Center",
     "org": "Arise Educational Center",
@@ -15163,30 +15139,6 @@ export const generatedBulkOpportunities: Opportunity[] = [
     "url": "https://www.our415.org/services/616"
   },
   {
-    "id": "sf-our415-1217-financial-aid",
-    "title": "Financial Aid - 10,000 Degrees",
-    "org": "10,000 Degrees",
-    "category": "Scholarship",
-    "fields": [
-      "San Francisco",
-      "College Access",
-      "Education"
-    ],
-    "location": "San Francisco, California, USA",
-    "format": "In-person",
-    "cost": "Free",
-    "grades": [
-      9,
-      10,
-      11,
-      12
-    ],
-    "deadline": null,
-    "prestige": 1,
-    "blurb": "10,000 Degrees is here to help you find the resources you need to afford college. \"No GPA or test scores required, just your potential. Equity is core to our mission\". Categories: Education. Focus: College Prep, Tutoring and Homework Help.",
-    "url": "https://www.our415.org/services/1217"
-  },
-  {
     "id": "sf-our415-1301-financial-education",
     "title": "Financial Education - One Treasure Island",
     "org": "One Treasure Island",
@@ -15426,30 +15378,6 @@ export const generatedBulkOpportunities: Opportunity[] = [
     "prestige": 1,
     "blurb": "Provides Francisco Middle School students summer and after-school programs, structured activities before school and during lunch, and classroom support in academics, technology, social-emotional development and wellness. Works to foster belonging among.",
     "url": "https://www.our415.org/services/625"
-  },
-  {
-    "id": "sf-our415-1787-free-city-and-free-city-debt-relief-program-fresh-start",
-    "title": "Free City & Free City Debt Relief Program (Fresh Start) - City College of San Francisco",
-    "org": "City College of San Francisco",
-    "category": "Scholarship",
-    "fields": [
-      "San Francisco",
-      "College Access",
-      "Education"
-    ],
-    "location": "San Francisco, California, USA",
-    "format": "In-person",
-    "cost": "Free",
-    "grades": [
-      9,
-      10,
-      11,
-      12
-    ],
-    "deadline": null,
-    "prestige": 1,
-    "blurb": "FREE CITY Free City is a partnership between City College and the City & County of San Francisco to provide its residents free tuition or grants for financial aid recipients to City College. Students may qualify if they are both a California resident for one.",
-    "url": "https://www.our415.org/services/1787"
   },
   {
     "id": "sf-our415-1372-free-computer-and-phone-access",
@@ -21331,31 +21259,6 @@ export const generatedBulkOpportunities: Opportunity[] = [
     "prestige": 1,
     "blurb": "DCYF is committed to making sure all of San Francisco's children and youth, and particularly those who are most vulnerable, are supported by nurturing families and communities, are physically and emotionally healthy, succeeding in school, and ready for.",
     "url": "https://www.our415.org/services/627"
-  },
-  {
-    "id": "sf-our415-226-justice-and-diversity-center-of-the-bar-association-of-san-francis",
-    "title": "Justice & Diversity Center of the Bar Association of San Francisco",
-    "org": "Justice & Diversity Center of the Bar Association of San Francisco",
-    "category": "Scholarship",
-    "fields": [
-      "San Francisco",
-      "Civic Leadership",
-      "College Access",
-      "Education"
-    ],
-    "location": "San Francisco, California, USA",
-    "format": "In-person",
-    "cost": "Free",
-    "grades": [
-      9,
-      10,
-      11,
-      12
-    ],
-    "deadline": null,
-    "prestige": 1,
-    "blurb": "Justice & Diversity Center has three main programs, two of which provide legal services. The Diversity Education Program includes such components as School to College for high school students, and the Minority Scholarship Program for law students. They also.",
-    "url": "https://www.our415.org/services/226"
   },
   {
     "id": "sf-our415-2254-justice-services",
@@ -50987,32 +50890,6 @@ export const generatedBulkOpportunities: Opportunity[] = [
     "url": "https://www.our415.org/services/1725"
   },
   {
-    "id": "sf-our415-2393-programs-for-youth-college-prep-class",
-    "title": "Programs for Youth: College Prep Class - Alive & Free",
-    "org": "Alive & Free",
-    "category": "Scholarship",
-    "fields": [
-      "San Francisco",
-      "Research",
-      "Arts",
-      "Career",
-      "College Access"
-    ],
-    "location": "San Francisco, California, USA",
-    "format": "In-person",
-    "cost": "Free",
-    "grades": [
-      9,
-      10,
-      11,
-      12
-    ],
-    "deadline": null,
-    "prestige": 1,
-    "blurb": "College Prep classes - Parallels structure of first-year college classes - Research, analyzing, and writing - Academic counseling to plan for, apply to, and select college - Financial literacy training - Scholarship eligibility *Updated: 4/14/2025*.",
-    "url": "https://www.our415.org/services/2393"
-  },
-  {
     "id": "sf-our415-807-project-level",
     "title": "Project Level",
     "org": "Project Level",
@@ -51873,30 +51750,6 @@ export const generatedBulkOpportunities: Opportunity[] = [
     "url": "https://www.our415.org/services/603"
   },
   {
-    "id": "sf-our415-916-scholarship-programs",
-    "title": "SCHOLARSHIP PROGRAMS - BRIDGE Housing",
-    "org": "BRIDGE Housing",
-    "category": "Scholarship",
-    "fields": [
-      "San Francisco",
-      "College Access",
-      "Education"
-    ],
-    "location": "San Francisco, California, USA",
-    "format": "In-person",
-    "cost": "Free",
-    "grades": [
-      9,
-      10,
-      11,
-      12
-    ],
-    "deadline": null,
-    "prestige": 1,
-    "blurb": "This program supports high-school graduates pursuing higher education and vocational skills, parents returning to or continuing college while working, and workers seeking to acquire new skills. Categories: Education. Focus: Tutoring and Homework Help.",
-    "url": "https://www.our415.org/services/916"
-  },
-  {
     "id": "sf-our415-2423-scholarships",
     "title": "Scholarships - 10,000 Degrees",
     "org": "10,000 Degrees",
@@ -51944,31 +51797,6 @@ export const generatedBulkOpportunities: Opportunity[] = [
     "prestige": 1,
     "blurb": "Thanks to remarkably generous donors, every year 826 Valencia awards multiple $20,000 scholarships to college-bound seniors who have participated in 826 Valencia programs. Categories: Education, Youth Jobs, Training and Life Skills. Focus: Youth Jobs &.",
     "url": "https://www.our415.org/services/739"
-  },
-  {
-    "id": "sf-our415-1857-scholarships",
-    "title": "Scholarships - Brighterly",
-    "org": "Brighterly",
-    "category": "Scholarship",
-    "fields": [
-      "San Francisco",
-      "STEM",
-      "College Access",
-      "Education"
-    ],
-    "location": "San Francisco, California, USA",
-    "format": "In-person",
-    "cost": "Free",
-    "grades": [
-      9,
-      10,
-      11,
-      12
-    ],
-    "deadline": null,
-    "prestige": 1,
-    "blurb": "Brighterly offers a math scholarship to help young learners build a strong foundation in math, boost their confidence, and learn from top-tier tutors who use interactive, personalized teaching methods. Winners receive $500 in cash plus six months of.",
-    "url": "https://www.our415.org/services/1857"
   },
   {
     "id": "sf-our415-768-scholarships",
@@ -57966,32 +57794,6 @@ export const generatedBulkOpportunities: Opportunity[] = [
     "prestige": 1,
     "blurb": "We make public speaking fun by teaching communication skills through games, projects, practice, and performances! We offer one or two-week full-day summer camps at schools or partner sites. Children choose to participate in creative performance (including.",
     "url": "https://www.our415.org/services/562"
-  },
-  {
-    "id": "sf-our415-1210-the-program",
-    "title": "The Program - 10,000 Degrees",
-    "org": "10,000 Degrees",
-    "category": "Scholarship",
-    "fields": [
-      "San Francisco",
-      "Civic Leadership",
-      "Career",
-      "College Access",
-      "Education"
-    ],
-    "location": "San Francisco, California, USA",
-    "format": "In-person",
-    "cost": "Free",
-    "grades": [
-      9,
-      10,
-      11,
-      12
-    ],
-    "deadline": null,
-    "prestige": 1,
-    "blurb": "What We Do: - Support to, through, and beyond college - College Pathways Awareness & Preparation - College & Financial Aid Advising and Navigation - Scholarships & Financial Aid Management - College Success Support - Community College Transfer Support -.",
-    "url": "https://www.our415.org/services/1210"
   },
   {
     "id": "sf-our415-563-the-ranch",
