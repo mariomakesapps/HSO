@@ -16,6 +16,7 @@ import {
   useCuratedSavedStatus,
 } from "@/store/collections";
 import { useSEO } from "@/lib/seo";
+import { displayedLikes } from "@/lib/curatedBaseline";
 
 const CuratedCollectionDetail = () => {
   const { id } = useParams<{ id?: string }>();
@@ -25,7 +26,7 @@ const CuratedCollectionDetail = () => {
   const saved = useCuratedSavedStatus(collection?.id ?? "");
   const liked = useCuratedLikedStatus(collection?.id ?? "");
   const counts = useCuratedCounts();
-  const likeCount = collection ? counts[collection.id]?.likes ?? 0 : 0;
+  const likeCount = collection ? displayedLikes(collection.id, counts[collection.id]?.likes) : 0;
 
   useEffect(() => { void loadCuratedCounts(); }, []);
 
