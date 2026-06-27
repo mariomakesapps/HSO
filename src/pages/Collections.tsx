@@ -16,6 +16,7 @@ import {
   type CuratedCollection,
 } from "@/data/curatedCollections";
 import { allOpportunities, locationState } from "@/data/opportunities";
+import { displayedLikes } from "@/lib/curatedBaseline";
 import {
   loadCuratedCounts,
   store,
@@ -98,7 +99,9 @@ export default function Collections() {
       return true;
     });
     if (sort === "most-liked") {
-      return base.slice().sort((a, b) => (counts[b.id]?.likes ?? 0) - (counts[a.id]?.likes ?? 0));
+      return base.slice().sort(
+        (a, b) => displayedLikes(b.id, counts[b.id]?.likes) - displayedLikes(a.id, counts[a.id]?.likes),
+      );
     }
     if (sort === "most-saved") {
       return base.slice().sort((a, b) => (counts[b.id]?.saves ?? 0) - (counts[a.id]?.saves ?? 0));
@@ -253,7 +256,7 @@ function CuratedCard({ collection }: { collection: CuratedCollection }) {
   const saved = useCuratedSavedStatus(collection.id);
   const liked = useCuratedLikedStatus(collection.id);
   const counts = useCuratedCounts();
-  const likeCount = counts[collection.id]?.likes ?? 0;
+  const likeCount = displayedLikes(collection.id, counts[collection.id]?.likes);
 
   const onSave = () => {
     if (!user) return signInRequiredToast(navigate, "/collections");
