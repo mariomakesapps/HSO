@@ -98,7 +98,7 @@ const OpportunityDetail = () => {
   return (
     <div className="min-h-screen text-foreground">
       <SEO
-        title={`${opp.title} — ${opp.category} for High School Students | HSO`}
+        title={`${opp.title} | HSO`}
         description={`${opp.title} by ${opp.org}: ${opp.category.toLowerCase()} for high school students in ${opp.location}. Eligibility, deadline, cost, and the official application link.`}
         path={`/opportunities/${opp.id}`}
         noindex={seoNoindex}
