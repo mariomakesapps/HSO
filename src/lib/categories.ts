@@ -25,10 +25,10 @@ export const CATEGORY_META: Record<CategorySlug, {
 }> = {
   "summer-programs": {
     category: "Summer Program",
-    title: "Summer Programs for High School Students 2026 | Pre-College | HSO",
+    title: "Summer Programs for High Schoolers 2026 | HSO",
     h1: "Summer programs for high school students",
     intro: "Pre-college summers at top U.S. universities, research labs, and institutes — free, paid, and stipended options for rising 9th–12th graders.",
-    description: "Browse summer programs for high school students in 2026 — pre-college, research, and STEM tracks at U.S. universities. Free, paid, and full-stipend programs curated by HSO.",
+    description: "Browse 2026 summer programs for high school students — pre-college, research, and STEM tracks at U.S. universities. Free and paid options.",
     guide: [
       "Summer programs for high school students fall into a few buckets: pre-college academic programs run by universities, research immersions in labs, arts and writing institutes, leadership and policy programs, and STEM bootcamps. Most run 2–8 weeks between June and August.",
       "Pick based on what colleges actually weigh: depth in one field beats a famous name. A free, selective research program (RSI, SSP, Clark Scholars, Garcia) signals more than a paid two-week pre-college class.",
@@ -43,10 +43,10 @@ export const CATEGORY_META: Record<CategorySlug, {
   },
   internships: {
     category: "Internship",
-    title: "Internships for High School Students 2026 | Paid, STEM & Research | HSO",
+    title: "Internships for High School Students 2026 | HSO",
     h1: "Internships for high school students",
     intro: "Real workplace internships at U.S. companies, labs, hospitals, and government agencies that accept high school students — paid, unpaid, in-person, and remote.",
-    description: "Find paid internships for high school students at U.S. companies, labs, hospitals, and government agencies. Engineering, STEM, research, and remote options curated by HSO.",
+    description: "Paid internships for high school students at U.S. companies, labs, and agencies. Engineering, STEM, research, and remote options curated by HSO.",
     guide: [
       "Internships for high school students come in three main forms: paid corporate internships (Bank of America, Google, NASA OSTEM), research internships at universities and hospitals, and government internships at federal, state, and city agencies.",
       "Paid is realistic — NASA, NIH, Bank of America, NSA, NYC Ladders for Leaders, and many university research programs offer stipends from $500 to $7,000 for the summer.",
