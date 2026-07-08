@@ -23,6 +23,7 @@ const Collections = lazy(() => import("./pages/Collections.tsx"));
 const SharedCollection = lazy(() => import("./pages/SharedCollection.tsx"));
 const Profile = lazy(() => import("./pages/Profile.tsx"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe.tsx"));
+const GuideTopMedicalInternships = lazy(() => import("./pages/GuideTopMedicalInternships.tsx"));
 
 function PageFallback() {
   return (
@@ -107,6 +108,7 @@ const App = () => (
               <Route path="/collections/:id" element={<SharedCollection />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/unsubscribe" element={<Unsubscribe />} />
+              <Route path="/guides/top-medical-internships" element={<GuideTopMedicalInternships />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
           </Route>
