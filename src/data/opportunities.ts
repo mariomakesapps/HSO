@@ -479,7 +479,7 @@ for (const opportunity of opportunities) {
 // US-focused: keep opportunities available to U.S. high schoolers (USA, Worldwide, Online).
 const US_ELIGIBLE = /(USA|Worldwide|Online|Multiple, USA)/i;
 export const allOpportunities: Opportunity[] = opportunities.filter((o) =>
-  US_ELIGIBLE.test(o.location) && isUsBased(o)
+  o.category !== "Volunteer" && US_ELIGIBLE.test(o.location) && isUsBased(o)
 );
 
 // Map a US location string to a state-like filter bucket.
