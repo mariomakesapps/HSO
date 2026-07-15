@@ -160,7 +160,18 @@ const Index = () => {
     [],
   );
   const recentlyAdded = useMemo(() => opportunities.slice(-6).reverse(), []);
-  const standouts = useMemo(() => opportunities.filter((o) => o.prestige === 3).slice(0, 6), []);
+  const standouts = useMemo(
+    () =>
+      opportunities
+        .filter((o) => o.prestige === 3)
+        .sort((a, b) => {
+          if (a.id === "columbia-freedom-citizenship") return -1;
+          if (b.id === "columbia-freedom-citizenship") return 1;
+          return 0;
+        })
+        .slice(0, 6),
+    [],
+  );
 
   const chooseCategory = (category: Category | "All") => {
     setFilters({ ...filters, category });
