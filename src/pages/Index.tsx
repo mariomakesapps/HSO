@@ -343,9 +343,10 @@ function Hero({
             )}
             <button
               onClick={() => document.getElementById("explore-heading")?.scrollIntoView({ behavior: "smooth", block: "start" })}
-              className="inline-flex h-12 w-full max-w-[22rem] items-center justify-center rounded-full border border-white/65 bg-card/72 px-6 text-sm font-bold text-ink shadow-[inset_0_1px_0_hsl(0_0%_100%/0.7),0_18px_36px_-30px_hsl(var(--ink)/0.45)] backdrop-blur-xl transition-transform hover:-translate-y-0.5 hover:border-ink/25 active:scale-[0.98] active:translate-y-0 sm:w-auto"
+              className="inline-flex h-14 w-full max-w-[24rem] items-center justify-center rounded-full border border-white/65 bg-card/72 px-8 text-base font-bold text-ink shadow-[inset_0_1px_0_hsl(0_0%_100%/0.7),0_20px_40px_-28px_hsl(var(--ink)/0.45)] backdrop-blur-xl transition-transform hover:-translate-y-0.5 hover:border-ink/25 active:scale-[0.98] active:translate-y-0 sm:w-auto"
             >
               Browse the catalog
+              <ArrowRight className="ml-2.5 h-5 w-5" />
             </button>
           </div>
 
