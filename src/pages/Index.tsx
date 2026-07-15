@@ -335,7 +335,7 @@ function Hero({
             {!authLoading && !isAuthed && (
               <Link
                 to="/auth"
-              className="inline-flex h-12 w-full max-w-[22rem] items-center justify-center rounded-full bg-ink px-6 text-sm font-bold text-cream shadow-[0_18px_36px_-24px_hsl(var(--ink)/0.6)] transition-transform hover:-translate-y-0.5 hover:bg-coral active:scale-[0.98] active:translate-y-0 sm:w-auto"
+                className="inline-flex h-12 w-full max-w-[22rem] items-center justify-center rounded-full border border-white/65 bg-card/72 px-6 text-sm font-bold text-ink shadow-[inset_0_1px_0_hsl(0_0%_100%/0.7),0_18px_36px_-24px_hsl(var(--ink)/0.45)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:border-coral/35 hover:bg-card active:scale-[0.98] active:translate-y-0 sm:w-auto"
               >
                 Sign up free
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -343,7 +343,7 @@ function Hero({
             )}
             <button
               onClick={() => document.getElementById("explore-heading")?.scrollIntoView({ behavior: "smooth", block: "start" })}
-              className="inline-flex h-14 w-full max-w-[24rem] items-center justify-center rounded-full border border-white/65 bg-card/72 px-8 text-base font-bold text-ink shadow-[inset_0_1px_0_hsl(0_0%_100%/0.7),0_20px_40px_-28px_hsl(var(--ink)/0.45)] backdrop-blur-xl transition-transform hover:-translate-y-0.5 hover:border-ink/25 active:scale-[0.98] active:translate-y-0 sm:w-auto"
+              className="inline-flex h-14 w-full max-w-[24rem] items-center justify-center rounded-full bg-coral px-8 text-base font-bold text-cream shadow-[0_20px_40px_-24px_hsl(var(--coral)/0.55)] transition-all hover:-translate-y-0.5 hover:shadow-[0_26px_52px_-24px_hsl(var(--coral)/0.65)] active:scale-[0.98] active:translate-y-0 sm:w-auto"
             >
               Browse the catalog
               <ArrowRight className="ml-2.5 h-5 w-5" />
