@@ -6,7 +6,6 @@ export type CategorySlug =
   | "scholarships"
   | "research"
   | "competitions"
-  | "volunteer"
   | "fellowships";
 
 export interface CategoryFAQ {
