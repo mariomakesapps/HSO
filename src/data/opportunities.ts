@@ -15,12 +15,24 @@ const VOLUNTEER_BLOCK_PATTERNS: RegExp[] = [
   /\b21\+\b/,
   /\b18\+\b/,
   /must be (18|21)/i,
+  /\bage\s*21\+?/i,
+  /\bage\s*18\+?/i,
+  /\bages?\s*(18|21)\s*(and|\+|or older)/i,
   /adults?\s*only/i,
   /\bwarehouse\b/i,
   /\bload[- ]?(in|out)\b/i,
   /\bparking attendant\b/i,
   /\brace[- ]day\b/i,
   /\btournament shift\b/i,
+  // Sketchy / garbage imported blurbs (raw CSS, style tags, HTML dumps)
+  /:root\s*\{/,
+  /--[a-z-]+\s*:\s*#[0-9a-f]{3,8}/i,
+  /<style\b/i,
+  /\{[^}]*font-family\s*:/i,
+  // Adult mentor recruitment posts masquerading as student opportunities
+  /\breferral\b/i,
+  /\bvolunteer mentor\b/i,
+  /\bmentor recruit/i,
 ];
 const VOLUNTEER_KEEP_KEYWORDS = [
   "teen", "youth", "student", "high school", "highschool", "mentor", "tutor",
@@ -39,9 +51,16 @@ function isStudentFriendlyVolunteer(opp: { title: string; blurb: string; url?: s
   }
   return VOLUNTEER_KEEP_KEYWORDS.some((k) => haystack.includes(k));
 }
-const cleanedVolunteerOpportunities = importedVolunteerOpportunities.filter(
-  isStudentFriendlyVolunteer,
-);
+// Drop volunteer listings whose deadline has already passed (closed programs).
+// Uses today's date at load time; opportunities without a deadline are kept.
+const TODAY_ISO = new Date().toISOString().slice(0, 10);
+function isNotClosed(opp: { deadline?: string | null }) {
+  if (!opp.deadline) return true;
+  return opp.deadline >= TODAY_ISO;
+}
+const cleanedVolunteerOpportunities = importedVolunteerOpportunities
+  .filter(isStudentFriendlyVolunteer)
+  .filter(isNotClosed);
 
 // Drop listings whose title/blurb/location reveal a non-U.S. program even when
 // the imported `location` field claims a U.S. state (the volunteer feed often
