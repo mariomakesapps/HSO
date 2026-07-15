@@ -16,7 +16,6 @@
   <url><loc>https://highschoolopportunity.org/categories/scholarships</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://highschoolopportunity.org/categories/research</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://highschoolopportunity.org/categories/competitions</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://highschoolopportunity.org/categories/volunteer</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://highschoolopportunity.org/categories/fellowships</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://highschoolopportunity.org/collections/undefined</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
   <url><loc>https://highschoolopportunity.org/collections/undefined</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
@@ -186,7 +185,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/girlup</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/dosomething</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/idealist</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-match</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/kaggle</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/brookhaven</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ornl</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -615,7 +613,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-1833-c-work</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-1209-c-h-e-f-s</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-113-california-academy-of-sciences</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-2538-california-volunteer-network</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-568-camp-c-quest</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-1424-camp-imaginate</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-1129-camp-kroc-summer-day-camp</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -1346,429 +1343,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-1791-nextgen</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-600-nomad-middle-school</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-2181-norcal-reentry</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-abli-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-acad-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-adam-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-afam-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-afbg-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-agfo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-anch-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-alca-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-alfl-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-alpo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-amme-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-amis-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-anac-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-ande-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-anjo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-ania-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-anti-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-apis-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-appa-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-arch-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-arpo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-arho-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-asis-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-azru-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-badl-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-bawa-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-band-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-beol-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-bela-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-bibe-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-bicy-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-biho-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-biso-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-bith-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-bica-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-bisc-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-blca-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-blrv-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-blri-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-blue-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-bowa-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-boaf-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-boha-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-bost-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-brvb-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-brca-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-buis-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-buff-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-buov-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cabr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cali-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cane-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cana-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cari-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cach-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cany-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-caco-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-caha-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-came-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cakr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-calo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cahi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-care-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cajo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cavo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-carl-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cave-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cagr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-casa-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cacl-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cato-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cebr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cebe-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cech-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-chcu-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cham-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-chis-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-chpi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-chyo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-chat-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-choh-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cbpo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-chch-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-chic-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-chir-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-chri-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-ciro-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cwdw-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-colo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-colm-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-colt-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cong-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-coga-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-coro-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cowp-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-crla-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cuga-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cuis-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cure-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-cuva-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-daav-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-deso-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-deva-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-dewa-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-dena-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-depo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-deto-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-dino-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-drto-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-ddem-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-ebla-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-edal-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-efmo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-eise-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-elte-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-elca-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-elma-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-elmo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-elro-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-elis-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-till-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-euon-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-ever-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-feha-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fiis-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fila-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-frst-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-flni-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-foth-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fobo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-foda-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fodo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fodu-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fofo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fofr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fola-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fols-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-foma-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fomc-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fone-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fopo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fopu-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fora-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fosc-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fosm-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fost-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fosu-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-foun-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fous-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fowa-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-fobu-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-frpe-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-frde-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-frdo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-frla-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-frsp-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-frhi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-jeff-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-gate-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-gari-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-gegr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-gero-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-gewa-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-gwca-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-gwmp-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-gett-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-gicl-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-glba-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-glac-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-glca-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-glec-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-glde-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-goga-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-gosp-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-gois-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-grca-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-para-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-grpo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-grte-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-grko-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-grba-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-grfa-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-grsa-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-grsm-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-gree-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-gumo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-guco-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-guis-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-hafo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-hale-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-hagr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-hamp-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-hafe-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-hart-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-hstr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-havo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-heho-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-jame-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-hofr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-home-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-hocu-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-hofu-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-hobe-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-hosp-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-hove-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-hutr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-inde-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-indu-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-isro-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-jaga-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-jela-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-jeca-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-jica-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-joda-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-jomu-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-jofl-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-jotr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-juba-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-kala-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-kaho-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-kaww-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-katm-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-kefj-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-keaq-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-kemo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-kewe-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-kimo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-klse-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-klgo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-knri-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-kova-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-lacl-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-lake-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-lamr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-laro-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-lavo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-labe-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-lecl-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-lewi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-liho-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-linc-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-libi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-liri-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-chsc-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-long-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-lowe-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-lyjo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-mawa-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-maca-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-mana-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-mapr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-manz-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-mabi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-mlkm-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-malu-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-mava-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-mamc-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-memy-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-meve-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-misp-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-miin-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-mima-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-mimi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-miss-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-mnrr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-moja-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-mono-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-moca-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-mocr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-mopi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-morr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-mora-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-moru-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-muwo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-natc-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-natr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-nace-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-nama-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-npsa-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-npnh-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-nabr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-nava-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-nebe-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-neen-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-neri-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-nepe-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-nico-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-nisi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-niob-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-noat-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-noca-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-noco-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-obed-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-ocmu-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-okci-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-olsp-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-olym-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-orca-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-oreg-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-orpi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-oxhi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-ozar-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-pais-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-paal-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-pagr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-peri-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-valr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-peco-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-paav-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-pevi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-pete-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-pefo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-petr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-piro-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-pinn-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-pisp-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-pipe-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-pisc-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-pore-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-poex-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-poch-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-pohe-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-wicl-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-prsf-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-prwi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-pull-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-puhe-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-rabr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-reer-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-redw-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-rich-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-rigr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-rira-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-rocr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-romo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-rowi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-rori-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-ruca-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-sahi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-sagu-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-sacr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-sacn-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-sapa-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-saga-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-sama-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-sari-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-saan-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-safr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-sajh-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-saju-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-sand-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-safe-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-samo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-sara-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-sair-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-scbl-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-semo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-seki-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-shen-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-shil-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-sitk-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-slbe-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-spar-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-stsp-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-stli-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-stge-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-stea-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-stri-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-ston-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-sucr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-tapr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-thko-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-whho-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-thrb-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-thri-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-this-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-thro-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-edis-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-thje-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-thst-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-tica-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-timu-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-tont-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-trte-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-tule-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-tusk-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-tuma-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-tuai-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-tuin-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-tuzi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-ulsg-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-upde-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-vall-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-vafo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-vama-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-vick-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-vive-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-viis-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-voya-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-waca-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-wapa-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-wamo-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-waba-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-wefa-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-whis-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-whsa-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-whmi-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-wiho-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-wicr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-wica-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-wing-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-wotr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-wori-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-wwim-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-wwii-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-wrst-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-wrbr-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-wupa-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-yell-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-york-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-yose-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-yuch-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nps-zion-youth-volunteer</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-2439-nurture-through-nature</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-84-oasis-for-girls</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-2293-odc-school-youth-and-teen-dance-program</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -2779,7 +2353,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-12-up-on-top</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-2098-virtual-programing</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-2323-vocational-services</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-988-volunteer-programs</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-663-wah-mei-zing-summer-camp</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-1212-wait-list-after-school-program-j-p-murphy</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sf-our415-1229-wait-list-after-school-program-jackson</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -2886,15 +2459,10 @@
   <url><loc>https://highschoolopportunity.org/opportunities/college-access-mentors-for-teens-2</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/gaithersburg-library-teen-advisory-board-tab-2026-2027-3</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/clothing-drive-coordinator-great-opportunity-for-teens-this--4</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/donation-processing-volunteer-opportunity-for-teens-this-sum-5</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/soulmates-teen-hospice-volunteer-program-6</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/jersey-cares-teen-service-event-7</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/teen-volunteer-day-main-library-outreach-bag-assembly-crew-8</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/teen-volunteer-day-main-library-brochure-folding-prep-team-9</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/voter-pre-registration-workshop-for-teens-10</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/hygiene-kits-for-teen-girls-11</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/period-kits-for-teens-12</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/teen-volunteer-day-bellevue-branch-summer-book-sale-13</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/amigas-teen-service-summer-leader-institute-june-15-19-14</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tidying-teens-grades-6-12-fishers-library-noblesville-librar-15</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teen-advisory-board-grades-6-12-fishers-library-16</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -2905,7 +2473,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/underwear-drive-for-children-and-teens-21</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-a-teen-make-a-difference-age-20-referral-22</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teen-camp-facilitator-23</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/teen-summer-volunteer-24</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-a-teen-in-foster-care-25</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-a-teenage-girl-26</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/foster-care-boys-teen-reach-adventure-summer-camp-27</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -2913,19 +2480,14 @@
   <url><loc>https://highschoolopportunity.org/opportunities/camp-levine-teen-apprentice-program-29</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/provide-an-outing-teen-mentor-experience-30</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/make-a-week-special-for-kids-teens-31</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/gaithersburg-library-2026-summer-reading-teen-volunteer-32</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/camp-erin-volunteers-needed-for-kids-teen-camp-stanwood-wa-33</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tutoring-at-teen-centers-34</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teen-leadership-conference-connect-with-older-adults-35</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/talented-teen-club-36</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/video-mentors-for-south-african-teens-37</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/kitchen-crew-teens-only-2026-38</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/stuffed-animals-plushies-for-foster-care-teen-reach-adventur-39</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/spring-into-a-new-volunteer-opportunity-samariteens-teen-vol-40</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/spring-into-a-new-volunteer-opportunity-teen-volunteering-41</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/this-holiday-season-make-a-difference-in-a-teen-s-life-42</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/potomac-library-teen-advisory-board-tab-earn-ssl-hours-43</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/teen-summer-camp-volunteer-44</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-a-teen-parent-in-college-and-help-a-whole-family-thri-45</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/virtual-tutors-needed-to-support-teen-parents-in-college-46</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/emergency-fund-donations-needed-to-support-teen-parents-duri-47</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -2938,7 +2500,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/help-homeless-neighbors-in-montgomery-county-for-individuals-54</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/food-collection-teens-55</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/collection-drive-for-project-sarah-teens-new-or-non-vetted-v-56</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/teens-with-talent-vetted-or-non-vetted-volunteers-57</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teen-engagement-leadership-opportunities-and-social-activiti-58</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/kids-club-teens-club-casa-to-career-after-school-programs-59</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/adopt-a-unit-domestic-violence-teen-units-girls-first-so-kin-60</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -2946,45 +2507,30 @@
   <url><loc>https://highschoolopportunity.org/opportunities/seeking-counselor-management-team-member-for-summer-leadersh-62</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teens-and-adults-needed-for-moving-food-packing-produce-for--63</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teens-needed-to-distribute-food-in-takoma-park-after-school--64</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/cloud901-teen-center-volunteer-65</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teen-advisory-council-tac-66</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/make-a-difference-for-teen-moms-volunteer-with-hope-house-no-67</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/teen-volunteer-68</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/teen-leaders-club-volunteers-69</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/phonics-forward-one-to-one-english-language-support-for-adul-70</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teen-connections-group-co-facilitator-71</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/younglives-mentor-ministry-to-teen-moms-and-dads-72</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/childcare-volunteer-good-opportunity-for-teens-73</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teen-writers-74</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/holiday-gift-bags-for-seniors-and-teens-75</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teen-court-judge-76</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/jury-member-and-or-attorney-for-teen-court-77</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tab-teen-advisory-board-at-bartholomew-county-public-library-78</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/high-school-leadership-development-program-help-make-a-diffe-79</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-board-members-teen-ambassadors-80</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/after-school-programs-kids-club-teens-club-casa-to-career-81</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teen-leadership-board-82</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/teen-buddies-an-adult-volunteers-83</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/help-a-teen-plan-for-what-s-next-be-a-big-futures-mentor-84</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/adult-teen-link-phone-worker-supervisor-85</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teen-internship-conservation-land-management-with-green-crew-86</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teen-internship-community-outreach-with-green-crew-87</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teen-program-support-88</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/bereavement-volunteers-for-survivors-of-all-ages-camp-dragon-89</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teen-mentorship-program-90</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-a-teen-join-a-community-91</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/recruiting-volunteers-to-help-teens-living-in-group-homes-on-92</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/collect-items-for-teen-mothers-and-their-children-93</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/special-needs-teen-group-assistant-volunteer-friday-evenings-94</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/special-needs-teen-aged-group-assistant-volunteer-saturday-a-95</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/champions-for-teens-c4t-96</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/bereavement-volunteers-for-survivors-of-all-ages-camp-dragon-97</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/mentor-activity-volunteer-inpatient-program-for-children-and-98</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teen-center-soup-kitchen-99</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/bereavement-volunteers-for-survivors-of-all-ages-camp-dragon-100</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/muses-teen-council-101</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/help-children-teens-and-families-who-are-grieving-over-the-d-102</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/teen-volunteer-103</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/impact-teen-club-104</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-teens-in-north-minneapolis-105</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teen-gifting-a-holiday-project-for-children-s-advocacy-cente-106</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3012,19 +2558,15 @@
   <url><loc>https://highschoolopportunity.org/opportunities/sort-where-the-wild-books-are-128</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/engage-jam-sessions-el-cajon-129</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/green-squad-130</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/join-our-crew-individual-or-group-volunteer-at-nauticus-131</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/food-pantry-volunteer-at-wffcs-hil-132</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/camp-erin-crew-healing-grief-with-heart-fun-133</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-crisis-counselor-134</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/train-4-life-cycle-2-135</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/featured-diy-snack-kits-for-boys-girls-clubs-of-metro-richmo-136</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/get-crafty-for-newborns-age-18-hands-on-137</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/literacy-volunteers-of-illinois-vocal-americorps-138</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/2026-2027-catholic-charities-youth-impact-coordinator-vista-139</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/animal-services-sweat-court-mandated-program-140</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/soar-movie-at-heritage-square-park-141</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/cierre-experiecia-de-verano-mini-universidad-coca-cola-music-143</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/pathways-to-discovery-summer-camp-volunteers-needed-144</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/summer-meals-assistant-at-windsor-park-14-145</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/summer-meals-assistant-at-woodhaven-14-146</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/summer-reading-assistant-lunch-helper-at-bellerose-15-147</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3036,8 +2578,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/engage-jam-sessions-carlsbad-154</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/2026-almost-home-sneaker-soiree-gala-155</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/support-children-families-beyond-the-hospital-at-the-loft-ag-156</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/make-a-difference-this-summer-volunteer-at-camp-schreiber-157</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-and-family-volunteer-projects-158</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/variety-adventure-camp-159</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/pantry-and-foster-closet-support-hil-160</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/portsmouth-court-appointed-special-advocate-casa-161</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3047,13 +2587,10 @@
   <url><loc>https://highschoolopportunity.org/opportunities/slippery-elm-trail-bike-tour-blast-from-the-past-8-15-26-165</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tropical-trek-copy-166</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/make-blankets-for-children-and-youth-in-need-age-4-referral-167</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-grants-manager-168</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/feeding-tampa-bay-hil-169</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-and-family-volunteer-info-session-170</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/amigas-community-outreach-internship-171</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/diy-service-project-back-to-school-survival-kit-172</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/become-a-joyrx-mentor-age-18-referral-173</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hope-house-volunteer-174</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentoring-matters-for-foster-youth-175</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/family-support-group-facilitator-176</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/virtual-intergenerational-program-ages-14-18-only-177</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3061,7 +2598,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/ttrpg-gms-wanted-d-d-and-more-179</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sort-and-organize-baby-gear-180</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/serve-essential-baby-items-at-a-walk-thru-market-181</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/4th-of-july-parade-volunteers-needed-in-takoma-park-sat-july-182</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/bmvp-activating-youth-engagement-leadership-183</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/family-visitation-coaches-184</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/job-skills-coach-for-young-people-with-disabilities-185</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3086,31 +2622,20 @@
   <url><loc>https://highschoolopportunity.org/opportunities/nutrition-educator-205</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/become-a-mentor-to-youth-in-annapolis-206</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/empower-hour-208</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/mariposa-art-transportation-volunteer-209</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-cabin-and-village-leaders-for-camp-bright-feathers-210</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/love-cats-volunteer-for-the-kitty-condo-krewe-211</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/effingham-library-summer-2026-book-sale-shop-early-as-a-volu-212</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/goodhealth-works-center-for-grieving-children-213</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/provide-a-summer-camp-lunch-214</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/board-members-215</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/access-community-health-centers-wish-list-children-s-books-d-216</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/circle-mentoring-217</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/fun-in-the-sun-volunteer-at-summer-camp-in-arlington-28-serv-218</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-service-support-volunteers-219</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/vista-grief-support-development-coordinator-220</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hospice-volunteers-needed-221</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/career-coaching-and-mentorship-222</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/community-program-specialist-223</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/dreamcatchers-for-the-soul-foundation-224</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/brightpoint-southern-region-volunteer-opportunities-225</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/casa-wish-list-226</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/camp-erin-clinical-volunteers-needed-227</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/new-baby-supplies-drive-228</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-for-hospice-229</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/join-our-kitchen-team-230</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/hope-in-hospice-become-an-accentcare-fairview-hospice-volunt-231</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hospice-companionship-volunteer-wanted-232</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/meal-hospitality-group-volunteers-mt-hope-shelter-233</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/virtual-mentors-234</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/meal-providers-needed-in-round-rock-tx-235</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/meal-providers-needed-in-taylor-tx-236</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3127,22 +2652,17 @@
   <url><loc>https://highschoolopportunity.org/opportunities/open-arms-children-s-home-basic-needs-updated-3-27-26-248</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/become-a-mentor-249</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/scholar-program-mentor-sponsor-250</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/se-dev-va-aki-museum-volunteer-251</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/bake-birthday-cakes-for-foster-kids-and-at-risk-youth-in-sac-252</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/bake-birthday-cakes-for-foster-kids-and-at-risk-youth-in-san-253</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/bake-birthday-cakes-for-foster-kids-and-at-risk-youth-in-san-254</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/birthday-box-project-255</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/duffle-bag-project-256</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/goodwill-vista-portland-housing-youth-services-vista-257</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/spring-into-a-new-volunteer-opportunity-giving-back-lasts-fo-258</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/adopt-a-jetty-259</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/donated-wheel-chair-accessible-van-for-a-veteran-s-daughter-260</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/early-learning-center-classroom-volunteer-261</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/family-day-at-the-hui-262</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/spring-quart-2026-youth-mentor-leader-for-young-life-263</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/agassiz-village-volunteer-and-community-engagement-vista-264</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/gigis-kitchen-program-is-looking-for-leads-265</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/childcare-volunteers-needed-for-generation-hope-events-266</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/wednesday-at-4-30pm-monthly-gigis-kitchen-lead-or-co-lead-vo-267</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/peer-group-facilitator-primarily-online-268</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/center-for-grieving-children-peer-support-group-facilitator--269</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3153,13 +2673,9 @@
   <url><loc>https://highschoolopportunity.org/opportunities/friendly-callers-274</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/pack-meals-for-homebound-residents-275</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mission-possible-summer-program-our-11th-summer-276</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/help-kids-in-need-wednesday-morning-volunteers-wanted-at-clo-277</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/monday-morning-volunteers-needed-at-clothes-for-kids-in-lynn-278</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/bake-and-deliver-cakes-and-cupcakes-for-at-risk-youth-in-the-279</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/join-our-mentoring-community-make-a-difference-to-middle-sch-280</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/club-riders-volunteer-lincoln-street-club-281</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/bake-birthday-cakes-for-foster-kids-and-at-risk-youth-in-san-282</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-golf-coach-gavilan-college-gc-283</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/bake-birthday-cakes-for-foster-kids-and-at-risk-youth-in-nap-284</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/bake-birthday-cakes-for-foster-kids-and-at-risk-youth-in-fai-285</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/spy-camp-training-assistant-age-15-18-286</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3170,17 +2686,12 @@
   <url><loc>https://highschoolopportunity.org/opportunities/hannah-center-wish-list-291</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/foster-family-home-licensing-292</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/monroe-county-in-foster-closet-wish-list-293</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-dance-instructor-294</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/become-a-volunteer-at-gigi-s-playhouse-simi-valley-295</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/pajamas-socks-underwear-or-book-collection-296</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/play-board-games-with-youth-297</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/kindling-minds-volunteer-opportunities-298</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/safehomes-volunteer-299</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/birthday-card-initiative-300</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/holocaust-survivor-support-301</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/gift-card-collection-302</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/zoo-crew-counselor-in-training-grades-7-12-303</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-mentors-needed-304</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/update-high-school-students-who-want-to-welcome-refugees-305</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/music-recording-performance-mentoring-306</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/live-music-for-seniors-and-hospitals-307</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3197,42 +2708,24 @@
   <url><loc>https://highschoolopportunity.org/opportunities/grand-rapids-area-library-friends-board-marketing-lead-319</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ironing-crew-320</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/americorps-boys-girls-club-club-corps-321</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/creative-writing-mentors-support-volunteers-needed-322</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/alternative-recreation-working-with-special-needs-simi-valle-323</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/preschool-after-school-club-volunteers-simi-valley-oak-park-324</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-center-tutoring-and-drop-in-centers-325</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-advisory-council-members-needed-326</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/spruce-it-up-327</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/treatment-support-volunteer-328</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/reading-club-329</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-330</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-program-volunteer-331</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/illinois-foster-parent-working-with-children-of-all-ages-332</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/casa-advocates-richmond-county-333</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/casa-advocates-northumberland-county-334</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/casa-advocates-westmoreland-county-335</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/casa-advocates-essex-county-336</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/casa-advocates-lancaster-county-337</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/find-your-perfect-volunteer-position-at-the-y-338</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/find-your-perfect-volunteer-position-at-the-y-339</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-at-st-vincent-de-paul-jackson-340</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-at-st-vincent-de-paul-west-bend-341</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-at-st-vincent-de-paul-slinger-342</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-at-st-vincent-de-paul-hartford-343</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/nami-ending-the-silence-educator-344</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/train-the-trainer-health-education-opportunity-345</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-group-mentor-347</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/surge-leader-348</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/afternoon-program-volunteer-349</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/girl-code-mentoring-volunteer-350</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/fishers-citizen-academies-351</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/prevail-volunteer-352</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/various-volunteer-opportunities-353</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/program-volunteers-354</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/pack-meals-at-meals-on-wheels-of-central-maryland-355</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/techworks-volunteer-video-game-cataloging-gardening-356</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/paws-for-reading-volunteer-357</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/financial-planning-volunteers-needed-358</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/giving-the-gift-of-presence-to-hospice-patients-359</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/website-maintenance-360</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/events-planning-committee-coordinator-361</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3240,33 +2733,20 @@
   <url><loc>https://highschoolopportunity.org/opportunities/cooking-matters-nutrition-instructor-363</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/cooking-matters-culinary-instructor-364</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/k-12-grief-support-group-facilitator-365</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/drop-in-center-volunteer-366</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/jobs-education-team-members-367</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-management-team-member-368</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-mentor-leader-for-young-life-369</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/responding-to-hail-damage-370</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/in-shelter-volunteering-371</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/faith-based-support-group-volunteer-372</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/life-skills-presenter-373</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/field-trip-supervisor-374</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/drivers-375</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/adult-mentors-376</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-mentor-377</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/mentor-volunteers-378</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/edge-tutors-help-high-school-students-raise-their-grades-379</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/outreach-volunteer-summer-only-380</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-coach-spring-summer-fall-381</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/alive-past-25-traffic-safety-cheerleaders-382</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/angel-feet-ambassador-383</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/kettering-health-hamilton-hospital-volunteer-opportunity-384</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-assistant-at-french-heritage-association-for-child-385</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/corporate-university-community-group-service-projects-386</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-opportunity-advisory-board-387</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-with-camp-erin-santa-cruz-388</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teach-our-program-to-9th-graders-in-their-high-school-health-389</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/wrap-wood-ramp-builder-390</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-supervisor-for-trips-to-feed-my-starving-children-391</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/program-volunteers-392</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/united-against-poverty-orlando-up-orlando-393</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/911-day-spy-hop-community-saturday-september-18-394</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youthline-peer-intervention-specialist-395</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3275,11 +2755,8 @@
   <url><loc>https://highschoolopportunity.org/opportunities/grades-7-12-summer-camp-counselor-new-futures-burien-398</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/grades-7-12-summer-camp-counselor-new-futures-seatac-399</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/become-a-tutor-or-a-reading-buddy-for-our-youths-400</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/program-volunteer-401</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/board-member-402</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-mentor-inspire-healing-growth-in-youth-through-poe-403</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tennis-for-everyone-fundraising-lead-404</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/classroom-volunteer-presenter-405</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-mentor-406</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sib-pab-meal-prep-407</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/diaper-full-size-hygiene-product-drive-408</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3295,8 +2772,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/zooteens-418</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mmfa-docents-419</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/facilitator-420</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-golf-coach-baylands-421</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-golf-coach-rancho-del-pueblo-422</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/help-us-fulfill-our-mission-423</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/grant-writer-and-researcher-needed-424</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/swim-assistant-425</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3304,28 +2779,19 @@
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-leader-427</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ronald-mcdonald-house-drive-428</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/pathways-center-for-grief-and-loss-429</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/strive-25-volunteers-430</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/wednesday-night-educational-series-volunteers-431</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/strive-night-volunteers-432</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/tweens-program-volunteers-433</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ketchikan-youth-initiatives-434</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/vista-quality-assurance-435</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/meal-program-436</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/intergenerational-volunteer-program-opportunity-437</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/grant-writer-leia-s-kids-help-secure-funding-for-kids-with-c-438</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/gala-committee-leia-s-kids-royal-ball-plan-a-magical-gala-to-439</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/outreach-to-your-community-as-a-thrive-ambassador-440</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-volunteers-join-ymca-earth-service-corps-441</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/donate-children-shoes-for-the-disadvantaged-442</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/refugee-childcare-supervision-volunteer-443</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/seasonal-yard-work-age-12-444</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/share-a-meal-with-our-campus-residents-445</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/assist-second-harvest-s-greensboro-food-sorting-team-446</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/assist-second-harvest-s-community-gardener-447</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/assist-second-harvest-s-food-sorting-operations-448</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/assist-second-harvest-s-community-meals-kitchen-team-449</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/community-center-support-volunteer-450</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteers-needed-for-our-food-pantry-451</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ready-set-go-conference-registration-desk-452</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ready-set-go-conference-greeter-453</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/camp-jubilee-counselor-454</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3338,68 +2804,45 @@
   <url><loc>https://highschoolopportunity.org/opportunities/redress-clothing-associate-461</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/various-462</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/cftc2026-planning-team-463</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/wichita-volunteers-needed-make-a-meaningful-impact-in-hospic-464</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/help-needed-for-young-non-profit-who-helps-get-away-from-abu-465</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-medical-providers-needed-466</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/make-a-difference-with-the-power-of-play-nationwide-467</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/museum-guide-468</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/programs-469</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/join-the-green-cause-internal-team-470</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/create-your-own-chapter-the-green-cause-471</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/restore-volunteer-donation-processor-tuesday-saturday-472</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/the-green-cause-join-our-leadership-team-473</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/join-our-youth-board-474</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/produce-wish-list-475</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/healthy-treats-wish-list-476</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/meal-program-wish-list-477</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/pinwheels-thrift-store-and-family-center-volunteer-478</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/assembling-and-distribute-food-boxes-for-families-kernersvil-479</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/habitat-restore-480</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/maintenance-assistant-book-processing-center-481</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/help-build-outdoor-life-leaderships-digital-resource-library-482</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/opportunities-to-serve-a-meal-483</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/keep-the-blessings-box-full-484</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-with-ws-rescue-485</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/help-families-shop-for-a-fresh-start-486</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/scout-camp-in-volunteer-487</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/education-programs-assistant-488</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/jewelry-junkies-needed-489</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/wish-lists-490</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/brownsborou-s-tuesday-life-with-kids-491</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/community-meal-volunteer-492</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/help-feed-your-clifton-neighbors-in-need-food-pantry-helpers-493</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/venue-experience-volunteer-494</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/tech-buddies-volunteer-495</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/high-school-internship-496</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/gardening-497</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/museum-docent-498</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/joshuas-heart-foundation-jr-advisory-board-jab-499</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/educational-volunteer-500</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/food-pantry-and-clothing-center-volunteers-501</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/smoke-free-screens-movie-review-programs-502</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-opportunities-for-everyone-503</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/online-high-school-student-volunteer-opportunity-504</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/blankets-for-foster-kids-blanky4u-505</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/you-can-make-a-difference-in-the-life-of-homeless-dogs-and-c-506</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/rewarding-hospital-volunteer-opportunities-at-medstar-health-507</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/need-mature-high-school-peer-tutors-to-work-with-with-childr-508</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/library-volunteers-needed-509</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/help-us-rebuild-puerto-rico-510</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/help-us-rebuild-new-orleans-and-southeast-louisiana-511</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/museum-general-volunteer-512</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/student-instructor-volunteer-student-led-filmmaking-art-nonp-513</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-ushers-514</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/animal-and-garden-chores-as-we-grow-food-for-our-local-food--515</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-to-help-rabbits-516</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/play-guide-517</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/student-ambassador-518</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/be-a-hero-for-homeless-pets-volunteer-with-us-519</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/ice-cream-parlor-volunteer-520</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/music-appreciation-volunteer-521</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/lucy-lifting-up-camden-s-youth-summer-camp-522</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/disability-services-department-sail-or-soar-programs-523</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/school-supplies-collection-524</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/summer-camp-buddy-youth-volunteer-525</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-youth-at-randall-elementary-school-big-brothers-big-s-526</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-youth-at-hawthorne-elementary-school-big-brothers-big-527</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-youth-at-mendota-elementary-school-big-brothers-big-s-528</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3410,9 +2853,7 @@
   <url><loc>https://highschoolopportunity.org/opportunities/coach-youth-soccer-in-madison-s-low-income-neighborhoods-533</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-tutors-needed-this-spring-534</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/northstar-youth-outreach-center-advocate-evening-and-weekend-535</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-supervision-volunteer-536</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-support-537</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/greenville-humane-society-volunteer-with-animals-or-youth-pr-538</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/high-school-students-address-issues-that-are-important-to-yo-539</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teach-ja-programs-to-youth-at-a-school-or-youth-community-or-540</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/2026-lasos-youth-program-vista-541</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3423,26 +2864,19 @@
   <url><loc>https://highschoolopportunity.org/opportunities/be-a-kid-again-game-night-with-midnight-mission-s-youth-559</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/cook-meals-tidy-up-for-homeless-youth-at-p-ear-age-16-hands--561</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/come-tutor-refugee-youth-562</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-info-session-on-youth-and-adult-programs-at-the-ca-565</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/sign-up-for-youth-engaged-in-service-yes-2026-566</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/uncut-youth-food-distribution-monthly-567</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-garden-mentor-community-garden-volunteer-568</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/change-a-child-s-story-help-youth-in-foster-care-thrive-rsvp-569</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-social-media-ambassador-570</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-youth-services-support-navigator-571</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/community-housing-opportunities-corp-youth-services-vista-572</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-mental-health-corps-outreach-and-development-vista-573</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-sports-coaches-574</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-bike-and-pedestrian-safety-education-volunteer-575</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-activity-volunteer-576</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/26-27-cispus-learning-center-youth-programmer-577</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-capacity-building-vista-volunteer-san-francisco-ca-578</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/united-for-youth-community-engagement-block-party-2026-579</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-and-family-wellness-day-580</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/arts-programming-for-youth-and-adults-in-recovery-581</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-mental-health-corps-development-vista-teleservice-582</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentors-for-youth-needed-583</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-summer-volunteer-584</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/join-your-red-cross-club-youth-opportunities-585</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/kitchen-support-for-homeless-youth-drop-in-center-age-23-ref-586</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/make-and-pack-lunches-for-youth-587</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3455,15 +2889,11 @@
   <url><loc>https://highschoolopportunity.org/opportunities/youth-mental-health-fellow-594</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/26-27-youth-mentoring-partnership-operations-systems-vista-595</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/student-service-week-park-rec-youth-track-meet-596</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-mentoring-volunteer-597</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/goodhealth-works-root-cellar-youth-engagement-specialist-598</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/court-appointed-special-advocate-volunteer-for-youth-599</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-of-america-dba-thrif-tz-at-the-castle-donation-volunte-600</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ctep-at-listen-up-youth-radio-601</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-camp-campground-host-cape-henlopen-state-park-2026-602</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/glenwood-public-library-youth-activity-volunteer-603</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/26-27-gonzaga-univ-youth-programs-education-coor-604</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-family-services-superstar-volunteers-needed-605</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/2026-youthbuild-recruitment-vista-lake-county-606</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/you-can-be-a-part-of-youth-civic-engagement-607</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/fishing-and-survival-skills-mentor-youth-camping-program-608</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3476,7 +2906,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/tutor-a-youth-in-foster-care-615</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/layc-dc-youth-leaders-25-26-616</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/stream-teams-united-youth-development-at-earths-classroom-617</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-mentor-for-youth-618</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/vista-youth-engagement-coordinator-montgomery-county-619</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/valley-youth-house-mentoring-lehigh-valley-only-620</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/hoyleton-youth-and-family-services-annual-fundraiser-621</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3486,7 +2915,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/empower-youth-through-a-life-skills-experience-625</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/big-brothers-big-sisters-youth-mentors-626</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-education-and-food-security-program-coordinator-vista-627</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-capacity-building-vista-volunteer-hayward-ca-628</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ssl-youth-program-aide-rock-creek-terrace-629</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ssl-youth-program-aide-the-willows-630</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ssl-youth-program-aide-shady-grove-631</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3519,10 +2947,8 @@
   <url><loc>https://highschoolopportunity.org/opportunities/911-25-years-later-never-forget-youth-day-of-remberance-658</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/acam-opportunity-youth-projects-specialist-659</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/host-a-youth-program-activity-661</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-support-volunteer-662</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/campus-woods-care-perfect-team-opportunity-at-the-children-s-663</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/25-26-americorps-y-o-u-th-serve-member-part-time-664</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youthbase-after-school-volunteers-666</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/rotary-youth-camp-of-north-florida-inc-667</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/overtown-youth-center-668</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/american-association-of-caregiving-youth-669</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3531,20 +2957,15 @@
   <url><loc>https://highschoolopportunity.org/opportunities/miami-non-stop-dance-another-chance-youth-mentoring-672</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-giving-back-sports-mentor-program-673</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/valley-youth-house-mentoring-montgomery-county-lehigh-valley-674</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/travel-unity-youth-volunteer-675</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/strengthen-pathways-for-success-for-older-youth-transitionin-676</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentors-for-youth-677</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-development-volunteer-678</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/vista-youth-engagement-coordinator-dc-679</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/central-ky-bake-and-deliver-cakes-and-cupcakes-for-at-risk-y-680</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-group-or-individual-youth-volunteer-681</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tma-the-civic-circle-amplify-youth-voices-project-682</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/gospel-youth-choir-683</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/4-h-youth-development-volunteers-684</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/donate-snacks-for-youth-community-giving-carnival-685</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tess-program-support-aide-youth-686</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/idaho-youth-ranch-advancement-vista-687</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/idaho-youth-ranch-volunteer-services-vista-688</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/summer-youth-corps-blood-drive-greeter-get-hours-get-certifi-689</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/wv-s-promise-youth-alliance-inc-summer-2026-690</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-youth-in-montgomery-county-countywide-rockville-silve-691</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3553,7 +2974,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/youth-mentors-needed-694</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tutor-youth-impacted-by-foster-care-or-homelessness-695</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-outreach-prevention-coordinator-696</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-grant-writer-fundraiser-help-a-youth-outreach-orga-697</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/clean-up-crew-weekly-cleaning-opportunities-at-a-youth-outre-698</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/weld-county-youth-conservation-corps-crew-member-driver-699</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/weld-county-youth-conservation-corps-crew-member-swamper-700</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3571,45 +2991,30 @@
   <url><loc>https://highschoolopportunity.org/opportunities/rocky-mountiain-youth-corps-conservation-corps-crew-member-712</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/refugee-youth-tutor-713</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/child-and-youth-well-being-network-member-714</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/guiding-futures-youth-mentorship-volunteer-715</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/driving-opportunity-youth-support-volunteer-716</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-volunteer-corps-youth-signup-717</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/provide-meals-for-drop-in-center-youth-718</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-volunteer-program-2026-719</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/wv-s-promise-youth-alliance-inc-720</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/support-youth-leadership-behind-the-scenes-green-crew-scouti-721</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/guide-the-leaders-adult-advisor-for-youth-environmental-lead-722</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/be-the-steady-hand-adult-advisor-for-youth-led-conservation--723</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/sccap-thriving-connections-youth-volunteer-724</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/northwest-youth-corps-forestry-technician-725</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-program-volunteer-726</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/northwest-youth-corps-ucf-assistant-leader-727</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-volunteer-corps-team-leader-728</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-group-volunteer-729</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/central-ky-bake-and-deliver-cakes-and-cupcakes-for-at-risk-y-730</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/northwest-youth-corps-camping-crew-member-731</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/americorps-youth-transition-project-732</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/community-youth-mentor-733</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-encouragement-volunteer-734</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-youth-flag-football-coach-735</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-mentor-program-736</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-mentors-737</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/boredom-busters-youth-activity-kits-738</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-and-family-center-volunteers-739</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-in-government-740</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/local-youth-team-volunteers-741</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-at-the-father-wegner-day-school-wish-lists-742</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-engagement-lead-743</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/help-youth-in-need-744</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/retired-teachers-to-volunteer-at-cedar-rock-state-park-to-he-745</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tagging-clothes-especially-youth-clothing-age-13-746</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-art-backpacks-cancer-support-resources-747</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/fishers-youth-initiative-volunteer-748</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/cooking-for-youth-749</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/refugee-youth-mentor-750</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/refugee-youth-mentor-751</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/collect-socks-underwear-for-youth-experiencing-homelessness-752</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/future-travel-leaders-network-youth-volunteer-753</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-tutor-in-person-school-and-community-youth-services-754</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-tutor-virtual-school-and-community-youth-services-755</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/eckerd-connects-youth-program-756</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3617,35 +3022,23 @@
   <url><loc>https://highschoolopportunity.org/opportunities/women-and-youth-way-center-inc-758</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/class-instructor-for-youth-or-seniors-759</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/empower-youth-become-a-mentor-today-760</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-mentor-refugee-youth-mentoring-program-761</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/reconnecting-youth-through-social-emotional-wellness-762</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/board-leadership-opportunities-developing-youth-and-supporti-763</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hamburg-elementary-school-youth-reading-volunteer-764</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/transform-the-lives-of-wyoming-youth-with-sae-and-americorps-765</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/adult-team-leaders-for-our-youth-program-766</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-probation-programs-767</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-development-768</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/athletics-director-youth-basketball-co-ed-volunteer-769</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-development-program-manager-volunteer-770</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/learning-partner-tutor-support-longmont-youth-771</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/learning-partner-tutor-support-boulder-county-youth-772</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/soccer-without-borders-support-refugee-and-immigrant-youth-i-773</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/superworld-youth-mentor-774</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentors-needed-for-youth-in-our-community-775</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-for-youth-776</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-sports-volunteers-777</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-group-mentors-and-tutors-wanted-778</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-for-a-youth-nonprofit-779</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tuesday-night-youth-activities-780</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteers-assisting-with-youth-781</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-local-youth-one-to-one-mentoring-782</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/virtual-volunteer-grant-writer-help-fund-youth-outdoor-leade-783</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/southwest-iowa-technical-career-hub-youth-reading-volunteer-784</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/southwest-iowa-technical-career-hub-youth-classroom-helper-785</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/malvern-public-library-youth-activity-volunteer-786</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-advisory-council-member-787</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/mudsock-youth-athletics-volunteer-788</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/coordinate-youth-volunteer-to-serve-the-red-cross-mission-789</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-leaders-790</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentors-who-want-to-make-a-difference-in-the-life-of-a-youth-791</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/empower-youth-through-after-school-scouting-programs-792</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3653,7 +3046,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/youth-workers-794</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teach-syracuse-youth-work-life-skills-795</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-mentor-796</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-youth-sports-assistant-coach-field-manager-stat-ta-797</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-youth-798</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/educate-youth-about-mental-health-799</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/refugee-youth-mentor-800</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3661,7 +3053,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/camp-fire-century-youth-learning-center-802</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-creative-arts-instrument-instructors-803</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-creative-arts-piano-instructors-804</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-adult-mentor-for-long-term-youth-mentoring-program-805</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/social-services-titusville-area-youth-corps-806</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/maintenance-projects-titusville-area-youth-corps-807</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/administration-titusville-area-youth-corps-808</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3675,7 +3066,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/tutoring-mentoring-youth-816</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mbk-youth-football-coach-817</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mbk-youth-sports-videographer-818</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteers-needed-for-tutoring-justice-impacted-youth-819</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/working-with-youth-820</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-coach-821</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/summer-youth-work-program-822</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3686,29 +3076,22 @@
   <url><loc>https://highschoolopportunity.org/opportunities/host-a-game-night-with-youth-827</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/be-a-youth-mentor-828</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/group-youth-projects-829</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/coordinator-to-assist-youth-volunteers-to-serve-the-red-cros-830</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-a-youth-bbbs-community-based-program-831</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentoring-tutoring-youth-in-virginia-migration-and-refugee-s-832</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tutor-a-high-school-latino-youth-and-more-833</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tutor-a-middle-school-latino-youth-and-more-834</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-action-campaign-international-humanitarian-law-835</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-services-volunteers-downtown-library-836</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-services-volunteers-centennial-library-837</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/bake-from-home-for-at-risk-and-underserved-youth-838</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/student-volunteer-opportunities-change-lives-build-futures-v-839</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-coalition-volunteer-840</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-a-springspirit-youth-participant-841</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-programs-assistant-842</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-program-co-presenter-843</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/girl-s-youth-soccer-facilitator-844</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ihl-youth-action-campaign-845</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/donations-sponsorships-for-youth-stem-fundraising-event-846</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-sports-program-volunteers-847</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/coaching-youth-aau-basketball-848</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/national-youth-activist-bring-america-home-now-849</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tennessee-office-of-refugees-youth-mentor-program-850</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-engagement-lead-851</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/support-youth-volunteers-and-their-efforts-to-serve-the-red--852</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-mentor-at-harvest-kitchen-853</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-children-youth-with-an-incarcerated-parent-854</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/y-e-t-i-outdoor-youth-mentor-855</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3722,9 +3105,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/advisory-board-member-supporting-youth-leadership-environmen-863</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/gift-card-donations-for-basic-needs-of-youth-families-864</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/virtual-tutoring-for-afghan-youth-865</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-neighborhood-engagement-volunteer-corner-greeter-866</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/stop-outreach-program-volunteer-serve-homeless-youth-in-seat-867</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-ally-volunteer-ages-15-17-support-programming-for-home-868</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/board-member-iowa-youth-chorus-869</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/genesis-youth-foundation-soccer-team-manager-870</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/genesis-youth-foundation-soccer-coach-871</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3732,14 +3112,11 @@
   <url><loc>https://highschoolopportunity.org/opportunities/youth-engagement-lead-873</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/gigi-s-playhouse-youth-board-members-874</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/youth-mentor-875</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/female-youth-mentors-needed-for-long-term-volunteer-work-876</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/arts-and-crafts-youth-coordinator-877</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/join-youth-stem-non-profit-board-of-directors-878</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/youth-helpers-volunteers-needed-for-canvas-cross-painting-cl-879</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/learnserve-program-student-support-vista-880</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/director-of-ambassador-student-relations-hoby-mo-886</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/director-of-student-recruitment-hoby-mo-887</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/help-high-school-students-blood-drive-volunteers-needed-888</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/lights-on-music-up-calling-all-students-to-perform-in-our-co-889</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teaching-support-for-grades-1st-to-7th-students-890</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/create-items-for-mnps-teachers-students-891</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3770,20 +3147,14 @@
   <url><loc>https://highschoolopportunity.org/opportunities/texas-student-air-rifle-919</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/after-school-academic-coaches-for-student-athletes-920</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-high-school-students-saturdays-hillsboro-age-21-refer-921</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-hours-for-students-or-adults-922</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-high-school-students-saturdays-portland-age-21-referr-923</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-opportunity-host-a-games-day-for-best-buddies-coll-924</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/2026-yb-education-student-success-vista-louisville-ky-925</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/student-success-engagement-volunteer-926</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/student-success-support-coordinator-high-school-927</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/26-27-naches-valley-sd-student-wellness-support-member-928</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/so-what-else-2026-student-leadership-institute-sli-for-risin-929</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/high-school-student-volunteers-hillsborough-education-founda-930</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/judge-a-student-business-competition-931</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/teach-students-networking-skills-in-a-mock-networking-mixer-932</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/judge-student-business-presentations-at-washington-business--933</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/2026-mcps-title-i-elo-summer-program-student-volunteer-regis-934</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/creative-student-volunteers-935</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tma-towson-university-support-military-connected-student-936</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/host-family-needed-for-our-student-blanca-from-spain-937</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/host-family-needed-for-an-international-student-from-spain-938</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3802,7 +3173,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/internship-student-remote-or-in-person-951</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mcnce-vista-student-success-coordinator-952</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/goodhealth-works-pha-student-engagement-specialist-953</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-mentor-for-one-of-our-incredible-students-in-the-b-954</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/2026-latinas-leading-tomorrow-student-engagement-955</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentorship-opportunity-empower-a-college-student-s-future-956</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/empower-middle-school-students-for-a-financially-capable-fut-957</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3810,7 +3180,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/empower-middle-school-students-for-a-financially-capable-fut-959</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/program-interns-college-students-only-960</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/pack-a-snack-power-a-student-good-family-or-group-project-961</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/student-volunteers-962</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/help-middle-school-students-build-a-brighter-future-be-a-tab-963</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tutors-science-math-english-etc-for-first-generation-college-964</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/help-an-elementary-school-student-learn-to-read-become-a-rea-965</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3822,16 +3191,12 @@
   <url><loc>https://highschoolopportunity.org/opportunities/online-tutoring-for-low-income-students-971</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tutor-k-12-students-in-literacy-or-esol-972</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/woodworking-and-or-refurbishing-with-students-973</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/student-service-volunteer-974</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/student-representative-to-the-board-of-trustees-2026-975</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/student-volunteer-976</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hospitality-students-volunteers-977</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/you-matter-be-a-mentor-to-one-of-our-k-12-grade-students-978</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/college-student-mentor-979</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/advertising-and-marketing-student-internship-980</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mpower-mentor-high-school-students-981</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/students-give-back-at-coleman-high-school-982</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/seeking-college-student-volunteers-for-hospice-983</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/river-watch-school-liaison-support-student-water-science-984</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/during-school-and-after-school-tutors-for-elementary-and-hig-985</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/support-international-students-as-a-community-area-represent-986</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3847,14 +3212,11 @@
   <url><loc>https://highschoolopportunity.org/opportunities/social-media-marketing-internship-high-school-or-college-stu-996</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/make-steam-kits-inspire-young-students-997</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/before-school-support-for-k-5th-grade-students-998</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/pre-med-and-nursing-students-volunteer-with-mission-hospice--999</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/senior-adults-needed-coach-students-1000</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mentor-elementary-school-students-1001</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/amazing-opportunity-to-mentor-high-school-students-with-mind-1002</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/help-tutor-and-mentor-local-students-now-age-55-1003</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/collaborative-student-food-pantry-vista-1004</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/support-students-make-an-impact-inspire-others-volunteer-as--1005</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-opportunity-mentor-tutor-refugee-high-school-stude-1006</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/binoculars-for-field-trips-and-k-12-students-1007</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/want-to-change-a-student-s-life-be-a-mentor-1008</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/support-students-in-gulf-county-florida-1009</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
@@ -3930,8 +3292,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/student-internship-1080</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/after-school-tutoring-for-high-school-students-1081</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/cis-of-swva-student-resource-center-1082</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/bhs-student-volunteer-opportunities-1083</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/volunteer-drivers-to-work-for-high-school-students-with-disa-1084</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/back-up-on-call-van-driver-for-student-transportation-1085</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tutor-early-elementary-students-1086</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>

@@ -11,7 +11,7 @@ import { supabase } from "@/integrations/supabase/client";
 const schema = z.object({
   title: z.string().trim().min(2).max(160),
   org: z.string().trim().min(2).max(160),
-  category: z.enum(["Research", "Internship", "Competition", "Summer Program", "Scholarship", "Volunteer", "Fellowship"]),
+  category: z.enum(["Research", "Internship", "Competition", "Summer Program", "Scholarship", "Fellowship"]),
   url: z.string().trim().url().max(500),
   deadline: z.string().optional(),
   cost: z.enum(["Free", "Paid", "Stipend"]),
@@ -95,7 +95,7 @@ const Submit = () => {
           <Field label="Program name" name="title" required />
           <Field label="Organization" name="org" required />
           <Row>
-            <SelectField label="Category" name="category" required options={["Research", "Internship", "Competition", "Summer Program", "Scholarship", "Volunteer", "Fellowship"]} />
+            <SelectField label="Category" name="category" required options={["Research", "Internship", "Competition", "Summer Program", "Scholarship", "Fellowship"]} />
             <SelectField label="Cost" name="cost" required options={["Free", "Paid", "Stipend"]} />
           </Row>
           <Row>

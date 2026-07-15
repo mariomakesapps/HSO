@@ -40,7 +40,6 @@ const CATEGORY_CHIPS: (Category | "All")[] = [
   "Research",
   "Scholarship",
   "Competition",
-  "Volunteer",
   "Fellowship",
 ];
 

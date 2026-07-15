@@ -6,7 +6,6 @@ export type CategorySlug =
   | "scholarships"
   | "research"
   | "competitions"
-  | "volunteer"
   | "fellowships";
 
 export interface CategoryFAQ {
@@ -111,24 +110,6 @@ export const CATEGORY_META: Record<CategorySlug, {
       { q: "Are there finance competitions for high school students?", a: "Yes — Wharton Global High School Investment Competition, Knowledge@Wharton, KWHS Comment Competition, the Quantitative Investing Challenge, and DECA finance events are all open to U.S. high schoolers." },
       { q: "How do I qualify for math olympiads?", a: "Start with AMC 10 or AMC 12 (typically taken in November). Top scorers qualify for AIME, then USAMO/USAJMO, then MOP. Most students take AMC for the first time in 9th or 10th grade." },
       { q: "Can freshmen enter high school competitions?", a: "Yes, most national competitions accept all four grades. AMC, USACO, Scholastic Writing, and many STEM olympiads have no grade restriction." },
-    ],
-  },
-  volunteer: {
-    category: "Volunteer",
-    title: "Volunteer Opportunities for High Schoolers | HSO",
-    h1: "Volunteer opportunities for high school students",
-    intro: "Service, conservation, hospital, and community volunteering programs across the United States — for high school students earning service hours and building real impact.",
-    description: "Volunteer opportunities for high school students in the U.S. — community, hospital, conservation, tutoring, and civic service programs.",
-    guide: [
-      "Volunteer opportunities for high schoolers fall into community service (food banks, shelters, tutoring), structured programs (Key Club, NHS service projects, AmeriCorps youth), hospital programs (most major hospitals have teen volunteer tracks), and conservation work (National Park Service, state parks, environmental nonprofits).",
-      "Depth beats breadth. Colleges read sustained 100+ hours at one organization as commitment; 10 hours at ten different places reads as resume-stuffing.",
-      "Many programs require an in-person application, parental consent, and a multi-week training. Apply at least a month before you want to start.",
-    ],
-    faqs: [
-      { q: "Where can high school students volunteer?", a: "Local food banks, animal shelters, hospitals (teen volunteer tracks), tutoring programs, libraries, museums, religious organizations, state and national parks, and AmeriCorps-affiliated nonprofits all regularly accept high school volunteers." },
-      { q: "How many volunteer hours do high schoolers need?", a: "Most service-honor programs (NHS, presidential service award) target 50–250 hours. Selective colleges respond more to sustained commitment than total hours — 200+ hours at one organization over 2 years signals more than 500 hours scattered." },
-      { q: "Can high school students volunteer at hospitals?", a: "Yes. Most major U.S. hospitals run teen volunteer programs for high schoolers aged 14–18 — typically 4-hour shifts in patient transport, gift shops, or administrative help. Apply in spring for summer placement." },
-      { q: "Are there paid volunteer opportunities?", a: "AmeriCorps programs offer stipends or education awards. Most other volunteer roles are unpaid, but many community programs cover transit and meals." },
     ],
   },
   fellowships: {

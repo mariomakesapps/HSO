@@ -14,7 +14,7 @@ export type FilterState = {
   format: "All" | "In-person" | "Online" | "Hybrid";
 };
 
-const cats: (Category | "All")[] = ["All","Research","Internship","Competition","Summer Program","Scholarship","Volunteer","Fellowship"];
+const cats: (Category | "All")[] = ["All","Research","Internship","Competition","Summer Program","Scholarship","Fellowship"];
 
 export function Filters({ value, onChange }: { value: FilterState; onChange: (v: FilterState) => void }) {
   const [open, setOpen] = useState(false);
