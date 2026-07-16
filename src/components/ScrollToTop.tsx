@@ -12,8 +12,9 @@ const ScrollToTop = () => {
   const { key, pathname } = useLocation();
   const navType = useNavigationType();
   const positions = useRef<Map<string, number>>(new Map());
-  const prevKey = useRef<string>(key);
   const prevPathname = useRef<string>(pathname);
+  const keyRef = useRef(key);
+  keyRef.current = key;
 
   // Disable the browser's own scroll restoration; we manage it.
   useEffect(() => {
@@ -26,13 +27,17 @@ const ScrollToTop = () => {
     }
   }, []);
 
-  // Save scroll for the outgoing entry before the new one paints.
-  useLayoutEffect(() => {
-    if (prevKey.current !== key) {
-      positions.current.set(prevKey.current, window.scrollY);
-      prevKey.current = key;
-    }
-  }, [key]);
+  // Continuously track the scroll position for the current history key.
+  // Using a ref for the key avoids re-registering the listener on every
+  // navigation and prevents race conditions where a scroll event fires
+  // while the listener is still bound to the previous key.
+  useEffect(() => {
+    const handleScroll = () => {
+      positions.current.set(keyRef.current, window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   useLayoutEffect(() => {
     if (navType === "POP") {
