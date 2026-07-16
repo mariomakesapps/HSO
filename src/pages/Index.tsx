@@ -231,15 +231,6 @@ const Index = () => {
                       Use the sidebar to narrow by state, field, grade, cost, format, status, and deadline.
                     </p>
                   </div>
-                  <div className="hidden md:block">
-                    <FilterDropdown
-                      label="Sort"
-                      value={sort}
-                      onChange={(v) => setSort(v as SortKey)}
-                      options={SORT_OPTIONS.map((o) => ({ value: o.value, label: o.label }))}
-                      align="end"
-                    />
-                  </div>
                 </div>
               </div>
 
