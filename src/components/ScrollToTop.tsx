@@ -14,6 +14,8 @@ const ScrollToTop = () => {
   const positions = useRef<Map<string, number>>(new Map());
   const prevKey = useRef<string>(key);
   const prevPathname = useRef<string>(pathname);
+  const keyRef = useRef(key);
+  keyRef.current = key;
 
   // Disable the browser's own scroll restoration; we manage it.
   useEffect(() => {
@@ -26,9 +28,20 @@ const ScrollToTop = () => {
     }
   }, []);
 
-  // Save scroll for the outgoing entry before the new one paints.
+  // Continuously track the scroll position for the current history key.
+  // Using a ref for the key avoids re-registering the listener on every
+  // navigation and prevents race conditions where a scroll event fires
+  // while the listener is still bound to the previous key.
+  useEffect(() => {
+    const handleScroll = () => {
+      positions.current.set(keyRef.current, window.scrollY);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Save the outgoing history entry's position as the route commits.
   useLayoutEffect(() => {
-    console.log('[ScrollToTop] save effect', { prevKey: prevKey.current, key, scrollY: window.scrollY, navType });
     if (prevKey.current !== key) {
       positions.current.set(prevKey.current, window.scrollY);
       prevKey.current = key;
@@ -36,10 +49,8 @@ const ScrollToTop = () => {
   }, [key]);
 
   useLayoutEffect(() => {
-    console.log('[ScrollToTop] restore effect', { navType, key, pathname, prevPathname: prevPathname.current, positions: Array.from(positions.current.entries()) });
     if (navType === "POP") {
       const y = positions.current.get(key) ?? 0;
-      console.log('[ScrollToTop] POP restore to', y);
       window.scrollTo({ top: y, left: 0, behavior: "auto" });
       prevPathname.current = pathname;
     } else if (prevPathname.current !== pathname) {
