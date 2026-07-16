@@ -1,6 +1,7 @@
 import { stateOpportunities } from "@/data/stateOpportunities";
 import { additionalUsOpportunities } from "@/data/additionalUsOpportunities";
 import { generatedBulkOpportunities } from "@/data/generatedBulkOpportunities";
+import { csvScholarships } from "@/data/csvScholarships";
 
 // Drop listings whose title/blurb/location reveal a non-U.S. program even when
 // the imported `location` field claims a U.S. state (the volunteer feed often
@@ -412,6 +413,7 @@ export const opportunities: Opportunity[] = [
   ...additionalUsOpportunities,
   ...stateOpportunities,
   ...generatedBulkOpportunities,
+  ...csvScholarships,
 ];
 
 for (const opportunity of opportunities) {
