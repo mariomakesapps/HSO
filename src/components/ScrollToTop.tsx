@@ -34,6 +34,7 @@ const ScrollToTop = () => {
   // while the listener is still bound to the previous key.
   useEffect(() => {
     const handleScroll = () => {
+      console.log('[ScrollToTop] scroll', { key: keyRef.current, y: window.scrollY });
       positions.current.set(keyRef.current, window.scrollY);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
