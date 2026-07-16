@@ -43,6 +43,7 @@ const ScrollToTop = () => {
 
   // Save the outgoing history entry's position as the route commits.
   useLayoutEffect(() => {
+    console.log('[ScrollToTop] save layout effect', { prevKey: prevKey.current, key, scrollY: window.scrollY, navType });
     if (prevKey.current !== key) {
       positions.current.set(prevKey.current, window.scrollY);
       prevKey.current = key;
@@ -50,8 +51,10 @@ const ScrollToTop = () => {
   }, [key]);
 
   useLayoutEffect(() => {
+    console.log('[ScrollToTop] restore layout effect', { navType, key, pathname, prevPathname: prevPathname.current, positions: Array.from(positions.current.entries()) });
     if (navType === "POP") {
       const y = positions.current.get(key) ?? 0;
+      console.log('[ScrollToTop] POP restore to', y);
       window.scrollTo({ top: y, left: 0, behavior: "auto" });
       prevPathname.current = pathname;
     } else if (prevPathname.current !== pathname) {
