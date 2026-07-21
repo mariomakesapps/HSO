@@ -7,6 +7,7 @@ import {
   Filter as FilterIcon,
   GraduationCap,
   Globe,
+  Search,
   ShieldCheck,
   SlidersHorizontal,
   Sparkles,
@@ -20,6 +21,7 @@ import { FilterState } from "@/components/Filters";
 import { ExtraFilters, DEFAULT_EXTRA, ExtraFilterState } from "@/components/ExtraFilters";
 import { SortKey, SORT_OPTIONS } from "@/components/SortBar";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetFooter } from "@/components/ui/sheet";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { FilterDropdown } from "@/components/FilterDropdown";
@@ -231,6 +233,15 @@ const Index = () => {
                       Use the sidebar to narrow by state, field, grade, cost, format, status, and deadline.
                     </p>
                   </div>
+                </div>
+                <div className="relative mt-4">
+                  <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    value={filters.query}
+                    onChange={(e) => setFilters({ ...filters, query: e.target.value })}
+                    placeholder="Search programs, fields, organizations…"
+                    className="h-12 rounded-full border-border bg-card pl-12 pr-4 text-base shadow-soft focus-visible:ring-coral"
+                  />
                 </div>
               </div>
 
