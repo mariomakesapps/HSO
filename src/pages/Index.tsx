@@ -232,6 +232,15 @@ const Index = () => {
                     </p>
                   </div>
                 </div>
+                <div className="relative mt-4">
+                  <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+                  <Input
+                    value={filters.query}
+                    onChange={(e) => setFilters({ ...filters, query: e.target.value })}
+                    placeholder="Search programs, fields, organizations…"
+                    className="h-12 rounded-full border-border bg-card pl-12 pr-4 text-base shadow-soft focus-visible:ring-coral"
+                  />
+                </div>
               </div>
 
               <div className="-mx-4 mt-5 overflow-visible sm:mx-0">
