@@ -7,6 +7,7 @@ import {
   Filter as FilterIcon,
   GraduationCap,
   Globe,
+  Search,
   ShieldCheck,
   SlidersHorizontal,
   Sparkles,
@@ -20,6 +21,7 @@ import { FilterState } from "@/components/Filters";
 import { ExtraFilters, DEFAULT_EXTRA, ExtraFilterState } from "@/components/ExtraFilters";
 import { SortKey, SORT_OPTIONS } from "@/components/SortBar";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetFooter } from "@/components/ui/sheet";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { FilterDropdown } from "@/components/FilterDropdown";
