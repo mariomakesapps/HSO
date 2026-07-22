@@ -88,7 +88,12 @@ export function FilterDropdown({
             </div>
           </div>
         )}
-        <div className="hso-scroll max-h-[300px] overflow-y-auto p-1">
+        <div
+          className="hso-scroll max-h-[60vh] overflow-y-auto overscroll-contain p-1 sm:max-h-[300px]"
+          style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-y" }}
+          onTouchMove={(e) => e.stopPropagation()}
+          onWheel={(e) => e.stopPropagation()}
+        >
           {filtered.length === 0 ? (
             <p className="px-3 py-6 text-center text-xs text-muted-foreground">No matches.</p>
           ) : (
