@@ -66,7 +66,7 @@ export function CollectionsPanel({ open, onOpenChange }: { open: boolean; onOpen
       <aside
         role="dialog"
         aria-modal="true"
-        className={`fixed bottom-0 right-0 top-[64px] z-[90] flex w-[min(92vw,28rem)] transform-gpu flex-col border-l border-border bg-background shadow-editorial transition-transform duration-300 will-change-transform md:top-[76px] ${entered ? "translate-x-0" : "translate-x-full"}`}
+        className={`fixed bottom-0 right-0 top-[60px] z-[90] flex w-[min(92vw,28rem)] transform-gpu flex-col border-l border-border bg-background shadow-editorial transition-transform duration-300 will-change-transform md:top-[72px] ${entered ? "translate-x-0" : "translate-x-full"}`}
       >
         <header className="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-background px-4 py-4 sm:px-6 sm:py-5">
           <div>
