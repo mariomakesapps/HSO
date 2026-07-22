@@ -99,7 +99,10 @@ const OpportunityDetail = () => {
     <div className="min-h-screen text-foreground">
       <SEO
         title={`${opp.title} | HSO`}
-        description={`${opp.title} by ${opp.org}: ${opp.category.toLowerCase()} for high school students in ${opp.location}. Eligibility, deadline, cost, and the official application link.`}
+        description={(() => {
+          const raw = `${opp.title} — ${opp.category} for high schoolers in ${opp.location}. Deadline, eligibility, cost & official link.`;
+          return raw.length > 158 ? raw.slice(0, 155) + "…" : raw;
+        })()}
         path={`/opportunities/${opp.id}`}
         noindex={seoNoindex}
         jsonLd={[

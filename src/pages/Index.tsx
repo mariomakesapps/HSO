@@ -184,7 +184,7 @@ const Index = () => {
   return (
     <div className="relative min-h-screen overflow-x-hidden text-foreground">
       <SEO
-        title="High School Internships, Summer Programs & Scholarships | HSO"
+        title="High School Internships, Scholarships & Programs | HSO"
         description="Free U.S. opportunity finder for high schoolers: internships, summer programs, scholarships, research, and competitions — curated and deadline-tracked."
         path="/"
         jsonLd={{
