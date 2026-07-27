@@ -32,9 +32,12 @@ const CuratedCollectionDetail = () => {
 
   useSEO({
     title: collection ? `${collection.title} - HSO Collection` : "Collection - HSO",
-    description:
-      collection?.description ||
-      "Browse a curated HSO collection of high school opportunities — internships, research programs, scholarships, competitions, and summer programs hand-picked by editors.",
+    description: (() => {
+      const raw =
+        collection?.description ||
+        "A curated HSO list of high school opportunities: internships, research, scholarships, competitions, and summer programs picked by editors.";
+      return raw.length > 158 ? `${raw.slice(0, 155)}…` : raw;
+    })(),
   });
 
   const allOpps = useMemo(

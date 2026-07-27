@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "@/hooks/use-toast";
 import { localSignIn, localSignUp, useAuthSession } from "@/hooks/useAuthSession";
 import { lovable } from "@/integrations/lovable/index";
+import SEO from "@/components/SEO";
 
 function checkPassword(pw: string) {
   return {
@@ -115,6 +116,15 @@ const Auth = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-cream">
+      <SEO
+        title={isSignup ? "Create Your Free HSO Account" : "Sign In to HSO"}
+        description={
+          isSignup
+            ? "Create a free HSO account to save high school internships, scholarships, research programs, and summer programs to your shelf."
+            : "Sign in to HSO to access your saved high school internships, scholarships, research programs, and curated collections."
+        }
+        path="/auth"
+      />
       <div className="hso-bg-blobs" aria-hidden="true">
         <span className="b1" />
         <span className="b2" />
