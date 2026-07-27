@@ -89,7 +89,7 @@ export default function GuideTopResearchCompetitions() {
     <div className="min-h-screen">
       <SEO
         title="Best Research Competitions for High Schoolers 2026 | HSO"
-        description="Compare the top research competitions for high school students — Regeneron STS, ISEF, JSHS, Davidson Fellows & more. Prizes, selectivity, and deadlines side-by-side."
+        description="Compare top U.S. research competitions for high schoolers: Regeneron STS, ISEF, JSHS, Davidson Fellows. Prizes, selectivity, deadlines."
         path="/guides/top-research-competitions"
         type="article"
         jsonLd={jsonLd}

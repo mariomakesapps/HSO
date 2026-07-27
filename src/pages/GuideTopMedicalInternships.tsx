@@ -89,7 +89,7 @@ export default function GuideTopMedicalInternships() {
     <div className="min-h-screen">
       <SEO
         title="Best Medical Internships for High School Students 2026 | HSO"
-        description="Compare the top medical internships for high school students — JHIBS, Stanford SIMR, NIH HiSTEP, Rockefeller SSRP & more. Selectivity, stipend, and deadlines side-by-side."
+        description="Compare top U.S. medical internships for high schoolers: JHIBS, Stanford SIMR, NIH HiSTEP, Rockefeller SSRP. Selectivity, stipends, deadlines."
         path="/guides/top-medical-internships"
         type="article"
         jsonLd={jsonLd}
