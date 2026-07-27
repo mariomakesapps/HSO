@@ -66,7 +66,7 @@ const Unsubscribe = () => {
     <>
       <SEO
         title="Unsubscribe — HSO"
-        description="Manage your HSO email subscription."
+        description="Manage your High School Opportunity email preferences. Unsubscribe from deadline reminders and program alerts, or resubscribe at any time."
         path="/unsubscribe"
         noindex
       />
