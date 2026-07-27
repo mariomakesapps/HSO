@@ -88,5 +88,6 @@ export default function Profile() {
         </div>
       </div>
     </main>
+    </>
   );
 }
