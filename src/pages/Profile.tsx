@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useStore } from "@/store/collections";
 import { authRedirectHref, localSignOut, useAuthSession } from "@/hooks/useAuthSession";
+import SEO from "@/components/SEO";
 
 export default function Profile() {
   const { session, loading } = useAuthSession();
@@ -31,6 +32,13 @@ export default function Profile() {
   };
 
   return (
+    <>
+      <SEO
+        title="Your HSO Profile — Saved Opportunities"
+        description="Manage your HSO account, view saved high school opportunities, and organize the collections you follow."
+        path="/profile"
+        noindex
+      />
     <main className="relative mx-auto max-w-3xl px-4 pb-24 pt-8 md:px-6 md:pt-12">
       <Link to="/" className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-coral">
         <ArrowLeft className="h-4 w-4" /> Back home
