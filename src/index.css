@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap');
-
+/* Outfit is loaded non-render-blocking from index.html — no @import here,
+   which would chain a second render-blocking request after the CSS bundle. */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
