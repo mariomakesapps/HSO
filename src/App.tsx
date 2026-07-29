@@ -25,6 +25,7 @@ const Profile = lazy(() => import("./pages/Profile.tsx"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe.tsx"));
 const GuideTopMedicalInternships = lazy(() => import("./pages/GuideTopMedicalInternships.tsx"));
 const GuideTopResearchCompetitions = lazy(() => import("./pages/GuideTopResearchCompetitions.tsx"));
+const GuideTopBusinessPrograms = lazy(() => import("./pages/GuideTopBusinessPrograms.tsx"));
 
 function PageFallback() {
   return (
@@ -111,6 +112,7 @@ const App = () => (
               <Route path="/unsubscribe" element={<Unsubscribe />} />
               <Route path="/guides/top-medical-internships" element={<GuideTopMedicalInternships />} />
               <Route path="/guides/top-research-competitions" element={<GuideTopResearchCompetitions />} />
+              <Route path="/guides/top-business-summer-programs" element={<GuideTopBusinessPrograms />} />
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
           </Route>
