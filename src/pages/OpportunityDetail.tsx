@@ -119,6 +119,16 @@ const OpportunityDetail = () => {
           },
           {
             "@context": "https://schema.org",
+            "@type": "Article",
+            headline: opp.title,
+            description: opp.blurb,
+            about: opp.category,
+            author: { "@type": "Organization", name: "HSO — High School Opportunity" },
+            publisher: { "@type": "Organization", name: "HSO — High School Opportunity" },
+            mainEntityOfPage: `https://highschoolopportunity.org/opportunities/${opp.id}`,
+          },
+          {
+            "@context": "https://schema.org",
             "@type": "BreadcrumbList",
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "HSO", item: "https://highschoolopportunity.org/" },
