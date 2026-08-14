@@ -164,10 +164,12 @@ const Index = () => {
   const standouts = useMemo(
     () =>
       opportunities
-        .filter((o) => o.prestige === 3)
+        .filter((o) => o.prestige === 3 && o.id !== "isef")
         .sort((a, b) => {
           if (a.id === "columbia-freedom-citizenship") return -1;
           if (b.id === "columbia-freedom-citizenship") return 1;
+          if (a.id === "yefa-ysic") return -1;
+          if (b.id === "yefa-ysic") return 1;
           return 0;
         })
         .slice(0, 6),
