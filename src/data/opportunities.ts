@@ -2,6 +2,12 @@ import { stateOpportunities } from "@/data/stateOpportunities";
 import { additionalUsOpportunities } from "@/data/additionalUsOpportunities";
 import { generatedBulkOpportunities } from "@/data/generatedBulkOpportunities";
 import { csvScholarships } from "@/data/csvScholarships";
+import {
+  normalizeOpportunityUrl,
+  removedOpportunityUrls,
+  deadlineOverridesByUrl,
+  opensAtOverridesByUrl,
+} from "@/data/eligibilityCleanup.generated";
 
 // Drop listings whose title/blurb/location reveal a non-U.S. program even when
 // the imported `location` field claims a U.S. state (the volunteer feed often
@@ -479,11 +485,25 @@ for (const opportunity of opportunities) {
   );
 }
 
+// Eligibility cleanup pass (HSO_Opportunities_Cleaned_v3):
+// drop listings that are not open to high schoolers and apply researched dates.
+for (const opportunity of opportunities) {
+  const key = normalizeOpportunityUrl(opportunity.url);
+  const deadline = deadlineOverridesByUrl[key];
+  if (deadline) opportunity.deadline = deadline;
+  const opensAt = opensAtOverridesByUrl[key];
+  if (opensAt) opportunity.opensAt = opensAt;
+}
+
 // US-focused: keep opportunities available to U.S. high schoolers (USA, Worldwide, Online).
 const US_ELIGIBLE = /(USA|Worldwide|Online|Multiple, USA)/i;
 export const allOpportunities: Opportunity[] = opportunities.filter((o) =>
-  o.category !== "Volunteer" && US_ELIGIBLE.test(o.location) && isUsBased(o)
+  o.category !== "Volunteer" &&
+  US_ELIGIBLE.test(o.location) &&
+  isUsBased(o) &&
+  !removedOpportunityUrls.has(normalizeOpportunityUrl(o.url))
 );
+
 
 // Map a US location string to a state-like filter bucket.
 export function locationState(location: string): string {
