@@ -2,6 +2,12 @@ import { stateOpportunities } from "@/data/stateOpportunities";
 import { additionalUsOpportunities } from "@/data/additionalUsOpportunities";
 import { generatedBulkOpportunities } from "@/data/generatedBulkOpportunities";
 import { csvScholarships } from "@/data/csvScholarships";
+import {
+  normalizeOpportunityUrl,
+  removedOpportunityUrls,
+  deadlineOverridesByUrl,
+  opensAtOverridesByUrl,
+} from "@/data/eligibilityCleanup.generated";
 
 // Drop listings whose title/blurb/location reveal a non-U.S. program even when
 // the imported `location` field claims a U.S. state (the volunteer feed often
