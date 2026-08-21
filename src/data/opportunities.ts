@@ -479,11 +479,25 @@ for (const opportunity of opportunities) {
   );
 }
 
+// Eligibility cleanup pass (HSO_Opportunities_Cleaned_v3):
+// drop listings that are not open to high schoolers and apply researched dates.
+for (const opportunity of opportunities) {
+  const key = normalizeOpportunityUrl(opportunity.url);
+  const deadline = deadlineOverridesByUrl[key];
+  if (deadline) opportunity.deadline = deadline;
+  const opensAt = opensAtOverridesByUrl[key];
+  if (opensAt) opportunity.opensAt = opensAt;
+}
+
 // US-focused: keep opportunities available to U.S. high schoolers (USA, Worldwide, Online).
 const US_ELIGIBLE = /(USA|Worldwide|Online|Multiple, USA)/i;
 export const allOpportunities: Opportunity[] = opportunities.filter((o) =>
-  o.category !== "Volunteer" && US_ELIGIBLE.test(o.location) && isUsBased(o)
+  o.category !== "Volunteer" &&
+  US_ELIGIBLE.test(o.location) &&
+  isUsBased(o) &&
+  !removedOpportunityUrls.has(normalizeOpportunityUrl(o.url))
 );
+
 
 // Map a US location string to a state-like filter bucket.
 export function locationState(location: string): string {
