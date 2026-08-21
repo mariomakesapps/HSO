@@ -103,10 +103,16 @@ const Index = () => {
     [filtered, safePage, pageSize],
   );
 
-  // Reset to page 1 whenever filters/sort change.
+  // Reset to page 1 whenever filters/sort actually change (never on mount,
+  // so returning via the back button keeps the page from the URL).
+  const filterSignature = JSON.stringify([deferredFilters, deferredExtra, deferredSort]);
+  const lastFilterSignature = useRef(filterSignature);
   useEffect(() => {
+    if (lastFilterSignature.current === filterSignature) return;
+    lastFilterSignature.current = filterSignature;
     setPage(1);
-  }, [deferredFilters, deferredExtra, deferredSort]);
+  }, [filterSignature]);
+
 
   // Clamp page if filtered set shrinks below the current page.
   useEffect(() => {
