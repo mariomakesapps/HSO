@@ -97,6 +97,19 @@ const Contact = () => {
           <Button type="submit" disabled={submitting} className="w-full rounded-full bg-ink py-6 text-cream hover:bg-coral hover:text-coral-foreground">
             {submitting ? "Saving..." : "Send message"}
           </Button>
+
+          <div className="flex items-center gap-3 py-2">
+            <span className="h-px flex-1 bg-border" />
+            <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">OR</span>
+            <span className="h-px flex-1 bg-border" />
+          </div>
+
+          <p className="text-center text-sm text-muted-foreground">
+            Email us directly at{" "}
+            <a href="mailto:highschoolopportunity@gmail.com" className="font-semibold text-foreground underline decoration-1 underline-offset-4 hover:text-coral">
+              highschoolopportunity@gmail.com
+            </a>
+          </p>
         </form>
       </main>
       <SiteFooter />
