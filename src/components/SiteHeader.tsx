@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Bookmark, LogOut, Menu, User as UserIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -16,7 +16,16 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
 
-const CollectionsPanel = lazy(() => import("@/components/CollectionsPanel").then((module) => ({ default: module.CollectionsPanel })));
+/**
+ * The shelf panel is code-split, but the chunk used to start downloading only
+ * on the first click — so that click did nothing for a round trip and the
+ * panel then appeared with no transition. Prefetching on idle (and again on
+ * hover) means the module is already in memory when the button is pressed.
+ */
+const importCollectionsPanel = () => import("@/components/CollectionsPanel");
+const CollectionsPanel = lazy(() =>
+  importCollectionsPanel().then((module) => ({ default: module.CollectionsPanel })),
+);
 
 function useScrolled(threshold = 8) {
   const [scrolled, setScrolled] = useState(false);
@@ -27,6 +36,90 @@ function useScrolled(threshold = 8) {
     return () => window.removeEventListener("scroll", onScroll);
   }, [threshold]);
   return scrolled;
+}
+
+const NAV_ITEMS = [
+  { to: "/about", label: "About" },
+  { to: "/submit", label: "Submit" },
+  { to: "/collections", label: "Collections" },
+  { to: "/contact", label: "Contact" },
+];
+
+/**
+ * Desktop nav with an active pill that slides between tabs.
+ *
+ * Previously each link toggled its own background, so the active state cut
+ * instantly from one tab to the next. A single shared indicator measured
+ * against the active link travels between them instead, which is what makes
+ * a tab bar feel continuous rather than switched.
+ */
+function DesktopNav({ pathname }: { pathname: string }) {
+  const navRef = useRef<HTMLElement>(null);
+  const [pill, setPill] = useState<{ left: number; width: number } | null>(null);
+
+  useLayoutEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+
+    const measure = () => {
+      // Below the md breakpoint the nav is display:none, so every offset reads
+      // 0. Measuring then would park a zero-width pill at the left edge, which
+      // would animate out from there on the first desktop render.
+      if (!nav.offsetWidth) return;
+
+      const active = nav.querySelector<HTMLElement>('[data-active="true"]');
+      if (!active) {
+        setPill(null);
+        return;
+      }
+      setPill({ left: active.offsetLeft, width: active.offsetWidth });
+    };
+
+    measure();
+    // Fonts landing late change link widths, which would leave the pill
+    // measured against stale geometry.
+    const ro = new ResizeObserver(measure);
+    ro.observe(nav);
+    void document.fonts?.ready.then(measure);
+    return () => ro.disconnect();
+  }, [pathname]);
+
+  return (
+    <nav
+      ref={navRef}
+      className="relative hidden items-center justify-center gap-1 rounded-full border border-white/65 bg-card/45 px-1.5 py-1 text-sm font-bold text-foreground/75 shadow-[inset_0_1px_0_hsl(0_0%_100%/0.65)] md:flex"
+    >
+      {pill && (
+        <span
+          aria-hidden="true"
+          className="hso-nav-indicator"
+          style={{
+            transform: `translateX(${pill.left}px)`,
+            width: pill.width,
+            top: 4,
+            bottom: 4,
+            left: 0,
+          }}
+        />
+      )}
+      {NAV_ITEMS.map((item) => {
+        const active = pathname === item.to;
+        return (
+          <Link
+            key={item.to}
+            to={item.to}
+            data-active={active}
+            className={cn(
+              "relative z-10 rounded-full px-3 py-1.5 transition-colors duration-300",
+              active ? "text-cream" : "hover:text-coral",
+            )}
+          >
+            {item.label}
+          </Link>
+        );
+      })}
+    </nav>
+  );
 }
 
 export function SiteHeader() {
@@ -42,6 +135,17 @@ export function SiteHeader() {
   useEffect(() => {
     if (showShelf) setShelfPanelLoaded(true);
   }, [showShelf]);
+
+  // Fetch the shelf chunk during idle time so the first open is instant.
+  useEffect(() => {
+    const warm = () => void importCollectionsPanel();
+    if ("requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(warm, { timeout: 2500 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const t = setTimeout(warm, 1200);
+    return () => clearTimeout(t);
+  }, []);
 
   const onSignOut = async () => {
     try {
@@ -68,11 +172,6 @@ export function SiteHeader() {
 
   const userEmail = session?.user.email ?? "";
   const userInitial = (userEmail[0] || "?").toUpperCase();
-  const navClass = (path: string) =>
-    cn(
-      "rounded-full px-3 py-1.5 transition-[background-color,color,transform] duration-200 hover:bg-coral/10 hover:text-coral active:scale-[0.98]",
-      location.pathname === path && "bg-ink text-cream shadow-[0_12px_26px_-22px_hsl(var(--ink)/0.8)] hover:bg-ink hover:text-cream",
-    );
 
   return (
     <>
@@ -112,15 +211,10 @@ export function SiteHeader() {
             <span className="hso-reveal hidden md:inline"><span className="hso-reveal-inner text-ink">pportunity</span></span>
           </Link>
 
-          <nav className="hidden items-center justify-center gap-1 rounded-full border border-white/65 bg-card/45 px-1.5 py-1 text-sm font-bold text-foreground/75 shadow-[inset_0_1px_0_hsl(0_0%_100%/0.65)] md:flex">
-            <Link to="/about" className={navClass("/about")}>About</Link>
-            <Link to="/submit" className={navClass("/submit")}>Submit</Link>
-            <Link to="/collections" className={navClass("/collections")}>Collections</Link>
-            <Link to="/contact" className={navClass("/contact")}>Contact</Link>
-          </nav>
+          <DesktopNav pathname={location.pathname} />
 
           <div className="flex shrink-0 items-center justify-end gap-1 md:gap-2">
-            <Button onClick={() => setShowShelf((open) => !open)} variant="ghost" size="sm" className="group relative hidden rounded-full font-bold md:inline-flex" aria-expanded={showShelf}>
+            <Button onClick={() => setShowShelf((open) => !open)} onPointerEnter={() => void importCollectionsPanel()} onFocus={() => void importCollectionsPanel()} variant="ghost" size="sm" className="group relative hidden rounded-full font-bold md:inline-flex" aria-expanded={showShelf}>
               <Bookmark className="mr-1.5 h-4 w-4" /> My Shelf
               {totalSaved > 0 && (
                 <span className="ml-1.5 inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-full bg-coral px-1.5 text-[10px] font-bold leading-none text-coral-foreground ring-1 ring-coral/20 transition-colors group-hover:bg-cream group-hover:text-coral group-hover:ring-coral/45">
@@ -128,7 +222,7 @@ export function SiteHeader() {
                 </span>
               )}
             </Button>
-            <Button onClick={() => setShowShelf((open) => !open)} variant="ghost" size="icon" aria-label="My Shelf" aria-expanded={showShelf} className="group relative h-9 w-9 rounded-full md:hidden">
+            <Button onClick={() => setShowShelf((open) => !open)} onPointerEnter={() => void importCollectionsPanel()} onFocus={() => void importCollectionsPanel()} variant="ghost" size="icon" aria-label="My Shelf" aria-expanded={showShelf} className="group relative h-9 w-9 rounded-full md:hidden">
               <Bookmark className="h-[18px] w-[18px]" />
               {totalSaved > 0 && (
                 <span className="absolute -right-0.5 -top-0.5 inline-flex h-4 min-w-[1rem] items-center justify-center rounded-full bg-coral px-1 text-[10px] font-bold leading-none text-coral-foreground ring-1 ring-cream">

@@ -8,44 +8,91 @@ import { getDeadlineStatus } from "@/lib/deadline";
 const searchTextCache = new Map<string, string>();
 const locationStateCache = new Map<string, string>();
 
+const STATUS_MAP = {
+  Open: "open",
+  "Closing soon": "closing-soon",
+  Rolling: "rolling",
+  Closed: "closed",
+} as const;
+
+/**
+ * Filters combine as OR within a dimension and AND across dimensions.
+ *
+ * "Research or Internship, that is Online or Hybrid, for grade 11" is the shape
+ * students actually think in. An empty list means the dimension is unconstrained,
+ * so there is no "All" sentinel to special-case.
+ */
 export function applyFilters(
   list: Opportunity[],
   filters: FilterState,
-  extra: ExtraFilterState
+  extra: ExtraFilterState,
 ): Opportunity[] {
   const q = filters.query.trim().toLowerCase();
+
   return list.filter((o) => {
-    if (filters.category !== "All" && o.category !== filters.category) return false;
-    if (filters.grade !== "All" && !o.grades.includes(filters.grade as number)) return false;
-    if (filters.cost !== "All" && o.cost !== filters.cost) return false;
-    if (filters.format !== "All" && o.format !== filters.format) return false;
-    if (extra.field !== "All" && !o.fields.includes(extra.field)) return false;
-    if (extra.country !== "All") {
+    if (filters.categories.length && !filters.categories.includes(o.category)) return false;
+    if (filters.grades.length && !filters.grades.some((g) => o.grades.includes(g))) return false;
+    if (filters.costs.length && !filters.costs.includes(o.cost)) return false;
+    if (filters.formats.length && !filters.formats.includes(o.format)) return false;
+
+    if (extra.fields.length && !extra.fields.some((f) => o.fields.includes(f))) return false;
+
+    if (extra.states.length) {
       const state = getCachedLocationState(o.location);
-      if (extra.country === "Hybrid") {
-        if (o.format !== "Hybrid") return false;
-      } else if (extra.country === "Online") {
-        if (o.format !== "Online" && state !== "Online") return false;
-      } else {
-        if (state !== extra.country) return false;
-      }
+      // A nationwide or fully-online program is open to a student in any state,
+      // so it should surface for "Nationwide" regardless of its location string.
+      const matches = extra.states.some((s) =>
+        s === "Nationwide" ? state === "Nationwide" || o.format === "Online" : state === s,
+      );
+      if (!matches) return false;
     }
+
     if (extra.freeOnly && !(o.cost === "Free" || o.cost === "Stipend")) return false;
-    if (extra.deadlineMonth !== "All") {
+
+    if (extra.deadlineMonths.length) {
       if (!o.deadline) return false;
       const m = new Date(o.deadline).getMonth() + 1;
-      if (String(m) !== extra.deadlineMonth) return false;
+      if (!extra.deadlineMonths.includes(String(m))) return false;
     }
-    if (extra.status !== "All") {
+
+    if (extra.statuses.length) {
       const s = getDeadlineStatus(o.deadline, o.opensAt).status;
-      const map = { "Open": "open", "Closing soon": "closing-soon", "Rolling": "rolling", "Closed": "closed" } as const;
-      if (s !== map[extra.status as keyof typeof map]) return false;
+      if (!extra.statuses.some((label) => STATUS_MAP[label] === s)) return false;
     }
-    if (q) {
-      if (!getSearchText(o).includes(q)) return false;
-    }
+
+    if (q && !getSearchText(o).includes(q)) return false;
+
     return true;
   });
+}
+
+/**
+ * How many results each option in one dimension would actually yield.
+ *
+ * Counted against the list filtered by every OTHER active dimension, so the
+ * numbers describe what you would really get if you ticked that box. An option
+ * showing 0 is a dead end — the UI hides those rather than letting a student
+ * pick "Wyoming" and land on an empty page.
+ */
+export function facetCounts(
+  list: Opportunity[],
+  filters: FilterState,
+  extra: ExtraFilterState,
+  dimension: keyof FilterState | keyof ExtraFilterState,
+  valuesOf: (o: Opportunity) => string[],
+): Record<string, number> {
+  const isCore = dimension in filters;
+  const scoped = applyFilters(
+    list,
+    isCore ? { ...filters, [dimension]: [] } : filters,
+    isCore ? extra : { ...extra, [dimension]: [] },
+  );
+
+  const counts: Record<string, number> = {};
+  for (const o of scoped) {
+    for (const v of valuesOf(o)) counts[v] = (counts[v] ?? 0) + 1;
+  }
+  return counts;
 }
 
 export function applySort(list: Opportunity[], sort: SortKey, originalIndex: Map<string, number>): Opportunity[] {
@@ -75,9 +122,94 @@ export function applySort(list: Opportunity[], sort: SortKey, originalIndex: Map
         const aClosed = deadlineTime(a) < now ? 1 : 0;
         const bClosed = deadlineTime(b) < now ? 1 : 0;
         if (aClosed !== bClosed) return aClosed - bClosed;
-        return b.prestige - a.prestige;
+        const diff = recommendedScore(b) - recommendedScore(a);
+        if (diff !== 0) return diff;
+        // Stable tie-break so equal-scoring programs do not shuffle between renders.
+        return a.id.localeCompare(b.id);
       });
   }
+}
+
+/**
+ * Signals that a student cannot enter this on their own initiative.
+ *
+ * Ranking purely on prestige filled the top of the page with AMC, AIME and
+ * USAMO — genuinely prestigious, but a student cannot just sign up: their school
+ * has to register them. Same for team competitions and nomination-only awards.
+ * They stay in the catalog and stay findable; they simply should not be the
+ * first thing shown to someone browsing for something to apply to.
+ */
+const GATEKEPT =
+  /\b(your school must|school must register|through your school|school registration|teacher sponsor|must be nominated|nomination[- ]based|nominated by|principal|guidance counselor|counselor must|advisor must|team of|form a team|chapter|invitational|qualif(?:y|ies|ying) (?:via|through|by|from)|psat|nmsqt)\b/i;
+
+/**
+ * Whether a program is reachable from anywhere in the country.
+ *
+ * This must go through locationState, not a regex over the raw string: almost
+ * every listing ends in "USA" ("Brooklyn, New York, USA"), so pattern-matching
+ * the location awarded the nationwide bonus to local programs too, which made
+ * the signal meaningless.
+ */
+function isNationallyAvailable(o: Opportunity): boolean {
+  return o.format === "Online" || getCachedLocationState(o.location) === "Nationwide";
+}
+
+/**
+ * Category lean for the default view. Fellowships, research and structured
+ * programs are what students are usually shopping for; competitions are a
+ * long tail that swamped the front page when everything ranked on prestige
+ * alone. This is a nudge, not a filter — competitions still rank on merit.
+ */
+const CATEGORY_WEIGHT: Record<string, number> = {
+  Fellowship: 6,
+  Research: 5,
+  "Summer Program": 4,
+  Internship: 4,
+  Scholarship: 3,
+  Competition: 0,
+  Volunteer: 0,
+};
+
+const PRECISION_WEIGHT: Record<string, number> = {
+  direct_application_page: 3,
+  exact_program_page: 2,
+  broad_directory: 0,
+  generic_homepage: -1,
+};
+
+/**
+ * Ordering for the default "Recommended" view.
+ *
+ * Optimises for: reputable, nationally reachable programs with a real
+ * application a student can complete themselves.
+ */
+export function recommendedScore(o: Opportunity): number {
+  let s = 0;
+
+  s += o.prestige * 10;
+  s += CATEGORY_WEIGHT[o.category] ?? 0;
+
+  // Reachable regardless of where the student lives.
+  if (isNationallyAvailable(o)) s += 8;
+
+  // A published deadline means a real, open application cycle.
+  if (o.deadline) s += 4;
+
+  // Cost should not decide reputation, but free/funded is more actionable.
+  if (o.cost === "Free" || o.cost === "Stipend") s += 2;
+
+  s += PRECISION_WEIGHT[o.link_precision ?? ""] ?? 0;
+
+  if (GATEKEPT.test(`${o.title} ${o.blurb}`)) s -= 12;
+
+  // Local council / after-school feed imports: useful if you live there,
+  // noise for everyone else, so they should not lead the default view.
+  if (/^(sf-our415|nyc)-/.test(o.id)) s -= 14;
+
+  if (o.requiresReview) s -= 40;
+  if (o.link_quality === "broken") s -= 40;
+
+  return s;
 }
 
 function deadlineTime(o: Opportunity) {

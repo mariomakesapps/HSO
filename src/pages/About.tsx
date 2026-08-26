@@ -6,7 +6,7 @@ import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
 const About = () => {
   useSEO({
     title: "About HSO | High School Opportunity",
-    description: "HSO helps high school students find U.S.-based internships, scholarships, research programs, competitions, volunteer opportunities, and summer programs.",
+    description: "HSO helps high school students find U.S.-based internships, scholarships, research programs, competitions, and summer programs.",
   });
   return (
     <div className="min-h-screen">
@@ -16,7 +16,7 @@ const About = () => {
           A discovery layer for <em className="text-coral not-italic">ambitious</em> high schoolers.
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-          HSO is a curated index of U.S.-based opportunities open to high school students  -  internships, research programs, scholarships, competitions, summer programs, volunteer roles, and fellowships from universities, nonprofits, companies, and competition organizers across the United States.
+          HSO is a curated index of U.S.-based opportunities open to high school students  -  internships, research programs, scholarships, competitions, summer programs, and fellowships from universities, nonprofits, companies, and competition organizers across the United States.
         </p>
         <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
           We started HSO because the best opportunities are often hidden in PDFs, departmental pages, and word-of-mouth. Students with the most resources find them. We want every motivated student to have the same map.

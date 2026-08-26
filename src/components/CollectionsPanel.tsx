@@ -28,7 +28,7 @@ export function CollectionsPanel({ open, onOpenChange }: { open: boolean; onOpen
       });
     } else {
       setEntered(false);
-      timeout = window.setTimeout(() => setRendered(false), 360);
+      timeout = window.setTimeout(() => setRendered(false), 440);
     }
     return () => {
       window.cancelAnimationFrame(raf1);
@@ -61,12 +61,24 @@ export function CollectionsPanel({ open, onOpenChange }: { open: boolean; onOpen
         type="button"
         aria-label="Close shelf"
         onClick={requestClose}
-        className={`fixed inset-x-0 bottom-0 top-[60px] z-[80] bg-ink/30 backdrop-blur-[2px] transition-opacity duration-300 ease-out md:top-[72px] ${entered ? "opacity-100" : "opacity-0"}`}
+        /* Scrim runs on the same clock as the panel so they land together —
+           a scrim that finishes first reads as two separate events. */
+        className={`fixed inset-0 z-[80] bg-ink/30 backdrop-blur-[3px] hso-drawer-scrim ${
+          entered ? "opacity-100" : "opacity-0"
+        }`}
       />
       <aside
         role="dialog"
         aria-modal="true"
-        className={`fixed bottom-0 right-0 top-[60px] z-[90] flex w-[min(92vw,28rem)] transform-gpu flex-col border-l border-border bg-background shadow-editorial transition-transform duration-300 will-change-transform md:top-[72px] ${entered ? "translate-x-0" : "translate-x-full"}`}
+        /* Full height rather than starting below the header: the old top-[60px]
+           did not match the 72/76px header, leaving a sliver of page showing
+           above the panel as it slid.
+           The panel stays fully opaque while it travels. Fading it in mid-slide
+           made it look washed out and semi-transparent — an iOS sheet slides in
+           solid, and only the scrim behind it changes opacity. */
+        className={`fixed inset-y-0 right-0 z-[90] flex w-[min(92vw,28rem)] transform-gpu flex-col border-l border-border bg-background shadow-editorial hso-drawer will-change-transform ${
+          entered ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         <header className="sticky top-0 z-10 flex items-center justify-between border-b border-border bg-background px-4 py-4 sm:px-6 sm:py-5">
           <div>

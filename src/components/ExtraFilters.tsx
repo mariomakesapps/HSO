@@ -1,20 +1,26 @@
 import { allOpportunities } from "@/data/opportunities";
-import { FilterDropdown } from "@/components/FilterDropdown";
+import { MultiFilterDropdown } from "@/components/MultiFilterDropdown";
+
+/**
+ * Secondary filters. Like FilterState, every dimension is a list and an empty
+ * list means "no constraint" — see components/Filters.tsx.
+ */
+export type DeadlineStatus = "Open" | "Closing soon" | "Rolling" | "Closed";
 
 export type ExtraFilterState = {
-  field: string;
-  country: string;
-  status: "All" | "Open" | "Closing soon" | "Rolling" | "Closed";
+  fields: string[];
+  states: string[];
+  statuses: DeadlineStatus[];
   freeOnly: boolean;
-  deadlineMonth: string;
+  deadlineMonths: string[];
 };
 
 export const DEFAULT_EXTRA: ExtraFilterState = {
-  field: "All",
-  country: "All",
-  status: "All",
+  fields: [],
+  states: [],
+  statuses: [],
   freeOnly: false,
-  deadlineMonth: "All",
+  deadlineMonths: [],
 };
 
 const MONTHS = [
@@ -87,55 +93,78 @@ const STATES = [
 ] as const;
 
 const FILTER_FIELDS = Array.from(new Set(allOpportunities.flatMap((o) => o.fields))).sort();
-const FILTER_STATES = ["All", ...STATES, "Online", "Hybrid"];
+
+/**
+ * "Nationwide" is offered alongside the states because a national program is
+ * open to a student in any state — for the ~45 states this catalog covers only
+ * thinly, that is usually the more useful answer than their own state.
+ */
+const FILTER_STATES = ["Nationwide", ...STATES];
+
+export const STATUS_OPTIONS: { value: DeadlineStatus; label: string }[] = [
+  { value: "Open", label: "Open now" },
+  { value: "Closing soon", label: "Closing soon" },
+  { value: "Rolling", label: "TBA / rolling" },
+  { value: "Closed", label: "Closed" },
+];
 
 export function ExtraFilters({
   value,
   onChange,
+  facets,
 }: {
   value: ExtraFilterState;
   onChange: (v: ExtraFilterState) => void;
+  /** Result counts per option, so dead-end choices can be hidden. */
+  facets?: { fields?: Record<string, number>; states?: Record<string, number> };
 }) {
   return (
     <div className="grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-1">
-      <FilterDropdown
+      <MultiFilterDropdown
         fullWidth
         label="Field"
-        value={value.field}
+        allLabel="All fields"
+        counts={facets?.fields}
+        hideEmpty
+        selected={value.fields}
         searchable
         searchPlaceholder="Search fields..."
-        onChange={(v) => onChange({ ...value, field: v })}
-        options={[{ value: "All", label: "All fields" }, ...FILTER_FIELDS.map((f) => ({ value: f, label: f }))]}
+        onChange={(v) => onChange({ ...value, fields: v })}
+        options={FILTER_FIELDS.map((f) => ({ value: f, label: f }))}
       />
-      <FilterDropdown
+      <MultiFilterDropdown
         fullWidth
         label="State"
-        value={value.country}
-        onChange={(v) => onChange({ ...value, country: v })}
+        allLabel="All states"
+        counts={facets?.states}
+        hideEmpty
+        selected={value.states}
+        onChange={(v) => onChange({ ...value, states: v })}
         searchable
         searchPlaceholder="Search states..."
-        options={FILTER_STATES.map((c) => ({ value: c, label: c === "All" ? "All states" : c }))}
+        options={FILTER_STATES.map((c) => ({ value: c, label: c }))}
       />
-      <FilterDropdown
+      <MultiFilterDropdown
         fullWidth
         label="Status"
-        value={value.status}
-        onChange={(v) => onChange({ ...value, status: v as ExtraFilterState["status"] })}
-        options={(["All", "Open", "Closing soon", "Rolling", "Closed"] as const).map((s) => ({
-          value: s,
-          label: s === "Rolling" ? "TBA / rolling" : s,
-        }))}
+        allLabel="Any status"
+        selected={value.statuses}
+        onChange={(v) => onChange({ ...value, statuses: v as DeadlineStatus[] })}
+        options={STATUS_OPTIONS}
       />
-      <FilterDropdown
+      <MultiFilterDropdown
         fullWidth
         label="Deadline"
-        value={value.deadlineMonth}
-        onChange={(v) => onChange({ ...value, deadlineMonth: v })}
-        options={[{ value: "All", label: "Any month" }, ...MONTHS.map((m, i) => ({ value: String(i + 1), label: m }))]}
+        allLabel="Any month"
+        selected={value.deadlineMonths}
+        onChange={(v) => onChange({ ...value, deadlineMonths: v })}
+        options={MONTHS.map((m, i) => ({ value: String(i + 1), label: m }))}
       />
       <label
         className={`flex h-11 cursor-pointer items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold shadow-soft transition-[transform,border-color,background-color] hover:-translate-y-0.5 active:translate-y-0 ${
-          value.freeOnly ? "border-coral bg-coral/10 text-coral" : "border-border bg-card/90 text-foreground hover:border-foreground"
+          value.freeOnly
+            ? "border-coral bg-coral/10 text-coral"
+            : "border-border bg-card/90 text-foreground hover:border-foreground"
         }`}
       >
         <input

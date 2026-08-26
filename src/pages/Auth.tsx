@@ -8,6 +8,7 @@ import { toast } from "@/hooks/use-toast";
 import { localSignIn, localSignUp, useAuthSession } from "@/hooks/useAuthSession";
 import { lovable } from "@/integrations/lovable/index";
 import SEO from "@/components/SEO";
+import { Atmosphere } from "@/components/Atmosphere";
 
 function checkPassword(pw: string) {
   return {
@@ -125,12 +126,7 @@ const Auth = () => {
         }
         path="/auth"
       />
-      <div className="hso-bg-blobs" aria-hidden="true">
-        <span className="b1" />
-        <span className="b2" />
-        <span className="b3" />
-        <span className="b4" />
-      </div>
+      <Atmosphere />
 
       <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl items-center justify-center px-4 py-10 sm:px-6">
         <div className="grid w-full min-w-0 grid-cols-1 items-center gap-8 lg:grid-cols-[1fr_minmax(0,440px)] lg:gap-12">

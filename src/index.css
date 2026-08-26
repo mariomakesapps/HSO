@@ -72,93 +72,8 @@ body {
   *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
 }
 
-/* Ambient animated background blobs */
-@keyframes hso-blob-a {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(40px, -30px, 0) scale(1.08); }
-}
-@keyframes hso-blob-b {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(-50px, 30px, 0) scale(1.1); }
-}
-@keyframes hso-blob-c {
-  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
-  50% { transform: translate3d(30px, 40px, 0) scale(0.95); }
-}
-.hso-bg-blobs { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
-.hso-bg-blobs span {
-  position: absolute; display: block; border-radius: 9999px; filter: blur(70px); opacity: 0.55;
-}
-.hso-bg-blobs .b1 { width: 520px; height: 520px; top: -120px; left: -100px; background: hsl(var(--coral) / 0.35); animation: hso-blob-a 18s ease-in-out infinite; }
-.hso-bg-blobs .b2 { width: 460px; height: 460px; top: 10%; right: -120px; background: hsl(var(--coral) / 0.30); animation: hso-blob-b 20s ease-in-out infinite; }
-.hso-bg-blobs .b3 { width: 480px; height: 480px; bottom: -140px; left: 20%; background: hsl(var(--sage) / 0.35); animation: hso-blob-c 16s ease-in-out infinite; }
-.hso-bg-blobs .b4 { width: 360px; height: 360px; top: 45%; left: 55%; background: hsl(var(--sunny) / 0.35); animation: hso-blob-a 22s ease-in-out infinite; }
-@media (prefers-reduced-motion: reduce) {
-  .hso-bg-blobs span { animation: none !important; }
-}
 
-@keyframes hso-bg-drift {
-  0% { transform: translate3d(-4vw, 2vh, 0) scale(1.03); }
-  50% { transform: translate3d(3vw, -2vh, 0) scale(1.05); }
-  100% { transform: translate3d(7vw, -4vh, 0) scale(1.04); }
-}
 
-@keyframes hso-bg-scan {
-  0% {
-    transform: translate3d(-2vw, -1vh, 0);
-    opacity: 0.58;
-  }
-  50% {
-    transform: translate3d(2vw, 1vh, 0);
-    opacity: 0.72;
-  }
-  100% {
-    transform: translate3d(5vw, 2vh, 0);
-    opacity: 0.58;
-  }
-}
-
-.hso-professional-bg {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  overflow: hidden;
-  background:
-    linear-gradient(180deg, hsl(42 48% 98% / 0.98) 0%, hsl(42 34% 96% / 0.98) 54%, hsl(42 23% 93% / 0.98) 100%),
-    linear-gradient(118deg, hsl(var(--coral) / 0.08) 0%, transparent 34%),
-    linear-gradient(248deg, hsl(var(--sage) / 0.07) 0%, transparent 40%);
-}
-
-.hso-professional-bg::before,
-.hso-professional-bg::after {
-  content: "";
-  position: absolute;
-  inset: -18%;
-  will-change: transform, opacity;
-}
-
-.hso-professional-bg::before {
-  background:
-    linear-gradient(112deg, transparent 0 33%, hsl(var(--coral) / 0.11) 33.3% 33.8%, transparent 34.2% 100%),
-    linear-gradient(112deg, transparent 0 57%, hsl(var(--sage) / 0.11) 57.2% 57.7%, transparent 58.1% 100%),
-    linear-gradient(90deg, hsl(var(--ink) / 0.035) 1px, transparent 1px),
-    linear-gradient(180deg, hsl(var(--ink) / 0.028) 1px, transparent 1px);
-  background-size: 100% 100%, 100% 100%, 72px 72px, 72px 72px;
-  mask-image: linear-gradient(180deg, black 0%, black 58%, transparent 92%);
-  opacity: 0.9;
-  animation: hso-bg-drift 52s linear infinite alternate;
-}
-
-.hso-professional-bg::after {
-  inset: 0;
-  background:
-    repeating-linear-gradient(90deg, transparent 0 92px, hsl(var(--coral) / 0.055) 92px 93px, transparent 93px 186px),
-    linear-gradient(180deg, hsl(0 0% 100% / 0.28), transparent 42%, hsl(var(--background) / 0.86) 100%);
-  mask-image: linear-gradient(180deg, transparent 0%, black 16%, black 58%, transparent 100%);
-  opacity: 0.72;
-  animation: hso-bg-scan 44s linear infinite alternate;
-}
 
 .hso-glass-panel {
   position: relative;
@@ -218,16 +133,6 @@ body {
 
 /* Subtle page-transition fade. Lives on the wrapper around <Outlet />
    and re-runs on every route key change. Calm, short, no layout shift. */
-.hso-route-fade {
-  animation: hso-route-fade 180ms cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-@keyframes hso-route-fade {
-  from { opacity: 0; transform: translateY(4px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .hso-route-fade { animation: none !important; }
-}
 
 .hso-opportunity-card {
   content-visibility: auto;
@@ -240,17 +145,6 @@ body {
 }
 
 @media (max-width: 768px) {
-  .hso-professional-bg::before {
-    opacity: 0.46;
-    animation: none;
-    transform: translate3d(0, 0, 0);
-  }
-
-  .hso-professional-bg::after {
-    opacity: 0.28;
-    animation: none;
-    transform: translate3d(0, 0, 0);
-  }
 
   .hso-glass-panel,
   .hso-elevated-surface,
@@ -278,13 +172,6 @@ body {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hso-professional-bg::before,
-  .hso-professional-bg::after {
-    animation: none !important;
-  }
-
-}
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
@@ -1419,4 +1306,426 @@ All colors MUST be HSL.
 }
 .hso-scroll::-webkit-scrollbar-thumb:hover {
   background-color: hsl(var(--muted-foreground) / 0.4);
+}
+
+/* ============================================================
+   Intro choreography.
+   The h1 rises on transform ONLY and never starts at opacity 0 —
+   an invisible heading postpones Largest Contentful Paint, and
+   this page is built to paint its text immediately. Supporting
+   elements, which are not LCP candidates, may fade.
+   ============================================================ */
+.hso-intro-rise {
+  animation: hso-intro-rise 900ms cubic-bezier(0.22, 1, 0.36, 1) var(--intro-delay, 0ms) both;
+}
+@keyframes hso-intro-rise {
+  from { transform: translate3d(0, 22px, 0); }
+  to   { transform: none; }
+}
+
+.hso-intro-fade {
+  animation: hso-intro-fade 760ms cubic-bezier(0.22, 1, 0.36, 1) var(--intro-delay, 0ms) both;
+}
+@keyframes hso-intro-fade {
+  from { opacity: 0; transform: translate3d(0, 16px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Hairline that draws itself across the top of the hero on entry. */
+.hso-intro-rule {
+  transform-origin: left center;
+  animation: hso-intro-rule 1250ms cubic-bezier(0.22, 1, 0.36, 1) 220ms both;
+}
+@keyframes hso-intro-rule {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hso-intro-rise,
+  .hso-intro-fade,
+  .hso-intro-rule {
+    animation: none !important;
+    opacity: 1;
+    transform: none !important;
+  }
+}
+
+
+/* ============================================================
+   Motion system.
+
+   Three curves, used consistently:
+
+   --ease-ios       the curve iOS uses for sheets and modals. Almost all of
+                    the deceleration happens at the end, which is what makes
+                    a panel feel like it is settling into place rather than
+                    stopping.
+   --ease-emphasis  a hard decelerate for things entering the screen.
+   --ease-exit      a gentle accelerate for things leaving. Exits are always
+                    faster than entrances — waiting for something to leave
+                    feels like lag.
+   ============================================================ */
+:root {
+  --ease-ios: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-emphasis: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 0.9, 0.4);
+}
+
+/* ---- Route changes -----------------------------------------------------
+   The old page unmounts the instant the new one mounts, so starting the
+   incoming page at opacity 0 produced a visible blank beat between the tap
+   and the content — the "glitch period". Starting part-way up removes the
+   gap: the page is legible from the first frame and simply settles.        */
+.hso-route-enter {
+  animation: hso-route-enter 420ms var(--ease-emphasis) both;
+  will-change: opacity, transform;
+}
+@keyframes hso-route-enter {
+  from { opacity: 0.4; transform: translate3d(0, 10px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---- Sheets / drawers -------------------------------------------------- */
+.hso-sheet {
+  animation-timing-function: var(--ease-ios);
+  animation-fill-mode: both;
+}
+
+.hso-sheet-top[data-state="open"] {
+  animation: hso-sheet-top-in 420ms var(--ease-ios) both;
+}
+.hso-sheet-top[data-state="closed"] {
+  animation: hso-sheet-top-out 240ms var(--ease-exit) both;
+}
+@keyframes hso-sheet-top-in {
+  from { opacity: 0; transform: translate3d(0, -16px, 0) scale(0.98); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes hso-sheet-top-out {
+  from { opacity: 1; transform: none; }
+  to   { opacity: 0; transform: translate3d(0, -10px, 0) scale(0.99); }
+}
+
+/* ---- Tactile press -----------------------------------------------------
+   Response on press-down is immediate; the release eases back. That
+   asymmetry is most of what makes a control feel physical.                */
+.hso-press {
+  transition: transform 220ms var(--ease-emphasis);
+}
+.hso-press:active {
+  transform: scale(0.972);
+  transition-duration: 90ms;
+}
+
+/* ---- Nav indicator -----------------------------------------------------
+   The active pill slides between tabs instead of cutting.                 */
+.hso-nav-indicator {
+  position: absolute;
+  z-index: 0;
+  border-radius: 9999px;
+  background: hsl(var(--ink));
+  box-shadow: 0 12px 26px -22px hsl(var(--ink) / 0.8);
+  transition:
+    transform 460ms var(--ease-ios),
+    width 460ms var(--ease-ios),
+    opacity 200ms ease;
+  will-change: transform, width;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hso-route-enter,
+  .hso-sheet,
+  .hso-sheet-top[data-state="open"],
+  .hso-sheet-top[data-state="closed"] {
+    animation: none !important;
+    opacity: 1;
+    transform: none !important;
+  }
+  .hso-press,
+  .hso-nav-indicator { transition: none !important; }
+}
+
+/* ---- Slide-over drawer (My Shelf) --------------------------------------
+   Deliberately a named class rather than Tailwind utilities. The global
+   `.transition-transform` timing override earlier in this file wins over
+   arbitrary `[transition-timing-function:...]` utilities, and the
+   `transition-transform` utility carries its own 150ms duration — together
+   they silently ran this panel at 150ms on the wrong curve. Owning the whole
+   shorthand here removes the ambiguity.                                    */
+.hso-drawer {
+  transition: transform 420ms var(--ease-ios);
+}
+.hso-drawer-scrim {
+  transition: opacity 420ms var(--ease-ios);
+}
+@media (prefers-reduced-motion: reduce) {
+  .hso-drawer,
+  .hso-drawer-scrim { transition: none !important; }
+}
+
+/* ============================================================
+   Ambient backdrop — colour-coded atmosphere.
+
+   Three soft colour fields over warm paper. The field colours are registered
+   custom properties, which is what lets them INTERPOLATE: an unregistered
+   custom property flips instantly, so moving between sections would cut from
+   sage to coral. Registered as <color>, the browser tweens them and the page
+   washes from one section's colour to the next.
+   ============================================================ */
+@property --atmo-a {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: hsl(12 76% 57%);
+}
+@property --atmo-b {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: hsl(150 48% 24%);
+}
+@property --atmo-c {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: hsl(38 78% 55%);
+}
+
+:root {
+  --atmo-a: hsl(12 76% 57%);
+  --atmo-b: hsl(150 48% 24%);
+  --atmo-c: hsl(38 78% 55%);
+  /* Long enough to feel like the light changing rather than a UI state flip. */
+  transition:
+    --atmo-a 1100ms var(--ease-ios),
+    --atmo-b 1100ms var(--ease-ios),
+    --atmo-c 1100ms var(--ease-ios);
+}
+
+/* ---- Section colour coding --------------------------------------------
+   Each section leads with its own accent and keeps two supporting tones, so
+   the page reads as tinted rather than monochrome. */
+:root[data-atmo="research"] {
+  --atmo-a: hsl(150 48% 30%);
+  --atmo-b: hsl(168 42% 38%);
+  --atmo-c: hsl(46 92% 70%);
+}
+:root[data-atmo="internships"] {
+  --atmo-a: hsl(205 85% 62%);
+  --atmo-b: hsl(222 47% 30%);
+  --atmo-c: hsl(190 60% 60%);
+}
+:root[data-atmo="competitions"] {
+  --atmo-a: hsl(12 76% 57%);
+  --atmo-b: hsl(0 62% 48%);
+  --atmo-c: hsl(38 78% 58%);
+}
+:root[data-atmo="summer-programs"] {
+  --atmo-a: hsl(38 78% 55%);
+  --atmo-b: hsl(24 74% 56%);
+  --atmo-c: hsl(46 92% 68%);
+}
+:root[data-atmo="scholarships"] {
+  --atmo-a: hsl(46 92% 62%);
+  --atmo-b: hsl(38 78% 55%);
+  --atmo-c: hsl(150 40% 34%);
+}
+:root[data-atmo="fellowships"] {
+  /* Fellowships shared coral with competitions, so the two were
+     indistinguishable. A dusty violet keeps them apart without leaving the
+     warm register the rest of the palette sits in. */
+  --atmo-a: hsl(276 40% 54%);
+  --atmo-b: hsl(300 30% 50%);
+  --atmo-c: hsl(12 60% 60%);
+}
+:root[data-atmo="remote"] {
+  --atmo-a: hsl(190 62% 56%);
+  --atmo-b: hsl(205 85% 62%);
+  --atmo-c: hsl(150 44% 34%);
+}
+:root[data-atmo="collections"] {
+  --atmo-a: hsl(222 47% 34%);
+  --atmo-b: hsl(12 70% 58%);
+  --atmo-c: hsl(38 74% 58%);
+}
+
+.hso-atmosphere {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: linear-gradient(
+    177deg,
+    hsl(44 52% 98.5%) 0%,
+    hsl(40 34% 96.4%) 46%,
+    hsl(36 24% 93.6%) 100%
+  );
+  /* Keeps the multiply blending from reaching page content. */
+  isolation: isolate;
+}
+
+/* Soft radial falloff instead of filter: blur() — visually equivalent at this
+   softness and far cheaper, which is what makes the mobile path viable. */
+.hso-atmosphere__field {
+  position: absolute;
+  border-radius: 50%;
+  mix-blend-mode: multiply;
+  opacity: 0;
+  will-change: transform;
+  animation:
+    hso-field-bloom 2200ms var(--ease-emphasis) both,
+    var(--field-drift) linear infinite alternate;
+}
+
+.hso-atmosphere__field--a {
+  width: 74vw;
+  height: 74vw;
+  top: -24vw;
+  left: -16vw;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--atmo-a) 24%, transparent),
+    color-mix(in srgb, var(--atmo-a) 10%, transparent) 48%,
+    transparent 72%
+  );
+  --field-drift: hso-field-a 64s;
+  animation-delay: 0ms, 2200ms;
+}
+
+.hso-atmosphere__field--b {
+  width: 68vw;
+  height: 68vw;
+  right: -18vw;
+  bottom: -22vw;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--atmo-b) 20%, transparent),
+    color-mix(in srgb, var(--atmo-b) 8%, transparent) 48%,
+    transparent 74%
+  );
+  --field-drift: hso-field-b 78s;
+  animation-delay: 180ms, 2380ms;
+}
+
+.hso-atmosphere__field--c {
+  width: 52vw;
+  height: 52vw;
+  top: -12vw;
+  right: -6vw;
+  background: radial-gradient(
+    closest-side,
+    color-mix(in srgb, var(--atmo-c) 22%, transparent),
+    color-mix(in srgb, var(--atmo-c) 9%, transparent) 46%,
+    transparent 72%
+  );
+  --field-drift: hso-field-c 58s;
+  animation-delay: 360ms, 2560ms;
+}
+
+/* A single hairline of colour along the top edge — the one place the theme
+   states itself plainly rather than as a wash. */
+.hso-atmosphere__ribbon {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--atmo-a) 55%, transparent) 22%,
+    color-mix(in srgb, var(--atmo-c) 60%, transparent) 50%,
+    color-mix(in srgb, var(--atmo-b) 55%, transparent) 78%,
+    transparent 100%
+  );
+  opacity: 0;
+  animation: hso-ribbon-in 1400ms var(--ease-emphasis) 400ms both;
+}
+
+/* Fine engineering grid — gives the washes structure so the page reads as a
+   considered product rather than a gradient. */
+.hso-atmosphere__grid {
+  position: absolute;
+  inset: -12%;
+  background-image:
+    linear-gradient(90deg, hsl(var(--ink) / 0.035) 1px, transparent 1px),
+    linear-gradient(180deg, hsl(var(--ink) / 0.028) 1px, transparent 1px);
+  background-size: 78px 78px, 78px 78px;
+  mask-image: radial-gradient(122% 90% at 50% 2%, black 0%, black 44%, transparent 84%);
+  -webkit-mask-image: radial-gradient(122% 90% at 50% 2%, black 0%, black 44%, transparent 84%);
+  opacity: 0;
+  will-change: transform;
+  animation:
+    hso-grid-in 2400ms var(--ease-emphasis) 300ms both,
+    hso-grid-drift 120s linear 2700ms infinite alternate;
+}
+
+/* Analog grain. Inline SVG turbulence keeps it a zero-request texture. */
+.hso-atmosphere__grain {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+  opacity: 0.05;
+}
+
+/* Keeps the middle of the page calm so body copy always sits on quiet ground. */
+.hso-atmosphere__vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(114% 76% at 50% 32%, hsl(42 46% 99% / 0.74) 0%, hsl(42 40% 98% / 0.3) 38%, transparent 68%),
+    linear-gradient(180deg, transparent 60%, hsl(36 26% 93% / 0.74) 100%);
+}
+
+@keyframes hso-field-bloom {
+  from { opacity: 0; transform: translate3d(0, 2.5vh, 0) scale(0.86); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes hso-field-a {
+  0%   { transform: none; }
+  100% { transform: translate3d(6vw, 4vh, 0) scale(1.12); }
+}
+@keyframes hso-field-b {
+  0%   { transform: scale(1.05); }
+  100% { transform: translate3d(-7vw, -3vh, 0) scale(1); }
+}
+@keyframes hso-field-c {
+  0%   { transform: none; }
+  100% { transform: translate3d(-4vw, 6vh, 0) scale(1.1); }
+}
+@keyframes hso-ribbon-in {
+  from { opacity: 0; transform: scaleX(0.6); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes hso-grid-in {
+  from { opacity: 0; transform: translate3d(0, 1.5vh, 0) scale(1.03); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes hso-grid-drift {
+  0%   { transform: none; }
+  100% { transform: translate3d(-40px, -40px, 0); }
+}
+
+/* Mobile GPUs choke on several large composited layers at once. Keep the two
+   fields that carry the theme colour and drop the rest of the motion. */
+@media (max-width: 768px) {
+  .hso-atmosphere__field {
+    animation: hso-field-bloom 1500ms var(--ease-emphasis) both;
+  }
+  .hso-atmosphere__field--c { display: none; }
+  .hso-atmosphere__grid {
+    opacity: 0.5;
+    animation: hso-grid-in 1500ms var(--ease-emphasis) both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hso-atmosphere__field,
+  .hso-atmosphere__grid,
+  .hso-atmosphere__ribbon {
+    animation: none !important;
+    opacity: 1;
+    transform: none !important;
+  }
+  :root { transition: none !important; }
 }

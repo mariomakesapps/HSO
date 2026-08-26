@@ -7,63 +7,31 @@ import { allOpportunities } from "@/data/opportunities";
 import { OpportunityCard } from "@/components/OpportunityCard";
 import { SortBar, SortKey } from "@/components/SortBar";
 import { applySort } from "@/lib/filterSort";
+import { categoryMeta } from "@/lib/pageMeta";
+import { useAtmosphere, type AtmosphereTheme } from "@/lib/atmosphere";
 
 const Category = () => {
   const { slug } = useParams<{ slug: CategorySlug }>();
   const meta = slug ? CATEGORY_META[slug] : undefined;
-  if (!slug || !meta) return <Navigate to="/" replace />;
+
+  // Every hook runs before the redirect. Bailing out first would change the
+  // number of hooks between renders the moment a slug went from valid to
+  // invalid, which React treats as an error.
+  useAtmosphere((meta ? slug : "default") as AtmosphereTheme);
 
   const [sort, setSort] = useState<SortKey>("recommended");
   const indexMap = useMemo(() => new Map(allOpportunities.map((o, i) => [o.id, i])), []);
   const list = useMemo(() => {
+    if (!meta) return [];
     const filtered = allOpportunities.filter((o) => o.category === meta.category);
     return applySort(filtered, sort, indexMap);
-  }, [meta.category, sort, indexMap]);
+  }, [meta, sort, indexMap]);
+
+  if (!slug || !meta) return <Navigate to="/" replace />;
 
   return (
     <div className="min-h-screen">
-      <SEO
-        title={meta.title}
-        description={meta.description}
-        path={`/categories/${slug}`}
-        jsonLd={[
-          {
-            "@context": "https://schema.org",
-            "@type": "CollectionPage",
-            name: meta.h1,
-            description: meta.description,
-            url: `https://highschoolopportunity.org/categories/${slug}`,
-            mainEntity: {
-              "@type": "ItemList",
-              numberOfItems: list.length,
-              itemListElement: list.slice(0, 20).map((o, i) => ({
-                "@type": "ListItem",
-                position: i + 1,
-                url: `https://highschoolopportunity.org/opportunities/${o.id}`,
-                name: o.title,
-              })),
-            },
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "HSO", item: "https://highschoolopportunity.org/" },
-              { "@type": "ListItem", position: 2, name: "Categories", item: "https://highschoolopportunity.org/" },
-              { "@type": "ListItem", position: 3, name: meta.h1, item: `https://highschoolopportunity.org/categories/${slug}` },
-            ],
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: meta.faqs.map((f) => ({
-              "@type": "Question",
-              name: f.q,
-              acceptedAnswer: { "@type": "Answer", text: f.a },
-            })),
-          },
-        ]}
-      />
+      <SEO {...categoryMeta(slug)} />
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Category</p>
         <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-6xl">{meta.h1}</h1>

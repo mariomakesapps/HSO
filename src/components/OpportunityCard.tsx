@@ -145,7 +145,7 @@ function OpportunityCardComponent({ opp, index = 0 }: { opp: Opportunity; index?
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`Visit the official ${opp.title} website`}
-          className="ml-auto inline-flex h-9 items-center gap-1.5 rounded-full bg-ink px-4 text-xs font-bold text-cream shadow-[0_14px_28px_-22px_hsl(var(--ink)/0.8)] transition-transform hover:-translate-y-0.5 hover:bg-coral active:scale-[0.98] active:translate-y-0"
+          className="ml-auto inline-flex h-9 items-center gap-1.5 rounded-full bg-ink px-4 text-xs font-bold text-cream shadow-[0_14px_28px_-22px_hsl(var(--ink)/0.8)] hso-press transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:bg-coral active:scale-[0.98] active:translate-y-0"
         >
           Visit
           <ExternalLink className="h-3.5 w-3.5" />

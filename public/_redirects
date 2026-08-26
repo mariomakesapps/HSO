@@ -1,0 +1,5 @@
+# Netlify / Cloudflare Pages.
+# Static files (including the prerendered <route>/index.html emitted by the
+# build) are matched BEFORE these rules, so this only catches genuinely unknown
+# paths and hands them to the SPA shell.
+/*    /index.html   200
