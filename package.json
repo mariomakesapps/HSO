@@ -15,7 +15,9 @@
     "links:audit": "node scripts/audit-opportunity-links.mjs",
     "links:intent": "node scripts/audit-opportunity-link-intent.mjs",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "serve:static": "node scripts/serve-static.mjs",
+    "seo:check": "node scripts/seo-check.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

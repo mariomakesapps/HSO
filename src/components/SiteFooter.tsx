@@ -27,6 +27,7 @@ export function SiteFooter() {
               </Link>
             </li>
           ))}
+          <li><Link to="/remote" className="hover:text-coral">Remote &amp; nationwide</Link></li>
         </FooterColumn>
         <FooterColumn title="Legal">
           <li><Link to="/privacy" className="hover:text-coral">Privacy</Link></li>

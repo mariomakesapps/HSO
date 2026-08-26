@@ -7,17 +7,20 @@ import {
   Filter as FilterIcon,
   GraduationCap,
   Globe,
+  Layers,
+  MapPin,
   Search,
+  Wifi,
   ShieldCheck,
   SlidersHorizontal,
   Sparkles,
 } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useAuthSession } from "@/hooks/useAuthSession";
-import { allOpportunities as opportunities } from "@/data/opportunities";
+import { allOpportunities as opportunities, locationState } from "@/data/opportunities";
 import type { Category, Opportunity } from "@/data/opportunities";
 import { OpportunityCard } from "@/components/OpportunityCard";
-import { FilterState } from "@/components/Filters";
+import { FilterState, COST_OPTIONS, FORMAT_OPTIONS, GRADE_OPTIONS } from "@/components/Filters";
 import { ExtraFilters, DEFAULT_EXTRA, ExtraFilterState } from "@/components/ExtraFilters";
 import { SortKey, SORT_OPTIONS } from "@/components/SortBar";
 import { Button } from "@/components/ui/button";
@@ -25,15 +28,18 @@ import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger, SheetFooter } from "@/components/ui/sheet";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { FilterDropdown } from "@/components/FilterDropdown";
+import { MultiFilterDropdown } from "@/components/MultiFilterDropdown";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ReturnToFiltersButton } from "@/components/ReturnToFiltersButton";
 import { Pagination } from "@/components/Pagination";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { applyFilters, applySort } from "@/lib/filterSort";
+import { applyFilters, applySort, facetCounts } from "@/lib/filterSort";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { cn } from "@/lib/utils";
 import { SEO } from "@/components/SEO";
 import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
+
+const MONTH_LABELS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
 const CATEGORY_CHIPS: (Category | "All")[] = [
   "All",
@@ -61,21 +67,34 @@ const Index = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const initial = useRef(true);
 
+  /**
+   * Multi-value filters travel in the URL as comma-separated lists
+   * (?category=Research,Internship). Old single-value links still parse — one
+   * value simply yields a one-item list — so shared and indexed URLs keep working.
+   * "All" was the previous no-op sentinel and is dropped on read.
+   */
+  const readList = (key: string): string[] => {
+    const raw = searchParams.get(key);
+    if (!raw) return [];
+    return raw
+      .split(",")
+      .map((s) => s.trim())
+      .filter((s) => s && s !== "All");
+  };
+
   const [filters, setFilters] = useState<FilterState>(() => ({
     query: searchParams.get("q") ?? "",
-    category: (searchParams.get("category") as FilterState["category"]) || "All",
-    grade: searchParams.get("grade") && searchParams.get("grade") !== "All"
-      ? (Number(searchParams.get("grade")) as FilterState["grade"])
-      : "All",
-    cost: (searchParams.get("cost") as FilterState["cost"]) || "All",
-    format: (searchParams.get("format") as FilterState["format"]) || "All",
+    categories: readList("category") as FilterState["categories"],
+    grades: readList("grade").map(Number).filter(Number.isFinite),
+    costs: readList("cost") as FilterState["costs"],
+    formats: readList("format") as FilterState["formats"],
   }));
   const [extra, setExtra] = useState<ExtraFilterState>(() => ({
-    field: searchParams.get("field") || "All",
-    country: searchParams.get("state") || "All",
-    status: (searchParams.get("status") as ExtraFilterState["status"]) || "All",
+    fields: readList("field"),
+    states: readList("state"),
+    statuses: readList("status") as ExtraFilterState["statuses"],
     freeOnly: searchParams.get("free") === "1",
-    deadlineMonth: searchParams.get("month") || "All",
+    deadlineMonths: readList("month"),
   }));
   const [sort, setSort] = useState<SortKey>(
     (searchParams.get("sort") as SortKey) || "recommended",
@@ -96,6 +115,28 @@ const Index = () => {
     () => applySort(applyFilters(opportunities, deferredFilters, deferredExtra), deferredSort, indexMap),
     [deferredFilters, deferredExtra, deferredSort, indexMap],
   );
+  /**
+   * How many results each filter option would actually return, given whatever
+   * else is currently selected. Options that would return nothing are hidden,
+   * so a student never picks a state or field and lands on an empty page.
+   */
+  const facets = useMemo(
+    () => ({
+      categories: facetCounts(opportunities, deferredFilters, deferredExtra, "categories", (o) => [o.category]),
+      grades: facetCounts(opportunities, deferredFilters, deferredExtra, "grades", (o) => o.grades.map(String)),
+      costs: facetCounts(opportunities, deferredFilters, deferredExtra, "costs", (o) => [o.cost]),
+      formats: facetCounts(opportunities, deferredFilters, deferredExtra, "formats", (o) => [o.format]),
+      fields: facetCounts(opportunities, deferredFilters, deferredExtra, "fields", (o) => o.fields),
+      states: facetCounts(opportunities, deferredFilters, deferredExtra, "states", (o) => {
+        const s = locationState(o.location);
+        // A remote program is reachable from every state, so it counts toward
+        // "Nationwide" even when its location names a city.
+        return o.format === "Online" && s !== "Nationwide" ? [s, "Nationwide"] : [s];
+      }),
+    }),
+    [deferredFilters, deferredExtra],
+  );
+
   const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
   const safePage = Math.min(page, totalPages);
   const shown = useMemo(
@@ -126,16 +167,19 @@ const Index = () => {
       return;
     }
     const p = new URLSearchParams();
+    const setList = (key: string, list: (string | number)[]) => {
+      if (list.length) p.set(key, list.join(","));
+    };
     if (filters.query) p.set("q", filters.query);
-    if (filters.category !== "All") p.set("category", filters.category);
-    if (filters.grade !== "All") p.set("grade", String(filters.grade));
-    if (filters.cost !== "All") p.set("cost", filters.cost);
-    if (filters.format !== "All") p.set("format", filters.format);
-    if (extra.field !== "All") p.set("field", extra.field);
-    if (extra.country !== "All") p.set("state", extra.country);
-    if (extra.status !== "All") p.set("status", extra.status);
+    setList("category", filters.categories);
+    setList("grade", filters.grades);
+    setList("cost", filters.costs);
+    setList("format", filters.formats);
+    setList("field", extra.fields);
+    setList("state", extra.states);
+    setList("status", extra.statuses);
     if (extra.freeOnly) p.set("free", "1");
-    if (extra.deadlineMonth !== "All") p.set("month", extra.deadlineMonth);
+    setList("month", extra.deadlineMonths);
     if (sort !== "recommended") p.set("sort", sort);
     if (safePage > 1) p.set("page", String(safePage));
     setSearchParams(p, { replace: true });
@@ -182,11 +226,35 @@ const Index = () => {
     [],
   );
 
-  const chooseCategory = (category: Category | "All") => {
-    setFilters({ ...filters, category });
+  /**
+   * Chips toggle rather than replace, so several categories can be active.
+   *
+   * These use the functional updater deliberately: two chips clicked in the
+   * same tick would otherwise both read the same pre-update state and the first
+   * selection would be silently discarded.
+   */
+  const toggleCategory = (category: Category | "All") => {
+    setFilters((prev) => ({
+      ...prev,
+      categories:
+        category === "All"
+          ? []
+          : prev.categories.includes(category)
+            ? prev.categories.filter((c) => c !== category)
+            : [...prev.categories, category],
+    }));
     window.requestAnimationFrame(() => {
       document.getElementById("explore-heading")?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
+  };
+
+  const toggleFormat = (format: FilterState["formats"][number]) => {
+    setFilters((prev) => ({
+      ...prev,
+      formats: prev.formats.includes(format)
+        ? prev.formats.filter((f) => f !== format)
+        : [...prev.formats, format],
+    }));
   };
 
   return (
@@ -225,6 +293,7 @@ const Index = () => {
                 setSort={setSort}
                 showAdvanced={showAdvanced}
                 setShowAdvanced={setShowAdvanced}
+                facets={facets}
                 count={filtered.length}
               />
             </aside>
@@ -256,11 +325,13 @@ const Index = () => {
               <div className="-mx-4 mt-5 overflow-visible sm:mx-0">
                 <div className="flex gap-2 overflow-x-auto px-4 pb-3 pt-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden sm:flex-wrap sm:overflow-visible sm:px-0">
                   {CATEGORY_CHIPS.map((c) => {
-                    const active = filters.category === c;
+                    const active =
+                      c === "All" ? filters.categories.length === 0 : filters.categories.includes(c);
                     return (
                       <button
                         key={c}
-                        onClick={() => chooseCategory(c)}
+                        aria-pressed={active}
+                        onClick={() => toggleCategory(c)}
                         className={cn(
                           "shrink-0 rounded-full border px-4 py-2 text-sm font-bold shadow-[inset_0_1px_0_hsl(0_0%_100%/0.68)] transition-[transform,border-color,background-color,color,box-shadow] hover:-translate-y-0.5 active:scale-[0.98] active:translate-y-0",
                           active
@@ -275,9 +346,47 @@ const Index = () => {
                 </div>
               </div>
 
+              {/* Where can you do it? Kept beside the category chips rather than
+                  buried in the sidebar — for a student outside a big metro this
+                  is the first question, not an advanced refinement. */}
+              <div className="mt-1 flex flex-wrap items-center gap-2">
+                <span className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">
+                  Where
+                </span>
+                {FORMAT_OPTIONS.map((f) => {
+                  const active = filters.formats.includes(f.value);
+                  const Icon = f.value === "Online" ? Wifi : f.value === "In-person" ? MapPin : Layers;
+                  return (
+                    <button
+                      key={f.value}
+                      onClick={() => toggleFormat(f.value)}
+                      aria-pressed={active}
+                      title={f.hint}
+                      className={cn(
+                        "inline-flex shrink-0 items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-sm font-bold transition-[transform,border-color,background-color,color] hover:-translate-y-0.5 active:scale-[0.98] active:translate-y-0",
+                        active
+                          ? "border-coral bg-coral text-coral-foreground shadow-[0_14px_26px_-20px_hsl(var(--coral)/0.8)]"
+                          : "border-white/70 bg-card/64 text-foreground backdrop-blur-md hover:border-coral/35",
+                      )}
+                    >
+                      <Icon className="h-3.5 w-3.5" />
+                      {f.label}
+                    </button>
+                  );
+                })}
+                {filters.formats.length > 0 && (
+                  <button
+                    onClick={() => setFilters({ ...filters, formats: [] })}
+                    className="text-xs font-bold text-muted-foreground underline underline-offset-4 hover:text-coral"
+                  >
+                    Clear
+                  </button>
+                )}
+              </div>
+
               {filtered.length === 0 ? (
                 <EmptyState clear={() => {
-                  setFilters({ ...filters, category: "All", grade: "All", cost: "All", format: "All" });
+                  setFilters({ ...filters, categories: [], grades: [], costs: [], formats: [] });
                   setExtra(DEFAULT_EXTRA);
                 }} />
               ) : (
@@ -327,21 +436,21 @@ function Hero({
 
   return (
     <section className="hso-surface-grid relative overflow-hidden border-b border-white/55">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-coral/45 to-transparent" />
+      <div className="hso-intro-rule pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-coral/45 to-transparent" />
       <div className="mx-auto grid w-full max-w-[1400px] min-w-0 gap-10 overflow-hidden px-4 py-14 sm:px-6 md:grid-cols-[0.96fr_1.04fr] md:items-center md:overflow-visible lg:min-h-[calc(100dvh-76px)] lg:py-20">
         <div className="hso-mobile-fit min-w-0 md:w-full md:max-w-3xl">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/65 bg-card/66 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-ink shadow-[inset_0_1px_0_hsl(0_0%_100%/0.72)] backdrop-blur-xl">
+          <div style={{ "--intro-delay": "80ms" } as React.CSSProperties} className="hso-intro-fade inline-flex items-center gap-2 rounded-full border border-white/65 bg-card/66 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-ink shadow-[inset_0_1px_0_hsl(0_0%_100%/0.72)] backdrop-blur-xl">
             <span className="h-1.5 w-6 rounded-full bg-gradient-to-r from-coral to-sage" />
             Curated signal for high schoolers
           </div>
-          <h1 className="mt-6 max-w-full break-words font-display text-[2.25rem] font-semibold leading-[0.98] tracking-tight text-ink sm:text-5xl lg:text-6xl">
+          <h1 style={{ "--intro-delay": "160ms" } as React.CSSProperties} className="hso-intro-rise mt-6 max-w-full break-words font-display text-[2.25rem] font-semibold leading-[0.98] tracking-tight text-ink sm:text-5xl lg:text-6xl">
             A sharper map for high school opportunity.
           </h1>
-          <p className="mt-5 max-w-[32ch] text-base leading-relaxed text-muted-foreground sm:max-w-2xl sm:text-lg">
+          <p style={{ "--intro-delay": "260ms" } as React.CSSProperties} className="hso-intro-fade mt-5 max-w-[32ch] text-base leading-relaxed text-muted-foreground sm:max-w-2xl sm:text-lg">
             HSO turns internships, research programs, scholarships, civic work, competitions, and summer programs into one calm catalog students can actually use.
           </p>
 
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+          <div style={{ "--intro-delay": "360ms" } as React.CSSProperties} className="hso-intro-fade mt-7 flex flex-col gap-3 sm:flex-row">
             {!authLoading && !isAuthed && (
               <Link
                 to="/auth"
@@ -569,30 +678,46 @@ function RefinePanel({
   setSort,
   showAdvanced,
   setShowAdvanced,
+  facets,
   count,
 }: {
   filters: FilterState;
-  setFilters: (v: FilterState) => void;
+  setFilters: React.Dispatch<React.SetStateAction<FilterState>>;
   extra: ExtraFilterState;
-  setExtra: (v: ExtraFilterState) => void;
+  setExtra: React.Dispatch<React.SetStateAction<ExtraFilterState>>;
   sort: SortKey;
   setSort: (v: SortKey) => void;
   showAdvanced: boolean;
   setShowAdvanced: (v: boolean | ((p: boolean) => boolean)) => void;
+  facets: Record<string, Record<string, number>>;
   count: number;
 }) {
+  // One chip per selected value, so each can be removed individually rather
+  // than forcing a whole dimension to be cleared at once.
   const activeChips: { key: string; label: string; clear: () => void }[] = [];
-  if (filters.category !== "All") activeChips.push({ key: "cat", label: filters.category, clear: () => setFilters({ ...filters, category: "All" }) });
-  if (filters.grade !== "All") activeChips.push({ key: "grade", label: `Grade ${filters.grade}`, clear: () => setFilters({ ...filters, grade: "All" }) });
-  if (filters.cost !== "All") activeChips.push({ key: "cost", label: filters.cost, clear: () => setFilters({ ...filters, cost: "All" }) });
-  if (filters.format !== "All") activeChips.push({ key: "format", label: filters.format, clear: () => setFilters({ ...filters, format: "All" }) });
-  if (extra.country !== "All") activeChips.push({ key: "country", label: extra.country, clear: () => setExtra({ ...extra, country: "All" }) });
-  if (extra.field !== "All") activeChips.push({ key: "field", label: extra.field, clear: () => setExtra({ ...extra, field: "All" }) });
-  if (extra.deadlineMonth !== "All") activeChips.push({ key: "month", label: `Month ${extra.deadlineMonth}`, clear: () => setExtra({ ...extra, deadlineMonth: "All" }) });
-  if (extra.freeOnly) activeChips.push({ key: "free", label: "Free only", clear: () => setExtra({ ...extra, freeOnly: false }) });
+  const dropFrom = <T,>(list: T[], v: T) => list.filter((x) => x !== v);
+
+  for (const c of filters.categories)
+    activeChips.push({ key: `cat-${c}`, label: c, clear: () => setFilters({ ...filters, categories: dropFrom(filters.categories, c) }) });
+  for (const g of filters.grades)
+    activeChips.push({ key: `grade-${g}`, label: `Grade ${g}`, clear: () => setFilters({ ...filters, grades: dropFrom(filters.grades, g) }) });
+  for (const c of filters.costs)
+    activeChips.push({ key: `cost-${c}`, label: c, clear: () => setFilters({ ...filters, costs: dropFrom(filters.costs, c) }) });
+  for (const f of filters.formats)
+    activeChips.push({ key: `format-${f}`, label: f === "Online" ? "Remote" : f, clear: () => setFilters({ ...filters, formats: dropFrom(filters.formats, f) }) });
+  for (const s of extra.states)
+    activeChips.push({ key: `state-${s}`, label: s, clear: () => setExtra({ ...extra, states: dropFrom(extra.states, s) }) });
+  for (const f of extra.fields)
+    activeChips.push({ key: `field-${f}`, label: f, clear: () => setExtra({ ...extra, fields: dropFrom(extra.fields, f) }) });
+  for (const s of extra.statuses)
+    activeChips.push({ key: `status-${s}`, label: s, clear: () => setExtra({ ...extra, statuses: dropFrom(extra.statuses, s) }) });
+  for (const m of extra.deadlineMonths)
+    activeChips.push({ key: `month-${m}`, label: MONTH_LABELS[Number(m) - 1] ?? `Month ${m}`, clear: () => setExtra({ ...extra, deadlineMonths: dropFrom(extra.deadlineMonths, m) }) });
+  if (extra.freeOnly)
+    activeChips.push({ key: "free", label: "Free only", clear: () => setExtra({ ...extra, freeOnly: false }) });
 
   const clearAll = () => {
-    setFilters({ ...filters, category: "All", grade: "All", cost: "All", format: "All" });
+    setFilters({ ...filters, categories: [], grades: [], costs: [], formats: [] });
     setExtra(DEFAULT_EXTRA);
   };
 
@@ -613,42 +738,45 @@ function RefinePanel({
       </div>
 
       <div className="mt-5 hidden space-y-3 md:block">
-        <FilterDropdown
+        <MultiFilterDropdown
+          fullWidth
+          label="Category"
+          allLabel="All categories"
+          counts={facets.categories}
+          hideEmpty
+          selected={filters.categories}
+          onChange={(v) => setFilters({ ...filters, categories: v as FilterState["categories"] })}
+          options={CATEGORY_CHIPS.filter((c): c is Category => c !== "All").map((c) => ({ value: c, label: c }))}
+        />
+        <MultiFilterDropdown
           fullWidth
           label="Grade"
-          value={String(filters.grade)}
-          onChange={(v) => setFilters({ ...filters, grade: v === "All" ? "All" : Number(v) })}
-          options={[
-            { value: "All", label: "All grades" },
-            { value: "9", label: "9th" },
-            { value: "10", label: "10th" },
-            { value: "11", label: "11th" },
-            { value: "12", label: "12th" },
-          ]}
+          allLabel="All grades"
+          counts={facets.grades}
+          hideEmpty
+          selected={filters.grades.map(String)}
+          onChange={(v) => setFilters({ ...filters, grades: v.map(Number) })}
+          options={GRADE_OPTIONS}
         />
-        <FilterDropdown
+        <MultiFilterDropdown
           fullWidth
           label="Cost"
-          value={filters.cost}
-          onChange={(v) => setFilters({ ...filters, cost: v as FilterState["cost"] })}
-          options={[
-            { value: "All", label: "All" },
-            { value: "Free", label: "Free" },
-            { value: "Paid", label: "Paid" },
-            { value: "Stipend", label: "Stipend / paid" },
-          ]}
+          allLabel="Any cost"
+          counts={facets.costs}
+          hideEmpty
+          selected={filters.costs}
+          onChange={(v) => setFilters({ ...filters, costs: v as FilterState["costs"] })}
+          options={COST_OPTIONS}
         />
-        <FilterDropdown
+        <MultiFilterDropdown
           fullWidth
-          label="Format"
-          value={filters.format}
-          onChange={(v) => setFilters({ ...filters, format: v as FilterState["format"] })}
-          options={[
-            { value: "All", label: "All" },
-            { value: "In-person", label: "In-person" },
-            { value: "Online", label: "Online" },
-            { value: "Hybrid", label: "Hybrid" },
-          ]}
+          label="Where"
+          allLabel="Anywhere"
+          counts={facets.formats}
+          hideEmpty
+          selected={filters.formats}
+          onChange={(v) => setFilters({ ...filters, formats: v as FilterState["formats"] })}
+          options={FORMAT_OPTIONS.map((f) => ({ value: f.value, label: f.label }))}
         />
         <FilterDropdown
           fullWidth
@@ -667,7 +795,7 @@ function RefinePanel({
           <SlidersHorizontal className="mr-1.5 h-3.5 w-3.5 text-coral" />
           {showAdvanced ? "Hide field filters" : "Show field filters"}
         </button>
-        {showAdvanced && <ExtraFilters value={extra} onChange={setExtra} />}
+        {showAdvanced && <ExtraFilters value={extra} onChange={setExtra} facets={facets} />}
       </div>
 
       <Sheet>
@@ -682,17 +810,20 @@ function RefinePanel({
             <SheetTitle className="font-display text-2xl">Refine opportunities</SheetTitle>
           </SheetHeader>
           <div className="mt-5 space-y-3">
+            <SheetField label="Category">
+              <MultiFilterDropdown fullWidth label="Category" allLabel="All categories" counts={facets.categories} hideEmpty selected={filters.categories} onChange={(v) => setFilters({ ...filters, categories: v as FilterState["categories"] })} options={CATEGORY_CHIPS.filter((c): c is Category => c !== "All").map((c) => ({ value: c, label: c }))} />
+            </SheetField>
             <SheetField label="Grade">
-              <FilterDropdown fullWidth label="Grade" value={String(filters.grade)} onChange={(v) => setFilters({ ...filters, grade: v === "All" ? "All" : Number(v) })} options={[{ value: "All", label: "All grades" }, { value: "9", label: "9th" }, { value: "10", label: "10th" }, { value: "11", label: "11th" }, { value: "12", label: "12th" }]} />
+              <MultiFilterDropdown fullWidth label="Grade" allLabel="All grades" counts={facets.grades} hideEmpty selected={filters.grades.map(String)} onChange={(v) => setFilters({ ...filters, grades: v.map(Number) })} options={GRADE_OPTIONS} />
             </SheetField>
             <SheetField label="Cost">
-              <FilterDropdown fullWidth label="Cost" value={filters.cost} onChange={(v) => setFilters({ ...filters, cost: v as FilterState["cost"] })} options={[{ value: "All", label: "All" }, { value: "Free", label: "Free" }, { value: "Paid", label: "Paid" }, { value: "Stipend", label: "Stipend / paid" }]} />
+              <MultiFilterDropdown fullWidth label="Cost" allLabel="Any cost" counts={facets.costs} hideEmpty selected={filters.costs} onChange={(v) => setFilters({ ...filters, costs: v as FilterState["costs"] })} options={COST_OPTIONS} />
             </SheetField>
-            <SheetField label="Format">
-              <FilterDropdown fullWidth label="Format" value={filters.format} onChange={(v) => setFilters({ ...filters, format: v as FilterState["format"] })} options={[{ value: "All", label: "All" }, { value: "In-person", label: "In-person" }, { value: "Online", label: "Online" }, { value: "Hybrid", label: "Hybrid" }]} />
+            <SheetField label="Where">
+              <MultiFilterDropdown fullWidth label="Where" allLabel="Anywhere" counts={facets.formats} hideEmpty selected={filters.formats} onChange={(v) => setFilters({ ...filters, formats: v as FilterState["formats"] })} options={FORMAT_OPTIONS.map((f) => ({ value: f.value, label: f.label }))} />
             </SheetField>
             <div className="border-t border-border pt-5">
-              <ExtraFilters value={extra} onChange={setExtra} />
+              <ExtraFilters value={extra} onChange={setExtra} facets={facets} />
             </div>
           </div>
           <SheetFooter className="mt-6 flex-row gap-2">

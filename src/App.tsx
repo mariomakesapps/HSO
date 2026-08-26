@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect } from "react";
+import { Suspense, lazy, useEffect, useRef } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import ScrollToTop from "./components/ScrollToTop";
 import { SiteHeader } from "./components/SiteHeader";
+import { Atmosphere } from "./components/Atmosphere";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ const Submit = lazy(() => import("./pages/Submit.tsx"));
 const Category = lazy(() => import("./pages/Category.tsx"));
 const OpportunityDetail = lazy(() => import("./pages/OpportunityDetail.tsx"));
 const Collections = lazy(() => import("./pages/Collections.tsx"));
+const RemoteNationwide = lazy(() => import("./pages/RemoteNationwide.tsx"));
 const SharedCollection = lazy(() => import("./pages/SharedCollection.tsx"));
 const Profile = lazy(() => import("./pages/Profile.tsx"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe.tsx"));
@@ -62,19 +64,40 @@ function WarmRouteCache() {
   return null;
 }
 
-const AppShell = () => {
+/**
+ * Fades route content in on navigation — but never on the very first paint.
+ *
+ * The transition used to run on initial mount too, which meant the page began
+ * at opacity 0 and the Largest Contentful Paint waited for the animation. The
+ * first render is now unanimated; only subsequent route changes transition.
+ */
+function RouteTransition({ children }: { children: React.ReactNode }) {
   const location = useLocation();
+  const isFirstRender = useRef(true);
+
+  useEffect(() => {
+    isFirstRender.current = false;
+  }, []);
+
+  return (
+    <div key={location.pathname} className={isFirstRender.current ? undefined : "hso-route-enter"}>
+      {children}
+    </div>
+  );
+}
+
+const AppShell = () => {
   return (
     <>
-      <div className="hso-professional-bg" aria-hidden="true" />
+      <Atmosphere />
       <div className="relative z-10">
         <SiteHeader />
         {/* Suspense lives INSIDE the shell so the header stays mounted
             during lazy route loads — no nav flicker on page changes. */}
         <Suspense fallback={<PageFallback />}>
-          <div key={location.pathname} className="hso-route-fade">
+          <RouteTransition>
             <Outlet />
-          </div>
+          </RouteTransition>
         </Suspense>
       </div>
     </>
@@ -107,6 +130,7 @@ const App = () => (
               <Route path="/submit" element={<Submit />} />
               <Route path="/categories/:slug" element={<Category />} />
               <Route path="/opportunities/:id" element={<OpportunityDetail />} />
+              <Route path="/remote" element={<RemoteNationwide />} />
               <Route path="/collections" element={<Collections />} />
               <Route path="/collections/:id" element={<SharedCollection />} />
               <Route path="/profile" element={<Profile />} />

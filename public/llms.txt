@@ -1,6 +1,6 @@
 # HSO — High School Opportunity
 
-> HSO is a curated discovery platform that helps U.S. high school students find internships, research programs, scholarships, competitions, summer programs, volunteer roles, and fellowships from universities, nonprofits, and companies.
+> HSO is a curated discovery platform that helps U.S. high school students find internships, research programs, scholarships, competitions, summer programs, and fellowships from universities, nonprofits, and companies.
 
 HSO is editorial: every program links to its official page, with eligibility, deadlines, cost, and format reviewed by editors. Browsing is free; accounts are only used to save favorites and curated collections.
 
@@ -14,6 +14,13 @@ HSO is editorial: every program links to its official page, with eligibility, de
 - [Privacy](/privacy): How HSO handles accounts and saved data.
 - [Terms](/terms): Terms of use for the HSO directory.
 
+## Guides
+
+- [Best medical internships](/guides/top-medical-internships): Medical internships and hospital research for high schoolers.
+- [Best research competitions](/guides/top-research-competitions): Research competitions for high school students.
+- [Best business summer programs](/guides/top-business-summer-programs): Business and entrepreneurship summer programs.
+- [High school law internships](/guides/high-school-law-internships): Law internships and legal shadowing for teens.
+
 ## Categories
 
 - [Summer programs](/categories/summer-programs): Summer programs for high school students.
@@ -21,5 +28,5 @@ HSO is editorial: every program links to its official page, with eligibility, de
 - [Scholarships](/categories/scholarships): Scholarships open to high school students.
 - [Research](/categories/research): High school research programs.
 - [Competitions](/categories/competitions): Academic and STEM competitions for teens.
-- [Volunteer](/categories/volunteer): Volunteer and service opportunities.
 - [Fellowships](/categories/fellowships): Fellowships for high schoolers.
+- [Remote & nationwide](/remote): Online and nationwide programs open to students in any U.S. state.

@@ -5,6 +5,12 @@ export type CuratedCollection = {
   cover_gradient: string;
   tags: string[];
   intended_majors: string[];
+  /**
+   * Legacy hand-written label of the categories a collection covers.
+   * NOT used for filtering or display any more — it had drifted out of sync
+   * with the listings each collection actually holds. The UI derives the real
+   * categories from the members via lib/collectionFacts.ts.
+   */
   categories: string[];
   opportunityIds: string[];
   career_path?: string;
@@ -51,15 +57,15 @@ export const curatedSections: CuratedSection[] = [
         "linear-gradient(135deg, #2b1d3a 0%, #df6b54 48%, #f7c65f 100%)",
         ["women", "girls", "STEM"], ["Computer Science", "Engineering", "Math", "Science"],
         ["Summer Program", "Competition", "Scholarship"],
-        ["girls-who-code", "kode-with-klossy", "technovation", "ai4all", "girlup", "girls-who-code-pathways", "nywici-scholarship", "girls-write"],
+        ["girls-who-code", "kode-with-klossy", "technovation", "ai4all", "girlup", "girls-who-code-pathways", "nywici-scholarship" ],
         "STEM"),
       c("cybersecurity-builders", "Cybersecurity & CTF Builders",
         "Capture-the-flag competitions, cyber camps, and security training for students who want to break and defend systems.",
         "linear-gradient(135deg, #060914 0%, #2fbf82 50%, #f7c65f 100%)",
         ["cybersecurity", "CTF", "hacking"], ["Computer Science", "Cybersecurity"],
         ["Competition", "Summer Program"],
-        ["picoctf", "cyber-patriot", "beaver-works", "ibm-skills", "microsoft-discovery", "stargate"],
-        "Cybersecurity"),
+        ["picoctf", "cyber-patriot", "beaver-works",  "microsoft-discovery", "stargate"],
+        "Cybersecurity")
     ],
   },
   {
@@ -71,8 +77,8 @@ export const curatedSections: CuratedSection[] = [
         "linear-gradient(135deg, #0f3b2e 0%, #3ba172 48%, #f0c767 100%)",
         ["pre-med", "biology", "health", "hospital"], ["Medicine", "Biology", "Public Health", "Neuroscience"],
         ["Research", "Summer Program", "Internship"],
-        ["simr", "nih-hi-step", "nih-summer", "nyu-arise", "junior-academy", "hosa", "hopkins-med", "syp-jhu", "rsi-medicine", "mclean-mentorship", "usabo", "ibo", "emory-pre"],
-        "Medicine"),
+        ["simr", "state-maryland-histep", "nih-summer", "nyu-arise", "junior-academy", "hosa", "hopkins-med", "syp-jhu", "rsi-medicine", "mclean-mentorship", "usabo", "ibo", "emory-pre"],
+        "Medicine")
     ],
   },
   {
@@ -85,7 +91,7 @@ export const curatedSections: CuratedSection[] = [
         ["business", "finance", "entrepreneurship"], ["Business", "Finance", "Economics"],
         ["Competition", "Internship", "Fellowship"],
         ["diamond-challenge", "blue-ocean-entrepreneurship", "ayia", "wharton-global", "knowledge-at-wharton", "leangap", "nfte", "fbla", "mit-launch", "soa-shark"],
-        "Business"),
+        "Business")
     ],
   },
   {
@@ -98,7 +104,7 @@ export const curatedSections: CuratedSection[] = [
         ["law", "policy", "civic"], ["Political Science", "Law", "Public Policy"],
         ["Fellowship", "Summer Program"],
         ["ywp", "unesco-youth", "girls-state", "tasp", "ylc", "model-un", "harvard-mun", "yale-mun", "yale-law-summer", "syp-georgetown", "columbia-freedom-citizenship", "youth-debate"],
-        "Law & Policy"),
+        "Law & Policy")
     ],
   },
   {
@@ -110,7 +116,7 @@ export const curatedSections: CuratedSection[] = [
         "linear-gradient(135deg, #1a0f0c 0%, #df6b54 50%, #f6e7d7 100%)",
         ["writing", "journalism", "essays"], ["Writing", "Journalism", "Media", "English"],
         ["Competition", "Internship", "Summer Program"],
-        ["nyt-essay", "scholastic", "concord", "iwp", "jea", "girls-write", "bell-journalism", "nytlearning-podcast", "nywici-scholarship", "vfw-voice-of-democracy"],
+        ["nyt-essay", "scholastic", "concord", "iwp", "jea",  "bell-journalism", "nytlearning-podcast", "nywici-scholarship", "vfw-voice-of-democracy"],
         "Journalism"),
       c("arts-design-portfolio", "Arts, Design & Portfolio Builders",
         "Studio programs, conservatories, and portfolio-building summer intensives for visual, design, and performing arts students.",
@@ -125,7 +131,7 @@ export const curatedSections: CuratedSection[] = [
         ["humanities", "history", "essays"], ["Humanities", "History", "English"],
         ["Summer Program", "Competition", "Scholarship"],
         ["tasp", "concord", "nyt-essay", "ylc", "scholastic", "national-wwii-writing-contest", "columbia-freedom-citizenship", "nyu-medical-ethics"],
-        "Humanities"),
+        "Humanities")
     ],
   },
   {
@@ -137,8 +143,8 @@ export const curatedSections: CuratedSection[] = [
         "linear-gradient(135deg, #132019 0%, #df6b54 48%, #d9eadf 100%)",
         ["engineering", "robotics", "aerospace"], ["Engineering", "Mechanical Engineering", "Aerospace"],
         ["Summer Program", "Research", "Competition"],
-        ["nyu-arise", "ssp", "junior-academy", "first-robotics", "vex", "ftc", "zero-robotics", "army-rebotics", "jpl", "mites", "beaver-works", "siemens", "future-city", "project-lead-the-way"],
-        "Engineering"),
+        ["nyu-arise", "ssp", "junior-academy", "first-robotics", "vex", "ftc", "zero-robotics", "army-rebotics", "jpl", "mites", "beaver-works", "siemens", "future-city" ],
+        "Engineering")
     ],
   },
   {
@@ -150,8 +156,8 @@ export const curatedSections: CuratedSection[] = [
         "linear-gradient(135deg, #073b2d 0%, #2fbf82 47%, #f7c65f 100%)",
         ["climate", "environment", "conservation"], ["Environmental Science", "Earth Science"],
         ["Research", "Competition"],
-        ["ywoy", "ieso", "smithsonian-nmnh-high-school-internship", "smithsonian-yas", "nat-geo", "operation-wallacea", "climate-cardinal", "global-water-challenge", "hudson-river-slp", "amnh-srmp", "nybg-internships", "state-hawaii-hycc"],
-        "Environment"),
+        ["ywoy", "ieso", "smithsonian-nmnh-high-school-internship",  "nat-geo",   "global-water-challenge", "hudson-river-slp", "amnh-srmp", "nybg-internships", "state-hawaii-hycc"],
+        "Environment")
     ],
   },
   {
@@ -163,8 +169,8 @@ export const curatedSections: CuratedSection[] = [
         "linear-gradient(135deg, #111827 0%, #df6b54 48%, #2fbf82 100%)",
         ["NYC", "local", "paid"], ["Undecided"],
         ["Internship", "Research", "Summer Program"],
-        ["junior-academy", "projekt-nyc", "nyu-arise", "girls-write", "civic-hall-stem-camp", "nyc-syep", "nyc-ladders-leaders", "nyc-learn-earn", "nyc-careerready", "nyc-industry-scholars", "amnh-srmp", "moma-teens", "bpl-teen-takeovers", "nypl-teen-ambassadors", "hudson-river-slp"],
-        "NYC"),
+        ["junior-academy",  "nyu-arise",  "civic-hall-stem-camp", "nyc-syep", "nyc-ladders-leaders",  "nyc-careerready", "nyc-industry-scholars", "amnh-srmp", "moma-teens", "bpl-teen-takeovers", "nypl-teen-ambassadors", "hudson-river-slp"],
+        "NYC")
     ],
   },
   {
@@ -184,7 +190,7 @@ export const curatedSections: CuratedSection[] = [
         ["selective", "pre-college", "research"], ["Undecided", "STEM", "Humanities"],
         ["Summer Program", "Research", "Scholarship"],
         ["rsi", "ssp", "ylc", "tasp", "pioneer", "lumiere", "simr", "promys", "regeneron-sts"],
-        "Selective"),
+        "Selective")
     ],
   },
   {
@@ -196,14 +202,14 @@ export const curatedSections: CuratedSection[] = [
         "linear-gradient(135deg, #0e1f15 0%, #2fbf82 48%, #f7c65f 100%)",
         ["free", "stipend", "summer"], ["Undecided"],
         ["Summer Program", "Research", "Fellowship"],
-        ["rsi", "ssp", "tasp", "ylc", "promys", "ross", "mites", "simr", "nih-hi-step", "nih-summer", "beaver-works", "nyu-arise", "hcssim-prim", "girls-who-code", "ai4all"],
+        ["rsi", "ssp", "tasp", "ylc", "promys", "ross", "mites", "simr", "state-maryland-histep", "nih-summer", "beaver-works", "nyu-arise", "hcssim-prim", "girls-who-code", "ai4all"],
         "Free"),
       c("ivy-level-summer", "Ivy-Level Summer Programs",
         "Pre-college summer programs hosted at Ivy League and top-tier universities.",
         "linear-gradient(135deg, #1a0d2e 0%, #6b3fa0 50%, #f6e7d7 100%)",
         ["ivy", "pre-college", "selective"], ["Undecided"],
         ["Summer Program"],
-        ["brown-pre-college", "syp-cornell", "syp-uchicago", "syp-georgetown", "syp-jhu", "syp-penn", "nyu-precollege", "yale-law-summer", "stanford-summer-high-school", "columbia-freedom-citizenship", "harvard-mun", "yale-mun"],
+        ["state-rhode-island-brown-precollege", "syp-cornell", "syp-uchicago", "syp-georgetown", "syp-jhu", "syp-penn", "nyu-precollege", "yale-law-summer", "stanford-summer-high-school", "columbia-freedom-citizenship", "harvard-mun", "yale-mun"],
         "Pre-College"),
       c("research-starter-pack", "Research Starter Pack",
         "A first-time researcher's shortlist — mentored research programs, lab internships, and writing-a-paper programs.",
@@ -211,7 +217,7 @@ export const curatedSections: CuratedSection[] = [
         ["research", "mentorship", "first-time"], ["Undecided"],
         ["Research", "Summer Program"],
         ["polygence", "horizon", "lumiere", "pioneer", "indigo", "immerse-research", "amnh-srmp", "hudson-river-slp", "nyu-arise", "brookhaven"],
-        "Research"),
+        "Research")
     ],
   },
   {
@@ -223,10 +229,10 @@ export const curatedSections: CuratedSection[] = [
         "linear-gradient(135deg, #1a0f2e 0%, #df6b54 48%, #f6e7d7 100%)",
         ["first-gen", "low-income", "access"], ["Undecided"],
         ["Scholarship", "Fellowship", "Summer Program"],
-        ["qb", "posse", "gates", "dell", "horatio-alger", "ron-brown", "stamps", "minds-matter-nyc", "columbia-double-discovery", "breakthrough"],
-        "College Access"),
+        ["questbridge-match", "posse", "gates", "dell", "horatio-alger", "ron-brown", "stamps", "minds-matter-nyc", "columbia-double-discovery", "breakthrough"],
+        "College Access")
     ],
-  },
+  }
 ];
 
 export const curatedCollections: CuratedCollection[] = curatedSections.flatMap((s) => s.collections);
@@ -239,9 +245,6 @@ export const intendedMajors: string[] = Array.from(
   new Set(curatedCollections.flatMap((c) => c.intended_majors))
 ).sort();
 
-export const collectionCategories: string[] = Array.from(
-  new Set(curatedCollections.flatMap((c) => c.categories))
-).sort();
 
 export function getCuratedCollection(id: string): CuratedCollection | undefined {
   return curatedCollections.find((collection) => collection.id === id);

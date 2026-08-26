@@ -8,6 +8,8 @@ import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { OpportunityCard } from "@/components/OpportunityCard";
 import { Button } from "@/components/ui/button";
 import { slugForCategory, CATEGORY_META } from "@/lib/categories";
+import { opportunityMeta } from "@/lib/pageMeta";
+import { useAtmosphere, themeForCategory } from "@/lib/atmosphere";
 import { store, useStore } from "@/store/collections";
 import { toast } from "sonner";
 import { authRedirectHref, useAuthSession } from "@/hooks/useAuthSession";
@@ -24,6 +26,9 @@ const OpportunityDetail = () => {
   const fav = !!opp && s.favorites.includes(opp.id);
   const { user } = useAuthSession();
   const [intervals, setIntervals] = useState<number[]>([]);
+
+  // The backdrop takes the colour of this programme's category.
+  useAtmosphere(opp ? themeForCategory(opp.category) : "default");
 
   useEffect(() => {
     if (!user || !opp) return;
@@ -71,13 +76,6 @@ const OpportunityDetail = () => {
     .filter((o) => o.id !== opp.id && (o.category === opp.category || o.fields.some((f) => opp.fields.includes(f))))
     .slice(0, 3);
 
-  // SEO quality gate: only index opportunity pages that are U.S.-eligible, have a
-  // working direct link, complete core fields, and are not flagged for review.
-  const hasCoreFields = !!(opp.title && opp.org && opp.location && opp.blurb);
-  const linkOk =
-    !!opp.url && opp.url.startsWith("http") && opp.url !== "#" && opp.link_quality !== "broken";
-  const seoNoindex = !hasCoreFields || !linkOk || opp.requiresReview === true;
-
   const toggleInterval = async (n: number) => {
     if (!user) { toast.info("Sign in to save reminders"); navigate(authRedirectHref(`/opportunities/${opp.id}`)); return; }
     const next = intervals.includes(n) ? intervals.filter((x) => x !== n) : [...intervals, n].sort((a,b) => b-a);
@@ -97,47 +95,7 @@ const OpportunityDetail = () => {
 
   return (
     <div className="min-h-screen text-foreground">
-      <SEO
-        title={`${opp.title} | HSO`}
-        description={(() => {
-          const raw = `${opp.title} — ${opp.category} for high schoolers in ${opp.location}. Deadline, eligibility, cost & official link.`;
-          return raw.length > 158 ? raw.slice(0, 155) + "…" : raw;
-        })()}
-        path={`/opportunities/${opp.id}`}
-        noindex={seoNoindex}
-        jsonLd={[
-          {
-            "@context": "https://schema.org",
-            "@type": "EducationalOccupationalProgram",
-            name: opp.title,
-            description: opp.blurb,
-            url: `https://highschoolopportunity.org/opportunities/${opp.id}`,
-            provider: { "@type": "Organization", name: opp.org },
-            educationalProgramMode: opp.format,
-            occupationalCategory: opp.category,
-            ...(opp.deadline ? { applicationDeadline: opp.deadline } : {}),
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: opp.title,
-            description: opp.blurb,
-            about: opp.category,
-            author: { "@type": "Organization", name: "HSO — High School Opportunity" },
-            publisher: { "@type": "Organization", name: "HSO — High School Opportunity" },
-            mainEntityOfPage: `https://highschoolopportunity.org/opportunities/${opp.id}`,
-          },
-          {
-            "@context": "https://schema.org",
-            "@type": "BreadcrumbList",
-            itemListElement: [
-              { "@type": "ListItem", position: 1, name: "HSO", item: "https://highschoolopportunity.org/" },
-              { "@type": "ListItem", position: 2, name: opp.category, item: "https://highschoolopportunity.org/" },
-              { "@type": "ListItem", position: 3, name: opp.title, item: `https://highschoolopportunity.org/opportunities/${opp.id}` },
-            ],
-          },
-        ]}
-      />
+      <SEO {...opportunityMeta(opp)} />
       <main className="mx-auto w-full max-w-[1100px] overflow-hidden px-3 py-10 sm:px-6 sm:py-14">
         <section className="hso-detail-shell hso-glass-panel hso-surface-grid relative mx-auto max-w-full overflow-hidden rounded-[1.75rem] p-5 sm:rounded-[2rem] sm:p-8">
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,hsl(var(--coral)/0.08),transparent_34%,hsl(var(--sage)/0.08))]" />

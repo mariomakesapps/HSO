@@ -9,7 +9,6 @@ import { useSEO } from "@/lib/seo";
 import { useAuthSession } from "@/hooks/useAuthSession";
 import {
   careerPaths,
-  collectionCategories,
   curatedCollections,
   curatedSections,
   intendedMajors,
@@ -17,6 +16,8 @@ import {
 } from "@/data/curatedCollections";
 import { allOpportunities, locationState } from "@/data/opportunities";
 import { displayedLikes } from "@/lib/curatedBaseline";
+import { allCollectionCategories, allCollectionStates, collectionFacts } from "@/lib/collectionFacts";
+import { useAtmosphere } from "@/lib/atmosphere";
 import {
   loadCuratedCounts,
   store,
@@ -38,26 +39,6 @@ const toOptions = (values: string[]): DropdownOption[] => [
   ...values.map((v) => ({ value: v, label: v })),
 ];
 
-// Precompute the set of US states represented by each curated collection so we
-// can filter by location without scanning opportunities on every keystroke.
-const opportunityById = new Map(allOpportunities.map((o) => [o.id, o]));
-const collectionStates = new Map<string, Set<string>>();
-const collectionHasFree = new Map<string, boolean>();
-for (const c of curatedCollections) {
-  const states = new Set<string>();
-  let hasFree = false;
-  for (const oid of c.opportunityIds) {
-    const o = opportunityById.get(oid);
-    if (!o) continue;
-    states.add(locationState(o.location));
-    if (o.cost === "Free" || o.cost === "Stipend") hasFree = true;
-  }
-  collectionStates.set(c.id, states);
-  collectionHasFree.set(c.id, hasFree);
-}
-const ALL_LOCATIONS = Array.from(
-  new Set(curatedCollections.flatMap((c) => Array.from(collectionStates.get(c.id) ?? []))),
-).sort();
 
 function signInRequiredToast(navigate: ReturnType<typeof useNavigate>, returnTo: string) {
   toast.error("Sign-in required", {
@@ -79,6 +60,8 @@ export default function Collections() {
     void loadCuratedCounts();
   }, []);
 
+  useAtmosphere("collections");
+
   const counts = useCuratedCounts();
 
   const [major, setMajor] = useState<string>("All");
@@ -93,9 +76,9 @@ export default function Collections() {
       if (c.is_active === false) return false;
       if (major !== "All" && !c.intended_majors.includes(major)) return false;
       if (career !== "All" && c.career_path !== career) return false;
-      if (type !== "All" && !c.categories.includes(type)) return false;
-      if (location !== "All" && !(collectionStates.get(c.id)?.has(location))) return false;
-      if (freeOnly && !collectionHasFree.get(c.id)) return false;
+      if (type !== "All" && !collectionFacts(c.id).categories.includes(type)) return false;
+      if (location !== "All" && !collectionFacts(c.id).states.has(location)) return false;
+      if (freeOnly && !collectionFacts(c.id).hasFree) return false;
       return true;
     });
     if (sort === "most-liked") {
@@ -158,7 +141,7 @@ export default function Collections() {
               label="Type"
               value={type}
               onChange={setType}
-              options={toOptions(collectionCategories)}
+              options={toOptions(allCollectionCategories)}
               className="w-full sm:w-auto"
               fullWidth
             />
@@ -166,7 +149,7 @@ export default function Collections() {
               label="Location"
               value={location}
               onChange={setLocation}
-              options={toOptions(ALL_LOCATIONS)}
+              options={toOptions(allCollectionStates)}
               searchable
               searchPlaceholder="Search states"
               className="w-full sm:w-auto"
@@ -271,21 +254,52 @@ function CuratedCard({ collection }: { collection: CuratedCollection }) {
       .catch((err: any) => toast.error(err.message ?? "Could not update like"));
   };
 
+  // Everything shown below is derived from the listings the collection really
+  // contains, so a card can never advertise a category it does not hold or a
+  // count that includes references which no longer resolve.
+  const facts = collectionFacts(collection.id);
+
   return (
-    <article className="hso-elevated-surface hso-surface-grid flex h-full flex-col overflow-hidden rounded-[1.5rem] transition-transform hover:-translate-y-1">
-      <Link to={`/collections/${collection.id}`} className="block h-28" aria-label={`Open ${collection.title}`} style={{ background: collection.cover_gradient }} />
+    <article className="hso-elevated-surface hso-surface-grid hso-press flex h-full flex-col overflow-hidden rounded-[1.5rem] transition-[transform,box-shadow] duration-300 hover:-translate-y-1">
+      <Link
+        to={`/collections/${collection.id}`}
+        className="relative block h-24 overflow-hidden"
+        aria-label={`Open ${collection.title}`}
+        style={{ background: collection.cover_gradient }}
+      >
+        <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,transparent_35%,hsl(var(--ink)/0.28))]" />
+        <span className="absolute bottom-2 left-4 text-[11px] font-bold uppercase tracking-[0.18em] text-cream/90">
+          {facts.opportunities.length} {facts.opportunities.length === 1 ? "program" : "programs"}
+        </span>
+      </Link>
       <div className="flex flex-1 flex-col p-5">
         <Link to={`/collections/${collection.id}`} className="font-display text-2xl font-semibold leading-tight text-ink hover:text-coral">
           {collection.title}
         </Link>
         <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted-foreground">{collection.description}</p>
+
         <div className="mt-4 flex flex-wrap gap-1.5">
-          {[...collection.intended_majors, ...collection.categories].slice(0, 5).map((tag) => (
+          {[...collection.intended_majors, ...facts.categories].slice(0, 5).map((tag) => (
             <span key={tag} className="rounded-full bg-coral/10 px-2.5 py-1 text-[11px] font-bold text-coral">{tag}</span>
           ))}
         </div>
+
+        {/* A glance at what is actually inside beats a bare count. */}
+        {facts.highlights.length > 0 && (
+          <ul className="mt-4 space-y-1 border-t border-border/60 pt-3 text-xs text-muted-foreground">
+            {facts.highlights.map((o) => (
+              <li key={o.id} className="flex items-start gap-1.5">
+                <span aria-hidden="true" className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-coral/70" />
+                <span className="truncate">{o.title}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+
         <div className="mt-auto pt-5 flex items-center gap-3">
-          <span className="text-xs font-semibold text-muted-foreground">{collection.opportunityIds.length} opportunities</span>
+          <span className="text-xs font-semibold text-muted-foreground">
+            {facts.hasFree ? "Free options inside" : `${facts.opportunities.length} opportunities`}
+          </span>
           <span className="inline-flex items-center gap-1 text-xs font-semibold text-muted-foreground">
             <Heart className={`h-3.5 w-3.5 ${liked ? "fill-coral text-coral" : ""}`} /> {likeCount}
           </span>
