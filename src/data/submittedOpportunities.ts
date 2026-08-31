@@ -1,0 +1,105 @@
+import type { Opportunity } from "@/data/opportunities";
+
+/**
+ * Community submissions from the HSO "Submit an opportunity" form
+ * (opportunity_submissions export, 2026-08-30). Deduped; YEFA's Youth
+ * Sustainable Finance Competition is already listed as `yefa-ysic`.
+ */
+export const submittedOpportunities: Opportunity[] = [
+  {
+    id: "pmready-tce",
+    title: "Tech Career Exploration Program",
+    org: "PMReady",
+    category: "Summer Program",
+    fields: ["Computer Science", "STEM"],
+    location: "Online, USA",
+    format: "Online",
+    cost: "Free",
+    grades: [9, 10, 11, 12],
+    deadline: "2026-06-05",
+    prestige: 1,
+    blurb:
+      "11-week summer program exploring tech careers in software engineering, UX design, and product management through hands-on projects, workshops, mentorship, and industry speaker sessions.",
+    url: "https://forms.gle/wYWyhSBHzv5Lx3bo6",
+  },
+  {
+    id: "project-coin-internship",
+    title: "Project Coin High School Internship",
+    org: "Project Coin",
+    category: "Internship",
+    fields: ["Business", "Humanities"],
+    location: "Online, USA",
+    format: "Online",
+    cost: "Free",
+    grades: [9, 10, 11, 12],
+    deadline: "2026-08-15",
+    prestige: 1,
+    blurb:
+      "For-youth, by-youth civic and financial education nonprofit seeking high school team members for social media, finance, and lesson-planning roles.",
+    url: "https://forms.gle/7cmQMWCpQ923hfXg6",
+  },
+  {
+    id: "synapse-state-fellowship",
+    title: "Synapse & State Youth Neuroscience Policy Fellowship",
+    org: "Synapse & State",
+    category: "Fellowship",
+    fields: ["Biology", "Policy", "Medicine"],
+    location: "Online, USA",
+    format: "Hybrid",
+    cost: "Stipend",
+    grades: [9, 10, 11, 12],
+    deadline: "2026-09-25",
+    prestige: 2,
+    blurb:
+      "Free virtual fellowship where students research a neuroscience-related policy issue and develop their own policy recommendation, with finalists presenting at a virtual summit.",
+    url: "https://forms.gle/BfJG6cgCorvvNSYD6",
+  },
+  {
+    id: "clicked-learning-head-positions",
+    title: "Clicked Learning Open Head Positions",
+    org: "Clicked Learning",
+    category: "Internship",
+    fields: ["STEM", "Business"],
+    location: "Online, USA",
+    format: "Online",
+    cost: "Free",
+    grades: [9, 10, 11, 12],
+    deadline: "2026-09-30",
+    prestige: 1,
+    blurb:
+      "Student leadership roles growing an education-access nonprofit: new projects, outreach and promotion, partnership research, and social media and website support.",
+    url: "https://docs.google.com/forms/d/e/1FAIpQLSfMKRdjmLDAUInSqnN-nWVh9QzOobfbCTOWX74l0zr-uN1IMA/viewform",
+  },
+  {
+    id: "sortmyprep-founders-office",
+    title: "Founder's Office — Growth Internship",
+    org: "sortmyprep",
+    category: "Internship",
+    fields: ["Business", "Computer Science"],
+    location: "Worldwide (Online)",
+    format: "Online",
+    cost: "Free",
+    grades: [9, 10, 11, 12],
+    deadline: null,
+    prestige: 1,
+    blurb:
+      "Work directly with the founders of a high-growth edtech startup 4–6 hours per week, shaping marketing and growth strategies and driving customer adoption around your school schedule.",
+    url: "https://forms.gle/KnJRUa4VsM2hSd2q6",
+  },
+  {
+    id: "ignite-paid-internship",
+    title: "Ignite Paid Internship Program",
+    org: "Ignite",
+    category: "Internship",
+    fields: ["Humanities", "Business"],
+    location: "Online, USA",
+    format: "Online",
+    cost: "Stipend",
+    grades: [9, 10, 11, 12],
+    deadline: "2026-09-30",
+    prestige: 1,
+    blurb:
+      "Paid high school internship in course development, mentoring, marketing, and sponsorship outreach — e.g. $250 per approved course created or $100 per completed course taught. No prior experience required.",
+    url: "https://ignitefindyourfire.org",
+  },
+];
