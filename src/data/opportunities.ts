@@ -3,6 +3,7 @@ import { additionalUsOpportunities } from "@/data/additionalUsOpportunities";
 import { generatedBulkOpportunities } from "@/data/generatedBulkOpportunities";
 import { csvScholarships } from "@/data/csvScholarships";
 import { verifiedNationalOpportunities } from "@/data/verifiedNationalOpportunities";
+import { submittedOpportunities } from "@/data/submittedOpportunities";
 import {
   normalizeOpportunityUrl,
   removedOpportunityUrls,
@@ -388,6 +389,7 @@ export const opportunities: Opportunity[] = [
   ...generatedBulkOpportunities,
   ...csvScholarships,
   ...verifiedNationalOpportunities,
+  ...submittedOpportunities,
 ];
 
 for (const opportunity of opportunities) {
