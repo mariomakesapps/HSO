@@ -96,7 +96,7 @@ export const submittedOpportunities: Opportunity[] = [
     format: "Online",
     cost: "Stipend",
     grades: [9, 10, 11, 12],
-    deadline: "2026-09-30",
+    deadline: null,
     prestige: 1,
     blurb:
       "Paid high school internship in course development, mentoring, marketing, and sponsorship outreach — e.g. $250 per approved course created or $100 per completed course taught. No prior experience required.",
