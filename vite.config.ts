@@ -45,7 +45,7 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  plugins: [react(), mode === "development" && componentTagger(), seoPrerenderPlugin()].filter(Boolean),
+  plugins: [react(), mode === "development" && componentTagger(), mcpPlugin(), seoPrerenderPlugin()].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
