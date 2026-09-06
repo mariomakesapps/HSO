@@ -1,0 +1,192 @@
+{
+  "version": 1,
+  "sdk_version": "2.0.2",
+  "path": "/functions/v1/mcp",
+  "auth": {
+    "type": "none"
+  },
+  "mcp": {
+    "server": {
+      "name": "hso",
+      "version": "0.1.0",
+      "title": "HSO"
+    },
+    "tools": [
+      {
+        "name": "search_opportunities",
+        "title": "Search opportunities",
+        "description": "Search the HSO catalog of U.S. high school opportunities (summer programs, internships, research, competitions, scholarships, fellowships). Filter by keyword, category, grade, cost, format, or deadline window.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "Keyword search across title, organization, description, field, and location."
+            },
+            "category": {
+              "type": "string",
+              "enum": [
+                "Research",
+                "Internship",
+                "Competition",
+                "Summer Program",
+                "Scholarship",
+                "Fellowship"
+              ],
+              "description": "Restrict results to one category."
+            },
+            "grade": {
+              "type": "integer",
+              "minimum": 9,
+              "maximum": 12,
+              "description": "Only listings open to this grade (9-12)."
+            },
+            "cost": {
+              "type": "string",
+              "enum": [
+                "Free",
+                "Paid",
+                "Stipend"
+              ],
+              "description": "Cost type of the program."
+            },
+            "format": {
+              "type": "string",
+              "enum": [
+                "In-person",
+                "Online",
+                "Hybrid"
+              ],
+              "description": "Delivery format."
+            },
+            "state": {
+              "type": "string",
+              "description": "Match against the location string, e.g. 'California', 'Online', 'USA'."
+            },
+            "deadlineBefore": {
+              "type": "string",
+              "description": "ISO date (YYYY-MM-DD); only listings with a posted deadline on or before this date."
+            },
+            "deadlineAfter": {
+              "type": "string",
+              "description": "ISO date (YYYY-MM-DD); only listings with a posted deadline on or after this date."
+            },
+            "minPrestige": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 3,
+              "description": "1 = any, 3 = most selective / top tier."
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "default": 10,
+              "description": "Maximum number of results to return."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_opportunity",
+        "title": "Get opportunity details",
+        "description": "Return the full details of a single HSO opportunity by its id (as returned by search_opportunities).",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Opportunity id, e.g. 'rsi'."
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_categories",
+        "title": "List categories",
+        "description": "List the HSO opportunity categories with a short description, browse URL, and how many listings each holds.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "upcoming_deadlines",
+        "title": "Upcoming deadlines",
+        "description": "List HSO opportunities whose posted application deadline falls within the next N days, soonest first.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "withinDays": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 365,
+              "default": 30,
+              "description": "How many days ahead to look."
+            },
+            "category": {
+              "type": "string",
+              "enum": [
+                "Research",
+                "Internship",
+                "Competition",
+                "Summer Program",
+                "Scholarship",
+                "Fellowship"
+              ],
+              "description": "Restrict to one category."
+            },
+            "grade": {
+              "type": "integer",
+              "minimum": 9,
+              "maximum": 12,
+              "description": "Only listings open to this grade."
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "default": 15,
+              "description": "Maximum number of results."
+            }
+          },
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}
