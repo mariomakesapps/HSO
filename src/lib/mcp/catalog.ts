@@ -18,7 +18,7 @@ export const CATEGORIES = [
 
 export function categoryDirectory() {
   return CATEGORY_SLUGS.map((slug) => {
-    const meta = CATEGORE_SAFE(slug);
+    const meta = CATEGORY_META[slug];
     return {
       slug,
       category: meta.category,
@@ -28,10 +28,6 @@ export function categoryDirectory() {
       count: allOpportunities.filter((o) => o.category === meta.category).length,
     };
   });
-}
-
-function CATEGORE_SAFE(slug: (typeof CATEGORY_SLUGS)[number]) {
-  return CATEGORY_META[slug];
 }
 
 /** Compact, model-friendly shape for a single listing. */
