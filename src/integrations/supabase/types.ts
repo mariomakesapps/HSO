@@ -593,6 +593,48 @@ export type Database = {
         }
         Relationships: []
       }
+      volunteer_signups: {
+        Row: {
+          created_at: string
+          email: string
+          full_name: string
+          grade: number | null
+          hours_per_week: string | null
+          id: string
+          interests: string[]
+          motivation: string
+          portfolio_url: string | null
+          school: string | null
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          full_name: string
+          grade?: number | null
+          hours_per_week?: string | null
+          id?: string
+          interests?: string[]
+          motivation: string
+          portfolio_url?: string | null
+          school?: string | null
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          full_name?: string
+          grade?: number | null
+          hours_per_week?: string | null
+          id?: string
+          interests?: string[]
+          motivation?: string
+          portfolio_url?: string | null
+          school?: string | null
+          status?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
