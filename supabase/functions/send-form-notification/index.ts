@@ -47,7 +47,22 @@ const OpportunitySchema = z.object({
   submitter_email: z.string().trim().email().max(255),
 })
 
-const Schema = z.discriminatedUnion('type', [ContactSchema, OpportunitySchema])
+// Students applying to help run HSO — not the "Volunteer" opportunity
+// category, which is third-party volunteering listed in the catalog.
+const VolunteerSchema = z.object({
+  type: z.literal('volunteer'),
+  ...baseFields,
+  full_name: z.string().trim().min(2).max(120),
+  email: z.string().trim().email().max(255),
+  grade: z.number().int().min(9).max(12),
+  school: z.string().trim().max(160).optional().or(z.literal('')),
+  interests: z.array(z.string().max(80)).min(1).max(20),
+  hours_per_week: z.enum(['1-2 hours', '3-5 hours', '5+ hours']),
+  portfolio_url: z.string().trim().url().max(500).optional().or(z.literal('')),
+  motivation: z.string().trim().min(20).max(2000),
+})
+
+const Schema = z.discriminatedUnion('type', [ContactSchema, OpportunitySchema, VolunteerSchema])
 
 Deno.serve(async (req) => {
   if (req.method === 'OPTIONS') {
@@ -104,6 +119,19 @@ Deno.serve(async (req) => {
       email: data.email,
       message: data.message,
       relatedUrl: data.related_url || undefined,
+      submittedAt,
+    }
+  } else if (data.type === 'volunteer') {
+    templateName = 'volunteer-signup-notification'
+    templateData = {
+      fullName: data.full_name,
+      email: data.email,
+      grade: String(data.grade),
+      school: data.school || undefined,
+      interests: data.interests.join(', '),
+      hoursPerWeek: data.hours_per_week,
+      portfolioUrl: data.portfolio_url || undefined,
+      motivation: data.motivation,
       submittedAt,
     }
   } else {

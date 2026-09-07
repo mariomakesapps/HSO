@@ -18,6 +18,7 @@ const Contact = lazy(() => import("./pages/Contact.tsx"));
 const Privacy = lazy(() => import("./pages/Privacy.tsx"));
 const Terms = lazy(() => import("./pages/Terms.tsx"));
 const Submit = lazy(() => import("./pages/Submit.tsx"));
+const Volunteer = lazy(() => import("./pages/Volunteer.tsx"));
 const Category = lazy(() => import("./pages/Category.tsx"));
 const OpportunityDetail = lazy(() => import("./pages/OpportunityDetail.tsx"));
 const Collections = lazy(() => import("./pages/Collections.tsx"));
@@ -47,6 +48,7 @@ function WarmRouteCache() {
       void import("./pages/Privacy.tsx");
       void import("./pages/Profile.tsx");
       void import("./pages/Submit.tsx");
+      void import("./pages/Volunteer.tsx");
       void import("./pages/Terms.tsx");
       void import("./pages/Category.tsx");
       void import("./pages/OpportunityDetail.tsx");
@@ -128,6 +130,7 @@ const App = () => (
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/submit" element={<Submit />} />
+              <Route path="/volunteer" element={<Volunteer />} />
               <Route path="/categories/:slug" element={<Category />} />
               <Route path="/opportunities/:id" element={<OpportunityDetail />} />
               <Route path="/remote" element={<RemoteNationwide />} />
