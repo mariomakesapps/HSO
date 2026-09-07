@@ -257,6 +257,12 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
       "Suggest a U.S.-based high school opportunity for HSO's curated directory of internships, scholarships, research, and summer programs.",
     path: "/submit",
   },
+  "/volunteer": {
+    title: "Volunteer with HSO | High School Opportunity",
+    description:
+      "Three open roles on the student team behind HSO: finding and checking opportunities, running social, and getting schools on board. A few hours a week, remote.",
+    path: "/volunteer",
+  },
   "/collections": {
     title: "Curated Collections | HSO",
     description:
