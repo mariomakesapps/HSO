@@ -17,5 +17,3 @@ verify_jwt = false
 
 [functions.send-form-notification]
 verify_jwt = false
-[functions.mcp]
-verify_jwt = false
