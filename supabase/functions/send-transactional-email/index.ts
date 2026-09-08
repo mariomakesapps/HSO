@@ -63,27 +63,33 @@ Deno.serve(async (req) => {
   }
   let callerIsServiceRole = false
   let callerEmail: string | null = null
-  try {
-    const [, payloadB64] = token.split('.')
-    const padded = payloadB64 + '='.repeat((4 - (payloadB64.length % 4)) % 4)
-    const claims = JSON.parse(
-      atob(padded.replace(/-/g, '+').replace(/_/g, '/'))
-    ) as { role?: string; sub?: string; email?: string }
-    const role = claims.role
-    callerIsServiceRole = role === 'service_role'
-    const isAuthenticatedUser = role === 'authenticated' && !!claims.sub
-    if (!callerIsServiceRole && !isAuthenticatedUser) {
+  // Service-role credentials may be a JWT or an `sb_secret_...` key — compare directly first.
+  if (token === supabaseServiceKey) {
+    callerIsServiceRole = true
+  } else {
+    try {
+      const [, payloadB64] = token.split('.')
+      if (!payloadB64) throw new Error('not a jwt')
+      const padded = payloadB64 + '='.repeat((4 - (payloadB64.length % 4)) % 4)
+      const claims = JSON.parse(
+        atob(padded.replace(/-/g, '+').replace(/_/g, '/'))
+      ) as { role?: string; sub?: string; email?: string }
+      const role = claims.role
+      callerIsServiceRole = role === 'service_role'
+      const isAuthenticatedUser = role === 'authenticated' && !!claims.sub
+      if (!callerIsServiceRole && !isAuthenticatedUser) {
+        return new Response(
+          JSON.stringify({ error: 'Authenticated user required' }),
+          { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
+        )
+      }
+      callerEmail = typeof claims.email === 'string' ? claims.email.toLowerCase() : null
+    } catch {
       return new Response(
-        JSON.stringify({ error: 'Authenticated user required' }),
+        JSON.stringify({ error: 'Invalid authorization token' }),
         { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
       )
     }
-    callerEmail = typeof claims.email === 'string' ? claims.email.toLowerCase() : null
-  } catch {
-    return new Response(
-      JSON.stringify({ error: 'Invalid authorization token' }),
-      { status: 401, headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-    )
   }
 
   // Parse request body
