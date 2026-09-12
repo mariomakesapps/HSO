@@ -163,7 +163,7 @@ export const submittedOpportunities: Opportunity[] = [
     deadline: null,
     prestige: 1,
     blurb:
-      "Opportunities to build and lead a local YEFA chapter, access a global network, host events, and gain verified volunteer hours.",
+      "Opportunities to build and lead a local YEFA chapter, access a global network, host events, and gain verified service hours.",
     url: "https://www.jotform.com/tables/222213834434247",
   },
 ];
