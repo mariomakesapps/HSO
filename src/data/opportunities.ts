@@ -4,6 +4,7 @@ import { generatedBulkOpportunities } from "@/data/generatedBulkOpportunities";
 import { csvScholarships } from "@/data/csvScholarships";
 import { verifiedNationalOpportunities } from "@/data/verifiedNationalOpportunities";
 import { submittedOpportunities } from "@/data/submittedOpportunities";
+import { hsoAdditionsSep2026, applyHsoUpdateSep2026, isRemovedBySep2026Review } from "@/data/hsoUpdateSep2026";
 import {
   normalizeOpportunityUrl,
   removedOpportunityUrls,
@@ -389,6 +390,7 @@ export const opportunities: Opportunity[] = [
   ...csvScholarships,
   ...verifiedNationalOpportunities,
   ...submittedOpportunities,
+  ...hsoAdditionsSep2026,
 ];
 
 for (const opportunity of opportunities) {
@@ -463,13 +465,17 @@ for (const opportunity of opportunities) {
   if (opensAt) opportunity.opensAt = opensAt;
 }
 
+// Update of 2026-09-15: verified next-cycle dates, cleared stale dates, fixed links.
+applyHsoUpdateSep2026(opportunities);
+
 // US-focused: keep opportunities available to U.S. high schoolers (USA, Worldwide, Online).
 const US_ELIGIBLE = /(USA|Worldwide|Online|Multiple, USA)/i;
 export const allOpportunities: Opportunity[] = opportunities.filter((o) =>
   o.category !== "Volunteer" &&
   US_ELIGIBLE.test(o.location) &&
   isUsBased(o) &&
-  !removedOpportunityUrls.has(normalizeOpportunityUrl(o.url))
+  !removedOpportunityUrls.has(normalizeOpportunityUrl(o.url)) &&
+  !isRemovedBySep2026Review(o.id)
 );
 
 
