@@ -109,13 +109,14 @@ const Volunteer = () => {
         </p>
 
         <section className="mt-14" aria-labelledby="volunteer-roles">
-          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Open roles</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Open internships</p>
           <h2 id="volunteer-roles" className="mt-3 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-            Three roles we need filled
+            Three internships we need filled
           </h2>
           <p className="mt-3 text-muted-foreground">
-            Each one is a real job with one person responsible for it. You get a title, something specific to run,
-            and room to make your own decisions.
+            Each one is a real internship with one person responsible for it. You get a title, something specific to
+            run, and room to make your own decisions. They're unpaid — the value is the experience, the title, and
+            the work you can point to.
           </p>
 
           <div className="mt-8 space-y-5">
@@ -170,8 +171,8 @@ const Volunteer = () => {
           </div>
 
           <p className="mt-6 text-sm text-muted-foreground">
-            All three are unpaid, remote, and run by students. Writing, design, and web work come up too — say so in
-            the last box if that's more your thing.
+            All three internships are unpaid, remote, and run by students. Writing, design, and web work come up
+            too — say so in the last box if that's more your thing.
           </p>
         </section>
 
@@ -201,7 +202,7 @@ const Volunteer = () => {
             <Field label="School" name="school" placeholder="Optional" />
 
             <div>
-              <p className="mb-1 text-sm font-semibold">Which role do you want? *</p>
+              <p className="mb-1 text-sm font-semibold">Which internship do you want? *</p>
               <p className="mb-2.5 text-xs text-muted-foreground">Pick one, or more than one if you're open to it.</p>
               <div className="flex flex-wrap gap-2">
                 {ROLES.map((value) => {
@@ -238,10 +239,11 @@ const Volunteer = () => {
             <Field label="Portfolio or LinkedIn" name="portfolio_url" type="url" placeholder="Optional — https://..." />
 
             <Button type="submit" disabled={submitting} className="w-full rounded-full bg-ink py-6 text-cream hover:bg-coral hover:text-coral-foreground">
-              {submitting ? "Sending..." : "Apply to volunteer"}
+              {submitting ? "Sending..." : "Apply for an internship"}
             </Button>
             <p className="text-center text-xs text-muted-foreground">
-              We only use your details to contact you about volunteering. Nothing is shared or published.
+              These internships are unpaid. We only use your details to contact you about your application. Nothing
+              is shared or published.
             </p>
           </form>
         </section>
