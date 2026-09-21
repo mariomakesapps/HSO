@@ -29,9 +29,9 @@ const schema = z.object({
 
 const Volunteer = () => {
   useSEO({
-    title: "Volunteer with HSO | High School Opportunity",
+    title: "HSO Internships (Unpaid) | High School Opportunity",
     description:
-      "Three open roles on the student team behind HSO: finding and checking opportunities, running social, and getting schools on board. A few hours a week, remote.",
+      "Three unpaid internships on the student team behind HSO: finding and checking opportunities, running social, and getting schools on board. A few hours a week, remote.",
   });
   const [submitting, setSubmitting] = useState(false);
   const [interests, setInterests] = useState<string[]>([]);
@@ -101,10 +101,11 @@ const Volunteer = () => {
     <div className="min-h-screen">
       <main className="mx-auto max-w-2xl px-4 py-14 sm:px-6 sm:py-20">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Get involved</p>
-        <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-5xl">Volunteer with HSO</h1>
+        <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-5xl">HSO Internships</h1>
         <p className="mt-3 text-muted-foreground">
-          HSO is run by students. If you have a few hours a week you can help other people find programs they'd
-          never hear about otherwise. It's remote, and you don't need experience.
+          HSO is run by students. These internships are unpaid, but they're real jobs — if you have a few hours a
+          week you can help other people find programs they'd never hear about otherwise. It's remote, and you
+          don't need experience.
         </p>
 
         <section className="mt-14" aria-labelledby="volunteer-roles">
