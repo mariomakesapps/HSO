@@ -41,7 +41,7 @@ function useScrolled(threshold = 8) {
 const NAV_ITEMS = [
   { to: "/about", label: "About" },
   { to: "/submit", label: "Submit" },
-  { to: "/volunteer", label: "Volunteer" },
+  { to: "/volunteer", label: "HSO Internships" },
   { to: "/collections", label: "Collections" },
   { to: "/contact", label: "Contact" },
 ];
@@ -308,7 +308,7 @@ export function SiteHeader() {
                 <nav className="mt-4 grid gap-1 text-base font-medium text-ink">
                   <Link to="/about" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">About</Link>
                   <Link to="/submit" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">Submit</Link>
-                  <Link to="/volunteer" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">Volunteer</Link>
+                  <Link to="/volunteer" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">HSO Internships</Link>
                   <Link to="/collections" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">Collections</Link>
                   <Link to="/contact" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">Contact</Link>
                   <button
