@@ -26,6 +26,7 @@ const PRIORITY = {
 
 function classify(routePath) {
   if (routePath === "/") return "home";
+  if (routePath === "/deadlines") return "category";
   if (routePath.startsWith("/categories/")) return "category";
   if (routePath.startsWith("/guides/")) return "guide";
   if (routePath.startsWith("/opportunities/")) return "opportunity";

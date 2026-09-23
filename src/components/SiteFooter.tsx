@@ -28,6 +28,7 @@ export function SiteFooter() {
               </Link>
             </li>
           ))}
+          <li><Link to="/deadlines" className="hover:text-coral">Deadlines closing soon</Link></li>
           <li><Link to="/remote" className="hover:text-coral">Remote &amp; nationwide</Link></li>
         </FooterColumn>
         <FooterColumn title="Legal">

@@ -41,9 +41,10 @@ async function loadRouteData(root) {
   const result = await build({
     stdin: {
       contents: `
-        export { allRoutes, opportunityMeta, categoryMeta, remoteMeta, STATIC_PAGE_META,
+        export { allRoutes, opportunityMeta, categoryMeta, remoteMeta, deadlinesMeta, STATIC_PAGE_META,
                  isOpportunityIndexable } from "@/lib/pageMeta";
         export { REMOTE_META, remoteOpportunities } from "@/lib/remote";
+        export { DEADLINES_META, deadlineBuckets } from "@/lib/deadlines";
         export { allOpportunities } from "@/data/opportunities";
         export { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
       `,
@@ -207,6 +208,30 @@ function categoryBody(slug, data) {
  * in the states this catalogue barely covers, and it needs real crawlable
  * content to rank for "online competitions" and "remote internships".
  */
+function deadlinesBody(data) {
+  const meta = data.DEADLINES_META;
+  const buckets = data.deadlineBuckets();
+  const parts = [`        <h1>${escapeHtml(meta.h1)}</h1>`, `        <p>${escapeHtml(meta.intro)}</p>`];
+
+  for (const bucket of buckets) {
+    parts.push(`        <h2>${escapeHtml(bucket.title)} (${bucket.items.length})</h2>`);
+    parts.push(`        <p>${escapeHtml(bucket.blurb)}</p>`);
+    parts.push(`        ${linkList(bucket.items.slice(0, 200).map((opportunity) => ({
+      href: `/opportunities/${opportunity.id}`,
+      label: `${opportunity.title} - ${opportunity.org}${opportunity.deadline ? ` (closes ${opportunity.deadline})` : ""}`,
+    })))}`);
+  }
+
+  parts.push("        <h2>How to use a deadline list</h2>");
+  for (const paragraph of meta.guide) parts.push(`        <p>${escapeHtml(paragraph)}</p>`);
+  parts.push("        <h2>Frequently asked questions</h2>");
+  for (const faq of meta.faqs) {
+    parts.push(`        <h3>${escapeHtml(faq.q)}</h3><p>${escapeHtml(faq.a)}</p>`);
+  }
+
+  return shell(parts.join("\n"));
+}
+
 function remoteBody(data) {
   const meta = data.REMOTE_META;
   const list = data.remoteOpportunities();
@@ -248,7 +273,7 @@ function staticBody(meta, data) {
           { href: "/guides/top-business-summer-programs", label: "Best business summer programs for high schoolers" },
           { href: "/guides/high-school-law-internships", label: "High school law internships" },
           { href: "/submit", label: "Submit an opportunity" },
-          { href: "/volunteer", label: "Volunteer with HSO" },
+          { href: "/volunteer", label: "HSO internships (unpaid)" },
           { href: "/contact", label: "Contact & corrections" },
           { href: "/privacy", label: "Privacy policy" },
           { href: "/terms", label: "Terms of use" },
@@ -318,6 +343,7 @@ export async function prerender({ root, distDir }) {
     pages.push({ meta, body: staticBody(meta, data) });
   }
   pages.push({ meta: data.remoteMeta(), body: remoteBody(data) });
+  pages.push({ meta: data.deadlinesMeta(), body: deadlinesBody(data) });
   for (const slug of data.CATEGORY_SLUGS) {
     pages.push({ meta: data.categoryMeta(slug), body: categoryBody(slug, data) });
   }
