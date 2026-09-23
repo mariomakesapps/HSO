@@ -23,6 +23,7 @@ const Category = lazy(() => import("./pages/Category.tsx"));
 const OpportunityDetail = lazy(() => import("./pages/OpportunityDetail.tsx"));
 const Collections = lazy(() => import("./pages/Collections.tsx"));
 const RemoteNationwide = lazy(() => import("./pages/RemoteNationwide.tsx"));
+const Deadlines = lazy(() => import("./pages/Deadlines.tsx"));
 const SharedCollection = lazy(() => import("./pages/SharedCollection.tsx"));
 const Profile = lazy(() => import("./pages/Profile.tsx"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe.tsx"));
@@ -51,6 +52,7 @@ function WarmRouteCache() {
       void import("./pages/Volunteer.tsx");
       void import("./pages/Terms.tsx");
       void import("./pages/Category.tsx");
+      void import("./pages/Deadlines.tsx");
       void import("./pages/OpportunityDetail.tsx");
     };
 
@@ -134,6 +136,7 @@ const App = () => (
               <Route path="/categories/:slug" element={<Category />} />
               <Route path="/opportunities/:id" element={<OpportunityDetail />} />
               <Route path="/remote" element={<RemoteNationwide />} />
+              <Route path="/deadlines" element={<Deadlines />} />
               <Route path="/collections" element={<Collections />} />
               <Route path="/collections/:id" element={<SharedCollection />} />
               <Route path="/profile" element={<Profile />} />

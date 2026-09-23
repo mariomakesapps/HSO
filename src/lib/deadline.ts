@@ -1,19 +1,24 @@
 export type DeadlineStatus = "open" | "closing-soon" | "closed" | "rolling" | "opens-later";
 
+/** Parse a catalogue date in the reader's local timezone. */
+function parseDay(iso: string, edge: "start" | "end"): number {
+  return new Date(`${iso}T${edge === "end" ? "23:59:59" : "00:00:00"}`).getTime();
+}
+
 export function getDeadlineStatus(deadline: string | null | undefined, opensAt?: string | null): {
   status: DeadlineStatus;
   label: string;
   daysLeft: number | null;
 } {
   const now = Date.now();
-  const opensTime = opensAt ? new Date(opensAt).getTime() : NaN;
+  const opensTime = opensAt ? parseDay(opensAt, "start") : NaN;
   if (!Number.isNaN(opensTime) && opensTime > now) {
     const daysUntilOpen = Math.ceil((opensTime - now) / 86400000);
     return { status: "opens-later", label: `Opens in ${daysUntilOpen}d`, daysLeft: daysUntilOpen };
   }
 
   if (!deadline) return { status: "rolling", label: "Deadline TBA", daysLeft: null };
-  const deadlineTime = new Date(deadline).getTime();
+  const deadlineTime = parseDay(deadline, "end");
   if (Number.isNaN(deadlineTime)) return { status: "rolling", label: "Deadline TBA", daysLeft: null };
 
   const days = Math.ceil((deadlineTime - now) / 86400000);

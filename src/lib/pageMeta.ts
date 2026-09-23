@@ -1,6 +1,7 @@
 import { allOpportunities, type Opportunity } from "@/data/opportunities";
 import { CATEGORY_META, CATEGORY_SLUGS, type CategorySlug } from "@/lib/categories";
 import { REMOTE_META, REMOTE_PATH, remoteOpportunities } from "@/lib/remote";
+import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
 
 export const SITE_URL = "https://highschoolopportunity.org";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
@@ -146,6 +147,55 @@ export function categoryMeta(slug: CategorySlug): PageMeta {
           "@type": "Question",
           name: f.q,
           acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      },
+    ],
+  };
+}
+
+export function deadlinesMeta(): PageMeta {
+  const url = `${SITE_URL}${DEADLINES_PATH}`;
+  const closing = deadlineBuckets().flatMap((bucket) =>
+    bucket.id === "opening-soon" ? [] : bucket.items,
+  );
+
+  return {
+    title: DEADLINES_META.title,
+    description: DEADLINES_META.description,
+    path: DEADLINES_PATH,
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: DEADLINES_META.h1,
+        description: DEADLINES_META.description,
+        url,
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: closing.length,
+          itemListElement: closing.slice(0, 25).map((opportunity, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            url: `${SITE_URL}${opportunityPath(opportunity.id)}`,
+            name: opportunity.title,
+          })),
+        },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "HSO", item: `${SITE_URL}/` },
+          { "@type": "ListItem", position: 2, name: DEADLINES_META.h1, item: url },
+        ],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: DEADLINES_META.faqs.map((faq) => ({
+          "@type": "Question",
+          name: faq.q,
+          acceptedAnswer: { "@type": "Answer", text: faq.a },
         })),
       },
     ],
@@ -320,6 +370,7 @@ export function allRoutes(): PageMeta[] {
   return [
     ...Object.values(STATIC_PAGE_META),
     remoteMeta(),
+    deadlinesMeta(),
     ...CATEGORY_SLUGS.map((slug) => categoryMeta(slug)),
     ...allOpportunities.map((opp) => opportunityMeta(opp)),
   ];
