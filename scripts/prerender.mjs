@@ -273,7 +273,7 @@ function staticBody(meta, data) {
           { href: "/guides/top-business-summer-programs", label: "Best business summer programs for high schoolers" },
           { href: "/guides/high-school-law-internships", label: "High school law internships" },
           { href: "/submit", label: "Submit an opportunity" },
-          { href: "/volunteer", label: "Volunteer with HSO" },
+          { href: "/volunteer", label: "HSO internships (unpaid)" },
           { href: "/contact", label: "Contact & corrections" },
           { href: "/privacy", label: "Privacy policy" },
           { href: "/terms", label: "Terms of use" },
