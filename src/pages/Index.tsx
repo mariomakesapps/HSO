@@ -470,7 +470,7 @@ function Hero({
           </div>
 
           <div className="hso-glass-panel mt-9 grid max-w-full grid-cols-3 items-stretch overflow-hidden rounded-[1.35rem] px-2 py-4 sm:max-w-2xl sm:px-3">
-            <Metric value="<2000" label="Programs" sub="(and growing!)" />
+            <Metric value="2000+" label="Programs" />
             <Metric value="50" label="States" />
             <Metric value="Official" label="Links" />
           </div>
