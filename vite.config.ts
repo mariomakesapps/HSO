@@ -2,7 +2,7 @@ import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
-
+import { mcpPlugin } from "@lovable.dev/mcp-js/stacks/supabase/vite";
 
 /**
  * Emits a static HTML file per route and regenerates the sitemap after the
@@ -26,7 +26,7 @@ function seoPrerenderPlugin(): Plugin {
         const sitemap = await generateSitemap({ root, distDir });
 
         this.info(
-          `prerendered ${pages.written} pages (${pages.indexable} indexable, ${pages.noindexed} noindex) · sitemap ${sitemap.indexable} URLs (${sitemap.excluded} excluded)`,
+          `prerendered ${pages.written} pages (${pages.indexable} indexable, ${pages.noindexed} noindex) · sitemap ${sitemap.indexable} URLs (${sitemap.excluded} excluded) · 404.html + ${pages.redirects} permanent redirects`,
         );
       } catch (err) {
         // A prerender failure must not silently ship an SPA-only build.
@@ -45,7 +45,7 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  plugins: [react(), mode === "development" && componentTagger(), seoPrerenderPlugin()].filter(Boolean),
+  plugins: [react(), mode === "development" && componentTagger(), mcpPlugin(), seoPrerenderPlugin()].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

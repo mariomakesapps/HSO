@@ -17,7 +17,7 @@ export function SiteFooter() {
           <li><Link to="/" className="hover:text-coral">Home</Link></li>
           <li><Link to="/about" className="hover:text-coral">About</Link></li>
           <li><Link to="/submit" className="hover:text-coral">Submit opportunity</Link></li>
-          <li><Link to="/volunteer" className="hover:text-coral">HSO Internships</Link></li>
+          <li><Link to="/volunteer" className="hover:text-coral">Volunteer with HSO</Link></li>
           <li><Link to="/contact" className="hover:text-coral">Corrections</Link></li>
         </FooterColumn>
         <FooterColumn title="Categories">
@@ -29,6 +29,7 @@ export function SiteFooter() {
             </li>
           ))}
           <li><Link to="/deadlines" className="hover:text-coral">Deadlines closing soon</Link></li>
+          <li><Link to="/nyc-programs-for-high-school-students" className="hover:text-coral">NYC programs</Link></li>
           <li><Link to="/remote" className="hover:text-coral">Remote &amp; nationwide</Link></li>
         </FooterColumn>
         <FooterColumn title="Legal">

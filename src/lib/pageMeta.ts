@@ -1,5 +1,7 @@
 import { allOpportunities, type Opportunity } from "@/data/opportunities";
 import { CATEGORY_META, CATEGORY_SLUGS, type CategorySlug } from "@/lib/categories";
+import { NYC_META, NYC_PATH, isBulkDirectoryImport, nycAfterSchoolByBorough, nycFeatured } from "@/lib/nyc";
+import { detailFor } from "@/data/opportunityDetails";
 import { REMOTE_META, REMOTE_PATH, remoteOpportunities } from "@/lib/remote";
 import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
 
@@ -38,20 +40,44 @@ export function isOpportunityIndexable(opp: Opportunity): boolean {
   const hasCoreFields = !!(opp.title && opp.org && opp.location && opp.blurb);
   const linkOk =
     !!opp.url && opp.url.startsWith("http") && opp.url !== "#" && opp.link_quality !== "broken";
-  return hasCoreFields && linkOk && opp.requiresReview !== true;
+  return (
+    hasCoreFields && linkOk && opp.requiresReview !== true && !isBulkDirectoryImport(opp)
+  );
 }
 
 export function opportunityPath(id: string): string {
   return `/opportunities/${id}`;
 }
 
+/**
+ * Programme names repeat across the catalogue: seven listings are called "High
+ * School Internship Program" and three are called "Teen Council". Titled by name
+ * alone they become duplicate <title>s, which is one of the few things Search
+ * Console flags outright and which makes the results page useless to a reader
+ * who cannot tell the Cleveland Clinic one from the Scripps one.
+ *
+ * Computed once from the catalogue rather than hand-maintained, so a new listing
+ * that collides is disambiguated automatically.
+ */
+const DUPLICATE_TITLES: ReadonlySet<string> = (() => {
+  const seen = new Map<string, number>();
+  for (const o of allOpportunities) seen.set(o.title, (seen.get(o.title) ?? 0) + 1);
+  return new Set([...seen.entries()].filter(([, n]) => n > 1).map(([t]) => t));
+})();
+
 export function opportunityMeta(opp: Opportunity): PageMeta {
   const url = `${SITE_URL}${opportunityPath(opp.id)}`;
+  const detail = detailFor(opp.id);
+  const name = DUPLICATE_TITLES.has(opp.title) ? `${opp.title} — ${opp.org}` : opp.title;
 
   return {
-    title: `${opp.title} | HSO`,
+    title: `${name} | HSO`,
+    // Where a listing has verified long-form copy, its own first paragraph makes a
+    // better snippet than the generated template — it describes the programme
+    // rather than describing the page.
     description: clampDescription(
-      `${opp.title} — ${opp.category} for high schoolers in ${opp.location}. Deadline, eligibility, cost & official link.`,
+      detail?.body[0] ??
+        `${opp.title} at ${opp.org} — ${opp.category} for high schoolers in ${opp.location}. Deadline, eligibility, cost & official link.`,
     ),
     path: opportunityPath(opp.id),
     noindex: !isOpportunityIndexable(opp),
@@ -91,6 +117,21 @@ export function opportunityMeta(opp: Opportunity): PageMeta {
           { "@type": "ListItem", position: 3, name: opp.title, item: url },
         ],
       },
+      // FAQ schema only where the questions are actually on the page. Google
+      // treats FAQPage markup for questions a visitor cannot see as a violation.
+      ...(detail?.faqs?.length
+        ? [
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: detail.faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
+            },
+          ]
+        : []),
     ],
   };
 }
@@ -105,21 +146,37 @@ function categoryUrlForCategory(category: Opportunity["category"]): string {
   return slug ? `${SITE_URL}/categories/${slug}` : `${SITE_URL}/`;
 }
 
+/**
+ * Category descriptions carry {n} and {free} rather than a hard-coded count.
+ *
+ * A number in a meta description is the thing that earns the click on a listing
+ * page, but a number typed into a string goes stale the moment the catalogue
+ * changes. These are filled from the live list at build time instead, so the
+ * snippet Google shows always matches what is actually on the page.
+ */
+function fillCounts(template: string, total: number, free: number): string {
+  return template
+    .replace(/\{n\}/g, String(total))
+    .replace(/\{free\}/g, String(free));
+}
+
 export function categoryMeta(slug: CategorySlug): PageMeta {
   const meta = CATEGORY_META[slug];
   const url = `${SITE_URL}/categories/${slug}`;
   const list = allOpportunities.filter((o) => o.category === meta.category);
+  const freeCount = list.filter((o) => o.cost === "Free" || o.cost === "Stipend").length;
+  const description = fillCounts(meta.description, list.length, freeCount);
 
   return {
     title: meta.title,
-    description: meta.description,
+    description,
     path: `/categories/${slug}`,
     jsonLd: [
       {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
         name: meta.h1,
-        description: meta.description,
+        description,
         url,
         mainEntity: {
           "@type": "ItemList",
@@ -153,11 +210,15 @@ export function categoryMeta(slug: CategorySlug): PageMeta {
   };
 }
 
+/**
+ * The deadline tracker. Like /remote this is a cross-cutting view, not a Category.
+ *
+ * The ItemList is a build-time snapshot of what was closing when the site was
+ * built; the page recomputes on load. Rebuilding refreshes both.
+ */
 export function deadlinesMeta(): PageMeta {
   const url = `${SITE_URL}${DEADLINES_PATH}`;
-  const closing = deadlineBuckets().flatMap((bucket) =>
-    bucket.id === "opening-soon" ? [] : bucket.items,
-  );
+  const closing = deadlineBuckets().flatMap((b) => (b.id === "opening-soon" ? [] : b.items));
 
   return {
     title: DEADLINES_META.title,
@@ -173,11 +234,11 @@ export function deadlinesMeta(): PageMeta {
         mainEntity: {
           "@type": "ItemList",
           numberOfItems: closing.length,
-          itemListElement: closing.slice(0, 25).map((opportunity, index) => ({
+          itemListElement: closing.slice(0, 25).map((o, i) => ({
             "@type": "ListItem",
-            position: index + 1,
-            url: `${SITE_URL}${opportunityPath(opportunity.id)}`,
-            name: opportunity.title,
+            position: i + 1,
+            url: `${SITE_URL}${opportunityPath(o.id)}`,
+            name: o.title,
           })),
         },
       },
@@ -192,10 +253,10 @@ export function deadlinesMeta(): PageMeta {
       {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        mainEntity: DEADLINES_META.faqs.map((faq) => ({
+        mainEntity: DEADLINES_META.faqs.map((f) => ({
           "@type": "Question",
-          name: faq.q,
-          acceptedAnswer: { "@type": "Answer", text: faq.a },
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
         })),
       },
     ],
@@ -308,9 +369,9 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
     path: "/submit",
   },
   "/volunteer": {
-    title: "HSO Internships (Unpaid) | High School Opportunity",
+    title: "Volunteer with HSO | High School Opportunity",
     description:
-      "Three unpaid internships on the student team behind HSO: finding and checking opportunities, running social, and getting schools on board. A few hours a week, remote.",
+      "Three open roles on the student team behind HSO: finding and checking opportunities, running social, and getting schools on board. A few hours a week, remote.",
     path: "/volunteer",
   },
   "/collections": {
@@ -366,11 +427,65 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
 };
 
 /** Every URL the prerenderer and sitemap generator should emit. */
+/**
+ * The New York hub. Like /remote and /deadlines this is a cross-cutting view
+ * rather than a Category, and it is the indexable home for the 578 city
+ * after-school rows that are noindexed individually.
+ */
+export function nycMeta(): PageMeta {
+  const url = `${SITE_URL}${NYC_PATH}`;
+  const featured = nycFeatured();
+  const afterSchool = nycAfterSchoolByBorough().reduce((n, g) => n + g.items.length, 0);
+
+  return {
+    title: NYC_META.title,
+    description: NYC_META.description,
+    path: NYC_PATH,
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: NYC_META.h1,
+        description: NYC_META.description,
+        url,
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: featured.length + afterSchool,
+          itemListElement: featured.slice(0, 20).map((o, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            url: `${SITE_URL}${opportunityPath(o.id)}`,
+            name: o.title,
+          })),
+        },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "HSO", item: `${SITE_URL}/` },
+          { "@type": "ListItem", position: 2, name: NYC_META.h1, item: url },
+        ],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: NYC_META.faqs.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      },
+    ],
+  };
+}
+
 export function allRoutes(): PageMeta[] {
   return [
     ...Object.values(STATIC_PAGE_META),
     remoteMeta(),
     deadlinesMeta(),
+    nycMeta(),
     ...CATEGORY_SLUGS.map((slug) => categoryMeta(slug)),
     ...allOpportunities.map((opp) => opportunityMeta(opp)),
   ];

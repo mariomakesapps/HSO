@@ -1,0 +1,87 @@
+/**
+ * Opportunities that are no longer listed, and where their URL should now go.
+ *
+ * These pages were live and are indexed: some of them still rank. Serving them the SPA
+ * shell gives Google a 200 that looks like a copy of the homepage, which is why Search
+ * Console reports them as "Discovered, currently not indexed" and "Excluded by noindex".
+ * Every one of them gets a permanent redirect instead — to the listing that replaced it
+ * where there is one, otherwise to the category it belonged to.
+ *
+ * `scripts/prerender.mjs` turns this map into 301 rules in the deployed _redirects file,
+ * so the redirect happens at the edge before any JavaScript runs.
+ */
+export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
+  // category: Internship — Official page, read in a browser on 2026-09-21: Argonne's Seasonal Internship program encourages undergraduate
+  "argonne-national-laboratory-seasonal-internship-program": "/categories/internships",
+  // category: Internship — 2026-09-16: the listing links only to the Pitt School of Public Health homepage and no ASCEND high school prog
+  "ascend": "/categories/internships",
+  // duplicate — 2026-09-16 duplicate: same Burger King Scholars program as csv-sch-burger-king-scholarship, which is kept beca
+  "burger-king-scholars": "/opportunities/csv-sch-burger-king-scholarship",
+  // category: Internship — Official page (portal.ct.gov/AG): Internships are unpaid, volunteer positions open to law and graduate student
+  "connecticut-office-of-the-attorney-general-internship-program": "/categories/internships",
+  // duplicate — 2026-09-16 duplicate of amazon-future-eng (same Amazon Future Engineer Scholarship; this copy links to the Sch
+  "csv-sch-amazon-future-engineers": "/opportunities/amazon-future-eng",
+  // duplicate — 2026-09-16 duplicate of dell (same Dell Scholars program on dellscholars.org). | Sept 15: 2026-02-15 was a pas
+  "csv-sch-dell-scholars-program": "/opportunities/dell",
+  // duplicate — 2026-09-16 duplicate of ge-reagan (same GE-Reagan Foundation Scholarship on reaganfoundation.org). | Sept 15: 
+  "csv-sch-ge-reagan-foundation-scholarship-program": "/opportunities/ge-reagan",
+  // duplicate — 2026-09-16 duplicate of horatio-alger (same National Scholarship; its scholars.horatioalger.org link now redir
+  "csv-sch-horatio-alger-national-scholarship": "/opportunities/horatio-alger",
+  // duplicate — 2026-09-16 duplicate of nsli-y (same program, same nsliforyouth.org page). | Sept 15: Official page: the 2026-
+  "csv-sch-national-security-language-institute-for-youth": "/opportunities/nsli-y",
+  // duplicate — Duplicate of the QuestBridge National College Match listing (id questbridge-match): the same programme with th
+  "csv-sch-questbridge-scholarship": "/opportunities/questbridge-match",
+  // duplicate — 2026-09-16 duplicate of science-ambassador (same scholarship, same scienceambassadorscholarship.org page). | S
+  "csv-sch-the-science-ambassador-scholarship": "/opportunities/science-ambassador",
+  // duplicate — Duplicate of the US Senate Youth Program listing (id usef): the same Hearst Foundation programme, linked to a 
+  "csv-sch-william-randolph-hearst-foundation-united-states-senate-yout": "/opportunities/usef",
+  // category: Internship — Replaced by a corrected listing. The programme now lives at dhcareerinstitute.org, where the official page say
+  "dartmouth-health-high-school-foundations-summer-internship": "/categories/internships",
+  // duplicate — 2026-09-16 duplicate: same Elks Most Valuable Student scholarship and URL as csv-sch-elks-national-foundation-
+  "elks": "/opportunities/csv-sch-elks-national-foundation-scholarship",
+  // category: Fellowship — No official page left to link to: footlockerscholarathletes.com returned no HTTP response to either client on 
+  "foot-locker-scholar-athletes": "/categories/fellowships",
+  // duplicate — 2026-09-16 duplicate of girls-who-code (same Pathways program, same girlswhocode.com/programs/pathways page). 
+  "girls-who-code-pathways": "/opportunities/girls-who-code",
+  // category: Fellowship — Official page (tiltingfutures.org): the Global Citizen Year Academy is listed as a past program that ran from 
+  "global-citizen-year": "/categories/fellowships",
+  // category: Scholarship — Official site (heismanscholarship.com): 'In October 2024, the Heisman Trophy Trust concluded the Heisman High 
+  "heisman-high-school-scholarship": "/categories/scholarships",
+  // category: Internship — 2026-09-17: the linked jhu.edu/precollegeprograms page returns Page not found, and the program site (projectpi
+  "hopkins-med": "/categories/internships",
+  // category: Internship — 2026-09-16: JPL Explore Programs & Apply lists only Undergraduate, Graduate, Doctoral and Postdoc academic lev
+  "jpl": "/categories/internships",
+  // category: Internship — 2026-09-16: the linked ABA Public Education programs page describes teacher development programs; no Lawyers f
+  "lapps": "/categories/internships",
+  // category: Internship — 2026-09-16: the linked McLean Hospital education programs page returns 404 and no high school mentorship progr
+  "mclean-mentorship": "/categories/internships",
+  // category: Fellowship — Official admissions page: candidates are recruited in 7th grade (nominations open in September, application de
+  "oliver-scholars": "/categories/fellowships",
+  // category: Fellowship — 2026-09-16: the Peace Corps Prep page returns 404: Page not found; Peace Corps Prep was an undergraduate certi
+  "peace-corps": "/categories/fellowships",
+  // category: Summer Program — 2026-09-21 link check: the listing's URL is a bare Google Form titled TCE Application Form whose owner is show
+  "pmready-tce": "/categories/summer-programs",
+  // category: Internship — 2026-09-21 link check: the listing's only URL is a Google Form that returns 401 and demands a Google sign-in, 
+  "project-coin-internship": "/categories/internships",
+  // category: Fellowship — 2026-09-21 link check: solomoncenternyc.org returns NXDOMAIN - the domain no longer exists. The national progr
+  "solomon-leadership-nyc": "/categories/fellowships",
+  // category: Fellowship — 2026-09-16: Senior Statesmen of Virginia site shows civic news for older adults and no program for high school
+  "ssb-ucl": "/categories/fellowships",
+  // category: Internship — Official NREIP page: eligibility is for college students ('Rising sophomores or equivalent; must be on track t
+  "ssi-naval": "/categories/internships",
+  // category: Internship — 2026-09-16: the HiSTEP links on training.nih.gov return 404 and the NIH OITE program menu lists no high school
+  "state-maryland-histep": "/categories/internships",
+  // category: Fellowship — 2026-09-21 link check: the listing's URL resolves to a Google Form titled Synapse and State Student Ambassador
+  "synapse-state-fellowship": "/categories/fellowships",
+  // category: Internship — Replaced by a corrected listing. The official page now names the programme Pre-College Research Internship for
+  "the-university-of-alabama-at-birmingham-pre-college-research-int": "/categories/internships",
+  // category: Internship — Replaced by a corrected listing. The official page says the internship is designed for high school students en
+  "university-of-new-hampshire-interoperability-lab-hightech-bound": "/categories/internships",
+  // category: Competition — Re-checked 2026-09-21 in a browser: the Zero Robotics home page lists only Middle School tournaments (2025 and
+  "zero-robotics": "/categories/competitions",
+};
+
+/** Ids that must never be prerendered or listed in the sitemap. */
+export const REMOVED_OPPORTUNITY_IDS: ReadonlySet<string> = new Set(
+  Object.keys(REMOVED_OPPORTUNITY_REDIRECTS),
+);

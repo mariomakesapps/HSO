@@ -24,6 +24,7 @@ const OpportunityDetail = lazy(() => import("./pages/OpportunityDetail.tsx"));
 const Collections = lazy(() => import("./pages/Collections.tsx"));
 const RemoteNationwide = lazy(() => import("./pages/RemoteNationwide.tsx"));
 const Deadlines = lazy(() => import("./pages/Deadlines.tsx"));
+const NycPrograms = lazy(() => import("./pages/NycPrograms.tsx"));
 const SharedCollection = lazy(() => import("./pages/SharedCollection.tsx"));
 const Profile = lazy(() => import("./pages/Profile.tsx"));
 const Unsubscribe = lazy(() => import("./pages/Unsubscribe.tsx"));
@@ -137,6 +138,7 @@ const App = () => (
               <Route path="/opportunities/:id" element={<OpportunityDetail />} />
               <Route path="/remote" element={<RemoteNationwide />} />
               <Route path="/deadlines" element={<Deadlines />} />
+              <Route path="/nyc-programs-for-high-school-students" element={<NycPrograms />} />
               <Route path="/collections" element={<Collections />} />
               <Route path="/collections/:id" element={<SharedCollection />} />
               <Route path="/profile" element={<Profile />} />
