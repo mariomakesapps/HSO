@@ -1,5 +1,7 @@
 import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors'
 import { z } from 'npm:zod@3.23.8'
+import { createClient } from 'npm:@supabase/supabase-js@2'
+import { sendTemplateEmail } from '../_shared/transactional-email-templates/send-email.ts'
 
 // In-memory rate limit: max 5 requests / 10 minutes per IP per function instance.
 const RATE_LIMIT_MAX = 5
@@ -151,34 +153,29 @@ Deno.serve(async (req) => {
     }
   }
 
-  // Call send-transactional-email with service-role auth so it can run
-  // the queue pipeline (suppression check, render, enqueue).
-  const sendUrl = `${supabaseUrl}/functions/v1/send-transactional-email`
-  let sendRes: Response
-  try {
-    sendRes = await fetch(sendUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${serviceKey}`,
-      },
-      body: JSON.stringify({
-        templateName,
-        // `to` is fixed in the template, but the function requires a recipient
-        // string when no template.to is set — pass admin address as a fallback.
-        recipientEmail: 'highschoolopportunity@gmail.com',
-        idempotencyKey: `${templateName}-${crypto.randomUUID()}`,
-        templateData,
-      }),
+  const supabase = createClient(supabaseUrl, serviceKey)
+  const recipient = 'highschoolopportunity@gmail.com'
+  const logRow = (status: string, error_message?: string) =>
+    supabase.from('email_send_log').insert({
+      message_id: null,
+      template_name: templateName,
+      recipient_email: recipient,
+      status,
+      ...(error_message ? { error_message } : {}),
+    }).then(({ error }) => {
+      if (error) console.error('email_send_log write failed', { code: error.code, message: error.message })
     })
-  } catch (err) {
-    console.error('Failed to call send-transactional-email', err)
-    return json({ error: 'Email service unavailable' }, 502)
-  }
 
-  const sendBody = await sendRes.text()
-  if (!sendRes.ok) {
-    console.error('send-transactional-email failed', { status: sendRes.status, body: sendBody })
+  try {
+    const result = await sendTemplateEmail(templateName, recipient, {
+      templateData,
+      idempotencyKey: `${templateName}-${crypto.randomUUID()}`,
+    })
+    await logRow(result.sent ? 'sent' : 'suppressed')
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    console.error('Failed to send form notification', msg)
+    await logRow('failed', msg)
     return json({ error: 'Failed to send email' }, 502)
   }
 
