@@ -5,3 +5,9 @@ verify_jwt = false
 
 [functions.send-form-notification]
 verify_jwt = false
+
+[functions.send-welcome-email]
+verify_jwt = true
+
+[functions.handle-email-events]
+verify_jwt = false

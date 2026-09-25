@@ -42,14 +42,7 @@ describe("sendWelcomeEmailIfNew", () => {
     await sendWelcomeEmailIfNew(session);
 
     expect(invokeMock).toHaveBeenCalledTimes(1);
-    expect(invokeMock).toHaveBeenCalledWith("send-transactional-email", {
-      body: {
-        templateName: "welcome",
-        recipientEmail: "new@example.com",
-        idempotencyKey: "welcome-u-auto",
-        templateData: { firstName: "Ada" },
-      },
-    });
+    expect(invokeMock).toHaveBeenCalledWith("send-welcome-email", { body: {} });
   });
 
   it("sends exactly one welcome email when the user confirms their email later (email-confirmation ON — first SIGNED_IN happens after verify)", async () => {
@@ -65,9 +58,8 @@ describe("sendWelcomeEmailIfNew", () => {
     await sendWelcomeEmailIfNew(session); // subsequent login on another device
 
     expect(invokeMock).toHaveBeenCalledTimes(1);
-    expect(invokeMock.mock.calls[0][1].body.idempotencyKey).toBe("welcome-u-confirm");
-    // No first_name in metadata -> templateData omitted
-    expect(invokeMock.mock.calls[0][1].body.templateData).toEqual({});
+    expect(invokeMock.mock.calls[0][0]).toBe("send-welcome-email");
+
   });
 
   it("does not send when an existing user (account older than 24h) signs in", async () => {

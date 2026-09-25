@@ -57,14 +57,7 @@ export async function sendWelcomeEmailIfNew(session: Session | null) {
   const firstName = rawName ? String(rawName).trim().split(/\s+/)[0] : undefined;
 
   try {
-    const { error } = await supabase.functions.invoke("send-transactional-email", {
-      body: {
-        templateName: "welcome",
-        recipientEmail: user.email,
-        idempotencyKey: `welcome-${user.id}`,
-        templateData: firstName ? { firstName } : {},
-      },
-    });
+    const { error } = await supabase.functions.invoke("send-welcome-email", { body: {} });
     if (error) {
       if (import.meta.env.DEV) console.error("[welcome email] send failed", error);
       try { localStorage.removeItem(markerKey); } catch { /* noop */ }
