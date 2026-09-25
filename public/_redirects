@@ -1,5 +1,18 @@
 # Netlify / Cloudflare Pages.
-# Static files (including the prerendered <route>/index.html emitted by the
-# build) are matched BEFORE these rules, so this only catches genuinely unknown
-# paths and hands them to the SPA shell.
+#
+# This file is REGENERATED during the build by scripts/prerender.mjs, which adds a
+# permanent redirect for every entry in src/data/removedOpportunities.ts and a real
+# 404 for unknown programme URLs. Edit that data file, not this one — anything added
+# here by hand is overwritten in dist/.
+#
+# The copy below is the fallback used if the prerender step is skipped.
+#
+# Static files (including the prerendered <route>/index.html emitted by the build)
+# are matched BEFORE these rules, so this only catches genuinely unknown paths.
+
+# An unknown programme URL is not a page we have: answer 404, not 200.
+/opportunities/*  /404.html  404
+
+# Everything else boots the SPA — client-only routes (/collections/:id, /profile,
+# /auth) have no prerendered file and must still reach the app.
 /*    /index.html   200

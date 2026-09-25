@@ -47,6 +47,10 @@ async function loadRouteData(root) {
         export { DEADLINES_META, deadlineBuckets } from "@/lib/deadlines";
         export { allOpportunities } from "@/data/opportunities";
         export { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
+        export { REMOVED_OPPORTUNITY_REDIRECTS } from "@/data/removedOpportunities";
+        export { nycMeta } from "@/lib/pageMeta";
+        export { NYC_META, nycAfterSchoolByBorough, nycFeatured } from "@/lib/nyc";
+        export { detailFor } from "@/data/opportunityDetails";
       `,
       resolveDir: root,
       loader: "ts",
@@ -169,10 +173,36 @@ function opportunityBody(opp, data) {
     .slice(0, 8)
     .map((o) => ({ href: `/opportunities/${o.id}`, label: o.title }));
 
+  // Long-form copy, where we have it. Only a handful of listings carry this today;
+  // it is what turns a ~150-word page into one that can hold a position-1 ranking.
+  const d = data.detailFor(opp.id);
+  const detail = !d
+    ? ""
+    : `
+        <h2>About this program</h2>
+        ${d.body.map((p) => `<p>${escapeHtml(p)}</p>`).join("\n        ")}
+        ${d.eligibility ? `<h2>Who it is for</h2><p>${escapeHtml(d.eligibility)}</p>` : ""}
+        ${d.cost ? `<h2>Cost</h2><p>${escapeHtml(d.cost)}</p>` : ""}
+        ${
+          d.howToApply?.length
+            ? `<h2>How to apply</h2><ul>${d.howToApply
+                .map((x) => `<li>${escapeHtml(x)}</li>`)
+                .join("")}</ul>`
+            : ""
+        }
+        ${
+          d.faqs?.length
+            ? `<h2>Frequently asked questions</h2>${d.faqs
+                .map((f) => `<h3>${escapeHtml(f.q)}</h3><p>${escapeHtml(f.a)}</p>`)
+                .join("")}`
+            : ""
+        }
+        <p>Details checked on ${escapeHtml(d.source.checked)} against <a href="${escapeHtml(d.source.url)}">the program's own page</a>.</p>`;
+
   return shell(`        <h1>${escapeHtml(opp.title)}</h1>
         <p>${escapeHtml(opp.blurb)}</p>
         <p>Offered by ${escapeHtml(opp.org)}. ${escapeHtml(opp.category)} for high school students in ${escapeHtml(opp.location)}. Format: ${escapeHtml(opp.format)}. Cost: ${escapeHtml(opp.cost)}. ${escapeHtml(grades)}. ${escapeHtml(deadline)}</p>
-        <p>Fields: ${escapeHtml((opp.fields ?? []).join(", "))}</p>
+        <p>Fields: ${escapeHtml((opp.fields ?? []).join(", "))}</p>${detail}
         <p><a href="${escapeHtml(opp.url)}">Official program page</a></p>
         ${slug ? `<p><a href="/categories/${slug}">More ${escapeHtml(data.CATEGORY_META[slug].h1.toLowerCase())}</a></p>` : ""}
         <h2>Related opportunities</h2>
@@ -211,23 +241,43 @@ function categoryBody(slug, data) {
 function deadlinesBody(data) {
   const meta = data.DEADLINES_META;
   const buckets = data.deadlineBuckets();
-  const parts = [`        <h1>${escapeHtml(meta.h1)}</h1>`, `        <p>${escapeHtml(meta.intro)}</p>`];
+  const parts = [];
+
+  parts.push("        <h1>" + escapeHtml(meta.h1) + "</h1>");
+  parts.push("        <p>" + escapeHtml(meta.intro) + "</p>");
 
   for (const bucket of buckets) {
-    parts.push(`        <h2>${escapeHtml(bucket.title)} (${bucket.items.length})</h2>`);
-    parts.push(`        <p>${escapeHtml(bucket.blurb)}</p>`);
-    parts.push(`        ${linkList(bucket.items.slice(0, 200).map((opportunity) => ({
-      href: `/opportunities/${opportunity.id}`,
-      label: `${opportunity.title} - ${opportunity.org}${opportunity.deadline ? ` (closes ${opportunity.deadline})` : ""}`,
-    })))}`);
+    parts.push(
+      "        <h2>" + escapeHtml(bucket.title) + " (" + bucket.items.length + ")</h2>",
+    );
+    parts.push("        <p>" + escapeHtml(bucket.blurb) + "</p>");
+    parts.push(
+      "        " +
+        linkList(
+          bucket.items.slice(0, 200).map((o) => ({
+            href: "/opportunities/" + o.id,
+            label: o.title + " - " + o.org + (o.deadline ? " (closes " + o.deadline + ")" : ""),
+          })),
+        ),
+    );
   }
 
   parts.push("        <h2>How to use a deadline list</h2>");
-  for (const paragraph of meta.guide) parts.push(`        <p>${escapeHtml(paragraph)}</p>`);
+  for (const p of meta.guide) parts.push("        <p>" + escapeHtml(p) + "</p>");
   parts.push("        <h2>Frequently asked questions</h2>");
-  for (const faq of meta.faqs) {
-    parts.push(`        <h3>${escapeHtml(faq.q)}</h3><p>${escapeHtml(faq.a)}</p>`);
+  for (const f of meta.faqs) {
+    parts.push("        <h3>" + escapeHtml(f.q) + "</h3><p>" + escapeHtml(f.a) + "</p>");
   }
+  parts.push("        <h2>Browse by category</h2>");
+  parts.push(
+    "        " +
+      linkList(
+        data.CATEGORY_SLUGS.map((s) => ({
+          href: "/categories/" + s,
+          label: data.CATEGORY_META[s].h1,
+        })),
+      ),
+  );
 
   return shell(parts.join("\n"));
 }
@@ -268,12 +318,13 @@ function staticBody(meta, data) {
           { href: "/", label: "Home — find opportunities" },
           { href: "/about", label: "About HSO" },
           { href: "/collections", label: "Collections — curated HSO opportunity lists" },
+          { href: "/nyc-programs-for-high-school-students", label: "NYC programs for high school students" },
           { href: "/guides/top-medical-internships", label: "Best medical internships for high school students" },
           { href: "/guides/top-research-competitions", label: "Best research competitions for high schoolers" },
           { href: "/guides/top-business-summer-programs", label: "Best business summer programs for high schoolers" },
           { href: "/guides/high-school-law-internships", label: "High school law internships" },
           { href: "/submit", label: "Submit an opportunity" },
-          { href: "/volunteer", label: "HSO internships (unpaid)" },
+          { href: "/volunteer", label: "Volunteer with HSO" },
           { href: "/contact", label: "Contact & corrections" },
           { href: "/privacy", label: "Privacy policy" },
           { href: "/terms", label: "Terms of use" },
@@ -332,6 +383,110 @@ function renderPage(template, head, body) {
   );
 }
 
+/**
+ * The New York hub, crawlable.
+ *
+ * The 578 city after-school listings are noindexed individually, so this page is
+ * the only place Google can see them. Linking every one of them here keeps them
+ * discoverable and passes the internal links on to something that can rank,
+ * which is the whole point of noindex,follow rather than removing them.
+ */
+function nycBody(data) {
+  const featured = data.nycFeatured();
+  const boroughs = data.nycAfterSchoolByBorough();
+  const afterSchool = boroughs.reduce((n, g) => n + g.items.length, 0);
+  const meta = data.NYC_META;
+
+  return shell(`        <h1>${escapeHtml(meta.h1)}</h1>
+        <p>${escapeHtml(meta.intro)}</p>
+        <h2>Programs with their own application (${featured.length})</h2>
+        ${linkList(
+          featured.slice(0, 120).map((o) => ({ href: `/opportunities/${o.id}`, label: o.title })),
+        )}
+        <h2>Free city after-school programs (${afterSchool})</h2>
+        ${boroughs
+          .map(
+            (g) => `<h3>${escapeHtml(g.borough)} (${g.items.length})</h3>
+        ${linkList(g.items.map((o) => ({ href: `/opportunities/${o.id}`, label: o.title })))}`,
+          )
+          .join("\n        ")}
+        <h2>How to use this page</h2>
+        ${meta.guide.map((p) => `<p>${escapeHtml(p)}</p>`).join("\n        ")}
+        <h2>Frequently asked questions</h2>
+        ${meta.faqs
+          .map((f) => `<h3>${escapeHtml(f.q)}</h3><p>${escapeHtml(f.a)}</p>`)
+          .join("\n        ")}
+        <h2>Browse by category</h2>
+        ${linkList(
+          data.CATEGORY_SLUGS.map((s) => ({
+            href: `/categories/${s}`,
+            label: data.CATEGORY_META[s].h1,
+          })),
+        )}`);
+}
+
+/**
+ * The page a genuinely unknown URL gets.
+ *
+ * It must not be the homepage. Every unresolved path used to fall through the
+ * blanket `/* -> /index.html 200` rule, so a deleted programme answered 200 with
+ * the homepage's title, the homepage's H1 and `robots: index,follow` — a soft 404
+ * that Search Console reports as "Discovered, currently not indexed".
+ */
+function notFoundMeta() {
+  return {
+    path: "/404",
+    title: "Page not found | HSO",
+    description:
+      "That page is not part of the HSO catalogue. Browse internships, summer programs, competitions, scholarships and research placements for high school students.",
+    noindex: true,
+  };
+}
+
+function notFoundBody(data) {
+  return shell(`        <h1>Page not found</h1>
+        <p>That page is not part of the HSO catalogue. It may have been a program that is no longer listed.</p>
+        <h2>Browse by category</h2>
+        ${linkList(
+          data.CATEGORY_SLUGS.map((s) => ({
+            href: `/categories/${s}`,
+            label: data.CATEGORY_META[s].h1,
+          })),
+        )}
+        <p><a href="/deadlines">See what closes next</a> or <a href="/">search the whole catalogue</a>.</p>`);
+}
+
+/**
+ * Rewrite the deployed _redirects so removed programmes 301 at the edge and any
+ * other unknown /opportunities/ path returns a real 404 instead of the SPA shell.
+ *
+ * Static files are matched before these rules on Cloudflare Pages and Netlify, so
+ * every prerendered route still wins. The final catch-all is left in place: routes
+ * that are legitimately client-only (/collections/:id, /profile, /auth) have no
+ * prerendered file and must still boot the app.
+ */
+async function writeRedirects(distDir, data) {
+  const entries = Object.entries(data.REMOVED_OPPORTUNITY_REDIRECTS ?? {});
+  const lines = [
+    "# Generated by scripts/prerender.mjs — edit src/data/removedOpportunities.ts, not this file.",
+    "",
+    "# Programmes that are no longer listed. Each one was indexed and some still rank,",
+    "# so they move permanently to the listing that replaced them or to their category.",
+    ...entries
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([id, target]) => `/opportunities/${id}  ${target}  301`),
+    "",
+    "# Any other unknown programme URL is not a page we have: answer 404, not 200.",
+    "/opportunities/*  /404.html  404",
+    "",
+    "# Everything else still boots the SPA (client-only routes have no prerendered file).",
+    "/*    /index.html   200",
+    "",
+  ];
+  await fs.writeFile(path.join(distDir, "_redirects"), lines.join("\n"), "utf8");
+  return entries.length;
+}
+
 export async function prerender({ root, distDir }) {
   const templatePath = path.join(distDir, "index.html");
   const template = await fs.readFile(templatePath, "utf8");
@@ -344,6 +499,7 @@ export async function prerender({ root, distDir }) {
   }
   pages.push({ meta: data.remoteMeta(), body: remoteBody(data) });
   pages.push({ meta: data.deadlinesMeta(), body: deadlinesBody(data) });
+  pages.push({ meta: data.nycMeta(), body: nycBody(data) });
   for (const slug of data.CATEGORY_SLUGS) {
     pages.push({ meta: data.categoryMeta(slug), body: categoryBody(slug, data) });
   }
@@ -367,5 +523,17 @@ export async function prerender({ root, distDir }) {
     if (meta.noindex) noindexed++;
   }
 
-  return { written, noindexed, indexable: written - noindexed };
+  // 404.html sits at the dist root, which is where both Cloudflare Pages and
+  // Netlify look for it. It is deliberately not in `pages`: it must never reach
+  // allRoutes() or the sitemap.
+  const nf = notFoundMeta();
+  await fs.writeFile(
+    path.join(distDir, "404.html"),
+    renderPage(template, headFor(nf), notFoundBody(data)),
+    "utf8",
+  );
+
+  const redirects = await writeRedirects(distDir, data);
+
+  return { written, noindexed, indexable: written - noindexed, redirects };
 }

@@ -1,6 +1,13 @@
 export type DeadlineStatus = "open" | "closing-soon" | "closed" | "rolling" | "opens-later";
 
-/** Parse a catalogue date in the reader's local timezone. */
+/**
+ * Parse a catalogue date in the reader's own timezone.
+ *
+ * new Date("2026-09-20") is midnight UTC, which is the evening of the 19th
+ * across the Americas — so a listing closing today was labelled "Closed" a day
+ * early for every US visitor. A deadline runs to the end of its day and an
+ * opening date starts at the beginning of its day, both local.
+ */
 function parseDay(iso: string, edge: "start" | "end"): number {
   return new Date(`${iso}T${edge === "end" ? "23:59:59" : "00:00:00"}`).getTime();
 }

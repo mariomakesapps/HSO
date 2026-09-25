@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
 
-
 /**
  * Emits a static HTML file per route and regenerates the sitemap after the
  * client bundle is written. Runs as a plugin rather than an npm postbuild
@@ -26,7 +25,7 @@ function seoPrerenderPlugin(): Plugin {
         const sitemap = await generateSitemap({ root, distDir });
 
         this.info(
-          `prerendered ${pages.written} pages (${pages.indexable} indexable, ${pages.noindexed} noindex) · sitemap ${sitemap.indexable} URLs (${sitemap.excluded} excluded)`,
+          `prerendered ${pages.written} pages (${pages.indexable} indexable, ${pages.noindexed} noindex) · sitemap ${sitemap.indexable} URLs (${sitemap.excluded} excluded) · 404.html + ${pages.redirects} permanent redirects`,
         );
       } catch (err) {
         // A prerender failure must not silently ship an SPA-only build.
@@ -45,11 +44,11 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  plugins: [react(), mode === "development" && componentTagger(), seoPrerenderPlugin()].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
     dedupe: ["react", "react-dom", "react/jsx-runtime", "react/jsx-dev-runtime", "@tanstack/react-query", "@tanstack/query-core"],
   },
+  plugins: [react(), mode === "development" && componentTagger(), seoPrerenderPlugin()].filter(Boolean),
 }));

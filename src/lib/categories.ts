@@ -24,10 +24,10 @@ export const CATEGORY_META: Record<CategorySlug, {
 }> = {
   "summer-programs": {
     category: "Summer Program",
-    title: "Summer Programs for High Schoolers 2026 | HSO",
+    title: "Summer Programs for High School Students 2027 (Free and Paid) | HSO",
     h1: "Summer programs for high school students",
     intro: "Pre-college summers at top U.S. universities, research labs, and institutes — free, paid, and stipended options for rising 9th–12th graders.",
-    description: "Browse 2026 summer programs for high school students — pre-college, research, and STEM tracks at U.S. universities. Free and paid options.",
+    description: "{n} summer programs for high school students — pre-college, research and STEM at U.S. universities, {free} of them free or stipended. Every deadline checked against the official page.",
     guide: [
       "Summer programs for high school students fall into a few buckets: pre-college academic programs run by universities, research immersions in labs, arts and writing institutes, leadership and policy programs, and STEM bootcamps. Most run 2–8 weeks between June and August.",
       "Pick based on what colleges actually weigh: depth in one field beats a famous name. A free, selective research program (RSI, SSP, Clark Scholars, Garcia) signals more than a paid two-week pre-college class.",
@@ -42,10 +42,10 @@ export const CATEGORY_META: Record<CategorySlug, {
   },
   internships: {
     category: "Internship",
-    title: "Internships for High School Students 2026 | HSO",
+    title: "Internships for High School Students 2027 (Paid and Remote) | HSO",
     h1: "Internships for high school students",
     intro: "Real workplace internships at U.S. companies, labs, hospitals, and government agencies that accept high school students — paid, unpaid, in-person, and remote.",
-    description: "Paid internships for high school students at U.S. companies, labs, and agencies. Engineering, STEM, research, and remote options curated by HSO.",
+    description: "{n} internships open to high school students at U.S. companies, labs, hospitals and agencies — {free} of them free or paid to you. Deadlines tracked and checked.",
     guide: [
       "Internships for high school students come in three main forms: paid corporate internships (Bank of America, Google, NASA OSTEM), research internships at universities and hospitals, and government internships at federal, state, and city agencies.",
       "Paid is realistic — NASA, NIH, Bank of America, NSA, NYC Ladders for Leaders, and many university research programs offer stipends from $500 to $7,000 for the summer.",
@@ -60,10 +60,10 @@ export const CATEGORY_META: Record<CategorySlug, {
   },
   scholarships: {
     category: "Scholarship",
-    title: "Scholarships for High School Students 2026 | HSO",
+    title: "Scholarships for High School Students 2027 (Deadlines Tracked) | HSO",
     h1: "Scholarships for high school students",
     intro: "Merit, need-based, and identity-focused scholarships open to U.S. high school students — apply before or during senior year.",
-    description: "Browse U.S. scholarships for high school students — merit, need-based, identity-focused, and full-ride national awards. Deadline-tracked by HSO.",
+    description: "{n} scholarships open to U.S. high school students — merit, need-based, identity-focused and full-ride national awards, each with the deadline checked on the official page.",
     guide: [
       "High school scholarships fall into four buckets: full-ride national awards (Coca-Cola, QuestBridge, Dell, Gates), large national merit programs (National Merit, Jack Kent Cooke), identity- and community-focused awards, and smaller local/regional scholarships from civic groups.",
       "Smaller scholarships are easier to win because fewer students apply. A few $1,000 awards add up faster than chasing one $40,000 prize you have a 0.5% chance at.",
@@ -78,10 +78,10 @@ export const CATEGORY_META: Record<CategorySlug, {
   },
   research: {
     category: "Research",
-    title: "Research Programs for High Schoolers 2026 | HSO",
+    title: "Research Programs for High School Students 2027 (Free and Paid) | HSO",
     h1: "Research programs for high school students",
     intro: "Mentored research with U.S. professors and labs across STEM, humanities, and social sciences — for serious 10th, 11th, and 12th graders.",
-    description: "Research programs for high school students in the U.S. — mentored lab work in STEM, biomedical, CS, and social sciences. Free and paid options.",
+    description: "{n} mentored research programs for high school students at U.S. universities and labs — {free} free or stipended, across STEM, biomedical, CS and the social sciences.",
     guide: [
       "Research programs for high school students come in three forms: structured summer programs (RSI, SSP, Garcia, SIMR, Clark Scholars), university-run lab placements (Simons at Stony Brook, Pioneer Academics, Lumiere), and direct outreach to a local professor.",
       "Structured programs are the most selective but the most prestigious. Direct outreach is harder but more flexible — emailing 20 professors in your field with a clear, specific question often works.",
@@ -96,10 +96,10 @@ export const CATEGORY_META: Record<CategorySlug, {
   },
   competitions: {
     category: "Competition",
-    title: "Academic Competitions for High Schoolers 2026 | HSO",
+    title: "Competitions for High School Students 2027 (Full List) | HSO",
     h1: "Academic competitions for high school students",
     intro: "Olympiads, science fairs, writing contests, business case competitions, and entrepreneurship challenges open to U.S. high school students.",
-    description: "Academic competitions for high school students — STEM olympiads, science fairs, writing contests, and entrepreneurship challenges in the U.S.",
+    description: "{n} academic competitions open to high school students — olympiads, science fairs, writing contests and business challenges, {free} free to enter, with entry deadlines tracked.",
     guide: [
       "High school competitions break down by field: math (AMC, AIME, USAMO, HMMT), science (Regeneron STS, ISEF, USABO, USACO, Chemistry Olympiad), writing (Scholastic, NYT contests, Concord Review), business and finance (DECA, Wharton Investment, Diamond Challenge), and policy/debate (NSDA, We the People).",
       "Pick competitions that compound with your work. A research project naturally feeds into Regeneron STS, ISEF, and Davidson. A startup idea fits Diamond Challenge, Conrad, and Wharton Innovation.",
@@ -114,10 +114,10 @@ export const CATEGORY_META: Record<CategorySlug, {
   },
   fellowships: {
     category: "Fellowship",
-    title: "Fellowships for High School Students 2026 | HSO",
+    title: "Fellowships for High School Students 2027 (Stipends) | HSO",
     h1: "Fellowships for high school students",
     intro: "Selective long-term U.S. fellowships combining mentorship, research, leadership, and stipends — for ambitious 10th, 11th, and 12th graders.",
-    description: "Fellowships for high school students in the U.S. — selective programs offering mentorship, research, leadership, and stipends.",
+    description: "{n} selective fellowships for high school students in the U.S. — mentorship, a real project and usually a stipend or scholarship. {free} cost you nothing to take part.",
     guide: [
       "Fellowships go deeper than internships or summer programs. They usually combine year-round mentorship, a project, and either a stipend or college support. Examples: Coca-Cola Scholars, Knight-Hennessy, Bezos Scholars, Davidson Fellows, Telluride Association Summer Seminar.",
       "Most fellowships are competitive and require a clear story — what you've done, what you want to do, and why you. Generic applications don't survive the first round.",

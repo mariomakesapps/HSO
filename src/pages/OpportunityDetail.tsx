@@ -1,4 +1,4 @@
-﻿import { Link, useNavigate, useParams } from "react-router-dom";
+﻿import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { ExternalLink, Bookmark, BookmarkCheck, Bell, ArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -7,7 +7,9 @@ import { allOpportunities } from "@/data/opportunities";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { OpportunityCard } from "@/components/OpportunityCard";
 import { Button } from "@/components/ui/button";
-import { slugForCategory, CATEGORY_META } from "@/lib/categories";
+import { slugForCategory, CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
+import { REMOVED_OPPORTUNITY_REDIRECTS } from "@/data/removedOpportunities";
+import { detailFor } from "@/data/opportunityDetails";
 import { opportunityMeta } from "@/lib/pageMeta";
 import { useAtmosphere, themeForCategory } from "@/lib/atmosphere";
 import { store, useStore } from "@/store/collections";
@@ -53,6 +55,13 @@ const OpportunityDetail = () => {
   }, [opp, user]);
 
   if (!opp) {
+    // A removed programme is redirected at the edge by the rules in dist/_redirects,
+    // so a crawler never reaches this branch. It is still reachable by client-side
+    // navigation from a stale bookmark or an in-app link, and the same destination
+    // applies, so send the visitor on rather than showing them a dead end.
+    const moved = id ? REMOVED_OPPORTUNITY_REDIRECTS[id] : undefined;
+    if (moved) return <Navigate to={moved} replace />;
+
     return (
       <div className="min-h-screen text-foreground">
         <SEO title="Opportunity not found | HSO" path={`/opportunities/${id ?? ""}`} noindex />
@@ -60,8 +69,20 @@ const OpportunityDetail = () => {
           <div className="hso-glass-panel rounded-[2rem] p-8">
             <h1 className="font-display text-4xl font-semibold text-ink">Opportunity not found</h1>
             <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
-              This saved link points to a program that is no longer in the active catalog.
+              This link points to a program that is no longer in the active catalog. These
+              categories are the closest place to pick the search back up.
             </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              {CATEGORY_SLUGS.map((slug) => (
+                <Link
+                  key={slug}
+                  to={`/categories/${slug}`}
+                  className="rounded-full border border-ink/15 px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-ink hover:text-cream"
+                >
+                  {CATEGORY_META[slug].h1}
+                </Link>
+              ))}
+            </div>
             <Link to="/" className="mt-6 inline-flex rounded-full bg-ink px-5 py-3 text-sm font-bold text-cream transition-transform hover:-translate-y-0.5 hover:bg-coral active:scale-[0.98]">
               Back to discover
             </Link>
@@ -72,6 +93,7 @@ const OpportunityDetail = () => {
     );
   }
 
+  const detail = opp ? detailFor(opp.id) : undefined;
   const related = allOpportunities
     .filter((o) => o.id !== opp.id && (o.category === opp.category || o.fields.some((f) => opp.fields.includes(f))))
     .slice(0, 3);
@@ -172,6 +194,60 @@ const OpportunityDetail = () => {
             ))}
           </div>
         </section>
+
+        {detail && (
+          <section className="mt-12 max-w-3xl">
+            <h2 className="font-display text-2xl font-semibold text-ink">About this program</h2>
+            {detail.body.map((p, i) => (
+              <p key={i} className="mt-3 text-sm leading-relaxed text-muted-foreground">{p}</p>
+            ))}
+
+            {detail.eligibility && (
+              <>
+                <h2 className="mt-8 font-display text-2xl font-semibold text-ink">Who it is for</h2>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{detail.eligibility}</p>
+              </>
+            )}
+
+            {detail.cost && (
+              <>
+                <h2 className="mt-8 font-display text-2xl font-semibold text-ink">Cost</h2>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{detail.cost}</p>
+              </>
+            )}
+
+            {detail.howToApply?.length ? (
+              <>
+                <h2 className="mt-8 font-display text-2xl font-semibold text-ink">How to apply</h2>
+                <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted-foreground">
+                  {detail.howToApply.map((x, i) => <li key={i}>{x}</li>)}
+                </ul>
+              </>
+            ) : null}
+
+            {detail.faqs?.length ? (
+              <>
+                <h2 className="mt-8 font-display text-2xl font-semibold text-ink">
+                  Frequently asked questions
+                </h2>
+                {detail.faqs.map((f, i) => (
+                  <div key={i} className="mt-5">
+                    <h3 className="font-semibold text-ink">{f.q}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
+                  </div>
+                ))}
+              </>
+            ) : null}
+
+            <p className="mt-8 text-xs text-muted-foreground">
+              Details checked on {detail.source.checked} against{" "}
+              <a href={detail.source.url} className="underline underline-offset-4 hover:text-ink" rel="noopener noreferrer" target="_blank">
+                the program&rsquo;s own page
+              </a>
+              .
+            </p>
+          </section>
+        )}
 
         {related.length > 0 && (
           <section className="mt-12">
