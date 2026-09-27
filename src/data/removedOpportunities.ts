@@ -11,6 +11,8 @@
  * so the redirect happens at the edge before any JavaScript runs.
  */
 export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
+  // Removed 2026-09-27: the official Code Next page is gone and replacements lead to generic Google careers pages.
+  "google-csi": "/categories/internships",
   // category: Internship — Official page, read in a browser on 2026-09-21: Argonne's Seasonal Internship program encourages undergraduate
   "argonne-national-laboratory-seasonal-internship-program": "/categories/internships",
   // category: Internship — 2026-09-16: the listing links only to the Pitt School of Public Health homepage and no ASCEND high school prog

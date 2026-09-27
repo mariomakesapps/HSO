@@ -5,6 +5,8 @@ import { csvScholarships } from "@/data/csvScholarships";
 import { verifiedNationalOpportunities } from "@/data/verifiedNationalOpportunities";
 import { submittedOpportunities } from "@/data/submittedOpportunities";
 import { hsoAdditionsSep2026, applyHsoUpdateSep2026, isRemovedBySep2026Review } from "@/data/hsoUpdateSep2026";
+import { LOCATION_FIXES } from "@/data/locationFixes";
+import { applyDataHygiene } from "@/data/dataHygiene";
 import {
   normalizeOpportunityUrl,
   removedOpportunityUrls,
@@ -468,6 +470,13 @@ for (const opportunity of opportunities) {
 // Update of 2026-09-15: verified next-cycle dates, cleared stale dates, fixed links.
 applyHsoUpdateSep2026(opportunities);
 
+// Keep display copy, metadata, filters and structured data on the same normalized records.
+for (const opportunity of opportunities) {
+  const fixedLocation = LOCATION_FIXES[opportunity.location];
+  if (fixedLocation) opportunity.location = fixedLocation;
+  applyDataHygiene(opportunity);
+}
+
 // US-focused: keep opportunities available to U.S. high schoolers (USA, Worldwide, Online).
 const US_ELIGIBLE = /(USA|Worldwide|Online|Multiple, USA)/i;
 export const allOpportunities: Opportunity[] = opportunities.filter((o) =>
@@ -482,6 +491,7 @@ export const allOpportunities: Opportunity[] = opportunities.filter((o) =>
 // Map a US location string to a state-like filter bucket.
 export function locationState(location: string): string {
   const l = location.toLowerCase();
+  if (/^online\b/.test(l)) return "Online";
   if (l.includes("online") && !l.includes("usa")) return "Online";
   if (l.includes("worldwide") || l === "usa" || l.includes("multiple, usa")) return "Nationwide";
   if (l.includes("district of columbia") || l.includes("washington dc")) return "District of Columbia";
