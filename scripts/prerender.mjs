@@ -13,7 +13,9 @@
  */
 import { build } from "esbuild";
 import fs from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
+import { pathToFileURL } from "node:url";
 
 const SITE_URL = "https://highschoolopportunity.org";
 
@@ -26,9 +28,10 @@ const SITE_URL = "https://highschoolopportunity.org";
  */
 export function importBundle(result) {
   const code = result.outputFiles[0].text;
-  return import(
-    `data:text/javascript;base64,${Buffer.from(code, "utf8").toString("base64")}`
-  );
+  const file = path.join(os.tmpdir(), `hso-prerender-${crypto.randomUUID()}.mjs`);
+  return fs.writeFile(file, code, "utf8")
+    .then(() => import(pathToFileURL(file).href))
+    .finally(() => fs.rm(file, { force: true }));
 }
 
 /**

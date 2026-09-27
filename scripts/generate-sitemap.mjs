@@ -60,7 +60,6 @@ const escapeXml = (s) =>
 
 export async function generateSitemap({ root, distDir }) {
   const routes = await loadRoutes(root);
-  const lastmod = new Date().toISOString().slice(0, 10);
 
   // Only advertise URLs we actually want indexed.
   const indexable = routes.filter((r) => !r.noindex);
@@ -68,7 +67,7 @@ export async function generateSitemap({ root, distDir }) {
   const body = indexable
     .map((r) => {
       const { priority, changefreq } = PRIORITY[classify(r.path)];
-      return `  <url><loc>${escapeXml(SITE_URL + r.path)}</loc><lastmod>${lastmod}</lastmod><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`;
+      return `  <url><loc>${escapeXml(SITE_URL + r.path)}</loc><changefreq>${changefreq}</changefreq><priority>${priority}</priority></url>`;
     })
     .join("\n");
 
