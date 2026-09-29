@@ -470,10 +470,13 @@ for (const opportunity of opportunities) {
 // Update of 2026-09-15: verified next-cycle dates, cleared stale dates, fixed links.
 applyHsoUpdateSep2026(opportunities);
 
-// Keep display copy, metadata, filters and structured data on the same normalized records.
+// Normalise city-only locations ("Cambridge, USA" -> "Cambridge, Massachusetts, USA")
+// and clean up import artefacts in titles, blurbs and links. Both run before
+// allOpportunities so the filter, the displayed string, the meta description and the
+// JSON-LD all see the same corrected value.
 for (const opportunity of opportunities) {
-  const fixedLocation = LOCATION_FIXES[opportunity.location];
-  if (fixedLocation) opportunity.location = fixedLocation;
+  const fixed = LOCATION_FIXES[opportunity.location];
+  if (fixed) opportunity.location = fixed;
   applyDataHygiene(opportunity);
 }
 
@@ -491,6 +494,9 @@ export const allOpportunities: Opportunity[] = opportunities.filter((o) =>
 // Map a US location string to a state-like filter bucket.
 export function locationState(location: string): string {
   const l = location.toLowerCase();
+  // "Online, USA" is the catalogue's normal value for a US-eligible online programme, but
+  // the guard below reads the "usa" in it and falls all the way through to "Other",
+  // dropping 12 listings out of the state filter entirely. Match the leading word first.
   if (/^online\b/.test(l)) return "Online";
   if (l.includes("online") && !l.includes("usa")) return "Online";
   if (l.includes("worldwide") || l === "usa" || l.includes("multiple, usa")) return "Nationwide";

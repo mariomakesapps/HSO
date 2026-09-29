@@ -11,7 +11,12 @@
  * so the redirect happens at the edge before any JavaScript runs.
  */
 export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
-  // Removed 2026-09-27: the official Code Next page is gone and replacements lead to generic Google careers pages.
+  // Removed 2026-09-28: Google's Build Your Future site is retired and renders no content.
+  "csv-sch-generation-google-scholarship": "/categories/scholarships",
+  // Removed 2026-09-28: Google's Build Your Future site is retired and renders no content.
+  "cssi": "/categories/summer-programs",
+  // category: Internship — Removed 2026-09-27: Code Next has no working official page. codenext.withgoogle.com 404s
+  // and the Build Your Future path redirects to a generic Google careers page with no Code Next content.
   "google-csi": "/categories/internships",
   // category: Internship — Official page, read in a browser on 2026-09-21: Argonne's Seasonal Internship program encourages undergraduate
   "argonne-national-laboratory-seasonal-internship-program": "/categories/internships",
