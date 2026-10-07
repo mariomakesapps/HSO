@@ -10,4 +10,5 @@
 - [x] Apply 2027-cycle dates the official pages now post (RSI, Dell Scholars) and correct eligibility (Horatio Alger now selects juniors; Fred Hutch SHIP is for greater-Seattle rising seniors).
 - [x] Restore the Congressional Award, which the automatic cleanup had hidden as Volunteer, and fix the SUMaC title.
 - [x] Add 7 missing national programs (CBYX, YES Abroad, MIT THINK, SMYSP, QuestBridge College Prep Scholars, National Student Poets, Princeton Prize in Race Relations), with a test against duplicate ids and URLs.
+- [x] Round 2: spot-check deadlines due before December (Science Bowl Nov 23, USABO Oct 23, PRIMES Nov 2, Regeneron STS Nov 5 and AMC Oct 15 all confirmed) and add 11 more programs: Air Force Academy Summer Seminar, NASA Texas Aerospace Scholars, Math Prize for Girls, ASM Eisenman Materials Camp, ARML, National History Bee and Bowl, Atlas Fellowship, Cal Grant, Florida Bright Futures, Edison Scholars and the Sachs Foundation scholarship.
 - [ ] Re-check flagship programs whose 2027 dates are due in November–December (NSLI-Y, Simons, Fred Hutch SHIP, SIMR, AMNH SRMP, Davidson Fellows, GE-Reagan).
