@@ -5,6 +5,7 @@ import { csvScholarships } from "@/data/csvScholarships";
 import { verifiedNationalOpportunities } from "@/data/verifiedNationalOpportunities";
 import { submittedOpportunities } from "@/data/submittedOpportunities";
 import { hsoAdditionsSep2026, applyHsoUpdateSep2026, isRemovedBySep2026Review } from "@/data/hsoUpdateSep2026";
+import { hsoAdditionsOct2026, applyHsoUpdateOct2026 } from "@/data/hsoUpdateOct2026";
 import { LOCATION_FIXES } from "@/data/locationFixes";
 import { applyDataHygiene } from "@/data/dataHygiene";
 import {
@@ -393,6 +394,7 @@ export const opportunities: Opportunity[] = [
   ...verifiedNationalOpportunities,
   ...submittedOpportunities,
   ...hsoAdditionsSep2026,
+  ...hsoAdditionsOct2026,
 ];
 
 for (const opportunity of opportunities) {
@@ -469,6 +471,8 @@ for (const opportunity of opportunities) {
 
 // Update of 2026-09-15: verified next-cycle dates, cleared stale dates, fixed links.
 applyHsoUpdateSep2026(opportunities);
+// Update of 2026-10-07: newly posted 2027-cycle dates, eligibility fixes and new listings.
+applyHsoUpdateOct2026(opportunities);
 
 // Normalise city-only locations ("Cambridge, USA" -> "Cambridge, Massachusetts, USA")
 // and clean up import artefacts in titles, blurbs and links. Both run before

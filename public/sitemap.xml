@@ -64,7 +64,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/worldquant</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/imc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ssp</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/cssi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/nslc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/syp-cornell</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/syp-uchicago</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -363,7 +362,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-burger-king-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-imagine-america-high-school-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-the-alert-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-generation-google-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-sezzle-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/poetry-out-loud</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/exploravision</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -377,6 +375,7 @@
   <url><loc>https://highschoolopportunity.org/opportunities/math-kangaroo</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/m3-challenge</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/acsl</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/congressional-award</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/john-locke-essay</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ayn-rand-essay</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/earth-prize</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -1864,4 +1863,14 @@
   <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-west-virginia-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-wisconsin-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-wyoming-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/vermont-student-assistance-corporation-vsac-unified-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/new-hampshire-charitable-foundation-new-hampshire-charitable-fou</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/nevada-legislature-nevada-youth-legislature</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/cbyx-congress-bundestag-youth-exchange</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/yes-abroad-kennedy-lugar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/mit-think-scholars</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/stanford-medical-youth-science-program-smysp</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/questbridge-college-prep-scholars</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/national-student-poets-program</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/princeton-prize-in-race-relations</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
 </urlset>
