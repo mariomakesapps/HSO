@@ -29,6 +29,8 @@ describe("HSO October 2026 update", () => {
     expect(byId.get("fred-hutchinson-cancer-center-summer-high-school-internship-prog")?.grades).toEqual([11]);
     expect(byId.get("ill-mathematics")?.title).toBe("Stanford University Mathematics Camp (SUMaC)");
     expect(byId.get("congressional-award")?.category).toBe("Competition");
+    expect(byId.get("nyo")).toMatchObject({ deadline: "2026-12-03", opensAt: "2026-09-10" });
+    expect(byId.get("nyojazz")).toMatchObject({ deadline: "2027-01-18", opensAt: "2026-09-10" });
   });
 
   it("only uses ISO dates", () => {
