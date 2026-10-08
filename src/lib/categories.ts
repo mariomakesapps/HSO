@@ -24,7 +24,7 @@ export const CATEGORY_META: Record<CategorySlug, {
 }> = {
   "summer-programs": {
     category: "Summer Program",
-    title: "Summer Programs for High School Students 2027 (Free and Paid) | HSO",
+    title: "Free & Stipended Summer Programs for High Schoolers 2027 | HSO",
     h1: "Summer programs for high school students",
     intro: "Pre-college summers at top U.S. universities, research labs, and institutes — free, paid, and stipended options for rising 9th–12th graders.",
     description: "{n} summer programs for high school students — pre-college, research and STEM at U.S. universities, {free} of them free or stipended. Every deadline checked against the official page.",
