@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import { allOpportunities } from "@/data/opportunities";
 import { normalizeOpportunityUrl } from "@/data/eligibilityCleanup.generated";
 import { hsoAdditionsOct2026, hsoReviewOct2026 } from "@/data/hsoUpdateOct2026";
+import { REMOVED_OPPORTUNITY_REDIRECTS } from "@/data/removedOpportunities";
 
 const byId = new Map(allOpportunities.map((o) => [o.id, o]));
 
@@ -31,6 +32,13 @@ describe("HSO October 2026 update", () => {
     expect(byId.get("congressional-award")?.category).toBe("Competition");
     expect(byId.get("nyo")).toMatchObject({ deadline: "2026-12-03", opensAt: "2026-09-10" });
     expect(byId.get("nyojazz")).toMatchObject({ deadline: "2027-01-18", opensAt: "2026-09-10" });
+  });
+
+  it("drops ended or replaced programs and redirects their old pages", () => {
+    expect(byId.has("atlas-fellowship")).toBe(false);
+    expect(byId.has("yes-abroad-kennedy-lugar")).toBe(false);
+    expect(REMOVED_OPPORTUNITY_REDIRECTS["yes-abroad-kennedy-lugar"]).toBe("/opportunities/flex-global-abroad");
+    expect(byId.get("flex-global-abroad")?.deadline).toBe("2026-11-30");
   });
 
   it("only uses ISO dates", () => {

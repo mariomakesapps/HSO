@@ -11,6 +11,10 @@
  * so the redirect happens at the edge before any JavaScript runs.
  */
 export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
+  // Removed 2026-10-08: atlasfellowship.org says "we have decided not to run any future Atlas Fellowship programs."
+  "atlas-fellowship": "/categories/fellowships",
+  // Replaced 2026-10-08: yes-abroad.org sends 2027-28 applicants to FLEX Global Abroad, which absorbed YES Abroad.
+  "yes-abroad-kennedy-lugar": "/opportunities/flex-global-abroad",
   // Removed 2026-09-28: Google's Build Your Future site is retired and renders no content.
   "csv-sch-generation-google-scholarship": "/categories/scholarships",
   // Removed 2026-09-28: Google's Build Your Future site is retired and renders no content.
