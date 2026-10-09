@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { allOpportunities } from "@/data/opportunities";
 import { normalizeOpportunityUrl } from "@/data/eligibilityCleanup.generated";
-import { hsoAdditionsOct2026, hsoReviewOct2026 } from "@/data/hsoUpdateOct2026";
+import { hsoAdditionsOct2026, hsoReviewOct2026, declaredCategoryOct2026 } from "@/data/hsoUpdateOct2026";
 import { REMOVED_OPPORTUNITY_REDIRECTS } from "@/data/removedOpportunities";
 
 const byId = new Map(allOpportunities.map((o) => [o.id, o]));
@@ -19,7 +19,11 @@ describe("HSO October 2026 update", () => {
   });
 
   it("keeps the category each new listing was filed under", () => {
-    for (const added of hsoAdditionsOct2026) expect(byId.get(added.id)?.category, added.id).toBe(added.category);
+    // Compare with the category captured before the keyword cleanup ran, not with the
+    // (mutated) addition object itself, or the check could never fail.
+    expect(declaredCategoryOct2026.size).toBe(hsoAdditionsOct2026.length);
+    for (const [id, category] of declaredCategoryOct2026) expect(byId.get(id)?.category, id).toBe(category);
+    expect(byId.get("cal-grant")?.category).toBe("Scholarship");
   });
 
   it("applies the reviewed rows", () => {
@@ -37,6 +41,10 @@ describe("HSO October 2026 update", () => {
   it("drops ended or replaced programs and redirects their old pages", () => {
     expect(byId.has("atlas-fellowship")).toBe(false);
     expect(byId.has("ayia")).toBe(false);
+    for (const id of ["dell-discover", "americorps", "csv-sch-dr-pepper-tuition-giveaway"]) {
+      expect(byId.has(id), id).toBe(false);
+      expect(REMOVED_OPPORTUNITY_REDIRECTS[id], id).toBeDefined();
+    }
     expect(byId.has("yes-abroad-kennedy-lugar")).toBe(false);
     expect(REMOVED_OPPORTUNITY_REDIRECTS["yes-abroad-kennedy-lugar"]).toBe("/opportunities/flex-global-abroad");
     expect(byId.get("flex-global-abroad")?.deadline).toBe("2026-11-30");

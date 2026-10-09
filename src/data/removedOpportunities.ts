@@ -11,6 +11,12 @@
  * so the redirect happens at the edge before any JavaScript runs.
  */
 export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
+  // Removed 2026-10-09: no Dell program by this name; the link was Dell's general university-recruiting page.
+  "dell-discover": "/categories/internships",
+  // Removed 2026-10-09: AmeriCorps NCCC is for ages 18-24, after high school.
+  "americorps": "/categories/fellowships",
+  // Removed 2026-10-09: Dr Pepper Tuition Giveaway is for ages 18-24.
+  "csv-sch-dr-pepper-tuition-giveaway": "/categories/scholarships",
   // Removed 2026-10-09: Bank of America Student Leaders now requires applicants 18+ with 12-18 college credits.
   "ayia": "/categories/internships",
   // Removed 2026-10-08: atlasfellowship.org says "we have decided not to run any future Atlas Fellowship programs."

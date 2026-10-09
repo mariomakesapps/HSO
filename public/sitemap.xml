@@ -161,7 +161,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/immerse-research</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/aops</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/microsoft-discovery</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/dell-discover</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/stargate</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/aas-blue</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/cyber-patriot</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -203,7 +202,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/ayusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/nsli-y</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/stem-saturday</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/americorps</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/o-henry</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/acl</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/yale-law-summer</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -354,7 +352,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-women-at-microsoft-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-foundation-649-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-mae-mary-legacy-foundation-inc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-dr-pepper-tuition-giveaway</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-aanapisi-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-elks-national-foundation-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-equitable-excellence-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -1885,4 +1882,7 @@
   <url><loc>https://highschoolopportunity.org/opportunities/esu-national-shakespeare-competition</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/quill-and-scroll-writing-visual-multimedia-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/all-american-high-school-film-festival</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/seo-scholars</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/california-academy-of-sciences-careers-in-science</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/field-museum-high-school-science-and-digital-learning-internship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
 </urlset>
