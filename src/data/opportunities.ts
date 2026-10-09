@@ -5,7 +5,7 @@ import { csvScholarships } from "@/data/csvScholarships";
 import { verifiedNationalOpportunities } from "@/data/verifiedNationalOpportunities";
 import { submittedOpportunities } from "@/data/submittedOpportunities";
 import { hsoAdditionsSep2026, applyHsoUpdateSep2026, isRemovedBySep2026Review } from "@/data/hsoUpdateSep2026";
-import { hsoAdditionsOct2026, applyHsoUpdateOct2026 } from "@/data/hsoUpdateOct2026";
+import { hsoAdditionsOct2026, applyHsoUpdateOct2026, isRemovedByOct2026Review } from "@/data/hsoUpdateOct2026";
 import { LOCATION_FIXES } from "@/data/locationFixes";
 import { applyDataHygiene } from "@/data/dataHygiene";
 import {
@@ -491,7 +491,8 @@ export const allOpportunities: Opportunity[] = opportunities.filter((o) =>
   US_ELIGIBLE.test(o.location) &&
   isUsBased(o) &&
   !removedOpportunityUrls.has(normalizeOpportunityUrl(o.url)) &&
-  !isRemovedBySep2026Review(o.id)
+  !isRemovedBySep2026Review(o.id) &&
+  !isRemovedByOct2026Review(o.id)
 );
 
 

@@ -11,6 +11,8 @@
  * so the redirect happens at the edge before any JavaScript runs.
  */
 export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
+  // Removed 2026-10-09: Bank of America Student Leaders now requires applicants 18+ with 12-18 college credits.
+  "ayia": "/categories/internships",
   // Removed 2026-10-08: atlasfellowship.org says "we have decided not to run any future Atlas Fellowship programs."
   "atlas-fellowship": "/categories/fellowships",
   // Replaced 2026-10-08: yes-abroad.org sends 2027-28 applicants to FLEX Global Abroad, which absorbed YES Abroad.

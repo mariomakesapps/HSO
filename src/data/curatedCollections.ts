@@ -90,7 +90,7 @@ export const curatedSections: CuratedSection[] = [
         "linear-gradient(135deg, #f4eadf 0%, #df6b54 44%, #15251f 100%)",
         ["business", "finance", "entrepreneurship"], ["Business", "Finance", "Economics"],
         ["Competition", "Internship", "Fellowship"],
-        ["diamond-challenge", "blue-ocean-entrepreneurship", "ayia", "wharton-global", "knowledge-at-wharton", "leangap", "nfte", "fbla", "mit-launch", "soa-shark"],
+        ["diamond-challenge", "blue-ocean-entrepreneurship", "wharton-global", "knowledge-at-wharton", "leangap", "nfte", "fbla", "mit-launch", "soa-shark"],
         "Business")
     ],
   },
