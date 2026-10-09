@@ -11,6 +11,12 @@
  * so the redirect happens at the edge before any JavaScript runs.
  */
 export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
+  // Removed 2026-10-09: AI4ALL says it does not offer programs for high schoolers; Ignite is for college students 18+.
+  "ai4all": "/categories/summer-programs",
+  // Removed 2026-10-09: no current Sezzle scholarship; the listing described incoming college freshmen.
+  "csv-sch-sezzle-scholarship": "/categories/scholarships",
+  // Removed 2026-10-09: no Comcast Leaders and Achievers cycle announced since 2019-20.
+  "comcast-leaders-achievers": "/categories/scholarships",
   // Removed 2026-10-09: no Dell program by this name; the link was Dell's general university-recruiting page.
   "dell-discover": "/categories/internships",
   // Removed 2026-10-09: AmeriCorps NCCC is for ages 18-24, after high school.
