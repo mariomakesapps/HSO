@@ -11,6 +11,12 @@
  * so the redirect happens at the edge before any JavaScript runs.
  */
 export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
+  // Hidden 2026-10-09: Telluride Association paused TASS for summer 2027. Restore when it reopens.
+  "tasp": "/categories/summer-programs",
+  // Removed 2026-10-09: middle school only (MATHCOUNTS grades 6-8, Junior Solar Sprint 5-8, Future City 6-8).
+  "putnam-jr": "/categories/competitions",
+  "siemens": "/categories/competitions",
+  "future-city": "/categories/competitions",
   // Removed 2026-10-09: AI4ALL says it does not offer programs for high schoolers; Ignite is for college students 18+.
   "ai4all": "/categories/summer-programs",
   // Removed 2026-10-09: no current Sezzle scholarship; the listing described incoming college freshmen.

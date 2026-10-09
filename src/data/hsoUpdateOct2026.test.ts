@@ -29,6 +29,8 @@ describe("HSO October 2026 update", () => {
   it("applies the reviewed rows", () => {
     for (const [id, r] of Object.entries(hsoReviewOct2026)) if (!r.removed) expect(byId.get(id), id).toBeDefined();
     expect(byId.get("rsi")?.deadline).toBe("2026-12-11");
+    expect(byId.get("nsli-y")?.deadline).toBe("2026-11-12");
+    expect(byId.has("tasp")).toBe(false);
     expect(byId.get("dell")).toMatchObject({ deadline: "2027-01-12", opensAt: "2026-10-01" });
     expect(byId.get("horatio-alger")?.grades).toEqual([11]);
     expect(byId.get("fred-hutchinson-cancer-center-summer-high-school-internship-prog")?.grades).toEqual([11]);

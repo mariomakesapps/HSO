@@ -50,7 +50,7 @@ export const curatedSections: CuratedSection[] = [
         "A focused route through math contests, proof practice, and selective math summer programs.",
         "linear-gradient(135deg, #141827 0%, #df6b54 45%, #f0c767 100%)",
         ["math", "olympiad", "proofs"], ["Math"], ["Competition", "Summer Program"],
-        ["amc", "aime", "usamo", "hmmt", "promys", "ross", "pumac", "bmt", "smt", "putnam-jr", "hcssim-prim", "ill-mathematics"],
+        ["amc", "aime", "usamo", "hmmt", "promys", "ross", "pumac", "bmt", "smt", "hcssim-prim", "ill-mathematics"],
         "Mathematics"),
       c("women-in-stem", "Women in STEM",
         "Programs and competitions built for high school girls and gender-expansive students pursuing STEM.",
@@ -103,7 +103,7 @@ export const curatedSections: CuratedSection[] = [
         "linear-gradient(135deg, #111827 0%, #274d3b 52%, #f4e8db 100%)",
         ["law", "policy", "civic"], ["Political Science", "Law", "Public Policy"],
         ["Fellowship", "Summer Program"],
-        ["ywp", "unesco-youth", "girls-state", "tasp", "ylc", "model-un", "harvard-mun", "yale-mun", "yale-law-summer", "syp-georgetown", "columbia-freedom-citizenship", "youth-debate"],
+        ["ywp", "unesco-youth", "girls-state", "ylc", "model-un", "harvard-mun", "yale-mun", "yale-law-summer", "syp-georgetown", "columbia-freedom-citizenship", "youth-debate"],
         "Law & Policy")
     ],
   },
@@ -130,7 +130,7 @@ export const curatedSections: CuratedSection[] = [
         "linear-gradient(135deg, #f6e7d7 0%, #df6b54 45%, #101827 100%)",
         ["humanities", "history", "essays"], ["Humanities", "History", "English"],
         ["Summer Program", "Competition", "Scholarship"],
-        ["tasp", "concord", "nyt-essay", "ylc", "scholastic", "national-wwii-writing-contest", "columbia-freedom-citizenship", "nyu-medical-ethics"],
+        ["concord", "nyt-essay", "ylc", "scholastic", "national-wwii-writing-contest", "columbia-freedom-citizenship", "nyu-medical-ethics"],
         "Humanities")
     ],
   },
@@ -143,7 +143,7 @@ export const curatedSections: CuratedSection[] = [
         "linear-gradient(135deg, #132019 0%, #df6b54 48%, #d9eadf 100%)",
         ["engineering", "robotics", "aerospace"], ["Engineering", "Mechanical Engineering", "Aerospace"],
         ["Summer Program", "Research", "Competition"],
-        ["nyu-arise", "ssp", "junior-academy", "first-robotics", "vex", "ftc", "army-rebotics", "mites", "beaver-works", "siemens", "future-city" ],
+        ["nyu-arise", "ssp", "junior-academy", "first-robotics", "vex", "ftc", "army-rebotics", "mites", "beaver-works" ],
         "Engineering")
     ],
   },
@@ -189,7 +189,7 @@ export const curatedSections: CuratedSection[] = [
         "linear-gradient(135deg, #132019 0%, #2fbf82 42%, #ff765c 100%)",
         ["selective", "pre-college", "research"], ["Undecided", "STEM", "Humanities"],
         ["Summer Program", "Research", "Scholarship"],
-        ["rsi", "ssp", "ylc", "tasp", "pioneer", "lumiere", "simr", "promys", "regeneron-sts"],
+        ["rsi", "ssp", "ylc", "pioneer", "lumiere", "simr", "promys", "regeneron-sts"],
         "Selective")
     ],
   },
@@ -202,7 +202,7 @@ export const curatedSections: CuratedSection[] = [
         "linear-gradient(135deg, #0e1f15 0%, #2fbf82 48%, #f7c65f 100%)",
         ["free", "stipend", "summer"], ["Undecided"],
         ["Summer Program", "Research", "Fellowship"],
-        ["rsi", "ssp", "tasp", "ylc", "promys", "ross", "mites", "simr", "nih-summer", "beaver-works", "nyu-arise", "hcssim-prim", "girls-who-code", "stanford-ai4all"],
+        ["rsi", "ssp", "ylc", "promys", "ross", "mites", "simr", "nih-summer", "beaver-works", "nyu-arise", "hcssim-prim", "girls-who-code", "stanford-ai4all"],
         "Free"),
       c("ivy-level-summer", "Ivy-Level Summer Programs",
         "Pre-college summer programs hosted at Ivy League and top-tier universities.",
