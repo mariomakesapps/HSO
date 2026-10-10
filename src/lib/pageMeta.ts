@@ -170,7 +170,7 @@ function fillCounts(template: string, total: number, free: number): string {
     .replace(/\{free\}/g, String(free));
 }
 
-export function categoryMeta(slug: CategorySlug): PageMeta {
+function categoryMetaBase(slug: CategorySlug): PageMeta {
   const meta = CATEGORY_META[slug];
   const url = `${SITE_URL}/categories/${slug}`;
   const list = allOpportunities.filter((o) => o.category === meta.category);
@@ -226,7 +226,7 @@ export function categoryMeta(slug: CategorySlug): PageMeta {
  * The ItemList is a build-time snapshot of what was closing when the site was
  * built; the page recomputes on load. Rebuilding refreshes both.
  */
-export function deadlinesMeta(): PageMeta {
+function deadlinesMetaBase(): PageMeta {
   const url = `${SITE_URL}${DEADLINES_PATH}`;
   const closing = deadlineBuckets().flatMap((b) => (b.id === "opening-soon" ? [] : b.items));
 
@@ -276,7 +276,7 @@ export function deadlinesMeta(): PageMeta {
 /**
  * The cross-category remote / nationwide view. Not a Category — see lib/remote.ts.
  */
-export function remoteMeta(): PageMeta {
+function remoteMetaBase(): PageMeta {
   const url = `${SITE_URL}${REMOTE_PATH}`;
   const list = remoteOpportunities();
 
@@ -442,7 +442,7 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
  * rather than a Category, and it is the indexable home for the 578 city
  * after-school rows that are noindexed individually.
  */
-export function nycMeta(): PageMeta {
+function nycMetaBase(): PageMeta {
   const url = `${SITE_URL}${NYC_PATH}`;
   const featured = nycFeatured();
   const afterSchool = nycAfterSchoolByBorough().reduce((n, g) => n + g.items.length, 0);
@@ -500,3 +500,8 @@ export function allRoutes(): PageMeta[] {
     ...allOpportunities.map((opp) => opportunityMeta(opp)),
   ];
 }
+
+export const categoryMeta = (slug: CategorySlug): PageMeta => withPageSeo(categoryMetaBase(slug));
+export const deadlinesMeta = (): PageMeta => withPageSeo(deadlinesMetaBase());
+export const remoteMeta = (): PageMeta => withPageSeo(remoteMetaBase());
+export const nycMeta = (): PageMeta => withPageSeo(nycMetaBase());
