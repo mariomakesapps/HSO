@@ -23,7 +23,7 @@ Allowlisted (indexed whatever the score): `nyc-dycd-beacon-ms-210`, `nyc-dycd-be
 | 11 | 7 |
 | 12 | 3 |
 
-**2444** listings, **945** below the threshold, **1499** indexable after every gate.
+**2444** listings, **945** below the threshold, **1502** indexable after every gate.
 
 ### Below the threshold, by family
 

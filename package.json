@@ -21,7 +21,8 @@
     "seo:sitemap": "node scripts/check-sitemap.mjs",
     "seo:orphans": "node scripts/check-orphans.mjs",
     "seo:audit": "node scripts/seo-audit.mjs",
-    "seo:quality": "node scripts/quality-report.mjs"
+    "seo:quality": "node scripts/quality-report.mjs",
+    "seo:not-high-school": "node scripts/report-not-high-school.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

@@ -143,7 +143,7 @@ function headFor(meta) {
     ...(meta.prev ? [`<link ${RH} rel="prev" href="${escapeHtml(SITE_URL + meta.prev)}" />`] : []),
     ...(meta.next ? [`<link ${RH} rel="next" href="${escapeHtml(SITE_URL + meta.next)}" />`] : []),
     meta.noindex
-      ? `<meta ${RH} name="robots" content="noindex,nofollow" />`
+      ? `<meta ${RH} name="robots" content="noindex,follow" />`
       : `<meta ${RH} name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />`,
     `<meta ${RH} property="og:type" content="website" />`,
     `<meta ${RH} property="og:site_name" content="HSO" />`,

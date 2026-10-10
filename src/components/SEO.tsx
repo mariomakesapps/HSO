@@ -41,7 +41,7 @@ export function SEO({
       <link rel="canonical" href={url} />
       {prev && <link rel="prev" href={`${SITE_URL}${prev}`} />}
       {next && <link rel="next" href={`${SITE_URL}${next}`} />}
-      {noindex && <meta name="robots" content="noindex,nofollow" />}
+      {noindex && <meta name="robots" content="noindex,follow" />}
 
       <meta property="og:type" content={type} />
       <meta property="og:url" content={url} />

@@ -1,10 +1,10 @@
 import { allOpportunities, type Opportunity } from "@/data/opportunities";
 import { CATEGORY_META, CATEGORY_SLUGS, type CategorySlug } from "@/lib/categories";
-import { NYC_META, NYC_PATH, isBulkDirectoryImport, nycAfterSchoolByBorough, nycFeatured } from "@/lib/nyc";
+import { NYC_META, NYC_PATH, nycAfterSchoolByBorough, nycFeatured } from "@/lib/nyc";
 import { detailFor } from "@/data/opportunityDetails";
 import { REMOTE_META, REMOTE_PATH, remoteOpportunities } from "@/lib/remote";
 import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
-import { CATEGORY_PAGE_SIZE, QUALITY_THRESHOLD } from "@/config/seo";
+import { CATEGORY_PAGE_SIZE, INDEX_ALLOWLIST, QUALITY_THRESHOLD } from "@/config/seo";
 import { qualityScore } from "@/lib/quality";
 import { applySort } from "@/lib/filterSort";
 
@@ -98,9 +98,11 @@ function clampDescription(raw: string, limit = 158): string {
 /**
  * Indexing gate for opportunity pages. Hard gates first: core fields present,
  * a working direct link, not flagged for manual review. Then the page-quality
- * score (src/lib/quality.ts) must reach QUALITY_THRESHOLD (src/config/seo.ts).
- * A page that fails is served noindex and left out of the sitemap; it stays
- * live and linked. Memoised: the prerender asks once per page and per link.
+ * score (src/lib/quality.ts) must reach QUALITY_THRESHOLD (src/config/seo.ts),
+ * unless the page is on INDEX_ALLOWLIST. Bulk imports (NYC DYCD rows) go through
+ * the same score as everything else rather than being excluded by id. A page
+ * that fails is served noindex,follow and left out of the sitemap; it stays live
+ * and its links still count. Memoised: the prerender asks once per page and per link.
  */
 const indexableCache = new Map<string, boolean>();
 
@@ -114,8 +116,7 @@ export function isOpportunityIndexable(opp: Opportunity): boolean {
     hasCoreFields &&
     linkOk &&
     opp.requiresReview !== true &&
-    !isBulkDirectoryImport(opp) &&
-    qualityScore(opp).score >= QUALITY_THRESHOLD;
+    (INDEX_ALLOWLIST.has(opp.id) || qualityScore(opp).score >= QUALITY_THRESHOLD);
   indexableCache.set(opp.id, result);
   return result;
 }

@@ -31,7 +31,8 @@ export function isBulkDirectoryImport(opp: Opportunity): boolean {
  *  - 578 rows imported from the city's DYCD after-school table. Every one shares
  *    the same boilerplate sentence and links to the same dataset, so each is a
  *    near-duplicate of the other 577 and none of them can rank. They are
- *    noindexed individually (see isBulkDirectoryImport) and surfaced here instead,
+ *    noindexed by the quality score (src/lib/quality.ts) unless allowlisted in
+ *    src/config/seo.ts, and surfaced here instead,
  *    grouped by borough, which is the form a student can actually use.
  *  - Real New York programmes — museum teen councils, hospital internships,
  *    library and lab placements — which each have their own page worth indexing.
