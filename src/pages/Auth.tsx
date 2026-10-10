@@ -8,6 +8,7 @@ import { toast } from "@/hooks/use-toast";
 import { localSignIn, localSignUp, useAuthSession } from "@/hooks/useAuthSession";
 import { lovable } from "@/integrations/lovable/index";
 import SEO from "@/components/SEO";
+import { STATIC_PAGE_META } from "@/lib/pageMeta";
 import { Atmosphere } from "@/components/Atmosphere";
 
 function checkPassword(pw: string) {
@@ -117,15 +118,7 @@ const Auth = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-cream">
-      <SEO
-        title={isSignup ? "Create Your Free HSO Account" : "Sign In to HSO"}
-        description={
-          isSignup
-            ? "Create a free HSO account to save high school internships, scholarships, research programs, and summer programs to your shelf."
-            : "Sign in to HSO to access your saved high school internships, scholarships, research programs, and curated collections."
-        }
-        path="/auth"
-      />
+      <SEO {...STATIC_PAGE_META["/auth"]} />
       <Atmosphere />
 
       <main className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl items-center justify-center px-4 py-10 sm:px-6">

@@ -37,6 +37,7 @@ import { applyFilters, applySort, facetCounts } from "@/lib/filterSort";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { cn } from "@/lib/utils";
 import { SEO } from "@/components/SEO";
+import { STATIC_PAGE_META } from "@/lib/pageMeta";
 import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
 
 const MONTH_LABELS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
@@ -259,17 +260,7 @@ const Index = () => {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden text-foreground">
-      <SEO
-        title="High School Internships, Scholarships & Programs | HSO"
-        description="Free U.S. opportunity finder for high schoolers: internships, summer programs, scholarships, research, and competitions — curated and deadline-tracked."
-        path="/"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "WebSite",
-          name: "HSO",
-          url: "https://highschoolopportunity.org/",
-        }}
-      />
+      <SEO {...STATIC_PAGE_META["/"]} />
       <main className="relative z-10">
         <Hero
           isAuthed={isAuthed}

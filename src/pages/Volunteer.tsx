@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { z } from "zod";
 import { SiteFooter } from "@/components/SiteFooter";
-import { useSEO } from "@/lib/seo";
+import { SEO } from "@/components/SEO";
+import { STATIC_PAGE_META } from "@/lib/pageMeta";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -28,11 +29,6 @@ const schema = z.object({
 });
 
 const Volunteer = () => {
-  useSEO({
-    title: "HSO Internships (Unpaid) | High School Opportunity",
-    description:
-      "Three unpaid internships on the student team behind HSO: finding and checking opportunities, running social, and getting schools on board. A few hours a week, remote.",
-  });
   const [submitting, setSubmitting] = useState(false);
   const [interests, setInterests] = useState<string[]>([]);
 
@@ -99,6 +95,7 @@ const Volunteer = () => {
 
   return (
     <div className="min-h-screen">
+      <SEO {...STATIC_PAGE_META["/volunteer"]} />
       <main className="mx-auto max-w-2xl px-4 py-14 sm:px-6 sm:py-20">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Get involved</p>
         <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-5xl">HSO Internships</h1>

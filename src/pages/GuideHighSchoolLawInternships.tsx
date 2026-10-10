@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import SEO from "@/components/SEO";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { breadcrumbJsonLd, guideCrumbs } from "@/lib/pageMeta";
+import { STATIC_PAGE_META, guideCrumbs } from "@/lib/pageMeta";
+import { LAW_GUIDE_FAQS as FAQS } from "@/data/guides";
 
 const PROGRAMS = [
   {
@@ -49,59 +50,12 @@ const PROGRAMS = [
   },
 ];
 
-const FAQS = [
-  {
-    q: "Can a high school student really get a law internship?",
-    a: "Yes, but almost never through a national posting. Most high school law internships come from direct outreach to small local firms, public defender and district attorney offices, legal aid nonprofits, and county bar associations. Structured national programs exist, but they are limited and competitive.",
-  },
-  {
-    q: "Are high school law internships paid?",
-    a: "Most are unpaid or offer a small stipend. Nonprofit legal aid organizations and city youth-employment programs are the most likely to pay; private firms usually offer unpaid shadowing or administrative roles.",
-  },
-  {
-    q: "When should I apply?",
-    a: "Start outreach in January or February for a summer placement. Formal programs mostly close between February and April, and local firms fill informal spots by late spring.",
-  },
-  {
-    q: "What do I need to apply?",
-    a: "A one-page resume, a short cover email naming why that specific office, a transcript, and one teacher reference. Mock trial, debate, or student government experience is the most useful thing to highlight.",
-  },
-];
+
 
 export default function GuideHighSchoolLawInternships() {
-  const jsonLd = [
-    {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      headline: "High School Law Internships: How to Find and Land One (2026)",
-      description:
-        "How U.S. high school students find law internships — national programs, local firm outreach, deadlines, and what to send.",
-      author: { "@type": "Organization", name: "HSO" },
-      publisher: { "@type": "Organization", name: "HSO — High School Opportunity" },
-      datePublished: "2026-07-30",
-      dateModified: "2026-07-30",
-      mainEntityOfPage: "https://highschoolopportunity.org/guides/high-school-law-internships",
-    },
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: FAQS.map((f) => ({
-        "@type": "Question",
-        name: f.q,
-        acceptedAnswer: { "@type": "Answer", text: f.a },
-      })),
-    },
-  ];
-
   return (
     <div className="min-h-screen">
-      <SEO
-        title="High School Law Internships: How to Find One | HSO"
-        description="Find high school law internships in the U.S. — DOJ and bar association programs, pre-law academies, local firm outreach scripts, and application deadlines."
-        path="/guides/high-school-law-internships"
-        type="article"
-        jsonLd={[...(Array.isArray(jsonLd) ? jsonLd : [jsonLd]), breadcrumbJsonLd(guideCrumbs("/guides/high-school-law-internships"))]}
-      />
+      <SEO {...STATIC_PAGE_META["/guides/high-school-law-internships"]} type="article" />
       <main className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20">
         <Breadcrumbs crumbs={guideCrumbs("/guides/high-school-law-internships")} className="mb-6" />
         <p className="text-xs font-bold uppercase tracking-[0.24em] text-sage">HSO Guide</p>

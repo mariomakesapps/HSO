@@ -3,6 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/integrations/supabase/client";
 import { SEO } from "@/components/SEO";
+import { STATIC_PAGE_META } from "@/lib/pageMeta";
 
 type Status = "loading" | "ready" | "already" | "invalid" | "submitting" | "done" | "error";
 
@@ -64,12 +65,7 @@ const Unsubscribe = () => {
 
   return (
     <>
-      <SEO
-        title="Unsubscribe — HSO"
-        description="Manage your High School Opportunity email preferences. Unsubscribe from deadline reminders and program alerts, or resubscribe at any time."
-        path="/unsubscribe"
-        noindex
-      />
+      <SEO {...STATIC_PAGE_META["/unsubscribe"]} />
       <main className="mx-auto w-full max-w-xl px-4 py-16 sm:px-6">
       <div className="rounded-3xl border border-border/60 bg-card/80 p-8 shadow-soft">
         <h1 className="font-display text-3xl tracking-tight text-ink">Unsubscribe from HSO emails</h1>

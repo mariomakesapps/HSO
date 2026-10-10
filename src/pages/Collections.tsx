@@ -5,7 +5,8 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FilterDropdown, type DropdownOption } from "@/components/FilterDropdown";
-import { useSEO } from "@/lib/seo";
+import { SEO } from "@/components/SEO";
+import { STATIC_PAGE_META } from "@/lib/pageMeta";
 import { useAuthSession } from "@/hooks/useAuthSession";
 import {
   careerPaths,
@@ -51,10 +52,6 @@ function signInRequiredToast(navigate: ReturnType<typeof useNavigate>, returnTo:
 }
 
 export default function Collections() {
-  useSEO({
-    title: "Curated Collections | HSO",
-    description: "HSO-curated lists of U.S.-based high school opportunities, hand-picked by major, career path, and goal.",
-  });
 
   useEffect(() => {
     void loadCuratedCounts();
@@ -103,6 +100,7 @@ export default function Collections() {
 
   return (
     <div className="min-h-screen text-foreground">
+      <SEO {...STATIC_PAGE_META["/collections"]} />
       <main className="mx-auto w-full max-w-[1240px] px-4 pb-24 pt-8 md:px-6 md:pt-12">
         <section className="hso-glass-panel hso-surface-grid relative overflow-hidden rounded-[2rem] p-6 sm:p-10">
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(118deg,hsl(var(--coral)/0.10),transparent_38%),linear-gradient(248deg,hsl(var(--sage)/0.10),transparent_42%)]" />

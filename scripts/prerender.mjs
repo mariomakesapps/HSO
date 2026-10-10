@@ -44,6 +44,7 @@ async function loadRouteData(root) {
   const result = await build({
     stdin: {
       contents: `
+        export { NOT_FOUND_META } from "@/lib/pageMeta";
         export { allRoutes, opportunityMeta, categoryMeta, categoryPageCount, remoteMeta, deadlinesMeta, STATIC_PAGE_META,
                  isOpportunityIndexable } from "@/lib/pageMeta";
         export { REMOTE_META, remoteOpportunities } from "@/lib/remote";
@@ -592,7 +593,7 @@ export async function prerender({ root, distDir }) {
   // 404.html sits at the dist root, which is where both Cloudflare Pages and
   // Netlify look for it. It is deliberately not in `pages`: it must never reach
   // allRoutes() or the sitemap.
-  const nf = notFoundMeta();
+  const nf = data.NOT_FOUND_META ?? notFoundMeta();
   let notFoundHtml;
   try {
     notFoundHtml = renderRoute(ssr, "/__hso-not-found__");

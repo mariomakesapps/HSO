@@ -113,7 +113,7 @@ export const DEADLINES_META = {
   title: "High School Deadlines: What Closes Next | HSO",
   h1: "Application deadlines closing soon",
   description:
-    "Every high school internship, scholarship, summer program and competition on HSO with a confirmed upcoming deadline — grouped by what closes this week, this month, and in the next three months.",
+    "High school internships, scholarships, summer programs and competitions with a confirmed upcoming deadline: what closes this week, this month and next.",
   intro:
     "Dates on this page are read off each program's own page and rechecked; anything we cannot confirm is listed as Deadline TBA instead of guessed.",
   guide: [

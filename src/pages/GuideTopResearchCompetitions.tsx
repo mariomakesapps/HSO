@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import SEO from "@/components/SEO";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { breadcrumbJsonLd, guideCrumbs } from "@/lib/pageMeta";
+import { STATIC_PAGE_META, guideCrumbs } from "@/lib/pageMeta";
 
 const COMPETITIONS = [
   {
@@ -84,28 +84,9 @@ const COMPETITIONS = [
 ];
 
 export default function GuideTopResearchCompetitions() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "Best Research Competitions for High School Students (2026 Comparison)",
-    description:
-      "Side-by-side comparison of the top research competitions for high schoolers — Regeneron STS, ISEF, JSHS, Biotech Prize, Davidson Fellows, and the Conrad Challenge.",
-    author: { "@type": "Organization", name: "HSO" },
-    publisher: { "@type": "Organization", name: "HSO — High School Opportunity" },
-    datePublished: "2026-07-22",
-    dateModified: "2026-07-22",
-    mainEntityOfPage: "https://highschoolopportunity.org/guides/top-research-competitions",
-  };
-
   return (
     <div className="min-h-screen">
-      <SEO
-        title="Best Research Competitions for High Schoolers 2026 | HSO"
-        description="Compare top U.S. research competitions for high schoolers: Regeneron STS, ISEF, JSHS, Davidson Fellows. Prizes, selectivity, deadlines."
-        path="/guides/top-research-competitions"
-        type="article"
-        jsonLd={[...(Array.isArray(jsonLd) ? jsonLd : [jsonLd]), breadcrumbJsonLd(guideCrumbs("/guides/top-research-competitions"))]}
-      />
+      <SEO {...STATIC_PAGE_META["/guides/top-research-competitions"]} type="article" />
       <main className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20">
         <Breadcrumbs crumbs={guideCrumbs("/guides/top-research-competitions")} className="mb-6" />
         <p className="text-xs font-bold uppercase tracking-[0.24em] text-sage">HSO Guide</p>

@@ -78,9 +78,9 @@ export function nycAfterSchoolByBorough(): { borough: Borough; items: Opportunit
 
 export const NYC_META = {
   h1: "Programs for high school students in New York City",
-  title: "NYC Programs for High School Students 2027 (Free and Paid) | HSO",
+  title: "NYC Programs for High School Students (Free & Paid) | HSO",
   description:
-    "Internships, summer programs, museum teen councils and free after-school programs for high school students across Manhattan, Brooklyn, the Bronx, Queens and Staten Island.",
+    "Internships, summer programs, museum teen councils and free after-school programs for New York City high school students in all five boroughs.",
   intro:
     "Everything in the catalogue that runs in New York City, in one place: paid internships and selective summer programs with their own application pages, plus the city's free after-school programs grouped by borough.",
   guide: [

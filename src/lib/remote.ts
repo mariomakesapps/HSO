@@ -22,10 +22,10 @@ export function remoteOpportunities(): Opportunity[] {
 export const REMOTE_PATH = "/remote";
 
 export const REMOTE_META = {
-  title: "Remote & Nationwide Opportunities for High School Students | HSO",
+  title: "Remote Opportunities for High School Students | HSO",
   h1: "Remote and nationwide opportunities for high school students",
   description:
-    "Online and nationwide programs open to high schoolers in any U.S. state — remote internships, online competitions, virtual research, and national scholarships.",
+    "Online and nationwide programs for high schoolers in any U.S. state: remote internships, online competitions, virtual research and national scholarships.",
   intro:
     "Programs you can do from anywhere in the United States: fully online competitions and research, plus national programs that accept students from every state.",
   guide: [

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import SEO from "@/components/SEO";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { breadcrumbJsonLd, guideCrumbs } from "@/lib/pageMeta";
+import { STATIC_PAGE_META, guideCrumbs } from "@/lib/pageMeta";
 
 const PROGRAMS = [
   {
@@ -40,28 +40,9 @@ const PROGRAMS = [
 ];
 
 export default function GuideTopBusinessPrograms() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "Best Business Summer Programs for High School Students (2026 Comparison)",
-    description:
-      "Compare Wharton Global Youth, Berkeley Haas B-BAY, and NYU Stern high school business programs on cost, selectivity, and grade level.",
-    author: { "@type": "Organization", name: "HSO" },
-    publisher: { "@type": "Organization", name: "HSO — High School Opportunity" },
-    datePublished: "2026-07-29",
-    dateModified: "2026-07-29",
-    mainEntityOfPage: "https://highschoolopportunity.org/guides/top-business-summer-programs",
-  };
-
   return (
     <div className="min-h-screen">
-      <SEO
-        title="Best Business Summer Programs for High Schoolers 2026 | HSO"
-        description="Wharton Global Youth cost vs. Berkeley Haas B-BAY and NYU Stern: compare tuition, selectivity, and grade levels for top U.S. business summer programs."
-        path="/guides/top-business-summer-programs"
-        type="article"
-        jsonLd={[...(Array.isArray(jsonLd) ? jsonLd : [jsonLd]), breadcrumbJsonLd(guideCrumbs("/guides/top-business-summer-programs"))]}
-      />
+      <SEO {...STATIC_PAGE_META["/guides/top-business-summer-programs"]} type="article" />
       <main className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20">
         <Breadcrumbs crumbs={guideCrumbs("/guides/top-business-summer-programs")} className="mb-6" />
         <p className="text-xs font-bold uppercase tracking-[0.24em] text-sage">HSO Guide</p>

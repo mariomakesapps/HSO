@@ -15,7 +15,8 @@ import {
   useCuratedLikedStatus,
   useCuratedSavedStatus,
 } from "@/store/collections";
-import { useSEO } from "@/lib/seo";
+import { SEO } from "@/components/SEO";
+import { sharedCollectionMeta } from "@/lib/pageMeta";
 import { displayedLikes } from "@/lib/curatedBaseline";
 
 const CuratedCollectionDetail = () => {
@@ -30,15 +31,7 @@ const CuratedCollectionDetail = () => {
 
   useEffect(() => { void loadCuratedCounts(); }, []);
 
-  useSEO({
-    title: collection ? `${collection.title} - HSO Collection` : "Collection - HSO",
-    description: (() => {
-      const raw =
-        collection?.description ||
-        "A curated HSO list of high school opportunities: internships, research, scholarships, competitions, and summer programs picked by editors.";
-      return raw.length > 158 ? `${raw.slice(0, 155)}…` : raw;
-    })(),
-  });
+  const seo = sharedCollectionMeta(id ?? "", collection?.title, collection?.description);
 
   const allOpps = useMemo(
     () => (collection?.opportunityIds ?? []).map((oid) => allOpportunities.find((o) => o.id === oid)).filter(Boolean),
@@ -60,6 +53,7 @@ const CuratedCollectionDetail = () => {
   if (!collection) {
     return (
       <div className="min-h-screen">
+        <SEO {...seo} />
         <main className="mx-auto max-w-3xl px-4 py-16 text-center">
           <div className="hso-glass-panel rounded-[1.5rem] p-8">
             <Lock className="mx-auto h-8 w-8 text-coral" />
@@ -99,6 +93,7 @@ const CuratedCollectionDetail = () => {
 
   return (
     <div className="min-h-screen text-foreground">
+      <SEO {...seo} />
       <main className="mx-auto w-full max-w-[1180px] px-4 pb-24 pt-8 md:px-6 md:pt-12">
         <button type="button" onClick={goBack} className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-coral">
           <ArrowLeft className="h-4 w-4" /> Collections

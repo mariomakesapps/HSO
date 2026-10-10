@@ -22,7 +22,9 @@
     "seo:orphans": "node scripts/check-orphans.mjs",
     "seo:audit": "node scripts/seo-audit.mjs",
     "seo:quality": "node scripts/quality-report.mjs",
-    "seo:not-high-school": "node scripts/report-not-high-school.mjs"
+    "seo:not-high-school": "node scripts/report-not-high-school.mjs",
+    "seo:meta": "node scripts/check-duplicate-meta.mjs",
+    "seo:jsonld": "node scripts/validate-jsonld.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

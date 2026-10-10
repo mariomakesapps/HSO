@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import SEO from "@/components/SEO";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { breadcrumbJsonLd, guideCrumbs } from "@/lib/pageMeta";
+import { STATIC_PAGE_META, guideCrumbs } from "@/lib/pageMeta";
 
 const PROGRAMS = [
   {
@@ -82,28 +82,9 @@ const PROGRAMS = [
 ];
 
 export default function GuideTopMedicalInternships() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: "Best Medical Internships for High School Students (2026 Comparison)",
-    description:
-      "Side-by-side comparison of the top medical and biomedical research internships for high school students — JHIBS, Stanford SIMR, NIH HiSTEP, NIH HS-SIP, Rockefeller SSRP, and MIT RSI.",
-    author: { "@type": "Organization", name: "HSO" },
-    publisher: { "@type": "Organization", name: "HSO — High School Opportunity" },
-    datePublished: "2026-07-08",
-    dateModified: "2026-07-08",
-    mainEntityOfPage: "https://highschoolopportunity.org/guides/top-medical-internships",
-  };
-
   return (
     <div className="min-h-screen">
-      <SEO
-        title="Best Medical Internships for High School Students 2026 | HSO"
-        description="Compare top U.S. medical internships for high schoolers: JHIBS, Stanford SIMR, NIH HiSTEP, Rockefeller SSRP. Selectivity, stipends, deadlines."
-        path="/guides/top-medical-internships"
-        type="article"
-        jsonLd={[...(Array.isArray(jsonLd) ? jsonLd : [jsonLd]), breadcrumbJsonLd(guideCrumbs("/guides/top-medical-internships"))]}
-      />
+      <SEO {...STATIC_PAGE_META["/guides/top-medical-internships"]} type="article" />
       <main className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20">
         <Breadcrumbs crumbs={guideCrumbs("/guides/top-medical-internships")} className="mb-6" />
         <p className="text-xs font-bold uppercase tracking-[0.24em] text-sage">HSO Guide</p>
