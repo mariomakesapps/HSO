@@ -1,3 +1,5 @@
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { pageCrumbs } from "@/lib/pageMeta";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -7,7 +9,7 @@ import { OpportunityCard } from "@/components/OpportunityCard";
 import { SortBar, SortKey } from "@/components/SortBar";
 import { applySort } from "@/lib/filterSort";
 import { remoteMeta } from "@/lib/pageMeta";
-import { REMOTE_META, remoteOpportunities } from "@/lib/remote";
+import { REMOTE_META, REMOTE_PATH, remoteOpportunities } from "@/lib/remote";
 import { useAtmosphere } from "@/lib/atmosphere";
 
 type CategoryFilter = "All" | (typeof CATEGORY_META)[keyof typeof CATEGORY_META]["category"];
@@ -36,6 +38,7 @@ const RemoteNationwide = () => {
     <div className="min-h-screen">
       <SEO {...remoteMeta()} />
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
+        <Breadcrumbs crumbs={pageCrumbs(REMOTE_META.h1, REMOTE_PATH)} className="mb-6" />
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Anywhere in the U.S.</p>
         <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-6xl">{REMOTE_META.h1}</h1>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">{REMOTE_META.intro}</p>

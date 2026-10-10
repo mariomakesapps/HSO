@@ -98,8 +98,18 @@ function startLocalHost() {
       return false;
     }
   };
-  const matches = (pattern, p) =>
-    pattern.endsWith("/*") ? p.startsWith(pattern.slice(0, -1)) : pattern === p;
+  // Supports the two forms _redirects uses here: a trailing /* and :placeholder segments.
+  const toRegex = (pattern) =>
+    new RegExp(
+      "^" +
+        pattern
+          .replace(/[.+?^${}()|[\]\\]/g, "\\$&")
+          .replace(/\/\*$/, "/(?<splat>.*)")
+          .replace(/:([A-Za-z]+)/g, "(?<$1>[^/]+)") +
+        "$",
+    );
+  const matches = (pattern, p) => toRegex(pattern).exec(p);
+  const fill = (to, m) => to.replace(/:([A-Za-z]+)/g, (_, k) => m.groups?.[k] ?? "");
 
   const server = http.createServer((req, res) => {
     const urlPath = decodeURIComponent(new URL(req.url, "http://x").pathname);
@@ -111,9 +121,10 @@ function startLocalHost() {
       return fs.createReadStream(file).pipe(res);
     }
     for (const r of redirects) {
-      if (!matches(r.from, urlPath)) continue;
+      const m = matches(r.from, urlPath);
+      if (!m) continue;
       if (r.status === 301 || r.status === 302) {
-        res.writeHead(r.status, { location: r.to });
+        res.writeHead(r.status, { location: fill(r.to, m) });
         return res.end();
       }
       const target = path.join(DIST, r.to.replace(/^\//, ""));

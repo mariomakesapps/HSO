@@ -11,6 +11,9 @@ export interface SEOProps {
   type?: "website" | "article";
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   noindex?: boolean;
+  /** Paginated series: paths of the neighbouring pages. */
+  prev?: string;
+  next?: string;
 }
 
 /**
@@ -25,6 +28,8 @@ export function SEO({
   type = "website",
   jsonLd,
   noindex = false,
+  prev,
+  next,
 }: SEOProps) {
   const url = `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
   const ldArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
@@ -34,6 +39,8 @@ export function SEO({
       <title>{title}</title>
       {description && <meta name="description" content={description} />}
       <link rel="canonical" href={url} />
+      {prev && <link rel="prev" href={`${SITE_URL}${prev}`} />}
+      {next && <link rel="next" href={`${SITE_URL}${next}`} />}
       {noindex && <meta name="robots" content="noindex,nofollow" />}
 
       <meta property="og:type" content={type} />

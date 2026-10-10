@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import SEO from "@/components/SEO";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { breadcrumbJsonLd, guideCrumbs } from "@/lib/pageMeta";
 
 const PROGRAMS = [
   {
@@ -12,6 +14,8 @@ const PROGRAMS = [
     grades: "Rising sophomores through rising seniors depending on track",
     bestFor: "Students who want the strongest business-school brand and a finance/entrepreneurship curriculum",
     officialUrl: "https://globalyouth.wharton.upenn.edu/",
+    /** The same program's HSO listing (deadline, eligibility, cost). */
+    hsoId: "wharton-global",
   },
   {
     name: "Berkeley Haas Business Academy for Youth (B-BAY)",
@@ -56,9 +60,10 @@ export default function GuideTopBusinessPrograms() {
         description="Wharton Global Youth cost vs. Berkeley Haas B-BAY and NYU Stern: compare tuition, selectivity, and grade levels for top U.S. business summer programs."
         path="/guides/top-business-summer-programs"
         type="article"
-        jsonLd={jsonLd}
+        jsonLd={[...(Array.isArray(jsonLd) ? jsonLd : [jsonLd]), breadcrumbJsonLd(guideCrumbs("/guides/top-business-summer-programs"))]}
       />
       <main className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20">
+        <Breadcrumbs crumbs={guideCrumbs("/guides/top-business-summer-programs")} className="mb-6" />
         <p className="text-xs font-bold uppercase tracking-[0.24em] text-sage">HSO Guide</p>
         <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
           Best Business Summer Programs for High School Students (2026)
@@ -116,6 +121,11 @@ export default function GuideTopBusinessPrograms() {
               <a href={p.officialUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block text-sm font-semibold text-coral hover:underline">
                 Visit official program page →
               </a>
+              {"hsoId" in p && p.hsoId && (
+                <Link to={`/opportunities/${p.hsoId}`} className="ml-4 mt-4 inline-block text-sm font-semibold text-ink underline-offset-4 hover:underline">
+                  Deadline and eligibility on HSO →
+                </Link>
+              )}
             </article>
           ))}
         </section>

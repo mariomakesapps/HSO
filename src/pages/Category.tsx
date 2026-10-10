@@ -7,12 +7,15 @@ import { allOpportunities } from "@/data/opportunities";
 import { OpportunityCard } from "@/components/OpportunityCard";
 import { SortBar, SortKey } from "@/components/SortBar";
 import { applySort } from "@/lib/filterSort";
-import { categoryMeta } from "@/lib/pageMeta";
+import { categoryCrumbs, categoryMeta, categoryPageCount, categoryPagePath } from "@/lib/pageMeta";
 import { useAtmosphere, type AtmosphereTheme } from "@/lib/atmosphere";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { CATEGORY_PAGE_SIZE } from "@/config/seo";
 
 const Category = () => {
-  const { slug } = useParams<{ slug: CategorySlug }>();
+  const { slug, page: pageParam } = useParams<{ slug: CategorySlug; page?: string }>();
   const meta = slug ? CATEGORY_META[slug] : undefined;
+  const page = pageParam === undefined ? 1 : /^\d+$/.test(pageParam) ? Number(pageParam) : NaN;
 
   // Every hook runs before the redirect. Bailing out first would change the
   // number of hooks between renders the moment a slug went from valid to
@@ -29,31 +32,52 @@ const Category = () => {
 
   if (!slug || !meta) return <Navigate to="/" replace />;
 
+  // Page 1 lives at the bare category URL; /page/1 and out-of-range pages go there.
+  const pages = categoryPageCount(slug);
+  if (!Number.isInteger(page) || page < 1 || page > pages || pageParam === "1") {
+    return <Navigate to={`/categories/${slug}`} replace />;
+  }
+  const first = page === 1;
+  const start = (page - 1) * CATEGORY_PAGE_SIZE;
+  const onPage = list.slice(start, start + CATEGORY_PAGE_SIZE);
+  const crumbs = first ? categoryCrumbs(slug) : [...categoryCrumbs(slug), { name: `Page ${page}`, path: categoryPagePath(slug, page) }];
+
   return (
     <div className="min-h-screen">
-      <SEO {...categoryMeta(slug)} />
+      <SEO {...categoryMeta(slug, page)} />
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
-        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Category</p>
-        <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-6xl">{meta.h1}</h1>
+        <Breadcrumbs crumbs={crumbs} />
+        <p className="mt-6 text-xs uppercase tracking-[0.2em] text-muted-foreground">Category</p>
+        <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-6xl">
+          {meta.h1}
+          {!first && <span className="block text-2xl font-normal text-muted-foreground sm:text-3xl">Page {page} of {pages}</span>}
+        </h1>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">{meta.intro}</p>
 
-        <section className="hso-glass-panel mt-10 rounded-3xl p-6 sm:p-8">
-          <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">About {meta.h1.toLowerCase()}</h2>
-          <div className="mt-4 space-y-4 text-base leading-relaxed text-muted-foreground">
-            {meta.guide.map((p, i) => <p key={i}>{p}</p>)}
-          </div>
-        </section>
+        {first && (
+          <section className="hso-glass-panel mt-10 rounded-3xl p-6 sm:p-8">
+            <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">About {meta.h1.toLowerCase()}</h2>
+            <div className="mt-4 space-y-4 text-base leading-relaxed text-muted-foreground">
+              {meta.guide.map((p, i) => <p key={i}>{p}</p>)}
+            </div>
+          </section>
+        )}
 
         <div className="mt-8">
           <SortBar value={sort} onChange={setSort} count={list.length} />
         </div>
 
         <h2 className="sr-only">Programs</h2>
+        <p className="mt-4 text-sm text-muted-foreground">
+          Showing {start + 1}-{start + onPage.length} of {list.length}
+        </p>
         <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {list.map((o, i) => <OpportunityCard key={o.id} opp={o} index={i} />)}
+          {onPage.map((o, i) => <OpportunityCard key={o.id} opp={o} index={i} />)}
         </div>
 
-        <section className="mt-16">
+        <Pagination slug={slug} page={page} pages={pages} />
+
+        {first && <section className="mt-16">
           <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">Frequently asked questions</h2>
           <div className="mt-5 space-y-4">
             {meta.faqs.map((f, i) => (
@@ -65,7 +89,7 @@ const Category = () => {
               </details>
             ))}
           </div>
-        </section>
+        </section>}
 
         <section className="hso-glass-panel mt-16 rounded-3xl p-6 sm:p-10">
           <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Browse more categories</p>
@@ -82,5 +106,34 @@ const Category = () => {
     </div>
   );
 };
+/** Plain links to every page of the category, so each page is one hop from the next. */
+function Pagination({ slug, page, pages }: { slug: CategorySlug; page: number; pages: number }) {
+  if (pages <= 1) return null;
+  const cls = "inline-flex h-10 min-w-10 items-center justify-center rounded-full border px-3 text-sm font-semibold";
+  return (
+    <nav aria-label="Pages" className="mt-10 flex flex-wrap items-center gap-2">
+      {page > 1 && (
+        <Link rel="prev" to={categoryPagePath(slug, page - 1)} className={`${cls} border-border bg-background hover:border-coral hover:text-coral`}>
+          Previous
+        </Link>
+      )}
+      {Array.from({ length: pages }, (_, i) => i + 1).map((n) =>
+        n === page ? (
+          <span key={n} aria-current="page" className={`${cls} border-ink bg-ink text-cream`}>{n}</span>
+        ) : (
+          <Link key={n} to={categoryPagePath(slug, n)} className={`${cls} border-border bg-background hover:border-coral hover:text-coral`}>
+            {n}
+          </Link>
+        ),
+      )}
+      {page < pages && (
+        <Link rel="next" to={categoryPagePath(slug, page + 1)} className={`${cls} border-border bg-background hover:border-coral hover:text-coral`}>
+          Next
+        </Link>
+      )}
+    </nav>
+  );
+}
+
 export default Category;
 

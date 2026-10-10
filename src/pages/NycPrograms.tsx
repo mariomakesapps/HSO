@@ -1,9 +1,11 @@
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { pageCrumbs } from "@/lib/pageMeta";
 import { Link } from "react-router-dom";
 import { SEO } from "@/components/SEO";
 import { SiteFooter } from "@/components/SiteFooter";
 import { OpportunityCard } from "@/components/OpportunityCard";
 import { nycMeta } from "@/lib/pageMeta";
-import { NYC_META, nycAfterSchoolByBorough, nycFeatured } from "@/lib/nyc";
+import { NYC_META, NYC_PATH, nycAfterSchoolByBorough, nycFeatured } from "@/lib/nyc";
 import { useAtmosphere } from "@/lib/atmosphere";
 
 /**
@@ -24,6 +26,7 @@ const NycPrograms = () => {
     <div className="min-h-screen text-foreground">
       <SEO {...nycMeta()} />
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
+        <Breadcrumbs crumbs={pageCrumbs(NYC_META.h1, NYC_PATH)} className="mb-6" />
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">New York City</p>
         <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-6xl">
           {NYC_META.h1}

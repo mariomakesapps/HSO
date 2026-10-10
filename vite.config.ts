@@ -27,12 +27,20 @@ function seoPrerenderPlugin(): Plugin {
       try {
         const { prerender } = await import("./scripts/prerender.mjs");
         const { generateSitemap } = await import("./scripts/generate-sitemap.mjs");
+        const { checkSitemap } = await import("./scripts/check-sitemap.mjs");
 
         const pages = await prerender({ root, distDir });
         const sitemap = await generateSitemap({ root, distDir });
 
+        // Never ship a sitemap that sends Google to a noindexed, missing or
+        // non-canonical URL.
+        const check = await checkSitemap({ distDir });
+        if (check.problems.length) {
+          throw new Error(`sitemap check failed (${check.problems.length}):\n  ${check.problems.slice(0, 30).join("\n  ")}`);
+        }
+
         this.info(
-          `prerendered ${pages.written} pages (${pages.indexable} indexable, ${pages.noindexed} noindex) · sitemap ${sitemap.indexable} URLs (${sitemap.excluded} excluded) · 404.html + ${pages.redirects} permanent redirects · ${pages.ssrFailures} SSR fallbacks`,
+          `prerendered ${pages.written} pages (${pages.indexable} indexable, ${pages.noindexed} noindex) · sitemap index: ${sitemap.indexable} URLs, ${sitemap.withLastmod} with lastmod (${sitemap.excluded} noindex excluded) · 404.html + ${pages.redirects} permanent redirects · ${pages.ssrFailures} SSR fallbacks`,
         );
       } catch (err) {
         // A prerender failure must not silently ship an SPA-only build.

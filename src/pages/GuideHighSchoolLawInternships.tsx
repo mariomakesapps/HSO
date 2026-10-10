@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import SEO from "@/components/SEO";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { breadcrumbJsonLd, guideCrumbs } from "@/lib/pageMeta";
 
 const PROGRAMS = [
   {
@@ -98,9 +100,10 @@ export default function GuideHighSchoolLawInternships() {
         description="Find high school law internships in the U.S. — DOJ and bar association programs, pre-law academies, local firm outreach scripts, and application deadlines."
         path="/guides/high-school-law-internships"
         type="article"
-        jsonLd={jsonLd}
+        jsonLd={[...(Array.isArray(jsonLd) ? jsonLd : [jsonLd]), breadcrumbJsonLd(guideCrumbs("/guides/high-school-law-internships"))]}
       />
       <main className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20">
+        <Breadcrumbs crumbs={guideCrumbs("/guides/high-school-law-internships")} className="mb-6" />
         <p className="text-xs font-bold uppercase tracking-[0.24em] text-sage">HSO Guide</p>
         <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
           High School Law Internships: How to Find and Land One

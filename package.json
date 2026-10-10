@@ -17,7 +17,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "serve:static": "node scripts/serve-static.mjs",
-    "seo:check": "node scripts/seo-check.mjs"
+    "seo:check": "node scripts/seo-check.mjs",
+    "seo:sitemap": "node scripts/check-sitemap.mjs",
+    "seo:orphans": "node scripts/check-orphans.mjs",
+    "seo:audit": "node scripts/seo-audit.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

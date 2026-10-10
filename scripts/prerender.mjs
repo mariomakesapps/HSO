@@ -44,7 +44,7 @@ async function loadRouteData(root) {
   const result = await build({
     stdin: {
       contents: `
-        export { allRoutes, opportunityMeta, categoryMeta, remoteMeta, deadlinesMeta, STATIC_PAGE_META,
+        export { allRoutes, opportunityMeta, categoryMeta, categoryPageCount, remoteMeta, deadlinesMeta, STATIC_PAGE_META,
                  isOpportunityIndexable } from "@/lib/pageMeta";
         export { REMOTE_META, remoteOpportunities } from "@/lib/remote";
         export { DEADLINES_META, deadlineBuckets } from "@/lib/deadlines";
@@ -140,6 +140,8 @@ function headFor(meta) {
     `<title ${RH}>${title}</title>`,
     `<meta ${RH} name="description" content="${description}" />`,
     `<link ${RH} rel="canonical" href="${escapeHtml(url)}" />`,
+    ...(meta.prev ? [`<link ${RH} rel="prev" href="${escapeHtml(SITE_URL + meta.prev)}" />`] : []),
+    ...(meta.next ? [`<link ${RH} rel="next" href="${escapeHtml(SITE_URL + meta.next)}" />`] : []),
     meta.noindex
       ? `<meta ${RH} name="robots" content="noindex,nofollow" />`
       : `<meta ${RH} name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />`,
@@ -525,6 +527,9 @@ async function writeRedirects(distDir, data) {
       .sort(([a], [b]) => a.localeCompare(b))
       .map(([id, target]) => `/opportunities/${id}  ${target}  301`),
     "",
+    "# Page 1 of a category lives at the bare category URL.",
+    "/categories/:slug/page/1  /categories/:slug  301",
+    "",
     "# Any other unknown programme URL is not a page we have: answer 404, not 200.",
     "/opportunities/*  /404.html  404",
     "",
@@ -551,7 +556,9 @@ export async function prerender({ root, distDir }) {
   pages.push({ meta: data.deadlinesMeta(), body: deadlinesBody(data) });
   pages.push({ meta: data.nycMeta(), body: nycBody(data) });
   for (const slug of data.CATEGORY_SLUGS) {
-    pages.push({ meta: data.categoryMeta(slug), body: categoryBody(slug, data) });
+    for (let page = 1; page <= data.categoryPageCount(slug); page++) {
+      pages.push({ meta: data.categoryMeta(slug, page), body: categoryBody(slug, data) });
+    }
   }
   for (const opp of data.allOpportunities) {
     pages.push({ meta: data.opportunityMeta(opp), body: opportunityBody(opp, data) });

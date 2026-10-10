@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import SEO from "@/components/SEO";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { breadcrumbJsonLd, guideCrumbs } from "@/lib/pageMeta";
 
 const PROGRAMS = [
   {
@@ -24,6 +26,8 @@ const PROGRAMS = [
     timeline: "Applications open December; deadline late February; program runs June–August",
     bestFor: "Nationally competitive students pursuing biomedical or clinical research",
     officialUrl: "https://simr.stanford.edu/",
+    /** The same program's HSO listing (deadline, eligibility, cost). */
+    hsoId: "simr",
   },
   {
     name: "NIH High School Scientific Training and Enrichment Program (HiSTEP)",
@@ -46,6 +50,8 @@ const PROGRAMS = [
     timeline: "Applications open mid-November; deadline February 1; program runs May–August",
     bestFor: "Independent students ready for a full lab-embedded biomedical research experience",
     officialUrl: "https://www.training.nih.gov/programs/sip",
+    /** The same program's HSO listing (deadline, eligibility, cost). */
+    hsoId: "nih-summer",
   },
   {
     name: "Rockefeller University Summer Science Research Program (SSRP)",
@@ -57,6 +63,8 @@ const PROGRAMS = [
     timeline: "Applications open January; deadline March; program runs late June–August",
     bestFor: "NYC students seeking a mentored biomedical lab project",
     officialUrl: "https://www.rockefeller.edu/outreach/ssrp/",
+    /** The same program's HSO listing (deadline, eligibility, cost). */
+    hsoId: "rockefeller-ssrp",
   },
   {
     name: "MIT Research Science Institute (RSI)",
@@ -68,6 +76,8 @@ const PROGRAMS = [
     timeline: "Applications due mid-January; program runs late June–early August",
     bestFor: "Top-tier students who want cross-disciplinary research including biomedical tracks",
     officialUrl: "https://www.cee.org/programs/research-science-institute",
+    /** The same program's HSO listing (deadline, eligibility, cost). */
+    hsoId: "rsi",
   },
 ];
 
@@ -92,9 +102,10 @@ export default function GuideTopMedicalInternships() {
         description="Compare top U.S. medical internships for high schoolers: JHIBS, Stanford SIMR, NIH HiSTEP, Rockefeller SSRP. Selectivity, stipends, deadlines."
         path="/guides/top-medical-internships"
         type="article"
-        jsonLd={jsonLd}
+        jsonLd={[...(Array.isArray(jsonLd) ? jsonLd : [jsonLd]), breadcrumbJsonLd(guideCrumbs("/guides/top-medical-internships"))]}
       />
       <main className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20">
+        <Breadcrumbs crumbs={guideCrumbs("/guides/top-medical-internships")} className="mb-6" />
         <p className="text-xs font-bold uppercase tracking-[0.24em] text-sage">HSO Guide</p>
         <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
           Best Medical Internships for High School Students (2026)
@@ -148,6 +159,11 @@ export default function GuideTopMedicalInternships() {
               <a href={p.officialUrl} target="_blank" rel="noopener noreferrer" className="mt-4 inline-block text-sm font-semibold text-coral hover:underline">
                 Visit official program page →
               </a>
+              {"hsoId" in p && p.hsoId && (
+                <Link to={`/opportunities/${p.hsoId}`} className="ml-4 mt-4 inline-block text-sm font-semibold text-ink underline-offset-4 hover:underline">
+                  Deadline and eligibility on HSO →
+                </Link>
+              )}
             </article>
           ))}
         </section>

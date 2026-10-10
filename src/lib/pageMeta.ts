@@ -4,6 +4,8 @@ import { NYC_META, NYC_PATH, isBulkDirectoryImport, nycAfterSchoolByBorough, nyc
 import { detailFor } from "@/data/opportunityDetails";
 import { REMOTE_META, REMOTE_PATH, remoteOpportunities } from "@/lib/remote";
 import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
+import { CATEGORY_PAGE_SIZE } from "@/config/seo";
+import { applySort } from "@/lib/filterSort";
 
 export const SITE_URL = "https://highschoolopportunity.org";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
@@ -23,6 +25,68 @@ export interface PageMeta {
   path: string;
   noindex?: boolean;
   jsonLd?: Record<string, unknown>[];
+  /** Paginated series: paths of the neighbouring pages, emitted as rel="prev"/"next". */
+  prev?: string;
+  next?: string;
+}
+
+/**
+ * One step of a breadcrumb trail. The visible <Breadcrumbs> on a page and its
+ * BreadcrumbList JSON-LD are both built from the same array, so the two cannot
+ * disagree.
+ */
+export interface Crumb {
+  name: string;
+  path: string;
+}
+
+export function breadcrumbJsonLd(crumbs: Crumb[]): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.name,
+      item: `${SITE_URL}${c.path}`,
+    })),
+  };
+}
+
+const HOME_CRUMB: Crumb = { name: "Home", path: "/" };
+
+/** "Academic competitions for high school students" -> "Academic competitions". */
+export function categoryShortName(slug: CategorySlug): string {
+  return CATEGORY_META[slug].h1.replace(/\s+for high school students$/i, "");
+}
+
+export function categoryCrumbs(slug: CategorySlug): Crumb[] {
+  return [HOME_CRUMB, { name: categoryShortName(slug), path: `/categories/${slug}` }];
+}
+
+export function opportunityCrumbs(opp: Opportunity): Crumb[] {
+  const slug = CATEGORY_SLUGS.find((s) => CATEGORY_META[s].category === opp.category);
+  return [
+    HOME_CRUMB,
+    ...(slug ? [{ name: categoryShortName(slug), path: `/categories/${slug}` }] : []),
+    { name: opp.title, path: opportunityPath(opp.id) },
+  ];
+}
+
+export function pageCrumbs(name: string, path: string): Crumb[] {
+  return [HOME_CRUMB, { name, path }];
+}
+
+/** Breadcrumb names for the guides (no /guides index page exists, so Home is the parent). */
+export const GUIDE_CRUMB_NAMES: Record<string, string> = {
+  "/guides/top-medical-internships": "Best medical internships",
+  "/guides/top-research-competitions": "Best research competitions",
+  "/guides/top-business-summer-programs": "Best business summer programs",
+  "/guides/high-school-law-internships": "High school law internships",
+};
+
+export function guideCrumbs(path: string): Crumb[] {
+  return pageCrumbs(GUIDE_CRUMB_NAMES[path] ?? "Guide", path);
 }
 
 /** Google truncates descriptions around 160 chars; keep them under that. */
@@ -103,20 +167,7 @@ export function opportunityMeta(opp: Opportunity): PageMeta {
         publisher: { "@type": "Organization", name: "HSO — High School Opportunity" },
         mainEntityOfPage: url,
       },
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "HSO", item: `${SITE_URL}/` },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: opp.category,
-            item: categoryUrlForCategory(opp.category),
-          },
-          { "@type": "ListItem", position: 3, name: opp.title, item: url },
-        ],
-      },
+      breadcrumbJsonLd(opportunityCrumbs(opp)),
       // FAQ schema only where the questions are actually on the page. Google
       // treats FAQPage markup for questions a visitor cannot see as a violation.
       ...(detail?.faqs?.length
@@ -137,16 +188,6 @@ export function opportunityMeta(opp: Opportunity): PageMeta {
 }
 
 /**
- * Breadcrumbs used to point every level-2 crumb at the homepage, which told
- * Google the category step carried no distinct destination. Point it at the
- * real category page so the crumb passes internal link equity.
- */
-function categoryUrlForCategory(category: Opportunity["category"]): string {
-  const slug = CATEGORY_SLUGS.find((s) => CATEGORY_META[s].category === category);
-  return slug ? `${SITE_URL}/categories/${slug}` : `${SITE_URL}/`;
-}
-
-/**
  * Category descriptions carry {n} and {free} rather than a hard-coded count.
  *
  * A number in a meta description is the thing that earns the click on a listing
@@ -160,52 +201,90 @@ function fillCounts(template: string, total: number, free: number): string {
     .replace(/\{free\}/g, String(free));
 }
 
-export function categoryMeta(slug: CategorySlug): PageMeta {
+/** Every listing in a category, in the order the category page shows them. */
+export function categoryListings(slug: CategorySlug): Opportunity[] {
+  const category = CATEGORY_META[slug].category;
+  const list = allOpportunities.filter((o) => o.category === category);
+  const order = new Map(allOpportunities.map((o, i) => [o.id, i]));
+  return applySort(list, "recommended", order);
+}
+
+export function categoryPageCount(slug: CategorySlug): number {
+  const n = allOpportunities.filter((o) => o.category === CATEGORY_META[slug].category).length;
+  return Math.max(1, Math.ceil(n / CATEGORY_PAGE_SIZE));
+}
+
+/** Page 1 is the bare category URL; there is no /page/1. */
+export function categoryPagePath(slug: CategorySlug, page: number): string {
+  return page <= 1 ? `/categories/${slug}` : `/categories/${slug}/page/${page}`;
+}
+
+export function categoryMeta(slug: CategorySlug, page = 1): PageMeta {
   const meta = CATEGORY_META[slug];
-  const url = `${SITE_URL}/categories/${slug}`;
-  const list = allOpportunities.filter((o) => o.category === meta.category);
+  const path = categoryPagePath(slug, page);
+  const url = `${SITE_URL}${path}`;
+  const list = categoryListings(slug);
+  const pages = categoryPageCount(slug);
   const freeCount = list.filter((o) => o.cost === "Free" || o.cost === "Stipend").length;
-  const description = fillCounts(meta.description, list.length, freeCount);
+  const baseDescription = fillCounts(meta.description, list.length, freeCount);
+  const onPage = list.slice((page - 1) * CATEGORY_PAGE_SIZE, page * CATEGORY_PAGE_SIZE);
+  const first = page === 1;
+
+  // Later pages are their own canonical URLs (each lists different programs), so
+  // they need their own title and description rather than page 1's copies.
+  const title = first ? meta.title : `${categoryShortName(slug)} for high schoolers, page ${page} | HSO`;
+  const description = first
+    ? baseDescription
+    : clampDescription(
+        `Page ${page} of ${pages}: ${meta.h1.toLowerCase()} ${(page - 1) * CATEGORY_PAGE_SIZE + 1}-${(page - 1) * CATEGORY_PAGE_SIZE + onPage.length} of ${list.length}, including ${onPage
+          .slice(0, 3)
+          .map((o) => o.title)
+          .join(", ")}.`,
+      );
 
   return {
-    title: meta.title,
+    title,
     description,
-    path: `/categories/${slug}`,
+    path,
+    ...(page > 1 ? { prev: categoryPagePath(slug, page - 1) } : {}),
+    ...(page < pages ? { next: categoryPagePath(slug, page + 1) } : {}),
     jsonLd: [
       {
         "@context": "https://schema.org",
         "@type": "CollectionPage",
-        name: meta.h1,
+        name: first ? meta.h1 : `${meta.h1}, page ${page}`,
         description,
         url,
         mainEntity: {
           "@type": "ItemList",
-          numberOfItems: list.length,
-          itemListElement: list.slice(0, 20).map((o, i) => ({
+          numberOfItems: onPage.length,
+          itemListElement: onPage.slice(0, 20).map((o, i) => ({
             "@type": "ListItem",
-            position: i + 1,
+            position: (page - 1) * CATEGORY_PAGE_SIZE + i + 1,
             url: `${SITE_URL}${opportunityPath(o.id)}`,
             name: o.title,
           })),
         },
       },
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "HSO", item: `${SITE_URL}/` },
-          { "@type": "ListItem", position: 2, name: meta.h1, item: url },
-        ],
-      },
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: meta.faqs.map((f) => ({
-          "@type": "Question",
-          name: f.q,
-          acceptedAnswer: { "@type": "Answer", text: f.a },
-        })),
-      },
+      breadcrumbJsonLd(
+        first
+          ? categoryCrumbs(slug)
+          : [...categoryCrumbs(slug), { name: `Page ${page}`, path }],
+      ),
+      // The FAQs are only shown on page 1, so only page 1 carries their markup.
+      ...(first
+        ? [
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: meta.faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
+            },
+          ]
+        : []),
     ],
   };
 }
@@ -242,14 +321,7 @@ export function deadlinesMeta(): PageMeta {
           })),
         },
       },
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "HSO", item: `${SITE_URL}/` },
-          { "@type": "ListItem", position: 2, name: DEADLINES_META.h1, item: url },
-        ],
-      },
+      breadcrumbJsonLd(pageCrumbs(DEADLINES_META.h1, DEADLINES_PATH)),
       {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -292,14 +364,7 @@ export function remoteMeta(): PageMeta {
           })),
         },
       },
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "HSO", item: `${SITE_URL}/` },
-          { "@type": "ListItem", position: 2, name: REMOTE_META.h1, item: url },
-        ],
-      },
+      breadcrumbJsonLd(pageCrumbs(REMOTE_META.h1, REMOTE_PATH)),
       {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -385,24 +450,28 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
     description:
       "Medical internships and hospital research programs for high school students in the U.S. — eligibility, deadlines, stipends, and how to apply.",
     path: "/guides/top-medical-internships",
+    jsonLd: [breadcrumbJsonLd(guideCrumbs("/guides/top-medical-internships"))],
   },
   "/guides/top-research-competitions": {
     title: "Best Research Competitions for High Schoolers 2026 | HSO",
     description:
       "The research competitions that matter for U.S. high schoolers — Regeneron STS, ISEF, Davidson, and more, with deadlines and entry requirements.",
     path: "/guides/top-research-competitions",
+    jsonLd: [breadcrumbJsonLd(guideCrumbs("/guides/top-research-competitions"))],
   },
   "/guides/top-business-summer-programs": {
     title: "Best Business Summer Programs for High Schoolers 2026 | HSO",
     description:
       "Business and entrepreneurship summer programs for U.S. high school students — Wharton, LBW, Diamond Challenge, costs, and application deadlines.",
     path: "/guides/top-business-summer-programs",
+    jsonLd: [breadcrumbJsonLd(guideCrumbs("/guides/top-business-summer-programs"))],
   },
   "/guides/high-school-law-internships": {
     title: "High School Law Internships: How to Find One | HSO",
     description:
       "How high school students find law internships and legal shadowing in the U.S. — courts, public defenders, legal aid, and pre-law summer programs.",
     path: "/guides/high-school-law-internships",
+    jsonLd: [breadcrumbJsonLd(guideCrumbs("/guides/high-school-law-internships"))],
   },
   // Account-only surfaces: useful to users, worthless to search, and they
   // would otherwise be crawled as near-duplicate shells.
@@ -459,14 +528,7 @@ export function nycMeta(): PageMeta {
           })),
         },
       },
-      {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "HSO", item: `${SITE_URL}/` },
-          { "@type": "ListItem", position: 2, name: NYC_META.h1, item: url },
-        ],
-      },
+      breadcrumbJsonLd(pageCrumbs(NYC_META.h1, NYC_PATH)),
       {
         "@context": "https://schema.org",
         "@type": "FAQPage",
@@ -486,7 +548,9 @@ export function allRoutes(): PageMeta[] {
     remoteMeta(),
     deadlinesMeta(),
     nycMeta(),
-    ...CATEGORY_SLUGS.map((slug) => categoryMeta(slug)),
+    ...CATEGORY_SLUGS.flatMap((slug) =>
+      Array.from({ length: categoryPageCount(slug) }, (_, i) => categoryMeta(slug, i + 1)),
+    ),
     ...allOpportunities.map((opp) => opportunityMeta(opp)),
   ];
 }

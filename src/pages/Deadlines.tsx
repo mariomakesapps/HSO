@@ -1,3 +1,5 @@
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { pageCrumbs } from "@/lib/pageMeta";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { CalendarClock } from "lucide-react";
@@ -5,7 +7,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SEO } from "@/components/SEO";
 import { OpportunityCard } from "@/components/OpportunityCard";
 import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
-import { DEADLINES_META, deadlineBuckets } from "@/lib/deadlines";
+import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
 import { deadlinesMeta } from "@/lib/pageMeta";
 import { useAtmosphere } from "@/lib/atmosphere";
 
@@ -31,6 +33,7 @@ const Deadlines = () => {
     <div className="min-h-screen">
       <SEO {...deadlinesMeta()} />
       <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
+        <Breadcrumbs crumbs={pageCrumbs(DEADLINES_META.h1, DEADLINES_PATH)} className="mb-6" />
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Deadline tracker</p>
         <h1 className="mt-2 font-display text-4xl font-semibold tracking-tight sm:text-6xl">
           {DEADLINES_META.h1}
