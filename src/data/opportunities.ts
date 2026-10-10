@@ -7,6 +7,7 @@ import { submittedOpportunities } from "@/data/submittedOpportunities";
 import { hsoAdditionsSep2026, applyHsoUpdateSep2026, isRemovedBySep2026Review } from "@/data/hsoUpdateSep2026";
 import { LOCATION_FIXES } from "@/data/locationFixes";
 import { applyDataHygiene } from "@/data/dataHygiene";
+import { OCT2026_ADDITIONS, OCT2026_FIXES, OCT2026_REMOVED } from "@/data/hsoUpdateOct2026.generated";
 import {
   normalizeOpportunityUrl,
   removedOpportunityUrls,
@@ -393,6 +394,7 @@ export const opportunities: Opportunity[] = [
   ...verifiedNationalOpportunities,
   ...submittedOpportunities,
   ...hsoAdditionsSep2026,
+  ...OCT2026_ADDITIONS.map((o) => ({ ...o })),
 ];
 
 for (const opportunity of opportunities) {
@@ -470,6 +472,12 @@ for (const opportunity of opportunities) {
 // Update of 2026-09-15: verified next-cycle dates, cleared stale dates, fixed links.
 applyHsoUpdateSep2026(opportunities);
 
+// October 2026 review: verified corrections from the official pages.
+for (const opportunity of opportunities) {
+  const fix = OCT2026_FIXES[opportunity.id];
+  if (fix) Object.assign(opportunity, fix);
+}
+
 // Normalise city-only locations ("Cambridge, USA" -> "Cambridge, Massachusetts, USA")
 // and clean up import artefacts in titles, blurbs and links. Both run before
 // allOpportunities so the filter, the displayed string, the meta description and the
@@ -487,7 +495,8 @@ export const allOpportunities: Opportunity[] = opportunities.filter((o) =>
   US_ELIGIBLE.test(o.location) &&
   isUsBased(o) &&
   !removedOpportunityUrls.has(normalizeOpportunityUrl(o.url)) &&
-  !isRemovedBySep2026Review(o.id)
+  !isRemovedBySep2026Review(o.id) &&
+  !(o.id in OCT2026_REMOVED)
 );
 
 

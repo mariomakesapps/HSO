@@ -3,6 +3,7 @@ import { CATEGORY_META, CATEGORY_SLUGS, type CategorySlug } from "@/lib/categori
 import { NYC_META, NYC_PATH, isBulkDirectoryImport, nycAfterSchoolByBorough, nycFeatured } from "@/lib/nyc";
 import { detailFor } from "@/data/opportunityDetails";
 import { REMOTE_META, REMOTE_PATH, remoteOpportunities } from "@/lib/remote";
+import { OCT2026_LISTING_SEO, OCT2026_NOINDEX, OCT2026_PAGE_SEO } from "@/data/hsoUpdateOct2026.generated";
 import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
 
 export const SITE_URL = "https://highschoolopportunity.org";
@@ -65,22 +66,31 @@ const DUPLICATE_TITLES: ReadonlySet<string> = (() => {
   return new Set([...seen.entries()].filter(([, n]) => n > 1).map(([t]) => t));
 })();
 
+/** October 2026 review: reviewed title tags and descriptions override the generated ones. */
+function withPageSeo(meta: PageMeta): PageMeta {
+  const o = OCT2026_PAGE_SEO[meta.path];
+  return o ? { ...meta, title: o[0] ?? meta.title, description: o[1] ?? meta.description } : meta;
+}
+
 export function opportunityMeta(opp: Opportunity): PageMeta {
+  const reviewed = OCT2026_LISTING_SEO[opp.id];
   const url = `${SITE_URL}${opportunityPath(opp.id)}`;
   const detail = detailFor(opp.id);
   const name = DUPLICATE_TITLES.has(opp.title) ? `${opp.title} — ${opp.org}` : opp.title;
 
   return {
-    title: `${name} | HSO`,
+    title: reviewed?.[0] ?? `${name} | HSO`,
     // Where a listing has verified long-form copy, its own first paragraph makes a
     // better snippet than the generated template — it describes the programme
     // rather than describing the page.
     description: clampDescription(
-      detail?.body[0] ??
+      reviewed?.[1] ??
+        detail?.body[0] ??
         `${opp.title} at ${opp.org} — ${opp.category} for high schoolers in ${opp.location}. Deadline, eligibility, cost & official link.`,
     ),
     path: opportunityPath(opp.id),
-    noindex: !isOpportunityIndexable(opp),
+    // Repeated state-chapter copy and non-high-school rows stay live but out of Google.
+    noindex: !isOpportunityIndexable(opp) || OCT2026_NOINDEX.has(opp.id),
     jsonLd: [
       {
         "@context": "https://schema.org",
@@ -160,7 +170,7 @@ function fillCounts(template: string, total: number, free: number): string {
     .replace(/\{free\}/g, String(free));
 }
 
-export function categoryMeta(slug: CategorySlug): PageMeta {
+function categoryMetaBase(slug: CategorySlug): PageMeta {
   const meta = CATEGORY_META[slug];
   const url = `${SITE_URL}/categories/${slug}`;
   const list = allOpportunities.filter((o) => o.category === meta.category);
@@ -216,7 +226,7 @@ export function categoryMeta(slug: CategorySlug): PageMeta {
  * The ItemList is a build-time snapshot of what was closing when the site was
  * built; the page recomputes on load. Rebuilding refreshes both.
  */
-export function deadlinesMeta(): PageMeta {
+function deadlinesMetaBase(): PageMeta {
   const url = `${SITE_URL}${DEADLINES_PATH}`;
   const closing = deadlineBuckets().flatMap((b) => (b.id === "opening-soon" ? [] : b.items));
 
@@ -266,7 +276,7 @@ export function deadlinesMeta(): PageMeta {
 /**
  * The cross-category remote / nationwide view. Not a Category — see lib/remote.ts.
  */
-export function remoteMeta(): PageMeta {
+function remoteMetaBase(): PageMeta {
   const url = `${SITE_URL}${REMOTE_PATH}`;
   const list = remoteOpportunities();
 
@@ -432,7 +442,7 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
  * rather than a Category, and it is the indexable home for the 578 city
  * after-school rows that are noindexed individually.
  */
-export function nycMeta(): PageMeta {
+function nycMetaBase(): PageMeta {
   const url = `${SITE_URL}${NYC_PATH}`;
   const featured = nycFeatured();
   const afterSchool = nycAfterSchoolByBorough().reduce((n, g) => n + g.items.length, 0);
@@ -490,3 +500,8 @@ export function allRoutes(): PageMeta[] {
     ...allOpportunities.map((opp) => opportunityMeta(opp)),
   ];
 }
+
+export const categoryMeta = (slug: CategorySlug): PageMeta => withPageSeo(categoryMetaBase(slug));
+export const deadlinesMeta = (): PageMeta => withPageSeo(deadlinesMetaBase());
+export const remoteMeta = (): PageMeta => withPageSeo(remoteMetaBase());
+export const nycMeta = (): PageMeta => withPageSeo(nycMetaBase());
