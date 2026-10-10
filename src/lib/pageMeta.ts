@@ -3,6 +3,7 @@ import { CATEGORY_META, CATEGORY_SLUGS, type CategorySlug } from "@/lib/categori
 import { NYC_META, NYC_PATH, isBulkDirectoryImport, nycAfterSchoolByBorough, nycFeatured } from "@/lib/nyc";
 import { detailFor } from "@/data/opportunityDetails";
 import { REMOTE_META, REMOTE_PATH, remoteOpportunities } from "@/lib/remote";
+import { OCT2026_LISTING_SEO, OCT2026_NOINDEX, OCT2026_PAGE_SEO } from "@/data/hsoUpdateOct2026.generated";
 import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
 
 export const SITE_URL = "https://highschoolopportunity.org";
@@ -65,22 +66,31 @@ const DUPLICATE_TITLES: ReadonlySet<string> = (() => {
   return new Set([...seen.entries()].filter(([, n]) => n > 1).map(([t]) => t));
 })();
 
+/** October 2026 review: reviewed title tags and descriptions override the generated ones. */
+function withPageSeo(meta: PageMeta): PageMeta {
+  const o = OCT2026_PAGE_SEO[meta.path];
+  return o ? { ...meta, title: o[0] ?? meta.title, description: o[1] ?? meta.description } : meta;
+}
+
 export function opportunityMeta(opp: Opportunity): PageMeta {
+  const reviewed = OCT2026_LISTING_SEO[opp.id];
   const url = `${SITE_URL}${opportunityPath(opp.id)}`;
   const detail = detailFor(opp.id);
   const name = DUPLICATE_TITLES.has(opp.title) ? `${opp.title} — ${opp.org}` : opp.title;
 
   return {
-    title: `${name} | HSO`,
+    title: reviewed?.[0] ?? `${name} | HSO`,
     // Where a listing has verified long-form copy, its own first paragraph makes a
     // better snippet than the generated template — it describes the programme
     // rather than describing the page.
     description: clampDescription(
-      detail?.body[0] ??
+      reviewed?.[1] ??
+        detail?.body[0] ??
         `${opp.title} at ${opp.org} — ${opp.category} for high schoolers in ${opp.location}. Deadline, eligibility, cost & official link.`,
     ),
     path: opportunityPath(opp.id),
-    noindex: !isOpportunityIndexable(opp),
+    // Repeated state-chapter copy and non-high-school rows stay live but out of Google.
+    noindex: !isOpportunityIndexable(opp) || OCT2026_NOINDEX.has(opp.id),
     jsonLd: [
       {
         "@context": "https://schema.org",
