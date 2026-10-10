@@ -4,7 +4,8 @@ import { NYC_META, NYC_PATH, isBulkDirectoryImport, nycAfterSchoolByBorough, nyc
 import { detailFor } from "@/data/opportunityDetails";
 import { REMOTE_META, REMOTE_PATH, remoteOpportunities } from "@/lib/remote";
 import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
-import { CATEGORY_PAGE_SIZE } from "@/config/seo";
+import { CATEGORY_PAGE_SIZE, QUALITY_THRESHOLD } from "@/config/seo";
+import { qualityScore } from "@/lib/quality";
 import { applySort } from "@/lib/filterSort";
 
 export const SITE_URL = "https://highschoolopportunity.org";
@@ -95,18 +96,28 @@ function clampDescription(raw: string, limit = 158): string {
 }
 
 /**
- * Indexing quality gate for opportunity pages: only index listings that are
- * U.S.-eligible, have a working direct link, carry complete core fields, and
- * are not flagged for manual review. Thin or broken listings are noindexed so
- * they do not dilute the site's overall quality signals.
+ * Indexing gate for opportunity pages. Hard gates first: core fields present,
+ * a working direct link, not flagged for manual review. Then the page-quality
+ * score (src/lib/quality.ts) must reach QUALITY_THRESHOLD (src/config/seo.ts).
+ * A page that fails is served noindex and left out of the sitemap; it stays
+ * live and linked. Memoised: the prerender asks once per page and per link.
  */
+const indexableCache = new Map<string, boolean>();
+
 export function isOpportunityIndexable(opp: Opportunity): boolean {
+  const cached = indexableCache.get(opp.id);
+  if (cached !== undefined) return cached;
   const hasCoreFields = !!(opp.title && opp.org && opp.location && opp.blurb);
   const linkOk =
     !!opp.url && opp.url.startsWith("http") && opp.url !== "#" && opp.link_quality !== "broken";
-  return (
-    hasCoreFields && linkOk && opp.requiresReview !== true && !isBulkDirectoryImport(opp)
-  );
+  const result =
+    hasCoreFields &&
+    linkOk &&
+    opp.requiresReview !== true &&
+    !isBulkDirectoryImport(opp) &&
+    qualityScore(opp).score >= QUALITY_THRESHOLD;
+  indexableCache.set(opp.id, result);
+  return result;
 }
 
 export function opportunityPath(id: string): string {

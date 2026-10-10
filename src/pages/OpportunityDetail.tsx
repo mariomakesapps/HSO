@@ -12,6 +12,8 @@ import { detailFor } from "@/data/opportunityDetails";
 import { opportunityCrumbs, opportunityMeta } from "@/lib/pageMeta";
 import { relatedOpportunities } from "@/lib/related";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { costSentence, deadlineSentence, formatSentence, gradesLabel, summarySentence } from "@/lib/opportunityFacts";
+import { reviewDateFor } from "@/lib/lastmod";
 import { useAtmosphere, themeForCategory } from "@/lib/atmosphere";
 import { store, useStore } from "@/store/collections";
 import { toast } from "sonner";
@@ -133,7 +135,9 @@ const OpportunityDetail = () => {
             </div>
             <p className="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">{opp.org}</p>
             <h1 className="mt-2 max-w-4xl break-words font-display text-4xl font-semibold tracking-tight text-ink sm:text-6xl">{opp.title}</h1>
-            <p className="mt-4 max-w-3xl break-words text-base leading-relaxed text-muted-foreground sm:text-lg">{opp.blurb}</p>
+            <p className="mt-4 max-w-3xl break-words text-base leading-relaxed text-muted-foreground sm:text-lg">
+              {summarySentence(opp)} {deadlineSentence(opp)}
+            </p>
 
             <div className="mt-8 grid min-w-0 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <Stat label="Location" value={opp.location} />
@@ -195,59 +199,62 @@ const OpportunityDetail = () => {
           </div>
         </section>
 
-        {detail && (
-          <section className="mt-12 max-w-3xl">
-            <h2 className="font-display text-2xl font-semibold text-ink">About this program</h2>
-            {detail.body.map((p, i) => (
-              <p key={i} className="mt-3 text-sm leading-relaxed text-muted-foreground">{p}</p>
-            ))}
+        {/* Every section is built from the listing's own fields. A missing field
+            says so and points to the official site; nothing is filled in. */}
+        <section className="mt-12 max-w-3xl">
+          <h2 className="font-display text-2xl font-semibold text-ink">What you do</h2>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{opp.blurb}</p>
+          {detail?.body.map((p, i) => (
+            <p key={i} className="mt-3 text-sm leading-relaxed text-muted-foreground">{p}</p>
+          ))}
 
-            {detail.eligibility && (
-              <>
-                <h2 className="mt-8 font-display text-2xl font-semibold text-ink">Who it is for</h2>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{detail.eligibility}</p>
-              </>
-            )}
+          <h2 className="mt-8 font-display text-2xl font-semibold text-ink">Who it&rsquo;s for</h2>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            {gradesLabel(opp.grades) ? `High school students in ${gradesLabel(opp.grades)}.` : "High school students."}{" "}
+            {detail?.eligibility ?? "Check the official site for the full eligibility rules."}
+          </p>
 
-            {detail.cost && (
-              <>
-                <h2 className="mt-8 font-display text-2xl font-semibold text-ink">Cost</h2>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{detail.cost}</p>
-              </>
-            )}
+          <h2 className="mt-8 font-display text-2xl font-semibold text-ink">Cost</h2>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{detail?.cost ?? costSentence(opp)}</p>
 
-            {detail.howToApply?.length ? (
-              <>
-                <h2 className="mt-8 font-display text-2xl font-semibold text-ink">How to apply</h2>
-                <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted-foreground">
-                  {detail.howToApply.map((x, i) => <li key={i}>{x}</li>)}
-                </ul>
-              </>
-            ) : null}
+          <h2 className="mt-8 font-display text-2xl font-semibold text-ink">Dates and deadline</h2>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{deadlineSentence(opp)}</p>
 
-            {detail.faqs?.length ? (
-              <>
-                <h2 className="mt-8 font-display text-2xl font-semibold text-ink">
-                  Frequently asked questions
-                </h2>
-                {detail.faqs.map((f, i) => (
-                  <div key={i} className="mt-5">
-                    <h3 className="font-semibold text-ink">{f.q}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
-                  </div>
-                ))}
-              </>
-            ) : null}
+          <h2 className="mt-8 font-display text-2xl font-semibold text-ink">Format</h2>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{formatSentence(opp)}</p>
 
-            <p className="mt-8 text-xs text-muted-foreground">
-              Details checked on {detail.source.checked} against{" "}
-              <a href={detail.source.url} className="underline underline-offset-4 hover:text-ink" rel="noopener noreferrer" target="_blank">
-                the program&rsquo;s own page
-              </a>
-              .
+          <h2 className="mt-8 font-display text-2xl font-semibold text-ink">How to apply</h2>
+          {detail?.howToApply?.length ? (
+            <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted-foreground">
+              {detail.howToApply.map((x, i) => <li key={i}>{x}</li>)}
+            </ul>
+          ) : (
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Applications go through the program&rsquo;s official page. Check it for the current form and requirements.
             </p>
-          </section>
-        )}
+          )}
+
+          {detail?.faqs?.length ? (
+            <>
+              <h2 className="mt-8 font-display text-2xl font-semibold text-ink">Frequently asked questions</h2>
+              {detail.faqs.map((f, i) => (
+                <div key={i} className="mt-5">
+                  <h3 className="font-semibold text-ink">{f.q}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
+                </div>
+              ))}
+            </>
+          ) : null}
+
+          <h2 className="mt-8 font-display text-2xl font-semibold text-ink">Official link</h2>
+          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            <a href={opp.url} className="break-all font-semibold text-ink underline underline-offset-4 hover:text-coral" rel="noopener noreferrer" target="_blank">
+              {opp.url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}
+            </a>
+          </p>
+
+          <LastChecked id={opp.id} detailChecked={detail?.source.checked} />
+        </section>
 
         {related.length > 0 && (
           <section className="mt-12">
@@ -299,6 +306,23 @@ const OpportunityDetail = () => {
     </div>
   );
 };
+
+/** Month of the latest dated check in the review records, if there is one. */
+function LastChecked({ id, detailChecked }: { id: string; detailChecked?: string }) {
+  const today = new Date().toISOString().slice(0, 10);
+  const date = reviewDateFor(id, today) ?? detailChecked;
+  if (!date) return null;
+  const [y, m] = date.split("-").map(Number);
+  const month = new Date(Date.UTC(y, m - 1, 15)).toLocaleString("en-US", { month: "long", timeZone: "UTC" });
+  return (
+    <>
+      <h2 className="mt-8 font-display text-2xl font-semibold text-ink">Last checked</h2>
+      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+        These details were last checked against the official page in {month} {y}. Dates and rules can change, so confirm on the official site before you apply.
+      </p>
+    </>
+  );
+}
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (

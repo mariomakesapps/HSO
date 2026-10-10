@@ -29,7 +29,7 @@ export function getDeadlineStatus(deadline: string | null | undefined, opensAt?:
   if (Number.isNaN(deadlineTime)) return { status: "rolling", label: "Deadline TBA", daysLeft: null };
 
   const days = Math.ceil((deadlineTime - now) / 86400000);
-  if (days <= 0) return { status: "closed", label: "Closed", daysLeft: days };
+  if (days <= 0) return { status: "closed", label: "Closed for this cycle", daysLeft: days };
   if (days <= 30) return { status: "closing-soon", label: `Closing soon - ${days}d`, daysLeft: days };
   return { status: "open", label: `Open - ${days}d left`, daysLeft: days };
 }
