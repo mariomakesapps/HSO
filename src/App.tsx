@@ -49,6 +49,7 @@ const Terms = lazyPage(() => import("./pages/Terms.tsx"));
 const Submit = lazyPage(() => import("./pages/Submit.tsx"));
 const Volunteer = lazyPage(() => import("./pages/Volunteer.tsx"));
 const Category = lazyPage(() => import("./pages/Category.tsx"));
+const Topic = lazyPage(() => import("./pages/Topic.tsx"));
 const OpportunityDetail = lazyPage(() => import("./pages/OpportunityDetail.tsx"));
 const Collections = lazyPage(() => import("./pages/Collections.tsx"));
 const RemoteNationwide = lazyPage(() => import("./pages/RemoteNationwide.tsx"));
@@ -63,7 +64,7 @@ const GuideTopBusinessPrograms = lazyPage(() => import("./pages/GuideTopBusiness
 const GuideHighSchoolLawInternships = lazyPage(() => import("./pages/GuideHighSchoolLawInternships.tsx"));
 
 const pages: PageComponents = {
-  Index, NotFound, Auth, About, Contact, Privacy, Terms, Submit, Volunteer, Category, OpportunityDetail,
+  Index, NotFound, Auth, About, Contact, Privacy, Terms, Submit, Volunteer, Category, Topic, OpportunityDetail,
   Collections, RemoteNationwide, Deadlines, NycPrograms, SharedCollection, Profile, Unsubscribe,
   GuideTopMedicalInternships, GuideTopResearchCompetitions, GuideTopBusinessPrograms, GuideHighSchoolLawInternships,
 };
@@ -80,6 +81,8 @@ const ROUTE_PAGES: [string, LazyPage][] = [
   ["/volunteer", Volunteer],
   ["/categories/:slug", Category],
   ["/categories/:slug/page/:page", Category],
+  ["/categories/:slug/:topic", Topic],
+  ["/categories/:slug/:topic/page/:page", Topic],
   ["/opportunities/:id", OpportunityDetail],
   ["/remote", RemoteNationwide],
   ["/deadlines", Deadlines],

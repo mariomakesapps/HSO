@@ -14,6 +14,7 @@ import Terms from "./pages/Terms";
 import Submit from "./pages/Submit";
 import Volunteer from "./pages/Volunteer";
 import Category from "./pages/Category";
+import Topic from "./pages/Topic";
 import OpportunityDetail from "./pages/OpportunityDetail";
 import Collections from "./pages/Collections";
 import RemoteNationwide from "./pages/RemoteNationwide";
@@ -37,7 +38,7 @@ import GuideHighSchoolLawInternships from "./pages/GuideHighSchoolLawInternships
  * Helmet output below is discarded.
  */
 const pages: PageComponents = {
-  Index, NotFound, Auth, About, Contact, Privacy, Terms, Submit, Volunteer, Category, OpportunityDetail,
+  Index, NotFound, Auth, About, Contact, Privacy, Terms, Submit, Volunteer, Category, Topic, OpportunityDetail,
   Collections, RemoteNationwide, Deadlines, NycPrograms, SharedCollection, Profile, Unsubscribe,
   GuideTopMedicalInternships, GuideTopResearchCompetitions, GuideTopBusinessPrograms, GuideHighSchoolLawInternships,
 };

@@ -1,6 +1,6 @@
 import { allOpportunities, locationState, type Opportunity } from "@/data/opportunities";
 import { RELATED_LINKS } from "@/config/seo";
-import { isOpportunityIndexable } from "@/lib/pageMeta";
+import { isOpportunityIndexable } from "@/lib/indexable";
 import { recommendedScore } from "@/lib/filterSort";
 
 /**

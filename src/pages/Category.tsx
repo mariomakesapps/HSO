@@ -11,6 +11,8 @@ import { categoryCrumbs, categoryMeta, categoryPageCount, categoryPagePath } fro
 import { useAtmosphere, type AtmosphereTheme } from "@/lib/atmosphere";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CATEGORY_PAGE_SIZE } from "@/config/seo";
+import { PageLinks } from "@/components/PageLinks";
+import { publishedTopics, topicListings, topicPath } from "@/lib/topics";
 
 const Category = () => {
   const { slug, page: pageParam } = useParams<{ slug: CategorySlug; page?: string }>();
@@ -40,6 +42,7 @@ const Category = () => {
   const first = page === 1;
   const start = (page - 1) * CATEGORY_PAGE_SIZE;
   const onPage = list.slice(start, start + CATEGORY_PAGE_SIZE);
+  const topics = publishedTopics(slug);
   const crumbs = first ? categoryCrumbs(slug) : [...categoryCrumbs(slug), { name: `Page ${page}`, path: categoryPagePath(slug, page) }];
 
   return (
@@ -75,7 +78,20 @@ const Category = () => {
           {onPage.map((o, i) => <OpportunityCard key={o.id} opp={o} index={i} />)}
         </div>
 
-        <Pagination slug={slug} page={page} pages={pages} />
+        <PageLinks page={page} pages={pages} pathFor={(n) => categoryPagePath(slug, n)} />
+
+        {topics.length > 0 && (
+          <section className="mt-12">
+            <h2 className="font-display text-2xl font-semibold text-ink">Browse {meta.h1.toLowerCase()} by topic</h2>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {topics.map((t) => (
+                <Link key={t.slug} to={topicPath(t)} className="rounded-full border border-border bg-background px-4 py-2 text-sm hover:border-coral hover:text-coral">
+                  {t.titlePhrase} ({topicListings(t).length})
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
 
         {first && <section className="mt-16">
           <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">Frequently asked questions</h2>
@@ -106,34 +122,5 @@ const Category = () => {
     </div>
   );
 };
-/** Plain links to every page of the category, so each page is one hop from the next. */
-function Pagination({ slug, page, pages }: { slug: CategorySlug; page: number; pages: number }) {
-  if (pages <= 1) return null;
-  const cls = "inline-flex h-10 min-w-10 items-center justify-center rounded-full border px-3 text-sm font-semibold";
-  return (
-    <nav aria-label="Pages" className="mt-10 flex flex-wrap items-center gap-2">
-      {page > 1 && (
-        <Link rel="prev" to={categoryPagePath(slug, page - 1)} className={`${cls} border-border bg-background hover:border-coral hover:text-coral`}>
-          Previous
-        </Link>
-      )}
-      {Array.from({ length: pages }, (_, i) => i + 1).map((n) =>
-        n === page ? (
-          <span key={n} aria-current="page" className={`${cls} border-ink bg-ink text-cream`}>{n}</span>
-        ) : (
-          <Link key={n} to={categoryPagePath(slug, n)} className={`${cls} border-border bg-background hover:border-coral hover:text-coral`}>
-            {n}
-          </Link>
-        ),
-      )}
-      {page < pages && (
-        <Link rel="next" to={categoryPagePath(slug, page + 1)} className={`${cls} border-border bg-background hover:border-coral hover:text-coral`}>
-          Next
-        </Link>
-      )}
-    </nav>
-  );
-}
-
 export default Category;
 

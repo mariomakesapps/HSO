@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import SEO from "@/components/SEO";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FullListLink } from "@/components/FullListLink";
 import { STATIC_PAGE_META, guideCrumbs } from "@/lib/pageMeta";
 
 const PROGRAMS = [
@@ -96,6 +97,7 @@ export default function GuideTopMedicalInternships() {
           internships. Below is a side-by-side comparison of the programs students ask about most on HSO —
           who they're best for, how selective they are, whether they pay, and when applications open.
         </p>
+        <FullListLink parent="internships" slug="medical" phrase="medical internships" />
 
         <section className="mt-10">
           <h2 className="font-display text-2xl font-semibold text-ink">Quick comparison</h2>

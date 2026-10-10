@@ -44,7 +44,7 @@ async function loadRouteData(root) {
   const result = await build({
     stdin: {
       contents: `
-        export { NOT_FOUND_META } from "@/lib/pageMeta";
+        export { NOT_FOUND_META, allTopicRoutes } from "@/lib/pageMeta";
         export { allRoutes, opportunityMeta, categoryMeta, categoryPageCount, remoteMeta, deadlinesMeta, STATIC_PAGE_META,
                  isOpportunityIndexable } from "@/lib/pageMeta";
         export { REMOTE_META, remoteOpportunities } from "@/lib/remote";
@@ -560,6 +560,9 @@ export async function prerender({ root, distDir }) {
     for (let page = 1; page <= data.categoryPageCount(slug); page++) {
       pages.push({ meta: data.categoryMeta(slug, page), body: categoryBody(slug, data) });
     }
+  }
+  for (const meta of data.allTopicRoutes()) {
+    pages.push({ meta, body: staticBody(meta, data) });
   }
   for (const opp of data.allOpportunities) {
     pages.push({ meta: data.opportunityMeta(opp), body: opportunityBody(opp, data) });

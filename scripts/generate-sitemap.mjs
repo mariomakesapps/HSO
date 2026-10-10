@@ -44,7 +44,8 @@ async function loadData(root) {
   const result = await build({
     stdin: {
       contents: `
-        export { allRoutes, categoryListings, categoryPageCount } from "@/lib/pageMeta";
+        export { allRoutes, categoryListings, categoryPageCount, topicPageCount } from "@/lib/pageMeta";
+        export { publishedTopics, topicListings, topicPath } from "@/lib/topics";
         export { allOpportunities } from "@/data/opportunities";
         export { CATEGORY_SLUGS } from "@/lib/categories";
         export { CATEGORY_PAGE_SIZE } from "@/config/seo";
@@ -149,6 +150,14 @@ export async function generateSitemap({ root, distDir }) {
       const onPage = list.slice((page - 1) * data.CATEGORY_PAGE_SIZE, page * data.CATEGORY_PAGE_SIZE);
       const p = page === 1 ? `/categories/${slug}` : `/categories/${slug}/page/${page}`;
       listDates.set(p, newest(onPage));
+    }
+  }
+
+  for (const topic of data.publishedTopics()) {
+    const list = data.topicListings(topic);
+    for (let page = 1; page <= data.topicPageCount(topic); page++) {
+      const onPage = list.slice((page - 1) * data.CATEGORY_PAGE_SIZE, page * data.CATEGORY_PAGE_SIZE);
+      listDates.set(data.topicPath(topic, page), newest(onPage));
     }
   }
 

@@ -5,8 +5,8 @@ import { detailFor } from "@/data/opportunityDetails";
 import { REMOTE_META, REMOTE_PATH, remoteOpportunities } from "@/lib/remote";
 import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
 import { GUIDE_ARTICLES, LAW_GUIDE_FAQS } from "@/data/guides";
-import { CATEGORY_PAGE_SIZE, INDEX_ALLOWLIST, QUALITY_THRESHOLD } from "@/config/seo";
-import { qualityScore } from "@/lib/quality";
+import { publishedTopics, topicListings, topicPath, type Topic } from "@/lib/topics";
+import { CATEGORY_PAGE_SIZE } from "@/config/seo";
 import { schoolCycle, upcomingSummer } from "@/lib/seasons";
 import { gradesLabel, formatDay, isNationwide } from "@/lib/opportunityFacts";
 import { applySort } from "@/lib/filterSort";
@@ -131,31 +131,8 @@ function clampDescription(raw: string, limit = 155): string {
   return raw.length > limit ? `${raw.slice(0, limit - 3)}…` : raw;
 }
 
-/**
- * Indexing gate for opportunity pages. Hard gates first: core fields present,
- * a working direct link, not flagged for manual review. Then the page-quality
- * score (src/lib/quality.ts) must reach QUALITY_THRESHOLD (src/config/seo.ts),
- * unless the page is on INDEX_ALLOWLIST. Bulk imports (NYC DYCD rows) go through
- * the same score as everything else rather than being excluded by id. A page
- * that fails is served noindex,follow and left out of the sitemap; it stays live
- * and its links still count. Memoised: the prerender asks once per page and per link.
- */
-const indexableCache = new Map<string, boolean>();
-
-export function isOpportunityIndexable(opp: Opportunity): boolean {
-  const cached = indexableCache.get(opp.id);
-  if (cached !== undefined) return cached;
-  const hasCoreFields = !!(opp.title && opp.org && opp.location && opp.blurb);
-  const linkOk =
-    !!opp.url && opp.url.startsWith("http") && opp.url !== "#" && opp.link_quality !== "broken";
-  const result =
-    hasCoreFields &&
-    linkOk &&
-    opp.requiresReview !== true &&
-    (INDEX_ALLOWLIST.has(opp.id) || qualityScore(opp).score >= QUALITY_THRESHOLD);
-  indexableCache.set(opp.id, result);
-  return result;
-}
+export { isOpportunityIndexable } from "@/lib/indexable";
+import { isOpportunityIndexable } from "@/lib/indexable";
 
 export function opportunityPath(id: string): string {
   return `/opportunities/${id}`;
@@ -405,6 +382,128 @@ export function categoryMeta(slug: CategorySlug, page = 1): PageMeta {
   };
 }
 
+/* ------------------------------------------------------------- topic pages */
+
+export function topicPageCount(topic: Topic): number {
+  return Math.max(1, Math.ceil(topicListings(topic).length / CATEGORY_PAGE_SIZE));
+}
+
+export function topicCrumbs(topic: Topic, page = 1): Crumb[] {
+  const name = topic.titlePhrase;
+  return [
+    ...categoryCrumbs(topic.parent),
+    { name, path: topicPath(topic) },
+    ...(page > 1 ? [{ name: `Page ${page}`, path: topicPath(topic, page) }] : []),
+  ];
+}
+
+const listNames = (items: Opportunity[]) =>
+  items.length <= 1 ? items.map((o) => o.title).join("") : `${items.slice(0, -1).map((o) => o.title).join(", ")} and ${items.at(-1)!.title}`;
+
+/**
+ * Questions answered from the list itself, so every answer is a count or a
+ * name from the catalogue rather than written copy. Shown on page 1.
+ */
+export function topicFaqs(topic: Topic, now = new Date()): { q: string; a: string }[] {
+  const list = topicListings(topic);
+  const today = now.toISOString().slice(0, 10);
+  const free = list.filter((o) => o.cost === "Free").length;
+  const stipend = list.filter((o) => o.cost === "Stipend").length;
+  const upcoming = list
+    .filter((o) => o.deadline && o.deadline >= today)
+    .sort((a, b) => a.deadline!.localeCompare(b.deadline!))
+    .slice(0, 3);
+  const online = list.filter((o) => o.format === "Online");
+  return [
+    {
+      q: `How many ${topic.phrase} for high school students does HSO list?`,
+      a: `${list.length}. Of those, ${free} are free${stipend ? ` and ${stipend} pay participants a stipend or award` : ""}. Each listing links to the official page.`,
+    },
+    {
+      q: `Which ${topic.phrase} have the next deadlines?`,
+      a: upcoming.length
+        ? `${upcoming.map((o) => `${o.title} (${formatDay(o.deadline!)})`).join(", ")}. Confirm each date on the official site.`
+        : `None of the listed ${topic.phrase} has posted a deadline for the coming cycle yet. Check back, or check each official site.`,
+    },
+    {
+      q: `Can I do any of these online?`,
+      a: online.length
+        ? `Yes: ${online.length} run online, including ${listNames(online.slice(0, 3))}.`
+        : `None of the listed ${topic.phrase} runs fully online.`,
+    },
+  ];
+}
+
+export function topicMeta(topic: Topic, page = 1, now = new Date()): PageMeta {
+  const list = topicListings(topic);
+  const pages = topicPageCount(topic);
+  const path = topicPath(topic, page);
+  const url = `${SITE_URL}${path}`;
+  const first = page === 1;
+  const onPage = list.slice((page - 1) * CATEGORY_PAGE_SIZE, page * CATEGORY_PAGE_SIZE);
+  const year = topic.parent === "summer-programs" ? String(upcomingSummer(now)) : schoolCycle(now);
+  const today = now.toISOString().slice(0, 10);
+  const free = list.filter((o) => o.cost === "Free").length;
+  const open = list.filter((o) => o.deadline && o.deadline >= today).length;
+  const title = first
+    ? `${topic.titlePhrase} for High School Students ${year} | HSO`
+    : `${topic.titlePhrase} for high schoolers, page ${page} | HSO`;
+  const description = clampDescription(
+    first
+      ? `${list.length} ${topic.phrase} for high school students: ${free} free, ${open} with an upcoming deadline. Eligibility, deadlines and official links.`
+      : `Page ${page} of ${pages}: ${topic.phrase} for high school students, including ${onPage.slice(0, 2).map((o) => o.title).join(" and ")}.`,
+  );
+  const faqs = first ? topicFaqs(topic, now) : [];
+
+  return {
+    title,
+    description,
+    path,
+    ...(page > 1 ? { prev: topicPath(topic, page - 1) } : {}),
+    ...(page < pages ? { next: topicPath(topic, page + 1) } : {}),
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: `${topic.titlePhrase} for High School Students`,
+        description,
+        url,
+        isPartOf: { "@type": "CollectionPage", url: `${SITE_URL}/categories/${topic.parent}` },
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: onPage.length,
+          itemListElement: onPage.slice(0, 20).map((o, i) => ({
+            "@type": "ListItem",
+            position: (page - 1) * CATEGORY_PAGE_SIZE + i + 1,
+            url: `${SITE_URL}${opportunityPath(o.id)}`,
+            name: o.title,
+          })),
+        },
+      },
+      breadcrumbJsonLd(topicCrumbs(topic, page)),
+      ...(faqs.length
+        ? [
+            {
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: faqs.map((f) => ({
+                "@type": "Question",
+                name: f.q,
+                acceptedAnswer: { "@type": "Answer", text: f.a },
+              })),
+            },
+          ]
+        : []),
+    ],
+  };
+}
+
+export function allTopicRoutes(): PageMeta[] {
+  return publishedTopics().flatMap((t) =>
+    Array.from({ length: topicPageCount(t) }, (_, i) => topicMeta(t, i + 1)),
+  );
+}
+
 /**
  * The deadline tracker. Like /remote this is a cross-cutting view, not a Category.
  *
@@ -613,14 +712,14 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
     path: "/collections",
   },
   "/guides/top-medical-internships": {
-    title: "Best Medical Internships for High School Students 2026 | HSO",
+    title: "Best Medical Internships for High Schoolers, Compared | HSO",
     description:
       "Compare top U.S. medical internships for high schoolers: JHIBS, Stanford SIMR, NIH HiSTEP, Rockefeller SSRP. Selectivity, stipends, deadlines.",
     path: "/guides/top-medical-internships",
     jsonLd: guideJsonLd("/guides/top-medical-internships"),
   },
   "/guides/top-research-competitions": {
-    title: "Best Research Competitions for High Schoolers 2026 | HSO",
+    title: "Top Research Competitions for High Schoolers, Compared | HSO",
     description:
       "Compare top U.S. research competitions for high schoolers: Regeneron STS, ISEF, JSHS, Davidson Fellows. Prizes, selectivity, deadlines.",
     path: "/guides/top-research-competitions",
@@ -718,6 +817,7 @@ export function allRoutes(): PageMeta[] {
     ...CATEGORY_SLUGS.flatMap((slug) =>
       Array.from({ length: categoryPageCount(slug) }, (_, i) => categoryMeta(slug, i + 1)),
     ),
+    ...allTopicRoutes(),
     ...allOpportunities.map((opp) => opportunityMeta(opp)),
   ];
 }

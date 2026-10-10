@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import SEO from "@/components/SEO";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FullListLink } from "@/components/FullListLink";
 import { STATIC_PAGE_META, guideCrumbs } from "@/lib/pageMeta";
 
 const PROGRAMS = [
@@ -55,6 +56,7 @@ export default function GuideTopBusinessPrograms() {
           Wharton Global Youth, Berkeley Haas B-BAY, and NYU Stern — with tuition, selectivity, and who each
           one actually fits.
         </p>
+        <FullListLink parent="competitions" slug="business" phrase="business competitions" />
 
         <section className="mt-10">
           <h2 className="font-display text-2xl font-semibold text-ink">Quick comparison</h2>

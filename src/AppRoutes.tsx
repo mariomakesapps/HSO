@@ -22,6 +22,7 @@ export interface PageComponents {
   Submit: ComponentType;
   Volunteer: ComponentType;
   Category: ComponentType;
+  Topic: ComponentType;
   OpportunityDetail: ComponentType;
   Collections: ComponentType;
   RemoteNationwide: ComponentType;
@@ -103,6 +104,8 @@ export function AppRoutes({ pages: P }: { pages: PageComponents }) {
         <Route path="/volunteer" element={<P.Volunteer />} />
         <Route path="/categories/:slug" element={<P.Category />} />
         <Route path="/categories/:slug/page/:page" element={<P.Category />} />
+        <Route path="/categories/:slug/:topic" element={<P.Topic />} />
+        <Route path="/categories/:slug/:topic/page/:page" element={<P.Topic />} />
         <Route path="/opportunities/:id" element={<P.OpportunityDetail />} />
         <Route path="/remote" element={<P.RemoteNationwide />} />
         <Route path="/deadlines" element={<P.Deadlines />} />
