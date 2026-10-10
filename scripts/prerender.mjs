@@ -70,6 +70,52 @@ async function loadRouteData(root) {
   return importBundle(result);
 }
 
+/**
+ * Build src/entry-server.tsx as a production SSR bundle and import it.
+ *
+ * Vite resolves the "@/" alias, CSS imports, assets, import.meta.env and the
+ * CommonJS dependencies (lucide-react, radix) exactly as the browser build does,
+ * which a plain esbuild bundle of the React tree cannot. It is a production build
+ * (the dev SSR loader compiles JSX for React's development runtime, which does
+ * not exist under NODE_ENV=production). The bundle is written inside
+ * node_modules so its bare imports ("react", ...) resolve against the project's
+ * own dependencies, and it is deleted afterwards.
+ */
+async function loadServerRenderer(root) {
+  const { build: viteBuild } = await import("vite");
+  const outDir = path.join(root, "node_modules", ".hso-ssr");
+  await viteBuild({
+    root,
+    configFile: path.join(root, "vite.config.ts"),
+    mode: "production",
+    logLevel: "error",
+    build: {
+      ssr: "src/entry-server.tsx",
+      outDir,
+      emptyOutDir: true,
+      copyPublicDir: false,
+      rollupOptions: { output: { format: "esm", entryFileNames: "entry-server.mjs" } },
+    },
+  });
+  const file = path.join(outDir, "entry-server.mjs");
+  const mod = await import(pathToFileURL(file).href + `?t=${Date.now()}`);
+  return { render: mod.render, close: () => fs.rm(outDir, { recursive: true, force: true }) };
+}
+
+/**
+ * Render one route to HTML, muting React's server-render warnings
+ * (useLayoutEffect and friends) which are expected and harmless here.
+ */
+function renderRoute(ssr, routePath) {
+  const original = console.error;
+  console.error = () => {};
+  try {
+    return ssr.render(routePath);
+  } finally {
+    console.error = original;
+  }
+}
+
 const ESCAPE_MAP = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
 const escapeHtml = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ESCAPE_MAP[c]);
 
@@ -494,6 +540,7 @@ export async function prerender({ root, distDir }) {
   const templatePath = path.join(distDir, "index.html");
   const template = await fs.readFile(templatePath, "utf8");
   const data = await loadRouteData(root);
+  const ssr = await loadServerRenderer(root);
 
   const pages = [];
 
@@ -512,9 +559,18 @@ export async function prerender({ root, distDir }) {
 
   let written = 0;
   let noindexed = 0;
+  const ssrFailures = [];
 
   for (const { meta, body } of pages) {
-    const html = renderPage(template, headFor(meta), body);
+    // The real page, server-rendered, is what ships in #root. The hand-built
+    // crawler block is only a fallback if a route fails to render.
+    let pageBody = body;
+    try {
+      pageBody = renderRoute(ssr, meta.path);
+    } catch (err) {
+      ssrFailures.push(`${meta.path}: ${(err && err.message) || err}`);
+    }
+    const html = renderPage(template, headFor(meta), pageBody);
     const outPath =
       meta.path === "/"
         ? path.join(distDir, "index.html")
@@ -530,13 +586,20 @@ export async function prerender({ root, distDir }) {
   // Netlify look for it. It is deliberately not in `pages`: it must never reach
   // allRoutes() or the sitemap.
   const nf = notFoundMeta();
-  await fs.writeFile(
-    path.join(distDir, "404.html"),
-    renderPage(template, headFor(nf), notFoundBody(data)),
-    "utf8",
-  );
+  let notFoundHtml;
+  try {
+    notFoundHtml = renderRoute(ssr, "/__hso-not-found__");
+  } catch {
+    notFoundHtml = notFoundBody(data);
+  }
+  await fs.writeFile(path.join(distDir, "404.html"), renderPage(template, headFor(nf), notFoundHtml), "utf8");
+  await ssr.close();
+
+  if (ssrFailures.length) {
+    console.warn(`[prerender] ${ssrFailures.length} routes fell back to the crawler block:\n  ${ssrFailures.slice(0, 20).join("\n  ")}`);
+  }
 
   const redirects = await writeRedirects(distDir, data);
 
-  return { written, noindexed, indexable: written - noindexed, redirects };
+  return { written, noindexed, indexable: written - noindexed, redirects, ssrFailures: ssrFailures.length };
 }

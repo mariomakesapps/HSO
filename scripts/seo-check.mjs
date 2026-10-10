@@ -39,12 +39,14 @@ for (const file of files) {
   const title = html.match(/<title[^>]*>([^<]*)<\/title>/)?.[1];
   const canonical = html.match(/<link [^>]*rel="canonical" href="([^"]*)"/)?.[1];
   const description = html.match(/<meta [^>]*name="description" content="([^"]*)"/)?.[1];
-  const h1 = html.match(/<h1>([^<]*)<\/h1>/)?.[1];
+  // Pages are server-rendered React, so H1s carry attributes; count elements in <body>.
+  const h1Count = (html.slice(html.indexOf("<body")).match(/<h1[\s>]/g) ?? []).length;
 
   if (!title) problems.push(`${route}: missing <title>`);
   if (!canonical) problems.push(`${route}: missing canonical`);
   if (!description) problems.push(`${route}: missing meta description`);
-  if (!h1) problems.push(`${route}: missing <h1>`);
+  const noindex = /<meta[^>]*name="robots"[^>]*content="[^"]*noindex/.test(html);
+  if (!noindex && h1Count !== 1) problems.push(`${route}: ${h1Count} <h1> elements (expected exactly 1)`);
 
   // Regression guard: react-helmet-async only replaces head tags marked
   // data-rh="true". Drop the marker and every page hydrates with two

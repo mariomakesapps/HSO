@@ -604,6 +604,9 @@ function FeaturedShelf({
         </p>
       </div>
 
+      {/* forceMount keeps all three shelves in the page (inactive ones hidden), so
+          every featured listing is a plain link in the prerendered HTML, not just
+          whichever tab happens to be open. */}
       <Tabs defaultValue="closing" className="mt-7">
         <TabsList className="h-auto justify-start gap-7 rounded-none border-b border-border/70 bg-transparent p-0">
           <TabsTrigger value="closing" className={`${tabBase} data-[state=active]:after:bg-coral after:absolute after:inset-x-0 after:-bottom-px after:h-[2px] after:bg-transparent`}>
@@ -616,13 +619,13 @@ function FeaturedShelf({
             Standouts
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="closing" className="mt-6 animate-in fade-in-50 duration-300">
+        <TabsContent forceMount value="closing" className="mt-6 animate-in fade-in-50 duration-300 data-[state=inactive]:hidden">
           {renderShelf(closingSoon)}
         </TabsContent>
-        <TabsContent value="new" className="mt-6 animate-in fade-in-50 duration-300">
+        <TabsContent forceMount value="new" className="mt-6 animate-in fade-in-50 duration-300 data-[state=inactive]:hidden">
           {renderShelf(newlyAdded)}
         </TabsContent>
-        <TabsContent value="standouts" className="mt-6 animate-in fade-in-50 duration-300">
+        <TabsContent forceMount value="standouts" className="mt-6 animate-in fade-in-50 duration-300 data-[state=inactive]:hidden">
           {renderShelf(standouts)}
         </TabsContent>
       </Tabs>
