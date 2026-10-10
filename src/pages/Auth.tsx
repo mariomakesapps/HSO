@@ -39,7 +39,7 @@ const Auth = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams] = useSearchParams();
-  const rawRedirect = searchParams.get("redirect") || (location.state as { returnTo?: string } | null)?.returnTo || sessionStorage.getItem("hso-auth-return-to") || "/";
+  const rawRedirect = searchParams.get("redirect") || (location.state as { returnTo?: string } | null)?.returnTo || (typeof sessionStorage !== "undefined" ? sessionStorage.getItem("hso-auth-return-to") : null) || "/";
   const redirectTo = rawRedirect.startsWith("/") && !rawRedirect.startsWith("/auth") ? rawRedirect : "/";
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");

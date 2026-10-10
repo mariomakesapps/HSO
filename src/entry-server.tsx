@@ -3,6 +3,8 @@ import { MemoryRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster as Sonner } from "@/components/ui/sonner";
+import { Toaster } from "@/components/ui/toaster";
 import { AppRoutes, type PageComponents } from "./AppRoutes";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -43,12 +45,22 @@ const pages: PageComponents = {
   GuideTopMedicalInternships, GuideTopResearchCompetitions, GuideTopBusinessPrograms, GuideHighSchoolLawInternships,
 };
 
+const Slot = () => null;
+
 export function render(url: string): string {
   return renderToString(
     <HelmetProvider context={{}}>
       <QueryClientProvider client={new QueryClient()}>
         <TooltipProvider>
+          {/* Same tree as src/App.tsx, so the browser can hydrate this markup. */}
+          <Toaster />
+          <Sonner />
           <MemoryRouter initialEntries={[url]}>
+            {/* Stand-ins for App's WarmRouteCache and ScrollToTop. They render
+                nothing, but React's useId (Radix ids) counts sibling slots, so the
+                server tree needs the same slots for hydration to match. */}
+            <Slot />
+            <Slot />
             <AppRoutes pages={pages} />
           </MemoryRouter>
         </TooltipProvider>

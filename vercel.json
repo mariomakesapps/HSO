@@ -1,10 +1,272 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/opportunities/ai4all",
+      "destination": "/categories/summer-programs",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/americorps",
+      "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/argonne-national-laboratory-seasonal-internship-program",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/ascend",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/atlas-fellowship",
+      "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/ayia",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/burger-king-scholars",
+      "destination": "/opportunities/csv-sch-burger-king-scholarship",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/comcast-leaders-achievers",
+      "destination": "/categories/scholarships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/connecticut-office-of-the-attorney-general-internship-program",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/cssi",
+      "destination": "/categories/summer-programs",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/csv-sch-amazon-future-engineers",
+      "destination": "/opportunities/amazon-future-eng",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/csv-sch-dell-scholars-program",
+      "destination": "/opportunities/dell",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/csv-sch-dr-pepper-tuition-giveaway",
+      "destination": "/categories/scholarships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/csv-sch-ge-reagan-foundation-scholarship-program",
+      "destination": "/opportunities/ge-reagan",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/csv-sch-generation-google-scholarship",
+      "destination": "/categories/scholarships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/csv-sch-horatio-alger-national-scholarship",
+      "destination": "/opportunities/horatio-alger",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/csv-sch-national-security-language-institute-for-youth",
+      "destination": "/opportunities/nsli-y",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/csv-sch-questbridge-scholarship",
+      "destination": "/opportunities/questbridge-match",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/csv-sch-sezzle-scholarship",
+      "destination": "/categories/scholarships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/csv-sch-the-science-ambassador-scholarship",
+      "destination": "/opportunities/science-ambassador",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/csv-sch-william-randolph-hearst-foundation-united-states-senate-yout",
+      "destination": "/opportunities/usef",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/dartmouth-health-high-school-foundations-summer-internship",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/dell-discover",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/elks",
+      "destination": "/opportunities/csv-sch-elks-national-foundation-scholarship",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/foot-locker-scholar-athletes",
+      "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/future-city",
+      "destination": "/categories/competitions",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/girls-who-code-pathways",
+      "destination": "/opportunities/girls-who-code",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/global-citizen-year",
+      "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/google-csi",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/heisman-high-school-scholarship",
+      "destination": "/categories/scholarships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/hopkins-med",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/jpl",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/lapps",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/mclean-mentorship",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/oliver-scholars",
+      "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/peace-corps",
+      "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/pmready-tce",
+      "destination": "/categories/summer-programs",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/project-coin-internship",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/putnam-jr",
+      "destination": "/categories/competitions",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/siemens",
+      "destination": "/categories/competitions",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/solomon-leadership-nyc",
+      "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/ssb-ucl",
+      "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/ssi-naval",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/state-maryland-histep",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/synapse-state-fellowship",
+      "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/tasp",
+      "destination": "/categories/summer-programs",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/the-university-of-alabama-at-birmingham-pre-college-research-int",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/university-of-new-hampshire-interoperability-lab-hightech-bound",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/yes-abroad-kennedy-lugar",
+      "destination": "/opportunities/flex-global-abroad",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/zero-robotics",
+      "destination": "/categories/competitions",
+      "permanent": true
+    },
+    {
+      "source": "/categories/:slug/page/1",
+      "destination": "/categories/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/categories/:slug/:topic/page/1",
+      "destination": "/categories/:slug/:topic",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
-      "source": "/((?!assets/|_next/|.*\.[a-zA-Z0-9]+$).*)",
-      "destination": "/index.html"
+      "source": "/collections/:path*",
+      "destination": "/app-shell.html"
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
 import { supabase } from "@/integrations/supabase/client";
 import { store } from "@/store/collections";
@@ -94,8 +94,18 @@ async function initializeAuth() {
 }
 
 export function useAuthSession() {
-  const [session, setSession] = useState<Session | null>(cachedSession);
-  const [loading, setLoading] = useState(!initialized);
+  // The first render always matches the server's view (no session, loading),
+  // which the prerendered HTML was built from, so hydration never mismatches.
+  // When the session is already known, the layout effect swaps it in before
+  // the browser paints, so a later mount does not flash the signed-out state.
+  const [session, setSession] = useState<Session | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useLayoutEffect(() => {
+    if (!initialized) return;
+    setSession(cachedSession);
+    setLoading(false);
+  }, []);
 
   useEffect(() => {
     let active = true;
