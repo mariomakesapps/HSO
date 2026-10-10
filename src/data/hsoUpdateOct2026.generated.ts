@@ -811,6 +811,7 @@ export const OCT2026_FIXES: Record<string, Partial<Opportunity>> = {
 "blurb": "Wharton Global Youth's team investment competition for high school students: teams manage a virtual portfolio, write an investment strategy and compete for a spot at the global finale. A teacher advisor registers the team, and the team leader must be at least 16. The 2026-27 competition runs September 28 to December 4, 2026; registration closed September 11."
 },
 "leangap": {
+"format": "Hybrid",
 "location": "San Francisco, California, USA",
 "deadline": null,
 "blurb": "Four-week, full-time summer program where high school students pitch ideas, form teams and build a startup, ending in a Demo Day before Silicon Valley investors. It runs online (June 14 - July 9, 2027) or on campus at UC Berkeley (July 11 - August 7, 2027). Tuition is $6,450 online, with need-based aid of 10-80%."
