@@ -22,7 +22,6 @@
   <url><loc>https://highschoolopportunity.org/categories/competitions</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://highschoolopportunity.org/categories/fellowships</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/rsi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/tasp</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/pioneer</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/isef</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/yefa-ysic</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -40,7 +39,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/amc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/aime</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/usamo</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/putnam-jr</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/hmmt</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/pumac</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/bmt</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -64,7 +62,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/worldquant</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/imc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ssp</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/cssi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/nslc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/syp-cornell</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/syp-uchicago</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -82,7 +79,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/prim-usa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ill-mathematics</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/inspire</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/ai4all</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/girls-who-code</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/kode-with-klossy</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/aspire-summit</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -99,7 +95,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/interlochen</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/rhsa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/nyu-tisch</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/ayia</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/breakthrough</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/gates</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/jkc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -113,7 +108,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/questbridge-match</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/davidson-fellows</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/prudential-emerging-visionaries</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/comcast-leaders-achievers</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/swe-scholarships</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/national-merit</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/jackie-robinson</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -163,7 +157,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/immerse-research</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/aops</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/microsoft-discovery</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/dell-discover</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/stargate</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/aas-blue</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/cyber-patriot</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -176,8 +169,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/idealab</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/davis-projects</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/national-history-day</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/siemens</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/future-city</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/envision</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/usra</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/nyu-precollege</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -205,7 +196,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/ayusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/nsli-y</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/stem-saturday</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/americorps</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/o-henry</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/acl</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/yale-law-summer</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -356,15 +346,12 @@
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-women-at-microsoft-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-foundation-649-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-mae-mary-legacy-foundation-inc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-dr-pepper-tuition-giveaway</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-aanapisi-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-elks-national-foundation-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-equitable-excellence-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-burger-king-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-imagine-america-high-school-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-the-alert-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-generation-google-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-sezzle-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/poetry-out-loud</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/exploravision</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ecybermission</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -377,6 +364,7 @@
   <url><loc>https://highschoolopportunity.org/opportunities/math-kangaroo</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/m3-challenge</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/acsl</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/congressional-award</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/john-locke-essay</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ayn-rand-essay</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/earth-prize</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -1156,181 +1144,8 @@
   <url><loc>https://highschoolopportunity.org/opportunities/center-for-community-outreach-development-university-of-alabama</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/department-of-surgery-university-of-alabama-at-birmingham-pre-co</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/unh-interoperability-laboratory-hightech-bound</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-alabama-alabama-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-alaska-alaska-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-arizona-arizona-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-arkansas-arkansas-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-california-california-boys-and</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-colorado-colorado-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-connecticut-connecticut-boys-s</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-delaware-delaware-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-florida-florida-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-georgia-georgia-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-idaho-gem-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-illinois-american-legion-illin</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-indiana-hoosier-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-iowa-american-legion-boys-stat</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-kansas-boys-state-of-kansas</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-kentucky-kentucky-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-louisiana-louisiana-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-maine-dirigo-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-maryland-maryland-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-massachusetts-massachusetts-bo</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-michigan-michigan-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-minnesota-minnesota-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-mississippi-mississippi-boys-s</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-missouri-missouri-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-montana-montana-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-nebraska-cornhusker-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-nevada-nevada-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-new-hampshire-new-hampshire-bo</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-new-jersey-american-legion-jer</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-new-mexico-new-mexico-boys-sta</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-new-york-new-york-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-north-carolina-tar-heel-boys-s</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-north-dakota-north-dakota-boys</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-ohio-american-legion-buckeye-b</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-oklahoma-oklahoma-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-oregon-oregon-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-pennsylvania-keystone-boys-sta</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-rhode-island-little-rhody-boys</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-south-carolina-palmetto-boys-s</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-south-dakota-south-dakota-boys</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-tennessee-tennessee-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-texas-texas-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-utah-utah-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-vermont-vermont-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-virginia-virginia-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-washington-evergreen-boys-stat</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-west-virginia-mountaineer-boys</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-wisconsin-badger-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-american-legion-department-of-wyoming-wyoming-boys-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-alabama-alabama-girls-st</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-alaska-alaska-girls-stat</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-arkansas-arkansas-girls</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-california-california-gi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-colorado-colorado-girls</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-connecticut-laurel-girls</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-delaware-delaware-girls</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-district-of-columbia-dis</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-florida-florida-girls-st</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-georgia-georgia-girls-st</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-hawaii-hawaii-girls-stat</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-idaho-syringa-girls-stat</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-illinois-illinois-girls</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-indiana-hoosier-girls-st</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-iowa-iowa-girls-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-kansas-sunflower-girls-s</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-kentucky-kentucky-girls</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-louisiana-louisiana-girl</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-maryland-maryland-girls</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-massachusetts-massachuse</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-michigan-michigan-girls</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-minnesota-minnesota-girl</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-mississippi-magnolia-gir</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-missouri-missouri-girls</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-nebraska-cornhusker-girl</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-nevada-nevada-girls-stat</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-new-hampshire-granite-gi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-new-jersey-american-legi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-new-mexico-new-mexico-gi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-new-york-empire-girls-st</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-north-carolina-tar-heel</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-north-dakota-north-dakot</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-ohio-buckeye-girls-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-oklahoma-oklahoma-girls</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-oregon-oregon-girls-stat</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-pennsylvania-keystone-gi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-rhode-island-rhode-islan</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-south-carolina-palmetto</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-south-dakota-south-dakot</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-tennessee-tennessee-girl</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-texas-texas-girls-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-utah-utah-girls-state</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-vermont-green-mountain-g</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-virginia-virginia-girls</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-washington-evergreen-gir</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-west-virginia-rhododendr</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-wisconsin-wisconsin-girl</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/american-legion-auxiliary-department-of-wyoming-wyoming-girls-st</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-alaska-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-alabama-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-arkansas-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-hawaii-and-pacific-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-arizona-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-california-northern-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-california-southern-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-southwest-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-wyoming-and-colorado-jsh</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-connecticut-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-greater-washington-d-c-j</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-philadelphia-and-delawar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-florida-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-georgia-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-heartland-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-intermountain-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-chicago-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-illinois-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-indiana-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-great-plains-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-kentucky-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-louisiana-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-new-england-southern-jsh</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-maryland-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-new-england-northern-jsh</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-michigan-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-wisconsin-and-upper-peni</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-north-central-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-missouri-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-mississippi-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-north-carolina-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-new-jersey-northern-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-new-jersey-southern-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-new-york-long-island-jsh</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-new-york-metro-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-new-york-upstate-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-ohio-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-oregon-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-pennsylvania-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-south-carolina-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-tennessee-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-texas-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-virginia-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-virtual-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-washington-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/junior-science-and-humanities-symposium-west-virginia-jshs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-alaska-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-arizona-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-colorado-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-florida-east-leadership-semina</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-florida-north-leadership-semin</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-florida-south-leadership-semin</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-florida-west-leadership-semina</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-idaho-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-illinois-central-south-leaders</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-illinois-north-leadership-semi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-maine-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-massachusetts-leadership-semin</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-michigan-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-minnesota-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-nevada-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-new-jersey-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-new-mexico-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-new-york-central-leadership-se</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-new-york-metro-leadership-semi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-north-dakota-leadership-semina</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-ohio-north-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-oregon-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-pennsylvania-west-leadership-s</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-texas-capital-area-leadership</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-texas-far-west-leadership-semi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-texas-gulf-coast-leadership-se</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-texas-north-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-utah-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-washington-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-west-virginia-leadership-semin</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-wisconsin-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hugh-obrian-youth-leadership-hoby-wyoming-leadership-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/arizona-board-of-regents-arizona-promise-program</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/georgia-student-finance-commission-hope-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/kansas-board-of-regents-kansas-promise-act-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -1662,148 +1477,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/ut-md-anderson-cancer-center-oncore-high-school-youth-summer-pro</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/american-association-for-cancer-research-aacr-cares-high-school</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/school-of-health-professions-ut-md-anderson-cancer-center-king-f</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/alabama-youth-and-government-alabama-high-school-mock-trial-comp</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/arizona-foundation-for-legal-services-and-education-arizona-high</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/arkansas-bar-association-arkansas-high-school-mock-trial-competi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/teach-democracy-california-high-school-mock-trial-competition</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/colorado-high-school-mock-trial-colorado-high-school-mock-trial</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/civics-first-connecticut-high-school-mock-trial-competition</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/delaware-law-related-education-center-delaware-high-school-mock</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/justice-teaching-center-florida-southern-college-florida-high-sc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/state-bar-of-georgia-georgia-high-school-mock-trial-competition</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hawaii-state-bar-association-young-lawyers-division-hawaii-high</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/idaho-mock-trial-idaho-high-school-mock-trial-competition</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/illinois-state-bar-association-illinois-high-school-mock-trial-c</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/indiana-bar-foundation-indiana-high-school-mock-trial-competitio</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/iowa-state-bar-association-iowa-high-school-mock-trial-competiti</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/kansas-bar-association-kansas-high-school-mock-trial-competition</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/kentucky-high-school-mock-trial-association-kentucky-high-school</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/louisiana-state-bar-association-young-lawyers-division-louisiana</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/maryland-youth-and-the-law-mylaw-maryland-high-school-mock-trial</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/massachusetts-bar-association-massachusetts-high-school-mock-tri</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/michigan-center-for-civic-education-michigan-high-school-mock-tr</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/minnesota-state-bar-association-minnesota-high-school-mock-trial</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-mississippi-bar-mississippi-high-school-mock-trial-competiti</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/bar-association-of-metropolitan-st-louis-missouri-high-school-mo</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/state-bar-of-montana-montana-high-school-mock-trial-competition</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nebraska-state-bar-foundation-nebraska-high-school-mock-trial-co</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/state-bar-of-nevada-nevada-high-school-mock-trial-competition</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/new-hampshire-bar-association-new-hampshire-high-school-mock-tri</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/new-jersey-state-bar-foundation-new-jersey-high-school-mock-tria</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/center-for-civic-values-new-mexico-high-school-mock-trial-compet</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/new-york-state-bar-association-new-york-high-school-mock-trial-c</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/north-carolina-mock-trial-program-north-carolina-high-school-moc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/state-bar-association-of-north-dakota-north-dakota-high-school-m</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/ohio-center-for-law-related-education-ohio-high-school-mock-tria</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/oklahoma-bar-association-oklahoma-high-school-mock-trial-competi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/classroom-law-project-civics-learning-project-oregon-high-school</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/pennsylvania-bar-association-pennsylvania-high-school-mock-trial</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/rhode-island-legal-education-foundation-rhode-island-high-school</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/south-carolina-bar-south-carolina-high-school-mock-trial-competi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/tennessee-bar-association-tennessee-high-school-mock-trial-compe</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/dallas-bar-association-texas-high-school-mock-trial-competition</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/utah-law-related-education-utah-high-school-mock-trial-competiti</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/virginia-law-related-education-institute-virginia-high-school-mo</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/virginia-law-related-education-institute-district-of-columbia-hi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/ymca-of-greater-seattle-washington-high-school-mock-trial-compet</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/state-bar-of-wisconsin-wisconsin-high-school-mock-trial-competit</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/wyoming-high-school-mock-trial-wyoming-high-school-mock-trial-co</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-alabama-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-alaska-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-arizona-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-arkansas-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-california-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-colorado-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-connecticut-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-district-of-columbia-history-day-state-cont</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-delaware-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-florida-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-georgia-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-hawaii-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-idaho-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-illinois-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-indiana-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-iowa-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-kansas-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-kentucky-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-louisiana-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-maine-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-maryland-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-massachusetts-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-michigan-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-minnesota-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-mississippi-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-missouri-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-montana-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-nebraska-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-nevada-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-new-hampshire-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-new-jersey-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-new-mexico-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-new-york-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-north-carolina-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-north-dakota-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-ohio-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-oklahoma-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-oregon-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-pennsylvania-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-rhode-island-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-south-carolina-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-south-dakota-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-tennessee-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-texas-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-utah-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-vermont-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-virginia-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-washington-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-west-virginia-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-wisconsin-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-history-day-wyoming-history-day-state-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/university-of-tennessee-at-martin-governors-school-for-the-agric</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/middle-tennessee-state-university-governors-school-for-the-arts</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/austin-peay-state-university-governors-school-for-computational</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/tennessee-technological-university-governors-school-for-emerging</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/university-of-tennessee-at-martin-governors-school-for-the-human</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/east-tennessee-state-university-governors-school-for-the-integra</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/university-of-memphis-governors-school-for-international-studies</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/university-of-tennessee-knoxville-governors-school-for-the-scien</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/tennessee-technological-university-governors-school-for-technolo</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/east-tennessee-state-university-governors-school-for-tennessee-h</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/alaska-science-and-engineering-fair-alaska-science-and-engineeri</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/auburn-university-college-of-sciences-and-mathematics-alabama-sc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/university-of-central-arkansas-arkansas-state-science-and-engine</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/arizona-science-center-arizona-science-and-engineering-fair</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/california-science-and-engineering-fair-california-science-and-e</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/colorado-state-university-colorado-science-and-engineering-fair</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/connecticut-science-and-engineering-fair-connecticut-science-and</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/state-science-and-engineering-fair-of-florida-state-science-and</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/university-of-georgia-georgia-science-and-engineering-fair</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/hawaii-academy-of-science-hawaii-state-science-and-engineering-f</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/state-science-and-technology-fair-of-iowa-state-science-and-tech</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/illinois-junior-academy-of-science-illinois-junior-academy-of-sc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/science-education-foundation-of-indiana-hoosier-science-and-engi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/kentucky-science-and-engineering-fair-kentucky-science-and-engin</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/lsu-continuing-education-louisiana-science-and-engineering-fair</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/massachusetts-science-and-engineering-fair-massachusetts-state-s</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/maine-state-science-fair-maine-state-science-fair</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/michigan-science-and-engineering-fair-michigan-science-and-engin</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/minnesota-academy-of-science-minnesota-state-science-and-enginee</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/mississippi-state-university-mississippi-science-and-engineering</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/university-of-montana-montana-science-fair</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/north-carolina-science-and-engineering-fair-north-carolina-scien</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/university-of-north-dakota-north-dakota-state-science-and-engine</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/new-hampshire-science-and-engineering-exposition-new-hampshire-s</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/new-mexico-tech-new-mexico-science-and-engineering-fair</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/new-york-state-science-and-engineering-fair-new-york-state-scien</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/the-ohio-academy-of-science-buckeye-science-and-engineering-fair</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/northwest-science-expo-northwest-science-expo</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/texas-a-and-m-university-texas-science-and-engineering-fair</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/piedmont-virginia-community-college-virginia-state-science-and-e</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/vermont-stem-fair-vermont-science-technology-engineering-and-mat</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/washington-state-science-and-engineering-fair-washington-state-s</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/badger-state-science-and-engineering-fair-badger-state-science-a</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/west-virginia-department-of-education-west-virginia-state-scienc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/university-of-wyoming-wyoming-state-science-fair</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mathily-mathily</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/samford-university-alabama-governors-school</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/virginia-department-of-education-summer-residential-governors-sc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -1812,56 +1485,39 @@
   <url><loc>https://highschoolopportunity.org/opportunities/naqt-national-academic-quiz-tournaments</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/future-problem-solving-program-international-global-issues-probl</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/odyssey-of-the-mind-odyssey-of-the-mind</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/oklahoma-state-university-oklahoma-state-science-and-engineering</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/sciencemontgomery-montgomery-county-science-fair</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/union-station-kansas-city-greater-kansas-city-science-and-engine</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/academy-of-science-st-louis-stl-science-fair</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/greater-nebraska-science-and-engineering-fair-greater-nebraska-s</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/university-of-nevada-las-vegas-southern-nevada-regional-science</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/mercer-science-and-engineering-fair-mercer-science-and-engineeri</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/delaware-valley-science-fairs-delaware-valley-science-fairs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/kamin-science-center-pittsburgh-regional-science-and-engineering</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/university-of-south-carolina-central-south-carolina-region-ii-sc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/south-dakota-state-university-eastern-south-dakota-science-and-e</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/university-of-tennessee-knoxville-southern-appalachian-science-a</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/middle-tennessee-science-and-engineering-fair-middle-tennessee-s</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/university-of-utah-university-of-utah-science-and-engineering-fa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-alaska-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-arizona-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-california-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-colorado-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-connecticut-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-florida-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-georgia-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-hawaii-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-idaho-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-illinois-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-indiana-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-iowa-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-kansas-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-kentucky-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-maine-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-mississippi-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-missouri-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-montana-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-nebraska-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-new-hampshire-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-new-mexico-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-new-york-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-north-carolina-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-north-dakota-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-oklahoma-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-oregon-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-pennsylvania-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-rhode-island-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-south-carolina-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-south-dakota-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-tennessee-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-texas-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-vermont-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-virginia-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-washington-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-west-virginia-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-wisconsin-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/skillsusa-wyoming-skillsusa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/vermont-student-assistance-corporation-vsac-unified-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/new-hampshire-charitable-foundation-new-hampshire-charitable-fou</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/nevada-legislature-nevada-youth-legislature</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/cbyx-congress-bundestag-youth-exchange</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/flex-global-abroad</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/mit-think-scholars</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/stanford-medical-youth-science-program-smysp</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/questbridge-college-prep-scholars</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/national-student-poets-program</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/princeton-prize-in-race-relations</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/usafa-summer-seminar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/nasa-texas-aerospace-scholars</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/math-prize-for-girls</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/asm-eisenman-materials-camp</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/arml-american-regions-mathematics-league</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/national-history-bee-and-bowl</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/cal-grant</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/florida-bright-futures-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/edison-scholars-program</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/sachs-foundation-undergraduate-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/esu-national-shakespeare-competition</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/quill-and-scroll-writing-visual-multimedia-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/all-american-high-school-film-festival</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/seo-scholars</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/california-academy-of-sciences-careers-in-science</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/field-museum-high-school-science-and-digital-learning-internship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/stanford-spinwip</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/smash-academy</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/thedream-us-opportunity-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/thedream-us-national-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/leda-scholars-program</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/summer-search</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/yale-pathways-to-science</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/naacp-act-so</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://highschoolopportunity.org/opportunities/bgca-youth-of-the-year</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
 </urlset>
