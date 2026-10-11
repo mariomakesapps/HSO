@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Clock } from "lucide-react";
 import type { Opportunity } from "@/data/opportunities";
 import { getDeadlineStatus } from "@/lib/deadline";
+import { useNow } from "@/lib/clock";
 import { cn } from "@/lib/utils";
 
 export type BadgeTone = "good" | "neutral" | "urgent";
@@ -42,11 +43,11 @@ export function GradesBadge({ grades }: { grades: number[] }) {
 /**
  * Deadline as a countdown. Two weeks or less is urgent (coral), further out is
  * open (green), anything without a date is neutral. The label depends on today's
- * date, which can differ between the build and the visit, so its text is exempt
- * from the hydration check.
+ * date: the first render uses the build time (useNow) so hydration matches the
+ * prerendered HTML, then it updates to today.
  */
 export function DeadlineChip({ deadline, opensAt }: { deadline: string | null; opensAt?: string | null }) {
-  const dl = getDeadlineStatus(deadline, opensAt);
+  const dl = getDeadlineStatus(deadline, opensAt, useNow());
   let tone: BadgeTone = "neutral";
   let label = "Deadline TBA";
   if (dl.status === "closed") label = "Closed for this cycle";
@@ -58,7 +59,7 @@ export function DeadlineChip({ deadline, opensAt }: { deadline: string | null; o
   return (
     <Badge tone={tone}>
       <Clock className="h-3 w-3" aria-hidden="true" />
-      <span suppressHydrationWarning>{label}</span>
+      <span>{label}</span>
     </Badge>
   );
 }

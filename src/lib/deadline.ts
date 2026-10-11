@@ -12,12 +12,11 @@ function parseDay(iso: string, edge: "start" | "end"): number {
   return new Date(`${iso}T${edge === "end" ? "23:59:59" : "00:00:00"}`).getTime();
 }
 
-export function getDeadlineStatus(deadline: string | null | undefined, opensAt?: string | null): {
+export function getDeadlineStatus(deadline: string | null | undefined, opensAt?: string | null, now: number = Date.now()): {
   status: DeadlineStatus;
   label: string;
   daysLeft: number | null;
 } {
-  const now = Date.now();
   const opensTime = opensAt ? parseDay(opensAt, "start") : NaN;
   if (!Number.isNaN(opensTime) && opensTime > now) {
     const daysUntilOpen = Math.ceil((opensTime - now) / 86400000);

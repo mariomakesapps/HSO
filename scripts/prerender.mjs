@@ -117,6 +117,9 @@ function renderRoute(ssr, routePath) {
   }
 }
 
+/** One timestamp for the whole build, shared by the server render and the page. */
+const BUILD_NOW = Date.now();
+
 const ESCAPE_MAP = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
 const escapeHtml = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ESCAPE_MAP[c]);
 
@@ -165,6 +168,9 @@ function headFor(meta) {
   }
 
   tags.push(FALLBACK_GUARD);
+  // The render time, so date-dependent content hydrates against the same "now"
+  // it was rendered with (src/lib/clock.ts), however many days later it loads.
+  tags.push(`<script>window.__HSO_BUILD_NOW__=${BUILD_NOW}</script>`);
 
   return tags.join("\n    ");
 }
@@ -580,6 +586,7 @@ export async function prerender({ root, distDir }) {
   const template = await fs.readFile(templatePath, "utf8");
   const data = await loadRouteData(root);
   const ssr = await loadServerRenderer(root);
+  globalThis.__HSO_BUILD_NOW__ = BUILD_NOW;
 
   const pages = [];
 

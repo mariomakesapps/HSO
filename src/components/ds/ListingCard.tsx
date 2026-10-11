@@ -27,7 +27,7 @@ function ListingCardImpl({ opp, headingLevel = 3, className }: { opp: Opportunit
         className,
       )}
     >
-      <OrgMark org={opp.org} />
+      <OrgMark org={opp.org} url={opp.url} />
       <div className="min-w-0 flex-1">
         <H className="text-base font-semibold leading-snug text-hso-fg sm:text-lg">
           <Link

@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { ORG_LOGOS } from "@/data/logos.generated";
 import { cn } from "@/lib/utils";
 
 /** Muted brand tints only: the palette allows no other accent colors. */
@@ -25,12 +27,31 @@ function hash(s: string): number {
   return h;
 }
 
+function logoFor(url: string | undefined): string | undefined {
+  if (!url) return undefined;
+  try {
+    return ORG_LOGOS[new URL(url).hostname.toLowerCase().replace(/^www\./, "")];
+  } catch {
+    return undefined;
+  }
+}
+
 /**
- * The organization's mark. The catalogue stores no logos, so every listing gets
- * a square with the organization's initials, tinted the same way every time.
+ * The organization's mark: its own site icon when scripts/fetch-logos.mjs has
+ * saved one (served from /logos/, never hot-linked), otherwise a square with the
+ * organization's initials, tinted the same way every time.
  */
-export function OrgMark({ org, size = 48, className }: { org: string; size?: 40 | 48 | 64; className?: string }) {
+export function OrgMark({ org, url, size = 48, className }: { org: string; url?: string; size?: 40 | 48 | 64; className?: string }) {
   const dims = size === 64 ? "h-16 w-16 text-xl" : size === 40 ? "h-10 w-10 text-sm" : "h-12 w-12 text-base";
+  const logo = logoFor(url);
+  const [failed, setFailed] = useState(false);
+  if (logo && !failed) {
+    return (
+      <span aria-hidden="true" className={cn("inline-flex shrink-0 items-center justify-center overflow-hidden rounded-hso border border-hso-line bg-white p-1.5", dims, className)}>
+        <img src={logo} alt="" width={size} height={size} loading="lazy" decoding="async" onError={() => setFailed(true)} className="h-full w-full object-contain" />
+      </span>
+    );
+  }
   return (
     <span
       aria-hidden="true"
