@@ -1,6 +1,7 @@
 import { createRoot, hydrateRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import App, { preloadRoute } from "./App.tsx";
+import "@fontsource-variable/inter";
 import "./index.css";
 
 const container = document.getElementById("root")!;

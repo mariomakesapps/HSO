@@ -91,3 +91,10 @@ export function formatSentence(opp: Opportunity): string {
   if (opp.format === "Hybrid") return `Runs partly online and partly in person.${where}`;
   return `Runs in person.${where}`;
 }
+
+/** "Remote", or the place without the trailing ", USA". */
+export function placeLabel(opp: Opportunity): string {
+  if (opp.format === "Online") return "Remote";
+  const place = opp.location.replace(/,\s*USA$/i, "").trim() || opp.location;
+  return opp.format === "Hybrid" ? `${place} · Hybrid` : place;
+}

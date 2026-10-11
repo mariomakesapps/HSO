@@ -1,0 +1,92 @@
+/*
+ * HSO design tokens. The one place colors, type, radius, spacing and elevation
+ * are defined. Tailwind exposes them as `hso-*` utilities (tailwind.config.ts),
+ * so components never hard-code a hex value.
+ *
+ * Palette rule: coral is for actions (primary buttons, links, focus), green is
+ * for good status (Free, Paid, Open), near-black is text. Everything else is a
+ * warm gray. No other accent colors.
+ *
+ * Contrast (WCAG 2.1, measured):
+ *   fg on surface 17.0:1 · fg-muted on surface 6.7:1, on canvas 6.0:1
+ *   fg-subtle on surface 4.7:1 (white surfaces only: 4.2:1 on canvas fails AA)
+ *   white on coral 4.9:1 · coral-strong on surface 6.3:1, on coral-tint 5.6:1
+ *   green-strong on green-tint 7.7:1 · fg-muted on neutral-tint 5.7:1
+ */
+:root {
+  /* Surfaces */
+  --hso-canvas: 36 14% 95%;        /* #F4F3F0 page background (warm light gray) */
+  --hso-surface: 0 0% 100%;        /* #FFFFFF cards, nav */
+  --hso-surface-sunken: 36 12% 97%;/* #F8F7F5 inputs, hover rows */
+  --hso-line: 36 10% 87%;          /* #E1DFDA hairline borders */
+  --hso-line-strong: 36 8% 76%;    /* #C7C3BD hover borders, input borders */
+
+  /* Text */
+  --hso-fg: 30 6% 11%;             /* #1E1C1A near black */
+  --hso-fg-muted: 30 4% 36%;       /* #5F5C58 secondary text */
+  --hso-fg-subtle: 30 3% 45%;      /* #76736F meta text */
+
+  /* Brand: coral (actions) */
+  --hso-coral: 11 66% 47%;         /* #C74629 buttons; white text 4.9:1 */
+  --hso-coral-strong: 11 67% 40%;  /* #AA3B22 hover, links */
+  --hso-coral-tint: 14 80% 96%;    /* #FDF0ED selected filters, save feedback */
+
+  /* Brand: green (good status) */
+  --hso-green: 150 48% 26%;        /* #226242 */
+  --hso-green-strong: 150 52% 22%; /* #1B5538 badge text */
+  --hso-green-tint: 145 35% 93%;   /* #E7F3EC badge background */
+
+  /* Neutral badge */
+  --hso-neutral-tint: 36 10% 93%;  /* #EFEEEB */
+
+  /* Type: Inter, one family. Scale in rem (16px base), used through Tailwind's
+     text-xs..text-3xl, which have exactly these values. */
+  --hso-font: "Inter Variable", Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --hso-text-xs: 0.75rem;   /* 12 meta, badges */
+  --hso-text-sm: 0.875rem;  /* 14 secondary, card org */
+  --hso-text-base: 1rem;    /* 16 body */
+  --hso-text-lg: 1.125rem;  /* 18 card titles */
+  --hso-text-xl: 1.25rem;   /* 20 section titles */
+  --hso-text-2xl: 1.5rem;   /* 24 page titles (mobile) */
+  --hso-text-3xl: 1.875rem; /* 30 page titles (desktop) */
+  --hso-leading-tight: 1.25;
+  --hso-leading-body: 1.55;
+
+  /* Shape and elevation */
+  --hso-radius: 8px;        /* cards, buttons, inputs */
+  --hso-radius-sm: 4px;     /* badges, chips */
+  --hso-shadow-hover: 0 1px 2px hsl(30 10% 10% / 0.06), 0 2px 8px hsl(30 10% 10% / 0.05);
+  --hso-shadow-overlay: 0 8px 28px hsl(30 10% 10% / 0.14);
+
+  /* Layout */
+  --hso-nav-height: 64px;
+  --hso-page-max: 1200px;
+  --hso-col-left: 240px;
+  --hso-col-right: 300px;
+  --hso-gap: 1.5rem;
+  --hso-tap: 44px;          /* minimum tap target */
+
+  /* Motion: short, no libraries */
+  --hso-ease: cubic-bezier(0.2, 0, 0, 1);
+  --hso-duration: 150ms;
+}
+
+/* Visible keyboard focus everywhere the new design system is used. */
+.hso-ds :focus-visible,
+.hso-ds:focus-visible {
+  outline: 2px solid hsl(var(--hso-coral-strong));
+  outline-offset: 2px;
+  border-radius: var(--hso-radius-sm);
+}
+
+/* Save feedback: a short pop on the bookmark icon. CSS only. */
+@keyframes hso-save-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+.hso-save-pop { animation: hso-save-pop 260ms var(--hso-ease); }
+
+@media (prefers-reduced-motion: reduce) {
+  .hso-save-pop { animation: none; }
+}

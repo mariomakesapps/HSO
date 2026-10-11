@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
+  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}", "./design/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
     container: {
@@ -14,6 +14,24 @@ export default {
     },
     extend: {
       colors: {
+        // Design-system tokens (src/styles/tokens.css). New components use only these.
+        hso: {
+          canvas: "hsl(var(--hso-canvas))",
+          surface: "hsl(var(--hso-surface))",
+          sunken: "hsl(var(--hso-surface-sunken))",
+          line: "hsl(var(--hso-line))",
+          "line-strong": "hsl(var(--hso-line-strong))",
+          fg: "hsl(var(--hso-fg))",
+          muted: "hsl(var(--hso-fg-muted))",
+          subtle: "hsl(var(--hso-fg-subtle))",
+          coral: "hsl(var(--hso-coral))",
+          "coral-strong": "hsl(var(--hso-coral-strong))",
+          "coral-tint": "hsl(var(--hso-coral-tint))",
+          green: "hsl(var(--hso-green))",
+          "green-strong": "hsl(var(--hso-green-strong))",
+          "green-tint": "hsl(var(--hso-green-tint))",
+          "neutral-tint": "hsl(var(--hso-neutral-tint))",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -66,19 +84,32 @@ export default {
         },
       },
       fontFamily: {
-        display: ["Outfit", "Aptos Display", "Segoe UI Variable Display", "ui-sans-serif", "system-ui"],
-        sans: ["Outfit", "Aptos", "Segoe UI", "ui-sans-serif", "system-ui"],
+        // One family across the site (tokens.css --hso-font). `display` is kept as an
+        // alias so existing classes resolve to the same face.
+        display: ["Inter Variable", "Inter", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+        sans: ["Inter Variable", "Inter", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
       },
       backgroundImage: {
         "gradient-warm": "var(--gradient-warm)",
         "gradient-coral": "var(--gradient-coral)",
         "gradient-ink": "var(--gradient-ink)",
       },
+      // Type scale: Tailwind's own text-xs..text-3xl already equal the token scale
+      // (12/14/16/18/20/24/30, tokens.css). No custom size names: tailwind-merge
+      // would read "text-hso-xs" as a color and drop it next to "text-hso-muted".
+      maxWidth: { "hso-page": "var(--hso-page-max)" },
+      minHeight: { "hso-tap": "var(--hso-tap)" },
+      minWidth: { "hso-tap": "var(--hso-tap)" },
+      height: { "hso-nav": "var(--hso-nav-height)" },
       boxShadow: {
+        "hso-hover": "var(--hso-shadow-hover)",
+        "hso-overlay": "var(--hso-shadow-overlay)",
         editorial: "var(--shadow-editorial)",
         soft: "var(--shadow-soft)",
       },
       borderRadius: {
+        hso: "var(--hso-radius)",
+        "hso-sm": "var(--hso-radius-sm)",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
