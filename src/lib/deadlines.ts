@@ -45,7 +45,9 @@ export function closingWithin(
       const opens = daysUntil(o.opensAt, now);
       if (opens !== null && opens > 0) return false; // not open yet — belongs in "opening soon"
       const left = daysUntil(o.deadline, now);
-      return left !== null && left >= 0 && left <= withinDays;
+      // A deadline later today is 1 day left. A deadline that passed in the last 24h
+      // rounds to -0, and -0 >= 0 is true, so test > 0 rather than >= 0.
+      return left !== null && left > 0 && left <= withinDays;
     })
     .sort((a, b) => String(a.deadline).localeCompare(String(b.deadline)));
 }

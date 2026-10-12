@@ -64,6 +64,14 @@ describe("closingWithin", () => {
     const notYetOpen = [opp({ id: "future", deadline: "2026-10-01", opensAt: "2026-09-25" })];
     expect(closingWithin(notYetOpen, 30, NOW)).toEqual([]);
   });
+
+  it("drops a deadline that passed yesterday (daysUntil rounds it to -0)", () => {
+    expect(closingWithin([opp({ id: "yesterday", deadline: "2026-09-18" })], 7, NOW)).toEqual([]);
+  });
+
+  it("keeps a deadline that closes later today", () => {
+    expect(closingWithin([opp({ id: "today", deadline: "2026-09-19" })], 7, NOW).map((o) => o.id)).toEqual(["today"]);
+  });
 });
 
 describe("openingWithin", () => {

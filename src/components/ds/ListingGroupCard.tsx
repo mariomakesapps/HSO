@@ -44,7 +44,10 @@ export function ListingGroupCard({ name, items, headingLevel = 3 }: { name: stri
                 to={`/opportunities/${o.id}`}
                 className="flex min-h-hso-tap items-center justify-between gap-3 px-4 py-2.5 text-sm hover:bg-hso-sunken focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-hso-coral-strong"
               >
-                <span className="min-w-0 truncate font-medium text-hso-fg">{o.title}</span>
+                <span className="min-w-0 truncate font-medium text-hso-fg">
+                  {/* The card title already names the program; each row names the site. */}
+                  {o.title.startsWith(`${name} at `) ? o.title.slice(name.length + 4) : o.title}
+                </span>
                 <span className="flex shrink-0 items-center gap-1 text-hso-subtle">
                   <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
                   {placeLabel(o)}
