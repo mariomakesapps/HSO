@@ -1,0 +1,94 @@
+import type { Opportunity } from "@/data/opportunities";
+import type { HsoReviewSep2026 } from "@/data/hsoUpdateSep2026";
+
+/**
+ * Deadline check, 2026-10-12. It follows the same pattern as hsoReviewOct2026.
+ *
+ * Listings with no date (or a stale one) were searched against their official
+ * program pages. A row sets a date only where the official page states it for the
+ * coming cycle, and quotes that page in `evidence`. A date from a blog, an
+ * aggregator, or an earlier cycle is never used: those listings stay "Deadline TBA".
+ *
+ * Applied straight after applyHsoUpdateOct2026 in src/data/opportunities.ts, so these
+ * rows win over earlier reviews.
+ */
+export const deadlineCheckOct2026: Record<string, HsoReviewSep2026> = {
+  "tanglewood": {
+    deadline: "2027-01-19",
+    opensAt: "2026-11-01",
+    evidence: "2026-10-12, bu.edu/cfa/tanglewood/admissions: 2027 applications open November 1, 2026; 'January 19, 2027 · Applications due' (later applications reviewed on a space-available basis).",
+  },
+  "cmu-sams": {
+    deadline: "2027-02-01",
+    evidence: "2026-10-12, cmu.edu/pre-college/academic-programs/sams.html: application deadline February 1, 2027; decision release April 1, 2027.",
+  },
+  "carnegie-mellon-university-pre-college-programs-ai-scholars": {
+    deadline: "2027-02-01",
+    evidence: "2026-10-12, cmu.edu/pre-college/cost-financial-aid: 'Scholarships will ONLY be considered under the February 1, 2027 application deadline.' The AI Scholars page gives the same February 1, 2027 deadline.",
+  },
+  "leda-scholars-program": {
+    deadline: "2026-12-09",
+    blurb: "Completely free five-week residential summer at Princeton and Yale for 100 public high school juniors, covering college prep, leadership training, college guidance and SAT/ACT prep, followed by years of support. Applicants need a 3.5+ unweighted GPA and household income of $90,000 or less, and must be U.S. citizens, permanent residents or DACA recipients. The Summer 2027 application is open now; Part I is due December 9, 2026.",
+    evidence: "2026-10-12, ledascholars.org .../recruitment-admissions/apply: 'Application Opens: September 9, 2026', 'Part I Deadline: December 9, 2026'; Part II follows in late February.",
+  },
+  "university-of-memphis-governors-school-for-international-studies": {
+    deadline: "2026-11-20",
+    evidence: "2026-10-12, memphis.edu/govschool: 'The application for the 2027 program will open on October 1. The deadline for the student portion of the application is November 20. The deadline for the counselor and teacher forms is December 11.' Program June 5-26, 2027.",
+  },
+  "rockefeller-ssrp": {
+    opensAt: "2026-10-15",
+    evidence: "2026-10-12, rockefeller.edu/outreach/ssrp: applications for SSRP 2027 open October 15, 2026 (program June 21 - August 5, 2027). The deadline shown on the page is still the previous cycle's, so none is set.",
+  },
+  "state-science-and-technology-fair-of-iowa-state-science-and-tech": {
+    deadline: "2027-02-15",
+    opensAt: "2026-12-01",
+    evidence: "2026-10-12, sstfi.org home page, alongside the April 1-2, 2027 fair in Ames: 'December 1st: REGISTRATION OPENS', 'February 15th: REGISTRATION CLOSES', 'Teachers need to register every year!'",
+  },
+  "illinois-junior-academy-of-science-illinois-junior-academy-of-sc": {
+    deadline: "2027-02-15",
+    evidence: "2026-10-12, ijas.org/regional-expositions: 'Regardless of regional fair dates, student/project registration to IJAS is due by February 15, 2027, 11:59PM CT.'",
+  },
+  "columbia-brainyac": {
+    deadline: "2026-10-28",
+    blurb: "Paid summer neuroscience research apprenticeship at Columbia's Zuckerman Institute for NYC 10th and 11th graders enrolled in a partner program (S-PREP, BioBus, Lang Youth Medical, Columbia Secondary School or Double Discovery Center). Apply through your partner program; 2027 applications close October 28, 2026.",
+    evidence: "2026-10-12, zuckermaninstitute.columbia.edu/brainyac: 'Applications for BRAINYAC 2027 are open until October 28, 2026 at 11:59pm.' 'Please check with your partner program for an application.' The old blurb said 2027 applications were still expected.",
+  },
+  "salk-institute-for-biological-studies-salk-education-outreach-hi": {
+    deadline: "2027-02-15",
+    opensAt: "2026-12-01",
+    evidence: "2026-10-12, salk.edu/about/education-outreach/programs/high-school-scholars: 'The application period for the 2027 summer program will open on Tuesday, December 1, 2026 and close on Monday, February 15, 2027.' (Heithoff-Brody High School Summer Scholars; San Diego County students.)",
+  },
+  "school-of-health-professions-ut-md-anderson-cancer-center-king-f": {
+    deadline: "2027-01-13",
+    opensAt: "2026-11-16",
+    blurb: "Ten-week paid research placement at MD Anderson for up to six Texas high school seniors who are 18 by the start, with a preference for students heading into an allied health career. The stipend is 7,200 dollars for ten weeks. Applications for summer 2027 run November 16, 2026 to January 13, 2027.",
+    evidence: "2026-10-12, mdanderson.org summer research programs 'How to Apply': 'Applications for summer 2027 will be collected from November 16, 2026-January 13, 2027'; the CATALYST page gives the same window (program June 7 - August 13, 2027). The listing's previous open date of October 1 was wrong.",
+  },
+  "harvard-summer-school-secondary-school-program": {
+    deadline: "2027-02-10",
+    opensAt: "2026-12-01",
+    blurb: "Harvard Summer School program in which high school students take college courses for credit on campus or online. Tuition ranges from about $4,180 to $15,735 plus a $75 application fee, with financial aid. The 2027 application opens December 1, 2026; the early deadline is January 13 and the regular deadline February 10, 2027.",
+    evidence: "2026-10-12, summer.harvard.edu Secondary School Program pages: Summer 2027 application opens December 1, 2026; early application and priority financial aid by January 13, 2027; regular application and financial aid by February 10, 2027; late application by March 31, 2027. The old blurb described these as the last cycle's dates.",
+  },
+  "nasa-aeronautics-dream-with-us-design-challenge": {
+    deadline: "2026-12-08",
+    blurb: "NASA aeronautics design challenge with a separate high school division (grades 9-12, U.S. schools). The 2026-27 high school challenge asks teams to design an aircraft fuselage fuelled by liquefied natural gas; registration closes December 8, 2026 and submissions are due January 25, 2027.",
+    evidence: "2026-10-12, nasa.gov '2026-2027 DWU High School Engineering Challenge': registration closes December 8, 2026; submission deadline January 25, 2027. The old blurb said the next round was not yet posted.",
+  },
+};
+
+/** Applies the 2026-10-12 deadline check. Call it straight after applyHsoUpdateOct2026. */
+export function applyDeadlineCheckOct2026(list: Opportunity[]): void {
+  for (const opportunity of list) {
+    const row = deadlineCheckOct2026[opportunity.id];
+    if (!row) continue;
+    if (row.deadline !== undefined) opportunity.deadline = row.deadline;
+    if (row.opensAt !== undefined) opportunity.opensAt = row.opensAt;
+    if (row.url) opportunity.url = row.url;
+    if (row.title) opportunity.title = row.title;
+    if (row.blurb) opportunity.blurb = row.blurb;
+    if (row.location) opportunity.location = row.location;
+    if (row.format) opportunity.format = row.format;
+    if (row.cost) opportunity.cost = row.cost;
+  }
+}
