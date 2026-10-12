@@ -34,8 +34,8 @@ export const EMPTY_FILTERS: FilterState = {
 
 export const COST_OPTIONS: { value: Cost; label: string }[] = [
   { value: "Free", label: "Free" },
-  { value: "Paid", label: "Paid" },
-  { value: "Stipend", label: "Stipend / paid to me" },
+  { value: "Paid", label: "Tuition" },
+  { value: "Stipend", label: "Paid (pays you)" },
 ];
 
 export const FORMAT_OPTIONS: { value: Format; label: string; hint: string }[] = [

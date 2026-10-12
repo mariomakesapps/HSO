@@ -92,13 +92,6 @@ export function formatSentence(opp: Opportunity): string {
   return `Runs in person.${where}`;
 }
 
-/** "Remote", or the place without the trailing ", USA". */
-export function placeLabel(opp: Opportunity): string {
-  if (opp.format === "Online") return "Remote";
-  const place = opp.location.replace(/,\s*USA$/i, "").trim() || opp.location;
-  return opp.format === "Hybrid" ? `${place} · Hybrid` : place;
-}
-
 /**
  * Cost in the words a student means. The data's "Stipend" is money paid TO the
  * student ("Paid"); the data's "Paid" means the student pays ("Tuition").

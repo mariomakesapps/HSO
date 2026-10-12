@@ -95,7 +95,8 @@ export function facetCounts(
   return counts;
 }
 
-export function applySort(list: Opportunity[], sort: SortKey, originalIndex: Map<string, number>, now: number = Date.now()): Opportunity[] {
+export function applySort(list: Opportunity[], sort: SortKey, originalIndex: Map<string, number>): Opportunity[] {
+  const now = Date.now();
   const arr = list.slice();
   switch (sort) {
     case "deadline-soon":
