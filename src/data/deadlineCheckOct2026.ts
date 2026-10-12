@@ -73,12 +73,56 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
   "state-michigan-aspirnaut": {
     org: "Vanderbilt University Medical Center",
     location: "Nashville, Tennessee, USA",
-    blurb: "Paid summer biomedical research internship at Vanderbilt University Medical Center in Nashville, run by the Aspirnaut program.",
-    evidence: "2026-10-12: aspirnaut.org (the listing's own link) describes Aspirnaut as a Vanderbilt University Medical Center program in Nashville, Tennessee. The listing named the University of Michigan in Ann Arbor, so it sat under Michigan in the State filter. The id is kept because the page URL is already indexed.",
+    deadline: "2027-01-13",
+    blurb: "Paid summer biomedical research internship at Vanderbilt University Medical Center in Nashville, run by the Aspirnaut program. The 2027 internship runs June 6 to July 17; applications are due January 13, 2027, with a transcript uploaded by a school official.",
+    evidence: "2026-10-12: aspirnaut.org/high-school-internships: 'application deadline is January 13, 2027 at 11:59 PM CST'; program June 6 - July 17, 2027. aspirnaut.org (the listing's own link) describes Aspirnaut as a Vanderbilt University Medical Center program in Nashville, Tennessee. The listing named the University of Michigan in Ann Arbor, so it sat under Michigan in the State filter. The id is kept because the page URL is already indexed.",
   },
   "csv-sch-dr-arnita-young-boswell-scholarship": {
     grades: [12],
     evidence: "2026-10-12: the listing's own description says the scholarship 'is open to female African-American graduating high school seniors', but it was tagged for grades 11-12, so it showed up under the grade 11 filter.",
+  },
+  "congressional-app": {
+    deadline: "2026-10-26",
+    blurb: "District-level coding competition run by members of Congress, open to high school students in participating districts, with winning apps displayed in the U.S. Capitol. Students register and submit themselves, but only if their Member of Congress has signed up the district; 2026 entries are due October 26, 2026.",
+    evidence: "2026-10-12, congressionalappchallenge.us student registration page and 2026 rules PDF: '12:00 pm EDT, Monday, October 26th, 2026'. Members' sign-up deadline was October 15, 2026. The old blurb said the next cycle's dates were not posted.",
+  },
+  "technovation": {
+    deadline: "2027-03-11",
+    evidence: "2026-10-12, technovationchallenge.org/competition: 'Registration Deadline (Students and Mentors): March 11, 2027 at 23:59 UTC'. Final submissions are due May 5, 2027.",
+  },
+  "interlochen": {
+    deadline: "2027-01-15",
+    blurb: "World-renowned summer arts camp for serious teen artists. January 15, 2027 is the priority deadline for programs that need an audition or portfolio; after that, applications are taken as space allows, and programs without auditions enroll on a rolling basis.",
+    evidence: "2026-10-12, interlochen.org 2027 high school program pages, e.g. musical theatre production: 'Program Dates: June 27, 2027 to August 8, 2027 ... Deadline: January 15, 2027'; how-to-apply page calls January 15 the priority application date.",
+  },
+  "nyu-tisch": {
+    deadline: "2026-12-01",
+    evidence: "2026-10-12, tisch.nyu.edu special programs admissions calendar: Summer 2027 residential program (July 11 - August 7, 2027) application deadline 'Tuesday, December 1, 2026 at 11:59 p.m. ET'; scholarship deadline December 11, 2026.",
+  },
+  "swe-scholarships": {
+    deadline: "2027-03-31",
+    opensAt: "2027-02-08",
+    blurb: "Scholarships for women entering ABET-accredited engineering or computer science programs. High school seniors apply in the Emerging First Year Scholars round, open February 8 to March 31, 2027 (minimum 3.5 unweighted GPA).",
+    evidence: "2026-10-12, swe.org/scholarships: Emerging First Year Scholars, 'open to students entering their first year of undergraduate study (including current high school seniors)', February 8, 2027 - March 31, 2027.",
+  },
+  "taco-bell-live-mas": {
+    opensAt: "2026-10-13",
+    evidence: "2026-10-12, tacobellfoundation.org: 'Live Más Scholarship 2027 applications open October 13'. No 2027 deadline posted yet.",
+  },
+  "ornl": {
+    deadline: "2026-12-04",
+    evidence: "2026-10-12, arc.gov 'Summer Learning Opportunities 2027' (October 8, 2026): 'Applications for both opportunities are due December 4, 2026.' High school session July 10-24, 2027.",
+  },
+  "aspen-music": {
+    deadline: "2027-01-05",
+    blurb: "Eight-week summer music school in the Rockies. Most instrumental programs close January 5, 2027; some tracks close earlier (opera and VocalARTS September 1, collaborative piano October 15, composition November 1, conducting November 15), so check your program's page.",
+    evidence: "2026-10-12, aspenmusicfestival.com programs of study (flute and tuba pages, fees and deadlines page): 'September 15, 2026: application opens ... January 5, 2027: application closes at 11:59 pm ET'. Earlier deadlines for the tracks named in the blurb.",
+  },
+  "state-arkansas-governors-school": {
+    deadline: "2027-02-01",
+    opensAt: "2026-10-19",
+    blurb: "Four-week residential program for gifted Arkansas rising seniors across nine academic and creative areas. Students are nominated by their school (homeschoolers by a parent); nominations open October 19, 2026 and student materials are due February 1, 2027.",
+    evidence: "2026-10-12, atu.edu/ags/apply.php: 'October 19, 2026 - Nomination/Application open ... February 1, 2027 - Student application material due'. School materials are due February 8, 2027.",
   },
   "harvard-summer-school-secondary-school-program": {
     deadline: "2027-02-10",
