@@ -21,7 +21,7 @@ import { allOpportunities as opportunities, locationState } from "@/data/opportu
 import type { Category, Opportunity } from "@/data/opportunities";
 import { OpportunityCard } from "@/components/OpportunityCard";
 import { FilterState, COST_OPTIONS, FORMAT_OPTIONS, GRADE_OPTIONS } from "@/components/Filters";
-import { ExtraFilters, DEFAULT_EXTRA, ExtraFilterState } from "@/components/ExtraFilters";
+import { ExtraFilters, StateFilter, DEFAULT_EXTRA, ExtraFilterState } from "@/components/ExtraFilters";
 import { SortKey, SORT_OPTIONS } from "@/components/SortBar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -764,6 +764,7 @@ function RefinePanel({
           onChange={(v) => setFilters({ ...filters, costs: v as FilterState["costs"] })}
           options={COST_OPTIONS}
         />
+        <StateFilter value={extra} onChange={setExtra} facets={facets} />
         <MultiFilterDropdown
           fullWidth
           label="Where"
@@ -781,10 +782,7 @@ function RefinePanel({
           onChange={(v) => setSort(v as SortKey)}
           options={SORT_OPTIONS.map((o) => ({ value: o.value, label: o.label }))}
         />
-      </div>
-
-      <div className="mt-4 hidden border-t border-border/70 pt-4 md:block">
-        <ExtraFilters value={extra} onChange={setExtra} facets={facets} />
+        <ExtraFilters value={extra} onChange={setExtra} facets={facets} hideState className="space-y-3 text-sm" />
       </div>
 
       <Sheet>
@@ -808,12 +806,13 @@ function RefinePanel({
             <SheetField label="Cost">
               <MultiFilterDropdown fullWidth label="Cost" allLabel="Any cost" counts={facets.costs} hideEmpty selected={filters.costs} onChange={(v) => setFilters({ ...filters, costs: v as FilterState["costs"] })} options={COST_OPTIONS} />
             </SheetField>
+            <SheetField label="State">
+              <StateFilter value={extra} onChange={setExtra} facets={facets} />
+            </SheetField>
             <SheetField label="Where">
               <MultiFilterDropdown fullWidth label="Where" allLabel="Anywhere" counts={facets.formats} hideEmpty selected={filters.formats} onChange={(v) => setFilters({ ...filters, formats: v as FilterState["formats"] })} options={FORMAT_OPTIONS.map((f) => ({ value: f.value, label: f.label }))} />
             </SheetField>
-            <div className="border-t border-border pt-5">
-              <ExtraFilters value={extra} onChange={setExtra} facets={facets} />
-            </div>
+            <ExtraFilters value={extra} onChange={setExtra} facets={facets} hideState className="space-y-3 text-sm" />
           </div>
           <SheetFooter className="mt-6 flex-row gap-2">
             <Button variant="outline" className="flex-1 rounded-xl" onClick={clearAll}>

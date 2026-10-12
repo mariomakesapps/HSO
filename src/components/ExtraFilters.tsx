@@ -108,18 +108,51 @@ export const STATUS_OPTIONS: { value: DeadlineStatus; label: string }[] = [
   { value: "Closed", label: "Closed" },
 ];
 
-export function ExtraFilters({
+type ExtraFacets = { fields?: Record<string, number>; states?: Record<string, number> };
+
+/** The State dropdown on its own, so a panel can place it next to the other location filter. */
+export function StateFilter({
   value,
   onChange,
   facets,
 }: {
   value: ExtraFilterState;
   onChange: (v: ExtraFilterState) => void;
-  /** Result counts per option, so dead-end choices can be hidden. */
-  facets?: { fields?: Record<string, number>; states?: Record<string, number> };
+  facets?: ExtraFacets;
 }) {
   return (
-    <div className="grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-1">
+    <MultiFilterDropdown
+      fullWidth
+      label="State"
+      allLabel="All states"
+      counts={facets?.states}
+      hideEmpty
+      selected={value.states}
+      onChange={(v) => onChange({ ...value, states: v })}
+      searchable
+      searchPlaceholder="Search states..."
+      options={FILTER_STATES.map((c) => ({ value: c, label: c }))}
+    />
+  );
+}
+
+export function ExtraFilters({
+  value,
+  onChange,
+  facets,
+  hideState = false,
+  className = "grid gap-2 text-sm sm:grid-cols-2 lg:grid-cols-1",
+}: {
+  value: ExtraFilterState;
+  onChange: (v: ExtraFilterState) => void;
+  /** Result counts per option, so dead-end choices can be hidden. */
+  facets?: ExtraFacets;
+  /** Leave State out when the panel shows StateFilter elsewhere. */
+  hideState?: boolean;
+  className?: string;
+}) {
+  return (
+    <div className={className}>
       <MultiFilterDropdown
         fullWidth
         label="Field"
@@ -132,18 +165,7 @@ export function ExtraFilters({
         onChange={(v) => onChange({ ...value, fields: v })}
         options={FILTER_FIELDS.map((f) => ({ value: f, label: f }))}
       />
-      <MultiFilterDropdown
-        fullWidth
-        label="State"
-        allLabel="All states"
-        counts={facets?.states}
-        hideEmpty
-        selected={value.states}
-        onChange={(v) => onChange({ ...value, states: v })}
-        searchable
-        searchPlaceholder="Search states..."
-        options={FILTER_STATES.map((c) => ({ value: c, label: c }))}
-      />
+      {!hideState && <StateFilter value={value} onChange={onChange} facets={facets} />}
       <MultiFilterDropdown
         fullWidth
         label="Status"
