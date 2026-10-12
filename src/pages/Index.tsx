@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useAuthSession } from "@/hooks/useAuthSession";
-import { allOpportunities as opportunities, locationState } from "@/data/opportunities";
+import { allOpportunities as opportunities } from "@/data/opportunities";
 import type { Category, Opportunity } from "@/data/opportunities";
 import { OpportunityCard } from "@/components/OpportunityCard";
 import { FilterState, COST_OPTIONS, FORMAT_OPTIONS, GRADE_OPTIONS } from "@/components/Filters";
@@ -33,7 +33,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { ReturnToFiltersButton } from "@/components/ReturnToFiltersButton";
 import { Pagination } from "@/components/Pagination";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { applyFilters, applySort, facetCounts } from "@/lib/filterSort";
+import { applyFilters, applySort, facetCounts, listingFilterStates } from "@/lib/filterSort";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { cn } from "@/lib/utils";
 import { SEO } from "@/components/SEO";
@@ -127,12 +127,7 @@ const Index = () => {
       costs: facetCounts(opportunities, deferredFilters, deferredExtra, "costs", (o) => [o.cost]),
       formats: facetCounts(opportunities, deferredFilters, deferredExtra, "formats", (o) => [o.format]),
       fields: facetCounts(opportunities, deferredFilters, deferredExtra, "fields", (o) => o.fields),
-      states: facetCounts(opportunities, deferredFilters, deferredExtra, "states", (o) => {
-        const s = locationState(o.location);
-        // A remote program is reachable from every state, so it counts toward
-        // "Nationwide" even when its location names a city.
-        return o.format === "Online" && s !== "Nationwide" ? [s, "Nationwide"] : [s];
-      }),
+      states: facetCounts(opportunities, deferredFilters, deferredExtra, "states", listingFilterStates),
     }),
     [deferredFilters, deferredExtra],
   );
@@ -710,7 +705,7 @@ function RefinePanel({
   for (const m of extra.deadlineMonths)
     activeChips.push({ key: `month-${m}`, label: MONTH_LABELS[Number(m) - 1] ?? `Month ${m}`, clear: () => setExtra({ ...extra, deadlineMonths: dropFrom(extra.deadlineMonths, m) }) });
   if (extra.freeOnly)
-    activeChips.push({ key: "free", label: "Free only", clear: () => setExtra({ ...extra, freeOnly: false }) });
+    activeChips.push({ key: "free", label: "Free / aid available", clear: () => setExtra({ ...extra, freeOnly: false }) });
 
   const clearAll = () => {
     setFilters({ ...filters, categories: [], grades: [], costs: [], formats: [] });

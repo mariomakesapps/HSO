@@ -5,7 +5,7 @@ import { MultiFilterDropdown } from "@/components/MultiFilterDropdown";
  * Secondary filters. Like FilterState, every dimension is a list and an empty
  * list means "no constraint" — see components/Filters.tsx.
  */
-export type DeadlineStatus = "Open" | "Closing soon" | "Rolling" | "Closed";
+export type DeadlineStatus = "Open" | "Closing soon" | "Opens later" | "Rolling" | "Closed";
 
 export type ExtraFilterState = {
   fields: string[];
@@ -104,6 +104,7 @@ const FILTER_STATES = ["Nationwide", ...STATES];
 export const STATUS_OPTIONS: { value: DeadlineStatus; label: string }[] = [
   { value: "Open", label: "Open now" },
   { value: "Closing soon", label: "Closing soon" },
+  { value: "Opens later", label: "Opens later" },
   { value: "Rolling", label: "TBA / rolling" },
   { value: "Closed", label: "Closed" },
 ];

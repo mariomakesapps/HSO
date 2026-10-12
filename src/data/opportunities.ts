@@ -497,6 +497,42 @@ export const allOpportunities: Opportunity[] = opportunities.filter((o) =>
 
 
 // Map a US location string to a state-like filter bucket.
+const STATE_NAMES = [
+  "Alabama","Alaska","Arizona","Arkansas","California","Colorado","Connecticut","Delaware",
+  "Florida","Georgia","Hawaii","Idaho","Illinois","Indiana","Iowa","Kansas","Kentucky",
+  "Louisiana","Maine","Maryland","Massachusetts","Michigan","Minnesota","Mississippi",
+  "Missouri","Montana","Nebraska","Nevada","New Hampshire","New Jersey","New Mexico",
+  "New York","North Carolina","North Dakota","Ohio","Oklahoma","Oregon","Pennsylvania",
+  "Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont",
+  "Virginia","Washington","West Virginia","Wisconsin","Wyoming",
+];
+
+/**
+ * Every state a listing can be found under in the State filter.
+ *
+ * locationState() picks one state, which is right for a fact line but wrong for
+ * filtering: "Maryland / Colorado / Georgia / Texas / Hawaii / Utah / Alaska, USA"
+ * resolved to Alaska alone, so a Maryland student filtering by Maryland never saw it.
+ * A location that names several states belongs to each of them.
+ */
+export function locationStates(location: string): string[] {
+  const primary = locationState(location);
+  if (primary === "Online" || primary === "Nationwide" || primary === "Other") return [primary];
+  const l = location
+    .toLowerCase()
+    .replace(/kansas city|washington heights/g, "")
+    .replace(/washington,? (dc|d\.c\.|district of columbia)/g, "district of columbia")
+    .replace(/west virginia/g, "\u0000");
+  const found = new Set<string>([primary]);
+  if (l.includes("\u0000")) found.add("West Virginia");
+  for (const state of STATE_NAMES) {
+    if (state === "West Virginia") continue;
+    if (new RegExp(`\\b${state.toLowerCase()}\\b`).test(l)) found.add(state);
+  }
+  if (l.includes("district of columbia")) found.add("District of Columbia");
+  return [...found];
+}
+
 export function locationState(location: string): string {
   const l = location.toLowerCase();
   // "Online, USA" is the catalogue's normal value for a US-eligible online programme, but
@@ -517,7 +553,8 @@ export function locationState(location: string): string {
     "Rhode Island","South Carolina","South Dakota","Tennessee","Texas","Utah","Vermont",
     "Virginia","Washington","Wisconsin","Wyoming","District of Columbia"
   ];
-  const direct = states.find((state) => l.includes(state.toLowerCase()));
+  // "Kansas City, Missouri" names a city, not the state of Kansas.
+  const direct = states.find((state) => l.replace(/kansas city/g, "").includes(state.toLowerCase()));
   if (direct) return direct;
 
   const cityToState: Record<string, string> = {

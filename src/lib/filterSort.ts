@@ -1,19 +1,25 @@
 import type { Opportunity } from "@/data/opportunities";
-import { locationState } from "@/data/opportunities";
+import { locationStates } from "@/data/opportunities";
 import type { FilterState } from "@/components/Filters";
 import type { ExtraFilterState } from "@/components/ExtraFilters";
 import type { SortKey } from "@/components/SortBar";
-import { getDeadlineStatus } from "@/lib/deadline";
+import { getDeadlineStatus, type DeadlineStatus } from "@/lib/deadline";
 
 const searchTextCache = new Map<string, string>();
-const locationStateCache = new Map<string, string>();
+const locationStateCache = new Map<string, string[]>();
 
-const STATUS_MAP = {
-  Open: "open",
-  "Closing soon": "closing-soon",
-  Rolling: "rolling",
-  Closed: "closed",
-} as const;
+/**
+ * Which deadline statuses each status option covers. A listing closing in a week
+ * is still open, so "Open now" includes "closing soon" — before, picking "Open now"
+ * hid exactly the listings a student most needs to act on.
+ */
+const STATUS_MAP: Record<ExtraFilterState["statuses"][number], DeadlineStatus[]> = {
+  Open: ["open", "closing-soon"],
+  "Closing soon": ["closing-soon"],
+  "Opens later": ["opens-later"],
+  Rolling: ["rolling"],
+  Closed: ["closed"],
+};
 
 /**
  * Filters combine as OR within a dimension and AND across dimensions.
@@ -38,26 +44,23 @@ export function applyFilters(
     if (extra.fields.length && !extra.fields.some((f) => o.fields.includes(f))) return false;
 
     if (extra.states.length) {
-      const state = getCachedLocationState(o.location);
-      // A nationwide or fully-online program is open to a student in any state,
-      // so it should surface for "Nationwide" regardless of its location string.
-      const matches = extra.states.some((s) =>
-        s === "Nationwide" ? state === "Nationwide" || o.format === "Online" : state === s,
-      );
-      if (!matches) return false;
+      const states = listingFilterStates(o);
+      if (!extra.states.some((s) => states.includes(s))) return false;
     }
 
     if (extra.freeOnly && !(o.cost === "Free" || o.cost === "Stipend")) return false;
 
     if (extra.deadlineMonths.length) {
       if (!o.deadline) return false;
-      const m = new Date(o.deadline).getMonth() + 1;
+      // Read the month straight from the ISO date. new Date("2026-03-01") is
+      // midnight UTC, which is still February in every US time zone.
+      const m = Number(o.deadline.slice(5, 7));
       if (!extra.deadlineMonths.includes(String(m))) return false;
     }
 
     if (extra.statuses.length) {
       const s = getDeadlineStatus(o.deadline, o.opensAt).status;
-      if (!extra.statuses.some((label) => STATUS_MAP[label] === s)) return false;
+      if (!extra.statuses.some((label) => STATUS_MAP[label]?.includes(s))) return false;
     }
 
     if (q && !getSearchText(o).includes(q)) return false;
@@ -151,7 +154,7 @@ const GATEKEPT =
  * the signal meaningless.
  */
 function isNationallyAvailable(o: Opportunity): boolean {
-  return o.format === "Online" || getCachedLocationState(o.location) === "Nationwide";
+  return o.format === "Online" || getCachedLocationStates(o.location).includes("Nationwide");
 }
 
 /**
@@ -214,7 +217,9 @@ export function recommendedScore(o: Opportunity): number {
 
 function deadlineTime(o: Opportunity) {
   if (!o.deadline) return Infinity;
-  const time = new Date(o.deadline).getTime();
+  // End of the deadline day, local time — the same rule getDeadlineStatus uses,
+  // so a listing due today is not sorted as closed.
+  const time = new Date(`${o.deadline}T23:59:59`).getTime();
   return Number.isNaN(time) ? Infinity : time;
 }
 
@@ -237,10 +242,23 @@ function getSearchText(o: Opportunity) {
   return text;
 }
 
-function getCachedLocationState(location: string) {
+function getCachedLocationStates(location: string) {
   const cached = locationStateCache.get(location);
   if (cached) return cached;
-  const state = locationState(location);
-  locationStateCache.set(location, state);
-  return state;
+  const states = locationStates(location);
+  locationStateCache.set(location, states);
+  return states;
+}
+
+/**
+ * The State-filter values a listing matches. Shared by applyFilters and the
+ * facet counts so the number beside an option always equals what it returns.
+ *
+ * A remote program, or one whose location is just "Online", is open to a student
+ * in any state, so it also counts as "Nationwide".
+ */
+export function listingFilterStates(o: Opportunity): string[] {
+  const states = getCachedLocationStates(o.location);
+  const reachableAnywhere = o.format === "Online" || states.includes("Online");
+  return reachableAnywhere && !states.includes("Nationwide") ? [...states, "Nationwide"] : states;
 }

@@ -17,8 +17,14 @@ const app = (
   </HelmetProvider>
 );
 const here = window.location.pathname.replace(/\/+$/, "") || "/";
+// The prerendered home page is the unfiltered list. A shared link like
+// /?state=Maryland shows a different list, so hydrating would mismatch on every
+// card and React would throw the markup away anyway, after logging errors.
+const FILTER_PARAMS = ["q", "category", "grade", "cost", "format", "field", "state", "status", "free", "month", "sort", "page"];
+const query = new URLSearchParams(window.location.search);
+const filtered = FILTER_PARAMS.some((key) => query.has(key));
 const mount = () => {
-  if (container.firstElementChild && container.dataset.ssrPath === here) hydrateRoot(container, app);
+  if (container.firstElementChild && container.dataset.ssrPath === here && !filtered) hydrateRoot(container, app);
   else createRoot(container).render(app);
 };
 
