@@ -9,10 +9,16 @@ import type { HsoReviewSep2026 } from "@/data/hsoUpdateSep2026";
  * coming cycle, and quotes that page in `evidence`. A date from a blog, an
  * aggregator, or an earlier cycle is never used: those listings stay "Deadline TBA".
  *
+ * The same pass fixed a few listings whose organisation, location or grades were
+ * wrong in ways that put them under the wrong filter.
+ *
  * Applied straight after applyHsoUpdateOct2026 in src/data/opportunities.ts, so these
  * rows win over earlier reviews.
  */
-export const deadlineCheckOct2026: Record<string, HsoReviewSep2026> = {
+/** A review row that can also correct the organisation and the eligible grades. */
+type CheckRow = HsoReviewSep2026 & { org?: string; grades?: number[] };
+
+export const deadlineCheckOct2026: Record<string, CheckRow> = {
   "tanglewood": {
     deadline: "2027-01-19",
     opensAt: "2026-11-01",
@@ -64,6 +70,16 @@ export const deadlineCheckOct2026: Record<string, HsoReviewSep2026> = {
     blurb: "Ten-week paid research placement at MD Anderson for up to six Texas high school seniors who are 18 by the start, with a preference for students heading into an allied health career. The stipend is 7,200 dollars for ten weeks. Applications for summer 2027 run November 16, 2026 to January 13, 2027.",
     evidence: "2026-10-12, mdanderson.org summer research programs 'How to Apply': 'Applications for summer 2027 will be collected from November 16, 2026-January 13, 2027'; the CATALYST page gives the same window (program June 7 - August 13, 2027). The listing's previous open date of October 1 was wrong.",
   },
+  "state-michigan-aspirnaut": {
+    org: "Vanderbilt University Medical Center",
+    location: "Nashville, Tennessee, USA",
+    blurb: "Paid summer biomedical research internship at Vanderbilt University Medical Center in Nashville, run by the Aspirnaut program.",
+    evidence: "2026-10-12: aspirnaut.org (the listing's own link) describes Aspirnaut as a Vanderbilt University Medical Center program in Nashville, Tennessee. The listing named the University of Michigan in Ann Arbor, so it sat under Michigan in the State filter. The id is kept because the page URL is already indexed.",
+  },
+  "csv-sch-dr-arnita-young-boswell-scholarship": {
+    grades: [12],
+    evidence: "2026-10-12: the listing's own description says the scholarship 'is open to female African-American graduating high school seniors', but it was tagged for grades 11-12, so it showed up under the grade 11 filter.",
+  },
   "harvard-summer-school-secondary-school-program": {
     deadline: "2027-02-10",
     opensAt: "2026-12-01",
@@ -90,5 +106,7 @@ export function applyDeadlineCheckOct2026(list: Opportunity[]): void {
     if (row.location) opportunity.location = row.location;
     if (row.format) opportunity.format = row.format;
     if (row.cost) opportunity.cost = row.cost;
+    if (row.org) opportunity.org = row.org;
+    if (row.grades) opportunity.grades = row.grades;
   }
 }
