@@ -13,7 +13,7 @@ import {
   Wifi,
   ShieldCheck,
   SlidersHorizontal,
-  Sparkles,
+  LayoutGrid,
 } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useAuthSession } from "@/hooks/useAuthSession";
@@ -437,7 +437,7 @@ function Hero({
   return (
     <section className="hso-surface-grid relative overflow-hidden border-b border-white/55">
       <div className="hso-intro-rule pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-coral/45 to-transparent" />
-      <div className="mx-auto grid w-full max-w-[1400px] min-w-0 gap-10 overflow-hidden px-4 py-14 sm:px-6 md:grid-cols-[0.96fr_1.04fr] md:items-center md:overflow-visible lg:min-h-[calc(100dvh-76px)] lg:py-20">
+      <div className="mx-auto grid w-full max-w-[1400px] min-w-0 gap-10 overflow-hidden px-4 py-14 sm:px-6 md:grid-cols-[0.96fr_1.04fr] md:items-center md:overflow-visible lg:pb-12 lg:pt-20">
         <div className="hso-mobile-fit min-w-0 md:w-full md:max-w-3xl">
           <div style={{ "--intro-delay": "80ms" } as React.CSSProperties} className="hso-intro-fade inline-flex items-center gap-2 rounded-full border border-white/65 bg-card/66 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-ink shadow-[inset_0_1px_0_hsl(0_0%_100%/0.72)] backdrop-blur-xl">
             <span className="h-1.5 w-6 rounded-full bg-gradient-to-r from-coral to-sage" />
@@ -515,7 +515,88 @@ function Hero({
           </div>
         </div>
       </div>
+      <HeroPhotos />
     </section>
+  );
+}
+
+/**
+ * Free Unsplash License photos (no attribution required; credited anyway).
+ * Loaded from Unsplash's own download links at a small width, lazily, so they
+ * never hold up the first paint. A photo that fails to load hides itself.
+ */
+const HERO_PHOTOS = [
+  {
+    id: "sFzZbmizqOE",
+    alt: "High school graduates in caps and gowns walking through confetti",
+    credit: "VFP Fineart",
+    page: "https://unsplash.com/photos/graduates-in-caps-and-gowns-walking-through-confetti-and-confetti-sFzZbmizqOE",
+  },
+  {
+    id: "8gAbl776pc0",
+    alt: "A group of students working together around a laptop",
+    credit: "Vitaly Gariev",
+    page: "https://unsplash.com/photos/diverse-group-of-students-gathered-around-a-laptop-8gAbl776pc0",
+  },
+  {
+    id: "MUiv880yORo",
+    alt: "Students walking through a university campus archway",
+    credit: "Brelyn Bashrum",
+    page: "https://unsplash.com/photos/students-walking-through-a-university-campus-archway-MUiv880yORo",
+  },
+];
+
+function HeroPhotos() {
+  const [failed, setFailed] = useState<string[]>([]);
+  const refs = useRef<Record<string, HTMLImageElement | null>>({});
+  const fail = (id: string) => setFailed((prev) => (prev.includes(id) ? prev : [...prev, id]));
+
+  // An image that failed before hydration never fires React's onError, so
+  // check once after mount as well.
+  useEffect(() => {
+    for (const [id, img] of Object.entries(refs.current)) {
+      if (img && img.complete && img.naturalWidth === 0) fail(id);
+    }
+  }, []);
+
+  const shown = HERO_PHOTOS.filter((p) => !failed.includes(p.id));
+  if (!shown.length) return null;
+
+  return (
+    <div className="mx-auto w-full max-w-[1400px] px-4 pb-12 sm:px-6 lg:pb-16">
+      <div className="grid grid-cols-3 gap-2 sm:gap-4">
+        {shown.map((p) => (
+          <figure key={p.id} className="relative aspect-square overflow-hidden rounded-2xl bg-cream sm:aspect-[4/3] sm:rounded-[1.5rem]">
+            <img
+              ref={(el) => {
+                refs.current[p.id] = el;
+              }}
+              src={`https://unsplash.com/photos/${p.id}/download?w=960`}
+              alt={p.alt}
+              width={960}
+              height={720}
+              loading="lazy"
+              decoding="async"
+              referrerPolicy="no-referrer"
+              onError={() => fail(p.id)}
+              className="h-full w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.03]"
+            />
+          </figure>
+        ))}
+      </div>
+      <p className="mt-3 text-right text-[11px] text-muted-foreground">
+        Photos by{" "}
+        {shown.map((p, i) => (
+          <span key={p.id}>
+            {i > 0 && (i === shown.length - 1 ? " and " : ", ")}
+            <a href={p.page} target="_blank" rel="noopener noreferrer" className="underline-offset-2 hover:underline">
+              {p.credit}
+            </a>
+          </span>
+        ))}{" "}
+        on Unsplash
+      </p>
+    </div>
   );
 }
 
@@ -594,13 +675,13 @@ function FeaturedShelf({
     <div>
       <div className="grid gap-4 md:grid-cols-[0.9fr_1.1fr] md:items-end">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-coral">Featured opportunities</p>
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-coral">Featured</p>
           <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            A sharper first look.
+            Good places to start.
           </h2>
         </div>
         <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground md:justify-self-end">
-          Deadlines, new additions, and high-signal programs are separated into a cleaner scan path.
+          Upcoming deadlines, recent additions and some of the most selective programs in the U.S.
         </p>
       </div>
 
@@ -610,13 +691,13 @@ function FeaturedShelf({
       <Tabs defaultValue="closing" className="mt-7">
         <TabsList className="h-auto justify-start gap-7 rounded-none border-b border-border/70 bg-transparent p-0">
           <TabsTrigger value="closing" className={`${tabBase} data-[state=active]:after:bg-coral after:absolute after:inset-x-0 after:-bottom-px after:h-[2px] after:bg-transparent`}>
-            Closing Soon
+            Closing soon
           </TabsTrigger>
           <TabsTrigger value="new" className={`${tabBase} data-[state=active]:after:bg-sage after:absolute after:inset-x-0 after:-bottom-px after:h-[2px] after:bg-transparent`}>
-            New Finds
+            Recently added
           </TabsTrigger>
           <TabsTrigger value="standouts" className={`${tabBase} data-[state=active]:after:bg-ochre after:absolute after:inset-x-0 after:-bottom-px after:h-[2px] after:bg-transparent`}>
-            Standouts
+            Top programs
           </TabsTrigger>
         </TabsList>
         <TabsContent forceMount value="closing" className="mt-6 animate-in fade-in-50 duration-300 data-[state=inactive]:hidden">
@@ -888,17 +969,17 @@ function HowItWorks() {
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-muted-foreground">How HSO works</p>
           <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            Browse first. Save when it matters.
+            Free to browse. Sign in to save.
           </h2>
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
-            Links stay visible for everyone. Accounts are only for shelves, folders, and keeping track of programs.
+            Every listing and official link is open to everyone. A free account lets you save programs, organize them in folders and get deadline reminders.
           </p>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
-          <Step icon={<Sparkles className="h-5 w-5" />} title="Choose a lane" body="Pick a category like research, internships, scholarships, or competitions." />
+          <Step icon={<LayoutGrid className="h-5 w-5" />} title="Pick a category" body="Internships, summer programs, scholarships, research, competitions or fellowships." />
           <Step icon={<FilterIcon className="h-5 w-5" />} title="Narrow the list" body="Filter by grade, cost, format, field, state, and deadline." />
           <Step icon={<ExternalLink className="h-5 w-5" />} title="Check the source" body="Use the official program page for requirements and applications." />
-          <Step icon={<BookmarkPlus className="h-5 w-5" />} title="Save later" body="Create folders once signed in so your shortlist does not disappear." />
+          <Step icon={<BookmarkPlus className="h-5 w-5" />} title="Save your list" body="Sign in to save programs into folders and get reminders before deadlines." />
         </div>
       </div>
     </section>
@@ -921,12 +1002,12 @@ function TrustBand() {
       <div className="mx-auto max-w-[1400px] px-4 py-14 sm:px-6 lg:py-20">
         <div className="hso-glass-panel grid gap-8 rounded-[2rem] p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-sage">Source policy</p>
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-sage">How listings are checked</p>
             <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-              Official links, clear deadlines, no hidden browsing.
+              Every listing links to the official program.
             </h2>
             <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-              HSO points students to universities, nonprofits, companies, competitions, museums, and scholarship providers. Details can change, so every card keeps the source close.
+              Programs come from universities, nonprofits, companies, museums and scholarship providers, and deadlines are checked against each official page. Details can change, so confirm on the official site before you apply.
             </p>
           </div>
           <div className="flex flex-wrap gap-2 lg:max-w-sm lg:justify-end">
@@ -959,7 +1040,7 @@ function PopularSearches() {
           Students also look for
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Jump straight into the most-searched lanes — every category is filtered, deadline-tracked, and links straight to the official program.
+          Common starting points. Each one opens a filtered list with deadlines and official links.
         </p>
         <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {CATEGORY_SLUGS.map((s) => (
