@@ -437,7 +437,7 @@ function Hero({
   return (
     <section className="hso-surface-grid relative overflow-hidden border-b border-white/55">
       <div className="hso-intro-rule pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-coral/45 to-transparent" />
-      <div className="mx-auto grid w-full max-w-[1400px] min-w-0 gap-10 overflow-hidden px-4 py-14 sm:px-6 md:grid-cols-[0.96fr_1.04fr] md:items-center md:overflow-visible lg:pb-12 lg:pt-20">
+      <div className="mx-auto grid w-full max-w-[1400px] min-w-0 gap-10 overflow-hidden px-4 py-14 sm:px-6 md:grid-cols-[0.96fr_1.04fr] md:items-center md:overflow-visible lg:min-h-[calc(100dvh-76px)] lg:py-20">
         <div className="hso-mobile-fit min-w-0 md:w-full md:max-w-3xl">
           <div style={{ "--intro-delay": "80ms" } as React.CSSProperties} className="hso-intro-fade inline-flex items-center gap-2 rounded-full border border-white/65 bg-card/66 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-ink shadow-[inset_0_1px_0_hsl(0_0%_100%/0.72)] backdrop-blur-xl">
             <span className="h-1.5 w-6 rounded-full bg-gradient-to-r from-coral to-sage" />
@@ -515,88 +515,7 @@ function Hero({
           </div>
         </div>
       </div>
-      <HeroPhotos />
     </section>
-  );
-}
-
-/**
- * Free Unsplash License photos (no attribution required; credited anyway).
- * Loaded from Unsplash's own download links at a small width, lazily, so they
- * never hold up the first paint. A photo that fails to load hides itself.
- */
-const HERO_PHOTOS = [
-  {
-    id: "sFzZbmizqOE",
-    alt: "High school graduates in caps and gowns walking through confetti",
-    credit: "VFP Fineart",
-    page: "https://unsplash.com/photos/graduates-in-caps-and-gowns-walking-through-confetti-and-confetti-sFzZbmizqOE",
-  },
-  {
-    id: "8gAbl776pc0",
-    alt: "A group of students working together around a laptop",
-    credit: "Vitaly Gariev",
-    page: "https://unsplash.com/photos/diverse-group-of-students-gathered-around-a-laptop-8gAbl776pc0",
-  },
-  {
-    id: "MUiv880yORo",
-    alt: "Students walking through a university campus archway",
-    credit: "Brelyn Bashrum",
-    page: "https://unsplash.com/photos/students-walking-through-a-university-campus-archway-MUiv880yORo",
-  },
-];
-
-function HeroPhotos() {
-  const [failed, setFailed] = useState<string[]>([]);
-  const refs = useRef<Record<string, HTMLImageElement | null>>({});
-  const fail = (id: string) => setFailed((prev) => (prev.includes(id) ? prev : [...prev, id]));
-
-  // An image that failed before hydration never fires React's onError, so
-  // check once after mount as well.
-  useEffect(() => {
-    for (const [id, img] of Object.entries(refs.current)) {
-      if (img && img.complete && img.naturalWidth === 0) fail(id);
-    }
-  }, []);
-
-  const shown = HERO_PHOTOS.filter((p) => !failed.includes(p.id));
-  if (!shown.length) return null;
-
-  return (
-    <div className="mx-auto w-full max-w-[1400px] px-4 pb-12 sm:px-6 lg:pb-16">
-      <div className="grid grid-cols-3 gap-2 sm:gap-4">
-        {shown.map((p) => (
-          <figure key={p.id} className="relative aspect-square overflow-hidden rounded-2xl bg-cream sm:aspect-[4/3] sm:rounded-[1.5rem]">
-            <img
-              ref={(el) => {
-                refs.current[p.id] = el;
-              }}
-              src={`https://unsplash.com/photos/${p.id}/download?w=960`}
-              alt={p.alt}
-              width={960}
-              height={720}
-              loading="lazy"
-              decoding="async"
-              referrerPolicy="no-referrer"
-              onError={() => fail(p.id)}
-              className="h-full w-full object-cover transition-transform duration-700 ease-out hover:scale-[1.03]"
-            />
-          </figure>
-        ))}
-      </div>
-      <p className="mt-3 text-right text-[11px] text-muted-foreground">
-        Photos by{" "}
-        {shown.map((p, i) => (
-          <span key={p.id}>
-            {i > 0 && (i === shown.length - 1 ? " and " : ", ")}
-            <a href={p.page} target="_blank" rel="noopener noreferrer" className="underline-offset-2 hover:underline">
-              {p.credit}
-            </a>
-          </span>
-        ))}{" "}
-        on Unsplash
-      </p>
-    </div>
   );
 }
 
