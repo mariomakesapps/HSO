@@ -100,7 +100,6 @@ const Index = () => {
   const [sort, setSort] = useState<SortKey>(
     (searchParams.get("sort") as SortKey) || "recommended",
   );
-  const [showAdvanced, setShowAdvanced] = useState(false);
   const isMobile = useIsMobile();
   const pageSize = isMobile ? 12 : 24;
   const [page, setPage] = useState(() => {
@@ -282,8 +281,6 @@ const Index = () => {
                 setExtra={setExtra}
                 sort={sort}
                 setSort={setSort}
-                showAdvanced={showAdvanced}
-                setShowAdvanced={setShowAdvanced}
                 facets={facets}
                 count={filtered.length}
               />
@@ -679,8 +676,6 @@ function RefinePanel({
   setExtra,
   sort,
   setSort,
-  showAdvanced,
-  setShowAdvanced,
   facets,
   count,
 }: {
@@ -690,8 +685,6 @@ function RefinePanel({
   setExtra: React.Dispatch<React.SetStateAction<ExtraFilterState>>;
   sort: SortKey;
   setSort: (v: SortKey) => void;
-  showAdvanced: boolean;
-  setShowAdvanced: (v: boolean | ((p: boolean) => boolean)) => void;
   facets: Record<string, Record<string, number>>;
   count: number;
 }) {
@@ -791,14 +784,7 @@ function RefinePanel({
       </div>
 
       <div className="mt-4 hidden border-t border-border/70 pt-4 md:block">
-        <button
-          onClick={() => setShowAdvanced((v) => !v)}
-          className="mb-4 inline-flex items-center rounded-full border border-white/65 bg-card/70 px-3 py-1.5 text-xs font-bold text-ink shadow-[inset_0_1px_0_hsl(0_0%_100%/0.7)] transition-[transform,border-color] hover:-translate-y-0.5 hover:border-ink/30 active:scale-[0.98]"
-        >
-          <SlidersHorizontal className="mr-1.5 h-3.5 w-3.5 text-coral" />
-          {showAdvanced ? "Hide field filters" : "Show field filters"}
-        </button>
-        {showAdvanced && <ExtraFilters value={extra} onChange={setExtra} facets={facets} />}
+        <ExtraFilters value={extra} onChange={setExtra} facets={facets} />
       </div>
 
       <Sheet>
