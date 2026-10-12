@@ -30,7 +30,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
       ref={ref}
       className={cn(
         "inline-flex min-h-hso-tap items-center justify-center gap-2 rounded-hso text-sm font-semibold",
-        "transition-colors duration-150 disabled:pointer-events-none disabled:opacity-50",
+        "hso-press disabled:pointer-events-none disabled:opacity-50",
         "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hso-coral-strong",
         icon ? "min-w-hso-tap px-0" : "px-4",
         VARIANTS[variant],

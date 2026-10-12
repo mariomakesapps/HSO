@@ -11,3 +11,4 @@ export { FilterPanel, type FilterFacets, type FilterPanelProps } from "./FilterP
 export { MobileFilters } from "./MobileFilters";
 export { Pager } from "./Pager";
 export { RailCard } from "./RailCard";
+export { CategoryTag } from "./CategoryTag";

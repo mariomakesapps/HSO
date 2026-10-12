@@ -56,12 +56,12 @@ function Group({ title, children }: { title: string; children: ReactNode }) {
 
 function Check({ checked, onChange, label, count }: { checked: boolean; onChange: () => void; label: string; count?: number }) {
   return (
-    <label className="flex min-h-hso-tap cursor-pointer items-center gap-3 rounded-hso px-1 text-sm text-hso-fg hover:bg-hso-sunken">
+    <label className="flex min-h-hso-tap cursor-pointer items-center gap-3 rounded-hso px-1 text-sm text-hso-fg transition-colors duration-150 hover:bg-hso-sunken">
       <input
         type="checkbox"
         checked={checked}
         onChange={onChange}
-        className="h-[18px] w-[18px] shrink-0 cursor-pointer rounded-[3px] border-hso-line-strong accent-[hsl(var(--hso-coral))] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hso-coral-strong"
+        className="hso-check shrink-0 cursor-pointer focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hso-coral-strong"
       />
       <span className="flex-1">{label}</span>
       {count !== undefined && <span className="text-xs tabular-nums text-hso-subtle">{count.toLocaleString("en-US")}</span>}
@@ -89,7 +89,7 @@ export function FilterPanel({ filters, extra, facets, onFilters, onExtra, onClea
       <div className="mb-2 flex min-h-hso-tap items-center justify-between">
         <h2 className="text-base font-semibold text-hso-fg">Filters</h2>
         {active > 0 && (
-          <button type="button" onClick={onClear} className="min-h-hso-tap rounded-hso px-2 text-sm font-semibold text-hso-coral-strong hover:underline">
+          <button type="button" onClick={onClear} className="hso-press hso-rise min-h-hso-tap rounded-hso px-2 text-sm font-semibold text-hso-coral-strong hover:underline">
             Clear all ({active})
           </button>
         )}
@@ -120,7 +120,7 @@ export function FilterPanel({ filters, extra, facets, onFilters, onExtra, onClea
                 aria-pressed={on}
                 onClick={() => onFilters({ ...filters, grades: toggle(filters.grades, g) })}
                 className={cn(
-                  "min-h-hso-tap rounded-hso border text-sm font-semibold transition-colors",
+                  "hso-press min-h-hso-tap rounded-hso border text-sm font-semibold",
                   on ? "border-hso-coral bg-hso-coral-tint text-hso-coral-strong" : "border-hso-line text-hso-fg hover:border-hso-line-strong",
                 )}
               >

@@ -116,8 +116,17 @@ export function TopNav() {
   };
   const email = session?.user.email ?? "";
 
+  // Soft shadow once content scrolls under the bar.
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const on = () => setScrolled(window.scrollY > 4);
+    on();
+    window.addEventListener("scroll", on, { passive: true });
+    return () => window.removeEventListener("scroll", on);
+  }, []);
+
   return (
-    <header className="hso-ds sticky top-0 z-50 border-b border-hso-line bg-hso-surface">
+    <header data-scrolled={scrolled} className="hso-ds hso-nav sticky top-0 z-50 border-b border-hso-line bg-hso-surface">
       <div className="mx-auto flex h-14 max-w-hso-page items-center gap-2 px-4 md:h-hso-nav md:gap-4">
         <Logo />
         <SearchBox className="min-w-0 flex-1 md:max-w-xl lg:mx-auto" />

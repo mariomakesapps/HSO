@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import { Link } from "react-router-dom";
 import { ChevronDown, MapPin } from "lucide-react";
 import type { Opportunity } from "@/data/opportunities";
@@ -10,14 +11,14 @@ import { placeLabel } from "@/lib/opportunityFacts";
  * that expands to the list of sites. Native <details>, so it works without
  * JavaScript and every site's link is in the server-rendered HTML.
  */
-export function ListingGroupCard({ name, items, headingLevel = 3 }: { name: string; items: Opportunity[]; headingLevel?: 2 | 3 }) {
+export function ListingGroupCard({ name, items, headingLevel = 3, index = 0 }: { name: string; items: Opportunity[]; headingLevel?: 2 | 3; index?: number }) {
   const H = headingLevel === 2 ? "h2" : "h3";
   const orgs = [...new Set(items.map((o) => o.org))];
   const first = items[0];
   const costs = [...new Set(items.map((o) => o.cost))];
   return (
-    <article className="rounded-hso border border-hso-line bg-hso-surface">
-      <details className="group/details">
+    <article style={{ "--i": index } as CSSProperties} className="hso-rise hso-lift rounded-hso border border-hso-line bg-hso-surface hover:border-hso-line-strong">
+      <details className="hso-details group/details">
         <summary className="flex min-h-hso-tap cursor-pointer list-none gap-3 rounded-hso p-4 hover:bg-hso-sunken focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hso-coral-strong [&::-webkit-details-marker]:hidden">
           <OrgMark org={orgs.length === 1 ? orgs[0] : name} />
           <div className="min-w-0 flex-1">
@@ -34,7 +35,7 @@ export function ListingGroupCard({ name, items, headingLevel = 3 }: { name: stri
           <span className="inline-flex h-11 shrink-0 items-center gap-1 self-start text-sm font-semibold text-hso-coral-strong">
             <span className="hidden sm:inline group-open/details:hidden">Show all</span>
             <span className="hidden sm:group-open/details:inline">Hide</span>
-            <ChevronDown className="h-5 w-5 transition-transform duration-150 group-open/details:rotate-180" aria-hidden="true" />
+            <ChevronDown className="h-5 w-5 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-open/details:rotate-180" aria-hidden="true" />
           </span>
         </summary>
         <ul className="divide-y divide-hso-line border-t border-hso-line">

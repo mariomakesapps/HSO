@@ -42,9 +42,10 @@ export function SaveButton({ id, title, className }: { id: string; title: string
       aria-pressed={saved}
       aria-label={saved ? `Remove ${title} from My Shelf` : `Save ${title}`}
       className={cn(
-        "inline-flex h-11 w-11 items-center justify-center rounded-hso text-hso-muted transition-colors duration-150",
+        "hso-press relative inline-flex h-11 w-11 items-center justify-center rounded-hso text-hso-muted",
         "hover:bg-hso-sunken hover:text-hso-fg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hso-coral-strong",
         saved && "text-hso-coral hover:text-hso-coral-strong",
+        pop && "hso-save-ring",
         className,
       )}
     >

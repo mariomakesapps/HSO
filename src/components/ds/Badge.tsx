@@ -56,9 +56,10 @@ export function DeadlineChip({ deadline, opensAt }: { deadline: string | null; o
     tone = dl.daysLeft <= 14 ? "urgent" : "good";
     label = dl.daysLeft === 1 ? "Last day" : `${dl.daysLeft} days left`;
   }
+  const pulse = dl.status !== "closed" && dl.status !== "opens-later" && dl.daysLeft !== null && dl.daysLeft <= 3;
   return (
     <Badge tone={tone}>
-      <Clock className="h-3 w-3" aria-hidden="true" />
+      {pulse ? <span className="hso-pulse-dot mx-0.5" aria-hidden="true" /> : <Clock className="h-3 w-3" aria-hidden="true" />}
       <span>{label}</span>
     </Badge>
   );
