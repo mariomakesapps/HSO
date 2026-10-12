@@ -84,10 +84,10 @@ export default {
         },
       },
       fontFamily: {
-        // One family across the site (tokens.css --hso-font). `display` is kept as an
-        // alias so existing classes resolve to the same face.
-        display: ["Inter Variable", "Inter", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
-        sans: ["Inter Variable", "Inter", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+        display: ["Outfit", "Aptos Display", "Segoe UI Variable Display", "ui-sans-serif", "system-ui"],
+        sans: ["Outfit", "Aptos", "Segoe UI", "ui-sans-serif", "system-ui"],
+        // The redesigned home page only (tokens.css --hso-font).
+        hso: ["Inter Variable", "Inter", "ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
       },
       backgroundImage: {
         "gradient-warm": "var(--gradient-warm)",

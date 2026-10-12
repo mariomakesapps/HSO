@@ -98,3 +98,11 @@ export function placeLabel(opp: Opportunity): string {
   const place = opp.location.replace(/,\s*USA$/i, "").trim() || opp.location;
   return opp.format === "Hybrid" ? `${place} · Hybrid` : place;
 }
+
+/**
+ * Cost in the words a student means. The data's "Stipend" is money paid TO the
+ * student ("Paid"); the data's "Paid" means the student pays ("Tuition").
+ */
+export function costWord(cost: Opportunity["cost"]): "Free" | "Paid" | "Tuition" {
+  return cost === "Free" ? "Free" : cost === "Stipend" ? "Paid" : "Tuition";
+}

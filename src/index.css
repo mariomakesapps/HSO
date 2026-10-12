@@ -1,4 +1,6 @@
-/* Inter is self-hosted (@fontsource-variable/inter, imported in src/main.tsx); no web-font request to Google. */
+/* Outfit is loaded non-render-blocking from index.html — no @import here,
+   which would chain a second render-blocking request after the CSS bundle.
+   tokens.css holds the home page redesign tokens (Inter, self-hosted). */
 @import "./styles/tokens.css";
 @tailwind base;
 @tailwind components;
@@ -14,10 +16,12 @@ html { scroll-padding-top: 140px; }
 }
 
 body {
-  /* Flat warm-gray page (tokens.css). The old gradient wash and blobs are gone. */
-  background-color: hsl(var(--hso-canvas));
-  color: hsl(var(--hso-fg));
-  font-family: var(--hso-font);
+  background-color: hsl(var(--background));
+  background-image:
+    linear-gradient(115deg, hsl(var(--coral) / 0.045), transparent 34%),
+    linear-gradient(250deg, hsl(var(--sage) / 0.06), transparent 42%),
+    linear-gradient(180deg, hsl(42 46% 98%), hsl(42 28% 95%));
+  background-attachment: fixed;
 }
 
 /* Smoother default easing for any element using Tailwind transition utilities */

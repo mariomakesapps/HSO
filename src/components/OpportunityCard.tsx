@@ -16,6 +16,7 @@ import { cn } from "@/lib/utils";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { useAuthSession, authRedirectHref } from "@/hooks/useAuthSession";
 import { toast } from "sonner";
+import { costWord } from "@/lib/opportunityFacts";
 
 const CATEGORY_BADGE: Record<string, string> = {
   Research: "bg-sage/10 text-sage border border-sage/20",
@@ -132,7 +133,7 @@ function OpportunityCardComponent({ opp, index = 0 }: { opp: Opportunity; index?
       <div className="relative mt-5 grid grid-cols-2 gap-x-3 gap-y-2 border-t border-border/70 pt-4 text-[11px] font-medium text-muted-foreground">
         <Meta icon={<MapPin className="h-3.5 w-3.5" />}>{opp.location}</Meta>
         {opp.format && <Meta icon={<Monitor className="h-3.5 w-3.5" />}>{opp.format}</Meta>}
-        <Meta icon={<DollarSign className="h-3.5 w-3.5" />}>{opp.cost}</Meta>
+        <Meta icon={<DollarSign className="h-3.5 w-3.5" />}>{costWord(opp.cost)}</Meta>
         <Meta icon={<GraduationCap className="h-3.5 w-3.5" />}>
           Gr {opp.grades[0]}-{opp.grades[opp.grades.length - 1]}
         </Meta>

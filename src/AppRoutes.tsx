@@ -1,5 +1,7 @@
 import { Suspense, useEffect, useRef, type ComponentType, type ReactNode } from "react";
 import { Outlet, Route, Routes, useLocation } from "react-router-dom";
+import { SiteHeader } from "./components/SiteHeader";
+import { Atmosphere } from "./components/Atmosphere";
 import { TopNav } from "./components/ds/TopNav";
 
 /**
@@ -66,10 +68,17 @@ function RouteTransition({ children }: { children: ReactNode }) {
   );
 }
 
-const AppShell = () => (
+/**
+ * The redesigned home page has its own white top bar; every other page keeps
+ * the original header and background.
+ */
+const AppShell = () => {
+  const home = useLocation().pathname === "/";
+  return (
   <>
-    <div className="relative">
-      <TopNav />
+    {!home && <Atmosphere />}
+    <div className={home ? "relative" : "relative z-10"}>
+      {home ? <TopNav /> : <SiteHeader />}
       {/* Suspense lives INSIDE the shell so the header stays mounted
           during lazy route loads — no nav flicker on page changes. */}
       <Suspense fallback={<PageFallback />}>
@@ -79,7 +88,8 @@ const AppShell = () => (
       </Suspense>
     </div>
   </>
-);
+  );
+};
 
 export function AppRoutes({ pages: P }: { pages: PageComponents }) {
   return (

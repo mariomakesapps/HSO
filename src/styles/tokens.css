@@ -197,3 +197,7 @@
   .hso-lift, .hso-press, .hso-check, .hso-check::after, .hso-details::details-content { transition: none !important; }
   .hso-lift:hover, .hso-lift:active, .hso-press:active { transform: none !important; }
 }
+
+/* The home page is Inter throughout; the site-wide heading rule (index.css)
+   sets the old display face on h1-h6 everywhere else. */
+.font-hso :is(h1, h2, h3, h4, h5, h6) { font-family: var(--hso-font); }

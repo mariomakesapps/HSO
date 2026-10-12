@@ -12,7 +12,7 @@ import { detailFor } from "@/data/opportunityDetails";
 import { opportunityCrumbs, opportunityMeta } from "@/lib/pageMeta";
 import { relatedOpportunities } from "@/lib/related";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { costSentence, deadlineSentence, formatSentence, gradesLabel, summarySentence } from "@/lib/opportunityFacts";
+import { costWord, costSentence, deadlineSentence, formatSentence, gradesLabel, summarySentence } from "@/lib/opportunityFacts";
 import { reviewDateFor } from "@/lib/lastmod";
 import { useAtmosphere, themeForCategory } from "@/lib/atmosphere";
 import { store, useStore } from "@/store/collections";
@@ -142,7 +142,7 @@ const OpportunityDetail = () => {
             <div className="mt-8 grid min-w-0 gap-4 sm:grid-cols-2 lg:grid-cols-4">
               <Stat label="Location" value={opp.location} />
               <Stat label="Format" value={opp.format} />
-              <Stat label="Cost" value={opp.cost} />
+              <Stat label="Cost" value={costWord(opp.cost)} />
               <Stat label="Grades" value={`${opp.grades[0]}-${opp.grades[opp.grades.length-1]}`} />
             </div>
 

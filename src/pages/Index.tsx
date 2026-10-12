@@ -6,7 +6,7 @@ import { allOpportunities as opportunities, locationState } from "@/data/opportu
 import type { FilterState } from "@/components/Filters";
 import { DEFAULT_EXTRA, type ExtraFilterState } from "@/components/ExtraFilters";
 import { SORT_OPTIONS, type SortKey } from "@/components/SortBar";
-import { SiteFooter } from "@/components/SiteFooter";
+import { HomeFooter } from "@/components/ds/HomeFooter";
 import { SEO } from "@/components/SEO";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { applyFilters, applySort, facetCounts } from "@/lib/filterSort";
@@ -163,10 +163,11 @@ const Index = () => {
   };
   const panel = { filters, extra, facets, onFilters: setFilters, onExtra: setExtra, onClear: clearAll };
 
-  const heading = filters.query ? `Results for "${filters.query}"` : "Opportunities for high school students";
+  // A label, not a sentence: the page opens on the list, not on a greeting.
+  const heading = filters.query ? `Results for "${filters.query}"` : "High school opportunities";
 
   return (
-    <div className="hso-ds min-h-screen bg-hso-canvas text-hso-fg">
+    <div className="hso-ds min-h-screen bg-hso-canvas font-hso text-hso-fg">
       <SEO {...STATIC_PAGE_META["/"]} />
       <main className="mx-auto max-w-hso-page px-4 pb-16 pt-5 md:pt-6">
         <WelcomeBand
@@ -238,7 +239,7 @@ const Index = () => {
           </aside>
         </div>
       </main>
-      <SiteFooter />
+      <HomeFooter />
     </div>
   );
 };
@@ -263,23 +264,19 @@ const SHORTCUTS: { category: Category; label: string }[] = [
 ];
 
 /**
- * Compact welcome band (not a hero): the page title, three real numbers in
+ * Compact top band (not a hero): a short title, three real numbers in
  * brand-tinted tiles, and category shortcuts that toggle the category filter.
+ * No greeting copy.
  */
 function WelcomeBand({ heading, active, onToggle }: { heading: string; active: Category[]; onToggle: (c: Category) => void }) {
   return (
     <section className="hso-rise mb-6 rounded-hso border border-hso-line bg-hso-surface p-5 md:p-6">
-      <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
-        <div className="max-w-2xl">
-          <h1 className="text-2xl font-bold tracking-tight md:text-3xl">{heading}</h1>
-          <p className="mt-1.5 text-sm text-hso-muted md:text-base">
-            Internships, summer programs, scholarships, research and competitions. Checked against official sites, free to use.
-          </p>
-        </div>
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <h1 className="text-2xl font-bold tracking-tight md:text-3xl">{heading}</h1>
         <dl className="grid grid-cols-3 gap-2 sm:gap-3 lg:min-w-[420px]">
           <Stat icon={LayoutGrid} value={fmt(STATS.total)} label="programs" tone="neutral" />
-          <Stat icon={Gift} value={fmt(STATS.free)} label="are free" tone="green" />
-          <Stat icon={HandCoins} value={fmt(STATS.paid)} label="pay you" tone="coral" />
+          <Stat icon={Gift} value={fmt(STATS.free)} label="free" tone="green" />
+          <Stat icon={HandCoins} value={fmt(STATS.paid)} label="paid" tone="coral" />
         </dl>
       </div>
       <div className="-mx-5 mt-5 overflow-x-auto px-5 pb-1 [scrollbar-width:none] md:-mx-6 md:px-6 [&::-webkit-scrollbar]:hidden">

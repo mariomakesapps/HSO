@@ -22,7 +22,7 @@ export function MobileFilters({ resultCount, ...panel }: FilterPanelProps & { re
           Filters{active ? ` (${active})` : ""}
         </Button>
       </DrawerTrigger>
-      <DrawerContent className="hso-ds max-h-[88vh] rounded-t-[12px] border-hso-line bg-hso-surface">
+      <DrawerContent className="hso-ds font-hso max-h-[88vh] rounded-t-[12px] border-hso-line bg-hso-surface">
         <DrawerTitle className="sr-only">Filters</DrawerTitle>
         <div className="overflow-y-auto px-4 pb-2 pt-2">
           <FilterPanel {...panel} />

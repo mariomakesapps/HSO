@@ -3,6 +3,7 @@ import { Clock } from "lucide-react";
 import type { Opportunity } from "@/data/opportunities";
 import { getDeadlineStatus } from "@/lib/deadline";
 import { useNow } from "@/lib/clock";
+import { costWord } from "@/lib/opportunityFacts";
 import { cn } from "@/lib/utils";
 
 export type BadgeTone = "good" | "neutral" | "urgent";
@@ -28,9 +29,8 @@ export function Badge({ tone = "neutral", children, className }: { tone?: BadgeT
  * "Tuition" so the two never read the same.
  */
 export function CostBadge({ cost }: { cost: Opportunity["cost"] }) {
-  if (cost === "Free") return <Badge tone="good">Free</Badge>;
-  if (cost === "Stipend") return <Badge tone="good">Paid</Badge>;
-  return <Badge>Tuition</Badge>;
+  const word = costWord(cost);
+  return <Badge tone={word === "Tuition" ? "neutral" : "good"}>{word}</Badge>;
 }
 
 export function GradesBadge({ grades }: { grades: number[] }) {

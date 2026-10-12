@@ -126,7 +126,7 @@ export function TopNav() {
   }, []);
 
   return (
-    <header data-scrolled={scrolled} className="hso-ds hso-nav sticky top-0 z-50 border-b border-hso-line bg-hso-surface">
+    <header data-scrolled={scrolled} className="hso-ds hso-nav font-hso sticky top-0 z-50 border-b border-hso-line bg-hso-surface">
       <div className="mx-auto flex h-14 max-w-hso-page items-center gap-2 px-4 md:h-hso-nav md:gap-4">
         <Logo />
         <SearchBox className="min-w-0 flex-1 md:max-w-xl lg:mx-auto" />
@@ -136,7 +136,7 @@ export function TopNav() {
             <DropdownMenuTrigger className={NAV_LINK}>
               Categories <ChevronDown className="h-4 w-4" aria-hidden="true" />
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-60 rounded-hso border-hso-line p-1 shadow-hso-overlay">
+            <DropdownMenuContent align="end" className="w-60 rounded-hso border-hso-line p-1 font-hso shadow-hso-overlay">
               {CATEGORY_SLUGS.map((slug) => (
                 <DropdownMenuItem key={slug} asChild className="min-h-10 rounded-hso-sm text-sm">
                   <Link to={`/categories/${slug}`}>{shortName(slug)}</Link>
@@ -169,7 +169,7 @@ export function TopNav() {
                   {(email[0] || "?").toUpperCase()}
                 </span>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-60 rounded-hso border-hso-line p-1 shadow-hso-overlay">
+              <DropdownMenuContent align="end" className="w-60 rounded-hso border-hso-line p-1 font-hso shadow-hso-overlay">
                 <DropdownMenuLabel className="truncate text-xs font-normal text-hso-muted">{email}</DropdownMenuLabel>
                 <DropdownMenuItem asChild className="min-h-10 rounded-hso-sm text-sm"><Link to="/profile"><UserIcon className="mr-2 h-4 w-4" />Profile</Link></DropdownMenuItem>
                 <DropdownMenuItem onSelect={() => void signOut()} className="min-h-10 rounded-hso-sm text-sm"><LogOut className="mr-2 h-4 w-4" />Sign out</DropdownMenuItem>
@@ -186,7 +186,7 @@ export function TopNav() {
               <Menu className="h-5 w-5" aria-hidden="true" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="hso-ds w-[86vw] max-w-sm border-hso-line bg-hso-surface p-0">
+          <SheetContent side="right" className="hso-ds font-hso w-[86vw] max-w-sm border-hso-line bg-hso-surface p-0">
             <SheetHeader className="border-b border-hso-line px-4 py-3 text-left">
               <SheetTitle className="text-base font-semibold text-hso-fg">Menu</SheetTitle>
             </SheetHeader>
