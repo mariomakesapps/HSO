@@ -179,6 +179,27 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
     deadline: "2027-04-01",
     evidence: "2026-10-12, precollege.sps.columbia.edu/admissions/dates-and-deadlines, Online Summer 2027: 'General Application Deadline: April 1, 2027'. Early registration February 1, 2027; financial aid February 10, 2027.",
   },
+  "mayo-clinic-college-of-medicine-and-science-science-program-for": {
+    deadline: "2026-12-04",
+    opensAt: "2026-10-15",
+    blurb: "Research mentorship program placing rising high school juniors and seniors from Duval and St. Johns counties in Mayo Clinic laboratories in Jacksonville (3.5+ GPA; students also enter a regional or county science fair). Applications run October 15 to December 4, 2026, and the 2027 program starts with a mandatory orientation on June 8, 2027.",
+    evidence: "2026-10-12, Mayo Clinic SPARK (Florida) official page: 'Application window: Oct. 15 - Dec. 4, 2026'. Open to rising juniors and seniors at Duval or St. Johns County schools with a 3.5+ GPA.",
+  },
+  "lowell-milken-center-for-unsung-heroes-arteffect-student-art-com": {
+    deadline: "2027-04-19",
+    blurb: "Juried art competition for middle and high school students who create original artwork about an unsung hero from history, with more than $35,000 in prizes each year. Submissions for this cycle opened October 1, 2026 and close April 19, 2027.",
+    evidence: "2026-10-12, ARTEFFECT rules page and home page (lowellmilkencenter.org): submission deadline April 19, 2027, 11:59 PM Pacific; submissions opened October 1, 2026. The old blurb gave only last cycle's dates.",
+  },
+  "the-american-legion-american-legion-legacy-scholarship": {
+    opensAt: "2027-01-01",
+    blurb: "Needs-based college scholarship for children of U.S. military members who died on active duty or became disabled after 9/11, covering the gap left after other grants. High school seniors can apply; the 2027 application opens January 1, 2027.",
+    evidence: "2026-10-12, legion.org (Legacy Scholarship news page): the 2027 application opens January 1, 2027. Deadline not yet published.",
+  },
+  "pride-foundation-pride-foundation-scholarship": {
+    deadline: "2027-01-08",
+    blurb: "College scholarship program for LGBTQ+ student leaders who live in Alaska, Idaho, Montana, Oregon or Washington (they may study elsewhere). The current application window runs October 11, 2026 to January 8, 2027.",
+    evidence: "2026-10-12, pridefoundation.org scholarship guidelines and application pages: window October 11, 2026 to January 8, 2027 (5pm PT). The find-funding page shows 'January 8, 2026', a typo for 2027. The old blurb described the window as past.",
+  },
   "harvard-summer-school-secondary-school-program": {
     deadline: "2027-02-10",
     opensAt: "2026-12-01",

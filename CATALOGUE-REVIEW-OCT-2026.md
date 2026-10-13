@@ -18,7 +18,8 @@ feed was changed.
   scholarships, The Earth Prize, Memorial Sloan Kettering, Broad Summer Scholars, BU RISE, and
   Fermilab PRISM dates in the blurb. A UT Austin HSRA open date that had no official source was
   removed. Round 5 added: Medill Cherubs, Air Force ROTC scholarship, Columbia Pre-College Online
-  Summer.
+  Summer. Round 6 added: Mayo SPARK Florida, ARTEFFECT, American Legion Legacy Scholarship (open
+  date) and Pride Foundation scholarship.
 - **Wrong text fixed**: Harvard and NASA blurbs called the current cycle past or unposted.
   BRAINYAC said 2027 applications were still expected. MD Anderson King had the wrong open date.
   HOBY Illinois had "2017" for 2027.
@@ -75,13 +76,22 @@ feed was changed.
 | `columbia-university-summer-high-school-academic-program-for-engi…` (SHAPE) | The apply page gives March 5, 2027 but also says "priority enrollment has passed", which doesn't fit the December 16 priority date. | Re-check before setting a date. |
 | Grade ranges (round 5) | Northwestern College Bridge takes 25 CPS juniors only; UCO Engineering Summer Academy is for grades 8–10 or 9–11. | Fix the grades after checking. |
 | Moved links (round 5) | Barnard Plate + Planet (/plate-planet-lab), Barnard NextGen (/nextgen-leadership-institute), Stanford STaRS, Ohio State Explorations in Neuroscience, Museum of Science (mos.org/careers/internships), KUMC KEE. | Run the link checker on these. |
+| `nasa-nasa-app-development-challenge-adc` | NASA: "The ADC is on pause for 2026 and might return in 2027"; check back in August 2027. | Hide until it returns. |
+| `correlation-one-apex-high-school-ai-championship` | Applications paused, "Launching 2027". | Hide until it relaunches. |
+| `florida-international-university-center-for-translational-scienc…` | Now open only to St. Lucie County students, who apply through a school counselor. | Narrow the location, or remove. |
+| `university-of-central-florida-competitive-programming-summer-ins…` | Did not run in 2026; no sign it returns in 2027. | Check whether it still runs. |
+| `mgh…youth-neurology…` | The official page still shows a 2025 timeline. | Check whether it still runs. |
+| `rutgers-new-jersey-medical-school-high-school-student-research-i…` | Not a program with a deadline: students arrange a faculty host themselves (16+). Its page moved to research-office.njms.rutgers.edu/training-programs/high-school. | Reword and re-point. |
+| `thomas-jefferson-national-accelerator-facility-suratech-high-sch…` | Officially the "JSA/Jefferson Lab High School Summer Honors Program". | Retitle. |
+| Grade ranges (round 6) | Penn SMP: Philadelphia students entering 10th or 11th grade. Mayo CARES: Arizona sophomores and juniors. UW-Madison PEOPLE: students join in grade 8 or 9. Jim Holland SEP: entering grades 9–11. | Fix the grades after checking. |
+| Moved links (round 6) | UAB PRISM (uab.edu/medicine/surgery/prism), Maryland Boys State (mdlegion.org/boysstate), Rice Architecture Summer Immersion (/public-programs/summer-immersion), Montana Tech camp (links to a 2026 news release), University of Miami trainee program. | Run the link checker on these. |
 | `yale-mun` | The 2027 conference is full; only the waitlist is open. | Leave as is, or set "closed". |
 | `aime`, `usamo` | The only 2026 date is the schools' AMC registration deadline (Oct 15). Students can't register themselves. | Left as TBA on purpose. |
 
 ## Still to check
 
-The deadline search has covered the 112 prestige-3 listings and about 300 prestige-2 listings.
-About 355 prestige-2 listings are queued for the next rounds (roughly 96 per round, because of the
+The deadline search has covered the 112 prestige-3 listings and about 400 prestige-2 listings.
+About 259 prestige-2 listings are queued for the next rounds (roughly 96 per round, because of the
 web-search limit per turn).
 
 Programs that are rarely self-apply (state fairs, olympiads, school-registered competitions)
