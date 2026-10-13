@@ -17,7 +17,8 @@ feed was changed.
   School and Aspirnaut. Round 4 added: KFC Colonel's, Equitable Excellence and Burger King
   scholarships, The Earth Prize, Memorial Sloan Kettering, Broad Summer Scholars, BU RISE, and
   Fermilab PRISM dates in the blurb. A UT Austin HSRA open date that had no official source was
-  removed.
+  removed. Round 5 added: Medill Cherubs, Air Force ROTC scholarship, Columbia Pre-College Online
+  Summer.
 - **Wrong text fixed**: Harvard and NASA blurbs called the current cycle past or unposted.
   BRAINYAC said 2027 applications were still expected. MD Anderson King had the wrong open date.
   HOBY Illinois had "2017" for 2027.
@@ -64,13 +65,23 @@ feed was changed.
 | `national-institute-on-aging-summer-research-training-for-high-sc` | Applies through the NIH Summer Internship Program (due January 26, 2027). High school applicants must be seniors aged 18 (17 near a campus), but the listing includes grade 11. | Set grades to 12; add the date once NIA confirms. |
 | Grade ranges | Los Alamos takes juniors too (listing: 12 only). Children's Hospital Colorado and Argonne Bridge take seniors only. Berkeley Lab BLDAP is for grades 10–11 (listing includes 12). Chicago Summer Business Institute also takes sophomores. | Fix the grades after checking. |
 | Moved links | Wharton LBW (/programs-courses/…), Waksman Scholars (wssp.rutgers.edu), CHLA LA-HIP, Stanford PIPS, Equitable (equitable.com), Women at Microsoft, Scripps Translational. | Run the link checker on these. |
+| `university-of-illinois-chicago-s-office-of-the-vice-provost-for…` | UIC Summer Bridge is for admitted first-year UIC students, not grades 9–12. | Remove. |
+| `department-of-teacher-education-of-michigan-state-university-hig…` (MSU HSHSP) | No session in 2025 or summer 2026; nothing about 2027. | Hide until it returns. |
+| KUMC Health Sciences Enrichment Institute | For college freshmen and sophomores; its pages moved under /office-of-student-engagement/. | Check, then remove or re-point. |
+| `georgia-tech-college-of-sciences-summer-research-academy-sra`, RIT listing | Official pages show nothing newer than 2022 (Georgia Tech) or 2020 (RIT). | Check whether they still run. |
+| `university-of-michigan-rogel-cancer-center-healthcare-experience…` (HERO) | No official page or dates found; Rogel now lists a "SHE Oncology" program. The existing open date (2027-01-11) can't be confirmed. | Check; it may have been renamed. |
+| `air-force-research-laboratory-wright-patterson-afb-wright-schola…` | The research agent could not find the 2026-11-01 open date (verified in September) for the 2027 cycle. | Re-check in November. |
+| `harborview-injury-prevention…` (INSIGHT) | The 2026 program charged $2,200 tuition. | Check the listing's cost field. |
+| `columbia-university-summer-high-school-academic-program-for-engi…` (SHAPE) | The apply page gives March 5, 2027 but also says "priority enrollment has passed", which doesn't fit the December 16 priority date. | Re-check before setting a date. |
+| Grade ranges (round 5) | Northwestern College Bridge takes 25 CPS juniors only; UCO Engineering Summer Academy is for grades 8–10 or 9–11. | Fix the grades after checking. |
+| Moved links (round 5) | Barnard Plate + Planet (/plate-planet-lab), Barnard NextGen (/nextgen-leadership-institute), Stanford STaRS, Ohio State Explorations in Neuroscience, Museum of Science (mos.org/careers/internships), KUMC KEE. | Run the link checker on these. |
 | `yale-mun` | The 2027 conference is full; only the waitlist is open. | Leave as is, or set "closed". |
 | `aime`, `usamo` | The only 2026 date is the schools' AMC registration deadline (Oct 15). Students can't register themselves. | Left as TBA on purpose. |
 
 ## Still to check
 
-The deadline search has covered the 112 prestige-3 listings and about 200 prestige-2 listings.
-About 450 prestige-2 listings are queued for the next rounds (roughly 96 per round, because of the
+The deadline search has covered the 112 prestige-3 listings and about 300 prestige-2 listings.
+About 355 prestige-2 listings are queued for the next rounds (roughly 96 per round, because of the
 web-search limit per turn).
 
 Programs that are rarely self-apply (state fairs, olympiads, school-registered competitions)

@@ -166,6 +166,19 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
     opensAt: null,
     evidence: "2026-10-12, UT Austin HSRA official page: applications open 'mid-January 2027' with a March deadline and no exact days. The listing's open date of 2027-01-04 had no official source, so it is cleared.",
   },
+  "northwestern-university-medill-cherubs": {
+    deadline: "2027-03-01",
+    opensAt: "2026-12-01",
+    evidence: "2026-10-12, cherubs.medill.northwestern.edu apply page (2027 program): 'All application materials must be received by noon (U.S. Central Time Zone) on March 1, 2027.' '... no applications will be accepted before December 1, 2026'.",
+  },
+  "u-s-air-force-rotc-air-force-rotc-high-school-scholarship": {
+    deadline: "2026-12-11",
+    evidence: "2026-10-12, afrotc.com/apply: 'The scholarship application window will be open July 1, 2026, through December 11, 2026.' Supporting documents for that board are due December 22, 2026.",
+  },
+  "columbia-university-school-of-professional-studies-columbia-pre": {
+    deadline: "2027-04-01",
+    evidence: "2026-10-12, precollege.sps.columbia.edu/admissions/dates-and-deadlines, Online Summer 2027: 'General Application Deadline: April 1, 2027'. Early registration February 1, 2027; financial aid February 10, 2027.",
+  },
   "harvard-summer-school-secondary-school-program": {
     deadline: "2027-02-10",
     opensAt: "2026-12-01",
