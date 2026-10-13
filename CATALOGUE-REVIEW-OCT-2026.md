@@ -19,7 +19,9 @@ feed was changed.
   Fermilab PRISM dates in the blurb. A UT Austin HSRA open date that had no official source was
   removed. Round 5 added: Medill Cherubs, Air Force ROTC scholarship, Columbia Pre-College Online
   Summer. Round 6 added: Mayo SPARK Florida, ARTEFFECT, American Legion Legacy Scholarship (open
-  date) and Pride Foundation scholarship.
+  date) and Pride Foundation scholarship. Round 7 added: JSHS regions (Alabama, Arkansas,
+  Connecticut, Hawaii and Pacific), Little Rhody Boys State, Hawaii Girls State and Louisiana
+  Girls State (open date).
 - **Wrong text fixed**: Harvard and NASA blurbs called the current cycle past or unposted.
   BRAINYAC said 2027 applications were still expected. MD Anderson King had the wrong open date.
   HOBY Illinois had "2017" for 2027.
@@ -85,13 +87,16 @@ feed was changed.
 | `thomas-jefferson-national-accelerator-facility-suratech-high-sch…` | Officially the "JSA/Jefferson Lab High School Summer Honors Program". | Retitle. |
 | Grade ranges (round 6) | Penn SMP: Philadelphia students entering 10th or 11th grade. Mayo CARES: Arizona sophomores and juniors. UW-Madison PEOPLE: students join in grade 8 or 9. Jim Holland SEP: entering grades 9–11. | Fix the grades after checking. |
 | Moved links (round 6) | UAB PRISM (uab.edu/medicine/surgery/prism), Maryland Boys State (mdlegion.org/boysstate), Rice Architecture Summer Immersion (/public-programs/summer-immersion), Montana Tech camp (links to a 2026 news release), University of Miami trainee program. | Run the link checker on these. |
+| `american-legion-auxiliary-department-of-connecticut-laurel-girls…` | The link (alactdept.org/laurel-girls-state.html) never appears in search; the department names www.alalgs.org as the program site. | Re-point to alalgs.org. |
+| Boys/Girls State sites (round 7) | New Mexico Boys State's site looks stale (newest event about 2024). North Dakota Boys State moved to ndboysstate.org. Evergreen (WA) is now co-ed "Evergreen Boys & Girls State" at $700 with tuition help. Kentucky Girls State still shows 2025. | Check and update. |
+| `junior-science-and-humanities-symposium-florida-jshs`, Intermountain JSHS | Official region pages still describe the 2025 cycle. | Re-check in November. |
 | `yale-mun` | The 2027 conference is full; only the waitlist is open. | Leave as is, or set "closed". |
 | `aime`, `usamo` | The only 2026 date is the schools' AMC registration deadline (Oct 15). Students can't register themselves. | Left as TBA on purpose. |
 
 ## Still to check
 
-The deadline search has covered the 112 prestige-3 listings and about 400 prestige-2 listings.
-About 259 prestige-2 listings are queued for the next rounds (roughly 96 per round, because of the
+The deadline search has covered the 112 prestige-3 listings and about 500 prestige-2 listings.
+About 163 prestige-2 listings are queued for the next rounds (roughly 96 per round, because of the
 web-search limit per turn).
 
 Programs that are rarely self-apply (state fairs, olympiads, school-registered competitions)

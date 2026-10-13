@@ -200,6 +200,34 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
     blurb: "College scholarship program for LGBTQ+ student leaders who live in Alaska, Idaho, Montana, Oregon or Washington (they may study elsewhere). The current application window runs October 11, 2026 to January 8, 2027.",
     evidence: "2026-10-12, pridefoundation.org scholarship guidelines and application pages: window October 11, 2026 to January 8, 2027 (5pm PT). The find-funding page shows 'January 8, 2026', a typo for 2027. The old blurb described the window as past.",
   },
+  "the-american-legion-department-of-rhode-island-little-rhody-boys": {
+    deadline: "2027-06-01",
+    evidence: "2026-10-12, littlerhodyboysstate.com (apply page): 'the deadline to apply is June 1st 2027, space is limited.' Session June 20-25, 2027.",
+  },
+  "american-legion-auxiliary-department-of-hawaii-hawaii-girls-stat": {
+    deadline: "2027-03-15",
+    evidence: "2026-10-12, hawaiigirlsstate.org home page: 'APPLY by MARCH 15 for JUNE 2027 SESSION'.",
+  },
+  "american-legion-auxiliary-department-of-louisiana-louisiana-girl": {
+    opensAt: "2027-02-01",
+    evidence: "2026-10-12, lagirlsstate.com FAQ: 'Delegates can begin to register for Louisiana Girls State on February 1, 2027.' No closing date posted.",
+  },
+  "junior-science-and-humanities-symposium-alabama-jshs": {
+    deadline: "2027-02-15",
+    evidence: "2026-10-12, jshs.org/region/alabama: student application deadline February 15, 2027; regional symposium March 4-5, 2027.",
+  },
+  "junior-science-and-humanities-symposium-arkansas-jshs": {
+    deadline: "2027-01-22",
+    evidence: "2026-10-12, jshs.org/region/arkansas: student application deadline January 22, 2027; regional symposium February 26-27, 2027 at Arkansas Tech.",
+  },
+  "junior-science-and-humanities-symposium-hawaii-and-pacific-jshs": {
+    deadline: "2026-11-30",
+    evidence: "2026-10-12, jshs.org Hawaii and Pacific region page: 'Deadline for student applications: November 30, 2026'; symposium February 1-2, 2027 (tentative).",
+  },
+  "junior-science-and-humanities-symposium-connecticut-jshs": {
+    deadline: "2026-12-14",
+    evidence: "2026-10-12, jshs.org Connecticut region page: 'Deadline for student applications: December 14, 2026'; symposium February 27, 2027.",
+  },
   "harvard-summer-school-secondary-school-program": {
     deadline: "2027-02-10",
     opensAt: "2026-12-01",
