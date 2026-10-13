@@ -124,6 +124,48 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
     blurb: "Four-week residential program for gifted Arkansas rising seniors across nine academic and creative areas. Students are nominated by their school (homeschoolers by a parent); nominations open October 19, 2026 and student materials are due February 1, 2027.",
     evidence: "2026-10-12, atu.edu/ags/apply.php: 'October 19, 2026 - Nomination/Application open ... February 1, 2027 - Student application material due'. School materials are due February 8, 2027.",
   },
+  "csv-sch-kfc-colonel-s-scholarship": {
+    deadline: "2027-02-08",
+    opensAt: "2027-01-04",
+    blurb: "Students selected for this scholarship are eligible to receive up to $20,000 to complete a bachelor's degree program. Applicants must work at a participating KFC restaurant; 2027 applications run January 4 to February 8, 2027.",
+    evidence: "2026-10-12, kfcfoundation.org/scholarships: 'Save the Date! January 4 - February 8, 2027'. Applicants must work at a participating KFC.",
+  },
+  "csv-sch-equitable-excellence-scholarship": {
+    deadline: "2026-12-22",
+    evidence: "2026-10-12, equitable.com Equitable Excellence Scholarship page: the application 'will be active through Tuesday, December 22nd, 2026.'",
+  },
+  "csv-sch-burger-king-scholarship": {
+    deadline: "2026-12-15",
+    opensAt: "2026-10-15",
+    blurb: "Scholarship grants range from $1,000 to $50,000 and are intended to help students offset the cost of attending college or post-secondary vocational/technical school. Applications open October 15, 2026 and close December 15, 2026, or earlier once 30,000 applications are received.",
+    evidence: "2026-10-12, burgerkingfoundation.org: application opens October 15, 2026 and closes December 15, 2026, or once 30,000 applications have been received.",
+  },
+  "earth-prize": {
+    deadline: "2027-01-10",
+    evidence: "2026-10-12, theearthprize.org/competition: registration deadline January 10, 2027; submissions close January 31, 2027 at 12:00 PM CET.",
+  },
+  "memorial-sloan-kettering-cancer-center-summer-student-program": {
+    deadline: "2027-02-05",
+    opensAt: "2026-12-01",
+    evidence: "2026-10-12, mskcc.org/education-training/summer-student: 2027 applications open December 1, 2026 and are due February 5, 2027 at 8:00 a.m. EST.",
+  },
+  "broad-institute-of-mit-and-harvard-broad-summer-scholars-program": {
+    deadline: "2027-01-20",
+    opensAt: "2026-11-23",
+    evidence: "2026-10-12, Broad Institute BSSP page: applications open November 23, 2026 and are due January 20, 2027. Massachusetts rising seniors within commuting distance only.",
+  },
+  "boston-university-rise-internship-practicum": {
+    deadline: "2027-02-03",
+    evidence: "2026-10-12, BU RISE admissions timeline: application deadline February 3, 2027, 11:59pm ET. The opening date is given without a year, so none is set.",
+  },
+  "fermilab-high-school-programs-prism-valor-jrotc": {
+    blurb: "Fermilab's high school track: PRISM STEM mentorship plus the paid six-week VALOR JROTC summer internship. PRISM's 2027 application runs January 12 to March 1, 2027; check VALOR's page for its own dates.",
+    evidence: "2026-10-12, internships.fnal.gov PRISM page: 2027 application opens January 12, 2027 and closes March 1, 2027. VALOR JROTC dates not checked, so no deadline is set on the combined listing.",
+  },
+  "university-of-texas-at-austin-summer-high-school-research-academ": {
+    opensAt: null,
+    evidence: "2026-10-12, UT Austin HSRA official page: applications open 'mid-January 2027' with a March deadline and no exact days. The listing's open date of 2027-01-04 had no official source, so it is cleared.",
+  },
   "harvard-summer-school-secondary-school-program": {
     deadline: "2027-02-10",
     opensAt: "2026-12-01",

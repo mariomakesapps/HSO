@@ -14,7 +14,10 @@ feed was changed.
   Harvard Secondary School Program, NASA Dream with Us. Round 3 added: Congressional App
   Challenge, Technovation, Interlochen, NYU Tisch Summer, SWE scholarships, Taco Bell Live Más
   (open date), Oak Ridge Appalachian STEM Academy, Aspen Music Festival, Arkansas Governor's
-  School and Aspirnaut.
+  School and Aspirnaut. Round 4 added: KFC Colonel's, Equitable Excellence and Burger King
+  scholarships, The Earth Prize, Memorial Sloan Kettering, Broad Summer Scholars, BU RISE, and
+  Fermilab PRISM dates in the blurb. A UT Austin HSRA open date that had no official source was
+  removed.
 - **Wrong text fixed**: Harvard and NASA blurbs called the current cycle past or unposted.
   BRAINYAC said 2027 applications were still expected. MD Anderson King had the wrong open date.
   HOBY Illinois had "2017" for 2027.
@@ -49,13 +52,25 @@ feed was changed.
 | `minds-matter-nyc` | Students apply as freshmen for a three-year program (grades 10–12). | Decide whether the grade filter should mean "grade when applying". |
 | `ornl`, `kenyon`, `rsi-medicine`, `breakthrough` | The official pages appear to have moved (orau.org/arc-ornl/high-school, kenyonreview.org/event/young-writers-summer-residential-workshops, med.upenn.edu/ascend/…, breakthroughcollaborative.org/apply-student). | Run the link checker on these. |
 | `prudential-emerging-visionaries` | The last cycle found closed November 2, 2024; nothing since. | Check whether it still runs. |
+| `u-s-department-of-state-virtual-student-federal-service-vsfs` | Applicants must be high school graduates enrolled in college. Seniors qualify only once accepted to college. | Remove, or limit to grade 12 with that note. |
+| `johns-hopkins-school-of-medicine-summer-internship-program` | Listed by Hopkins among programs "for undergrad students". The high school option is the Summer Jobs Program (16+). | Re-point or remove. |
+| `high-museum-of-art-summer-internship-program`, `national-gallery-of-art-summer-internships` | Both are for college students and graduates only. | Remove (High Museum's teen option is its Teen Leadership Council). |
+| `feinstein-institutes-for-medical-research-summer-student-interns` | The official page says "High school students are not eligible" for this internship (they can join the Summer Visiting Scholar Program). Another Feinstein page conflicts. | Check, then re-point or remove. |
+| `the-art-institute-of-chicago-internships` | The link is the college internships page. The teen option is the paid After School Matters internships (artic.edu/learn-with-us/teens/opportunities-for-teens). | Re-point. |
+| `library-of-congress-high-school-summer-internship` | The last cycle found closed February 28, 2025; no 2026 or 2027 edition. | Check whether it still runs. |
+| `csv-sch-scholars-helping-collars-scholarship` | Paused for the 2026–27 school year; it may return for the Class of 2027. | Hide until it reopens. |
+| `csv-sch-discover-scholarship-award` | "The Discover Scholarship Sweepstakes has ended"; the last round was 18+ only. | Remove. |
+| `kimberly-querrey…` (Northwestern), `ohsu-knight-scholars…` | Not taking new applications for summer; OHSU ran no 2026 program. OHSU is for grades 9–10, but the listing says 10–12. | Check both. |
+| `national-institute-on-aging-summer-research-training-for-high-sc` | Applies through the NIH Summer Internship Program (due January 26, 2027). High school applicants must be seniors aged 18 (17 near a campus), but the listing includes grade 11. | Set grades to 12; add the date once NIA confirms. |
+| Grade ranges | Los Alamos takes juniors too (listing: 12 only). Children's Hospital Colorado and Argonne Bridge take seniors only. Berkeley Lab BLDAP is for grades 10–11 (listing includes 12). Chicago Summer Business Institute also takes sophomores. | Fix the grades after checking. |
+| Moved links | Wharton LBW (/programs-courses/…), Waksman Scholars (wssp.rutgers.edu), CHLA LA-HIP, Stanford PIPS, Equitable (equitable.com), Women at Microsoft, Scripps Translational. | Run the link checker on these. |
 | `yale-mun` | The 2027 conference is full; only the waitlist is open. | Leave as is, or set "closed". |
 | `aime`, `usamo` | The only 2026 date is the schools' AMC registration deadline (Oct 15). Students can't register themselves. | Left as TBA on purpose. |
 
 ## Still to check
 
-The deadline search has covered the 112 prestige-3 listings and about 100 prestige-2 listings.
-About 550 prestige-2 listings are queued for the next rounds (roughly 96 per round, because of the
+The deadline search has covered the 112 prestige-3 listings and about 200 prestige-2 listings.
+About 450 prestige-2 listings are queued for the next rounds (roughly 96 per round, because of the
 web-search limit per turn).
 
 Programs that are rarely self-apply (state fairs, olympiads, school-registered competitions)
