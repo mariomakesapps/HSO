@@ -241,6 +241,11 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
     deadline: "2026-12-11",
     evidence: "2026-10-13, wvculture.org/agencies/arts/poetry-out-loud: schools and organisations register by December 11, 2026; students without a school competition can sign up by emailing the coordinator by the same date.",
   },
+  "florida-bright-futures-scholarship": {
+    deadline: "2027-08-31",
+    blurb: "Florida's merit scholarship for in-state college. Students earn it by completing the required coursework, test scores and service hours, and must submit the Florida Financial Aid Application (FFAA) in senior year. 2027 graduates can submit the FFAA from October 1, 2026 through August 31, 2027 (mid-year graduates by December 31 of senior year).",
+    evidence: "2026-10-13, floridastudentfinancialaidsg.org (Florida Office of Student Financial Assistance): 2027 graduates submit the FFAA 'between October 1, 2026, through August 31, 2027'.",
+  },
   "harvard-summer-school-secondary-school-program": {
     deadline: "2027-02-10",
     opensAt: "2026-12-01",

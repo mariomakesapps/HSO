@@ -22,7 +22,7 @@ feed was changed.
   date) and Pride Foundation scholarship. Round 7 added: JSHS regions (Alabama, Arkansas,
   Connecticut, Hawaii and Pacific), Little Rhody Boys State, Hawaii Girls State and Louisiana
   Girls State (open date). Round 8 added: UPMC Hillman Cancer Center Academy, Poetry Out Loud
-  Alabama and West Virginia.
+  Alabama and West Virginia. Round 9 added: Florida Bright Futures (FFAA deadline).
 - **Wrong text fixed**: Harvard and NASA blurbs called the current cycle past or unposted.
   BRAINYAC said 2027 applications were still expected. MD Anderson King had the wrong open date.
   HOBY Illinois had "2017" for 2027.
@@ -98,14 +98,31 @@ feed was changed.
 | `ncf-envirothon-arkansas-envirothon` | arkansasenvirothon.net returns no pages in search; the only Arkansas listing found is a 2025 event on arkansasee.org. | Check the link. |
 | `west-virginia-state-university-aeop-high-school-internships-at-w…` | The page still says "Applications are now open for Summer 2024", and no later cycle was found. The page moved under college-of-natural-sciences-and-mathematics. | Check whether it still runs. |
 | `oregon-student-aid-oregon-promise-grant` | Oregon Promise opens in "mid-October 2026". The listing's 2026-10-01 open date looks like the general ORSAA opening. | Correct or clear the open date. |
+| `naacp-act-so` | NAACP is moving to a biennial convention (next in 2028); its 2027 "Legislative Session" will "incorporate ACT-SO". How the 2027 national round runs is unclear. | Re-check in early 2027. |
+| `…vermont…history-day` | Its open date of 2027-01-01 is not stated on any official page. | Clear it unless a source turns up. |
+| `sachs-foundation-undergraduate-scholarship`, Wyoming History Day | Sachs' page appears to be /undergraduate-scholarships/; Wyoming History Day appears to be wyominghistoryday.org. | Run the link checker on these. |
 | `yale-mun` | The 2027 conference is full; only the waitlist is open. | Leave as is, or set "closed". |
 | `aime`, `usamo` | The only 2026 date is the schools' AMC registration deadline (Oct 15). Students can't register themselves. | Left as TBA on purpose. |
 
-## Still to check
+## Coverage
 
-The deadline search has covered the 112 prestige-3 listings and about 590 prestige-2 listings.
-About 67 prestige-2 listings are queued for the next rounds (roughly 96 per round, because of the
-web-search limit per turn).
+The deadline search is complete. Every curated listing with no date, or a passed one, at
+prestige 3 (112) and prestige 2 (653, excluding state fairs, olympiads and similar
+school-registered programs) was checked against its official site between 2026-10-12 and
+2026-10-14.
+
+- `src/data/deadlineCheckOct2026.ts` holds 51 rows. They set 44 deadlines and 18 opening dates,
+  and fix about 20 blurbs. Two correct a wrong organisation, location or grades, and one clears an
+  unsourced open date.
+- Every other checked listing stays "Deadline TBA", for one of three reasons:
+  - The 2027 cycle isn't posted yet. Most summer programs post between November and January.
+  - The date has no year.
+  - Schools, coaches, posts or regional contests register the students: Boys/Girls State, History
+    Day, Envirothon, Poetry Out Loud, SkillsUSA, most JSHS regions.
+- The 585 NYC imports were not checked, because changing imports is off limits.
 
 Programs that are rarely self-apply (state fairs, olympiads, school-registered competitions)
 usually have no student deadline at all. "Deadline TBA" is the correct state for them.
+
+**Suggested next pass (late November to December 2026):** re-run the same check on listings that
+said "applications open in November/December". Many 2027 summer dates will be posted by then.
