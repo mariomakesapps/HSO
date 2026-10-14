@@ -21,7 +21,8 @@ feed was changed.
   Summer. Round 6 added: Mayo SPARK Florida, ARTEFFECT, American Legion Legacy Scholarship (open
   date) and Pride Foundation scholarship. Round 7 added: JSHS regions (Alabama, Arkansas,
   Connecticut, Hawaii and Pacific), Little Rhody Boys State, Hawaii Girls State and Louisiana
-  Girls State (open date).
+  Girls State (open date). Round 8 added: UPMC Hillman Cancer Center Academy, Poetry Out Loud
+  Alabama and West Virginia.
 - **Wrong text fixed**: Harvard and NASA blurbs called the current cycle past or unposted.
   BRAINYAC said 2027 applications were still expected. MD Anderson King had the wrong open date.
   HOBY Illinois had "2017" for 2027.
@@ -90,13 +91,20 @@ feed was changed.
 | `american-legion-auxiliary-department-of-connecticut-laurel-girls…` | The link (alactdept.org/laurel-girls-state.html) never appears in search; the department names www.alalgs.org as the program site. | Re-point to alalgs.org. |
 | Boys/Girls State sites (round 7) | New Mexico Boys State's site looks stale (newest event about 2024). North Dakota Boys State moved to ndboysstate.org. Evergreen (WA) is now co-ed "Evergreen Boys & Girls State" at $700 with tuition help. Kentucky Girls State still shows 2025. | Check and update. |
 | `junior-science-and-humanities-symposium-florida-jshs`, Intermountain JSHS | Official region pages still describe the 2025 cycle. | Re-check in November. |
+| `teachers-and-writers-collaborative-with-the-new-york-state-counc…` (Poetry Out Loud NY) | T&W: "New York State will not participate in the national Poetry Out Loud program this year." It is replaced by New York State of Poetry (registration closes November 6, 2026; students can register themselves). | Rename and re-point, or remove. |
+| `junior-science-and-humanities-symposium-missouri-jshs`, `…-new-york-metro-jshs`, `…-ohio-jshs` | Host pages say JSHS is "suspended until further notice". That may be an old notice: jshs.org lists the 2027 National JSHS for April 20–25, 2027. | Check each region before changing anything. |
+| `florida-division-of-arts-and-culture-poetry-out-loud-florida` | The linked USF page says USF no longer runs the Florida contest. The official page is dos.fl.gov/cultural/programs/poetry-out-loud/. | Re-point. |
+| `wyoming-arts-council-poetry-out-loud-wyoming` | The official page is now at /programs/poetry-out-loud/. | Re-point. |
+| `ncf-envirothon-arkansas-envirothon` | arkansasenvirothon.net returns no pages in search; the only Arkansas listing found is a 2025 event on arkansasee.org. | Check the link. |
+| `west-virginia-state-university-aeop-high-school-internships-at-w…` | The page still says "Applications are now open for Summer 2024", and no later cycle was found. The page moved under college-of-natural-sciences-and-mathematics. | Check whether it still runs. |
+| `oregon-student-aid-oregon-promise-grant` | Oregon Promise opens in "mid-October 2026". The listing's 2026-10-01 open date looks like the general ORSAA opening. | Correct or clear the open date. |
 | `yale-mun` | The 2027 conference is full; only the waitlist is open. | Leave as is, or set "closed". |
 | `aime`, `usamo` | The only 2026 date is the schools' AMC registration deadline (Oct 15). Students can't register themselves. | Left as TBA on purpose. |
 
 ## Still to check
 
-The deadline search has covered the 112 prestige-3 listings and about 500 prestige-2 listings.
-About 163 prestige-2 listings are queued for the next rounds (roughly 96 per round, because of the
+The deadline search has covered the 112 prestige-3 listings and about 590 prestige-2 listings.
+About 67 prestige-2 listings are queued for the next rounds (roughly 96 per round, because of the
 web-search limit per turn).
 
 Programs that are rarely self-apply (state fairs, olympiads, school-registered competitions)

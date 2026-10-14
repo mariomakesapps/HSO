@@ -228,6 +228,19 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
     deadline: "2026-12-14",
     evidence: "2026-10-12, jshs.org Connecticut region page: 'Deadline for student applications: December 14, 2026'; symposium February 27, 2027.",
   },
+  "upmc-hillman-cancer-center-upmc-hillman-cancer-center-academy": {
+    deadline: "2027-02-14",
+    opensAt: "2026-12-03",
+    evidence: "2026-10-13, hillmanacademy.upmc.com/apply-now: application window 'December 3rd, 2026 - February 14th, 2027'.",
+  },
+  "alabama-state-council-on-the-arts-poetry-out-loud-alabama": {
+    deadline: "2026-11-30",
+    evidence: "2026-10-13, arts.alabama.gov Poetry Out Loud page: 'Registration for Alabama's 2026-2027 program is open through November 30, 2026.' Schools, organisations and independent students register through a Regional Coordinator.",
+  },
+  "west-virginia-state-arts-office-poetry-out-loud-west-virginia": {
+    deadline: "2026-12-11",
+    evidence: "2026-10-13, wvculture.org/agencies/arts/poetry-out-loud: schools and organisations register by December 11, 2026; students without a school competition can sign up by emailing the coordinator by the same date.",
+  },
   "harvard-summer-school-secondary-school-program": {
     deadline: "2027-02-10",
     opensAt: "2026-12-01",
