@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
+import { currentYear, useClock } from "@/lib/clock";
 
 export function SiteFooter() {
+  useClock();
   return (
     <footer className="border-t border-border/70 bg-ink text-cream">
       <div className="mx-auto grid max-w-[1400px] gap-8 px-4 py-10 sm:px-6 sm:py-12 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr_0.8fr]">
@@ -50,7 +52,7 @@ export function SiteFooter() {
         </FooterColumn>
       </div>
       <div className="border-t border-cream/10 px-4 py-4 text-center text-xs text-cream/52 sm:px-6">
-        {new Date().getFullYear()} HSO - High School Opportunity Finder. Always confirm details on official program sites.
+        {currentYear()} HSO - High School Opportunity Finder. Always confirm details on official program sites.
       </div>
     </footer>
   );

@@ -4,6 +4,7 @@ import type { FilterState } from "@/components/Filters";
 import type { ExtraFilterState } from "@/components/ExtraFilters";
 import type { SortKey } from "@/components/SortBar";
 import { getDeadlineStatus, type DeadlineStatus } from "@/lib/deadline";
+import { dayEdge, now as clockNow } from "@/lib/clock";
 
 const searchTextCache = new Map<string, string>();
 const locationStateCache = new Map<string, string[]>();
@@ -99,7 +100,7 @@ export function facetCounts(
 }
 
 export function applySort(list: Opportunity[], sort: SortKey, originalIndex: Map<string, number>): Opportunity[] {
-  const now = Date.now();
+  const now = clockNow();
   const arr = list.slice();
   switch (sort) {
     case "deadline-soon":
@@ -219,7 +220,7 @@ function deadlineTime(o: Opportunity) {
   if (!o.deadline) return Infinity;
   // End of the deadline day, local time — the same rule getDeadlineStatus uses,
   // so a listing due today is not sorted as closed.
-  const time = new Date(`${o.deadline}T23:59:59`).getTime();
+  const time = dayEdge(o.deadline, "end");
   return Number.isNaN(time) ? Infinity : time;
 }
 

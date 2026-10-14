@@ -29,6 +29,15 @@ import GuideTopMedicalInternships from "./pages/GuideTopMedicalInternships";
 import GuideTopResearchCompetitions from "./pages/GuideTopResearchCompetitions";
 import GuideTopBusinessPrograms from "./pages/GuideTopBusinessPrograms";
 import GuideHighSchoolLawInternships from "./pages/GuideHighSchoolLawInternships";
+import { freezeClock } from "@/lib/clock";
+
+/**
+ * Build time. Every page in this build renders its deadline labels against it,
+ * and the prerenderer stamps it on #root (data-ssr-now) so the browser hydrates
+ * against the same instant (src/lib/clock.ts).
+ */
+export const SSR_NOW = Date.now();
+freezeClock(SSR_NOW);
 
 /**
  * Build-time server render, used by scripts/prerender.mjs.

@@ -100,7 +100,7 @@ async function loadServerRenderer(root) {
   });
   const file = path.join(outDir, "entry-server.mjs");
   const mod = await import(pathToFileURL(file).href + `?t=${Date.now()}`);
-  return { render: mod.render, close: () => fs.rm(outDir, { recursive: true, force: true }) };
+  return { render: mod.render, now: mod.SSR_NOW, close: () => fs.rm(outDir, { recursive: true, force: true }) };
 }
 
 /**
@@ -407,7 +407,7 @@ function stripTemplateHead(template) {
  * a lazy match against — an earlier regex here silently left the template's
  * placeholder content on every page.
  */
-function renderPage(template, head, body, ssrPath) {
+function renderPage(template, head, body, ssrPath, ssrNow) {
   const stripped = stripTemplateHead(template);
 
   const headClose = stripped.indexOf("</head>");
@@ -430,9 +430,11 @@ function renderPage(template, head, body, ssrPath) {
   const shift = withHead.length - stripped.length;
   // data-ssr-path records which URL this markup was rendered for; the browser
   // hydrates only when it matches (src/main.tsx), and renders fresh otherwise.
+  // data-ssr-now is the build time the markup's deadline labels were computed at.
   const open = withHead.slice(0, rootContentStart + shift);
   const tagged = ssrPath
-    ? open.slice(0, -ROOT_OPEN.length) + `<div id="root" data-ssr-path="${escapeHtml(ssrPath)}">`
+    ? open.slice(0, -ROOT_OPEN.length) +
+      `<div id="root" data-ssr-path="${escapeHtml(ssrPath)}"${ssrNow ? ` data-ssr-now="${ssrNow}"` : ""}>`
     : open;
   return tagged + body + withHead.slice(rootClose + shift);
 }
@@ -614,7 +616,7 @@ export async function prerender({ root, distDir }) {
     } catch (err) {
       ssrFailures.push(`${meta.path}: ${(err && err.message) || err}`);
     }
-    const html = renderPage(template, headFor(meta), pageBody, pageBody === body ? undefined : meta.path);
+    const html = renderPage(template, headFor(meta), pageBody, pageBody === body ? undefined : meta.path, ssr.now);
     const outPath =
       meta.path === "/"
         ? path.join(distDir, "index.html")

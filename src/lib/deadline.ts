@@ -1,3 +1,5 @@
+import { dayEdge, now as clockNow } from "@/lib/clock";
+
 export type DeadlineStatus = "open" | "closing-soon" | "closed" | "rolling" | "opens-later";
 
 /**
@@ -6,10 +8,12 @@ export type DeadlineStatus = "open" | "closing-soon" | "closed" | "rolling" | "o
  * new Date("2026-09-20") is midnight UTC, which is the evening of the 19th
  * across the Americas — so a listing closing today was labelled "Closed" a day
  * early for every US visitor. A deadline runs to the end of its day and an
- * opening date starts at the beginning of its day, both local.
+ * opening date starts at the beginning of its day, both local — except while the
+ * page is prerendering or hydrating, when src/lib/clock.ts reads them in UTC so
+ * the server and the browser produce the same label.
  */
 function parseDay(iso: string, edge: "start" | "end"): number {
-  return new Date(`${iso}T${edge === "end" ? "23:59:59" : "00:00:00"}`).getTime();
+  return dayEdge(iso, edge);
 }
 
 export function getDeadlineStatus(deadline: string | null | undefined, opensAt?: string | null): {
@@ -17,7 +21,7 @@ export function getDeadlineStatus(deadline: string | null | undefined, opensAt?:
   label: string;
   daysLeft: number | null;
 } {
-  const now = Date.now();
+  const now = clockNow();
   const opensTime = opensAt ? parseDay(opensAt, "start") : NaN;
   if (!Number.isNaN(opensTime) && opensTime > now) {
     const daysUntilOpen = Math.ceil((opensTime - now) / 86400000);

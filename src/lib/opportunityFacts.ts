@@ -1,4 +1,5 @@
 import { locationState, type Opportunity } from "@/data/opportunities";
+import { now as clockNow } from "@/lib/clock";
 
 /**
  * Sentences for an opportunity page, built only from the listing's own fields.
@@ -65,7 +66,7 @@ export function summarySentence(opp: Opportunity): string {
 }
 
 /** The deadline in words, never guessed. `now` is passed in so the server and browser agree within a build. */
-export function deadlineSentence(opp: Opportunity, now = Date.now()): string {
+export function deadlineSentence(opp: Opportunity, now = clockNow()): string {
   const today = new Date(now).toISOString().slice(0, 10);
   if (opp.opensAt && opp.opensAt > today) {
     return `Applications open ${formatDay(opp.opensAt)}${opp.deadline ? ` and close ${formatDay(opp.deadline)}` : ""}.`;

@@ -2,6 +2,7 @@ import { Suspense, useEffect, useRef, type ComponentType, type ReactNode } from 
 import { Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { SiteHeader } from "./components/SiteHeader";
 import { Atmosphere } from "./components/Atmosphere";
+import { releaseClock } from "@/lib/clock";
 
 /**
  * The route table and app shell, shared by the browser app and the build-time
@@ -58,6 +59,10 @@ function RouteTransition({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     isFirstRender.current = false;
+    // The page inside this Suspense boundary has hydrated (it hydrates after the
+    // shell, so this is the earliest safe point): deadline labels can now switch
+    // from the build time to the visitor's real day. See src/lib/clock.ts.
+    releaseClock();
   }, []);
 
   return (
@@ -83,6 +88,12 @@ const AppShell = () => (
   </>
 );
 
+/** Releases the clock on routes that render outside AppShell (see RouteTransition). */
+function ReleaseClock() {
+  useEffect(() => releaseClock(), []);
+  return null;
+}
+
 export function AppRoutes({ pages: P }: { pages: PageComponents }) {
   return (
     <Routes>
@@ -91,6 +102,7 @@ export function AppRoutes({ pages: P }: { pages: PageComponents }) {
         element={
           <Suspense fallback={<PageFallback />}>
             <P.Auth />
+            <ReleaseClock />
           </Suspense>
         }
       />

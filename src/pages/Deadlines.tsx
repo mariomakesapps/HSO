@@ -10,6 +10,7 @@ import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
 import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
 import { deadlinesMeta } from "@/lib/pageMeta";
 import { useAtmosphere } from "@/lib/atmosphere";
+import { useClock } from "@/lib/clock";
 
 const MONTH_DAY = new Intl.DateTimeFormat("en-US", { month: "short", day: "numeric" });
 
@@ -22,9 +23,12 @@ function formatDate(iso: string | null | undefined): string {
 const Deadlines = () => {
   useAtmosphere("remote");
 
-  // Recomputed on mount so the page is right for the visitor's day, not the
-  // day the site was built. The prerendered HTML is a build-time snapshot.
-  const buckets = useMemo(() => deadlineBuckets(), []);
+  // The prerendered HTML is a build-time snapshot. The clock keeps the first
+  // render identical to it, then goes live after hydration so the buckets are
+  // right for the visitor's day (src/lib/clock.ts).
+  const clockEpoch = useClock();
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- clockEpoch is the trigger
+  const buckets = useMemo(() => deadlineBuckets(), [clockEpoch]);
   const total = buckets.reduce((n, b) => n + b.items.length, 0);
   const closingBuckets = buckets.filter((b) => b.id !== "opening-soon");
   const opening = buckets.find((b) => b.id === "opening-soon");

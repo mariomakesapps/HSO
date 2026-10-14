@@ -19,6 +19,7 @@ import { store, useStore } from "@/store/collections";
 import { toast } from "sonner";
 import { authRedirectHref, useAuthSession } from "@/hooks/useAuthSession";
 import { supabase } from "@/integrations/supabase/client";
+import { nowDate, useClock } from "@/lib/clock";
 
 const db = supabase as any;
 
@@ -26,6 +27,7 @@ const OpportunityDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const opp = allOpportunities.find((o) => o.id === id);
+  useClock(); // the deadline badge and sentence depend on today's date
   const dl = getDeadlineStatus(opp?.deadline, opp?.opensAt);
   const s = useStore();
   const fav = !!opp && s.favorites.includes(opp.id);
@@ -309,7 +311,7 @@ const OpportunityDetail = () => {
 
 /** Month of the latest dated check in the review records, if there is one. */
 function LastChecked({ id, detailChecked }: { id: string; detailChecked?: string }) {
-  const today = new Date().toISOString().slice(0, 10);
+  const today = nowDate().toISOString().slice(0, 10);
   const date = reviewDateFor(id, today) ?? detailChecked;
   if (!date) return null;
   const [y, m] = date.split("-").map(Number);

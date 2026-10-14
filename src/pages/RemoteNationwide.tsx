@@ -11,6 +11,7 @@ import { applySort } from "@/lib/filterSort";
 import { remoteMeta } from "@/lib/pageMeta";
 import { REMOTE_META, REMOTE_PATH, remoteOpportunities } from "@/lib/remote";
 import { useAtmosphere } from "@/lib/atmosphere";
+import { useClock } from "@/lib/clock";
 
 type CategoryFilter = "All" | (typeof CATEGORY_META)[keyof typeof CATEGORY_META]["category"];
 
@@ -19,6 +20,7 @@ const RemoteNationwide = () => {
 
   const [sort, setSort] = useState<SortKey>("recommended");
   const [category, setCategory] = useState<CategoryFilter>("All");
+  const clockEpoch = useClock();
 
   const all = useMemo(() => remoteOpportunities(), []);
   const indexMap = useMemo(() => new Map(all.map((o, i) => [o.id, i])), [all]);
@@ -26,7 +28,8 @@ const RemoteNationwide = () => {
   const list = useMemo(() => {
     const filtered = category === "All" ? all : all.filter((o) => o.category === category);
     return applySort(filtered, sort, indexMap);
-  }, [all, category, sort, indexMap]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- clockEpoch: sort order depends on today's date
+  }, [all, category, sort, indexMap, clockEpoch]);
 
   // Only offer filters for categories that actually have remote listings.
   const availableCategories = useMemo(() => {

@@ -10,6 +10,7 @@ import { CATEGORY_PAGE_SIZE } from "@/config/seo";
 import { schoolCycle, upcomingSummer } from "@/lib/seasons";
 import { gradesLabel, formatDay, isNationwide } from "@/lib/opportunityFacts";
 import { applySort } from "@/lib/filterSort";
+import { nowDate } from "@/lib/clock";
 
 export const SITE_URL = "https://highschoolopportunity.org";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
@@ -162,7 +163,7 @@ const TITLE_MAX = 60;
  * is posted, otherwise the current school cycle ("2026-27"). Never a guess about
  * the program's own dates.
  */
-function titleYear(opp: Opportunity, now = new Date()): string {
+function titleYear(opp: Opportunity, now = nowDate()): string {
   const today = now.toISOString().slice(0, 10);
   if (opp.deadline && opp.deadline >= today) return opp.deadline.slice(0, 4);
   return schoolCycle(now);
@@ -188,7 +189,7 @@ export function opportunityTitle(opp: Opportunity): string {
 }
 
 /** Built from the real deadline, grades and cost; unknown values say so. */
-export function opportunityDescription(opp: Opportunity, now = new Date()): string {
+export function opportunityDescription(opp: Opportunity, now = nowDate()): string {
   const today = now.toISOString().slice(0, 10);
   const deadline = opp.opensAt && opp.opensAt > today
     ? `Opens ${formatDay(opp.opensAt)}`
@@ -256,7 +257,7 @@ export function opportunityMeta(opp: Opportunity): PageMeta {
  * Category titles lead with the phrase students search ("competitions for high
  * school students") and name the current cycle, computed from the date.
  */
-export function categoryTitle(slug: CategorySlug, now = new Date()): string {
+export function categoryTitle(slug: CategorySlug, now = nowDate()): string {
   const cycle = schoolCycle(now);
   switch (slug) {
     case "summer-programs":
@@ -404,7 +405,7 @@ const listNames = (items: Opportunity[]) =>
  * Questions answered from the list itself, so every answer is a count or a
  * name from the catalogue rather than written copy. Shown on page 1.
  */
-export function topicFaqs(topic: Topic, now = new Date()): { q: string; a: string }[] {
+export function topicFaqs(topic: Topic, now = nowDate()): { q: string; a: string }[] {
   const list = topicListings(topic);
   const today = now.toISOString().slice(0, 10);
   const free = list.filter((o) => o.cost === "Free").length;
@@ -434,7 +435,7 @@ export function topicFaqs(topic: Topic, now = new Date()): { q: string; a: strin
   ];
 }
 
-export function topicMeta(topic: Topic, page = 1, now = new Date()): PageMeta {
+export function topicMeta(topic: Topic, page = 1, now = nowDate()): PageMeta {
   const list = topicListings(topic);
   const pages = topicPageCount(topic);
   const path = topicPath(topic, page);

@@ -13,6 +13,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CATEGORY_PAGE_SIZE } from "@/config/seo";
 import { PageLinks } from "@/components/PageLinks";
 import { publishedTopics, topicListings, topicPath } from "@/lib/topics";
+import { useClock } from "@/lib/clock";
 
 const Category = () => {
   const { slug, page: pageParam } = useParams<{ slug: CategorySlug; page?: string }>();
@@ -25,12 +26,14 @@ const Category = () => {
   useAtmosphere((meta ? slug : "default") as AtmosphereTheme);
 
   const [sort, setSort] = useState<SortKey>("recommended");
+  const clockEpoch = useClock();
   const indexMap = useMemo(() => new Map(allOpportunities.map((o, i) => [o.id, i])), []);
   const list = useMemo(() => {
     if (!meta) return [];
     const filtered = allOpportunities.filter((o) => o.category === meta.category);
     return applySort(filtered, sort, indexMap);
-  }, [meta, sort, indexMap]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- clockEpoch: sort order depends on today's date
+  }, [meta, sort, indexMap, clockEpoch]);
 
   if (!slug || !meta) return <Navigate to="/" replace />;
 

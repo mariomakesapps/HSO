@@ -17,6 +17,7 @@ import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { useAuthSession, authRedirectHref } from "@/hooks/useAuthSession";
 import { toast } from "sonner";
 import { costWord } from "@/lib/opportunityFacts";
+import { useClock } from "@/lib/clock";
 
 const CATEGORY_BADGE: Record<string, string> = {
   Research: "bg-sage/10 text-sage border border-sage/20",
@@ -42,6 +43,8 @@ function OpportunityCardComponent({ opp, index = 0 }: { opp: Opportunity; index?
   const { isAuthed } = useAuthSession();
   const navigate = useNavigate();
   const fav = useFavoriteStatus(opp.id);
+  // Memoised card, so it subscribes itself: the badge depends on today's date.
+  useClock();
   const dl = getDeadlineStatus(opp.deadline, opp.opensAt);
   const isClosed = dl.status === "closed";
   const linkUrl =

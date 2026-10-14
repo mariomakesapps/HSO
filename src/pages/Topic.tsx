@@ -10,6 +10,7 @@ import { findTopic, publishedTopics, topicListings, topicPath } from "@/lib/topi
 import { topicCrumbs, topicFaqs, topicMeta, topicPageCount } from "@/lib/pageMeta";
 import { useAtmosphere, type AtmosphereTheme } from "@/lib/atmosphere";
 import NotFound from "@/pages/NotFound";
+import { useClock } from "@/lib/clock";
 
 /**
  * A topic landing page: /categories/<category>/<topic>[/page/<n>].
@@ -20,6 +21,7 @@ const Topic = () => {
   const { slug, topic: topicSlug, page: pageParam } = useParams<{ slug: string; topic: string; page?: string }>();
   const topic = findTopic(slug, topicSlug);
   useAtmosphere((topic ? topic.parent : "default") as AtmosphereTheme);
+  useClock(); // FAQ answers and the sort order depend on today's date
 
   if (!topic) return <NotFound />;
 

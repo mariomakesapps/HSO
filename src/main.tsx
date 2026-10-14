@@ -1,6 +1,7 @@
 import { createRoot, hydrateRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import App, { preloadRoute } from "./App.tsx";
+import { freezeClock } from "./lib/clock";
 import "./index.css";
 
 const container = document.getElementById("root")!;
@@ -24,7 +25,13 @@ const FILTER_PARAMS = ["q", "category", "grade", "cost", "format", "field", "sta
 const query = new URLSearchParams(window.location.search);
 const filtered = FILTER_PARAMS.some((key) => query.has(key));
 const mount = () => {
-  if (container.firstElementChild && container.dataset.ssrPath === here && !filtered) hydrateRoot(container, app);
+  if (container.firstElementChild && container.dataset.ssrPath === here && !filtered) {
+    // Render the first pass against the build time the markup was made at, so the
+    // deadline labels match it exactly. App releases the clock once hydrated.
+    const ssrNow = Number(container.dataset.ssrNow);
+    if (Number.isFinite(ssrNow) && ssrNow > 0) freezeClock(ssrNow);
+    hydrateRoot(container, app);
+  }
   else createRoot(container).render(app);
 };
 

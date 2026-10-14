@@ -39,6 +39,7 @@ import { cn } from "@/lib/utils";
 import { SEO } from "@/components/SEO";
 import { STATIC_PAGE_META } from "@/lib/pageMeta";
 import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
+import { useClock } from "@/lib/clock";
 
 const MONTH_LABELS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
@@ -110,10 +111,13 @@ const Index = () => {
   const deferredExtra = useDeferredValue(extra);
   const deferredSort = useDeferredValue(sort);
 
+  // Re-renders once after hydration, when deadline labels switch to the visitor's day.
+  const clockEpoch = useClock();
   const indexMap = useMemo(() => new Map(opportunities.map((o, i) => [o.id, i])), []);
   const filtered = useMemo(
     () => applySort(applyFilters(opportunities, deferredFilters, deferredExtra), deferredSort, indexMap),
-    [deferredFilters, deferredExtra, deferredSort, indexMap],
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- clockEpoch: sort order depends on today's date
+    [deferredFilters, deferredExtra, deferredSort, indexMap, clockEpoch],
   );
   /**
    * How many results each filter option would actually return, given whatever
@@ -203,7 +207,8 @@ const Index = () => {
             (b.deadline ? new Date(b.deadline).getTime() : Infinity),
         )
         .slice(0, 6),
-    [],
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- recomputed when the clock goes live
+    [clockEpoch],
   );
   const recentlyAdded = useMemo(() => opportunities.slice(-6).reverse(), []);
   const standouts = useMemo(

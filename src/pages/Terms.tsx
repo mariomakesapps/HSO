@@ -1,15 +1,19 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SEO } from "@/components/SEO";
 import { STATIC_PAGE_META } from "@/lib/pageMeta";
+import { nowDate, useClock } from "@/lib/clock";
 
 const Terms = () => {
+  const live = useClock();
+  // A fixed locale and time zone until hydration is done, so the prerendered date matches.
+  const updated = live ? nowDate().toLocaleDateString() : nowDate().toLocaleDateString("en-US", { timeZone: "UTC" });
   return (
     <div className="min-h-screen">
       <SEO {...STATIC_PAGE_META["/terms"]} />
       <main className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Legal</p>
         <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-5xl">Terms of use</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Last updated: {new Date().toLocaleDateString()}</p>
+        <p className="mt-2 text-sm text-muted-foreground">Last updated: {updated}</p>
         <section className="hso-glass-panel mt-8 space-y-4 rounded-[1.75rem] p-6 leading-relaxed text-foreground">
           <h2 className="font-display text-2xl">What HSO is</h2>
           <p>HSO is an editorial discovery directory. We link to opportunities run by third parties  -  universities, nonprofits, companies, competitions, and scholarship providers.</p>

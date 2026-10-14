@@ -1,4 +1,5 @@
 import { allOpportunities, type Opportunity } from "@/data/opportunities";
+import { dayEdge, now as clockNow } from "@/lib/clock";
 
 /**
  * The deadline view.
@@ -29,7 +30,7 @@ const DAY = 86_400_000;
 /** Whole days from `now` until an ISO date, rounded up. Null when unparseable. */
 export function daysUntil(iso: string | null | undefined, now: number): number | null {
   if (!iso) return null;
-  const t = new Date(`${iso}T23:59:59`).getTime();
+  const t = dayEdge(iso, "end");
   if (Number.isNaN(t)) return null;
   return Math.ceil((t - now) / DAY);
 }
@@ -70,7 +71,7 @@ export function openingWithin(
  * The four groups the page renders, in the order a student cares about them.
  * A listing appears in exactly one bucket: the windows do not overlap.
  */
-export function deadlineBuckets(now: number = Date.now()): DeadlineBucket[] {
+export function deadlineBuckets(now: number = clockNow()): DeadlineBucket[] {
   const list = allOpportunities;
   const week = closingWithin(list, 7, now);
   const month = closingWithin(list, 30, now).filter((o) => !week.includes(o));
@@ -107,7 +108,7 @@ export function deadlineBuckets(now: number = Date.now()): DeadlineBucket[] {
 }
 
 /** Total number of dated listings the page shows — used in copy and metadata. */
-export function deadlineCount(now: number = Date.now()): number {
+export function deadlineCount(now: number = clockNow()): number {
   return deadlineBuckets(now).reduce((n, b) => n + b.items.length, 0);
 }
 
