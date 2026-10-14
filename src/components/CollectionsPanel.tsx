@@ -5,9 +5,10 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { store, useStore } from "@/store/collections";
 import { curatedCollections } from "@/data/curatedCollections";
-import { opportunities } from "@/data/opportunities";
+import { allOpportunities } from "@/data/opportunities";
 
-const opportunityById = new Map(opportunities.map((o) => [o.id, o]));
+// Removed listings are left out: their pages redirect, so a saved one has nowhere to link to.
+const opportunityById = new Map(allOpportunities.map((o) => [o.id, o]));
 const curatedById = new Map(curatedCollections.map((c) => [c.id, c]));
 
 export function CollectionsPanel({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
