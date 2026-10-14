@@ -1053,3 +1053,45 @@ export const OCT14_FIXES: Record<string, Partial<Opportunity>> = {
 "blurb": "NASA aeronautics design challenge with a separate high school division (grades 9-12, U.S. schools). The 2026-27 high school challenge asks teams to design an aircraft fuselage fuelled by liquefied natural gas; registration closes December 8, 2026 and submissions are due January 25, 2027."
 }
 } as Record<string, Partial<Opportunity>>;
+
+/**
+ * "Needs your decision" (2026-10-14), clear-cut items only, accepted by the owner.
+ * Removed = not open to high schoolers; hidden = paused with no reopening date.
+ * Restore a hidden one by deleting its line here once it reopens.
+ */
+export const OCT14_REMOVED: Record<string, string> = {
+  "aspire-summit": "/categories/fellowships", // ages 18-29, university students only
+  "ds-davis": "/categories/scholarships", // no longer accepting applicants
+  "davis-projects": "/categories/fellowships", // partner-college students only
+  "worldquant": "/categories/competitions", // 18+ only
+  "fred-hutch-lab-tech": "/categories/internships", // 18+ and college programme only
+  "u-s-department-of-state-virtual-student-federal-service-vsfs": "/categories/internships", // college students
+  "high-museum-of-art-summer-internship-program": "/categories/internships", // college students
+  "national-gallery-of-art-summer-internships": "/categories/internships", // college students
+  "csv-sch-discover-scholarship-award": "/categories/scholarships", // sweepstakes ended
+  "university-of-illinois-chicago-s-office-of-the-vice-provost-for": "/categories/summer-programs", // admitted UIC students only
+  "state-minnesota-umtymp": "/categories/fellowships", // new students join in grades 5-7
+  "teachers-and-writers-collaborative-with-the-new-york-state-counc": "/categories/competitions", // NY not in Poetry Out Loud this year
+  // Hidden until they reopen
+  "state-hawaii-hycc": "/categories/internships",
+  "csv-sch-scholars-helping-collars-scholarship": "/categories/scholarships",
+  "department-of-teacher-education-of-michigan-state-university-hig": "/categories/summer-programs",
+  "nasa-nasa-app-development-challenge-adc": "/categories/competitions",
+  "correlation-one-apex-high-school-ai-championship": "/categories/competitions",
+};
+
+export const OCT14_DECISION_FIXES: Record<string, Partial<Opportunity>> = {
+  "california-science-and-engineering-fair-california-science-and-e": { url: "https://csef.usc.edu" },
+  "nfte": { title: "NFTE Youth Entrepreneurship Showcase", url: "https://www.nfte.com/showcase" },
+  "mit-launch": { title: "LaunchX Entrepreneurship Program (Ann Arbor)", org: "LaunchX", location: "Ann Arbor, Michigan, USA", url: "https://www.launchx.com/programs/ann-arbor-entrepreneurship", deadline: "2027-03-31" },
+  "picoctf": { title: "picoCTF (CyLab Security Academy)" },
+  "nyu-iesosc": { grades: [9, 10] },
+  "national-institute-on-aging-summer-research-training-for-high-sc": { grades: [12] },
+  "thomas-jefferson-national-accelerator-facility-suratech-high-sch": { title: "JSA/Jefferson Lab High School Summer Honors Program" },
+  "rutgers-new-jersey-medical-school-high-school-student-research-i": { url: "https://research-office.njms.rutgers.edu/training-programs/high-school", deadline: null },
+  "american-legion-auxiliary-department-of-connecticut-laurel-girls": { url: "https://www.alalgs.org" },
+  "florida-division-of-arts-and-culture-poetry-out-loud-florida": { url: "https://dos.fl.gov/cultural/programs/poetry-out-loud/" },
+  "the-art-institute-of-chicago-internships": { url: "https://www.artic.edu/learn-with-us/teens/opportunities-for-teens" },
+  "oregon-student-aid-oregon-promise-grant": { opensAt: null }, // "mid-October", no exact date
+  "national-history-day-vermont-history-day-state-contest": { opensAt: null }, // not on any official page
+};

@@ -1,4 +1,4 @@
-import { OCT2026_REMOVED } from "@/data/hsoUpdateOct2026.generated";
+import { OCT2026_REMOVED, OCT14_REMOVED } from "@/data/hsoUpdateOct2026.generated";
 /**
  * Opportunities that are no longer listed, and where their URL should now go.
  *
@@ -14,6 +14,7 @@ import { OCT2026_REMOVED } from "@/data/hsoUpdateOct2026.generated";
 export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
   // October 2026 review removals (programmes closed, retired or replaced).
   ...OCT2026_REMOVED,
+  ...OCT14_REMOVED,
   // Removed 2026-09-28: Google's Build Your Future site is retired and renders no content.
   "csv-sch-generation-google-scholarship": "/categories/scholarships",
   // Removed 2026-09-28: Google's Build Your Future site is retired and renders no content.
