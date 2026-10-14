@@ -1,6 +1,6 @@
 # Listings that may not be for high school students
 
-Generated 2026-10-10 by `scripts/report-not-high-school.mjs`. **Report only: nothing was removed or hidden.** Each one needs a human look; delete only with the owner's approval (and a 301 in `src/data/removedOpportunities.ts`).
+Generated 2026-10-14 by `scripts/report-not-high-school.mjs`. **Report only: nothing was removed or hidden.** Each one needs a human look; delete only with the owner's approval (and a 301 in `src/data/removedOpportunities.ts`).
 
 174 listings flagged. "Indexed" says whether the page is currently indexable.
 

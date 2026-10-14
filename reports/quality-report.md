@@ -1,6 +1,6 @@
 # Catalogue quality report
 
-Generated 2026-10-10 by `scripts/quality-report.mjs`. Report only: nothing was renamed, merged or removed.
+Generated 2026-10-14 by `scripts/quality-report.mjs`. Report only: nothing was renamed, merged or removed.
 
 ## 1. Quality scores
 
@@ -11,16 +11,16 @@ Allowlisted (indexed whatever the score): `nyc-dycd-beacon-ms-210`, `nyc-dycd-be
 | Score | Listings |
 |---|---|
 | -1 | 578 |
-| 1 | 290 |
-| 2 | 77 |
+| 1 | 280 |
+| 2 | 87 |
 | 4 | 6 |
-| 5 | 18 |
-| 6 | 109 |
-| 7 | 486 |
-| 8 | 592 |
-| 9 | 241 |
-| 10 | 37 |
-| 11 | 7 |
+| 5 | 17 |
+| 6 | 108 |
+| 7 | 473 |
+| 8 | 589 |
+| 9 | 255 |
+| 10 | 35 |
+| 11 | 13 |
 | 12 | 3 |
 
 **2444** listings, **945** below the threshold, **1502** indexable after every gate.
