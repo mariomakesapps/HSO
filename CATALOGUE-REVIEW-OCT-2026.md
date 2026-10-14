@@ -26,6 +26,13 @@ feed was changed.
 - **Wrong text fixed**: Harvard and NASA blurbs called the current cycle past or unposted.
   BRAINYAC said 2027 applications were still expected. MD Anderson King had the wrong open date.
   HOBY Illinois had "2017" for 2027.
+- **Descriptions refreshed (2026-10-14)**: 89 one-line descriptions replaced with fact-only
+  ones from the official pages (`src/data/descriptionCheckOct2026.ts`, evidence per row). The same
+  pass corrected 26 fields the official pages contradict, e.g. competitions with entry fees that
+  were marked Free (HMMT, AIME, PUMaC, BMT, SMT, USAPhO, CyberPatriot, Scholastic, DECA, FBLA,
+  HOSA, NSDA), Stanford SIMR (no stipend for most), AMNH SRMP ($2,500 stipend), Dell Scholars
+  (now Texas only), Kenyon Young Writers (rising juniors and seniors), PRIMES (sophomores and
+  juniors), and online-only programs listed as in-person (AwesomeMath, From the Top).
 - **Wrong filters fixed**: Aspirnaut was filed under Michigan; it is Vanderbilt, Nashville TN.
   The Boswell scholarship (seniors only) showed under grade 11.
 
@@ -101,6 +108,16 @@ feed was changed.
 | `naacp-act-so` | NAACP is moving to a biennial convention (next in 2028); its 2027 "Legislative Session" will "incorporate ACT-SO". How the 2027 national round runs is unclear. | Re-check in early 2027. |
 | `…vermont…history-day` | Its open date of 2027-01-01 is not stated on any official page. | Clear it unless a source turns up. |
 | `sachs-foundation-undergraduate-scholarship`, Wyoming History Day | Sachs' page appears to be /undergraduate-scholarships/; Wyoming History Day appears to be wyominghistoryday.org. | Run the link checker on these. |
+| `breakthrough` | The listing describes the paid Teaching Fellowship, which is for college undergraduates. Breakthrough's student program (7th grade through high school) is a different program. | Remove, or relist as the student program. |
+| `girls-state` | The listing's org and link are the American Legion (Boys State). Girls State is run by the American Legion Auxiliary. Description left unchanged. | Fix the org and link, or split into state listings. |
+| `nyt-essay` | Aggregators say the contest was renamed "Open Letters: Our Opinion Writing Contest"; nytimes.com could not be checked from here. | Check the current name and link. |
+| `unesco-youth` | UNESCO's pages give no age range for the Youth Forum, and its other youth programs are for ages 18–35. | Check that high school students can take part. |
+| `stargate` (NASA Space Apps) | The listing deadline 2026-11-15 looks wrong: the event runs over a weekend in early October. | Correct or clear the deadline. |
+| `syp-penn`, `syp-uchicago` | Penn: academies for current 9th–11th graders, Pre-College for 10th–11th. The listing grades depend on whether "grade" means current or entering grade. | Decide the grade convention for summer programs. |
+| `beaver-works` | Free for families under $200,000 income and assets; $3,000 above that. Kept as Free; the description states the fee. | Keep, or mark Paid. |
+| `ayla` (Adroit Prizes) | An older official post mentions a $12 entry fee; no current fee was found. | Check the current fee. |
+| `gates` | Older official pages list ethnicity requirements; the current main page lists only Pell-eligible U.S. seniors. | Check the eligibility wording. |
+| Categories | `juilliard-pre` (Saturday conservatory listed as Fellowship), `aops` (year-round online courses listed as Summer Program), `ymf` (a fellowship listed as Competition). | Recategorise if you agree. |
 | `yale-mun` | The 2027 conference is full; only the waitlist is open. | Leave as is, or set "closed". |
 | `aime`, `usamo` | The only 2026 date is the schools' AMC registration deadline (Oct 15). Students can't register themselves. | Left as TBA on purpose. |
 

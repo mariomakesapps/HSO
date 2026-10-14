@@ -57,6 +57,8 @@ export function endWithStop(s: string): string {
 const CANNOT_END =
   /^(and|or|the|a|an|of|for|to|in|on|with|at|from|by|as|that|which|who|whom|whose|how|what|why|where|when|is|are|was|were|will|shall|must|may|can|be|been|being|have|has|had|their|its|your|his|her|our|my|this|these|those|but|if|while|than|then|into|about|over|under|new|north|south|west|east|rhode|saint|st|puerto|district)$/i;
 
+const STRANDED_ABOUT = /\b(care|cares|cared|learn|learning|know|think|talk|hear|read|worry|curious|passionate|excited)\s+about[.!?]?$/i;
+
 export function repairTruncation(s: string): string {
   const t = s.trim();
   const hadEllipsis = /(\.\.\.|…)$/.test(t);
@@ -64,6 +66,9 @@ export function repairTruncation(s: string): string {
 
   const tail = (x: string) => (x.trim().split(/\s+/).pop() ?? "").replace(/[^\w-]/g, "");
   if (!hadEllipsis && !CANNOT_END.test(tail(body))) return t;
+  // "an issue you care about." is a finished sentence: "about" ends it after verbs
+  // like these. Without this the editorial contest's blurb lost its last word.
+  if (!hadEllipsis && STRANDED_ABOUT.test(body.trim())) return t;
 
   if (hadEllipsis) {
     // Prefer a sentence boundary, but only if keeping it leaves most of the text —
