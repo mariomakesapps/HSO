@@ -4,9 +4,9 @@ import type { FilterState } from "@/components/Filters";
 import type { ExtraFilterState } from "@/components/ExtraFilters";
 import type { SortKey } from "@/components/SortBar";
 import { getDeadlineStatus, type DeadlineStatus } from "@/lib/deadline";
+import { matchesQuery } from "@/lib/search";
 import { dayEdge, now as clockNow } from "@/lib/clock";
 
-const searchTextCache = new Map<string, string>();
 const locationStateCache = new Map<string, string[]>();
 
 /**
@@ -64,7 +64,7 @@ export function applyFilters(
       if (!extra.statuses.some((label) => STATUS_MAP[label]?.includes(s))) return false;
     }
 
-    if (q && !getSearchText(o).includes(q)) return false;
+    if (q && !matchesQuery(o, q)) return false;
 
     return true;
   });
@@ -235,13 +235,6 @@ function formatRank(f: string) {
   return 2;
 }
 
-function getSearchText(o: Opportunity) {
-  const cached = searchTextCache.get(o.id);
-  if (cached) return cached;
-  const text = [o.title, o.org, o.location, o.blurb, ...o.fields, o.category].join(" ").toLowerCase();
-  searchTextCache.set(o.id, text);
-  return text;
-}
 
 function getCachedLocationStates(location: string) {
   const cached = locationStateCache.get(location);

@@ -273,7 +273,7 @@ const Index = () => {
 
         <section id="opportunity-filters" className="scroll-mt-28">
           <div className="mx-auto grid w-full max-w-[1400px] gap-6 px-4 py-10 sm:px-6 lg:grid-cols-[320px_minmax(0,1fr)] lg:py-16">
-            <aside id="filters-section" className="scroll-mt-28 lg:sticky lg:top-24 lg:self-start">
+            <section id="filters-section" aria-label="Filters" className="scroll-mt-28 lg:sticky lg:top-24 lg:self-start">
               <RefinePanel
                 filters={filters}
                 setFilters={setFilters}
@@ -284,7 +284,7 @@ const Index = () => {
                 facets={facets}
                 count={filtered.length}
               />
-            </aside>
+            </section>
 
             <div className="min-w-0">
               <div id="explore-heading" className="scroll-mt-28">

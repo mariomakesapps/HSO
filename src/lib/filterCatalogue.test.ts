@@ -135,8 +135,8 @@ describe("every filter over the real catalogue", () => {
   it.each(Array.from({ length: 12 }, (_, i) => i + 1))("deadline month %i", (m) =>
     check({}, { deadlineMonths: [String(m)] }, (o) => !!o.deadline && Number(o.deadline.split("-")[1]) === m),
   );
-  it("search is case-insensitive across title, org, location and fields", () =>
-    check({ query: "  MIT " }, {}, (o) => [o.title, o.org, o.location, o.blurb, ...o.fields, o.category].join(" ").toLowerCase().includes("mit")),
+  it("search is case-insensitive and matches short words as whole words", () =>
+    check({ query: "  MIT " }, {}, (o) => /(^|[^a-z0-9])mit($|[^a-z0-9])/.test([o.title, o.org, o.location, o.blurb, ...o.fields, o.category].join(" ").toLowerCase())),
   );
 
   it("every listing is reachable through the state filter", () => {
