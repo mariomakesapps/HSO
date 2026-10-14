@@ -2,6 +2,7 @@ import { hsoAdditionsSep2026, hsoDeadlineReviewSep2026 } from "@/data/hsoUpdateS
 import { hsoAdditionsOct2026, hsoReviewOct2026 } from "@/data/hsoUpdateOct2026";
 import { OPPORTUNITY_DETAILS } from "@/data/opportunityDetails";
 import { deadlineCheckOct2026 } from "@/data/deadlineCheckOct2026";
+import { descriptionCheckOct2026 } from "@/data/descriptionCheckOct2026";
 
 /**
  * The date a listing's facts were last checked against its official page, from
@@ -22,6 +23,7 @@ const SEP_REVIEW_DATE = "2026-09-15";
 const SEP_ADDITIONS_DATE = "2026-09-22";
 const OCT_REVIEW_DATE = "2026-10-07";
 const OCT_DEADLINE_CHECK_DATE = "2026-10-12";
+const OCT_DESCRIPTION_CHECK_DATE = "2026-10-14";
 
 function checkDates(evidence: string | undefined): string[] {
   if (!evidence) return [];
@@ -48,6 +50,10 @@ function build(): Map<string, string> {
   }
   for (const [id, row] of Object.entries(deadlineCheckOct2026)) {
     add(id, OCT_DEADLINE_CHECK_DATE, ...checkDates(row.evidence));
+  }
+  for (const [id, row] of Object.entries(descriptionCheckOct2026)) {
+    if (row.wordingOnly) continue;
+    add(id, OCT_DESCRIPTION_CHECK_DATE, ...checkDates(row.evidence));
   }
   for (const [id, d] of Object.entries(OPPORTUNITY_DETAILS)) {
     if (/^\d{4}-\d\d-\d\d$/.test(d.source.checked)) add(id, d.source.checked);

@@ -7,6 +7,7 @@ import { submittedOpportunities } from "@/data/submittedOpportunities";
 import { hsoAdditionsSep2026, applyHsoUpdateSep2026, isRemovedBySep2026Review } from "@/data/hsoUpdateSep2026";
 import { hsoAdditionsOct2026, applyHsoUpdateOct2026, isRemovedByOct2026Review } from "@/data/hsoUpdateOct2026";
 import { applyDeadlineCheckOct2026 } from "@/data/deadlineCheckOct2026";
+import { applyDescriptionCheckOct2026 } from "@/data/descriptionCheckOct2026";
 import { LOCATION_FIXES } from "@/data/locationFixes";
 import { applyDataHygiene } from "@/data/dataHygiene";
 import {
@@ -476,6 +477,8 @@ applyHsoUpdateSep2026(opportunities);
 applyHsoUpdateOct2026(opportunities);
 // Deadline check of 2026-10-12: official next-cycle dates for listings that had none.
 applyDeadlineCheckOct2026(opportunities);
+// Description refresh of 2026-10-14: fact-only descriptions for listings that had a one-liner.
+applyDescriptionCheckOct2026(opportunities);
 
 // Normalise city-only locations ("Cambridge, USA" -> "Cambridge, Massachusetts, USA")
 // and clean up import artefacts in titles, blurbs and links. Both run before
