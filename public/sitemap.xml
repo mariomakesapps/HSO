@@ -59,7 +59,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/technovation</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/first-robotics</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/vex</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/worldquant</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/imc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ssp</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/nslc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -81,7 +80,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/inspire</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/girls-who-code</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/kode-with-klossy</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/aspire-summit</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/hsyl</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/rotary</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/model-un</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -114,7 +112,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/ge-reagan</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/cameron-impact</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/hsf-scholar</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/ds-davis</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/uwc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mcdonalds-hacer</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/taco-bell-live-mas</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -167,7 +164,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/yola</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/riaa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/idealab</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/davis-projects</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/national-history-day</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/envision</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/usra</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -264,7 +260,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/naval-seap</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/nsa-high-school-work-study</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/fred-hutch-explorers</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/fred-hutch-lab-tech</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/national-wwii-writing-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/national-wwii-leadership-academy</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/vfw-voice-of-democracy</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -310,13 +305,11 @@
   <url><loc>https://highschoolopportunity.org/opportunities/state-california-cosmos</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/state-delaware-edge</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/state-florida-sstp</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/state-hawaii-hycc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/state-illinois-imsa</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/state-iowa-sstp</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/state-kentucky-gsp</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/state-massachusetts-mites</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/state-michigan-aspirnaut</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/state-minnesota-umtymp</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/state-mississippi-governors-school</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/state-montana-learning-center</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/state-nebraska-yns</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -335,12 +328,10 @@
   <url><loc>https://highschoolopportunity.org/opportunities/state-dc-mbsyep</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-afsa-high-school-senior-scholarship-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-dr-arnita-young-boswell-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-discover-scholarship-award</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-kfc-colonel-s-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-uft-scholarship-fund</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-jimmy-rane-foundation-scholarships</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-optimist-international-essay-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-scholars-helping-collars-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-army-rotc-scholarships</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-beyond-the-boroughs-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/csv-sch-women-at-microsoft-scholarship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -469,8 +460,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/fred-hutchinson-cancer-center-summer-high-school-internship-prog</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/university-of-texas-at-austin-summer-high-school-research-academ</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/johns-hopkins-school-of-medicine-summer-internship-program</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/high-museum-of-art-summer-internship-program</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/national-gallery-of-art-summer-internships</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/max-planck-florida-institute-for-neuroscience-summer-research-in</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/florida-international-university-summer-research-internship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/national-institute-on-aging-summer-research-training-for-high-sc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -485,7 +474,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/united-states-senate-us-senate-page-program</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/university-of-tennessee-institute-of-agriculture-ut-extension-su</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/american-anthropological-association-virtual-high-school-interns</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/u-s-department-of-state-virtual-student-federal-service-vsfs</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/university-of-georgia-caes-young-scholars-program</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/u-s-national-park-service-youth-conservation-corps-ycc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/usda-youth-internships-and-career-opportunities</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -638,7 +626,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/museum-of-jewish-heritage-high-school-apprenticeship-program</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/kansas-university-medical-center-ku-medical-center-educational-e</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/san-luis-obispo-repertory-theatre-the-act-program-at-slo-rep-tee</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/department-of-teacher-education-of-michigan-state-university-hig</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/york-college-york-college-now-stem-research-academy</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/office-of-congressman-jim-himes-district-internship-program</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/the-north-carolina-museum-of-natural-sciences-junior-curators</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -707,7 +694,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/center-for-justice-innovation-youth-action-institute</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/skills-for-rhode-island-s-future-prepareri-high-school-internshi</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/northeastern-university-young-scholars-program-ysp</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/university-of-illinois-chicago-s-office-of-the-vice-provost-for</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/tallgrass-film-association-emerging-filmmaker-program</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/harvard-college-harvard-pre-college-program</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/vermont-adaptive-ski-sports-vermont-adaptive-s-apprenticeship-pr</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -879,7 +865,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/lowell-milken-center-for-unsung-heroes-arteffect-student-art-com</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/western-governors-foundation-celebrate-the-west-high-school-art</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/nasa-aeronautics-dream-with-us-design-challenge</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/nasa-nasa-app-development-challenge-adc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/nasa-lunabotics-junior-contest</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/saint-josephs-university-high-school-analytics-and-data-visualiz</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/national-society-sons-of-the-american-revolution-joseph-s-rumbau</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -1012,7 +997,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/bank-of-america-and-junior-achievement-financial-skills-challeng</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/young-entrepreneurs-academy-young-entrepreneurs-academy</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/national-innovator-challenge-u-s-national-innovator-challenge</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/correlation-one-apex-high-school-ai-championship</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/waicy-world-artificial-intelligence-competition-for-youth-waicy</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/mathleague-org-math-league-high-school-contests</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/translational-genomics-research-institute-helios-scholars-at-tge</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
@@ -1321,7 +1305,6 @@
   <url><loc>https://highschoolopportunity.org/opportunities/new-hampshire-state-council-on-the-arts-poetry-out-loud-new-hamp</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/new-jersey-state-council-on-the-arts-poetry-out-loud-new-jersey</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/new-mexico-arts-poetry-out-loud-new-mexico</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
-  <url><loc>https://highschoolopportunity.org/opportunities/teachers-and-writers-collaborative-with-the-new-york-state-counc</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/north-carolina-arts-council-and-childrens-theatre-of-charlotte-p</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/north-dakota-council-on-the-arts-poetry-out-loud-north-dakota</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
   <url><loc>https://highschoolopportunity.org/opportunities/ohio-arts-council-poetry-out-loud-ohio</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
