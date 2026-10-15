@@ -50,6 +50,10 @@ feed was changed.
   `/categories/internships/page/9`, which the removals emptied, 301s to page 8. Several of these
   places run a separate teen program (MFA Teen Arts Council, High Teen Leadership Council, NGA
   Teen Leadership Collective, Feinstein Summer Visiting Scholar) that could be added as new listings.
+- **Renamed (2026-10-15)**: Teen Takeovers is now Teen Night Out Branch Council, Hudson River
+  Park's Student Leaders Program is now the Science Leadership Program, NIA's program is Summer
+  Trainee in Aging Research (STAR), and NFTE's competition is the Youth Entrepreneurship Showcase.
+  Titles only; page URLs are unchanged. The NFTE link (to nfte.com/showcase) still needs checking.
 - **Wrong filters fixed**: Aspirnaut was filed under Michigan; it is Vanderbilt, Nashville TN.
   The Boswell scholarship (seniors only) showed under grade 11.
 
@@ -63,7 +67,6 @@ feed was changed.
 | `ge-reagan` | The page shows only "Notify Me for 2027". The foundation now also runs a GE Aerospace-Reagan Workforce Readiness Scholarship. | Check which one the listing should point to. |
 | `gates` | The 2026 cycle closed on 2026-09-15. Older pages say "through 2026", so a 2027 cycle is not confirmed. | Watch; remove if no 2027 cycle is announced. |
 | `north-dakota-state-university-north-dakota-governors-school` | NDSU says the program runs every other summer, so there may be no 2027 session. | Confirm, then mark it as biennial in the blurb. |
-| `nfte` | Renamed "NFTE Youth Entrepreneurship Showcase" for 2026–27 (nfte.com/showcase). Students enter through NFTE programs. | Update the title and link. |
 | `csv-sch-the-alert-scholarship` | Links to Peterson's (an aggregator), not the official page. | Replace with the official Alert Magazine page. |
 | `nyu-arise`, `university-of-chicago-research-in-the-biological-sciences-ribs`, `auburn-…-alabama-sc…`, `stanford-medical-youth-science-program-smysp`, `salk-…` | The official pages appear to have moved (new paths are given in the agent notes). The old links were not confirmed dead. | Run the link checker on these. |
 | `davis-projects` (Projects for Peace) | Applicants must be enrolled at a partner college or university. | Remove. |
@@ -134,7 +137,6 @@ feed was changed.
 | `state-nebraska-yns` | The link is the paid High School Researcher positions, so it fits Research better than Summer Program. Grades and cost now match that page. | Recategorise if you agree. |
 | `skillsusa` | Competitors must be paid, registered SkillsUSA members. Listed as Free. | Keep Free, or mark Paid. |
 | `jea` | The National Student Media Contests charge $25 per entry and include an on-site critique at the convention. Other JEA awards differ. Listed as Free and Online. | Decide which JEA contest the listing is for. |
-| Renamed (round 2) | `bpl-teen-takeovers` is now "Teen Night Out Branch Council"; `hudson-river-slp` is now the "Science Leadership Program" (for female-identifying students); NIA's program is "Summer Trainee in Aging Research (STAR)". | Update the titles (page URLs stay the same). |
 | Moved links (round 2) | QCaMP (now /ecosystem/qcamp/), UCI Chao (now /education-and-training/high-school-students/), Create-A-Greeting-Card (now /greeting-cards-scholarship/), Scripps Translational, NSA GenCyber (the program site is gen-cyber.com). | Run the link checker on these. |
 | Paid label unconfirmed (round 2) | No pay is stated on the official pages for FIU, UT Health San Antonio, UCI Chao, Brookhaven or Georgia Tech Research Institute. TAG Education has both paid and unpaid places. The descriptions no longer say "paid". | Keep Stipend, or clear it. |
 | Grades to check (round 2) | Lockheed Martin excludes seniors graduating in May; Haslam WEB may be for rising juniors only; BioBus takes applicants in grades 9–11; New Hampshire ASP says sophomores and juniors can apply; Berkeley Lab EinR may take current sophomores. | Decide with the grade convention for summer programs. |
