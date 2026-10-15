@@ -5,8 +5,8 @@ import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
 
 const About = () => {
   useSEO({
-    title: "About HSO | High School Opportunity",
-    description: "HSO helps high school students find U.S.-based internships, scholarships, research programs, competitions, and summer programs.",
+    title: "About High School Opportunity (HSO) | HSO",
+    description: "HSO is a free, student-run directory of internships, summer programs, scholarships and competitions for U.S. high schoolers, and how we check listings.",
   });
   return (
     <div className="min-h-screen">
