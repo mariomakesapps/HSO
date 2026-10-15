@@ -33,6 +33,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/breakthrough",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/burger-king-scholars",
       "destination": "/opportunities/csv-sch-burger-king-scholarship",
       "permanent": true
@@ -113,6 +118,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/davis-projects",
+      "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/dell-discover",
       "destination": "/categories/internships",
       "permanent": true
@@ -120,6 +130,11 @@
     {
       "source": "/opportunities/elks",
       "destination": "/opportunities/csv-sch-elks-national-foundation-scholarship",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/feinstein-institutes-for-medical-research-summer-student-interns",
+      "destination": "/categories/internships",
       "permanent": true
     },
     {
@@ -153,7 +168,17 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/high-museum-of-art-summer-internship-program",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/hopkins-med",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/johns-hopkins-school-of-medicine-summer-internship-program",
       "destination": "/categories/internships",
       "permanent": true
     },
@@ -163,12 +188,27 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/kaggle",
+      "destination": "/categories/competitions",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/lapps",
       "destination": "/categories/internships",
       "permanent": true
     },
     {
       "source": "/opportunities/mclean-mentorship",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/museum-of-fine-arts-boston-internships",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/national-gallery-of-art-summer-internships",
       "destination": "/categories/internships",
       "permanent": true
     },
@@ -188,6 +228,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/point-defiance-zoo-aquarium-paid-internship-opportunities",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/project-coin-internship",
       "destination": "/categories/internships",
       "permanent": true
@@ -195,6 +240,11 @@
     {
       "source": "/opportunities/putnam-jr",
       "destination": "/categories/competitions",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/sfmoma-internship-program",
+      "destination": "/categories/internships",
       "permanent": true
     },
     {
@@ -243,6 +293,16 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/university-of-tennessee-institute-of-agriculture-ut-extension-su",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/usra",
+      "destination": "/categories/summer-programs",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/yes-abroad-kennedy-lugar",
       "destination": "/opportunities/flex-global-abroad",
       "permanent": true
@@ -250,6 +310,11 @@
     {
       "source": "/opportunities/zero-robotics",
       "destination": "/categories/competitions",
+      "permanent": true
+    },
+    {
+      "source": "/categories/internships/page/9",
+      "destination": "/categories/internships/page/8",
       "permanent": true
     },
     {

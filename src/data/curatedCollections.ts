@@ -44,7 +44,7 @@ export const curatedSections: CuratedSection[] = [
         "Coding, AI, and robotics programs for students building serious tech projects before senior year.",
         "linear-gradient(135deg, #101827 0%, #2fbf82 52%, #d9eadf 100%)",
         ["coding", "AI", "robotics"], ["Computer Science"], ["Internship", "Research", "Competition"],
-        ["usaco", "beaver-works", "technovation", "junior-academy", "ioi", "congressional-app", "kaggle", "picoctf", "cyber-patriot"],
+        ["usaco", "beaver-works", "technovation", "junior-academy", "ioi", "congressional-app", "picoctf", "cyber-patriot"],
         "Software & AI"),
       c("math-olympiad-ladder", "Math Competition Ladder",
         "A focused route through math contests, proof practice, and selective math summer programs.",
@@ -229,7 +229,7 @@ export const curatedSections: CuratedSection[] = [
         "linear-gradient(135deg, #1a0f2e 0%, #df6b54 48%, #f6e7d7 100%)",
         ["first-gen", "low-income", "access"], ["Undecided"],
         ["Scholarship", "Fellowship", "Summer Program"],
-        ["questbridge-match", "posse", "gates", "dell", "horatio-alger", "ron-brown", "stamps", "minds-matter-nyc", "columbia-double-discovery", "breakthrough"],
+        ["questbridge-match", "posse", "gates", "dell", "horatio-alger", "ron-brown", "stamps", "minds-matter-nyc", "columbia-double-discovery"],
         "College Access")
     ],
   }

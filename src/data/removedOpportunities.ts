@@ -11,6 +11,20 @@
  * so the redirect happens at the edge before any JavaScript runs.
  */
 export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
+  // Removed 2026-10-14: college or adult only (official pages quoted in hsoUpdateOct2026.ts). Nothing
+  // in the catalogue replaces them, so each goes to its category.
+  "davis-projects": "/categories/fellowships",
+  "museum-of-fine-arts-boston-internships": "/categories/internships",
+  "johns-hopkins-school-of-medicine-summer-internship-program": "/categories/internships",
+  "high-museum-of-art-summer-internship-program": "/categories/internships",
+  "national-gallery-of-art-summer-internships": "/categories/internships",
+  "feinstein-institutes-for-medical-research-summer-student-interns": "/categories/internships",
+  "university-of-tennessee-institute-of-agriculture-ut-extension-su": "/categories/internships",
+  "usra": "/categories/summer-programs",
+  "sfmoma-internship-program": "/categories/internships",
+  "point-defiance-zoo-aquarium-paid-internship-opportunities": "/categories/internships",
+  "kaggle": "/categories/competitions",
+  "breakthrough": "/categories/internships",
   // Hidden 2026-10-09: Telluride Association paused TASS for summer 2027. Restore when it reopens.
   "tasp": "/categories/summer-programs",
   // Removed 2026-10-09: middle school only (MATHCOUNTS grades 6-8, Junior Solar Sprint 5-8, Future City 6-8).

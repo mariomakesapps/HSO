@@ -52,6 +52,13 @@ describe("HSO October 2026 update", () => {
     expect(byId.get("flex-global-abroad")?.deadline).toBe("2026-11-30");
   });
 
+  it("drops the college-only listings the description check found", () => {
+    for (const id of ["davis-projects", "usra", "kaggle", "breakthrough", "sfmoma-internship-program", "national-gallery-of-art-summer-internships"]) {
+      expect(byId.has(id), id).toBe(false);
+      expect(REMOVED_OPPORTUNITY_REDIRECTS[id], id).toMatch(/^\/categories\//);
+    }
+  });
+
   it("only uses ISO dates", () => {
     for (const added of hsoAdditionsOct2026) {
       if (added.deadline) expect(added.deadline).toMatch(/^\d{4}-\d{2}-\d{2}$/);
