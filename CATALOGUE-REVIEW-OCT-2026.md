@@ -54,6 +54,14 @@ feed was changed.
   Park's Student Leaders Program is now the Science Leadership Program, NIA's program is Summer
   Trainee in Aging Research (STAR), and NFTE's competition is the Youth Entrepreneurship Showcase.
   Titles only; page URLs are unchanged. The NFTE link (to nfte.com/showcase) still needs checking.
+- **Added (2026-10-15)**: five teen programs at places whose college-only internships were removed:
+  MFA Boston Teen Arts Council, High Museum Teen Leadership Council, National Gallery Teen
+  Leadership Collective, Johns Hopkins Summer Jobs Program, and MERIT Health Leadership Academy
+  (Baltimore). No 2027 dates are posted, so none is shown.
+- **Stale dates removed from descriptions (2026-10-15)**: seven blurbs announced openings that have
+  now passed (Cal Grant, National Science Bowl, NACLO, USAMTS, Wyoming Summer High School Institute,
+  San Diego Museum of Art Teen Council, NC Health Careers Day). The dates stay in the deadline and
+  opening-date fields; only the sentence was dropped.
 - **Wrong filters fixed**: Aspirnaut was filed under Michigan; it is Vanderbilt, Nashville TN.
   The Boswell scholarship (seniors only) showed under grade 11.
 
@@ -142,6 +150,10 @@ feed was changed.
 | Grades to check (round 2) | Lockheed Martin excludes seniors graduating in May; Haslam WEB may be for rising juniors only; BioBus takes applicants in grades 9–11; New Hampshire ASP says sophomores and juniors can apply; Berkeley Lab EinR may take current sophomores. | Decide with the grade convention for summer programs. |
 | `northwestern-university-feinberg-school-of-medicine-kimberly-que` | The page said it was not taking new applicants for the 2026 cycle. | Re-check for 2027. |
 | `university-of-georgia-caes-young-scholars-program` | Interns work in Athens, Griffin or Tifton. The listing says Athens. | Change the location to Georgia, USA if you agree. |
+| `art-of-problem-solving-initiative-usa-mathematical-talent-search` (USAMTS) | Its deadline is Round 1 (October 13, 2026), now past, so it shows as closed. Students can still take later rounds, but their dates were not found. | Set the Round 2 date once confirmed. |
+| Not added: Feinstein Summer Visiting Scholar Program | Feinstein's high school option: students 16+ volunteer in a lab with a faculty mentor they find themselves. No page says whether it is free or charges a fee. | Add as Free once the cost is confirmed. |
+| Not added: Point Defiance Zoo Guides | Teen volunteers ages 14–18 (grades 9–12); applications open in December 2026. Official 2018–19 documents charged a $40 fee with aid; current pages don't mention one. | Add once the fee is confirmed. |
+| `merit-health-leadership-academy` (new) | Official pages disagree on the GPA minimum (2.5 or 3.0) and on whether applications are open, so neither is stated. | Check before the next cohort. |
 
 ## Coverage
 

@@ -338,11 +338,6 @@
       "permanent": true
     },
     {
-      "source": "/categories/internships/page/9",
-      "destination": "/categories/internships/page/8",
-      "permanent": true
-    },
-    {
       "source": "/categories/:slug/page/1",
       "destination": "/categories/:slug",
       "permanent": true

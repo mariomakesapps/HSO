@@ -752,6 +752,43 @@ export const descriptionCheckOct2026: Record<string, DescriptionRow> = {
     grades: [12],
     evidence: "2026-10-14, https://www.childrenscolorado.org/research-innovation/training-and-internships/: \"Students must be a high school senior over the age of 18, an undergraduate student, graduate student, or a student completing the first year of medical school.\" \"High school students must be Colorado residents.\" \"Students who are under the age of 18 before the internship starts on June 1 will not be eligible.\" Nine-week internship; \"Each intern will be provided a stipend of $4,400 to assist with travel and housing… Field correction quote: 'Students must be a high school senior over the age of 18, an undergraduate student, graduate student, or a student completing the first year of medical school.'",
   },
+  // 2026-10-15 wording: these blurbs announced an opening date that has now passed. The dates live in
+  // the deadline and opensAt fields, so the sentence is dropped rather than re-dated. No new facts.
+  "university-of-wyoming-summer-high-school-institute": {
+    blurb: "Three-week residential institute at the University of Wyoming for the state's high school sophomores, built around ungraded seminar classes. All parts of the application, including a transcript uploaded by the school counselor, are due by the deadline.",
+    wordingOnly: true,
+    evidence: "2026-10-15: removed a dated sentence that had gone stale; the date stays in the listing's deadline/opensAt fields.",
+  },
+  "u-s-department-of-energy-national-science-bowl": {
+    blurb: "The Department of Energy's national academic competition in maths and the sciences. Teams of four students plus an alternate and a teacher coach compete at one of about 65 high school regionals from January, and regional winners go to the National Finals in Washington.",
+    wordingOnly: true,
+    evidence: "2026-10-15: removed a dated sentence that had gone stale; the date stays in the listing's deadline/opensAt fields.",
+  },
+  "art-of-problem-solving-initiative-usa-mathematical-talent-search": {
+    blurb: "Free proof-based math contest for U.S. middle and high school students, with three rounds of problems solved at home over several weeks and written feedback on every solution.",
+    wordingOnly: true,
+    evidence: "2026-10-15: removed a dated sentence that had gone stale; the date stays in the listing's deadline/opensAt fields.",
+  },
+  "naclo-north-american-computational-linguistics-open-competition": {
+    blurb: "Linguistics puzzle contest for middle and high schoolers, taken at school and university sites across North America. Top scorers in the Open Round advance to an Invitational Round that picks the US team for the International Linguistics Olympiad.",
+    wordingOnly: true,
+    evidence: "2026-10-15: removed a dated sentence that had gone stale; the date stays in the listing's deadline/opensAt fields.",
+  },
+  "san-diego-museum-of-art-teen-council": {
+    blurb: "School-year museum teen council at the San Diego Museum of Art with monthly Zoom meetings, in-person events and work on the museum's youth art exhibition. Space is limited to 12 teens.",
+    wordingOnly: true,
+    evidence: "2026-10-15: removed a dated sentence that had gone stale; the date stays in the listing's deadline/opensAt fields.",
+  },
+  "north-carolina-health-careers-access-program-health-careers-day": {
+    blurb: "One-day event at UNC for North Carolina high school students interested in health sciences, with a $50 registration fee.",
+    wordingOnly: true,
+    evidence: "2026-10-15: removed a dated sentence that had gone stale; the date stays in the listing's deadline/opensAt fields.",
+  },
+  "cal-grant": {
+    blurb: "California's main state grant for college, which does not have to be repaid. Seniors qualify by filing the FAFSA or California Dream Act Application (CADAA) by the March 2 priority deadline.",
+    wordingOnly: true,
+    evidence: "2026-10-15: removed a dated sentence that had gone stale; the date stays in the listing's deadline/opensAt fields.",
+  },
 };
 
 export function applyDescriptionCheckOct2026(list: Opportunity[]): void {
