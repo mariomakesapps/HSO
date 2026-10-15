@@ -102,6 +102,11 @@ export const hsoReviewOct2026: Record<string, HsoReviewSep2026> = {
   "point-defiance-zoo-aquarium-paid-internship-opportunities": { removed: true, evidence: "2026-10-14, pdza.org paid internships page: interns must be 'at least 18 years of age with a high school diploma, GED, or equivalent'. Teens can only volunteer, unpaid, as Zoo Guides." },
   "kaggle": { removed: true, evidence: "2026-10-14, kaggle.com competition rules (including the Getting Started Titanic competition): entrants must be the older of 18 or the age of majority where they live, unless a competition's sponsor allows an exception with parental consent. Most high school students cannot enter." },
   "breakthrough": { removed: true, evidence: "2026-10-14, breakthroughcollaborative.org: the listing described the paid summer Teaching Fellowship, which is 'open to undergraduates of all majors' and recruits '1,000 college students annually'. Breakthrough's free student program enrolls students from the summer before 7th grade, so it is not something a high school student applies to either (the same reason oliver-scholars was removed)." },
+  "aspire-summit": { removed: true, evidence: "2026-10-14, from the earlier official-page check recorded in CATALOGUE-REVIEW-OCT-2026.md: Aspire Leaders Program eligibility is ages 18 to 29, enrolled in or graduated from a university program. Not open to high school students." },
+  "ds-davis": { removed: true, evidence: "2026-10-14, from the earlier official-page check: Davis United World College Scholars says it is 'No Longer Accepting New Scholar Applicants', and it was only ever for UWC graduates entering college." },
+  "worldquant": { removed: true, evidence: "2026-10-14, from the earlier official-page check: WorldQuant BRAIN's terms and the International Quant Championship require users to be 18 or older." },
+  "u-s-department-of-state-virtual-student-federal-service-vsfs": { removed: true, evidence: "2026-10-14, from the earlier official-page check: VSFS applicants must be high school graduates enrolled in college; a senior qualifies only once accepted to college." },
+  "csv-sch-discover-scholarship-award": { removed: true, evidence: "2026-10-14, from the earlier official-page check: Discover says 'The Discover Scholarship Sweepstakes has ended', and its last round was open only to entrants 18 or older." },
 };
 
 /**

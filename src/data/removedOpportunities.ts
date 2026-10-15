@@ -25,6 +25,12 @@ export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
   "point-defiance-zoo-aquarium-paid-internship-opportunities": "/categories/internships",
   "kaggle": "/categories/competitions",
   "breakthrough": "/categories/internships",
+  // Removed 2026-10-14: flagged as 18+ or college-only in the October review.
+  "aspire-summit": "/categories/fellowships",
+  "ds-davis": "/categories/scholarships",
+  "worldquant": "/categories/competitions",
+  "u-s-department-of-state-virtual-student-federal-service-vsfs": "/categories/internships",
+  "csv-sch-discover-scholarship-award": "/categories/scholarships",
   // Hidden 2026-10-09: Telluride Association paused TASS for summer 2027. Restore when it reopens.
   "tasp": "/categories/summer-programs",
   // Removed 2026-10-09: middle school only (MATHCOUNTS grades 6-8, Junior Solar Sprint 5-8, Future City 6-8).

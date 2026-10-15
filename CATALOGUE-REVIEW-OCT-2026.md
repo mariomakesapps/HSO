@@ -39,6 +39,17 @@ feed was changed.
   and eleven listings had the wrong grades (Emory Pre-College, BLDAP, Chicago Summer Business
   Institute, Children's Colorado, Mae & Mary, BigFuture, Modeling the Future, CCNY STEM Research
   Academy, Young Nebraska Scientists, SUN, Lawrence Hall of Science).
+- **Removed (2026-10-14, at your request)**: 17 listings the official pages say are not open to
+  high school students. College or adult only: Davis Projects for Peace, MFA Boston internships,
+  Johns Hopkins School of Medicine Summer Internship, High Museum and National Gallery summer
+  internships, Feinstein summer student internships, UT Extension summer internships, the
+  Heliophysics Summer School (`usra`), SFMOMA internships, Point Defiance Zoo paid internships,
+  Breakthrough's Teaching Fellowship, Aspire Leaders (18-29), and State Department VSFS (college
+  students). Age 18+: Kaggle, WorldQuant BRAIN. Closed: Davis UWC Scholars (UWC graduates only)
+  and the Discover sweepstakes (ended, 18+). Each old page 301s to its category, and
+  `/categories/internships/page/9`, which the removals emptied, 301s to page 8. Several of these
+  places run a separate teen program (MFA Teen Arts Council, High Teen Leadership Council, NGA
+  Teen Leadership Collective, Feinstein Summer Visiting Scholar) that could be added as new listings.
 - **Wrong filters fixed**: Aspirnaut was filed under Michigan; it is Vanderbilt, Nashville TN.
   The Boswell scholarship (seniors only) showed under grade 11.
 
@@ -55,11 +66,7 @@ feed was changed.
 | `nfte` | Renamed "NFTE Youth Entrepreneurship Showcase" for 2026–27 (nfte.com/showcase). Students enter through NFTE programs. | Update the title and link. |
 | `csv-sch-the-alert-scholarship` | Links to Peterson's (an aggregator), not the official page. | Replace with the official Alert Magazine page. |
 | `nyu-arise`, `university-of-chicago-research-in-the-biological-sciences-ribs`, `auburn-…-alabama-sc…`, `stanford-medical-youth-science-program-smysp`, `salk-…` | The official pages appear to have moved (new paths are given in the agent notes). The old links were not confirmed dead. | Run the link checker on these. |
-| `aspire-summit` | Official eligibility is ages 18–29, enrolled in or graduated from a university program. Not open to high school students. | Remove. |
-| `ds-davis` (Davis UWC Scholars) | The program says it is "No Longer Accepting New Scholar Applicants". It was only for UWC graduates. | Remove. |
 | `davis-projects` (Projects for Peace) | Applicants must be enrolled at a partner college or university. | Remove. |
-| `worldquant` | BRAIN's terms and the International Quant Championship require users to be 18+. | Remove, or limit to 18-year-old seniors. |
-| `kaggle` | Kaggle's default rules require age 18+, and some competitions bar minors from prizes. | Reword the eligibility, or remove. |
 | `state-hawaii-hycc` | Kupu says enrollment in the summer program is paused, with no end date. | Hide until it reopens. |
 | `state-minnesota-umtymp` | New students join only in grades 5–7, occasionally 7–9. High school students can't join as new applicants. | Fix the grades, or remove. |
 | `fred-hutch-lab-tech` | Applicants must be 18 and in the Shoreline Biomanufacturing Program or at a partner college. | Reword, or remove. |
@@ -70,14 +77,10 @@ feed was changed.
 | `minds-matter-nyc` | Students apply as freshmen for a three-year program (grades 10–12). | Decide whether the grade filter should mean "grade when applying". |
 | `ornl`, `kenyon`, `rsi-medicine`, `breakthrough` | The official pages appear to have moved (orau.org/arc-ornl/high-school, kenyonreview.org/event/young-writers-summer-residential-workshops, med.upenn.edu/ascend/…, breakthroughcollaborative.org/apply-student). | Run the link checker on these. |
 | `prudential-emerging-visionaries` | The last cycle found closed November 2, 2024; nothing since. | Check whether it still runs. |
-| `u-s-department-of-state-virtual-student-federal-service-vsfs` | Applicants must be high school graduates enrolled in college. Seniors qualify only once accepted to college. | Remove, or limit to grade 12 with that note. |
-| `johns-hopkins-school-of-medicine-summer-internship-program` | Listed by Hopkins among programs "for undergrad students". The high school option is the Summer Jobs Program (16+). | Re-point or remove. |
-| `high-museum-of-art-summer-internship-program`, `national-gallery-of-art-summer-internships` | Both are for college students and graduates only. | Remove (High Museum's teen option is its Teen Leadership Council). |
 | `feinstein-institutes-for-medical-research-summer-student-interns` | The official page says "High school students are not eligible" for this internship (they can join the Summer Visiting Scholar Program). Another Feinstein page conflicts. | Check, then re-point or remove. |
 | `the-art-institute-of-chicago-internships` | The link is the college internships page. The teen option is the paid After School Matters internships (artic.edu/learn-with-us/teens/opportunities-for-teens). | Re-point. |
 | `library-of-congress-high-school-summer-internship` | The last cycle found closed February 28, 2025; no 2026 or 2027 edition. | Check whether it still runs. |
 | `csv-sch-scholars-helping-collars-scholarship` | Paused for the 2026–27 school year; it may return for the Class of 2027. | Hide until it reopens. |
-| `csv-sch-discover-scholarship-award` | "The Discover Scholarship Sweepstakes has ended"; the last round was 18+ only. | Remove. |
 | `kimberly-querrey…` (Northwestern), `ohsu-knight-scholars…` | Not taking new applications for summer; OHSU ran no 2026 program. OHSU is for grades 9–10, but the listing says 10–12. | Check both. |
 | `national-institute-on-aging-summer-research-training-for-high-sc` | Applies through the NIH Summer Internship Program (due January 26, 2027). High school applicants must be seniors aged 18 (17 near a campus), but the listing includes grade 11. | Set grades to 12; add the date once NIA confirms. |
 | Grade ranges | Los Alamos takes juniors too (listing: 12 only). Children's Hospital Colorado and Argonne Bridge take seniors only. Berkeley Lab BLDAP is for grades 10–11 (listing includes 12). Chicago Summer Business Institute also takes sophomores. | Fix the grades after checking. |
@@ -114,7 +117,6 @@ feed was changed.
 | `naacp-act-so` | NAACP is moving to a biennial convention (next in 2028); its 2027 "Legislative Session" will "incorporate ACT-SO". How the 2027 national round runs is unclear. | Re-check in early 2027. |
 | `…vermont…history-day` | Its open date of 2027-01-01 is not stated on any official page. | Clear it unless a source turns up. |
 | `sachs-foundation-undergraduate-scholarship`, Wyoming History Day | Sachs' page appears to be /undergraduate-scholarships/; Wyoming History Day appears to be wyominghistoryday.org. | Run the link checker on these. |
-| `breakthrough` | The listing describes the paid Teaching Fellowship, which is for college undergraduates. Breakthrough's student program (7th grade through high school) is a different program. | Remove, or relist as the student program. |
 | `girls-state` | The listing's org and link are the American Legion (Boys State). Girls State is run by the American Legion Auxiliary. Description left unchanged. | Fix the org and link, or split into state listings. |
 | `nyt-essay` | Aggregators say the contest was renamed "Open Letters: Our Opinion Writing Contest"; nytimes.com could not be checked from here. | Check the current name and link. |
 | `unesco-youth` | UNESCO's pages give no age range for the Youth Forum, and its other youth programs are for ages 18–35. | Check that high school students can take part. |
@@ -126,8 +128,6 @@ feed was changed.
 | Categories | `juilliard-pre` (Saturday conservatory listed as Fellowship), `aops` (year-round online courses listed as Summer Program), `ymf` (a fellowship listed as Competition). | Recategorise if you agree. |
 | `yale-mun` | The 2027 conference is full; only the waitlist is open. | Leave as is, or set "closed". |
 | `aime`, `usamo` | The only 2026 date is the schools' AMC registration deadline (Oct 15). Students can't register themselves. | Left as TBA on purpose. |
-| Not for high school students (round 2) | The official pages say these are for college students or adults only: `davis-projects` (partner-college students, now run by Middlebury), `museum-of-fine-arts-boston-internships`, `johns-hopkins-school-of-medicine-summer-internship-program`, `high-museum-of-art-summer-internship-program`, `national-gallery-of-art-summer-internships`, `feinstein-institutes-for-medical-research-summer-student-interns`, `university-of-tennessee-institute-of-agriculture-ut-extension-su`, `usra` (Heliophysics Summer School: PhD students and postdocs), `sfmoma-internship-program` (18+ and in college), `point-defiance-zoo-aquarium-paid-internship-opportunities` (18+ with a diploma). Most of these places run a separate teen program (MFA Teen Arts Council, High Teen Leadership Council, NGA Teen Leadership Collective, Feinstein Summer Visiting Scholar). Descriptions left unchanged. | Remove, or re-point each one to the teen program. |
-| `kaggle` | Kaggle's rules set a minimum age of 18 (or the local age of majority), even for the Getting Started competitions. | Remove, or say most competitions need entrants to be 18. |
 | `syp-utexas` | The title (Bridging Disciplines Programs) is for UT Austin undergraduates only, and the link goes to UT High School's online credit courses. Neither is a summer program for high school students. | Fix the title and link, or remove. |
 | `army-rebotics` | The listing is JROTC StellarXplorers; the id says something else. The page URL is unchanged. | Leave the id (it is indexed); nothing to do unless you want a 301. |
 | `argonne` (ESRP) | It is a school-year team project that a teacher registers, not an individual paid internship. No stipend is stated. | Recategorise as Research, and check the Stipend label. |

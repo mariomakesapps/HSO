@@ -23,6 +23,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/aspire-summit",
+      "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/atlas-fellowship",
       "destination": "/categories/fellowships",
       "permanent": true
@@ -65,6 +70,11 @@
     {
       "source": "/opportunities/csv-sch-dell-scholars-program",
       "destination": "/opportunities/dell",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/csv-sch-discover-scholarship-award",
+      "destination": "/categories/scholarships",
       "permanent": true
     },
     {
@@ -125,6 +135,11 @@
     {
       "source": "/opportunities/dell-discover",
       "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/ds-davis",
+      "destination": "/categories/scholarships",
       "permanent": true
     },
     {
@@ -288,6 +303,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/u-s-department-of-state-virtual-student-federal-service-vsfs",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/university-of-new-hampshire-interoperability-lab-hightech-bound",
       "destination": "/categories/internships",
       "permanent": true
@@ -300,6 +320,11 @@
     {
       "source": "/opportunities/usra",
       "destination": "/categories/summer-programs",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/worldquant",
+      "destination": "/categories/competitions",
       "permanent": true
     },
     {

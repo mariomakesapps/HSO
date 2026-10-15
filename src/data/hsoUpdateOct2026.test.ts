@@ -53,7 +53,7 @@ describe("HSO October 2026 update", () => {
   });
 
   it("drops the college-only listings the description check found", () => {
-    for (const id of ["davis-projects", "usra", "kaggle", "breakthrough", "sfmoma-internship-program", "national-gallery-of-art-summer-internships"]) {
+    for (const id of ["davis-projects", "usra", "kaggle", "breakthrough", "sfmoma-internship-program", "national-gallery-of-art-summer-internships", "aspire-summit", "worldquant"]) {
       expect(byId.has(id), id).toBe(false);
       expect(REMOVED_OPPORTUNITY_REDIRECTS[id], id).toMatch(/^\/categories\//);
     }
