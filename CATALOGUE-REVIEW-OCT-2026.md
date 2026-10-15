@@ -33,6 +33,12 @@ feed was changed.
   HOSA, NSDA), Stanford SIMR (no stipend for most), AMNH SRMP ($2,500 stipend), Dell Scholars
   (now Texas only), Kenyon Young Writers (rising juniors and seniors), PRIMES (sophomores and
   juniors), and online-only programs listed as in-person (AwesomeMath, From the Top).
+  A second round on 2026-10-14 replaced 80 more and corrected fields on 17 listings: GRAMMY Camp runs in
+  four cities, not only Los Angeles; Kaiser KP Launch is Northern California only; Treasury
+  headquarters internships are unpaid; HOBY and StellarXplorers charge fees; QCaMP pays a stipend;
+  and eleven listings had the wrong grades (Emory Pre-College, BLDAP, Chicago Summer Business
+  Institute, Children's Colorado, Mae & Mary, BigFuture, Modeling the Future, CCNY STEM Research
+  Academy, Young Nebraska Scientists, SUN, Lawrence Hall of Science).
 - **Wrong filters fixed**: Aspirnaut was filed under Michigan; it is Vanderbilt, Nashville TN.
   The Boswell scholarship (seniors only) showed under grade 11.
 
@@ -120,6 +126,20 @@ feed was changed.
 | Categories | `juilliard-pre` (Saturday conservatory listed as Fellowship), `aops` (year-round online courses listed as Summer Program), `ymf` (a fellowship listed as Competition). | Recategorise if you agree. |
 | `yale-mun` | The 2027 conference is full; only the waitlist is open. | Leave as is, or set "closed". |
 | `aime`, `usamo` | The only 2026 date is the schools' AMC registration deadline (Oct 15). Students can't register themselves. | Left as TBA on purpose. |
+| Not for high school students (round 2) | The official pages say these are for college students or adults only: `davis-projects` (partner-college students, now run by Middlebury), `museum-of-fine-arts-boston-internships`, `johns-hopkins-school-of-medicine-summer-internship-program`, `high-museum-of-art-summer-internship-program`, `national-gallery-of-art-summer-internships`, `feinstein-institutes-for-medical-research-summer-student-interns`, `university-of-tennessee-institute-of-agriculture-ut-extension-su`, `usra` (Heliophysics Summer School: PhD students and postdocs), `sfmoma-internship-program` (18+ and in college), `point-defiance-zoo-aquarium-paid-internship-opportunities` (18+ with a diploma). Most of these places run a separate teen program (MFA Teen Arts Council, High Teen Leadership Council, NGA Teen Leadership Collective, Feinstein Summer Visiting Scholar). Descriptions left unchanged. | Remove, or re-point each one to the teen program. |
+| `kaggle` | Kaggle's rules set a minimum age of 18 (or the local age of majority), even for the Getting Started competitions. | Remove, or say most competitions need entrants to be 18. |
+| `syp-utexas` | The title (Bridging Disciplines Programs) is for UT Austin undergraduates only, and the link goes to UT High School's online credit courses. Neither is a summer program for high school students. | Fix the title and link, or remove. |
+| `army-rebotics` | The listing is JROTC StellarXplorers; the id says something else. The page URL is unchanged. | Leave the id (it is indexed); nothing to do unless you want a 301. |
+| `argonne` (ESRP) | It is a school-year team project that a teacher registers, not an individual paid internship. No stipend is stated. | Recategorise as Research, and check the Stipend label. |
+| `state-nebraska-yns` | The link is the paid High School Researcher positions, so it fits Research better than Summer Program. Grades and cost now match that page. | Recategorise if you agree. |
+| `skillsusa` | Competitors must be paid, registered SkillsUSA members. Listed as Free. | Keep Free, or mark Paid. |
+| `jea` | The National Student Media Contests charge $25 per entry and include an on-site critique at the convention. Other JEA awards differ. Listed as Free and Online. | Decide which JEA contest the listing is for. |
+| Renamed (round 2) | `bpl-teen-takeovers` is now "Teen Night Out Branch Council"; `hudson-river-slp` is now the "Science Leadership Program" (for female-identifying students); NIA's program is "Summer Trainee in Aging Research (STAR)". | Update the titles (page URLs stay the same). |
+| Moved links (round 2) | QCaMP (now /ecosystem/qcamp/), UCI Chao (now /education-and-training/high-school-students/), Create-A-Greeting-Card (now /greeting-cards-scholarship/), Scripps Translational, NSA GenCyber (the program site is gen-cyber.com). | Run the link checker on these. |
+| Paid label unconfirmed (round 2) | No pay is stated on the official pages for FIU, UT Health San Antonio, UCI Chao, Brookhaven or Georgia Tech Research Institute. TAG Education has both paid and unpaid places. The descriptions no longer say "paid". | Keep Stipend, or clear it. |
+| Grades to check (round 2) | Lockheed Martin excludes seniors graduating in May; Haslam WEB may be for rising juniors only; BioBus takes applicants in grades 9–11; New Hampshire ASP says sophomores and juniors can apply; Berkeley Lab EinR may take current sophomores. | Decide with the grade convention for summer programs. |
+| `northwestern-university-feinberg-school-of-medicine-kimberly-que` | The page said it was not taking new applicants for the 2026 cycle. | Re-check for 2027. |
+| `university-of-georgia-caes-young-scholars-program` | Interns work in Athens, Griffin or Tifton. The listing says Athens. | Change the location to Georgia, USA if you agree. |
 
 ## Coverage
 

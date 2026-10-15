@@ -413,6 +413,345 @@ export const descriptionCheckOct2026: Record<string, DescriptionRow> = {
     location: "USA",
     evidence: "2026-10-14, https://www.wef.org/membership--community/students--young-professionals/sjwp/sjwp-eligibility-and-entry-requirements/: Open to high school students in grades 9-12 who will have reached age 15 by August 1 of the competition year and have done a water-related science project. Teams of up to two. Levels: regional, state, national, international; only State Competition winners are eligible for nationals. State competitions open only to residents of the 50 United States, DC and Puerto Rico. U.S. winner receives $10,000, a crystal trophy,… Field correction quote: 'the competition is open only to residents of the 50 United States, the District of Columbia and Puerto Rico'",
   },
+  // Round 2: 80 more thin descriptions checked against the official pages on 2026-10-14.
+  "riaa": {
+    blurb: "High school students in grades 9-12 who live in the U.S. spend five to seven days in music industry tracks such as music business, production, songwriting and performance. Camps run in Los Angeles, Nashville, Miami and New York. Students apply with work samples; tuition is charged.",
+    location: "Multiple, USA",
+    evidence: "2026-10-14, https://grammymuseum.org/education/grammy-camp/: Official pages: Los Angeles camp is a 'seven-day, non-residential intensive'; New York and Nashville seven days, Miami five days. Tracks: music business, production, songwriting, performance (NY also musical theater, jazz). Eligibility: U.S. residents in grades 9-12, graduating seniors can apply, incoming freshmen cannot. Application requires work samples in at least two track areas. Tuition $3,600 LA (incl. optiona… Field correction quote: 'grammymuseum.org has separate camp pages: 'GRAMMY Camp Los Angeles', 'GRAMMY CAMP New York', 'GRAMMY Camp Nashville', 'GRAMMY Camp - Miami''",
+  },
+  "idealab": {
+    blurb: "Students age 16 to 18 who have completed 10th or 11th grade spend five weeks, plus an orientation week, taking art and design studio courses on the RISD campus in Providence. No portfolio or admission test is required, and any skill level can apply. Tuition is charged.",
+    evidence: "2026-10-14, https://precollege.risd.edu/on-campus/application-information: Compare page: on-campus program 'five weeks, plus an orientation week'; for high school students age 16-18 rising into 11th or 12th grade. Application page: applicants must have finished 10th or 11th grade; no admission test or portfolio requirement; open regardless of art skill level.",
+  },
+  "national-history-day": {
+    blurb: "Students research a topic tied to the yearly theme and present it as a paper, exhibit, performance, documentary or website, alone or in a group of two to five (papers are individual only). High school students compete in the Senior division for grades 9-12, and top entries advance to the National Contest.",
+    evidence: "2026-10-14, https://nhd.org/en/contest/get-started/: Two divisions: Junior (grades 6-8), Senior (grades 9-12). Categories: paper, exhibit, performance, documentary, website; paper individual only; groups of two to five students. Annual theme (2026: Revolution, Reaction, Reform in History). National Contest held each year.",
+  },
+  "syp-michigan": {
+    blurb: "Students who have finished at least one year of high school take a two-week course taught by University of Michigan faculty in Ann Arbor, in classes of about 15. Students may attend one, two or all three sessions. Admission is rolling and competitive, and international students can apply.",
+    evidence: "2026-10-14, https://sites.lsa.umich.edu/mmss/about-us/: Open to students who have finished at least one year of high school but not completed senior year; accepts students from anywhere in the world. Three two-week sessions; students may attend one, two or all three; one course per session; classes of about 15 taught by U-M faculty. Rolling, competitive admission; transcript required; GPA/SAT not required. Program fees page exists.",
+  },
+  "emory-pre": {
+    blurb: "Current 10th and 11th graders who are at least 15 and have a GPA of 3.0 or higher take summer courses at Emory University in Atlanta, with options such as Summer College and a Pre-Med Institute. Students apply directly, with a $70 application fee, and tuition is charged.",
+    grades: [10,11],
+    evidence: "2026-10-14, https://precollege.emory.edu/apply/index.html: Eligibility page: 'Minimum 15 years of age by session start date', 'Current 10th or 11th graders in high school when completing the application', 'Minimum GPA for admission is 3.0'; says not to apply if in 9th or 12th grade; $70 non-refundable application fee. Program comparison lists Summer College and Pre-Med Institute. Field correction quote: 'Current 10th or 11th graders in high school when completing the application (eligibility page also says not to apply if you are in 9th or 12th grade)'",
+  },
+  "notre-dame": {
+    blurb: "Current sophomores and juniors who are at least 16 live in a Notre Dame residence hall during a two-week Summer Scholars session on campus. Students apply directly with a transcript, counselor report and teacher recommendation; test scores are optional. Grants cover costs for qualifying Indiana residents.",
+    evidence: "2026-10-14, https://precollege.nd.edu/summer-scholars/eligibility-and-application-requirements/: 'Eligibility for Summer Scholars are current sophomores and juniors with high academic standing'; at least 16 by August 1; application: online form, transcript, counselor report, teacher recommendation; SAT/ACT/PSAT encouraged but not required. Students live in a residence hall on campus; 2026 sessions June 6-20 and June 27-July 11. Lilly Endowment grant covers Summer Scholars costs for qualifying Indiana residents.",
+  },
+  "mit-launch": {
+    blurb: "High school students ages 14 to 18 work in teams to build and launch a startup, in online programs lasting two to eight weeks or in-person programs of two or four weeks on a university campus. Students apply directly; tuition is charged and financial awards are available.",
+    evidence: "2026-10-14, https://www.launchx.com/faqs: FAQ: programs designed for high school students ages 14-18 (Online Startup Experience 14-22). Online BootCamp 2-3 weeks, Online Innovation 3 weeks, Online Flagship 5 weeks, Online Startup Experience 8 weeks; In-person Exploration 2 weeks, In-Person Flagship 4 weeks on a university campus (from $11,495). Financial awards help qualified students pay tuition.",
+  },
+  "girlup": {
+    blurb: "Students start or join a Girl Up Club at school or in their community, choosing officers and running at least five Girl Up activities each school year. A club needs five core members, and clubs whose members are mostly under 18 must have an adult advisor.",
+    evidence: "2026-10-14, https://clubs.girlup.org/get-started: 'Any student - middle school, junior high, high school, homeschooled, or in college - can start a Club'; five core members required; membership open to anyone; clubs mostly under 18 need an adult advisor; clubs must host at least five Girl Up activities every school year and submit reports.",
+  },
+  "brookhaven": {
+    blurb: "Students who have completed 11th grade and are at least 16 join a mentored team at Brookhaven National Laboratory for a six-week onsite research program, Monday through Friday. Applicants must be U.S. citizens or permanent residents, and projects are team-based, not independent.",
+    evidence: "2026-10-14, https://www.bnl.gov/education/programs/program.php?q=219: 'recommended for students that have completed 11th grade'; audience 11th and 12th graders; at least 16 by program start; U.S. citizen or Lawful Permanent Resident; health insurance required; 'commit for the full six-week program onsite, Monday through Friday 8:30am-5:00pm'; 'Independent research projects will not be permitted'.",
+  },
+  "argonne": {
+    blurb: "A high school science teacher and a team of students work with an Argonne scientist on a research project over the school year, from proposal to final poster, visiting the lab to collect data and to present. Teachers register the team, and each school may field one team.",
+    evidence: "2026-10-14, https://www.anl.gov/education/exemplary-student-research-program: School year-long program pairing a teacher with a scientist mentor; teacher picks a team of students; project runs from proposal to final poster; teams visit Argonne twice (collect data, present); aimed at honors/AP science classes; teachers must hold a valid grades 9-12 certificate; one team per school.",
+  },
+  "plaintext": {
+    blurb: "GenCyber camps, run by host universities and schools with federal grants, teach cybersecurity to middle and high school students. Camps are free to attend and run at least five days with 30 or more instructional hours, offered in person, virtually or in a combination format.",
+    evidence: "2026-10-14, https://www.gen-cyber.com/faq/: gen-cyber.com: programs offered \"at no cost to student and/or teacher participants\"; \"all programs are free of charge\"; camps \"expected to run a minimum of five days to include at least 30 intensive instructional hours\"; formats: In-Person Camps, Virtual Camps, Combination Camps; focus on middle school and high school students; hosts are universities, public and private schools or school systems receiving GenCyber g…",
+  },
+  "igem": {
+    blurb: "High school teams design synthetic biology projects and compete in the High School track of the iGEM Competition, on the same season and Jamboree schedule as collegiate teams. Each team needs a principal, teacher or academic coach from an enrolling school as Primary PI.",
+    evidence: "2026-10-14, https://old.igem.org/Competition/High_School: \"HS teams participate in the competition in the High School track\"; \"High school teams follow the same timeline, deadlines and attendance dates as the collegiate teams\"; Primary PI must be a principal, teacher, or academic coach at one of the enrolling schools (competition.igem.org/registration/overview); eligible for High School Grand Prize, Special Prizes, and Gold, Silver, Bronze Medals.",
+  },
+  "state-new-hampshire-asp": {
+    blurb: "Five-week residential summer program at St. Paul's School in Concord for students at New Hampshire public and parochial schools, most applying in the fall of junior year. Courses include engineering, law, molecular biology and studio arts. Tuition covers room and board, and aid is offered.",
+    evidence: "2026-10-14, https://www.sps.edu/asp-summer: Five-week residential program since 1958; \"open to current sophomores and juniors attending public or parochial schools in New Hampshire\"; \"Most students apply in the fall of their junior year\"; 2026 tuition $4,950 \"inclusive of room and board and all fees\"; more than 50% receive financial aid; no application fee; courses include engineering, law and governance, studio arts, molecular biology, biomedical ethics.",
+  },
+  "csv-sch-mae-mary-legacy-foundation-inc": {
+    blurb: "Scholarship for African American graduating high school seniors from anywhere in the U.S. who plan a health care career and will attend a two- or four-year university or technical school. Awards are based on academics and financial need. Apply online with an essay and two recommendations.",
+    grades: [12],
+    evidence: "2026-10-14, https://www.maeandmarylegacyfoundation.org/apply: Applicants must be African American graduating high school seniors; students from anywhere in the United States can apply; \"students pursuing careers in the health care profession ONLY should apply\"; must attend a two/four-year university or technical school; awards for tuition, books, fees; \"based on academic excellence and financial need\"; required: photo, cover letter and resume, personal essay (max one page), tw… Field correction quote: 'Applicants must be African American high school seniors who are graduating (apply page, as shown in search results)'",
+  },
+  "los-alamos-national-laboratory-high-school-internship-program": {
+    blurb: "Paid hourly internship at Los Alamos National Laboratory for New Mexico high school seniors who are at least 16 and have a 2.75 GPA. Interns work part-time, typically 10 to 20 hours a week, during the school year and up to 40 hours a week in summer. Applicants must pass a drug test.",
+    evidence: "2026-10-14, https://www.lanl.gov/engage/collaboration/student-programs/high-school: High school page: senior status, age 16, 2.75 GPA, attend a New Mexico high school, pass a new-employment drug test; part-time during school year \"typically 10-20 hours a week\", full-time in summer \"up to 40 hours a week\", summer typically 10 weeks; 2026 salary structure lists high school rate $16.89 hourly.",
+  },
+  "lockheed-martin-high-school-internship-program": {
+    blurb: "Paid summer internship at Lockheed Martin sites such as Denver, Sunnyvale, Huntsville and Herndon. Applicants must be enrolled in high school, be 16 by the start of the internship and live within commuting distance of a participating facility. Seniors graduating in May are not eligible.",
+    evidence: "2026-10-14, https://www.lockheedmartin.com/en-us/careers/candidates/students-early-careers/high-school.html: \"16 years of age at start of internship\"; current enrollment at a local high school; live within commutable distance of a participating facility; \"High school seniors graduating in May are not eligible for the high school internship program\"; cities include Denver, Sunnyvale, Cape Canaveral, King of Prussia/Valley Forge, Huntsville, Herndon.",
+  },
+  "tufts-university-summer-research-experience": {
+    blurb: "Six-week, in-person summer research program at Tufts where high school students in grades 11 and 12 work in small cohorts on a research project led by a Teaching Fellow and present a poster at the end. Commuter and residential options are offered for a fee, with limited need-based scholarships.",
+    evidence: "2026-10-14, https://universitycollege.tufts.edu/pre-college/browse/tufts-summer-research-experience: 6-week, in-person pre-college research program, commuter or residential; small cohorts on a research project under a Teaching Fellow, poster presentation at closing session; current grade 11-12 students; 2027 fees $9,196 commuter, $11,790 residential; need-based scholarships limited; not for credit.",
+  },
+  "lawrence-berkeley-national-laboratory-berkeley-lab-director-s-ap": {
+    blurb: "Paid summer apprenticeship at Berkeley Lab where public school students in grades 10 and 11 from Alameda, San Francisco and Contra Costa counties do project-based STEM work. Students earn $500 per week and must be California residents, U.S. citizens or permanent residents, and 16 by the start date.",
+    grades: [10,11],
+    evidence: "2026-10-14, https://k12education.lbl.gov/programs/high-school/BLDAP/program: \"BLDAP is a project-based high school STEM program designed to help participants in grades 10-11\"; open to public school students in grades 10 and 11 in Alameda, San Francisco, and Contra Costa counties; \"Students will be paid $500 per week\"; \"full time residents of the state of California and a US Citizen or permanent resident\"; must be 16 at program start for all paid opportunities (FAQ); travel to Berkeley Lab at… Field correction quote: 'BLDAP is a project-based high school STEM program designed to help participants in grades 10-11 to develop 21st century skills'",
+  },
+  "chicago-summer-business-institute-chicago-summer-business-instit": {
+    blurb: "Six-week paid summer internship with corporate sponsors, largely in financial services, plus Friday workshops. Open to City of Chicago residents who are high school sophomores, juniors or seniors with at least a B (3.0) average and household income under $80,000.",
+    grades: [10,11,12],
+    evidence: "2026-10-14, https://chicagobusinessinstitute.org/how-to-apply/: \"Founded in 1991 to provide paid summer internships for Chicago high school students\"; \"You are a resident of the City of Chicago\"; high school sophomores, juniors, or seniors for the 2026-2027 school year; \"B\" or 3.0 average; household income below $80,000; 6-week program with sponsor supervision and Friday workshops; transcript, resume, essay, income form, two letters of recommendation. Field correction quote: 'be high school sophomores, juniors, or seniors for the 2026-2027 school year (How to Apply page, as shown in search results)'",
+  },
+  "lawrence-berkeley-national-laboratory-experiences-in-research-ei": {
+    blurb: "Six-week paid summer internship at Berkeley Lab where high school students work on projects with STEM professionals in areas such as data science, science communication and experimental research. Students must be at least 16 and are paid $500 per week.",
+    evidence: "2026-10-14, https://k12education.lbl.gov/programs/high-school/experiences-in-research: Official EinR pages: students 'spend six weeks over summer working directly on cutting edge projects alongside experts in STEM'; projects cover administration, science communication, data science, experimental research; 'Students will receive $500 per week'; must be 16 by program start; aimed at public high schools in Alameda, Contra Costa or San Francisco counties, commute expected; former interns cannot reapply.",
+  },
+  "stanford-medicine-genomics-research-internship-program-grips": {
+    blurb: "Free eight-week summer internship in which Bay Area high school students carry out genomics research in Stanford labs under a mentor, 9am to 1pm on weekdays. Applicants must be 16 or older, have a 3.0 unweighted GPA and some biology, chemistry or programming background.",
+    evidence: "2026-10-14, https://med.stanford.edu/genetics/education/GRIPS.html: 'The Genomics Research Internship Program at Stanford (GRIPS) is a free, research-intensive summer internship program open to Bay Area high school students'; students conduct genomics research under a lab mentor; schedule 9am-1pm Mon-Fri; 16 or older by start; unweighted GPA at least 3.0; prior knowledge of biology, chemistry or programming; $55 application fee with need-based waivers, no participation fee.",
+  },
+  "u-s-department-of-the-treasury-headquarters-student-internship-p": {
+    blurb: "Unpaid internships at Treasury headquarters in Washington, D.C. that give high school, undergraduate and graduate students work experience and exposure to federal careers. Applicants must be U.S. citizens enrolled at an accredited school and apply on USAJOBS for spring, summer or fall terms.",
+    cost: "Free",
+    evidence: "2026-10-14, https://home.treasury.gov/about/careers-at-treasury/studentinternship-programs/headquarters-student-internship-program: 'unpaid opportunities in Washington, D.C. designed to provide high school, undergraduate, and graduate students with work experience and direct exposure to federal careers'; 'Students must be U.S. citizens and maintain student eligibility and enrollment throughout the duration of the internship'; postings on USAJOBS; spring, summer and fall terms. Field correction quote: 'unpaid opportunities in Washington, D.C. designed to provide high school, undergraduate, and graduate students with work experience and direct exposure to federal careers'",
+  },
+  "devcom-army-research-laboratory-high-school-apprenticeship-progr": {
+    blurb: "Summer commuter apprenticeship in which rising high school juniors and seniors do science and engineering research alongside university researchers sponsored by the Army Research Office. Applicants must be U.S. citizens aged 16 or older. Students earn a stipend and write a research abstract.",
+    evidence: "2026-10-14, https://arl.devcom.army.mil/careers/students/: HSAP 'provides rising high school juniors and seniors with a science and engineering research experience alongside university researchers sponsored by the Army Research Office (ARO)'; U.S. citizens, at least 16; commuter program; 'provides a stipend and the student is required to produce an abstract'; up to 300 hours June through August; no housing.",
+  },
+  "pacific-northwest-national-laboratory-high-school-intern-program": {
+    blurb: "PNNL hires high school students as business or research interns in Richland. In the school year interns work up to four hours a day, five days a week, and can earn elective credit through their school's work-based learning program; in summer they can work full time.",
+    evidence: "2026-10-14, https://www.pnnl.gov/high-school-students-pnnl: Academic year (Aug-May) business or research internships, 'up to 4 hours a day, 5 days a week'; summer up to full time June-August; 'PNNL works in collaboration with your high school's work-based learning (WBL) program to provide elective credits that apply to graduation'; under-18 students not eligible to work in lab spaces. A 2026 official posting required current enrollment in a Tri-Cities, WA area high school, a…",
+  },
+  "dc-department-of-employment-services-high-school-internship-prog": {
+    blurb: "Paid fall and spring semester internships with work-readiness training for District of Columbia high school students in grades 9 to 12 aged 14 to 21. Applicants must verify DC residency and school enrollment, and spots are awarded first come, first served.",
+    evidence: "2026-10-14, https://summerjobs.dc.gov/page/hsip: DOES HSIP offers District students work-readiness training and internships; eligibility grades 9-12, ages 14-21, DC residents; 'internships are awarded on a first-come, first-served basis'; fall and spring semesters, one per calendar year; 2025-2026 packet: $10.00/hour up to 8 hours per week; certification tasks and documents required.",
+  },
+  "georgia-tech-research-institute-high-school-summer-internship": {
+    blurb: "Five-week summer internship at the Georgia Tech Research Institute, 24 hours a week, for Georgia residents who are at least 16 and attend a Georgia high school or home school. Most positions require U.S. citizenship or U.S. person status, and housing is not provided.",
+    evidence: "2026-10-14, https://gtri.gatech.edu/stem/high-school-summer-internship: Georgia residents attending public, private, charter or home school in Georgia; at least 16 by the cutoff; classes of 2027, 2028, 2029 for the 2027 program; 'most, but not all, positions require US Citizenship or status as a US Person'; 24 hours/week for five weeks; mandatory all-day orientation and final presentation; housing not provided; pre-application, resume, personal statement, recommendation letter.",
+  },
+  "sandia-national-laboratories-internships-co-ops": {
+    blurb: "Sandia has a limited number of internships for high school students who are at least 16 and enrolled full time, with a 3.0 GPA required for R&D, technical and business roles. Summer internships last about 10 to 12 weeks, and year-round internships are for students at local schools.",
+    evidence: "2026-10-14, https://www.sandia.gov/careers/career-possibilities/students-and-postdocs/internships-co-ops/institute-programs/faqs/: FAQ: 'Can high school students participate in an internship? Yes. We have limited openings for high school students who are at least 16-years old.' HR: enrolled full time at an accredited college, university or high school; 3.0/4.0 for R&D, Technical or Business positions, 2.5 for clerical/laborer; summer about 10-12 weeks; year-round for local students or remote while at a non-local school; U.S. citizenship where c…",
+  },
+  "u-s-fish-wildlife-service-internships-and-fellowships": {
+    blurb: "The Service's internship and fellowship page covers routes into federal conservation work, including Pathways internships open to students enrolled at least half time in high school, college or technical school, and the paid summer Youth Conservation Corps for ages 15 to 18.",
+    evidence: "2026-10-14, https://www.fws.gov/internships: Pathways 'Internship Program is open to current students in high school, college, or technical school at least half time'; official early-career PDF: Youth Conservation Corps is a paid summer program for ages 15-18, about eight weeks June-August; SCA partner internships; some refuge-run internships unpaid.",
+  },
+  "northwestern-university-feinberg-school-of-medicine-kimberly-que": {
+    blurb: "Paid six- to eight-week summer research program in Feinberg's Division of Pulmonary and Critical Care, where each intern works full time on a project with a Northwestern faculty mentor and presents a poster. High school applicants must be juniors when they apply and at least 16.",
+    evidence: "2026-10-14, https://www.feinberg.northwestern.edu/sites/sqlifts/research/summer-research-program.html: Runs six to eight weeks, 40 hours/week 9-5 Mon-Fri; 'competitive stipend'; matched with a Northwestern faculty member; poster day; 'must currently be a junior at the time of application'; 'age 16 years or older as of May 31 of the program year'; page said it was not accepting new applications for the upcoming summer after last year's cancellation, prioritizing winter 2025 applicants.",
+  },
+  "seattle-children-s-research-institute-research-training-program": {
+    blurb: "Four-week in-person summer program in downtown Seattle where rising high school juniors and seniors do lab work, attend lectures and workshops and complete an independent research project. It is free, no research experience is needed, and students get a $2,000 stipend.",
+    evidence: "2026-10-14, https://www.seattlechildrens.org/research/centers-programs/science-education-department/high-school-training-programs/: Open to 'current 10th grade (rising junior) and current 11th grade (rising senior)'; in person, must commute to downtown Seattle; four weeks on weekdays; lab work, lectures, college and career workshops, independent research project with final presentation; free; 'students will receive a stipend of $2,000 to offset costs for transportation and meals'; SSN or ITIN needed; capacity 24.",
+  },
+  "scripps-research-translational-institute-student-research-intern": {
+    blurb: "Ten-week unpaid summer internship in genomics and mobile health research at the Scripps Research Translational Institute, mostly in dry labs with a few wet-lab spots. High school students must be at least 16 and receive school credit. No housing is provided.",
+    evidence: "2026-10-14, https://www.scripps.edu/science-and-medicine/translational-institute/education-and-training/student-research-internship/index.html: 10-week summer program 'designed for high school, undergraduate, graduate and professional students'; genomics and mHealth; 'most interns work in a dry lab setting, with a limited number of wet lab positions'; high school students 'must be at least 16 years of age before the start of their internship'; unpaid, interns 'must receive school credit or transcript notation'; no housing or housing support.",
+  },
+  "scripps-research-summer-high-school-internship-program": {
+    blurb: "Seven-week, 40-hour-a-week lab internship at Scripps Research in La Jolla with a $5,040 stipend. Open to San Diego County students age 16 or older from listed REACH partner schools who have a year each of chemistry and biology and at least a 3.0 GPA.",
+    evidence: "2026-10-14, https://education.scripps.edu/k-12-outreach/ca-outreach/hs-internships/: 2026 page: $5,040 stipend for seven weeks; eligibility restricted to students from specific REACH partner schools/programs; San Diego County residency; at least 16 by boot camp start; one year each of HS chemistry and biology; 3.0 minimum GPA; 40 hours a week; own transportation to La Jolla; must be legally able to work in the U.S. The $4,760 figure in the old blurb comes from the outdated 2024 page.",
+  },
+  "florida-international-university-summer-research-internship": {
+    blurb: "Eight-week cardiovascular health research internship at FIU for South Florida high school juniors and graduated seniors committed to FIU. Applicants must be at least 16 with an unweighted 3.0 GPA, spend at least 15 hours a week in a lab, and present their project at the end.",
+    evidence: "2026-10-14, https://case.fiu.edu/opportunities/internships-jobs/summer-research-internship/: Eight-week cardiovascular-focused program for students from South Florida high schools; 'high school juniors OR graduated seniors who have committed to attend FIU'; at least 16 by start date; unweighted 3.0 GPA; at least 15 hours a week in a lab; curriculum Mon/Wed/Fri; abstract and final presentation required.",
+  },
+  "national-institute-on-aging-summer-research-training-for-high-sc": {
+    blurb: "Paid eight- to ten-week summer research internship in National Institute on Aging labs on the Johns Hopkins Bayview campus in Baltimore. Interns do hands-on lab work, attend weekly seminars by NIA scientists, and present a poster. The stipend is based on education completed.",
+    evidence: "2026-10-14, https://www.nia.nih.gov/nia-summer-internship: STAR (Summer Trainee in Aging Research); 'eight to ten weeks, beginning in late May and ending in mid-to-late August'; hands-on lab work and weekly seminars by NIA scientists; poster at NIA Summer Student Poster Day; labs at Johns Hopkins Bayview campus; 'stipend which is based on the amount of education completed'. Eligibility differs: a 2025 NIA post says HS seniors 18+ by June 1; an older page says juniors or sen…",
+  },
+  "university-of-georgia-caes-young-scholars-program": {
+    blurb: "Paid summer research internship in agricultural, food and environmental sciences where interns work 30 hours a week with a UGA faculty mentor in Athens, Griffin or Tifton. Open to first-time participants age 16 or older who have finished sophomore year. Housing is not provided.",
+    evidence: "2026-10-14, https://www.caes.uga.edu/students/prospective-students/youth-high-school-programs/young-scholars.html: 'paid five-week summer internship program for high school students interested in agricultural, food, and environmental sciences' (other CAES pages say six weeks); 30 hours per week 'actively engaged in research under the guidance of a faculty mentor'; must have completed sophomore year, be first-time participant, 16 by start; sites in Athens, Griffin or Tifton; non-residential.",
+  },
+  "broad-institute-of-mit-and-harvard-broad-summer-scholars-program": {
+    blurb: "Six-week, full-time summer research program at the Broad Institute in Cambridge for rising seniors who attend a Massachusetts high school and can commute daily. Scholars receive a $3,600 stipend and partial transportation reimbursement, and no research experience is required.",
+    evidence: "2026-10-14, https://www.broadinstitute.org/partnerships/education/k-12-outreach/broad-summer-scholars-program: Six-week program; $3,600 stipend and partial reimbursement for transportation; no cost to apply or attend; rising seniors who apply in junior year; FAQ: 'only current Juniors who attend a high school in MA are eligible'; must be able to commute daily; daily 9am-5pm; 'no previous research experience is required'; US citizen, permanent resident or non-US citizen with employment authorization.",
+  },
+  "university-of-illinois-urbana-champaign-young-scholars-summer-st": {
+    blurb: "Six-week summer research program at the University of Illinois where students are matched with a campus lab and work in teams. Open to rising 10th to 12th graders from Illinois, Indiana, Iowa, Kentucky, Michigan, Missouri or Wisconsin. Housing, meals and a fellowship payment are included.",
+    evidence: "2026-10-14, https://wyse.grainger.illinois.edu/summer-programs/young-scholars-summer-research: 6-week summer program; eligibility by grade entering in the fall (rising 10th-12th) and home state: Illinois, Indiana, Kentucky, Michigan, Missouri, Iowa, Wisconsin; students matched with a university lab in teams; FAQ: no cost beyond travel, housing, meals and a monetary award (fellowship payment) included; no course credit.",
+  },
+  "cdc-museum-disease-detective-camp": {
+    blurb: "Week-long academic day camp at CDC headquarters in Atlanta where students explore public health topics such as epidemiology, outbreak investigation, and data analysis. Open to rising juniors and seniors who are at least 16 by the first day of camp. The camp is tuition-free.",
+    evidence: "2026-10-14, https://www.cdc.gov/museum/camp/detective/index.htm: Academic day camp at CDC headquarters in Atlanta; rising juniors or seniors (current sophomores or juniors), at least 16 by first day of camp (no exceptions); 27 slots per week-long session; tuition-free; Mon-Fri 8:45am-4:00pm.",
+  },
+  "university-of-tennessee-haslam-college-of-business-women-empower": {
+    blurb: "Free six-day summer program at UT Knoxville's Haslam College of Business with workshops on coding, entrepreneurship, supply chain management, business analytics, and college readiness. Applicants need at least a 3.0 GPA, and selected students live in campus housing.",
+    evidence: "2026-10-14, https://haslam.utk.edu/access/women-empowered-through-business-web-institute/: Six-day summer program; intersection of tech and business; OACC hosts four free business programs during the summer, WEB among them; GPA of at least 3.0, leadership potential, interest in business; application with transcript and activities; must commit to all six days and stay in campus dormitory housing; some sessions led by women in technology and business.",
+  },
+  "nslc": {
+    blurb: "Residential summer programs on university campuses in fields such as medicine, business, engineering, and government and law. Open to high school students ages 14 to 18. Students live in supervised campus dorms, tuition is charged, and need-based scholarships are available.",
+    evidence: "2026-10-14, https://www.nslcleaders.org/about-summer-youth-programs/: Students must be 14 to 18 and have completed at least one year of high school; 'Students must be currently enrolled in 9th-12th grades to qualify for our high school sessions'; 'All students are required to reside in supervised campus dormitories'; Summer Program Scholarship for students demonstrating financial need, academic merit, involvement; AU credit offered; Columbia/UCLA around $4,300-$4,600.",
+  },
+  "inspire": {
+    blurb: "Live online AI program for students in grades 9 to 12, taught in small groups by Stanford and MIT graduate students over 10 sessions and 25 hours. Students learn AI basics and Python, then build a mentor-led AI for social good project. No prior coding is required, and the fee is $1,400.",
+    evidence: "2026-10-14, https://www.inspiritai.com/liveonline: 10-session, 25-hour live online bootcamp; small groups taught by Stanford and MIT graduate students; grades 9-12; no prior programming required; AI fundamentals and Python, then mentor-led AI for social good project and web app; 'USD $1400 (all inclusive)', payment plans available.",
+  },
+  "kode-with-klossy": {
+    blurb: "Free two-week summer coding camps for young women and gender-expansive teens ages 13 to 18, in web development, AI and machine learning, or data science. No prior coding experience is required, and camps run both virtually and at in-person sites.",
+    evidence: "2026-10-14, https://www.kodewithklossy.com/programs: 'young women and gender expansive teens, aged 13-18'; 'Absolutely NO prior coding experience is required'; camps 'free of cost to scholars'; two-week intensive in Web Development, AI/Machine Learning, or Data Science; virtual options and in-person sites.",
+  },
+  "hsyl": {
+    blurb: "Three- to four-day leadership seminars held each spring and summer for high school sophomores nominated by their school or community. Students take part in workshops and facilitated dialogue on their leadership strengths and values. A registration fee applies and varies by location.",
+    cost: "Paid",
+    evidence: "2026-10-14, https://hoby.org/programs/state-leadership-seminars/: 'Our flagship program welcomes school and community nominated high school sophomores to 3-4-day seminars each spring and summer.' FAQ: 'The registration fee for the seminar is dependent on the location, but ranges from $225 to $450. The registration fee covers housing, food, and all programming materials for the weekend.' Field correction quote: 'The registration fee for the seminar is dependent on the location, but ranges from $225 to $450.'",
+  },
+  "rotary": {
+    blurb: "Leadership training events organized by Rotary clubs and districts for participants ages 14 to 30. Formats vary by district and range from a one-day seminar to a three-day retreat or a weeklong camp, and some districts run separate tracks by age.",
+    evidence: "2026-10-14, https://www.rotary.org/get-involved/youth-programs/rotary-youth-leadership-awards: RYLA events for participants ages 14-30; events can be a one-day seminar, three-day retreat, or weeklong camp; districts may split by age (e.g. 14-15, 16-18, 19-30).",
+  },
+  "ywoy": {
+    blurb: "Free online creative contest for students ages 11 to 18 in middle or high school who create work about the ocean in visual art, creative writing, poetry, performing arts, interactive media, or film. International students can apply, and each entrant needs an adult sponsor.",
+    evidence: "2026-10-14, https://bowseat.org/programs/ocean-awareness-contest/rules-eligibility/: Open to students ages 11-18 enrolled in middle or high school (or homeschool equivalent) worldwide; Junior Division 11-14, Senior Division 15-18; free entries submitted online; adult sponsor required; seven categories per 2026 packet; Gold $1,000 etc. awards.",
+  },
+  "rhsa": {
+    blurb: "Summer arts programs at Walnut Hill School for the Arts in Natick, including a three-week Summer Theater Intensive for ages 13 to 17 with acting, musical theater, and dance, a Summer Voice Intensive for ages 12 to 16, and dance programs. Some programs offer day and boarding options.",
+    evidence: "2026-10-14, https://www.walnuthillarts.org/summer: Summer Theater Intensive (ages 13-17), three weeks, daily acting, musical theater, dance, all students cast in a musical; Summer Voice Intensive (ages 12-16), day and boarding options; dance programs including open class series for dancers entering 9th grade and above; also brass, string quartet, fashion programs.",
+  },
+  "afsa-essay": {
+    blurb: "Essay contest for students in grades 9 to 12 whose parents are not in the Foreign Service. First place wins $2,500, a trip to Washington, D.C., and an educational voyage with Semester at Sea, and second place wins $1,250 and a scholarship to an NSLC diplomacy program.",
+    evidence: "2026-10-14, https://afsa.org/rules-and-guidelines: Grades 9-12; parents must not be in the Foreign Service; open to students in the 50 states, D.C., U.S. territories, or U.S. citizens and lawful permanent residents in high school overseas; first place $2,500 cash, trip to Washington, D.C., Semester at Sea voyage; second place $1,250 and NSLC International Diplomacy scholarship.",
+  },
+  "bigfuture": {
+    blurb: "Students earn entries into monthly drawings for $500 and $40,000 scholarships by completing college-planning steps on BigFuture, such as building a college list and filing the FAFSA. Open to U.S. high school students with a College Board account, with no GPA, income, or test requirement.",
+    grades: [11,12],
+    evidence: "2026-10-14, https://bigfuture.collegeboard.org/help-center/whos-eligible-scholarships-bigfuture: 'Students in the class of 2027 and 2028 are eligible for BigFuture Scholarships. They must have a College Board account and attend public or private high school or be enrolled in a home school in the United States, Puerto Rico, or any other U.S. ...'; no citizenship, income, GPA or test requirement; steps include career list, college list, scholarship list, FAFSA, applying to two colleges; $500 and $40,000 drawings;… Field correction quote: 'Students in the class of 2027 and 2028 are eligible for BigFuture Scholarships.'",
+  },
+  "greeting-card-scholarship": {
+    blurb: "Students at least 14 years old enrolled in high school, college, or homeschool submit original artwork or photos for the front of a greeting card. Finalists are chosen partly by public voting, and the winner receives a $10,000 scholarship and may see the design made into a real card.",
+    evidence: "2026-10-14, https://www.gallerycollection.com/greeting-cards-scholarship/: 20th Annual contest; entrants at least 14 and enrolled in high school, college, university, or homeschool; also open to U.S. military members; original artwork or photos for card front; finalists decided by voting; $10,000 for best original artwork; winning design may become a Gallery Collection card.",
+  },
+  "ennes-scholarships": {
+    blurb: "The Ennes Educational Foundation Trust Youth Scholarship is for high school seniors who plan to study broadcast engineering or a closely related technical field. The Trust expects to award five $3,000 scholarships, and recipients write a 400-500 word technical paper.",
+    evidence: "2026-10-14, https://sbe.org/education/ennes-scholarships/: \"Candidates must be in their senior year of high school\"; must intend to enroll at a technical school, college or university; \"the Trust anticipates awarding five $3,000 scholarships, depending on available funds\"; recipients submit \"a technical paper of 400-500 words on a broadcast-engineering topic\".",
+  },
+  "american-legion-oratorical": {
+    blurb: "High school students under 20 who are U.S. citizens or lawful permanent residents give a prepared oration and a speech on an assigned topic, advancing from local posts to state and national rounds. National finalists receive scholarships of $20,000 to $25,000.",
+    evidence: "2026-10-14, https://www.legion.org/get-involved/youth-programs/oratorical-contest/how-to-participate: \"must be citizens of or lawful permanent residents of the United States\"; under 20 on the date of the national contest, enrolled in high school (grades 9-12 curriculum incl. home school); contestants give \"their prepared oration and the assigned topic discourse\"; national finalists $25,000 / $22,500 / $20,000; department winners in first national round get $2,000.",
+  },
+  "optimist-oratorical": {
+    blurb: "Students under 19 who have not finished high school give a speech in contests run by local Optimist clubs and advance to district and regional rounds. District winners receive $1,000 to $2,500 scholarships, regional winners $5,000, and World Championship winners up to $15,000.",
+    evidence: "2026-10-14, https://www.optimist.org/member/scholarships4.cfm: 2025-26 rules: under 19 on October 1 of the contest year and \"must not have finished secondary school or its equivalent\"; district $2,500/$1,500/$1,000; regional winner $5,000; World Championship $15,000/$10,000/$5,000; scholarships for college, university or trade school.",
+  },
+  "nat-geo": {
+    blurb: "National Geographic Student Expeditions runs summer travel programs in the U.S. and abroad for students completing grades 9 through 12. Groups usually have 14 to 28 students, and an admissions committee reviews each application.",
+    evidence: "2026-10-14, http://ngstudentexpeditions.com/resources/admission-details: \"students who are completing 9th through 12th grades are eligible to participate in our high school programs\"; \"group size generally ranges between 14 and 28 participants\"; \"Applications are carefully reviewed by our Admissions Committee\"; summer trips \"in communities around the globe and across the US\".",
+  },
+  "skillsusa": {
+    blurb: "Career and technical education students compete in more than 100 skilled trade, technical and leadership contests, advancing from local and state events. State gold medalists compete at the national conference in Atlanta, and competitors must be paid, registered SkillsUSA members.",
+    evidence: "2026-10-14, https://www.skillsusa.org/competitions/skillsusa-championships/: National competition held during NLSC in Atlanta; students compete locally, at district/regional, then state; only state gold medalists advance; 113-115 competitions; \"only students who are registered by the National March 1 deadline and are paid members are eligible to compete\".",
+  },
+  "tsa": {
+    blurb: "Middle and high school members of the Technology Student Association compete in STEM events at state and national conferences through their school chapters. The high school lineup has about 40 events in areas such as computer science, manufacturing and STEM and the arts.",
+    evidence: "2026-10-14, https://tsaweb.org/competitions: TSA is \"a national non-profit career and technical student organization (CTSO) of middle and high school students engaged in science, technology, engineering, and mathematics\"; high school guide lists 40 competitions grouped into categories such as STEM (General), STEM and the Arts, Computer Science, Manufacturing and Transportation Technology; eligibility chart sets entries per chapter or state.",
+  },
+  "army-rebotics": {
+    blurb: "Teams of two to six students with an adult director solve orbit, satellite design and launch problems in online rounds using Systems Tool Kit software. The top ten semifinal teams go to an all-expenses-paid national final. The fee is $250 per team, less for JROTC, and waived for Title I schools.",
+    cost: "Paid",
+    evidence: "2026-10-14, https://www.stellarxplorers.org/dates-fees.html: \"High School & Middle School team = $250 / team JROTC unit = $125 / team ... Civil Air Patrol squadron = $125 / team ... All-Girl team = $125 / team. Fees waived for teams at Title I Schools.\"; teams of an adult director plus two to six students; online rounds on orbit planning, satellite design, launch operations; STK training, no prior experience required; top ten semifinal teams qualify for an all-expenses-paid N… Field correction quote: 'High School & Middle School team = $250 / team ... Fees waived for teams at Title I Schools.'",
+  },
+  "soa-shark": {
+    blurb: "Teams of one to five high school students with an adult coach answer a qualifying scenario and then build an actuarial data modeling project. Students must be 13 to 19 and attend grades 9-12 in the U.S. or its territories, and top teams win college scholarships of up to $25,000.",
+    grades: [9,10,11,12],
+    evidence: "2026-10-14, https://www.mtfchallenge.org/rules-and-eligibility/: \"Students must be attending high school (grades 9-12) in the United States or its territories\"; ages 13 to 19 by August 1; teams of one to five students with an adult coach; \"Teams must respond to a qualifying scenario during the qualifying period\"; prizes $25,000 / $15,000 / $10,000 / $5,000 as tuition scholarships. Field correction quote: 'Students must be attending high school (grades 9-12) in the United States or its territories'",
+  },
+  "indigo": {
+    blurb: "Indigo Research offers one-on-one virtual research programs for high school students that run 3 to 12 months on a flexible timeline. Tuition starts at $3,900, and Indigo states it does not currently offer scholarships.",
+    evidence: "2026-10-14, https://www.indigoresearch.org/one-on-one-mentorship: \"flexible 3-12 month one-on-one virtual research programs\" for high school students; tuition starting at $3,900 USD; Indigo states it does not currently offer scholarships for its research programs.",
+  },
+  "immerse-research": {
+    blurb: "Students aged 13 to 18 can take Immerse Education's online research programme. The classic version runs 10 hours, while 15-hour accredited versions are open to students 14 and older, and a US version offers college credit.",
+    evidence: "2026-10-14, https://www.immerse.education/online-research-programme/: Classic programme 10 hours, ages 13-18; accredited programmes 15 hours, ages 14+; US accredited version offers college credit; group accredited option ages 14-18, max class size 10.",
+  },
+  "envision": {
+    blurb: "Envision runs career-focused summer programs for high school students, including 7 to 10 day National Youth Leadership Forum programs in medicine, engineering, law, business and national security. Applicants need at least a 3.0 GPA, and many are nominated by educators.",
+    evidence: "2026-10-14, https://www.envisionexperience.com/faqs: NYLF Medicine & Health Care, Advanced Medicine, Business Innovation, National Security, Law & CSI, Engineering, Explore STEM; run 7 to 10 days; \"minimum 3.0 GPA\"; many students nominated by educators, open enrollment welcome; tuition from about $4,499.",
+  },
+  "jea": {
+    blurb: "JEA runs national awards and contests for high school journalists, including Journalist of the Year scholarships for seniors that begin at the state level, and the National Student Media Contests, where JEA member advisers enter students in writing, design, photo, and broadcast categories.",
+    evidence: "2026-10-14, https://jea.org/awards/: Journalist of the Year: 'The contest begins at the state level. Winning portfolios from state Journalist of the Year competitions are sent to the national level'; applicants must be seniors. NSMC: 'JEA member advisers may enter their students to compete in either an online or on-site contest category at the convention.' 'Cost is $25/entry, one entry per student.' Online categories require 'an on-site critique sessio…",
+  },
+  "stem-saturday": {
+    blurb: "Saturday Academy offers STEM and arts classes and camps for students in grades 2 to 12. Its ASE program places rising 10th, 11th, and 12th graders in summer internships designed by mentors at host organizations, and each student may do one ASE internship in high school.",
+    evidence: "2026-10-14, https://www.saturdayacademy.org/ase-eligibility: ASE: 'Be a rising 10th, 11th, or 12th grader (or equivalent).' 'A student may only have one ASE internship during their high school career.' Internships designed by mentors. Classes and camps cover 'students in grades 2 - 12 in Science, Technology, Engineering, Math (STEM), and the Arts.' ASE now stands for Apprenticeships in STEAM Exploration.",
+  },
+  "bpl-teen-takeovers": {
+    blurb: "Brooklyn Public Library interns ages 16 to 19 plan, promote, and host after-hours events for other teens, with training in event planning, budgeting, and promotion. Interns meet weekly during the school year and receive a stipend and volunteer service hours.",
+    evidence: "2026-10-14, https://www.bklynlibrary.org/support/volunteer/branch-council: Paid internship; interns plan, promote, and host after-hours events for teens; training in event planning, budgeting, and promotion; stipend and volunteer service hours; applicants aged 16 to 19, available for weekly meetings October through June; parental consent for 75 hours of out-of-school service.",
+  },
+  "hudson-river-slp": {
+    blurb: "The Science Leadership Program is a paid six-week summer research and leadership internship at Hudson River Park for female-identifying New York City high school students, with hands-on field science, mentorship, and professional development.",
+    evidence: "2026-10-14, https://hudsonriverpark.org/the-park/parks-river-project/science/internship-opportunities/: 'Hudson River Park's Student Leadership Program (SLP) is a paid summer research opportunity for female-identifying high school students in New York City.' Renamed Science Leadership Program from 2023; 'six-week research and leadership internship'; 2024 cohort of 15; Pinkerton Foundation funding awarded for the 2026 SLP. Internship page: no open positions at this time.",
+  },
+  "ccny-stem-ra": {
+    blurb: "New York City public high school 10th and 11th graders take a free spring research science course at City College, and those who finish can join a summer research internship with a CUNY or CCNY faculty member. Some summer participants receive a stipend.",
+    grades: [10,11],
+    evidence: "2026-10-14, https://www.ccny.cuny.edu/collegenow/stem-research-academy: 'Must be a New York City Public High School 10th or 11th-grader.' Spring course in research science, then 'opportunity to participate in a Summer Research Internship with a CUNY or CCNY faculty member.' Free; some summer participants may receive a $1,575 stipend; minimum GPA 80 and Regents scores of 75+. Field correction quote: 'Must be a New York City Public High School 10th or 11th-grader'",
+  },
+  "state-nebraska-yns": {
+    blurb: "Young Nebraska Scientists High School Researchers do paid, part-time summer research with university scientists for up to eight weeks. Applicants must be 10th or 11th graders, Nebraska residents, and U.S. citizens or authorized to work, with a teacher recommendation. No housing is provided.",
+    grades: [10,11],
+    cost: "Stipend",
+    evidence: "2026-10-14, https://yns.nebraska.edu/gain-hands-on-experience-in-stem/high-school-research: 'Must be 16 years old, 10th or 11th grader of the current year applying, Must be a Nebraska resident. Must be a US citizen OR have proof of employment authorization.' Paid positions; 'No residential housing options'; part-time (<40 hours per week); eight week research experiences; teacher recommendation required. Field correction quote: '10th or 11th grader of the current year applying ... Must be a Nebraska resident'",
+  },
+  "mountains-to-sound-greenway-trust-conservation-high-school-inter": {
+    blurb: "The Greenway Trust offers paid summer conservation internships for high school students in King County, Washington, including Clean Water Ambassadors, a five-week program on water quality and environmental careers for students 16 and older.",
+    evidence: "2026-10-14, https://mtsgreenway.org/get-involved/education/internships/internships/: Three paid HS internships in King County: Clean Water Ambassadors (16+, five weeks, water quality and environmental careers), YESS (five-week restoration ecology course, 1.0 CTE credit, $1,800 stipend), Burien Green Teens (two weeks, $1,200 stipend, Highline Public Schools students).",
+  },
+  "cla-high-school-internship-program": {
+    blurb: "CLA's paid four-week summer internship places students 16 and older in CLA offices, where they shadow professionals and work on a case study and team projects in accounting, tax, wealth management, digital, and consulting. Applicants must be authorized to work in the U.S.",
+    evidence: "2026-10-14, https://www.claconnect.com/en/careers/high-school-internship: Paid, four-week, in-person; Monday-Thursday; 'must be 16 or older at the start of the experience'; 'authorized to work in the United States without the need for employment-based visa'; case study, shadowing, team projects; laptop assigned.",
+  },
+  "port-of-seattle-high-school-internships": {
+    blurb: "The Port of Seattle offers paid summer and winter internships for students at least 16 who are enrolled in high school, graduated within the past 12 months, or are in a GED program. Interns must be authorized to work in the U.S.",
+    evidence: "2026-10-14, https://www.portseattle.org/programs/high-school-internships: '100 percent of our internships are paid.' 'At least 16 years of age before the beginning of the internship'; enrolled in high school, graduated within 12 months, or in GED completion; authorized to work in the U.S.; summer applications open in May, winter in November.",
+  },
+  "uci-chao-family-comprehensive-cancer-center-high-school-student": {
+    blurb: "UCI's Cancer Research Institute runs a six-week Summer Youth Science Fellowship in which Orange County high school juniors and seniors do mentored research in UCI cancer labs about 30 hours a week and present at a closing poster symposium.",
+    evidence: "2026-10-14, https://cancerresearch.uci.edu/education-and-training/high-school-students/summer-youth-science-fellowship-program/: YSFP: 'six-week summer program'; fellows placed in UCI cancer research labs, ~30 hours/week Mon-Fri; ends with 'scientific poster symposium'; eligibility: juniors or seniors at an Orange County school, chemistry and biology completed, unweighted GPA >= 3.0, not enrolled in other summer programs; ~150 applicants, ~20 accepted. Separate CRI Certificate Program (grades 8-12) of in-person talks.",
+  },
+  "tag-education-collaborative-high-school-summer-internship-progra": {
+    blurb: "Eight-week summer STEM internship in which Georgia high school students are matched with host companies to work on team projects. Open to rising juniors and seniors who are at least 17 and eligible to work in the U.S.; some placements are paid and some are unpaid.",
+    evidence: "2026-10-14, https://tagedonline.org/high-school-summer-internship-program/: 2027 page: for 'rising juniors and seniors' at least 17 by June 1; 'must be eligible to work in the U.S.'; 'eight consecutive weeks'; 'matched with host companies based on their interests and qualifications, working collaboratively on projects with clear goals'; 'paid and unpaid internship opportunities'; apply via job board account, TAG-Ed interview, then host company interview.",
+  },
+  "biobus-junior-scientist-internship": {
+    blurb: "Paid hourly internship where New York City high school students get mentorship from research scientists, build their own research projects, and co-teach BioBus science programs for younger students. Students in grades 9 to 11 who live or attend school in NYC can apply.",
+    evidence: "2026-10-14, https://www.biobus.org/internship/highschool/: 'students currently in grades 9-11 are eligible to apply'; must 'live or attend school in New York City'; interns get mentorship from research scientists, build independent projects, co-teach programs for younger students; paid hourly ($17/hr in 2026); grades/transcripts/recommendations not required; based in Harlem and Lower East Side.",
+  },
+  "kaiser-permanente-kp-launch-high-school-program": {
+    blurb: "Seven-week, full-time paid summer internship at Kaiser Permanente in Northern California, paying $25 per hour. Applicants must be 16 to 19, a current high school student or recent graduate, legally able to work in the U.S., and live in a Northern California Kaiser Permanente service area.",
+    location: "California, USA",
+    evidence: "2026-10-14, https://kplaunch.kaiserpermanente.org/high-school-program/: '$25 per hour'; seven-week summer program, full-time max 40 hours/week; age 16 to 19 by June 1; current high school student or Class of 2027 graduate, juniors and seniors get priority; must legally work in U.S.; 'permanent residence in a Northern California Kaiser Permanente service area'; dependents of KP employees not eligible. Field correction quote: 'must have a permanent residence in a Northern California Kaiser Permanente service area'",
+  },
+  "family-service-paid-summer-internship-program": {
+    blurb: "Paid summer internship for San Antonio teens ages 14 to 17 who live in city council districts 1 to 10. Students get a day of professional development training, interview with employers at a job fair, and are matched with an employer for six to seven weeks.",
+    evidence: "2026-10-14, https://family-service.org/paid-internship/: Ages 14 to 17; 'six to seven weeks long'; must live in city council districts 1-10 and attend listed school districts ('Private, Charter and Home School students' eligible); one day of professional development, job fair interviews, employer match; 'Interns who finish their hours will be provided with a stipend'. Hours conflict on site (max 20/week, 120 total vs 20-35/week).",
+  },
+  "ut-health-san-antonio-programs-for-high-school-students": {
+    blurb: "UT Health San Antonio's Office of Recruitment and Science Outreach lists programs for high school students, including BEAT Academy, an in-person biomedical and health-career program on campus, and a full-time summer research mentorship for Northside ISD students.",
+    evidence: "2026-10-14, https://outreach.uthscsa.edu/programs/high-school/: BEAT Academy: biomedical and health-career program, in person at UT Health Lozano Long Campus (summer 2026 filled). Northside ISD Summer Research Mentorship: 'free to students who are accepted', Mon-Fri 8-5, June to August. Greehey CCRI summer program paused in 2025. Visiting Student Program for high schoolers over 16.",
+  },
+  "natural-areas-conservancy-student-urban-nature-sun-internship": {
+    blurb: "Paid summer urban ecology internship in Forest Park, Queens and the Staten Island Greenbelt. Interns learn plant and animal identification and forest and wetland ecology, collect data, and design their own research project. Open to rising juniors and seniors from Queens or Staten Island who are 16.",
+    grades: [11,12],
+    evidence: "2026-10-14, https://naturalareasnyc.org/high-school-internship/: Paid urban ecology program 'for rising juniors and seniors'; Forest Park, Queens and the Greenbelt on Staten Island; flora/fauna identification, forest and wetland ecology, data collection, own research project on forest health; $16.50/hour in 2026; four field days a week plus remote assignment; must attend high school in or live in Queens or Staten Island; 16 by July 1. Field correction quote: 'rising juniors and seniors'",
+  },
+  "lawrence-hall-of-science-teen-internship-program": {
+    blurb: "Summer internship at UC Berkeley's Lawrence Hall of Science for teens entering 11th or 12th grade. Interns complete workshop trainings before summer, then work a full-time weekday summer placement, with a $3,500 stipend for full participation.",
+    grades: [11,12],
+    evidence: "2026-10-14, https://lawrencehallofscience.org/teen-internship-programs/teen-internship-2026/: For teens 'currently entering 11th or 12th grade' available for full-time summer internships; two parts: 'Workshop Trainings' before summer and the 'Summer Placement'; stipend '$3,500 for full participation' with $72 deduction per missed day; shifts Monday through Friday. Field correction quote: 'currently entering 11th or 12th grade'",
+  },
+  "quantum-systems-accelerator-qcamp-quantum-computing-summer-progr": {
+    blurb: "Free summer day camp on quantum computing, math and physics run by the Quantum Systems Accelerator, held at Berkeley Lab and the University of New Mexico in Albuquerque. Students must be 16 by the start of camp and need only basic algebra; stipends are available.",
+    cost: "Stipend",
+    evidence: "2026-10-14, https://quantumsystemsaccelerator.org/ecosystem/qcamp/: 'QCaMP is free, and stipends are available for students'; in person 'In Albuquerque: UNM PAIS Building, California: On site at LBNL'; 'day camp'; applicants must live near Berkeley, CA or Albuquerque, NM; students must be 16 by start of camp; 'The only prerequisites for this camp are introductory algebra and an interest in learning more'; students cannot attend more than once; taught by researchers from Sandia, Berk… Field correction quote: 'QCaMP is free, and stipends are available for students'",
+  },
+  "ut-southwestern-medical-center-stars-summer-research-program": {
+    blurb: "Eight-week, non-residential summer program at UT Southwestern in Dallas where high school juniors do research in a faculty host's lab and present their results. Applicants must be at least 16 and have no prior research experience. The program is free and pays a stipend.",
+    evidence: "2026-10-14, https://www.utsouthwestern.edu/education/programs/stars/programs/summer-research-opportunities.html: \"Applicants must be at least 16 years old by June 1 ... be currently classified as a junior, and be enrolled in high school\"; \"students with prior research experience are not eligible\"; eight-week non-residential program working with a faculty host in a research lab; stipend provided; present research at end of summer; STARS programs free of charge; open to U.S. citizens/nationals or those eligible to work in the U.…",
+  },
+  "children-s-hospital-colorado-child-health-research-internship": {
+    blurb: "Nine-week research internship with University of Colorado School of Medicine pediatrics mentors, open to Colorado high school seniors who are 18 by the start date, as well as college and medical students. Interns present their work at the end and receive a $4,400 stipend for travel and housing.",
+    grades: [12],
+    evidence: "2026-10-14, https://www.childrenscolorado.org/research-innovation/training-and-internships/: \"Students must be a high school senior over the age of 18, an undergraduate student, graduate student, or a student completing the first year of medical school.\" \"High school students must be Colorado residents.\" \"Students who are under the age of 18 before the internship starts on June 1 will not be eligible.\" Nine-week internship; \"Each intern will be provided a stipend of $4,400 to assist with travel and housing… Field correction quote: 'Students must be a high school senior over the age of 18, an undergraduate student, graduate student, or a student completing the first year of medical school.'",
+  },
 };
 
 export function applyDescriptionCheckOct2026(list: Opportunity[]): void {
