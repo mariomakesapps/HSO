@@ -330,9 +330,9 @@ function remoteMetaBase(): PageMeta {
  */
 export const STATIC_PAGE_META: Record<string, PageMeta> = {
   "/": {
-    title: "High School Internships, Scholarships & Programs | HSO",
+    title: "High School Opportunity (HSO) - Internships, Programs & Scholarships",
     description:
-      "Free U.S. opportunity finder for high schoolers: internships, summer programs, scholarships, research, and competitions — curated and deadline-tracked.",
+      "Find 2,400+ internships, summer programs, scholarships, research programs and competitions for U.S. high school students. Free, deadlines checked.",
     path: "/",
     jsonLd: [
       {
@@ -349,9 +349,9 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
     ],
   },
   "/about": {
-    title: "About HSO | High School Opportunity",
+    title: "About High School Opportunity (HSO) | HSO",
     description:
-      "HSO helps high school students find U.S.-based internships, scholarships, research programs, competitions, and summer programs.",
+      "HSO is a free, student-run directory of internships, summer programs, scholarships and competitions for U.S. high schoolers, and how we check listings.",
     path: "/about",
   },
   "/contact": {
@@ -391,27 +391,27 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
     path: "/collections",
   },
   "/guides/top-medical-internships": {
-    title: "Best Medical Internships for High School Students 2026 | HSO",
+    title: "Best Medical Internships for High Schoolers, Compared | HSO",
     description:
-      "Medical internships and hospital research programs for high school students in the U.S. — eligibility, deadlines, stipends, and how to apply.",
+      "Compare top U.S. medical internships for high schoolers: JHIBS, Stanford SIMR, NIH HiSTEP, Rockefeller SSRP. Selectivity, stipends, deadlines.",
     path: "/guides/top-medical-internships",
   },
   "/guides/top-research-competitions": {
-    title: "Best Research Competitions for High Schoolers 2026 | HSO",
+    title: "Top Research Competitions for High Schoolers, Compared | HSO",
     description:
-      "The research competitions that matter for U.S. high schoolers — Regeneron STS, ISEF, Davidson, and more, with deadlines and entry requirements.",
+      "Compare top U.S. research competitions for high schoolers: Regeneron STS, ISEF, JSHS, Davidson Fellows. Prizes, selectivity, deadlines.",
     path: "/guides/top-research-competitions",
   },
   "/guides/top-business-summer-programs": {
     title: "Best Business Summer Programs for High Schoolers 2026 | HSO",
     description:
-      "Business and entrepreneurship summer programs for U.S. high school students — Wharton, LBW, Diamond Challenge, costs, and application deadlines.",
+      "Wharton Global Youth vs. Berkeley Haas B-BAY and NYU Stern: tuition, selectivity and grade levels for top U.S. business summer programs.",
     path: "/guides/top-business-summer-programs",
   },
   "/guides/high-school-law-internships": {
     title: "High School Law Internships: How to Find One | HSO",
     description:
-      "How high school students find law internships and legal shadowing in the U.S. — courts, public defenders, legal aid, and pre-law summer programs.",
+      "Find high school law internships in the U.S.: DOJ and bar programs, pre-law academies, outreach scripts for local firms, and deadlines.",
     path: "/guides/high-school-law-internships",
   },
   // Account-only surfaces: useful to users, worthless to search, and they

@@ -1094,4 +1094,14 @@ export const OCT14_DECISION_FIXES: Record<string, Partial<Opportunity>> = {
   "the-art-institute-of-chicago-internships": { url: "https://www.artic.edu/learn-with-us/teens/opportunities-for-teens" },
   "oregon-student-aid-oregon-promise-grant": { opensAt: null }, // "mid-October", no exact date
   "national-history-day-vermont-history-day-state-contest": { opensAt: null }, // not on any official page
+  // Oct 15 link-checker pass: verified moved pages (old URLs redirect or are stale)
+  "nyu-arise": { url: "https://k12stem.engineering.nyu.edu/programs/arise" },
+  "salk-institute-for-biological-studies-salk-education-outreach-hi": { url: "https://www.salk.edu/about/education-outreach/" },
+  "ornl": { url: "https://www.orau.org/arc-ornl/high-school" },
+  "kenyon": { url: "https://kenyonreview.org/high-school-workshops/" },
+  "the-american-legion-department-of-maryland-maryland-boys-state": { url: "https://mdlegion.org/boysstate" },
+  "wyoming-arts-council-poetry-out-loud-wyoming": { url: "https://wyoarts.state.wy.us/programs/poetry-out-loud/" },
+  "csv-sch-the-alert-scholarship": { url: "https://www.alertmagazine.org/scholarship/" }, // official page, replaces Peterson's aggregator
+  "amnh-scip": { title: "Science Communication Internship Program" }, // "Science and Nature Program" is AMNH's K-5 programme
+  "the-american-legion-department-of-washington-evergreen-boys-stat": { title: "Evergreen Boys & Girls State", cost: "Paid", blurb: "Week-long residential programme in how state government works, run by The American Legion Department of Washington and now co-ed. Delegates build a mock state, elect officials and debate bills. High schools and local posts nominate students who have completed their junior year. Tuition is $700, with sponsorship and tuition help available through local posts." },
 };
