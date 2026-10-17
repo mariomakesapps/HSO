@@ -8,6 +8,7 @@ import { hsoAdditionsSep2026, applyHsoUpdateSep2026, isRemovedBySep2026Review } 
 import { LOCATION_FIXES } from "@/data/locationFixes";
 import { applyDataHygiene } from "@/data/dataHygiene";
 import { OCT2026_ADDITIONS, OCT2026_FIXES, OCT2026_REMOVED, OCT14_FIXES, OCT14_REMOVED, OCT14_DECISION_FIXES } from "@/data/hsoUpdateOct2026.generated";
+import { OCT17_ADDITIONS, OCT17_FIXES, OCT17_REMOVED } from "@/data/hsoUpdateOct17.generated";
 import {
   normalizeOpportunityUrl,
   removedOpportunityUrls,
@@ -395,6 +396,7 @@ export const opportunities: Opportunity[] = [
   ...submittedOpportunities,
   ...hsoAdditionsSep2026,
   ...OCT2026_ADDITIONS.map((o) => ({ ...o })),
+  ...OCT17_ADDITIONS.map((o) => ({ ...o })),
 ];
 
 for (const opportunity of opportunities) {
@@ -480,6 +482,8 @@ for (const opportunity of opportunities) {
   if (checked) Object.assign(opportunity, checked);
   const decided = OCT14_DECISION_FIXES[opportunity.id];
   if (decided) Object.assign(opportunity, decided);
+  const latest = OCT17_FIXES[opportunity.id];
+  if (latest) Object.assign(opportunity, latest);
 }
 
 // Normalise city-only locations ("Cambridge, USA" -> "Cambridge, Massachusetts, USA")
@@ -501,7 +505,8 @@ export const allOpportunities: Opportunity[] = opportunities.filter((o) =>
   !removedOpportunityUrls.has(normalizeOpportunityUrl(o.url)) &&
   !isRemovedBySep2026Review(o.id) &&
   !(o.id in OCT2026_REMOVED) &&
-  !(o.id in OCT14_REMOVED)
+  !(o.id in OCT14_REMOVED) &&
+  !(o.id in OCT17_REMOVED)
 );
 
 

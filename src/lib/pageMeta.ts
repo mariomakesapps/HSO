@@ -4,6 +4,7 @@ import { NYC_META, NYC_PATH, isBulkDirectoryImport, nycAfterSchoolByBorough, nyc
 import { detailFor } from "@/data/opportunityDetails";
 import { REMOTE_META, REMOTE_PATH, remoteOpportunities } from "@/lib/remote";
 import { OCT2026_LISTING_SEO, OCT2026_NOINDEX, OCT2026_PAGE_SEO } from "@/data/hsoUpdateOct2026.generated";
+import { OCT17_LISTING_SEO } from "@/data/hsoUpdateOct17.generated";
 import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
 
 export const SITE_URL = "https://highschoolopportunity.org";
@@ -73,7 +74,7 @@ function withPageSeo(meta: PageMeta): PageMeta {
 }
 
 export function opportunityMeta(opp: Opportunity): PageMeta {
-  const reviewed = OCT2026_LISTING_SEO[opp.id];
+  const reviewed = OCT17_LISTING_SEO[opp.id] ?? OCT2026_LISTING_SEO[opp.id];
   const url = `${SITE_URL}${opportunityPath(opp.id)}`;
   const detail = detailFor(opp.id);
   const name = DUPLICATE_TITLES.has(opp.title) ? `${opp.title} — ${opp.org}` : opp.title;
