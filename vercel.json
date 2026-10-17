@@ -48,6 +48,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/clicked-learning-head-positions",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/comcast-leaders-achievers",
       "destination": "/categories/scholarships",
       "permanent": true
@@ -109,6 +114,11 @@
     },
     {
       "source": "/opportunities/csv-sch-sezzle-scholarship",
+      "destination": "/categories/scholarships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/csv-sch-the-alert-scholarship",
       "destination": "/categories/scholarships",
       "permanent": true
     },
@@ -188,6 +198,21 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/hinksey-business-essay-competition",
+      "destination": "/categories/competitions",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/hinksey-clubs",
+      "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/hinksey-research-scholars",
+      "destination": "/categories/research",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/hopkins-med",
       "destination": "/categories/internships",
       "permanent": true
@@ -215,6 +240,11 @@
     {
       "source": "/opportunities/mclean-mentorship",
       "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/montana-technological-university-summer-environmental-engineerin",
+      "destination": "/categories/summer-programs",
       "permanent": true
     },
     {
@@ -258,8 +288,28 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/saint-louis-university-stars-slu",
+      "destination": "/categories/summer-programs",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/science-olympiad-minnesota-science-olympiad",
+      "destination": "/categories/competitions",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/science-olympiad-new-hampshire-science-olympiad",
+      "destination": "/categories/competitions",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/sfmoma-internship-program",
       "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/shriners-childrens-philadelphia-medical-research-summer-immersio",
+      "destination": "/categories/summer-programs",
       "permanent": true
     },
     {
@@ -270,6 +320,11 @@
     {
       "source": "/opportunities/solomon-leadership-nyc",
       "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/sortmyprep-founders-office",
+      "destination": "/categories/internships",
       "permanent": true
     },
     {
@@ -298,6 +353,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/the-ohio-state-university-college-of-medicine-explorations-in-ne",
+      "destination": "/categories/research",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/the-university-of-alabama-at-birmingham-pre-college-research-int",
       "destination": "/categories/internships",
       "permanent": true
@@ -323,8 +383,18 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/world-affairs-council-of-jacksonville-high-school-internships-at",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/worldquant",
       "destination": "/categories/competitions",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/yefa-chapter-founder-program",
+      "destination": "/categories/fellowships",
       "permanent": true
     },
     {
@@ -335,6 +405,11 @@
     {
       "source": "/opportunities/zero-robotics",
       "destination": "/categories/competitions",
+      "permanent": true
+    },
+    {
+      "source": "/categories/internships/page/9",
+      "destination": "/categories/internships/page/8",
       "permanent": true
     },
     {

@@ -11,6 +11,22 @@
  * so the redirect happens at the edge before any JavaScript runs.
  */
 export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
+  // Removed 2026-10-17: sketchy or non-program links (Google Forms, aggregator, old blog/news pages,
+  // personal or free-builder sites, an unverifiable startup). Reasons in hsoUpdateOct2026.ts.
+  "clicked-learning-head-positions": "/categories/internships",
+  "sortmyprep-founders-office": "/categories/internships",
+  "yefa-chapter-founder-program": "/categories/fellowships",
+  "hinksey-clubs": "/categories/fellowships",
+  "hinksey-business-essay-competition": "/categories/competitions",
+  "hinksey-research-scholars": "/categories/research",
+  "world-affairs-council-of-jacksonville-high-school-internships-at": "/categories/internships",
+  "the-ohio-state-university-college-of-medicine-explorations-in-ne": "/categories/research",
+  "shriners-childrens-philadelphia-medical-research-summer-immersio": "/categories/summer-programs",
+  "montana-technological-university-summer-environmental-engineerin": "/categories/summer-programs",
+  "saint-louis-university-stars-slu": "/categories/summer-programs",
+  "science-olympiad-minnesota-science-olympiad": "/categories/competitions",
+  "science-olympiad-new-hampshire-science-olympiad": "/categories/competitions",
+  "csv-sch-the-alert-scholarship": "/categories/scholarships",
   // Removed 2026-10-14: college or adult only (official pages quoted in hsoUpdateOct2026.ts). Nothing
   // in the catalogue replaces them, so each goes to its category.
   "davis-projects": "/categories/fellowships",

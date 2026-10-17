@@ -62,6 +62,14 @@ feed was changed.
   now passed (Cal Grant, National Science Bowl, NACLO, USAMTS, Wyoming Summer High School Institute,
   San Diego Museum of Art Teen Council, NC Health Careers Day). The dates stay in the deadline and
   opening-date fields; only the sentence was dropped.
+- **Removed for sketchy links (2026-10-17, at your request)**: 14 listings whose only link was a
+  Google Form or Jotform table (Clicked Learning, SortMyPrep, YEFA Chapter Founder), an unverifiable
+  startup (Hinksey Labs: Clubs, Business Essay Competition, Research Scholars), an aggregator (the
+  Alert Scholarship on Peterson's), a 2016 blog post (GlobalJax internships), news or past-event
+  pages (Ohio State Explorations in Neuroscience, Shriners Philadelphia, Montana Tech camp), a GitHub
+  Pages site (STARS@SLU), a personal Wix site (Minnesota Science Olympiad) and a retired classic
+  Google Sites page (New Hampshire Science Olympiad). Each old page 301s to its category. State
+  chapter sites on Google Sites, Wix or Weebly under the chapter's own name were kept.
 - **Wrong filters fixed**: Aspirnaut was filed under Michigan; it is Vanderbilt, Nashville TN.
   The Boswell scholarship (seniors only) showed under grade 11.
 
@@ -75,7 +83,6 @@ feed was changed.
 | `ge-reagan` | The page shows only "Notify Me for 2027". The foundation now also runs a GE Aerospace-Reagan Workforce Readiness Scholarship. | Check which one the listing should point to. |
 | `gates` | The 2026 cycle closed on 2026-09-15. Older pages say "through 2026", so a 2027 cycle is not confirmed. | Watch; remove if no 2027 cycle is announced. |
 | `north-dakota-state-university-north-dakota-governors-school` | NDSU says the program runs every other summer, so there may be no 2027 session. | Confirm, then mark it as biennial in the blurb. |
-| `csv-sch-the-alert-scholarship` | Links to Peterson's (an aggregator), not the official page. | Replace with the official Alert Magazine page. |
 | `nyu-arise`, `university-of-chicago-research-in-the-biological-sciences-ribs`, `auburn-…-alabama-sc…`, `stanford-medical-youth-science-program-smysp`, `salk-…` | The official pages appear to have moved (new paths are given in the agent notes). The old links were not confirmed dead. | Run the link checker on these. |
 | `davis-projects` (Projects for Peace) | Applicants must be enrolled at a partner college or university. | Remove. |
 | `state-hawaii-hycc` | Kupu says enrollment in the summer program is paused, with no end date. | Hide until it reopens. |
