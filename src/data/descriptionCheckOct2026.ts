@@ -789,6 +789,23 @@ export const descriptionCheckOct2026: Record<string, DescriptionRow> = {
     wordingOnly: true,
     evidence: "2026-10-15: removed a dated sentence that had gone stale; the date stays in the listing's deadline/opensAt fields.",
   },
+  // 2026-10-17 wording: stale or wrong statements removed (an old competition year, a cycle that has since been
+  // announced, a program length the official page contradicts). No new facts.
+  "csv-sch-elks-national-foundation-scholarship": {
+    blurb: "The Elks National Foundation awards 500 four-year college scholarships each year to the highest-rated applicants in its Most Valuable Student competition.",
+    wordingOnly: true,
+    evidence: "2026-10-17: removed a statement the official page no longer supports.",
+  },
+  "fisher-house-foundation-scholarships-for-military-children": {
+    blurb: "College scholarship program for children of active-duty, reserve, retired and deceased U.S. service members, awarded through military commissaries.",
+    wordingOnly: true,
+    evidence: "2026-10-17: removed a statement the official page no longer supports.",
+  },
+  "state-delaware-edge": {
+    blurb: "College-credit summer program for rising juniors and seniors at the University of Delaware.",
+    wordingOnly: true,
+    evidence: "2026-10-17: removed a statement the official page no longer supports.",
+  },
 };
 
 export function applyDescriptionCheckOct2026(list: Opportunity[]): void {

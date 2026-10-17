@@ -103,6 +103,38 @@ export const hsoReviewOct2026: Record<string, HsoReviewSep2026> = {
   "state-kentucky-gsp": { blurb: "Free five-week residential summer academic and leadership program for Kentucky high school juniors, at college campuses across the state (2027 sessions run between June 19 and July 31). The application is open now, but each high school sets its own earlier deadline; ask your school's Governor's Scholars counselor. State cutoffs are January 15, 2027 (single-school districts, private and homeschool) and January 29, 2027 (multi-school districts).", evidence: "2026-10-09, gsp.ky.gov Important Dates and FAQ: 'GSP Application is now open'; applications must be completed online by the deadline set by the student's school; state cutoffs January 15, 2027 and January 29, 2027; 2027 sessions June 19-July 23, June 20-July 24 and June 27-July 31." },
   "nc-governors-school": { blurb: "Four-week residential summer program for North Carolina rising seniors (and rising juniors in dance, choral or instrumental music), June 20 - July 17, 2027. Students cannot apply directly to the state: the application goes through your school counselor, AIG specialist or local Governor's School coordinator, with local deadlines this fall. Arts applicants also submit an audition link.", evidence: "2026-10-09, dpi.nc.gov application and selection page and ncgovschool.org: the 2027 application and recommendation form were released in September 2026; local deadlines fall in fall 2026; the 2027 program runs June 20 to July 17, 2027; applications go to local school personnel, not the state; applicants must be enrolled in grade 11 (grades 10-11 for dance, choral and instrumental music)." },
   "congressional-award": { category: "Competition", evidence: "2026-10-07: the automatic category cleanup read 'volunteer service' in the blurb and filed the Congressional Award as Volunteer, which hid it from the catalogue. It is an award students earn and apply for (Bronze, Silver and Gold certificates and medals), not a volunteer shift, so it goes back to its original category." },
+  // Removed 2026-10-17 at the owner's request: programs that ended, are paused, or whose official page is gone.
+  "artswestchester-internship": { removed: true, evidence: "2026-10-17: ArtsWestchester's intern page: 'the internship and volunteer program are undergoing a restructuring process, and we do not have any opportunities available now'." },
+  "state-hawaii-hycc": { removed: true, evidence: "2026-10-17: kupuhawaii.org: 'Hawai'i Youth Conservation Corps Summer Program enrollment is paused at this time to prepare for future program improvements and new opportunities.'" },
+  "mcny-reach": { removed: true, evidence: "2026-10-17: mcny.org: the newest dated REACH offering is spring 2023; no 2025-26 or later cycle is posted." },
+  "northwestern-university-feinberg-school-of-medicine-kimberly-que": { removed: true, evidence: "2026-10-17: Feinberg STEM programs page: 'applications from winter 2025 are being prioritized, and new submissions are not being accepted for the upcoming summer'." },
+  "ignite-paid-internship": { removed: true, evidence: "2026-10-17: ignitefindyourfire.org is a mentorship program for grades 4-8; no high school paid internship or pay rates appear on its official pages." },
+  "syp-utexas": { removed: true, evidence: "2026-10-17: The title (Bridging Disciplines Programs) is a UT Austin program for degree-seeking undergraduates only, and the link is UT High School's online course catalogue. Neither is a summer program for high schoolers." },
+  "university-of-central-florida-competitive-programming-summer-ins": { removed: true, evidence: "2026-10-17: UCF: 'the Competitive Programming Summer Institute will not be held in 2026'; no 2027 session is announced." },
+  "teachers-and-writers-collaborative-with-the-new-york-state-counc": { removed: true, evidence: "2026-10-17: T&W: 'New York State will not participate in the national Poetry Out Loud program this year'; it is replaced by New York State of Poetry." },
+  "florida-division-of-arts-and-culture-poetry-out-loud-florida": { removed: true, evidence: "2026-10-17: The linked USF page says USF is no longer the organizer of the Florida contest, and no new official page was found." },
+  "university-of-michigan-rogel-cancer-center-healthcare-experience": { removed: true, evidence: "2026-10-17: No official University of Michigan page for the HERO program could be found; the linked page could not be confirmed." },
+  "ncf-envirothon-arkansas-envirothon": { removed: true, evidence: "2026-10-17: arkansasenvirothon.net returns no pages, and no current Arkansas Envirothon page or dates were found." },
+  "junior-science-and-humanities-symposium-missouri-jshs": { removed: true, evidence: "2026-10-17: The Missouri region page on jshs.org could not be found, and the host's page said Missouri JSHS was suspended until further notice." },
+  // 2026-10-17: links moved, a passed round, and filter fields that contradicted the listing's own text.
+  "mit-launch": { url: "https://www.launchx.com/programs", evidence: "2026-10-17, launchx.com: the programs page lists the 2027 summer programs (applications opened October 1, 2026); the old link was a template path that no longer appears on the site." },
+  "kenyon": { url: "https://kenyonreview.org/high-school-workshops/", evidence: "2026-10-17, kenyonreview.org: the 2027 high school workshops (winter, online and residential) are posted at /high-school-workshops/; the old /workshops/young-writers/ path no longer appears." },
+  "the-art-institute-of-chicago-internships": { url: "https://www.artic.edu/learn-with-us/teens/opportunities-for-teens", evidence: "2026-10-17, artic.edu: the listed careers/internships page is for college-level internships; the paid teen summer internships ('limited to Chicago high school teens who will be at least 16') are on the teens page." },
+  "wyoming-arts-council-poetry-out-loud-wyoming": { url: "https://wyoarts.state.wy.us/programs/poetry-out-loud/", evidence: "2026-10-17, wyoarts.state.wy.us: the program page is now /programs/poetry-out-loud/, with the 2026-27 cycle and state finals on March 1, 2027." },
+  "art-of-problem-solving-initiative-usa-mathematical-talent-search": { deadline: "2026-11-30", evidence: "2026-10-17, usamts.org: Round 1 was due October 13; Round 2 solutions are due November 30, 2026, and students can still join." },
+  "columbia-precollege-ay-weekend-early": { format: "Online", evidence: "2026-10-17: the listing's own checked description says 'Seven Saturdays of live online Columbia coursework'." },
+  "delamed-dpha-fall": { format: "Online", evidence: "2026-10-17: the listing's checked description says 'The high school programme is entirely virtual'." },
+  "the-intern-project-the-intern-project-tip": { cost: "Stipend", evidence: "2026-10-17: the listing describes a 'paid internship programme'; Free contradicted that." },
+  "csv-sch-uft-scholarship-fund": { location: "New York, New York, USA", evidence: "2026-10-17: 'All New York City public high school seniors can apply', so it is not a nationwide listing." },
+  "profile-courage": { category: "Competition", evidence: "2026-10-17: an essay contest with prizes; filed as Competition so it appears under the Competitions filter." },
+  "afsa-essay": { category: "Competition", evidence: "2026-10-17: an essay contest with prizes; filed as Competition so it appears under the Competitions filter." },
+  "american-legion-oratorical": { category: "Competition", evidence: "2026-10-17: a speech contest with scholarship prizes; filed as Competition." },
+  "optimist-oratorical": { category: "Competition", evidence: "2026-10-17: a speech contest with scholarship prizes; filed as Competition." },
+  "csv-sch-optimist-international-essay-contest": { category: "Competition", evidence: "2026-10-17: an essay contest with scholarship prizes; filed as Competition." },
+  "ymf": { category: "Fellowship", evidence: "2026-10-17: the listing is the From the Top Learning and Media Lab Fellowship, not a competition." },
+  "argonne": { category: "Research", evidence: "2026-10-17: a school-year team research project with an Argonne scientist, not an individual internship." },
+  "state-nebraska-yns": { category: "Research", evidence: "2026-10-17: the linked page is the paid High School Researcher positions (summer research with university scientists)." },
+  "university-of-california-science-internship-program-sip": { format: "Hybrid", evidence: "2026-10-17: the listing's checked description offers 'an option to attend remotely'." },
   // Removed 2026-10-17 at the owner's request: listings whose only link is sketchy or not a real program page.
   "clicked-learning-head-positions": { removed: true, evidence: "2026-10-17: The only link is a Google Form recruiting volunteers for a student-run organisation. There is no program page that says what students do or who runs it." },
   "sortmyprep-founders-office": { removed: true, evidence: "2026-10-17: The only link is a Google Form (forms.gle) for a startup asking high schoolers to do 4-6 hours a week of marketing and growth work. No program page and no organisation page to check." },
@@ -163,6 +195,9 @@ const gradeFixesOct2026: Record<string, number[]> = {
   "csv-sch-women-at-microsoft-scholarship": [12],
   "nyo": [10, 11, 12],
   "nyojazz": [10, 11, 12],
+  // 2026-10-17, from the listings' checked descriptions: "currently in grades 9 to 11"; "grades 9 to 11 ... can apply".
+  "wharton-global": [9, 10, 11],
+  "biobus-junior-scientist-internship": [9, 10, 11],
 };
 
 /** True for listings this review removed; used by the allOpportunities filter. */

@@ -70,6 +70,21 @@ feed was changed.
   Pages site (STARS@SLU), a personal Wix site (Minnesota Science Olympiad) and a retired classic
   Google Sites page (New Hampshire Science Olympiad). Each old page 301s to its category. State
   chapter sites on Google Sites, Wix or Weebly under the chapter's own name were kept.
+- **Removed as ended or unreachable (2026-10-17)**: ArtsWestchester internships (on hold), Hawaii Youth
+  Conservation Corps (paused), MCNY REACH (nothing since 2023), Northwestern Kimberly Querrey (not taking new
+  applicants), Ignite (no high school paid internship on its site), `syp-utexas` (undergraduate program,
+  wrong link), UCF Competitive Programming Summer Institute (not held in 2026), Poetry Out Loud New York
+  (state withdrew) and Florida (organizer gone), Michigan Rogel HERO (no official page), Arkansas Envirothon
+  (site returns nothing), Missouri JSHS (region page gone). Each old page 301s to its category.
+- **Links and dates updated (2026-10-17)**: LaunchX, Kenyon Young Writers, Art Institute of Chicago teen
+  internships, Wyoming Poetry Out Loud; USAMTS now shows Round 2 (November 30).
+- **Filters aligned (2026-10-17)**: every specific subject tag also carries its main subject (Music and Film
+  count as Arts, Physics as STEM, Finance as Business), and the subject filter shows only the 17 main
+  subjects instead of about 100 one-off tags. Five essay and speech contests moved from Scholarship to
+  Competition; From the Top to Fellowship; Argonne ESRP and Young Nebraska Scientists to Research. Format,
+  cost, grade and location fixes where the listing's own checked text contradicted the field (Columbia
+  weekend and Delaware Academy of Medicine are online, UCSC SIP hybrid, The Intern Project paid, Wharton
+  Global Youth and BioBus grades 9-11, UFT scholarship NYC only).
 - **Wrong filters fixed**: Aspirnaut was filed under Michigan; it is Vanderbilt, Nashville TN.
   The Boswell scholarship (seniors only) showed under grade 11.
 

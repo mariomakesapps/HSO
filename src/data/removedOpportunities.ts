@@ -11,6 +11,19 @@
  * so the redirect happens at the edge before any JavaScript runs.
  */
 export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
+  // Removed 2026-10-17: ended, paused, or no live official page (reasons in hsoUpdateOct2026.ts).
+  "artswestchester-internship": "/categories/internships",
+  "state-hawaii-hycc": "/categories/internships",
+  "mcny-reach": "/categories/fellowships",
+  "northwestern-university-feinberg-school-of-medicine-kimberly-que": "/categories/internships",
+  "ignite-paid-internship": "/categories/internships",
+  "syp-utexas": "/categories/summer-programs",
+  "university-of-central-florida-competitive-programming-summer-ins": "/categories/summer-programs",
+  "teachers-and-writers-collaborative-with-the-new-york-state-counc": "/categories/competitions",
+  "florida-division-of-arts-and-culture-poetry-out-loud-florida": "/categories/competitions",
+  "university-of-michigan-rogel-cancer-center-healthcare-experience": "/categories/summer-programs",
+  "ncf-envirothon-arkansas-envirothon": "/categories/competitions",
+  "junior-science-and-humanities-symposium-missouri-jshs": "/categories/competitions",
   // Removed 2026-10-17: sketchy or non-program links (Google Forms, aggregator, old blog/news pages,
   // personal or free-builder sites, an unverifiable startup). Reasons in hsoUpdateOct2026.ts.
   "clicked-learning-head-positions": "/categories/internships",

@@ -18,6 +18,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/artswestchester-internship",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/ascend",
       "destination": "/categories/internships",
       "permanent": true
@@ -163,6 +168,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/florida-division-of-arts-and-culture-poetry-out-loud-florida",
+      "destination": "/categories/competitions",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/foot-locker-scholar-athletes",
       "destination": "/categories/fellowships",
       "permanent": true
@@ -218,6 +228,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/ignite-paid-internship",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/johns-hopkins-school-of-medicine-summer-internship-program",
       "destination": "/categories/internships",
       "permanent": true
@@ -225,6 +240,11 @@
     {
       "source": "/opportunities/jpl",
       "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/junior-science-and-humanities-symposium-missouri-jshs",
+      "destination": "/categories/competitions",
       "permanent": true
     },
     {
@@ -243,6 +263,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/mcny-reach",
+      "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/montana-technological-university-summer-environmental-engineerin",
       "destination": "/categories/summer-programs",
       "permanent": true
@@ -254,6 +279,16 @@
     },
     {
       "source": "/opportunities/national-gallery-of-art-summer-internships",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/ncf-envirothon-arkansas-envirothon",
+      "destination": "/categories/competitions",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/northwestern-university-feinberg-school-of-medicine-kimberly-que",
       "destination": "/categories/internships",
       "permanent": true
     },
@@ -338,6 +373,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/state-hawaii-hycc",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/state-maryland-histep",
       "destination": "/categories/internships",
       "permanent": true
@@ -348,8 +388,18 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/syp-utexas",
+      "destination": "/categories/summer-programs",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/tasp",
       "destination": "/categories/summer-programs",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/teachers-and-writers-collaborative-with-the-new-york-state-counc",
+      "destination": "/categories/competitions",
       "permanent": true
     },
     {
@@ -365,6 +415,16 @@
     {
       "source": "/opportunities/u-s-department-of-state-virtual-student-federal-service-vsfs",
       "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/university-of-central-florida-competitive-programming-summer-ins",
+      "destination": "/categories/summer-programs",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/university-of-michigan-rogel-cancer-center-healthcare-experience",
+      "destination": "/categories/summer-programs",
       "permanent": true
     },
     {

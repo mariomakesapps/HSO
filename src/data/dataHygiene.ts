@@ -140,12 +140,64 @@ export const GRADE_FIXES: Record<string, number[]> = {
   "harborview-injury-prevention-and-research-center-university-of-w": [10, 11, 12],
 };
 
+/**
+ * Subject tags.
+ *
+ * The importers and hand-written rows used about a hundred different subject words ("Music",
+ * "Film", "Art" and "Arts"; "Health", "Healthcare", "Public Health" and "Medicine"), and the
+ * subject filter lists every one of them. A student who picks "Arts" then misses every program
+ * tagged only "Music". Each specific tag below also gets its main subject, so filtering by the
+ * main subject finds them. Nothing is removed: the specific tag stays on the listing (topic
+ * pages and related listings still match on it).
+ */
+export const MAIN_SUBJECTS = [
+  "STEM", "Math", "Computer Science", "Biology", "Engineering", "Medicine", "Environment",
+  "Business", "Policy", "Humanities", "Writing", "Arts", "Leadership", "Research", "Career", "Trades", "Education",
+] as const;
+
+const SUBJECT_PARENTS: Record<string, string[]> = {
+  Health: ["Medicine"], Healthcare: ["Medicine"], "Public Health": ["Medicine"], "Pre-Med": ["Medicine"],
+  "Cancer Research": ["Medicine", "Biology", "Research"], Neuroscience: ["Biology", "STEM"],
+  Genetics: ["Biology", "STEM"], "Systems Biology": ["Biology", "STEM"], "Plant Science": ["Biology", "STEM"],
+  "Marine Science": ["Biology", "Environment", "STEM"], Ecology: ["Biology", "Environment", "STEM"],
+  Chemistry: ["STEM"], Physics: ["STEM"], Astronomy: ["STEM"], "Earth Science": ["STEM", "Environment"], Science: ["STEM"],
+  "Materials Science": ["Engineering", "STEM"], Aerospace: ["Engineering", "STEM"], Robotics: ["Engineering", "STEM"],
+  Manufacturing: ["Engineering", "Trades"], Automotive: ["Trades"], Construction: ["Trades"],
+  "Data Science": ["Computer Science", "STEM"], AI: ["Computer Science", "STEM"], Cybersecurity: ["Computer Science", "STEM"],
+  Programming: ["Computer Science", "STEM"], "Game Design": ["Computer Science", "Arts"], Technology: ["STEM"],
+  "Smart Cities": ["Engineering", "STEM"], Modeling: ["STEM"], "Women in STEM": ["STEM"],
+  Conservation: ["Environment"], Sustainability: ["Environment"], "Natural Resources": ["Environment"],
+  Agriculture: ["Environment"], "Outdoor Education": ["Environment"],
+  Art: ["Arts"], Music: ["Arts"], Film: ["Arts"], Photography: ["Arts"], Design: ["Arts"], Animation: ["Arts"],
+  Fashion: ["Arts"], Performance: ["Arts"], Video: ["Arts"], Audio: ["Arts"], "Public Art": ["Arts"],
+  Architecture: ["Arts", "Engineering"], Curation: ["Arts"], Museums: ["Arts", "Humanities"],
+  Finance: ["Business"], Economics: ["Business"], Entrepreneurship: ["Business"], Accounting: ["Business"],
+  Marketing: ["Business"], Hospitality: ["Business"], "Event Planning": ["Business"],
+  Civics: ["Policy"], Civic: ["Policy"], "Civic Leadership": ["Policy", "Leadership"], Government: ["Policy"],
+  Politics: ["Policy"], Law: ["Policy"], Diplomacy: ["Policy"], Global: ["Policy"],
+  Journalism: ["Writing"], "Creative Writing": ["Writing"], Communications: ["Writing"], Communication: ["Writing"],
+  Media: ["Writing", "Arts"], Literature: ["Writing", "Humanities"],
+  History: ["Humanities"], Philosophy: ["Humanities"], Languages: ["Humanities"], Linguistics: ["Humanities"],
+  Ethics: ["Humanities"], Libraries: ["Humanities"],
+  "Public Speaking": ["Leadership"], "Social Impact": ["Leadership"], Service: ["Leadership"], Community: ["Leadership"],
+  "Personal Development": ["Leadership"], Nonprofit: ["Leadership"],
+  "College Access": ["Education"], "College Credit": ["Education"], "Test Prep": ["Education"], Tutoring: ["Education"],
+  Literacy: ["Education"],
+};
+
+export function addMainSubjects(fields: string[]): string[] {
+  const out = [...fields];
+  for (const f of fields) for (const parent of SUBJECT_PARENTS[f] ?? []) if (!out.includes(parent)) out.push(parent);
+  return out;
+}
+
 /** Apply every rule above to one listing, in place. */
 export function applyDataHygiene(o: Opportunity): void {
   if (o.title) o.title = collapseSpaces(o.title);
   if (o.org) o.org = collapseSpaces(o.org);
   if (o.blurb) o.blurb = endWithStop(repairTruncation(spaceAfterCommas(collapseSpaces(o.blurb))));
   if (o.url) o.url = cleanUrl(o.url);
+  if (o.fields) o.fields = addMainSubjects(o.fields);
   const grades = GRADE_FIXES[o.id];
   if (grades) o.grades = [...grades];
 }

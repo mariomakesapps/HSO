@@ -1,3 +1,4 @@
+import { MAIN_SUBJECTS } from "@/data/dataHygiene";
 import { allOpportunities } from "@/data/opportunities";
 import { MultiFilterDropdown } from "@/components/MultiFilterDropdown";
 
@@ -92,7 +93,10 @@ const STATES = [
   "District of Columbia",
 ] as const;
 
-const FILTER_FIELDS = Array.from(new Set(allOpportunities.flatMap((o) => o.fields))).sort();
+// Only the main subjects: every specific tag also carries its main subject (dataHygiene), so these
+// cover the whole catalogue without a hundred one-off options.
+const PRESENT_FIELDS = new Set(allOpportunities.flatMap((o) => o.fields));
+const FILTER_FIELDS = MAIN_SUBJECTS.filter((f) => PRESENT_FIELDS.has(f)).sort();
 
 /**
  * "Nationwide" is offered alongside the states because a national program is
