@@ -92,7 +92,20 @@ const STATES = [
   "District of Columbia",
 ] as const;
 
-const FILTER_FIELDS = Array.from(new Set(allOpportunities.flatMap((o) => o.fields))).sort();
+// Only the main subjects. Listings carry their main subject alongside any specific tag
+// ("Music" also has "Arts", "Physics" also has "STEM"), so these options cover the
+// catalogue without a hundred one-off choices. A listing that has no main subject yet
+// keeps its own tags in the list, so it can always be found; once every listing has a
+// main subject, only the main subjects are shown.
+const MAIN_SUBJECTS = [
+  "STEM", "Math", "Computer Science", "Biology", "Engineering", "Medicine", "Environment",
+  "Business", "Policy", "Humanities", "Writing", "Arts", "Leadership", "Research", "Career", "Trades", "Education",
+];
+const PRESENT_FIELDS = new Set(allOpportunities.flatMap((o) => o.fields));
+const UNGROUPED_FIELDS = new Set(
+  allOpportunities.filter((o) => !o.fields.some((f) => MAIN_SUBJECTS.includes(f))).flatMap((o) => o.fields),
+);
+const FILTER_FIELDS = [...MAIN_SUBJECTS.filter((f) => PRESENT_FIELDS.has(f)), ...UNGROUPED_FIELDS].sort();
 
 /**
  * "Nationwide" is offered alongside the states because a national program is
