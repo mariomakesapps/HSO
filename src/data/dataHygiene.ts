@@ -63,6 +63,9 @@ export function repairTruncation(s: string): string {
   let body = t.replace(/\s*(\.\.\.|…)$/, "");
 
   const tail = (x: string) => (x.trim().split(/\s+/).pop() ?? "").replace(/[^\w-]/g, "");
+  // A preposition can legitimately end a complete sentence ("care about.").
+  // Only strip dangling words when the source lacks terminal punctuation.
+  if (!hadEllipsis && /[.!?][)"'’”]*$/.test(t)) return t;
   if (!hadEllipsis && !CANNOT_END.test(tail(body))) return t;
 
   if (hadEllipsis) {
