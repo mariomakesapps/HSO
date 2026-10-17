@@ -58,6 +58,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/columbia-precollege-ay-weekend",
+      "destination": "/opportunities/columbia-precollege-ay-weekend-early",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/comcast-leaders-achievers",
       "destination": "/categories/scholarships",
       "permanent": true

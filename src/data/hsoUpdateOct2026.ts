@@ -130,7 +130,7 @@ export const hsoReviewOct2026: Record<string, HsoReviewSep2026> = {
   "the-art-institute-of-chicago-internships": { url: "https://www.artic.edu/learn-with-us/teens/opportunities-for-teens", evidence: "2026-10-17, artic.edu: the listed careers/internships page is for college-level internships; the paid teen summer internships ('limited to Chicago high school teens who will be at least 16') are on the teens page." },
   "wyoming-arts-council-poetry-out-loud-wyoming": { url: "https://wyoarts.state.wy.us/programs/poetry-out-loud/", evidence: "2026-10-17, wyoarts.state.wy.us: the program page is now /programs/poetry-out-loud/, with the 2026-27 cycle and state finals on March 1, 2027." },
   "art-of-problem-solving-initiative-usa-mathematical-talent-search": { deadline: "2026-11-30", evidence: "2026-10-17, usamts.org: Round 1 was due October 13; Round 2 solutions are due November 30, 2026, and students can still join." },
-  "columbia-precollege-ay-weekend-early": { format: "Online", evidence: "2026-10-17: the listing's own checked description says 'Seven Saturdays of live online Columbia coursework'." },
+  "columbia-precollege-ay-weekend-early": { title: "Academic Year Weekend", format: "Online", evidence: "2026-10-17: the listing's own checked description says 'Seven Saturdays of live online Columbia coursework'." },
   "delamed-dpha-fall": { format: "Online", evidence: "2026-10-17: the listing's checked description says 'The high school programme is entirely virtual'." },
   "the-intern-project-the-intern-project-tip": { cost: "Stipend", evidence: "2026-10-17: the listing describes a 'paid internship programme'; Free contradicted that." },
   "csv-sch-uft-scholarship-fund": { location: "New York, New York, USA", evidence: "2026-10-17: 'All New York City public high school seniors can apply', so it is not a nationwide listing." },
@@ -157,6 +157,8 @@ export const hsoReviewOct2026: Record<string, HsoReviewSep2026> = {
   "saint-louis-university-stars-slu": { removed: true, evidence: "2026-10-17: The link is a GitHub Pages site (stars-slu.github.io), not a Saint Louis University page." },
   "science-olympiad-minnesota-science-olympiad": { removed: true, evidence: "2026-10-17: The link is a personal Wix site (cwerner14.wixsite.com), not an official Science Olympiad page." },
   "science-olympiad-new-hampshire-science-olympiad": { removed: true, evidence: "2026-10-17: The link is a classic Google Sites address (sites.google.com/site/...), a format Google retired." },
+  // 2026-10-17 duplicate: same Columbia program and page as columbia-precollege-ay-weekend-early, which has the checked details.
+  "columbia-precollege-ay-weekend": { removed: true, evidence: "2026-10-17: duplicate of columbia-precollege-ay-weekend-early (same Academic Year Weekend page on precollege.sps.columbia.edu). This copy was thin and listed the online course as in-person." },
   // Renamed by the programs themselves (official pages, 2026-10-12 to 14). Titles only; ids and URLs stay.
   "bpl-teen-takeovers": { title: "Teen Night Out Branch Council", evidence: "2026-10-14, bklynlibrary.org apply page: the program is now listed as 'Teen Night Out Branch Council (formerly Teen Takeovers)'. Same internship, new name; page URL unchanged." },
   "hudson-river-slp": { title: "Science Leadership Program", evidence: "2026-10-14, hudsonriverpark.org internship opportunities page: the paid summer program is now the Science Leadership Program, for female-identifying New York City high school students. Same program, new name; page URL unchanged." },
@@ -206,6 +208,8 @@ const gradeFixesOct2026: Record<string, number[]> = {
   // 2026-10-17, from the listings' checked descriptions: "currently in grades 9 to 11"; "grades 9 to 11 ... can apply".
   "wharton-global": [9, 10, 11],
   "biobus-junior-scientist-internship": [9, 10, 11],
+  // 2026-10-17, the listing's checked description: "Open only to juniors enrolled in Erie, Niagara, Cattaraugus or Chautauqua county".
+  "roswell-park-comprehensive-cancer-center-high-school-summer-rese": [11],
 };
 
 /** True for listings this review removed; used by the allOpportunities filter. */
