@@ -68,6 +68,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/correlation-one-apex-high-school-ai-championship",
+      "destination": "/categories/competitions",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/cssi",
       "destination": "/categories/summer-programs",
       "permanent": true
@@ -118,6 +123,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/csv-sch-scholars-helping-collars-scholarship",
+      "destination": "/categories/scholarships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/csv-sch-sezzle-scholarship",
       "destination": "/categories/scholarships",
       "permanent": true
@@ -153,6 +163,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/department-of-teacher-education-of-michigan-state-university-hig",
+      "destination": "/categories/summer-programs",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/ds-davis",
       "destination": "/categories/scholarships",
       "permanent": true
@@ -175,6 +190,11 @@
     {
       "source": "/opportunities/foot-locker-scholar-athletes",
       "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/fred-hutch-lab-tech",
+      "destination": "/categories/internships",
       "permanent": true
     },
     {
@@ -275,6 +295,11 @@
     {
       "source": "/opportunities/museum-of-fine-arts-boston-internships",
       "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/nasa-nasa-app-development-challenge-adc",
+      "destination": "/categories/competitions",
       "permanent": true
     },
     {
@@ -383,6 +408,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/state-minnesota-umtymp",
+      "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/synapse-state-fellowship",
       "destination": "/categories/fellowships",
       "permanent": true
@@ -419,6 +449,11 @@
     },
     {
       "source": "/opportunities/university-of-central-florida-competitive-programming-summer-ins",
+      "destination": "/categories/summer-programs",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/university-of-illinois-chicago-s-office-of-the-vice-provost-for",
       "destination": "/categories/summer-programs",
       "permanent": true
     },

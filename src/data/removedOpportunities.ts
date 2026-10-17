@@ -11,6 +11,14 @@
  * so the redirect happens at the edge before any JavaScript runs.
  */
 export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
+  // Removed on the live site by its own link check (2026-10-15/16); same targets as the live site.
+  "fred-hutch-lab-tech": "/categories/internships",
+  "state-minnesota-umtymp": "/categories/fellowships",
+  "csv-sch-scholars-helping-collars-scholarship": "/categories/scholarships",
+  "department-of-teacher-education-of-michigan-state-university-hig": "/categories/summer-programs",
+  "university-of-illinois-chicago-s-office-of-the-vice-provost-for": "/categories/summer-programs",
+  "nasa-nasa-app-development-challenge-adc": "/categories/competitions",
+  "correlation-one-apex-high-school-ai-championship": "/categories/competitions",
   // Removed 2026-10-17: ended, paused, or no live official page (reasons in hsoUpdateOct2026.ts).
   "artswestchester-internship": "/categories/internships",
   "state-hawaii-hycc": "/categories/internships",
