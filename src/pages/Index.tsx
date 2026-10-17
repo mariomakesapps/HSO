@@ -13,7 +13,7 @@ import {
   Wifi,
   ShieldCheck,
   SlidersHorizontal,
-  Sparkles,
+  LayoutGrid,
 } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useAuthSession } from "@/hooks/useAuthSession";
@@ -423,6 +423,15 @@ const Index = () => {
   );
 };
 
+/** Real catalogue numbers for the hero, rounded down so they never overstate. */
+const HERO_COUNTS = (() => {
+  const roundDown = (n: number) => `${(Math.floor(n / 100) * 100).toLocaleString("en-US")}+`;
+  return {
+    total: roundDown(opportunities.length),
+    free: roundDown(opportunities.filter((o) => o.cost === "Free").length),
+  };
+})();
+
 function Hero({
   isAuthed,
   authLoading,
@@ -441,13 +450,13 @@ function Hero({
         <div className="hso-mobile-fit min-w-0 md:w-full md:max-w-3xl">
           <div style={{ "--intro-delay": "80ms" } as React.CSSProperties} className="hso-intro-fade inline-flex items-center gap-2 rounded-full border border-white/65 bg-card/66 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-ink shadow-[inset_0_1px_0_hsl(0_0%_100%/0.72)] backdrop-blur-xl">
             <span className="h-1.5 w-6 rounded-full bg-gradient-to-r from-coral to-sage" />
-            Curated signal for high schoolers
+            For U.S. high school students
           </div>
           <h1 style={{ "--intro-delay": "160ms" } as React.CSSProperties} className="hso-intro-rise mt-6 max-w-full break-words font-display text-[2.25rem] font-semibold leading-[0.98] tracking-tight text-ink sm:text-5xl lg:text-6xl">
-            A sharper map for high school opportunity.
+            Find internships, summer programs and scholarships.
           </h1>
           <p style={{ "--intro-delay": "260ms" } as React.CSSProperties} className="hso-intro-fade mt-5 max-w-[32ch] text-base leading-relaxed text-muted-foreground sm:max-w-2xl sm:text-lg">
-            HSO turns internships, research programs, scholarships, civic work, competitions, and summer programs into one calm catalog students can actually use.
+            {HERO_COUNTS.total} programs from universities, research labs, companies and nonprofits across the U.S. Every listing links to the official site, with deadlines checked.
           </p>
 
           <div style={{ "--intro-delay": "360ms" } as React.CSSProperties} className="hso-intro-fade mt-7 flex flex-col gap-3 sm:flex-row">
@@ -456,7 +465,7 @@ function Hero({
                 to="/auth"
                 className="inline-flex h-12 w-full max-w-[22rem] items-center justify-center rounded-full border border-white/65 bg-card/72 px-6 text-sm font-bold text-ink shadow-[inset_0_1px_0_hsl(0_0%_100%/0.7),0_18px_36px_-24px_hsl(var(--ink)/0.45)] backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:border-coral/35 hover:bg-card active:scale-[0.98] active:translate-y-0 sm:w-auto"
               >
-                Sign up free
+                Create a free account
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             )}
@@ -464,15 +473,15 @@ function Hero({
               onClick={() => document.getElementById("explore-heading")?.scrollIntoView({ behavior: "smooth", block: "start" })}
               className="inline-flex h-14 w-full max-w-[24rem] items-center justify-center rounded-full bg-coral px-8 text-base font-bold text-cream shadow-[0_20px_40px_-24px_hsl(var(--coral)/0.55)] transition-all hover:-translate-y-0.5 hover:shadow-[0_26px_52px_-24px_hsl(var(--coral)/0.65)] active:scale-[0.98] active:translate-y-0 sm:w-auto"
             >
-              Browse the catalog
+              Browse opportunities
               <ArrowRight className="ml-2.5 h-5 w-5" />
             </button>
           </div>
 
           <div className="hso-glass-panel mt-9 grid max-w-full grid-cols-3 items-stretch overflow-hidden rounded-[1.35rem] px-2 py-4 sm:max-w-2xl sm:px-3">
-            <Metric value="2000+" label="Programs" />
+            <Metric value={HERO_COUNTS.total} label="Programs" />
+            <Metric value={HERO_COUNTS.free} label="Free" />
             <Metric value="50" label="States" />
-            <Metric value="Official" label="Links" />
           </div>
         </div>
 
@@ -484,12 +493,12 @@ function Hero({
             <div className="relative">
               <div className="flex items-start justify-between gap-4 border-b border-border/70 pb-4">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-coral">Deadline radar</p>
-                  <h2 className="mt-1 font-display text-2xl font-semibold tracking-tight text-ink">Worth checking today</h2>
+                  <p className="text-xs font-bold uppercase tracking-[0.22em] text-coral">Deadlines</p>
+                  <h2 className="mt-1 font-display text-2xl font-semibold tracking-tight text-ink">Closing soon</h2>
                 </div>
-                <span className="hidden rounded-full border border-sage/20 bg-sage/10 px-3 py-1 text-xs font-bold text-sage sm:inline-flex">
-                  Live list
-                </span>
+                <Link to="/deadlines" className="hidden rounded-full border border-sage/20 bg-sage/10 px-3 py-1 text-xs font-bold text-sage transition-colors hover:bg-sage/15 sm:inline-flex">
+                  See all
+                </Link>
               </div>
 
               <div className="mt-4 space-y-3">
@@ -506,9 +515,9 @@ function Hero({
                   </span>
                 </div>
                 <div className="mt-3 space-y-2">
-                  <WorkflowStep index="01" label="Filter by state, field, deadline" />
-                  <WorkflowStep index="02" label="Open the official program page" />
-                  <WorkflowStep index="03" label="Save favorites when signed in" />
+                  <WorkflowStep index="01" label="Filter by state, subject, grade and deadline" />
+                  <WorkflowStep index="02" label="Apply on the program's official site" />
+                  <WorkflowStep index="03" label="Save programs and get deadline reminders" />
                 </div>
               </div>
             </div>
@@ -594,26 +603,26 @@ function FeaturedShelf({
     <div>
       <div className="grid gap-4 md:grid-cols-[0.9fr_1.1fr] md:items-end">
         <div>
-          <p className="text-xs font-bold uppercase tracking-[0.22em] text-coral">Featured opportunities</p>
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-coral">Featured</p>
           <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            A sharper first look.
+            Good places to start.
           </h2>
         </div>
         <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground md:justify-self-end">
-          Deadlines, new additions, and high-signal programs are separated into a cleaner scan path.
+          Upcoming deadlines, recent additions and some of the most selective programs in the U.S.
         </p>
       </div>
 
       <Tabs defaultValue="closing" className="mt-7">
         <TabsList className="h-auto justify-start gap-7 rounded-none border-b border-border/70 bg-transparent p-0">
           <TabsTrigger value="closing" className={`${tabBase} data-[state=active]:after:bg-coral after:absolute after:inset-x-0 after:-bottom-px after:h-[2px] after:bg-transparent`}>
-            Closing Soon
+            Closing soon
           </TabsTrigger>
           <TabsTrigger value="new" className={`${tabBase} data-[state=active]:after:bg-sage after:absolute after:inset-x-0 after:-bottom-px after:h-[2px] after:bg-transparent`}>
-            New Finds
+            Recently added
           </TabsTrigger>
           <TabsTrigger value="standouts" className={`${tabBase} data-[state=active]:after:bg-ochre after:absolute after:inset-x-0 after:-bottom-px after:h-[2px] after:bg-transparent`}>
-            Standouts
+            Top programs
           </TabsTrigger>
         </TabsList>
         <TabsContent value="closing" className="mt-6 animate-in fade-in-50 duration-300">
@@ -885,17 +894,17 @@ function HowItWorks() {
         <div>
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-muted-foreground">How HSO works</p>
           <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-            Browse first. Save when it matters.
+            Free to browse. Sign in to save.
           </h2>
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted-foreground">
-            Links stay visible for everyone. Accounts are only for shelves, folders, and keeping track of programs.
+            Every listing and official link is open to everyone. A free account lets you save programs, organize them in folders and get deadline reminders.
           </p>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
-          <Step icon={<Sparkles className="h-5 w-5" />} title="Choose a lane" body="Pick a category like research, internships, scholarships, or competitions." />
+          <Step icon={<LayoutGrid className="h-5 w-5" />} title="Pick a category" body="Internships, summer programs, scholarships, research, competitions or fellowships." />
           <Step icon={<FilterIcon className="h-5 w-5" />} title="Narrow the list" body="Filter by grade, cost, format, field, state, and deadline." />
           <Step icon={<ExternalLink className="h-5 w-5" />} title="Check the source" body="Use the official program page for requirements and applications." />
-          <Step icon={<BookmarkPlus className="h-5 w-5" />} title="Save later" body="Create folders once signed in so your shortlist does not disappear." />
+          <Step icon={<BookmarkPlus className="h-5 w-5" />} title="Save your list" body="Sign in to save programs into folders and get reminders before deadlines." />
         </div>
       </div>
     </section>
@@ -918,12 +927,12 @@ function TrustBand() {
       <div className="mx-auto max-w-[1400px] px-4 py-14 sm:px-6 lg:py-20">
         <div className="hso-glass-panel grid gap-8 rounded-[2rem] p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.22em] text-sage">Source policy</p>
+            <p className="text-xs font-bold uppercase tracking-[0.22em] text-sage">How listings are checked</p>
             <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-              Official links, clear deadlines, no hidden browsing.
+              Every listing links to the official program.
             </h2>
             <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted-foreground">
-              HSO points students to universities, nonprofits, companies, competitions, museums, and scholarship providers. Details can change, so every card keeps the source close.
+              Programs come from universities, nonprofits, companies, museums and scholarship providers, and deadlines are checked against each official page. Details can change, so confirm on the official site before you apply.
             </p>
           </div>
           <div className="flex flex-wrap gap-2 lg:max-w-sm lg:justify-end">
@@ -956,7 +965,7 @@ function PopularSearches() {
           Students also look for
         </h2>
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Jump straight into the most-searched lanes — every category is filtered, deadline-tracked, and links straight to the official program.
+          Common starting points. Each one opens a filtered list with deadlines and official links.
         </p>
         <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {CATEGORY_SLUGS.map((s) => (
