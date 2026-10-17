@@ -43,6 +43,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/boston-debate-league-bdl-debate-camp",
+      "destination": "/categories/summer-programs",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/breakthrough",
       "destination": "/categories/internships",
       "permanent": true
@@ -175,6 +180,11 @@
     {
       "source": "/opportunities/ds-davis",
       "destination": "/categories/scholarships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/eastern-connecticut-state-university-pre-college-summer",
+      "destination": "/categories/summer-programs",
       "permanent": true
     },
     {
@@ -473,6 +483,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/union-county-youth-forward-program",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/university-of-central-florida-competitive-programming-summer-ins",
       "destination": "/categories/summer-programs",
       "permanent": true
@@ -504,6 +519,11 @@
     },
     {
       "source": "/opportunities/world-affairs-council-of-jacksonville-high-school-internships-at",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/world-affairs-council-of-san-antonio-internships",
       "destination": "/categories/internships",
       "permanent": true
     },

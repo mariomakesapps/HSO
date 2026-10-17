@@ -178,6 +178,17 @@ export const hsoReviewOct2026: Record<string, HsoReviewSep2026> = {
   "new-york-historical-society-student-historian-internship-program": { cost: "Stipend", evidence: "2026-10-17, https://nyhistory.org/education/student-historian-internship-program: 'interns will receive a $1200 stipend upon successful completion of the internship'" },
   "orange-county-fire-authority-fire-cadet-program": { url: "https://ocfa.org/residents/fire-cadet-interest/", evidence: "2026-10-17, https://ocfa.org/residents/fire-cadet-interest/: program page moved. 'open to both males and females, age 16-21'" },
   "stanford-compression-forum-shtem-summer-internships-for-high-sch": { cost: "Paid", format: "In-person", evidence: "2026-10-17, https://compression.stanford.edu/outreach/shtem-summer-internships-high-schoolers: 'It is expected to be in-person at Stanford University. ... There is a one-time non-refundable application fee of $95 for the program, and a tuition of $2500 for all students who attend.'" },
+  // Round r2 (2026-10-17): official-page re-check of listings not otherwise reviewed in October.
+  "union-county-youth-forward-program": { removed: true, evidence: "2026-10-17, https://ucnj.org/press-releases/public-info/2021/05/26/youth-forward-service-connects-union-county-youth-with-jobs-education-training/: no current cycle. 'This first-of-its-kind program in Union County draws on the resources, networks, and experiences of the County's existing American Job Center employment services program and the Division of Youth Services.'" },
+  "world-affairs-council-of-san-antonio-internships": { removed: true, evidence: "2026-10-17, https://wacofsa.org/community/internship-opportunities/: no current cycle. 'An internship with WAC gives you the opportunity to take initiative on major projects, build skills in event planning and organization management.'" },
+  "boston-debate-league-bdl-debate-camp": { removed: true, evidence: "2026-10-17, https://www.bostondebate.org/debatecamp/: not open to high school students. 'Camp is limited to students entering grades 6 through 9 in the 2026-27 school year; high schoolers are directed to external camp opportunities (wording from search summary of official page, not confirmed verbatim)'" },
+  "eastern-connecticut-state-university-pre-college-summer": { removed: true, evidence: "2026-10-17, https://www.easternct.edu/pre-college-summer/index.html: ended or paused. 'Pre-College Summer is currently on pause'" },
+  "vermont-adaptive-ski-sports-vermont-adaptive-s-apprenticeship-pr": { url: "https://www.vermontadaptive.org/apprenticeships/", evidence: "2026-10-17, https://www.vermontadaptive.org/apprenticeships/: program page moved. 'for students ages 14-17 looking to volunteer some of their time in exchange for training, experience, opportunities to ski, ride, mountain bike, and paddle'" },
+  "babson-college-summer-study-for-high-school-students": { location: "Marlborough, Massachusetts, USA", evidence: "2026-10-17, https://www.babson.edu/summer-at-babson/high-school-learners/summer-study/: 'The in-person option is hosted at the New England Innovation Academy (NEIA) in Marlborough, Massachusetts, and NOT at the Babson College campus in Wellesley, Massachusetts. (Program is for rising high school juniors and seniors.)'" },
+  "city-university-of-new-york-college-now": { url: "https://www.cuny.edu/academics/current-initiatives/p20/college-now/", evidence: "2026-10-17, https://www.cuny.edu/academics/current-initiatives/p20/college-now/: program page moved. 'for 2025-2026, 33,814 NYCPS students participated in College Now'" },
+  "colorado-state-patrol-colorado-state-patrol-youth-academy": { location: "Golden, Colorado, USA", evidence: "2026-10-17, https://csp.colorado.gov/community-outreach/youth-academy: 'Participants require a three-night stay at the CSP Academy in Golden'" },
+  "maryland-institute-college-of-art-programs-for-teens-at-mica": { url: "https://www.mica.edu/academics/youth-and-teen-programs/programs-for-teens/portfolio-preparation-for-high-schoolers/", evidence: "2026-10-17, https://www.mica.edu/academics/youth-and-teen-programs/programs-for-teens/portfolio-preparation-for-high-schoolers/: program page moved. 'Pre-College Saturday & Summer Studios'" },
+  "mercy-university-summer-leadership-academy": { url: "https://mercy.edu/academics/school-business/business-leadership-academy", evidence: "2026-10-17, https://mercy.edu/academics/school-business/business-leadership-academy: program page moved. 'applications for summer 2027 open'" },
   // Renamed by the programs themselves (official pages, 2026-10-12 to 14). Titles only; ids and URLs stay.
   "bpl-teen-takeovers": { title: "Teen Night Out Branch Council", evidence: "2026-10-14, bklynlibrary.org apply page: the program is now listed as 'Teen Night Out Branch Council (formerly Teen Takeovers)'. Same internship, new name; page URL unchanged." },
   "hudson-river-slp": { title: "Science Leadership Program", evidence: "2026-10-14, hudsonriverpark.org internship opportunities page: the paid summer program is now the Science Leadership Program, for female-identifying New York City high school students. Same program, new name; page URL unchanged." },
@@ -227,6 +238,11 @@ const gradeFixesOct2026: Record<string, number[]> = {
   // 2026-10-17, from the listings' checked descriptions: "currently in grades 9 to 11"; "grades 9 to 11 ... can apply".
   "wharton-global": [9, 10, 11],
   "biobus-junior-scientist-internship": [9, 10, 11],
+  // Round r2 (2026-10-17): grades stated on the official page.
+  "the-doseum-internship": [12],
+  "the-new-victory-theater-new-victory-usher-corps": [11],
+  "upward-bound-trio-upward-bound": [9, 10],
+  "landmark-college-summer-programs-at-landmark-college": [10, 11, 12],
   // Round r1 (2026-10-17): grades stated on the official page.
   "charleston-county-student-leadership-intern-program-cdc-ems": [11],
   "delamed-dpha-spring": [10, 11, 12],
