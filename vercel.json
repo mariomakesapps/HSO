@@ -183,6 +183,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/exploratorium-high-school-explainer-program",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/feinstein-institutes-for-medical-research-summer-student-interns",
       "destination": "/categories/internships",
       "permanent": true
@@ -278,6 +283,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/la-brea-tar-pits-natural-history-museums-of-los-angeles-county-t",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/lapps",
       "destination": "/categories/internships",
       "permanent": true
@@ -353,6 +363,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/s-w-a-g-camden-summer-intern-program",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/saint-louis-university-stars-slu",
       "destination": "/categories/summer-programs",
       "permanent": true
@@ -369,6 +384,11 @@
     },
     {
       "source": "/opportunities/sfmoma-internship-program",
+      "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/shedd-aquarium-teen-work-study-program",
       "destination": "/categories/internships",
       "permanent": true
     },

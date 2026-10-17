@@ -159,6 +159,25 @@ export const hsoReviewOct2026: Record<string, HsoReviewSep2026> = {
   "science-olympiad-new-hampshire-science-olympiad": { removed: true, evidence: "2026-10-17: The link is a classic Google Sites address (sites.google.com/site/...), a format Google retired." },
   // 2026-10-17 duplicate: same Columbia program and page as columbia-precollege-ay-weekend-early, which has the checked details.
   "columbia-precollege-ay-weekend": { removed: true, evidence: "2026-10-17: duplicate of columbia-precollege-ay-weekend-early (same Academic Year Weekend page on precollege.sps.columbia.edu). This copy was thin and listed the online course as in-person." },
+  // Round r1 (2026-10-17): official-page re-check of listings not otherwise reviewed in October.
+  "exploratorium-high-school-explainer-program": { removed: true, evidence: "2026-10-17, https://www.exploratorium.edu/support/explore-our-reach: ended or paused. 'during our closure, we're reimagining the program for future generations of Explainers'" },
+  "la-brea-tar-pits-natural-history-museums-of-los-angeles-county-t": { removed: true, evidence: "2026-10-17, https://tarpits.org/tar-pits-programs/teen-program-connected: ended or paused. 'The program will return soon. Check back for updates.'" },
+  "s-w-a-g-camden-summer-intern-program": { removed: true, evidence: "2026-10-17, https://camdencityschools.org/swag-program/: no current cycle. 'The District will hire 60 SWAG Student Interns.'" },
+  "shedd-aquarium-teen-work-study-program": { removed: true, evidence: "2026-10-17, https://www.sheddaquarium.org/about-shedd/press-releases/shedd-aquarium-offers-refreshed-teen-work-study-program: no current cycle. 'Teens earn a job at Shedd and, through professional coaching and academic rigor, contribute to large-scale, strategic projects.'" },
+  "cleveland-clinic-high-school-summer-internship-program": { cost: "Stipend", evidence: "2026-10-17, https://my.clevelandclinic.org/departments/education/center-for-youth-and-college-education/internships: 'Interns earn $15 an hour for orientation and all hours worked.'" },
+  "dana-farber-cancer-institute-office-of-workforce-development-stu": { url: "https://www.dana-farber.org/about/careers/workforce-development/student-training-program", evidence: "2026-10-17, https://www.dana-farber.org/about/careers/workforce-development/student-training-program: program page moved. 'Students hold full-time summer internships, and they must work 30 hours per week for 7 weeks and attend weekly college and career readiness workshops.'" },
+  "dpr-construction-high-school-internship": { cost: "Stipend", evidence: "2026-10-17, https://www.dpr.com/build-up-high-school-internship: 'Applicants must be rising high school juniors or seniors, or May 2027 graduates. ... Interns are paid a generous hourly rate on a weekly pay cycle.'" },
+  "hawaii-department-of-labor-and-industrial-relations-hele-imua-st": { cost: "Stipend", evidence: "2026-10-17, https://labor.hawaii.gov/wp-content/uploads/2026/01/Act-251-Hele-Imua-Report-FY2024-25.pdf: 'Interns are registered with the DLIR payroll system and paid by DLIR.'" },
+  "independence-seaport-museum-teen-ambassadors-program": { cost: "Stipend", evidence: "2026-10-17, https://www.phillyseaport.org/youth-programs/: 'a paid, ten-week job for Philadelphia high schoolers ... for Philadelphia teens entering 10th-12th grade'" },
+  "massachusetts-clean-energy-commission-vocational-internship-prog": { url: "https://www.masscec.com/clean-energy-internships", evidence: "2026-10-17, https://www.masscec.com/vocational-internship-program-students: program page moved. 'The Technical Trades Work and Learning Program is now a part of the Clean Energy Internship Program.'" },
+  "massachusetts-life-sciences-center-high-school-apprenticeship-ch": { location: "Massachusetts, USA", evidence: "2026-10-17, https://www.masslifesciences.com/programs/high-school-apprenticeship/: 'paid internships for underrepresented and low-income high school students throughout Massachusetts'" },
+  "metropolitan-transportation-commission-the-norman-mineta-bay-are": { url: "https://mtc.ca.gov/jobs-contracts/job-opportunities/internships-summer-academy/norman-mineta-high-school-summer-academy", evidence: "2026-10-17, https://mtc.ca.gov/jobs-contracts/job-opportunities/internships-summer-academy/norman-mineta-high-school-summer-academy: program page moved. 'Students who complete the entire program are given a stipend and a completion certificate.'" },
+  "miami-dade-college-summer-youth-internship-program": { cost: "Stipend", evidence: "2026-10-17, https://www.mdc.edu/media/miami-dade-college/dual-enrollment/documents/SYIP-2026-requirements.pdf: 'rising 10th through 12th grade high school students (current 9th through 11th graders) ... Interns will receive two payments for a total of $1,500.00.'" },
+  "monterey-bay-aquarium-teen-conservation-leaders": { url: "https://www.montereybayaquarium.org/learning-programs/teen-programs/teen-conservation-leaders", evidence: "2026-10-17, https://www.montereybayaquarium.org/learning-programs/teen-programs/teen-conservation-leaders: program page moved. 'entering 9th through 12th grade in fall 2026'" },
+  "monterey-institute-for-research-in-astronomy-summer-internship-p": { cost: "Paid", evidence: "2026-10-17, https://www.mira.org/intern_program.htm: 'The program fee is $3,000, and this program fee is waived for all residents of Monterey County.'" },
+  "new-york-historical-society-student-historian-internship-program": { cost: "Stipend", evidence: "2026-10-17, https://nyhistory.org/education/student-historian-internship-program: 'interns will receive a $1200 stipend upon successful completion of the internship'" },
+  "orange-county-fire-authority-fire-cadet-program": { url: "https://ocfa.org/residents/fire-cadet-interest/", evidence: "2026-10-17, https://ocfa.org/residents/fire-cadet-interest/: program page moved. 'open to both males and females, age 16-21'" },
+  "stanford-compression-forum-shtem-summer-internships-for-high-sch": { cost: "Paid", format: "In-person", evidence: "2026-10-17, https://compression.stanford.edu/outreach/shtem-summer-internships-high-schoolers: 'It is expected to be in-person at Stanford University. ... There is a one-time non-refundable application fee of $95 for the program, and a tuition of $2500 for all students who attend.'" },
   // Renamed by the programs themselves (official pages, 2026-10-12 to 14). Titles only; ids and URLs stay.
   "bpl-teen-takeovers": { title: "Teen Night Out Branch Council", evidence: "2026-10-14, bklynlibrary.org apply page: the program is now listed as 'Teen Night Out Branch Council (formerly Teen Takeovers)'. Same internship, new name; page URL unchanged." },
   "hudson-river-slp": { title: "Science Leadership Program", evidence: "2026-10-14, hudsonriverpark.org internship opportunities page: the paid summer program is now the Science Leadership Program, for female-identifying New York City high school students. Same program, new name; page URL unchanged." },
@@ -208,6 +227,14 @@ const gradeFixesOct2026: Record<string, number[]> = {
   // 2026-10-17, from the listings' checked descriptions: "currently in grades 9 to 11"; "grades 9 to 11 ... can apply".
   "wharton-global": [9, 10, 11],
   "biobus-junior-scientist-internship": [9, 10, 11],
+  // Round r1 (2026-10-17): grades stated on the official page.
+  "charleston-county-student-leadership-intern-program-cdc-ems": [11],
+  "delamed-dpha-spring": [10, 11, 12],
+  "delamed-dpha-summer": [10, 11, 12],
+  "enterprise-for-youth-paid-internships": [9, 10, 11, 12],
+  "genesys-works-genesys-works-internship-program": [11],
+  "new-jersey-cybersecurity-communications-integration-cell-cyberse": [9, 10, 11, 12],
+  "skills-for-rhode-island-s-future-prepareri-high-school-internshi": [11],
   // 2026-10-17, the listing's checked description: "Open only to juniors enrolled in Erie, Niagara, Cattaraugus or Chautauqua county".
   "roswell-park-comprehensive-cancer-center-high-school-summer-rese": [11],
 };

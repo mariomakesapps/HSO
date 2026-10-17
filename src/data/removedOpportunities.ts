@@ -11,6 +11,11 @@
  * so the redirect happens at the edge before any JavaScript runs.
  */
 export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
+  // Round r1 (2026-10-17): ended, paused or not for high schoolers (reasons in hsoUpdateOct2026.ts).
+  "exploratorium-high-school-explainer-program": "/categories/internships",
+  "la-brea-tar-pits-natural-history-museums-of-los-angeles-county-t": "/categories/internships",
+  "s-w-a-g-camden-summer-intern-program": "/categories/internships",
+  "shedd-aquarium-teen-work-study-program": "/categories/internships",
   // Duplicate 2026-10-17: the same Columbia program as the listing it now points to.
   "columbia-precollege-ay-weekend": "/opportunities/columbia-precollege-ay-weekend-early",
   // Removed on the live site by its own link check (2026-10-15/16); same targets as the live site.
