@@ -212,18 +212,9 @@ const Index = () => {
   );
   const recentlyAdded = useMemo(() => opportunities.slice(-6).reverse(), []);
   const standouts = useMemo(
-    () =>
-      opportunities
-        .filter((o) => o.prestige === 3 && o.id !== "isef")
-        .sort((a, b) => {
-          if (a.id === "columbia-freedom-citizenship") return -1;
-          if (b.id === "columbia-freedom-citizenship") return 1;
-          if (a.id === "yefa-ysic") return -1;
-          if (b.id === "yefa-ysic") return 1;
-          return 0;
-        })
-        .slice(0, 6),
-    [],
+    () => topPrograms(opportunities),
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- recomputed when the clock goes live
+    [clockEpoch],
   );
 
   /**
@@ -410,6 +401,35 @@ const Index = () => {
     </div>
   );
 };
+
+/**
+ * "Top programs": the best-known, most selective programs in the catalogue, not just
+ * anything rated prestige 3 (223 listings share that rating, so file order decided
+ * which six appeared). Programs still taking applications come first, soonest
+ * deadline first, so the shelf changes through the year; the rest follow in the
+ * order below.
+ */
+const TOP_PROGRAM_IDS = [
+  "rsi", "regeneron-sts", "ssp", "promys", "ross", "hcssim-prim", "mites", "simr", "ylc",
+  "texas-tech-university-anson-l-clark-scholars-program", "simons-summer-research", "garcia-program",
+  "usamo", "usaco", "math-prize-for-girls", "coca", "questbridge-match", "usef", "nsli-y",
+  "cbyx-congress-bundestag-youth-exchange", "bezos-scholars", "leda-scholars-program", "nyo",
+];
+
+function topPrograms(list: Opportunity[]): Opportunity[] {
+  const byId = new Map(list.map((o) => [o.id, o]));
+  const picks = TOP_PROGRAM_IDS.map((id) => byId.get(id)).filter((o): o is Opportunity => !!o);
+  const open = (o: Opportunity) => {
+    const s = getDeadlineStatus(o.deadline, o.opensAt).status;
+    return s === "open" || s === "closing-soon" || s === "opens-later";
+  };
+  const rank = (o: Opportunity) => (open(o) ? 0 : 1);
+  return picks
+    .map((o, i) => ({ o, i }))
+    .sort((a, b) => rank(a.o) - rank(b.o) || (rank(a.o) === 0 ? (a.o.deadline ?? "9").localeCompare(b.o.deadline ?? "9") : 0) || a.i - b.i)
+    .map(({ o }) => o)
+    .slice(0, 6);
+}
 
 /** Real catalogue numbers for the hero, rounded down so they never overstate. */
 const HERO_COUNTS = (() => {

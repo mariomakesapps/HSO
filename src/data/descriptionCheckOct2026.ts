@@ -806,6 +806,12 @@ export const descriptionCheckOct2026: Record<string, DescriptionRow> = {
     wordingOnly: true,
     evidence: "2026-10-17: removed a statement the official page no longer supports.",
   },
+  // 2026-10-22 wording: the blurb said the deadline was still TBA while the listing shows the posted date.
+  "regeneron-sts": {
+    blurb: "Oldest US science research competition for high school seniors, who enter with an original research project they have carried out.",
+    wordingOnly: true,
+    evidence: "2026-10-22: removed 'the exact fall deadline still TBA'; the deadline field already carries the posted date.",
+  },
 };
 
 export function applyDescriptionCheckOct2026(list: Opportunity[]): void {
