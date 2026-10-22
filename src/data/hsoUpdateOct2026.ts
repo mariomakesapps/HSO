@@ -208,6 +208,17 @@ export const hsoReviewOct2026: Record<string, HsoReviewSep2026> = {
   "national-institute-of-mental-health-speaking-up-about-mental-hea": { removed: true, evidence: "2026-10-22, https://www.nimh.nih.gov/news/science-updates/2024/nih-announces-winners-of-2023-2024-high-school-mental-health-essay-contest: no current cycle. 'NIH Announces Winners of 2023-2024 High School Mental Health Essay Contest'" },
   "national-robotics-challenge-national-robotics-challenge": { location: "Marion, Ohio, USA", evidence: "2026-10-22, https://www.thenrc.org/location: 'The Marion County Veterans Memorial Coliseum ... the home of the NRC'" },
   "national-space-society-nss-gerard-k-oneill-space-settlement-cont": { cost: "Paid", evidence: "2026-10-22, https://nss.org/nss-space-settlement-contest/about-the-contest/: 'The fee is $15, which can be waived in hardship cases. / open to students up to 12th grade from anywhere in the world'" },
+  // Round r5 (2026-10-22): official-page re-check of listings not otherwise reviewed in October.
+  "stevens-institute-of-technology-school-of-business-stevens-tradi": { cost: "Paid", evidence: "2026-10-22, https://www.stevens.edu/school-business-high-school-programs-trading-day: '$25 per student'" },
+  "waicy-world-artificial-intelligence-competition-for-youth-waicy": { cost: "Free", evidence: "2026-10-22, https://www.waicy.org/: 'No registration fees'" },
+  "houston-methodist-summer-high-school-research-internship": { url: "https://www.houstonmethodist.org/academic-institute/education/research/summer-internship-program/highschoolresearchinternship/", evidence: "2026-10-22, https://www.houstonmethodist.org/academic-institute/education/research/summer-internship-program/highschoolresearchinternship/: program page moved. 'Applications for the 2027 Summer Internship Programs will open on December 4, 2026, and close on January 29, 2027.'" },
+  "national-wwii-leadership-academy": { cost: "Free", evidence: "2026-10-22, https://www.nationalww2museum.org/events-programs/educational-travel/student-travel-national-wwii-museum/student-leadership-academy: 'Tuition for 2027 is $1,840, and all accepted participants receive full scholarship coverage of this cost.'" },
+  "big-idea-south-dakota-big-idea-competition": { format: "Hybrid", evidence: "2026-10-22, https://bigideasd.com/: 'The competition Wednesday, December 9, 2026 at Northern State University, in Aberdeen, SD.'" },
+  "conrad-foundation-conrad-challenge": { format: "Hybrid", cost: "Paid", evidence: "Activation Stage is free; the Innovation Stage costs $499 per team. 2026-10-22, https://conrad.spacecenter.org/the-challenge/innovation-summit/: 'Phase 3: Innovation Summit ... April 21-24, 2027, Space Center Houston'" },
+  "genesys-works-nyc": { location: "New York, New York, USA", evidence: "2026-10-22, https://genesysworks.org/locations/new-york/: 'juniors who are on track to graduate ... companies in NYC have partnered with Genesys Works to create over 200 internship opportunities'" },
+  "smithsonian-nmnh-high-school-internship": { cost: "Stipend", evidence: "2026-10-22, https://naturalhistory.si.edu/education/youth-programs/high-school-internship-program: '$5,600 stipend award ($700/week)'" },
+  "university-of-chicago-data-science-institute-summer-lab": { location: "Chicago, Illinois, USA", evidence: "2026-10-22, https://datascience.uchicago.edu/education/summerlab/: 'High school students of any age (including current high school seniors) are responsible for arranging their own housing and transportation. ... High school applicants must be located in the Chicago area and must be able to comfortably commute to the UChicago Hyde Park campus.'" },
+  "stanford-medicine-pediatrics-internship-program-at-stanford-pips": { url: "https://med.stanford.edu/pediatrics/education/pediatrics-internship-program.html", evidence: "2026-10-22, med.stanford.edu: the Pediatrics Internship Program page is now at /pediatrics/education/pediatrics-internship-program.html." },
   // Renamed by the programs themselves (official pages, 2026-10-12 to 14). Titles only; ids and URLs stay.
   "bpl-teen-takeovers": { title: "Teen Night Out Branch Council", evidence: "2026-10-14, bklynlibrary.org apply page: the program is now listed as 'Teen Night Out Branch Council (formerly Teen Takeovers)'. Same internship, new name; page URL unchanged." },
   "hudson-river-slp": { title: "Science Leadership Program", evidence: "2026-10-14, hudsonriverpark.org internship opportunities page: the paid summer program is now the Science Leadership Program, for female-identifying New York City high school students. Same program, new name; page URL unchanged." },
@@ -257,6 +268,12 @@ const gradeFixesOct2026: Record<string, number[]> = {
   // 2026-10-17, from the listings' checked descriptions: "currently in grades 9 to 11"; "grades 9 to 11 ... can apply".
   "wharton-global": [9, 10, 11],
   "biobus-junior-scientist-internship": [9, 10, 11],
+  // Round r5 (2026-10-22): grades stated on the official page.
+  "indiana-university-school-of-medicine-molecular-medicine-in-acti": [10, 11, 12],
+  "seton-hall-university-pirates-pitch-competition-for-high-school": [10, 11, 12],
+  "genesys-works-nyc": [11],
+  "griffin-museum-of-science-and-industry-rise-teen-program": [9, 10, 11, 12],
+  "university-of-chicago-data-science-institute-summer-lab": [10, 11, 12],
   "columbia-engineering-hk-maker-lab": [10, 11],
   // Round r3 (2026-10-22): grades stated on the official page.
   "ucla-health-pre-med-summer-scholar-program": [10, 11, 12],
