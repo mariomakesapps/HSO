@@ -42,8 +42,9 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
     evidence: "2026-10-12, memphis.edu/govschool: 'The application for the 2027 program will open on October 1. The deadline for the student portion of the application is November 20. The deadline for the counselor and teacher forms is December 11.' Program June 5-26, 2027.",
   },
   "rockefeller-ssrp": {
+    deadline: "2027-01-04",
     opensAt: "2026-10-15",
-    evidence: "2026-10-12, rockefeller.edu/outreach/ssrp: applications for SSRP 2027 open October 15, 2026 (program June 21 - August 5, 2027). The deadline shown on the page is still the previous cycle's, so none is set.",
+    evidence: "2026-10-22, https://www.rockefeller.edu/outreach/ssrp/: 'Deadline: Monday, January 4, 2027 at 5:00 p.m. Eastern Time. Late applications will not be considered.'",
   },
   "state-science-and-technology-fair-of-iowa-state-science-and-tech": {
     deadline: "2027-02-15",
@@ -256,6 +257,41 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
     deadline: "2026-12-08",
     blurb: "NASA aeronautics design challenge with a separate high school division (grades 9-12, U.S. schools). The 2026-27 high school challenge asks teams to design an aircraft fuselage fuelled by liquefied natural gas; registration closes December 8, 2026 and submissions are due January 25, 2027.",
     evidence: "2026-10-12, nasa.gov '2026-2027 DWU High School Engineering Challenge': registration closes December 8, 2026; submission deadline January 25, 2027. The old blurb said the next round was not yet posted.",
+  },
+  // Next-cycle dates found on official pages, 2026-10-22.
+  "amc": {
+    deadline: "2026-10-28",
+    evidence: "2026-10-22, https://maa.org/amcreg/: 'Regular Registration Deadline: October 15, 2026 ($75 registration fee) - Final deadline for new competition managers ... Late Registration Deadline: October 28, 2026 ($115 registration fee) - Returning competition managers only'",
+  },
+  "usnco": {
+    opensAt: "2026-11-01",
+    evidence: "2026-10-22, https://www.acs.org/education/olympiad.html: 'Registration opens on November 1, 2026, and all students must be registered by their parents/guardians to participate in the 2027 USNCO competition. ... February 28 - March 2, 2027 \u00b7 Local Exam'",
+  },
+  "cee-ssp": {
+    deadline: "2026-12-11",
+    evidence: "2026-10-22, https://www.cee.org/newsevents/press-releases/applications-being-accepted-2027-research-science-institute: 'The RSI 2027 application deadline is December 11, 2026, at 11:59 p.m. ET. No late applications will be considered.'",
+  },
+  "simons-summer-research": {
+    deadline: "2027-02-05",
+    evidence: "2026-10-22, https://www.stonybrook.edu/commcms/simons/about/faqs.php: 'Student application deadline: February 5, 2027, 11:59 p.m. EST ... School nomination: January 29, 2027'",
+  },
+  "state-arizona-keys": {
+    deadline: "2026-12-17",
+    opensAt: "2026-11-02",
+    evidence: "2026-10-22, https://keys.arizona.edu/faq/students: 'Applications for the 2027 KEYS Research Internship program will open November 2, 2026 and close on December 17, 2026.'",
+  },
+  "harvard-university-harvard-summer-school-high-school-programs": {
+    deadline: "2027-02-10",
+    opensAt: "2026-12-01",
+    evidence: "2026-10-22, https://summer.harvard.edu/high-school-programs/secondary-school-program/admissions/: 'Application opens Tuesday, December 1, 2026. Early deadline: Wednesday, January 13, 2027. Regular deadline: Wednesday, February 10, 2027. Late deadline: Wednesday, March 31, 2027 (or earlier if all course waitlists are full).'",
+  },
+  "lewis-center-for-the-arts-princeton-university-princeton-univers": {
+    deadline: "2027-03-31",
+    evidence: "2026-10-22, https://arts.princeton.edu/about/opportunities/high-school-poetry-contest/ten-minute-play-contest: 'Deadline: March 31, 2027, at 12:00 p.m. EDT ... The online submission form for the 2026-27 contest will be available here in January 2027. ... Once 250 entries are received, the contest will close.'",
+  },
+  "state-new-jersey-stem-scholars": {
+    opensAt: "2027-03-01",
+    evidence: "2026-10-22, https://www.govstemscholars.com/apply: 'applications for the 2027-2028 Governor's STEM Scholars class will open on March 1, 2027'; the closing date is not posted yet.",
   },
 };
 
