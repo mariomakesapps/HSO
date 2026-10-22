@@ -11,6 +11,11 @@
  * so the redirect happens at the edge before any JavaScript runs.
  */
 export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
+  // Round r3 (2026-10-22): ended, paused or not for high schoolers (reasons in hsoUpdateOct2026.ts).
+  "university-of-nevada-las-vegas-guic-summer-camp": "/categories/summer-programs",
+  "university-of-north-carolina-wilmington-iheal-healthcare-leaders": "/categories/summer-programs",
+  "university-of-southern-mississippi-marine-education-center-art-a": "/categories/summer-programs",
+  "artswestchester-young-adult-leadership-council": "/categories/fellowships",
   // Round r2 (2026-10-17): ended, paused or not for high schoolers (reasons in hsoUpdateOct2026.ts).
   "union-county-youth-forward-program": "/categories/internships",
   "world-affairs-council-of-san-antonio-internships": "/categories/internships",

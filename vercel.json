@@ -23,6 +23,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/artswestchester-young-adult-leadership-council",
+      "destination": "/categories/fellowships",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/ascend",
       "destination": "/categories/internships",
       "permanent": true
@@ -503,8 +508,23 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/university-of-nevada-las-vegas-guic-summer-camp",
+      "destination": "/categories/summer-programs",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/university-of-new-hampshire-interoperability-lab-hightech-bound",
       "destination": "/categories/internships",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/university-of-north-carolina-wilmington-iheal-healthcare-leaders",
+      "destination": "/categories/summer-programs",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/university-of-southern-mississippi-marine-education-center-art-a",
+      "destination": "/categories/summer-programs",
       "permanent": true
     },
     {
