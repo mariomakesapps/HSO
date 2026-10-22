@@ -293,6 +293,45 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
     opensAt: "2027-03-01",
     evidence: "2026-10-22, https://www.govstemscholars.com/apply: 'applications for the 2027-2028 Governor's STEM Scholars class will open on March 1, 2027'; the closing date is not posted yet.",
   },
+  // Next-cycle dates found on official pages, 2026-10-22.
+  "university-of-the-south-sewanee-young-writers-conference": {
+    deadline: "2027-03-01",
+    evidence: "2026-10-22, https://new.sewanee.edu/sywc/frequently-asked-questions/: 'Applications for summer 2027 will open in December 2026. Our application deadline is Monday, March 1st, 2027. The deadline for letters of recommendation is Friday, March 12th, 2027.'",
+  },
+  "notre-dame": {
+    deadline: "2027-02-17",
+    evidence: "2026-10-22, https://precollege.nd.edu/summer-scholars/eligibility-and-application-requirements/: 'Application deadline: February 17, 2027 (application and all supporting documents) - Session I June 19-July 3, 2027; Session II July 10-July 24, 2027'",
+  },
+  "usc-summer": {
+    deadline: "2027-05-07",
+    evidence: "2026-10-22, https://precollege.usc.edu/summer-programs/admission-tuition-fees/: 'Domestic Participant Application: May 7, 2027, 12 p.m. PT'",
+  },
+  "mit-launch": {
+    deadline: "2027-03-31",
+    evidence: "2026-10-22, https://www.launchx.com/admissions: 'Summer Priority Deadline \u2014 November 11, 2026, Summer Early Deadline \u2014 January 21, 2027, Summer Financial Aid Deadline \u2014 March 4, 2027, Summer Final Deadline \u2014 March 31, 2027'",
+  },
+  "fred-hutch-explorers": {
+    deadline: "2027-02-28",
+    opensAt: "2027-01-04",
+    evidence: "2026-10-22, https://www.fredhutch.org/en/education-training/high-school-students/high-school-explorers-program.html: 'Applications close 11:59 pm PST February 28, 2027'",
+  },
+  "stanford-summer-high-school": {
+    deadline: "2027-01-20",
+    opensAt: "2026-11-02",
+    evidence: "2026-10-22, https://summer.stanford.edu/applying/dates-and-deadlines: 'Regular Decision deadline: January 20, 2027 at 9 p.m. PST (Early Decision deadline December 15, 2026; late application deadline March 1, 2027)'",
+  },
+  "alabama-school-fine-arts": {
+    deadline: "2027-01-22",
+    evidence: "2026-10-22, https://www.asfaschool.org/apply: 'Applications for the 2027-2028 school year ... are officially open through January 22, 2027.'",
+  },
+  "wharton-school-leadership-in-the-business-world-lbw": {
+    deadline: "2027-01-27",
+    evidence: "2026-10-22, https://globalyouth.wharton.upenn.edu/application-information/: 'applications to the Leadership in the Business World program and the Management & Technology Summer Institute will close on January 27, 2027 at 5pm ET'",
+  },
+  "columbia-university-summer-high-school-academic-program-for-engi": {
+    deadline: "2027-03-05",
+    evidence: "2026-10-22, https://outreach.engineering.columbia.edu/shape/apply: 'Final deadline: March 5, 2027 at 11:59 PM; Priority deadline: December 16, 2026; Application Opens ... November 16, 2026 (Tentative)'",
+  },
 };
 
 /** Applies the 2026-10-12 deadline check. Call it straight after applyHsoUpdateOct2026. */
