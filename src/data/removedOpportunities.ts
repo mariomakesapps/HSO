@@ -11,6 +11,9 @@
  * so the redirect happens at the edge before any JavaScript runs.
  */
 export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
+  // Round r4 (2026-10-22): ended, paused or not for high schoolers (reasons in hsoUpdateOct2026.ts).
+  "ymca-nevada-ymca-youth-and-government": "/categories/fellowships",
+  "national-institute-of-mental-health-speaking-up-about-mental-hea": "/categories/competitions",
   // Round r3 (2026-10-22): ended, paused or not for high schoolers (reasons in hsoUpdateOct2026.ts).
   "university-of-nevada-las-vegas-guic-summer-camp": "/categories/summer-programs",
   "university-of-north-carolina-wilmington-iheal-healthcare-leaders": "/categories/summer-programs",

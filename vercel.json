@@ -338,6 +338,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/national-institute-of-mental-health-speaking-up-about-mental-hea",
+      "destination": "/categories/competitions",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/ncf-envirothon-arkansas-envirothon",
       "destination": "/categories/competitions",
       "permanent": true
@@ -560,6 +565,11 @@
     {
       "source": "/opportunities/yes-abroad-kennedy-lugar",
       "destination": "/opportunities/flex-global-abroad",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/ymca-nevada-ymca-youth-and-government",
+      "destination": "/categories/fellowships",
       "permanent": true
     },
     {
