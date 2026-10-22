@@ -107,8 +107,9 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
     evidence: "2026-10-12, swe.org/scholarships: Emerging First Year Scholars, 'open to students entering their first year of undergraduate study (including current high school seniors)', February 8, 2027 - March 31, 2027.",
   },
   "taco-bell-live-mas": {
+    deadline: "2027-01-05",
     opensAt: "2026-10-13",
-    evidence: "2026-10-12, tacobellfoundation.org: 'Live Más Scholarship 2027 applications open October 13'. No 2027 deadline posted yet.",
+    evidence: "2026-10-22, https://tacobellfoundation.org/live-mas-scholarship/: 'January 5, 2027 at 5 PM PST'",
   },
   "ornl": {
     deadline: "2026-12-04",
@@ -331,6 +332,16 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
   "columbia-university-summer-high-school-academic-program-for-engi": {
     deadline: "2027-03-05",
     evidence: "2026-10-22, https://outreach.engineering.columbia.edu/shape/apply: 'Final deadline: March 5, 2027 at 11:59 PM; Priority deadline: December 16, 2026; Application Opens ... November 16, 2026 (Tentative)'",
+  },
+  // Next-cycle dates found on official pages, 2026-10-22.
+  "thedream-us-national-scholarship": {
+    deadline: "2027-02-28",
+    opensAt: "2026-11-01",
+    evidence: "2026-10-22, https://www.thedream.us/scholarships/national-scholarship/: 'November 1, 2026 \u2013 February 28, 2027'",
+  },
+  "the-rockefeller-university-learning-at-the-bench-lab-jumpstart": {
+    deadline: "2027-01-04",
+    evidence: "2026-10-22, https://www.rockefeller.edu/outreach/lab-jumpstart/: 'Monday, January 4, 2027 at 5:00pm Eastern Time'",
   },
 };
 
