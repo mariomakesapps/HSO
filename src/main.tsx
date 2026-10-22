@@ -36,9 +36,14 @@ window.addEventListener("error", (event) => {
   if (isStaleChunkError(event.message)) reloadForFreshBundle();
 });
 
-window.addEventListener("load", () => {
-  sessionStorage.removeItem("hso-chunk-reload");
+// Vite fires this when a preloaded chunk fails; reload instead of crashing.
+window.addEventListener("vite:preloadError", (event) => {
+  event.preventDefault();
+  reloadForFreshBundle();
 });
+
+// Clear the guard only once the app has run stably, so a broken deploy cannot loop.
+window.setTimeout(() => sessionStorage.removeItem("hso-chunk-reload"), 10000);
 
 createRoot(document.getElementById("root")!).render(
   <HelmetProvider>

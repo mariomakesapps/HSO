@@ -1,4 +1,4 @@
-import { Suspense, lazy, useEffect, useRef } from "react";
+import React, { Suspense, lazy as reactLazy, useEffect, useRef } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -9,6 +9,21 @@ import { SiteHeader } from "./components/SiteHeader";
 import { Atmosphere } from "./components/Atmosphere";
 
 const queryClient = new QueryClient();
+
+// A failed page-chunk fetch (stale tab after a deploy) would otherwise throw
+// during render and blank the screen. Reload once for the fresh bundle instead.
+const lazy = <T extends React.ComponentType<any>>(load: () => Promise<{ default: T }>) =>
+  reactLazy(() =>
+    load().catch((err) => {
+      const last = Number(sessionStorage.getItem("hso-chunk-reload-at") || 0);
+      if (Date.now() - last > 10000) {
+        sessionStorage.setItem("hso-chunk-reload-at", String(Date.now()));
+        window.location.reload();
+        return new Promise<{ default: T }>(() => {});
+      }
+      throw err;
+    }),
+  );
 
 const Index = lazy(() => import("./pages/Index.tsx"));
 const NotFound = lazy(() => import("./pages/NotFound.tsx"));
