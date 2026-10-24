@@ -161,8 +161,10 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
     evidence: "2026-10-12, BU RISE admissions timeline: application deadline February 3, 2027, 11:59pm ET. The opening date is given without a year, so none is set.",
   },
   "fermilab-high-school-programs-prism-valor-jrotc": {
+    opensAt: "2027-01-12",
+    deadline: "2027-03-01",
     blurb: "Fermilab's high school track: PRISM STEM mentorship plus the paid six-week VALOR JROTC summer internship. PRISM's 2027 application runs January 12 to March 1, 2027; check VALOR's page for its own dates.",
-    evidence: "2026-10-12, internships.fnal.gov PRISM page: 2027 application opens January 12, 2027 and closes March 1, 2027. VALOR JROTC dates not checked, so no deadline is set on the combined listing.",
+    evidence: "2026-10-24, https://internships.fnal.gov/fermilab-program-for-research-innovation-and-stem-mentorship-prism/: 'Application Dates: January 12, 2027 \u2013 March 1, 2027'",
   },
   "university-of-texas-at-austin-summer-high-school-research-academ": {
     opensAt: null,
@@ -342,6 +344,31 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
   "the-rockefeller-university-learning-at-the-bench-lab-jumpstart": {
     deadline: "2027-01-04",
     evidence: "2026-10-22, https://www.rockefeller.edu/outreach/lab-jumpstart/: 'Monday, January 4, 2027 at 5:00pm Eastern Time'",
+  },
+  // Next-cycle dates found on official pages, 2026-10-24.
+  "washington-university-in-st-louis-young-scientist-program-summer": {
+    deadline: "2027-01-25",
+    opensAt: "2026-11-02",
+    evidence: "2026-10-24, https://sites.wustl.edu/wustlysp/programs/summer-focus/: 'Applications open November 2, 2026; application deadline January 25, 2027; recommendation letters due February 1, 2027; interviews March 6 and 7, 2027; program May 31 to July 23, 2027.'",
+  },
+  "roswell-park-comprehensive-cancer-center-high-school-summer-rese": {
+    deadline: "2027-01-01",
+    evidence: "2026-10-24, https://www.roswellpark.org/education/high-school-undergrad/high-school-summer-research-program: 'Application portal opens October 1, 2026 ... deadline January 1, 2027; Program dates: June 28 \u2013 August 6, 2027'",
+  },
+  "stanford-medicine-pediatrics-internship-program-at-stanford-pips": {
+    deadline: "2027-02-22",
+    opensAt: "2027-01-06",
+    evidence: "2026-10-24, https://med.stanford.edu/pediatrics/education/pediatrics-internship-program/application.html: 'Applications for the Summer 2027 cohort of the PIPS program will open on Wednesday, January 6, 2027 ... Monday, February 22, 2027 (11:59pm PST)'",
+  },
+  "seattle-children-s-research-institute-research-training-program": {
+    deadline: "2027-03-08",
+    opensAt: "2027-01-04",
+    evidence: "2026-10-24, https://www.seattlechildrens.org/research/centers-programs/science-education-department/high-school-training-programs/: 'Application form due Monday, March 8, 2027, at 5 p.m. Pacific; applications open January 4, 2027'",
+  },
+  "scripps-research-translational-institute-student-research-intern": {
+    deadline: "2027-03-30",
+    opensAt: "2026-11-23",
+    evidence: "2026-10-24, https://www.scripps.edu/science/translational-institute/education-training/student-research-internship-program/: 'Applications open November 23, 2026; application deadline March 30, 2027; program June 1 \u2013 August 6, 2027'",
   },
 };
 
