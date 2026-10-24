@@ -48,6 +48,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/bigelow-laboratory-for-ocean-sciences-keller-bloom-program",
+      "destination": "/categories/research",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/boston-debate-league-bdl-debate-camp",
       "destination": "/categories/summer-programs",
       "permanent": true
@@ -540,6 +545,11 @@
     {
       "source": "/opportunities/usra",
       "destination": "/categories/summer-programs",
+      "permanent": true
+    },
+    {
+      "source": "/opportunities/whitney-youth-insights",
+      "destination": "/categories/internships",
       "permanent": true
     },
     {

@@ -219,6 +219,17 @@ export const hsoReviewOct2026: Record<string, HsoReviewSep2026> = {
   "smithsonian-nmnh-high-school-internship": { cost: "Stipend", evidence: "2026-10-22, https://naturalhistory.si.edu/education/youth-programs/high-school-internship-program: '$5,600 stipend award ($700/week)'" },
   "university-of-chicago-data-science-institute-summer-lab": { location: "Chicago, Illinois, USA", evidence: "2026-10-22, https://datascience.uchicago.edu/education/summerlab/: 'High school students of any age (including current high school seniors) are responsible for arranging their own housing and transportation. ... High school applicants must be located in the Chicago area and must be able to comfortably commute to the UChicago Hyde Park campus.'" },
   "stanford-medicine-pediatrics-internship-program-at-stanford-pips": { url: "https://med.stanford.edu/pediatrics/education/pediatrics-internship-program.html", evidence: "2026-10-22, med.stanford.edu: the Pediatrics Internship Program page is now at /pediatrics/education/pediatrics-internship-program.html." },
+  // Round r6 (2026-10-24): official-page re-check of listings not otherwise reviewed in October.
+  "whitney-youth-insights": { removed: true, evidence: "2026-10-24, https://whitney.org/education/teens/youth-insights: no current cycle. 'application deadline of Friday, August 11 at 11:59 pm'" },
+  "bigelow-laboratory-for-ocean-sciences-keller-bloom-program": { removed: true, evidence: "2026-10-24, https://www.bigelow.org/education/bloom.html: no current cycle. 'open to Maine home-schooled, public, and private high school juniors'" },
+  "barnard-college-sustainable-food-institute-sustainable-food-inst": { url: "https://precollege.barnard.edu/plate-planet-lab", evidence: "2026-10-24, https://precollege.barnard.edu/plate-planet-lab: program page moved. 'Each week, students will explore farms all across the city and New York state to learn hands-on from farmers growing our food.'" },
+  "barnard-college-the-young-women-s-leadership-institute": { url: "https://precollege.barnard.edu/nextgen-leadership-institute", evidence: "2026-10-24, https://precollege.barnard.edu/nextgen-leadership-institute: program page moved. 'NextGen Leadership Institute'" },
+  "bu-summer": { format: "In-person", evidence: "2026-10-24, https://www.bu.edu/summer/high-school-programs/summer-challenge/: 'students entering sophomore, junior, or senior year; residential and commuter options'" },
+  "girls-who-code": { format: "Online", evidence: "2026-10-24, https://girlswhocode.com/programs/pathways: 'free, virtual, self-paced program for high school students'" },
+  "kansas-university-medical-center-ku-medical-center-educational-e": { url: "https://www.kumc.edu/institute-for-community-engagement/areas-of-interest/ku-medical-center-educational-experience-(kee).html", evidence: "2026-10-24, https://www.kumc.edu/institute-for-community-engagement/areas-of-interest/ku-medical-center-educational-experience-(kee).html: program page moved. 'Learners must be a U.S. citizen, permanent resident, or DACA recipient, and aged 16 or older to participate in the system.'" },
+  "mayo-clinic-office-of-education-engagement-and-outreach-mayo-cli": { location: "Phoenix, Arizona, USA", evidence: "2026-10-24, https://college.mayo.edu/academics/office-of-education-engagement-and-outreach/programs/mayo-clinic-cares/how-to-apply/: 'Applicants must be a current sophomore or junior attending an Arizona high school ... June 1-10, 2027, 10am-3pm at the Mayo Clinic Phoenix campus'" },
+  "the-american-legion-department-of-california-california-boys-and": { cost: "Paid", evidence: "2026-10-24, https://californiaboysandgirlsstate.org/delegates/: 'The registration fee is $550.00 per delegate.'" },
+  "wharton-school-leadership-in-the-business-world-lbw": { url: "https://globalyouth.wharton.upenn.edu/programs-courses/leadership-in-the-business-world/", evidence: "2026-10-24, https://globalyouth.wharton.upenn.edu/programs-courses/leadership-in-the-business-world/: program page moved. 'High school students currently enrolled in grade 11 with demonstrated leadership experience and academic excellence of a 3.5 unweighted GPA or higher.'" },
   // Renamed by the programs themselves (official pages, 2026-10-12 to 14). Titles only; ids and URLs stay.
   "bpl-teen-takeovers": { title: "Teen Night Out Branch Council", evidence: "2026-10-14, bklynlibrary.org apply page: the program is now listed as 'Teen Night Out Branch Council (formerly Teen Takeovers)'. Same internship, new name; page URL unchanged." },
   "hudson-river-slp": { title: "Science Leadership Program", evidence: "2026-10-14, hudsonriverpark.org internship opportunities page: the paid summer program is now the Science Leadership Program, for female-identifying New York City high school students. Same program, new name; page URL unchanged." },
@@ -268,6 +279,13 @@ const gradeFixesOct2026: Record<string, number[]> = {
   // 2026-10-17, from the listings' checked descriptions: "currently in grades 9 to 11"; "grades 9 to 11 ... can apply".
   "wharton-global": [9, 10, 11],
   "biobus-junior-scientist-internship": [9, 10, 11],
+  // Round r6 (2026-10-24): grades stated on the official page.
+  "barnard-college-pre-baccalaureate-program": [11, 12],
+  "george-washington-university-school-of-medicine-and-health-scien": [10, 11],
+  "mayo-clinic-office-of-education-engagement-and-outreach-mayo-cli": [10, 11],
+  "ucla-summer-sessions-summer-college-immersion-program-scip": [10, 11],
+  "university-of-the-south-sewanee-young-writers-conference": [9, 10, 11],
+  "usc-summer": [9, 10, 11, 12],
   // Round r5 (2026-10-22): grades stated on the official page.
   "indiana-university-school-of-medicine-molecular-medicine-in-acti": [10, 11, 12],
   "seton-hall-university-pirates-pitch-competition-for-high-school": [10, 11, 12],
