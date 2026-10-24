@@ -370,6 +370,75 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
     opensAt: "2026-11-23",
     evidence: "2026-10-24, https://www.scripps.edu/science/translational-institute/education-training/student-research-internship-program/: 'Applications open November 23, 2026; application deadline March 30, 2027; program June 1 \u2013 August 6, 2027'",
   },
+  // Date verification 2026-10-24: listed dates checked against official pages.
+  "university-of-tennessee-at-chattanooga-governors-school-for-pros": {
+    deadline: null,
+    evidence: "2026-10-24, https://www.etsu.edu/: 'Applications for the 2026 session were accepted from Oct. 1, 2025 to Dec. 5, 2025, and are now closed. 2027 applications open Oct 1, 2026. (No 2027 deadline posted; the unified state application deadline of 2026-11-20 is not on any official page.)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "university-of-tennessee-at-martin-governors-school-for-the-agric": {
+    deadline: null,
+    evidence: "2026-10-24, https://www.etsu.edu/: 'Applications for the 2026 session were accepted from Oct. 1, 2025 to Dec. 5, 2025, and are now closed. 2027 applications open Oct 1, 2026. (No 2027 deadline posted; the unified state application deadline of 2026-11-20 is not on any official page.)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "austin-peay-state-university-governors-school-for-computational": {
+    deadline: null,
+    evidence: "2026-10-24, https://www.etsu.edu/: 'Applications for the 2026 session were accepted from Oct. 1, 2025 to Dec. 5, 2025, and are now closed. 2027 applications open Oct 1, 2026. (No 2027 deadline posted; the unified state application deadline of 2026-11-20 is not on any official page.)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "tennessee-technological-university-governors-school-for-emerging": {
+    deadline: null,
+    evidence: "2026-10-24, https://www.etsu.edu/: 'Applications for the 2026 session were accepted from Oct. 1, 2025 to Dec. 5, 2025, and are now closed. 2027 applications open Oct 1, 2026. (No 2027 deadline posted; the unified state application deadline of 2026-11-20 is not on any official page.)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "university-of-tennessee-at-martin-governors-school-for-the-human": {
+    deadline: null,
+    evidence: "2026-10-24, https://www.etsu.edu/: 'Applications for the 2026 session were accepted from Oct. 1, 2025 to Dec. 5, 2025, and are now closed. 2027 applications open Oct 1, 2026. (No 2027 deadline posted; the unified state application deadline of 2026-11-20 is not on any official page.)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "east-tennessee-state-university-governors-school-for-the-integra": {
+    deadline: null,
+    evidence: "2026-10-24, https://www.etsu.edu/: 'Applications for the 2026 session were accepted from Oct. 1, 2025 to Dec. 5, 2025, and are now closed. 2027 applications open Oct 1, 2026. (No 2027 deadline posted; the unified state application deadline of 2026-11-20 is not on any official page.)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "university-of-tennessee-knoxville-governors-school-for-the-scien": {
+    deadline: null,
+    evidence: "2026-10-24, https://www.etsu.edu/: 'Applications for the 2026 session were accepted from Oct. 1, 2025 to Dec. 5, 2025, and are now closed. 2027 applications open Oct 1, 2026. (No 2027 deadline posted; the unified state application deadline of 2026-11-20 is not on any official page.)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "tennessee-technological-university-governors-school-for-technolo": {
+    deadline: null,
+    evidence: "2026-10-24, https://www.etsu.edu/: 'Applications for the 2026 session were accepted from Oct. 1, 2025 to Dec. 5, 2025, and are now closed. 2027 applications open Oct 1, 2026. (No 2027 deadline posted; the unified state application deadline of 2026-11-20 is not on any official page.)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "east-tennessee-state-university-governors-school-for-tennessee-h": {
+    deadline: null,
+    evidence: "2026-10-24, https://www.etsu.edu/: 'Applications for the 2026 session were accepted from Oct. 1, 2025 to Dec. 5, 2025, and are now closed. 2027 applications open Oct 1, 2026. (No 2027 deadline posted; the unified state application deadline of 2026-11-20 is not on any official page.)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "ftc": {
+    deadline: null,
+    evidence: "2026-10-24, https://www.firstinspires.org/: 'Traditional Team registration is open through the end of the season (April). The 2026-11-17 date came from the FRC regional event fee schedule ($6,500), not FTC.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "juneau-arts-and-humanities-council-poetry-out-loud-alaska": {
+    deadline: null,
+    evidence: "2026-10-24, official site: 'The only official registration date found is December 16, 2024 (a past cycle).' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "kentucky-high-school-mock-trial-association-kentucky-high-school": {
+    deadline: null,
+    evidence: "2026-10-24, official site: 'Registration will open around late August, and will close on November 1, 2022. (past cycle only)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "brooklyn-museum-map": {
+    opensAt: null,
+    evidence: "2026-10-24, https://www.brooklynmuseum.org/careers/internships-fellowships/museum-apprentice-program: 'Application deadline September 28, 2026 (current cycle, program November 2026\u2013August 2027); no opening date given for the next cycle' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "nsa-high-school-work-study": {
+    opensAt: null,
+    evidence: "2026-10-24, https://www.nsa.gov/Careers/Student-Programs/: 'Students can apply for this program beginning on September 1 ... apply online from September 1, 2026 through September 30, 2026 (Fort Meade: due 11:59PM EST October 14, 2026)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "asian-art-museum-art-speak": {
+    deadline: null,
+    evidence: "2026-10-24, https://about.asianart.org/art-speak/: 'All components of the application must be submitted on/before 11:59 pm PST on March 1st, 2026.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "magee-womens-research-institute-high-school-summer-internship-pr": {
+    opensAt: null,
+    evidence: "2026-10-24, https://mageewomens.org/for-researchers/education/high-school-summer-internship-program: 'Applications for Summer 2026 have closed. Applications for Summer 2027 will open in December.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "oklahoma-a-schools-poetry-out-loud-oklahoma": {
+    deadline: null,
+    evidence: "2026-10-24, https://okaplus.org/poetry-out-loud/: 'School registration closed November 4, 2025 ... school champion registration deadline January 16, 2026 ... state finals March 4, 2026' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
 };
 
 /** Applies the 2026-10-12 deadline check. Call it straight after applyHsoUpdateOct2026. */
