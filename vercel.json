@@ -18,6 +18,11 @@
       "permanent": true
     },
     {
+      "source": "/opportunities/arkansas-childrens-research-institute-summer-science-program-at",
+      "destination": "/categories/research",
+      "permanent": true
+    },
+    {
       "source": "/opportunities/artswestchester-internship",
       "destination": "/categories/internships",
       "permanent": true
