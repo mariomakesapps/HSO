@@ -11,6 +11,8 @@
  * so the redirect happens at the edge before any JavaScript runs.
  */
 export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
+  // Date verification 2026-10-25: ended or paused.
+  "arkansas-childrens-research-institute-summer-science-program-at": "/categories/research",
   // Round r6 (2026-10-24): ended, paused or not for high schoolers (reasons in hsoUpdateOct2026.ts).
   "whitney-youth-insights": "/categories/internships",
   "bigelow-laboratory-for-ocean-sciences-keller-bloom-program": "/categories/research",

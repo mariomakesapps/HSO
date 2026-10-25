@@ -489,6 +489,95 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
     deadline: null,
     evidence: "2026-10-24, https://artsandmuseums.utah.gov/poetry-out-loud/: '2026/2027 season: Register today! ... school-level competitions by the end of January 2027; State finals March 3, 2027. Poetry Ourselves writing contest deadline December 11, 2026.' (the listed date is not on the official page; shown as Deadline TBA)",
   },
+  // Date verification 2026-10-25: listed dates checked against official pages.
+  "pratt-precollege": {
+    deadline: "2027-05-03",
+    evidence: "2026-10-25, https://www.pratt.edu/precollege: '2027 PreCollege Summer Scholarship Application Deadline: February 1 ... 2027 PreCollege Rolling Application Deadline: May 3'",
+  },
+  "skillsusa-washington-skillsusa": {
+    deadline: "2027-02-18",
+    evidence: "2026-10-25, https://www.skillsusawa.org: 'SLSC Registration: February 11-18, 2027'",
+  },
+  "skillsusa-new-mexico-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, official site: 'No 2026-27 registration deadline is posted on the official site.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "skillsusa-rhode-island-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, official site: '2026-27 conference registration information: COMING IN DECEMBER' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "skillsusa-south-dakota-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, official site: 'The national membership deadline is March 1st of each year, but many state deadlines fall earlier. (no 2027 state deadline posted)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "skillsusa-missouri-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, official site: 'SLSC Registration Date: March 1 (no year); State Membership Deadline March 1, 2026.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "skillsusa-oregon-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, official site: 'registration guide will be available following State Leadership and Skills Conference' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "skillsusa-oklahoma-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, official site: 'No 2027 registration deadline is posted on the official site.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "skillsusa-new-hampshire-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, official site: 'State Leadership & Skills Conference (no dates shown)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "world-food-prize-foundation-mississippi-youth-institute": {
+    deadline: null,
+    evidence: "2026-10-25, official site: 'Mississippi page shows the February 20, 2026 event with registration deadline January 30, 2026; no 2027 date posted' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "uc-davis-school-of-education-uc-davis-young-scholars-program": {
+    deadline: null,
+    evidence: "2026-10-25, https://education.ucdavis.edu/ysp-application: 'Accepting applications for the 2026 summer program ... the portal will close on March 1' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "university-of-southern-california-usc-bovard-scholars": {
+    deadline: null,
+    evidence: "2026-10-25, https://bovardscholars.usc.edu/our-program/how-to-apply/: 'JUNIORS: Apply by January 16, 2026' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "american-classical-league-national-latin-exam": {
+    deadline: "2027-02-20",
+    evidence: "2026-10-25, https://www.nle.org/important-exam-information: 'Deadline for registration for paper exams: Friday, January 29, 2027. Deadline for registration for online exams: Saturday, February 20, 2027. No registrations for online exams will be accepted after this date.'",
+  },
+  "skillsusa-virginia-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, https://skillsusava.org/events/state-leadership-conference/: '2026 State Leadership Conference: March 9-11, 2026 ... Registration opened January 1, 2026 and closed February 16, 2026.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "oklahoma-medical-research-foundation-fleming-scholars-program": {
+    deadline: null,
+    opensAt: null,
+    evidence: "2026-10-25, https://omrf.org/about-omrf/training-outreach/fleming-scholar-program/application-information/: 'All completed application packets must be submitted electronically and/or postmarked by 11:59 p.m., Feb. 1, 2026.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "university-of-nebraska-medical-center-summer-high-school-advance": {
+    deadline: null,
+    opensAt: null,
+    evidence: "2026-10-25, https://www.unmc.edu/student-success/pathway-programs/sharp/index.html: 'Online application opened November 1, 2025 ... all materials must be received by February 1, 2026.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "skillsusa-colorado-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, https://www.skillsusaco.org/state-conference: 'April 7-9, 2026 Pueblo, CO ... Registration: Coming soon' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "skillsusa-florida-skillsusa": {
+    deadline: "2027-03-22",
+    evidence: "2026-10-25, https://www.skillsusafl.org/slsc/: 'SLSC 2027 registration deadline: March 22, 2027 ... conference April 26-29, 2027, Jacksonville; students must be SkillsUSA members before February 1 to compete.'",
+  },
+  "skillsusa-montana-skillsusa": {
+    deadline: "2027-03-05",
+    opensAt: "2027-02-10",
+    evidence: "2026-10-25, https://sites.google.com/a/montanaskillsusa.com/montana-skillsusa/home/calendar-of-events: 'Early bird registration opens February 10, 2027 ... early bird deadline February 17, 2027 ... state conference registration deadline March 5, 2027'",
+  },
+  "skillsusa-nebraska-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, https://skillsusanebraska.org/events/state-leadership-and-skills-championships/: '2026 cycle: membership deadline February 15th and SLSC registration deadline February 22nd. 2027 SLSC listed April 8-10, 2027, Grand Island, with no 2027 registration deadline posted.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "skillsusa-north-dakota-skillsusa": {
+    deadline: "2027-03-12",
+    opensAt: "2027-02-23",
+    evidence: "2026-10-25, https://www.skillsusand.org/slsc: 'SLSC Registration will be open February 23 - March 12, 2027'",
+  },
 };
 
 /** Applies the 2026-10-12 deadline check. Call it straight after applyHsoUpdateOct2026. */
