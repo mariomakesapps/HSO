@@ -697,6 +697,25 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
     deadline: null,
     evidence: "2026-10-25, https://www.worldfoodprize.org/en/youth_programs/world_food_prize_youth_institutes/indiana/: 'Registration Deadline: April 3, 2026' (the listed date is not on the official page; shown as Deadline TBA)",
   },
+  // Date verification 2026-10-25: listed dates checked against official pages.
+  "the-american-legion-department-of-colorado-colorado-boys-state": {
+    deadline: null,
+    opensAt: null,
+    evidence: "2026-10-25, https://colegionboysstate.org/: 'Registration: Aug 1 2025 - May 1st, 2026. Deadline to have applications received is May 1st, 2026.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "american-legion-auxiliary-department-of-colorado-colorado-girls": {
+    deadline: "2027-05-11",
+    opensAt: "2026-11-01",
+    evidence: "2026-10-25, https://alacolorado.org/girls-state/: 'ALACGS Delegate Applications are due by May 11, 2027. Applications will open November 1st, 2026.'",
+  },
+  "american-legion-auxiliary-department-of-kansas-sunflower-girls-s": {
+    deadline: null,
+    evidence: "2026-10-25, http://www.ksgirlsstate.org/registration1: 'Registration deadline May 1, 2026; session at University of Kansas May 31 - June 5, 2026.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "newman-university-investigative-summer-stem-program-issp": {
+    deadline: null,
+    evidence: "2026-10-25, https://newmanu.edu/academics/academic-information/scholars-programs/investigative-summer-science-program: 'All ISSP application materials must be received no later than May 31. (2026 program, June 7-12, 2026)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
 };
 
 /** Applies the 2026-10-12 deadline check. Call it straight after applyHsoUpdateOct2026. */
