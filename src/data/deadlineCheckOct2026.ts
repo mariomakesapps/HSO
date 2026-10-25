@@ -439,6 +439,56 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
     deadline: null,
     evidence: "2026-10-24, https://okaplus.org/poetry-out-loud/: 'School registration closed November 4, 2025 ... school champion registration deadline January 16, 2026 ... state finals March 4, 2026' (the listed date is not on the official page; shown as Deadline TBA)",
   },
+  // Date verification 2026-10-24: listed dates checked against official pages.
+  "aopa-foundation-aopa-high-school-flight-training-scholarships": {
+    deadline: "2026-12-31",
+    evidence: "2026-10-24, https://www.aopa.org/training-and-safety/students/aopa-flight-training-scholarships: 'The current window opened on October 1, and will close on December 31. ... December 31, 2026, 11:59 p.m. ET (Fall Application Period)'",
+  },
+  "science-olympiad-south-carolina-science-olympiad": {
+    deadline: null,
+    evidence: "2026-10-24, https://www.scscioly.org/registration: '2025\u201326 registration closed January 20, 2026; $200/team, $50/team late registration fee after December 31' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "morehead-cain": {
+    deadline: null,
+    evidence: "2026-10-24, https://www.moreheadcain.org/application-eligibility/faqs/: 'The application is open until 11:59 p.m. EST on October 1, 2026.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "mad-artslife": {
+    deadline: null,
+    evidence: "2026-10-24, https://madmuseum.org/programs/teen-programs-mad: 'The application portal for the summer 2026 Artslife internship has closed.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "afrl-scholars": {
+    deadline: "2027-01-11",
+    evidence: "2026-10-24, https://afrlscholars.usra.edu/scholarsprogram/dates/: 'Applications will open October 12th, 2026, and remain open until January 11th, 2027, 23:59:59 US/Central.'",
+  },
+  "dna-learning-center-urban-barcode-research-program": {
+    deadline: null,
+    evidence: "2026-10-24, https://dnabarcoding101.org/programs/ubrp/: 'Application submission for the 2026-27 academic is now open and will close on May 26, 2026.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "syp-penn": {
+    deadline: null,
+    evidence: "2026-10-24, https://hs.sas.upenn.edu/summer-programs/application-information: 'applications for this summer 2026 program are now closed' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "stevens-institute-of-technology-school-of-business-stevens-tradi": {
+    deadline: "2027-01-22",
+    opensAt: null,
+    evidence: "2026-10-24, https://www.stevens.edu/school-business-high-school-programs-trading-day: 'Registration for Stevens Trading Day 2027 is open ... deadline January 22, 2027; virtual competition February 1, 2027 - February 26, 2027; finals April 30, 2027'",
+  },
+  "university-of-pennsylvania-neuroscience-research-academy": {
+    deadline: null,
+    evidence: "2026-10-24, https://hs.sas.upenn.edu/summer-programs/academies/3-week/neuroscience: 'The Neuroscience Research Academy has reached capacity, and we are no longer accepting applications for summer 2026.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "north-dakota-council-on-the-arts-poetry-out-loud-north-dakota": {
+    deadline: null,
+    evidence: "2026-10-24, https://www.arts.nd.gov/poetry-out-loud: 'Registration for the 2025-2026 ND Poetry Out Loud program is now closed.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "science-olympiad-arkansas-science-olympiad": {
+    deadline: null,
+    evidence: "2026-10-24, https://ualr.edu/scienceolympiad/registration-2/: 'Registration for the 2025-2026 Arkansas Science Olympiad will open on Tuesday September 2, 2025 and close on Friday December 12, 2025.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "utah-division-of-arts-and-museums-poetry-out-loud-utah": {
+    deadline: null,
+    evidence: "2026-10-24, https://artsandmuseums.utah.gov/poetry-out-loud/: '2026/2027 season: Register today! ... school-level competitions by the end of January 2027; State finals March 3, 2027. Poetry Ourselves writing contest deadline December 11, 2026.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
 };
 
 /** Applies the 2026-10-12 deadline check. Call it straight after applyHsoUpdateOct2026. */
