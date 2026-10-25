@@ -578,6 +578,125 @@ export const deadlineCheckOct2026: Record<string, CheckRow> = {
     opensAt: "2027-02-23",
     evidence: "2026-10-25, https://www.skillsusand.org/slsc: 'SLSC Registration will be open February 23 - March 12, 2027'",
   },
+  // Date verification 2026-10-25: listed dates checked against official pages.
+  "skillsusa-arizona-skillsusa": {
+    deadline: "2027-03-16",
+    evidence: "2026-10-25, https://www.skillsusaarizona.org: 'State: Registration Opens: February 1, 2027 ... Registration Closes: March 16, 2027 at 5pm MST'",
+  },
+  "barron-prize-gloria-barron-prize-for-young-heroes": {
+    deadline: "2027-04-15",
+    evidence: "2026-10-25, https://barronprize.org: 'Full Applications must be completed and submitted online by our deadline of 5:00 PM MT on April 15 each year. (next: April 15, 2027)'",
+  },
+  "uc-santa-barbara-research-mentorship-program-rmp": {
+    opensAt: "2026-12-15",
+    evidence: "2026-10-25, https://summer.ucsb.edu: 'Applications Open: December 15, 2026 ... Program Dates: June 14 - July 30, 2027'",
+  },
+  "national-history-day-louisiana-history-day-state-contest": {
+    deadline: null,
+    evidence: "2026-10-25, official site: 'Registration opened December 1, 2024 and closed March 26, 2025 (past cycle only)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "national-history-day-alaska-history-day-state-contest": {
+    deadline: null,
+    opensAt: null,
+    evidence: "2026-10-25, official site: 'Participant Registration Begins: Saturday March 01, 2025 (closed March 26, 2025; past cycle only)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "national-history-day-ohio-history-day-state-contest": {
+    deadline: null,
+    evidence: "2026-10-25, official site: 'Virtual State Contest ... Saturday, April 24, 2021 (past cycle only)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "nasa-ostem-internships": {
+    deadline: "2027-03-01",
+    evidence: "2026-10-25, https://www.nasa.gov/learning-resources/internship-programs/: 'Summer 2027 Application Deadline: March 1, 2027 (11:59 p.m. ET) Fall 2027 Application Deadline: May 24, 2027'",
+  },
+  "skillsusa-california-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, https://www.skillsusaca.org/stateconference: '60th State Leadership & Skills Conference April 8-11, 2027 ... registration deadline shown is for 2026 (closed March 13, 2026); regional: students must be registered by November 13, 2026' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "ku-cancer-ace": {
+    deadline: null,
+    evidence: "2026-10-25, https://www.kucancercenter.org/training-education/high-school-undergraduate/summer-research-program: 'Application Deadline: March 25, 2026 ... applications closed; check back in January for information on Summer 2027 opportunities' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "university-of-alaska-fairbanks-rural-alaska-honors-institute-rah": {
+    deadline: null,
+    opensAt: null,
+    evidence: "2026-10-25, https://www.uaf.edu/rahi/apply.php: 'applications open on January 1 and close on March 1, 2026 ... program runs May 26 \u2013 July 10, 2026' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "skillsusa-alaska-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, https://skillsalaska.com/state: 'March 25-27, 2026 ... registration closing February 24th, 2 PM AK Time' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "skillsusa-connecticut-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, https://www.skillsusa-connecticut.org/: 'Upcoming Events: State Conference: 3/27/26 AI Prince Technical HS' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "skillsusa-idaho-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, https://skillsidaho.org/slsc/: '2026 conference March 4-6, 2026 ... registration closed January 30' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "skillsusa-iowa-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, https://www.skillsusaiowa.org/state-leadership-skills-conference: 'Thursday, March 5, 2026 - Friday, March 6, 2026 REGISTRATION DUE: Wed., Feb. 4, 2026' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "skillsusa-maine-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, https://www.skillsusamaine.org/championships: 'State Leadership and Skills Conference March 12-13, 2026' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "skillsusa-texas-skillsusa": {
+    deadline: "2027-03-24",
+    evidence: "2026-10-25, https://skillsusatx.org/events/state-leadership-and-skills-conference/: 'State registration will open by Feb 22, 2027 and close on March 24, 2027.'",
+  },
+  "skillsusa-vermont-skillsusa": {
+    deadline: null,
+    evidence: "2026-10-25, https://www.skillsusavermont.org/skillsusa-vt--the-state-conference.html: 'Registration ... by logging on to the SkillsUSA National website during open registration periods' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "world-food-prize-foundation-maryland-youth-institute": {
+    deadline: null,
+    evidence: "2026-10-25, https://www.worldfoodprize.org/en/youth_programs/world_food_prize_youth_institutes/maryland/: 'Maryland Youth Institute ... May 1, 2026 at the University of Maryland Eastern Shore ... registration deadline of April 7, 2026' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "state-oregon-saturday-ase": {
+    deadline: null,
+    evidence: "2026-10-25, https://www.saturdayacademy.org/ase: 'The application for 2027 summer internships opens in mid-January ... The 2026 application has closed. (FAQ: The Application Deadline is on Friday, March 6th, 2026 at 11:59 pm)' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "state-nebraska-yns": {
+    deadline: null,
+    evidence: "2026-10-25, https://yns.nebraska.edu/gain-hands-on-experience-in-stem/apply: 'High School Researcher applications due March 15; no extensions. The application portal is closed for summer 2026.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "world-food-prize-foundation-colorado-grow-youth-institute": {
+    deadline: null,
+    evidence: "2026-10-25, https://www.worldfoodprize.org/en/youth_programs/world_food_prize_youth_institutes/colorado/: 'Paper submission deadline March 31, 2026 ... registration deadline March 17, 2026 ... institute April 14, 2026, Denver' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "world-food-prize-foundation-arkansas-youth-institute": {
+    deadline: null,
+    evidence: "2026-10-25, https://www.worldfoodprize.org/en/youth_programs/world_food_prize_youth_institutes/arkansas/: 'Date: TBD, Venue: University of Arkansas, Paper Submission Deadline: TBD' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "morgan-state-university-summer-academy-of-actuarial-and-mathemat": {
+    deadline: null,
+    evidence: "2026-10-25, https://www.morgan.edu/saams: 'Priority deadline February 28, 2026; general deadline April 30, 2026. Program ran June 29th-July 24th, 2026.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "national-history-day-north-dakota-history-day-state-contest": {
+    deadline: null,
+    evidence: "2026-10-25, https://nd.nhd.org/?f=1269b447-1207-4c12-83eb-b3a53ee13d53: 'Student registrations and projects are due Friday, April 16 ... Winners will be announced Friday, May 7.' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "forsyth-institute-forsyth-student-scholars-summer-internship-pro": {
+    deadline: null,
+    evidence: "2026-10-25, https://forsyth.org/forsyth-student-scholars-summer-program/: 'April 1 application deadline for the Summer 2026 program (June 29 to August 21).' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "american-legion-auxiliary-department-of-alaska-alaska-girls-stat": {
+    deadline: null,
+    evidence: "2026-10-25, https://www.alaskalegionauxiliary.org/ALA-Girls-State-Application-&-Forms.htm: 'Applications are due no later than _________, 2026' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "world-food-prize-foundation-ohio-youth-institute": {
+    deadline: null,
+    evidence: "2026-10-25, https://www.worldfoodprize.org/youth-programs/youth-institutes/ohio/: 'Date: TBD; Registration Deadline: TBD' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "science-olympiad-wyoming-science-olympiad": {
+    deadline: null,
+    evidence: "2026-10-25, https://www.caspercollege.edu/events/science-olympiad/: 'final registration due April 3, 2026' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
+  "the-world-food-prize-foundation-purdue-youth-institute": {
+    deadline: null,
+    evidence: "2026-10-25, https://www.worldfoodprize.org/en/youth_programs/world_food_prize_youth_institutes/indiana/: 'Registration Deadline: April 3, 2026' (the listed date is not on the official page; shown as Deadline TBA)",
+  },
 };
 
 /** Applies the 2026-10-12 deadline check. Call it straight after applyHsoUpdateOct2026. */
