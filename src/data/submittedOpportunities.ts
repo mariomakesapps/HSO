@@ -2,10 +2,74 @@ import type { Opportunity } from "@/data/opportunities";
 
 /**
  * Community submissions from the HSO "Submit an opportunity" form
- * (opportunity_submissions export, 2026-08-30). Deduped; YEFA's Youth
+ * (opportunity_submissions export, 2026-08-30, and supplied additions). Deduped; YEFA's Youth
  * Sustainable Finance Competition is already listed as `yefa-ysic`.
  */
 export const submittedOpportunities: Opportunity[] = [
+  {
+    id: "lumiere-scholars-essay-award",
+    title: "Lumiere Scholars Essay Award",
+    org: "Lumiere Education",
+    category: "Competition",
+    fields: ["Writing", "Humanities"],
+    location: "Worldwide (Online)",
+    format: "Online",
+    cost: "Free",
+    grades: [9, 10, 11, 12],
+    deadline: "2026-12-20",
+    prestige: 1,
+    blurb:
+      "Free online essay contest for high school students anywhere in the world. Prompts come from professors at Oxford, Cambridge, Columbia, Brown, Dartmouth, and Cornell. Essays are up to 2,000 words. Six winners share $11,000+ in cash and scholarships, and top writers get invited to a gala dinner at Oxford in July 2027. Free registration closes Nov 30, 2026.",
+    url: "https://www.lumiere-education.com/lumiere-scholars-essay-award",
+  },
+  {
+    id: "oxford-essay-prize-2027",
+    title: "Oxford Essay Prize 2027",
+    org: "Oxford Centre for Advanced Research (OCAR)",
+    category: "Competition",
+    fields: ["Writing", "Humanities", "Business", "Policy"],
+    location: "Worldwide (Online)",
+    format: "Online",
+    cost: "Free",
+    grades: [9, 10, 11, 12],
+    deadline: "2027-01-03",
+    prestige: 1,
+    blurb:
+      "Free essay contest for students ages 14 to 18 worldwide. Pick one of six prompts on economics, politics, ethics, or tech. Essays are up to 1,500 words and judged by researchers from Oxford and Cambridge. Up to £9,000 in prizes and scholarships, and everyone who enters gets a certificate. Early bird deadline is Nov 15, 2026. OCAR is not part of the University of Oxford.",
+    url: "https://oxford-research.uk.com/essay-competition",
+  },
+  {
+    id: "veritas-ai-high-school-hackathon",
+    title: "Veritas AI International High School Hackathon",
+    org: "Veritas AI",
+    category: "Competition",
+    fields: ["Computer Science", "STEM"],
+    location: "Worldwide (Online)",
+    format: "Online",
+    cost: "Free",
+    grades: [9, 10, 11, 12],
+    deadline: "2026-11-13",
+    prestige: 1,
+    blurb:
+      "Free 48-hour online AI hackathon for high schoolers anywhere in the world, Nov 14 to 15, 2026. Go solo or in a team of up to 3. No AI experience needed and there are free prep workshops. The top team wins an internship at Arecibo AI, and winners share scholarships from a $75,000+ prize pool. Finalists pitch live to researchers from Microsoft Research and Stanford.",
+    url: "https://highschoolhackathon.org/",
+  },
+  {
+    id: "village-virtual-impact-lab-fellowship",
+    title: "Village Virtual Impact Lab Fellowship",
+    org: "Global Nomads Group",
+    category: "Fellowship",
+    fields: ["Humanities", "Leadership", "Research"],
+    location: "Online",
+    format: "Online",
+    cost: "Paid",
+    grades: [11, 12],
+    deadline: "2026-12-07",
+    prestige: 1,
+    blurb:
+      "16-week online fellowship (Jan to May 2027, about 4 to 6 hours a week) for ages 16 to 24. Fellows join a small global team and do a real project for a nonprofit, with weekly live trainings on research, project planning, using AI, and public speaking. You finish with real work the nonprofit uses, a certificate, and two recommendation letters. Costs $3,500, with financial aid available.",
+    url: "https://content.gng.org/village",
+  },
   {
     id: "pmready-tce",
     title: "Tech Career Exploration Program",
