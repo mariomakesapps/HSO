@@ -11,4 +11,4 @@
 
 ## October 27 submissions
 - [x] Add the four supplied opportunities without duplicating existing listings.
-- [ ] Check supplied values, public pages, and sitemap inclusion.
+- [x] Check supplied values, public pages, and sitemap inclusion (231 tests passed; all four pages checked).
