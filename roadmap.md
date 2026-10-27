@@ -5,6 +5,10 @@
 - [x] Preserve HSO customizations and verify catalogue behavior, tests, and preview health.
 
 ## October 17 spreadsheet
-- [ ] Inspect the supplied changes and identify actionable updates.
-- [ ] Apply confirmed catalogue and SEO updates without overwriting prior corrections.
-- [ ] Verify updated listings, run tests, and regenerate SEO files.
+- [x] Inspect the supplied changes and identify actionable updates.
+- [x] Apply confirmed catalogue and SEO updates without overwriting prior corrections.
+- [x] Verify updated listings, run tests, and regenerate SEO files.
+
+## October 27 submissions
+- [x] Add the four supplied opportunities without duplicating existing listings.
+- [x] Check supplied values, public pages, and sitemap inclusion (231 tests passed; all four pages checked).

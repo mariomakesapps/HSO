@@ -62,7 +62,9 @@ const AMBIGUOUS_PLACE_PATTERNS: RegExp[] = [
 const US_LOCATION = /\b(usa|u\.s\.a?\.|united states)\b/i;
 
 function isUsBased(opp: { title: string; blurb: string; location: string; url?: string }) {
-  const haystack = `${opp.title} ${opp.blurb} ${opp.location} ${opp.url ?? ""}`;
+  // A country word in the host (e.g. oxford-research.uk.com) does not
+  // restrict eligibility for a worldwide online opportunity.
+  const haystack = `${opp.title} ${opp.blurb} ${opp.location}`;
   for (const re of NON_US_PATTERNS) {
     if (re.test(haystack)) return false;
   }
