@@ -1,0 +1,622 @@
+From c6320eae6caeccd65bbdb4563b4a8ee756d3fc76 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Wed, 28 Oct 2026 00:37:41 +0000
+Subject: [PATCH 07/10] SEO: prerender guide bodies and collections; guides
+ link to listings
+
+- Guides are rendered from their own React components at build time, so the
+  prerendered HTML carries the full comparison tables and write-ups (5-7.7K
+  characters, up from about 850) plus the same Article/FAQPage JSON-LD the app
+  sets.
+- Guide comparison tables link each programme to its HSO listing where one
+  exists, with the programme name as the anchor (11 links, checked by a test).
+  Guide dateModified moves to 2026-10-28.
+- The collections index and all 19 curated collection pages are prerendered
+  with their programme lists, get shared metadata (title, description,
+  ItemList + BreadcrumbList JSON-LD) used by both the app and the HTML, and
+  are now in sitemap-collections.xml.
+- seo-check accepts an <h1> with attributes.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_015eydvdzcxBPZCXsPy7MGLS
+---
+ public/sitemap-collections.xml              |  19 ++++
+ public/sitemap-guides.xml                   |   8 +-
+ public/sitemap.xml                          |   4 +-
+ scripts/prerender.mjs                       | 108 +++++++++++++++++++-
+ scripts/seo-check.mjs                       |   2 +-
+ src/components/GuideProgramName.test.ts     |  24 +++++
+ src/components/GuideProgramName.tsx         |  39 +++++++
+ src/lib/pageMeta.ts                         |  59 ++++++++++-
+ src/pages/Collections.tsx                   |  10 +-
+ src/pages/GuideHighSchoolLawInternships.tsx |   5 +-
+ src/pages/GuideTopBusinessPrograms.tsx      |   5 +-
+ src/pages/GuideTopMedicalInternships.tsx    |   5 +-
+ src/pages/GuideTopResearchCompetitions.tsx  |   5 +-
+ src/pages/SharedCollection.tsx              |  14 +--
+ 14 files changed, 267 insertions(+), 40 deletions(-)
+ create mode 100644 src/components/GuideProgramName.test.ts
+ create mode 100644 src/components/GuideProgramName.tsx
+
+diff --git a/public/sitemap-collections.xml b/public/sitemap-collections.xml
+index e9dbcf3..11ae225 100644
+--- a/public/sitemap-collections.xml
++++ b/public/sitemap-collections.xml
+@@ -1,4 +1,23 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <url><loc>https://highschoolopportunity.org/collections</loc><lastmod>2026-08-26</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/cs-builder-track</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/math-olympiad-ladder</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/women-in-stem</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/cybersecurity-builders</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/future-doctors</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/business-founder-prep</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/law-policy-civic</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/writing-journalism-media</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/arts-design-portfolio</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/humanities-scholar</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/engineering-robotics</loc><lastmod>2026-10-25</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/climate-action</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/nyc-student</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/scholarships-competitions</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/selective-shortlist</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/free-summer-programs</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/ivy-level-summer</loc><lastmod>2026-10-25</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/research-starter-pack</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
++  <url><loc>https://highschoolopportunity.org/collections/first-gen-college-access</loc><lastmod>2026-10-17</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+ </urlset>
+diff --git a/public/sitemap-guides.xml b/public/sitemap-guides.xml
+index f4e1f34..6271e93 100644
+--- a/public/sitemap-guides.xml
++++ b/public/sitemap-guides.xml
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+-  <url><loc>https://highschoolopportunity.org/guides/top-medical-internships</loc><lastmod>2026-07-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+-  <url><loc>https://highschoolopportunity.org/guides/top-research-competitions</loc><lastmod>2026-07-27</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+-  <url><loc>https://highschoolopportunity.org/guides/top-business-summer-programs</loc><lastmod>2026-07-29</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+-  <url><loc>https://highschoolopportunity.org/guides/high-school-law-internships</loc><lastmod>2026-07-30</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
++  <url><loc>https://highschoolopportunity.org/guides/top-medical-internships</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
++  <url><loc>https://highschoolopportunity.org/guides/top-research-competitions</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
++  <url><loc>https://highschoolopportunity.org/guides/top-business-summer-programs</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
++  <url><loc>https://highschoolopportunity.org/guides/high-school-law-internships</loc><lastmod>2026-10-28</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+ </urlset>
+diff --git a/public/sitemap.xml b/public/sitemap.xml
+index c9f7af5..f2cde69 100644
+--- a/public/sitemap.xml
++++ b/public/sitemap.xml
+@@ -2,7 +2,7 @@
+ <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <sitemap><loc>https://highschoolopportunity.org/sitemap-pages.xml</loc><lastmod>2026-10-25</lastmod></sitemap>
+   <sitemap><loc>https://highschoolopportunity.org/sitemap-categories.xml</loc><lastmod>2026-10-25</lastmod></sitemap>
+-  <sitemap><loc>https://highschoolopportunity.org/sitemap-guides.xml</loc><lastmod>2026-07-30</lastmod></sitemap>
+-  <sitemap><loc>https://highschoolopportunity.org/sitemap-collections.xml</loc><lastmod>2026-08-26</lastmod></sitemap>
++  <sitemap><loc>https://highschoolopportunity.org/sitemap-guides.xml</loc><lastmod>2026-10-28</lastmod></sitemap>
++  <sitemap><loc>https://highschoolopportunity.org/sitemap-collections.xml</loc><lastmod>2026-10-25</lastmod></sitemap>
+   <sitemap><loc>https://highschoolopportunity.org/sitemap-opportunities.xml</loc><lastmod>2026-10-25</lastmod></sitemap>
+ </sitemapindex>
+diff --git a/scripts/prerender.mjs b/scripts/prerender.mjs
+index 14a0158..0c223cf 100644
+--- a/scripts/prerender.mjs
++++ b/scripts/prerender.mjs
+@@ -55,6 +55,8 @@ async function loadRouteData(root) {
+         export { NYC_META, nycAfterSchoolByBorough, nycFeatured } from "@/lib/nyc";
+         export { detailFor } from "@/data/opportunityDetails";
+         export { relatedOpportunities } from "@/lib/related";
++        export { collectionMeta, collectionMembers } from "@/lib/pageMeta";
++        export { curatedSections, curatedCollections } from "@/data/curatedCollections";
+         export { HUB_LINKS, GUIDE_LINKS } from "@/lib/siteLinks";
+       `,
+       resolveDir: root,
+@@ -72,6 +74,61 @@ async function loadRouteData(root) {
+   return importBundle(result);
+ }
+ 
++/**
++ * The guide pages keep their content (comparison tables, write-ups, FAQs) in the
++ * React components, so render those components to HTML here rather than copying
++ * the text into this script. Uses React's browser server renderer, which needs no
++ * Node streams, and returns the JSON-LD the page sets through Helmet so the
++ * prerendered head carries the same Article markup the app adds.
++ */
++const GUIDE_COMPONENTS = {
++  "/guides/top-medical-internships": "GuideTopMedicalInternships",
++  "/guides/top-research-competitions": "GuideTopResearchCompetitions",
++  "/guides/top-business-summer-programs": "GuideTopBusinessPrograms",
++  "/guides/high-school-law-internships": "GuideHighSchoolLawInternships",
++};
++
++async function loadGuideRenderer(root) {
++  const imports = Object.values(GUIDE_COMPONENTS)
++    .map((name) => `import ${name} from "@/pages/${name}";`)
++    .join("\n");
++  const table = Object.entries(GUIDE_COMPONENTS)
++    .map(([route, name]) => `${JSON.stringify(route)}: ${name}`)
++    .join(", ");
++  const result = await build({
++    stdin: {
++      contents: `
++        import { createElement } from "react";
++        import { renderToStaticMarkup } from "react-dom/server.browser";
++        import { MemoryRouter } from "react-router-dom";
++        import { HelmetProvider } from "react-helmet-async";
++        ${imports}
++        const GUIDES = { ${table} };
++        export function renderGuide(route) {
++          const context = {};
++          const html = renderToStaticMarkup(
++            createElement(HelmetProvider, { context },
++              createElement(MemoryRouter, { initialEntries: [route] }, createElement(GUIDES[route]))),
++          );
++          return { html, scripts: context.helmet ? context.helmet.script.toString() : "" };
++        }
++      `,
++      resolveDir: root,
++      loader: "tsx",
++    },
++    bundle: true,
++    format: "esm",
++    platform: "node",
++    target: "node18",
++    jsx: "automatic",
++    write: false,
++    logLevel: "error",
++    define: { "process.env.NODE_ENV": '"production"' },
++    alias: { "@": path.join(root, "src") },
++  });
++  return importBundle(result);
++}
++
+ const ESCAPE_MAP = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
+ const escapeHtml = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ESCAPE_MAP[c]);
+ 
+@@ -331,6 +388,40 @@ function remoteBody(data) {
+         )}`);
+ }
+ 
++function collectionsIndexBody(meta, data) {
++  return shell(`        <h1>Curated collections</h1>
++        <p>${escapeHtml(meta.description ?? "")}</p>
++        ${data.curatedSections
++          .map(
++            (section) => `<h2>${escapeHtml(section.title)}</h2>
++        ${linkList(
++          section.collections.map((c) => ({
++            href: `/collections/${c.id}`,
++            label: `${c.title}: ${c.description} (${data.collectionMembers(c).length} programs)`,
++          })),
++        )}`,
++          )
++          .join("\n        ")}`);
++}
++
++function collectionBody(c, data) {
++  const members = data.collectionMembers(c);
++  const items = members
++    .map(
++      (o) =>
++        `<li><a href="/opportunities/${escapeHtml(o.id)}">${escapeHtml(o.title)}</a>: ${escapeHtml(o.org)}. ${escapeHtml(
++          o.category,
++        )}, ${escapeHtml(o.location)}. ${escapeHtml(o.blurb)}</li>`,
++    )
++    .join("");
++  return shell(`        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/collections">Collections</a> / ${escapeHtml(c.title)}</nav>
++        <h1>${escapeHtml(c.title)}</h1>
++        <p>${escapeHtml(c.description)}</p>
++        <h2>Programs in this collection (${members.length})</h2>
++        <ul>${items}</ul>
++        <p><a href="/collections">Browse all curated collections</a></p>`);
++}
++
+ function staticBody(meta, data) {
+   return shell(`        <h1>${escapeHtml(meta.title.replace(/\s*\|\s*HSO.*$/, ""))}</h1>
+         <p>${escapeHtml(meta.description ?? "")}</p>
+@@ -510,8 +601,19 @@ export async function prerender({ root, distDir }) {
+ 
+   const pages = [];
+ 
++  const guides = await loadGuideRenderer(root);
+   for (const [routePath, meta] of Object.entries(data.STATIC_PAGE_META)) {
+-    pages.push({ meta, body: staticBody(meta, data) });
++    if (GUIDE_COMPONENTS[routePath]) {
++      const { html, scripts } = guides.renderGuide(routePath);
++      pages.push({ meta, body: shell(html), extraHead: scripts });
++    } else if (routePath === "/collections") {
++      pages.push({ meta, body: collectionsIndexBody(meta, data) });
++    } else {
++      pages.push({ meta, body: staticBody(meta, data) });
++    }
++  }
++  for (const c of data.curatedCollections) {
++    pages.push({ meta: data.collectionMeta(c), body: collectionBody(c, data) });
+   }
+   pages.push({ meta: data.remoteMeta(), body: remoteBody(data) });
+   pages.push({ meta: data.deadlinesMeta(), body: deadlinesBody(data) });
+@@ -526,8 +628,8 @@ export async function prerender({ root, distDir }) {
+   let written = 0;
+   let noindexed = 0;
+ 
+-  for (const { meta, body } of pages) {
+-    const html = renderPage(template, headFor(meta), body);
++  for (const { meta, body, extraHead } of pages) {
++    const html = renderPage(template, headFor(meta) + (extraHead ? `\n  ${extraHead}` : ""), body);
+     const outPath =
+       meta.path === "/"
+         ? path.join(distDir, "index.html")
+diff --git a/scripts/seo-check.mjs b/scripts/seo-check.mjs
+index 6336a83..ec57fe4 100644
+--- a/scripts/seo-check.mjs
++++ b/scripts/seo-check.mjs
+@@ -39,7 +39,7 @@ for (const file of files) {
+   const title = html.match(/<title[^>]*>([^<]*)<\/title>/)?.[1];
+   const canonical = html.match(/<link [^>]*rel="canonical" href="([^"]*)"/)?.[1];
+   const description = html.match(/<meta [^>]*name="description" content="([^"]*)"/)?.[1];
+-  const h1 = html.match(/<h1>([^<]*)<\/h1>/)?.[1];
++  const h1 = html.match(/<h1(?:\s[^>]*)?>([^<]*)<\/h1>/)?.[1];
+ 
+   if (!title) problems.push(`${route}: missing <title>`);
+   if (!canonical) problems.push(`${route}: missing canonical`);
+diff --git a/src/components/GuideProgramName.test.ts b/src/components/GuideProgramName.test.ts
+new file mode 100644
+index 0000000..0cfdedd
+--- /dev/null
++++ b/src/components/GuideProgramName.test.ts
+@@ -0,0 +1,24 @@
++import { readFileSync, readdirSync } from "node:fs";
++import path from "node:path";
++import { describe, expect, it } from "vitest";
++import { allOpportunities } from "@/data/opportunities";
++import { GUIDE_PROGRAM_LISTINGS, listingForGuideProgram } from "@/components/GuideProgramName";
++
++const guideSources = readdirSync(path.resolve(__dirname, "../pages"))
++  .filter((f) => f.startsWith("Guide") && f.endsWith(".tsx"))
++  .map((f) => readFileSync(path.resolve(__dirname, "../pages", f), "utf8"))
++  .join("\n");
++const guideNames = [...guideSources.matchAll(/name: "([^"]+)"/g)].map((m) => m[1]);
++const ids = new Set(allOpportunities.map((o) => o.id));
++
++describe("guide programme links", () => {
++  it("every mapped programme name is still in a guide", () => {
++    for (const name of Object.keys(GUIDE_PROGRAM_LISTINGS)) expect(guideNames).toContain(name);
++  });
++
++  it("every linked listing still exists in the catalogue", () => {
++    const linked = guideNames.map(listingForGuideProgram).filter(Boolean) as string[];
++    expect(linked.length).toBeGreaterThanOrEqual(11);
++    for (const id of linked) expect(ids.has(id), id).toBe(true);
++  });
++});
+diff --git a/src/components/GuideProgramName.tsx b/src/components/GuideProgramName.tsx
+new file mode 100644
+index 0000000..2f9f5ce
+--- /dev/null
++++ b/src/components/GuideProgramName.tsx
+@@ -0,0 +1,39 @@
++import { Link } from "react-router-dom";
++
++/**
++ * Guide programmes that have their own HSO listing. The guides compare programmes
++ * by name; linking each name to its listing (with the name as the anchor text)
++ * passes the guides' authority to those pages. A test checks every id still
++ * exists in the catalogue.
++ */
++export const GUIDE_PROGRAM_LISTINGS: Record<string, string> = {
++  "Stanford Institutes of Medicine Summer Research Program (SIMR)": "simr",
++  "NIH Summer Internship Program (HS-SIP)": "nih-summer",
++  "Rockefeller University Summer Science Research Program (SSRP)": "rockefeller-ssrp",
++  "MIT Research Science Institute (RSI)": "rsi",
++  "Regeneron Science Talent Search (STS)": "regeneron-sts",
++  "Regeneron International Science and Engineering Fair (ISEF)": "isef",
++  "Junior Science and Humanities Symposium (JSHS)": "jshs",
++  "Davidson Fellows Scholarship": "davidson-fellows",
++  "Conrad Challenge": "conrad-foundation-conrad-challenge",
++};
++
++/** Programme names whose text starts with these map to a listing too (long names). */
++const PREFIX_LISTINGS: [string, string][] = [
++  ["Wharton Global Youth Program (Leadership in the Business World", "wharton-school-leadership-in-the-business-world-lbw"],
++  ["Georgetown Hoya Summer Law Academy", "syp-georgetown"],
++];
++
++export function listingForGuideProgram(name: string): string | undefined {
++  return GUIDE_PROGRAM_LISTINGS[name] ?? PREFIX_LISTINGS.find(([p]) => name.startsWith(p))?.[1];
++}
++
++export function GuideProgramName({ name }: { name: string }) {
++  const id = listingForGuideProgram(name);
++  if (!id) return <>{name}</>;
++  return (
++    <Link to={`/opportunities/${id}`} className="underline decoration-coral/40 underline-offset-4 hover:text-coral">
++      {name}
++    </Link>
++  );
++}
+diff --git a/src/lib/pageMeta.ts b/src/lib/pageMeta.ts
+index 1c94940..811d4fe 100644
+--- a/src/lib/pageMeta.ts
++++ b/src/lib/pageMeta.ts
+@@ -8,6 +8,7 @@ import { OCT17_LISTING_SEO } from "@/data/hsoUpdateOct17.generated";
+ import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
+ import { listingDescription, listingTitle, todayIso } from "@/lib/listingSeo";
+ import { latestLastModified, listingLastModified } from "@/data/listingDates";
++import { curatedCollections, type CuratedCollection } from "@/data/curatedCollections";
+ 
+ export const SITE_URL = "https://highschoolopportunity.org";
+ export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
+@@ -392,7 +393,7 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
+     path: "/volunteer",
+   },
+   "/collections": {
+-    title: "Curated Collections | HSO",
++    title: "Curated Collections of High School Opportunities | HSO",
+     description:
+       "Curated HSO collections of U.S. high school opportunities grouped by career path, field, and application season.",
+     path: "/collections",
+@@ -510,14 +511,57 @@ const STATIC_LASTMOD: Record<string, string> = {
+   "/submit": "2026-07-20",
+   "/volunteer": "2026-09-21",
+   "/collections": "2026-08-26",
+-  "/guides/top-medical-internships": "2026-07-27",
+-  "/guides/top-research-competitions": "2026-07-27",
+-  "/guides/top-business-summer-programs": "2026-07-29",
+-  "/guides/high-school-law-internships": "2026-07-30",
++  "/guides/top-medical-internships": "2026-10-28",
++  "/guides/top-research-competitions": "2026-10-28",
++  "/guides/top-business-summer-programs": "2026-10-28",
++  "/guides/high-school-law-internships": "2026-10-28",
+ };
+ 
+ const idsOf = (list: Opportunity[]) => list.map((o) => o.id);
+ 
++/** Listings in a curated collection that are live in the catalogue, in the collection's order. */
++export function collectionMembers(c: CuratedCollection): Opportunity[] {
++  const byId = new Map(allOpportunities.map((o) => [o.id, o]));
++  return c.opportunityIds.map((id) => byId.get(id)).filter((o): o is Opportunity => !!o);
++}
++
++/** Metadata for a curated collection page (/collections/:id), shared by the app and the prerender. */
++export function collectionMeta(c: CuratedCollection): PageMeta {
++  const members = collectionMembers(c);
++  const url = `${SITE_URL}/collections/${c.id}`;
++  const long = `${c.title} for High Schoolers | HSO`;
++  return {
++    title: long.length <= 65 ? long : `${c.title} | HSO`,
++    description: clampDescription(`${c.description} ${members.length} programs with deadlines and official links.`),
++    path: `/collections/${c.id}`,
++    jsonLd: [
++      {
++        "@context": "https://schema.org",
++        "@type": "ItemList",
++        name: c.title,
++        description: c.description,
++        url,
++        numberOfItems: members.length,
++        itemListElement: members.map((o, i) => ({
++          "@type": "ListItem",
++          position: i + 1,
++          name: o.title,
++          url: `${SITE_URL}${opportunityPath(o.id)}`,
++        })),
++      },
++      {
++        "@context": "https://schema.org",
++        "@type": "BreadcrumbList",
++        itemListElement: [
++          { "@type": "ListItem", position: 1, name: "HSO", item: `${SITE_URL}/` },
++          { "@type": "ListItem", position: 2, name: "Collections", item: `${SITE_URL}/collections` },
++          { "@type": "ListItem", position: 3, name: c.title, item: url },
++        ],
++      },
++    ],
++  };
++}
++
+ export function allRoutes(): PageMeta[] {
+   const catalogueLatest = latestLastModified(idsOf(allOpportunities));
+   return [
+@@ -532,6 +576,11 @@ export function allRoutes(): PageMeta[] {
+       ...categoryMeta(slug),
+       lastmod: latestLastModified(idsOf(allOpportunities.filter((o) => o.category === CATEGORY_META[slug].category))),
+     })),
++    // A collection page changes when its list changes or a listing on it does.
++    ...curatedCollections.map((c) => {
++      const latest = latestLastModified(c.opportunityIds) ?? "";
++      return { ...collectionMeta(c), lastmod: latest > STATIC_LASTMOD["/collections"] ? latest : STATIC_LASTMOD["/collections"] };
++    }),
+     ...allOpportunities.map((opp) => ({ ...opportunityMeta(opp), lastmod: listingLastModified(opp.id) })),
+   ];
+ }
+diff --git a/src/pages/Collections.tsx b/src/pages/Collections.tsx
+index 1b95c4f..5c2c19b 100644
+--- a/src/pages/Collections.tsx
++++ b/src/pages/Collections.tsx
+@@ -5,7 +5,8 @@ import { toast } from "sonner";
+ import { Button } from "@/components/ui/button";
+ import { SiteFooter } from "@/components/SiteFooter";
+ import { FilterDropdown, type DropdownOption } from "@/components/FilterDropdown";
+-import { useSEO } from "@/lib/seo";
++import { SEO } from "@/components/SEO";
++import { STATIC_PAGE_META } from "@/lib/pageMeta";
+ import { useAuthSession } from "@/hooks/useAuthSession";
+ import {
+   careerPaths,
+@@ -51,11 +52,6 @@ function signInRequiredToast(navigate: ReturnType<typeof useNavigate>, returnTo:
+ }
+ 
+ export default function Collections() {
+-  useSEO({
+-    title: "Curated Collections | HSO",
+-    description: "HSO-curated lists of U.S.-based high school opportunities, hand-picked by major, career path, and goal.",
+-  });
+-
+   useEffect(() => {
+     void loadCuratedCounts();
+   }, []);
+@@ -103,6 +99,8 @@ export default function Collections() {
+ 
+   return (
+     <div className="min-h-screen text-foreground">
++      {/* Same metadata as the prerendered page. */}
++      <SEO {...STATIC_PAGE_META["/collections"]} />
+       <main className="mx-auto w-full max-w-[1240px] px-4 pb-24 pt-8 md:px-6 md:pt-12">
+         <section className="hso-glass-panel hso-surface-grid relative overflow-hidden rounded-[2rem] p-6 sm:p-10">
+           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(118deg,hsl(var(--coral)/0.10),transparent_38%),linear-gradient(248deg,hsl(var(--sage)/0.10),transparent_42%)]" />
+diff --git a/src/pages/GuideHighSchoolLawInternships.tsx b/src/pages/GuideHighSchoolLawInternships.tsx
+index 01657c1..04ed25e 100644
+--- a/src/pages/GuideHighSchoolLawInternships.tsx
++++ b/src/pages/GuideHighSchoolLawInternships.tsx
+@@ -1,5 +1,6 @@
+ import { Link } from "react-router-dom";
+ import { SiteFooter } from "@/components/SiteFooter";
++import { GuideProgramName } from "@/components/GuideProgramName";
+ import SEO from "@/components/SEO";
+ import { STATIC_PAGE_META } from "@/lib/pageMeta";
+ 
+@@ -78,7 +79,7 @@ export default function GuideHighSchoolLawInternships() {
+       author: { "@type": "Organization", name: "HSO" },
+       publisher: { "@type": "Organization", name: "HSO — High School Opportunity" },
+       datePublished: "2026-07-30",
+-      dateModified: "2026-07-30",
++      dateModified: "2026-10-28",
+       mainEntityOfPage: "https://highschoolopportunity.org/guides/high-school-law-internships",
+     },
+     {
+@@ -127,7 +128,7 @@ export default function GuideHighSchoolLawInternships() {
+               <tbody>
+                 {PROGRAMS.map((p) => (
+                   <tr key={p.name} className="border-t border-border/60 align-top">
+-                    <td className="px-4 py-3 font-semibold text-ink">{p.name}</td>
++                    <td className="px-4 py-3 font-semibold text-ink"><GuideProgramName name={p.name} /></td>
+                     <td className="px-4 py-3 text-muted-foreground">{p.host}</td>
+                     <td className="px-4 py-3 text-muted-foreground">{p.cost}</td>
+                     <td className="px-4 py-3 text-muted-foreground">{p.eligibility}</td>
+diff --git a/src/pages/GuideTopBusinessPrograms.tsx b/src/pages/GuideTopBusinessPrograms.tsx
+index 37e2875..b3399f3 100644
+--- a/src/pages/GuideTopBusinessPrograms.tsx
++++ b/src/pages/GuideTopBusinessPrograms.tsx
+@@ -1,5 +1,6 @@
+ import { Link } from "react-router-dom";
+ import { SiteFooter } from "@/components/SiteFooter";
++import { GuideProgramName } from "@/components/GuideProgramName";
+ import SEO from "@/components/SEO";
+ import { STATIC_PAGE_META } from "@/lib/pageMeta";
+ 
+@@ -46,7 +47,7 @@ export default function GuideTopBusinessPrograms() {
+     author: { "@type": "Organization", name: "HSO" },
+     publisher: { "@type": "Organization", name: "HSO — High School Opportunity" },
+     datePublished: "2026-07-29",
+-    dateModified: "2026-07-29",
++    dateModified: "2026-10-28",
+     mainEntityOfPage: "https://highschoolopportunity.org/guides/top-business-summer-programs",
+   };
+ 
+@@ -85,7 +86,7 @@ export default function GuideTopBusinessPrograms() {
+               <tbody>
+                 {PROGRAMS.map((p) => (
+                   <tr key={p.name} className="border-t border-border/60 align-top">
+-                    <td className="px-4 py-3 font-semibold text-ink">{p.name}</td>
++                    <td className="px-4 py-3 font-semibold text-ink"><GuideProgramName name={p.name} /></td>
+                     <td className="px-4 py-3 text-muted-foreground">{p.host}</td>
+                     <td className="px-4 py-3 text-muted-foreground">{p.cost}</td>
+                     <td className="px-4 py-3 text-muted-foreground">{p.selectivity}</td>
+diff --git a/src/pages/GuideTopMedicalInternships.tsx b/src/pages/GuideTopMedicalInternships.tsx
+index 4e3bd76..68f4df0 100644
+--- a/src/pages/GuideTopMedicalInternships.tsx
++++ b/src/pages/GuideTopMedicalInternships.tsx
+@@ -1,5 +1,6 @@
+ import { Link } from "react-router-dom";
+ import { SiteFooter } from "@/components/SiteFooter";
++import { GuideProgramName } from "@/components/GuideProgramName";
+ import SEO from "@/components/SEO";
+ import { STATIC_PAGE_META } from "@/lib/pageMeta";
+ 
+@@ -82,7 +83,7 @@ export default function GuideTopMedicalInternships() {
+     author: { "@type": "Organization", name: "HSO" },
+     publisher: { "@type": "Organization", name: "HSO — High School Opportunity" },
+     datePublished: "2026-07-08",
+-    dateModified: "2026-07-08",
++    dateModified: "2026-10-28",
+     mainEntityOfPage: "https://highschoolopportunity.org/guides/top-medical-internships",
+   };
+ 
+@@ -120,7 +121,7 @@ export default function GuideTopMedicalInternships() {
+               <tbody>
+                 {PROGRAMS.map((p) => (
+                   <tr key={p.name} className="border-t border-border/60 align-top">
+-                    <td className="px-4 py-3 font-semibold text-ink">{p.name}</td>
++                    <td className="px-4 py-3 font-semibold text-ink"><GuideProgramName name={p.name} /></td>
+                     <td className="px-4 py-3 text-muted-foreground">{p.host}</td>
+                     <td className="px-4 py-3 text-muted-foreground">{p.selectivity}</td>
+                     <td className="px-4 py-3 text-muted-foreground">{p.stipend}</td>
+diff --git a/src/pages/GuideTopResearchCompetitions.tsx b/src/pages/GuideTopResearchCompetitions.tsx
+index 73250b1..830ec88 100644
+--- a/src/pages/GuideTopResearchCompetitions.tsx
++++ b/src/pages/GuideTopResearchCompetitions.tsx
+@@ -1,5 +1,6 @@
+ import { Link } from "react-router-dom";
+ import { SiteFooter } from "@/components/SiteFooter";
++import { GuideProgramName } from "@/components/GuideProgramName";
+ import SEO from "@/components/SEO";
+ import { STATIC_PAGE_META } from "@/lib/pageMeta";
+ 
+@@ -82,7 +83,7 @@ export default function GuideTopResearchCompetitions() {
+     author: { "@type": "Organization", name: "HSO" },
+     publisher: { "@type": "Organization", name: "HSO — High School Opportunity" },
+     datePublished: "2026-07-22",
+-    dateModified: "2026-07-22",
++    dateModified: "2026-10-28",
+     mainEntityOfPage: "https://highschoolopportunity.org/guides/top-research-competitions",
+   };
+ 
+@@ -121,7 +122,7 @@ export default function GuideTopResearchCompetitions() {
+               <tbody>
+                 {COMPETITIONS.map((p) => (
+                   <tr key={p.name} className="border-t border-border/60 align-top">
+-                    <td className="px-4 py-3 font-semibold text-ink">{p.name}</td>
++                    <td className="px-4 py-3 font-semibold text-ink"><GuideProgramName name={p.name} /></td>
+                     <td className="px-4 py-3 text-muted-foreground">{p.host}</td>
+                     <td className="px-4 py-3 text-muted-foreground">{p.selectivity}</td>
+                     <td className="px-4 py-3 text-muted-foreground">{p.prize}</td>
+diff --git a/src/pages/SharedCollection.tsx b/src/pages/SharedCollection.tsx
+index dac7fa2..656a13f 100644
+--- a/src/pages/SharedCollection.tsx
++++ b/src/pages/SharedCollection.tsx
+@@ -15,7 +15,7 @@ import {
+   useCuratedLikedStatus,
+   useCuratedSavedStatus,
+ } from "@/store/collections";
+-import { useSEO } from "@/lib/seo";
++import { collectionMeta } from "@/lib/pageMeta";
+ import { SEO } from "@/components/SEO";
+ import { displayedLikes } from "@/lib/curatedBaseline";
+ 
+@@ -31,16 +31,6 @@ const CuratedCollectionDetail = () => {
+ 
+   useEffect(() => { void loadCuratedCounts(); }, []);
+ 
+-  useSEO({
+-    title: collection ? `${collection.title} - HSO Collection` : "Collection - HSO",
+-    description: (() => {
+-      const raw =
+-        collection?.description ||
+-        "A curated HSO list of high school opportunities: internships, research, scholarships, competitions, and summer programs picked by editors.";
+-      return raw.length > 158 ? `${raw.slice(0, 155)}…` : raw;
+-    })(),
+-  });
+-
+   const allOpps = useMemo(
+     () => (collection?.opportunityIds ?? []).map((oid) => allOpportunities.find((o) => o.id === oid)).filter(Boolean),
+     [collection],
+@@ -101,6 +91,8 @@ const CuratedCollectionDetail = () => {
+ 
+   return (
+     <div className="min-h-screen text-foreground">
++      {/* Same metadata as the prerendered page. */}
++      <SEO {...collectionMeta(collection)} />
+       <main className="mx-auto w-full max-w-[1180px] px-4 pb-24 pt-8 md:px-6 md:pt-12">
+         <button type="button" onClick={goBack} className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-coral">
+           <ArrowLeft className="h-4 w-4" /> Collections
+-- 
+2.43.0
+

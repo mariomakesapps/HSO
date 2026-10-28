@@ -1,0 +1,188 @@
+From ac2f3c6e8a3e861a7e29c87201d1404401f84229 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Wed, 28 Oct 2026 00:48:14 +0000
+Subject: [PATCH 10/10] SEO: Organization and WebSite JSON-LD for the High
+ School Opportunity brand
+
+The homepage carries WebSite (name High School Opportunity, alternateName
+HSO, the existing ?q= SearchAction, publisher) and Organization (name,
+alternateName, logo, description) JSON-LD; /about carries AboutPage pointing at
+the same Organization. sameAs is left empty until the official profile links
+are confirmed. The About page now sets its metadata through the shared SEO
+component, so the app keeps the JSON-LD the prerendered page ships. All 9,755
+JSON-LD blocks in the build parse.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_015eydvdzcxBPZCXsPy7MGLS
+---
+ src/lib/pageMeta.ts | 35 +++++++++++++++++-
+ src/pages/About.tsx | 87 ++++++++++++++++++++++-----------------------
+ 2 files changed, 77 insertions(+), 45 deletions(-)
+
+diff --git a/src/lib/pageMeta.ts b/src/lib/pageMeta.ts
+index 7cb5bb6..f805e65 100644
+--- a/src/lib/pageMeta.ts
++++ b/src/lib/pageMeta.ts
+@@ -348,6 +348,25 @@ function remoteMetaBase(): PageMeta {
+  * Mirrored here so the prerenderer emits the same tags; the values must stay
+  * in sync with the corresponding page component.
+  */
++/**
++ * Who runs the site, for search engines: ties "High School Opportunity" and
++ * "HSO" to this domain (brand searches rank it at 2.7-3.4). Add official
++ * profile URLs (LinkedIn, Discord and so on) to sameAs once they are confirmed;
++ * none are listed rather than guessing.
++ */
++const ORGANIZATION_ID = `${SITE_URL}/#organization`;
++const ORGANIZATION: Record<string, unknown> = {
++  "@context": "https://schema.org",
++  "@type": "Organization",
++  "@id": ORGANIZATION_ID,
++  name: "High School Opportunity",
++  alternateName: "HSO",
++  url: `${SITE_URL}/`,
++  logo: { "@type": "ImageObject", url: `${SITE_URL}/apple-touch-icon.png`, width: 180, height: 180 },
++  description:
++    "A free directory of internships, summer programs, scholarships, research programs and competitions for U.S. high school students.",
++};
++
+ export const STATIC_PAGE_META: Record<string, PageMeta> = {
+   "/": {
+     title: "High School Opportunity (HSO) - Internships, Programs & Scholarships",
+@@ -358,14 +377,18 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
+       {
+         "@context": "https://schema.org",
+         "@type": "WebSite",
+-        name: "HSO",
++        "@id": `${SITE_URL}/#website`,
++        name: "High School Opportunity",
++        alternateName: "HSO",
+         url: `${SITE_URL}/`,
++        publisher: { "@id": ORGANIZATION_ID },
+         potentialAction: {
+           "@type": "SearchAction",
+           target: `${SITE_URL}/?q={search_term_string}`,
+           "query-input": "required name=search_term_string",
+         },
+       },
++      ORGANIZATION,
+     ],
+   },
+   "/about": {
+@@ -373,6 +396,16 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
+     description:
+       "HSO is a free, student-run directory of internships, summer programs, scholarships and competitions for U.S. high schoolers, and how we check listings.",
+     path: "/about",
++    jsonLd: [
++      {
++        "@context": "https://schema.org",
++        "@type": "AboutPage",
++        name: "About High School Opportunity (HSO)",
++        url: `${SITE_URL}/about`,
++        mainEntity: { "@id": ORGANIZATION_ID },
++      },
++      ORGANIZATION,
++    ],
+   },
+   "/contact": {
+     title: "Contact HSO | High School Opportunity",
+diff --git a/src/pages/About.tsx b/src/pages/About.tsx
+index 5afa941..2b0aa8c 100644
+--- a/src/pages/About.tsx
++++ b/src/pages/About.tsx
+@@ -1,49 +1,48 @@
+-﻿import { SiteFooter } from "@/components/SiteFooter";
+-import { useSEO } from "@/lib/seo";
+-import { Link } from "react-router-dom";
+-import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
+-
+-const About = () => {
+-  useSEO({
+-    title: "About High School Opportunity (HSO) | HSO",
+-    description: "HSO is a free, student-run directory of internships, summer programs, scholarships and competitions for U.S. high schoolers, and how we check listings.",
+-  });
+-  return (
++﻿import { SiteFooter } from "@/components/SiteFooter";
++import { SEO } from "@/components/SEO";
++import { STATIC_PAGE_META } from "@/lib/pageMeta";
++import { Link } from "react-router-dom";
++import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
++
++const About = () => {
++  return (
+     <div className="min-h-screen">
+-      <main className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
+-        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">About</p>
+-        <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-6xl">
+-          A discovery layer for <em className="text-coral not-italic">ambitious</em> high schoolers.
+-        </h1>
++      {/* Same metadata and JSON-LD (AboutPage + Organization) as the prerendered page. */}
++      <SEO {...STATIC_PAGE_META["/about"]} />
++      <main className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
++        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">About</p>
++        <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-6xl">
++          A discovery layer for <em className="text-coral not-italic">ambitious</em> high schoolers.
++        </h1>
+         <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+           HSO is a curated index of U.S.-based opportunities open to high school students  -  internships, research programs, scholarships, competitions, summer programs, and fellowships from universities, nonprofits, companies, and competition organizers across the United States.
+         </p>
+-        <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
+-          We started HSO because the best opportunities are often hidden in PDFs, departmental pages, and word-of-mouth. Students with the most resources find them. We want every motivated student to have the same map.
+-        </p>
+-        <h2 className="mt-12 font-display text-2xl">What you'll find</h2>
+-        <ul className="mt-4 grid gap-2 text-foreground sm:grid-cols-2">
+-          {CATEGORY_SLUGS.map((slug) => (
+-            <li key={slug}>
+-              <Link className="text-coral underline-offset-4 hover:underline" to={`/categories/${slug}`}>
+-                {CATEGORY_META[slug].h1.replace(/^./, (c) => c.toUpperCase())}
+-              </Link>
+-            </li>
+-          ))}
+-        </ul>
+-        <h2 className="mt-12 font-display text-2xl">How HSO is built</h2>
+-        <p className="mt-3 leading-relaxed text-muted-foreground">
+-          Every listing links to the official program page. We don't run programs  -  we point you to them. Our editors review submissions weekly and remove broken or outdated entries.
+-        </p>
++        <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
++          We started HSO because the best opportunities are often hidden in PDFs, departmental pages, and word-of-mouth. Students with the most resources find them. We want every motivated student to have the same map.
++        </p>
++        <h2 className="mt-12 font-display text-2xl">What you'll find</h2>
++        <ul className="mt-4 grid gap-2 text-foreground sm:grid-cols-2">
++          {CATEGORY_SLUGS.map((slug) => (
++            <li key={slug}>
++              <Link className="text-coral underline-offset-4 hover:underline" to={`/categories/${slug}`}>
++                {CATEGORY_META[slug].h1.replace(/^./, (c) => c.toUpperCase())}
++              </Link>
++            </li>
++          ))}
++        </ul>
++        <h2 className="mt-12 font-display text-2xl">How HSO is built</h2>
++        <p className="mt-3 leading-relaxed text-muted-foreground">
++          Every listing links to the official program page. We don't run programs  -  we point you to them. Our editors review submissions weekly and remove broken or outdated entries.
++        </p>
+         <div className="hso-glass-panel mt-12 rounded-2xl p-6">
+-          <p className="font-display text-xl">Have an opportunity to add?</p>
+-          <p className="mt-1 text-muted-foreground">Help other students by submitting one.</p>
+-          <Link to="/submit" className="mt-4 inline-flex rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-cream hover:bg-coral hover:text-coral-foreground">Submit an opportunity</Link>
+-        </div>
+-      </main>
+-      <SiteFooter />
+-    </div>
+-  );
+-};
+-export default About;
+-
++          <p className="font-display text-xl">Have an opportunity to add?</p>
++          <p className="mt-1 text-muted-foreground">Help other students by submitting one.</p>
++          <Link to="/submit" className="mt-4 inline-flex rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-cream hover:bg-coral hover:text-coral-foreground">Submit an opportunity</Link>
++        </div>
++      </main>
++      <SiteFooter />
++    </div>
++  );
++};
++export default About;
++
+-- 
+2.43.0
+

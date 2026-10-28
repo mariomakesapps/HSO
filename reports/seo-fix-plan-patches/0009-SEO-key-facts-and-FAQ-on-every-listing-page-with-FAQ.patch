@@ -1,0 +1,380 @@
+From cd8cfe7ef2e9bf405c29dfc04a1afc4d1bcb60bd Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Wed, 28 Oct 2026 00:46:41 +0000
+Subject: [PATCH 09/10] SEO: key facts and FAQ on every listing page, with
+ FAQPage JSON-LD
+
+Every listing now shows, near the top and in the prerendered HTML, a Key facts
+panel (who can apply, cost, dates) and an 'Info checked <month>' line, and
+further down a short FAQ: when is the deadline / when do applications open,
+is it free, who can apply. Answers come only from the listing's own fields;
+anything the catalogue doesn't hold (amounts, essays, selectivity) points to
+the official page. Dates never read just 'TBA': a passed deadline says so,
+and a missing one names the cycle.
+
+FAQPage JSON-LD mirrors exactly the FAQ the page shows (a test checks all
+listings); listings with verified long-form copy keep their own FAQ.
+EducationalOccupationalProgram and Article JSON-LD gain dateModified from the
+listing's last real change. Single-grade programs no longer show '11-11'.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_015eydvdzcxBPZCXsPy7MGLS
+---
+ scripts/prerender.mjs           | 24 ++++++++-
+ src/lib/listingFacts.test.ts    | 35 +++++++++++++
+ src/lib/listingFacts.ts         | 93 +++++++++++++++++++++++++++++++++
+ src/lib/pageMeta.ts             | 40 ++++++++------
+ src/pages/OpportunityDetail.tsx | 42 ++++++++++++++-
+ 5 files changed, 216 insertions(+), 18 deletions(-)
+ create mode 100644 src/lib/listingFacts.test.ts
+ create mode 100644 src/lib/listingFacts.ts
+
+diff --git a/scripts/prerender.mjs b/scripts/prerender.mjs
+index 55ff6bf..b27680b 100644
+--- a/scripts/prerender.mjs
++++ b/scripts/prerender.mjs
+@@ -58,6 +58,10 @@ async function loadRouteData(root) {
+         export { collectionMeta, collectionMembers, subHubMeta, subHubMembers } from "@/lib/pageMeta";
+         export { SUB_HUBS, CATEGORY_GUIDES, subHubPath, subHubsFor } from "@/lib/subHubs";
+         export { hubStats, glanceParagraphs, hubFaqs } from "@/lib/hubStats";
++        export { opportunityFaqs } from "@/lib/pageMeta";
++        export { keyFacts, monthYear } from "@/lib/listingFacts";
++        export { todayIso } from "@/lib/listingSeo";
++        export { listingLastModified } from "@/data/listingDates";
+         export { curatedSections, curatedCollections } from "@/data/curatedCollections";
+         export { HUB_LINKS, GUIDE_LINKS } from "@/lib/siteLinks";
+       `,
+@@ -289,7 +293,25 @@ function opportunityBody(opp, data) {
+         <h1>${escapeHtml(opp.title)}</h1>
+         <p>${escapeHtml(opp.blurb)}</p>
+         <p>Offered by ${escapeHtml(opp.org)}. ${escapeHtml(opp.category)} for high school students in ${escapeHtml(opp.location)}. Format: ${escapeHtml(opp.format)}. Cost: ${escapeHtml(opp.cost)}. ${escapeHtml(grades)}. ${escapeHtml(deadline)}</p>
+-        <p>Fields: ${escapeHtml((opp.fields ?? []).join(", "))}</p>${detail}
++        <p>Fields: ${escapeHtml((opp.fields ?? []).join(", "))}</p>
++        <h2>Key facts</h2>
++        <dl>${data
++          .keyFacts(opp, data.todayIso())
++          .map((f) => `<dt>${escapeHtml(f.label)}</dt><dd>${escapeHtml(f.value)}</dd>`)
++          .join("")}</dl>
++        ${(() => {
++          const checked = data.listingLastModified(opp.id);
++          return checked ? `<p>Info checked ${escapeHtml(data.monthYear(checked))}.</p>` : "";
++        })()}${detail}
++        ${
++          d?.faqs?.length
++            ? ""
++            : `<h2>Questions about ${escapeHtml(opp.title)}</h2>
++        ${data
++          .opportunityFaqs(opp)
++          .map((f) => `<h3>${escapeHtml(f.q)}</h3><p>${escapeHtml(f.a)}</p>`)
++          .join("\n        ")}`
++        }
+         <p><a href="${escapeHtml(opp.url)}">Official program page</a></p>
+         ${slug ? `<p><a href="/categories/${slug}">More ${escapeHtml(data.CATEGORY_META[slug].h1.toLowerCase())}</a></p>` : ""}
+         <h2>Related opportunities</h2>
+diff --git a/src/lib/listingFacts.test.ts b/src/lib/listingFacts.test.ts
+new file mode 100644
+index 0000000..3ec82d0
+--- /dev/null
++++ b/src/lib/listingFacts.test.ts
+@@ -0,0 +1,35 @@
++import { describe, expect, it } from "vitest";
++import { allOpportunities } from "@/data/opportunities";
++import { opportunityFaqs, opportunityMeta } from "@/lib/pageMeta";
++import { datesText, keyFacts, listingFaqs } from "@/lib/listingFacts";
++
++const today = "2026-10-28";
++const base = { title: "Test Program", cost: "Free" as const, grades: [10, 11], location: "Boston, Massachusetts, USA", format: "In-person" as const };
++
++describe("listing key facts and FAQ", () => {
++  it("never says just TBA and never shows a passed deadline as upcoming", () => {
++    expect(datesText({ ...base, deadline: null, opensAt: null }, today)).toBe(
++      "No date is posted for the 2026-27 cycle yet. Check the official page for when applications open.",
++    );
++    expect(datesText({ ...base, deadline: "2026-10-01", opensAt: null }, today)).toContain("has passed");
++    expect(datesText({ ...base, deadline: "2027-01-15", opensAt: "2026-12-01" }, today)).toBe(
++      "Applications open December 1, 2026 and close January 15, 2027.",
++    );
++  });
++
++  it("answers cost questions without amounts", () => {
++    const paid = listingFaqs({ ...base, cost: "Paid", deadline: null, opensAt: null }, today);
++    expect(paid[1].a.startsWith("No.")).toBe(true);
++    expect(paid.map((f) => f.a).join(" ")).not.toMatch(/\$\d/);
++    expect(keyFacts({ ...base, deadline: null, opensAt: null }, today)[0].value).toBe(
++      "High school students in grades 10 to 11. It takes place in person in Boston, Massachusetts.",
++    );
++  });
++
++  it("FAQPage JSON-LD matches the FAQ the page shows, for every listing", () => {
++    for (const opp of allOpportunities) {
++      const ld = opportunityMeta(opp).jsonLd?.find((j) => j["@type"] === "FAQPage") as { mainEntity: { name: string }[] };
++      expect(ld.mainEntity.map((q) => q.name)).toEqual(opportunityFaqs(opp).map((f) => f.q));
++    }
++  });
++});
+diff --git a/src/lib/listingFacts.ts b/src/lib/listingFacts.ts
+new file mode 100644
+index 0000000..28ea875
+--- /dev/null
++++ b/src/lib/listingFacts.ts
+@@ -0,0 +1,93 @@
++import type { Opportunity } from "@/data/opportunities";
++import type { CategoryFAQ } from "@/lib/categories";
++import { academicCycle } from "@/lib/hubStats";
++import { nextListingDate } from "@/lib/listingSeo";
++
++/**
++ * Key facts and a short FAQ for every listing page (SEO plan P0-3 and P2-2),
++ * answering what searchers ask ("when does X open", "is X free", "who can apply
++ * to X") in plain text near the top of the page. Built only from the listing's
++ * own fields: anything the catalogue doesn't know (amounts, essays, selectivity)
++ * points to the official page instead of being guessed.
++ */
++
++const MONTHS = [
++  "January", "February", "March", "April", "May", "June",
++  "July", "August", "September", "October", "November", "December",
++];
++
++/** "2026-12-11" -> "December 11, 2026". */
++export function longDate(iso: string): string {
++  const [y, m, d] = iso.split("-").map(Number);
++  return `${MONTHS[m - 1]} ${d}, ${y}`;
++}
++
++/** "2026-10-25" -> "October 2026". */
++export function monthYear(iso: string): string {
++  const [y, m] = iso.split("-").map(Number);
++  return `${MONTHS[m - 1]} ${y}`;
++}
++
++type Facts = Pick<Opportunity, "title" | "deadline" | "opensAt" | "cost" | "grades" | "location" | "format">;
++
++export function datesText(opp: Facts, today: string): string {
++  const next = nextListingDate(opp, today);
++  if (next?.kind === "opens")
++    return opp.deadline && opp.deadline > next.iso
++      ? `Applications open ${longDate(next.iso)} and close ${longDate(opp.deadline)}.`
++      : `Applications open ${longDate(next.iso)}.`;
++  if (next) return `The deadline is ${longDate(next.iso)}.`;
++  if (opp.deadline)
++    return `The last posted deadline, ${longDate(opp.deadline)}, has passed. The date for the next cycle isn't posted yet, so check the official page.`;
++  return `No date is posted for the ${academicCycle(today)} cycle yet. Check the official page for when applications open.`;
++}
++
++export function costText(cost: Opportunity["cost"]): string {
++  if (cost === "Free") return "Free to take part.";
++  if (cost === "Stipend") return "Free to take part, and it pays a stipend or award.";
++  return "Charges tuition or a fee. Check the official page for the amount and whether financial aid is offered.";
++}
++
++function gradesText(grades: number[]): string {
++  const g = [...grades].sort((a, b) => a - b);
++  return g.length === 1 ? `grade ${g[0]}` : `grades ${g[0]} to ${g[g.length - 1]}`;
++}
++
++function whereText(opp: Facts): string {
++  const place = opp.location.replace(/,?\s*USA$/, "").trim() || "nationwide";
++  if (opp.format === "Online") return "It runs online.";
++  if (opp.format === "Hybrid") return `It runs online and in person (${place}).`;
++  return `It takes place in person in ${place}.`;
++}
++
++export function keyFacts(opp: Facts, today: string): { label: string; value: string }[] {
++  return [
++    { label: "Who can apply", value: `High school students in ${gradesText(opp.grades)}. ${whereText(opp)}` },
++    { label: "Cost", value: costText(opp.cost) },
++    { label: "Dates", value: datesText(opp, today) },
++  ];
++}
++
++export function listingFaqs(opp: Facts, today: string): CategoryFAQ[] {
++  const next = nextListingDate(opp, today);
++  const name = opp.title;
++  return [
++    {
++      q: next?.kind === "opens" ? `When do applications for ${name} open?` : `When is the ${name} deadline?`,
++      a: datesText(opp, today),
++    },
++    {
++      q: `Is ${name} free?`,
++      a:
++        opp.cost === "Free"
++          ? `Yes. ${name} is free to take part in.`
++          : opp.cost === "Stipend"
++            ? `Yes, and it pays participants a stipend or award.`
++            : `No. It charges tuition or a fee. Check the official page for the amount and whether financial aid is offered.`,
++    },
++    {
++      q: `Who can apply to ${name}?`,
++      a: `High school students in ${gradesText(opp.grades)}. ${whereText(opp)} Age, residency and citizenship rules are on the official page.`,
++    },
++  ];
++}
+diff --git a/src/lib/pageMeta.ts b/src/lib/pageMeta.ts
+index be06460..7cb5bb6 100644
+--- a/src/lib/pageMeta.ts
++++ b/src/lib/pageMeta.ts
+@@ -7,6 +7,7 @@ import { OCT2026_LISTING_SEO, OCT2026_NOINDEX, OCT2026_PAGE_SEO } from "@/data/h
+ import { OCT17_LISTING_SEO } from "@/data/hsoUpdateOct17.generated";
+ import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
+ import { listingDescription, listingTitle, todayIso } from "@/lib/listingSeo";
++import { listingFaqs } from "@/lib/listingFacts";
+ import { latestLastModified, listingLastModified } from "@/data/listingDates";
+ import { curatedCollections, type CuratedCollection } from "@/data/curatedCollections";
+ import { SUB_HUBS, subHubPath, type SubHub } from "@/lib/subHubs";
+@@ -85,6 +86,7 @@ export function opportunityMeta(opp: Opportunity): PageMeta {
+   const url = `${SITE_URL}${opportunityPath(opp.id)}`;
+   const detail = detailFor(opp.id);
+   const today = todayIso();
++  const lastChecked = listingLastModified(opp.id);
+ 
+   return {
+     // The newest reviewed title supplies the programme name; the org, year and the
+@@ -112,6 +114,7 @@ export function opportunityMeta(opp: Opportunity): PageMeta {
+         educationalProgramMode: opp.format,
+         occupationalCategory: opp.category,
+         ...(opp.deadline ? { applicationDeadline: opp.deadline } : {}),
++        ...(lastChecked ? { dateModified: lastChecked } : {}),
+       },
+       {
+         "@context": "https://schema.org",
+@@ -122,6 +125,7 @@ export function opportunityMeta(opp: Opportunity): PageMeta {
+         author: { "@type": "Organization", name: "HSO — High School Opportunity" },
+         publisher: { "@type": "Organization", name: "HSO — High School Opportunity" },
+         mainEntityOfPage: url,
++        ...(lastChecked ? { dateModified: lastChecked } : {}),
+       },
+       {
+         "@context": "https://schema.org",
+@@ -137,25 +141,31 @@ export function opportunityMeta(opp: Opportunity): PageMeta {
+           { "@type": "ListItem", position: 3, name: opp.title, item: url },
+         ],
+       },
+-      // FAQ schema only where the questions are actually on the page. Google
+-      // treats FAQPage markup for questions a visitor cannot see as a violation.
+-      ...(detail?.faqs?.length
+-        ? [
+-            {
+-              "@context": "https://schema.org",
+-              "@type": "FAQPage",
+-              mainEntity: detail.faqs.map((f) => ({
+-                "@type": "Question",
+-                name: f.q,
+-                acceptedAnswer: { "@type": "Answer", text: f.a },
+-              })),
+-            },
+-          ]
+-        : []),
++      // FAQ schema only for questions that are on the page (opportunityFaqs is
++      // what the listing page renders). Google treats FAQPage markup for questions
++      // a visitor cannot see as a violation.
++      {
++        "@context": "https://schema.org",
++        "@type": "FAQPage",
++        mainEntity: opportunityFaqs(opp).map((f) => ({
++          "@type": "Question",
++          name: f.q,
++          acceptedAnswer: { "@type": "Answer", text: f.a },
++        })),
++      },
+     ],
+   };
+ }
+ 
++/**
++ * The FAQ a listing page shows: its verified long-form FAQ where it has one,
++ * otherwise questions answered from its own fields (listingFacts.ts).
++ */
++export function opportunityFaqs(opp: Opportunity) {
++  const curated = detailFor(opp.id)?.faqs;
++  return curated?.length ? curated : listingFaqs(opp, todayIso());
++}
++
+ /**
+  * Breadcrumbs used to point every level-2 crumb at the homepage, which told
+  * Google the category step carried no distinct destination. Point it at the
+diff --git a/src/pages/OpportunityDetail.tsx b/src/pages/OpportunityDetail.tsx
+index 7db2e01..ef0a741 100644
+--- a/src/pages/OpportunityDetail.tsx
++++ b/src/pages/OpportunityDetail.tsx
+@@ -11,7 +11,10 @@ import { slugForCategory, CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories
+ import { REMOVED_OPPORTUNITY_REDIRECTS } from "@/data/removedOpportunities";
+ import { detailFor } from "@/data/opportunityDetails";
+ import { relatedOpportunities } from "@/lib/related";
+-import { opportunityMeta } from "@/lib/pageMeta";
++import { opportunityFaqs, opportunityMeta } from "@/lib/pageMeta";
++import { keyFacts, monthYear } from "@/lib/listingFacts";
++import { todayIso } from "@/lib/listingSeo";
++import { listingLastModified } from "@/data/listingDates";
+ import { useAtmosphere, themeForCategory } from "@/lib/atmosphere";
+ import { store, useStore } from "@/store/collections";
+ import { toast } from "sonner";
+@@ -96,6 +99,9 @@ const OpportunityDetail = () => {
+ 
+   const detail = opp ? detailFor(opp.id) : undefined;
+   const related = relatedOpportunities(opp, 6);
++  const today = todayIso();
++  const checked = listingLastModified(opp.id);
++  const faqs = opportunityFaqs(opp);
+   const crumbSlug = slugForCategory(opp.category);
+ 
+   const toggleInterval = async (n: number) => {
+@@ -158,7 +164,7 @@ const OpportunityDetail = () => {
+               <Stat label="Location" value={opp.location} />
+               <Stat label="Format" value={opp.format} />
+               <Stat label="Cost" value={opp.cost} />
+-              <Stat label="Grades" value={`${opp.grades[0]}-${opp.grades[opp.grades.length-1]}`} />
++              <Stat label="Grades" value={opp.grades.length > 1 ? `${opp.grades[0]}-${opp.grades[opp.grades.length-1]}` : `${opp.grades[0]}`} />
+             </div>
+ 
+             <div className="mt-6 flex flex-wrap gap-2">
+@@ -197,6 +203,26 @@ const OpportunityDetail = () => {
+           </div>
+         </section>
+ 
++        {/* Key facts in plain text near the top: what searchers ask first. */}
++        <section className="hso-glass-panel mt-6 rounded-2xl p-5 sm:p-6">
++          <h2 className="font-display text-2xl font-semibold text-ink">Key facts</h2>
++          <dl className="mt-4 grid gap-5 sm:grid-cols-3">
++            {keyFacts(opp, today).map((f) => (
++              <div key={f.label} className="min-w-0">
++                <dt className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">{f.label}</dt>
++                <dd className="mt-1.5 text-sm leading-relaxed text-ink">{f.value}</dd>
++              </div>
++            ))}
++          </dl>
++          <p className="mt-5 text-xs text-muted-foreground">
++            {checked ? `Info checked ${monthYear(checked)}. ` : ""}Always confirm details on{" "}
++            <a href={opp.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-ink">
++              the official page
++            </a>
++            .
++          </p>
++        </section>
++
+         {/* Reminders */}
+         <section className="hso-elevated-surface hso-surface-grid mt-6 overflow-hidden rounded-2xl p-5">
+           <div className="flex items-center gap-2">
+@@ -268,6 +294,18 @@ const OpportunityDetail = () => {
+           </section>
+         )}
+ 
++        {!detail?.faqs?.length && (
++          <section className="mt-12 max-w-3xl">
++            <h2 className="font-display text-2xl font-semibold text-ink">Questions about {opp.title}</h2>
++            {faqs.map((f, i) => (
++              <div key={i} className="mt-5">
++                <h3 className="font-semibold text-ink">{f.q}</h3>
++                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
++              </div>
++            ))}
++          </section>
++        )}
++
+         {related.length > 0 && (
+           <section className="mt-12">
+             <h2 className="font-display text-2xl font-semibold text-ink">Related opportunities</h2>
+-- 
+2.43.0
+

@@ -1,0 +1,54 @@
+From 97a16c9a027d0dd3c703bab7f5c5f190f13e2d30 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Wed, 28 Oct 2026 00:20:43 +0000
+Subject: [PATCH 03/10] SEO: noindex,follow instead of noindex,nofollow, and
+ match server robots
+
+Noindexed pages (thin listings, NYC DYCD rows, not-found pages) now pass
+their links on to related listings and hubs instead of being dead ends.
+Indexable pages now keep the same robots tag after the app loads as the
+prerendered HTML ships, where before it was dropped on hydration.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_015eydvdzcxBPZCXsPy7MGLS
+---
+ scripts/prerender.mjs  | 3 ++-
+ src/components/SEO.tsx | 8 +++++++-
+ 2 files changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/scripts/prerender.mjs b/scripts/prerender.mjs
+index 0cf1543..00a7065 100644
+--- a/scripts/prerender.mjs
++++ b/scripts/prerender.mjs
+@@ -95,7 +95,8 @@ function headFor(meta) {
+     `<meta ${RH} name="description" content="${description}" />`,
+     `<link ${RH} rel="canonical" href="${escapeHtml(url)}" />`,
+     meta.noindex
+-      ? `<meta ${RH} name="robots" content="noindex,nofollow" />`
++      ? // noindex,follow: kept out of the index, but its links still count.
++        `<meta ${RH} name="robots" content="noindex,follow" />`
+       : `<meta ${RH} name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />`,
+     `<meta ${RH} property="og:type" content="website" />`,
+     `<meta ${RH} property="og:site_name" content="HSO" />`,
+diff --git a/src/components/SEO.tsx b/src/components/SEO.tsx
+index 5edbb9a..b49d667 100644
+--- a/src/components/SEO.tsx
++++ b/src/components/SEO.tsx
+@@ -34,7 +34,13 @@ export function SEO({
+       <title>{title}</title>
+       {description && <meta name="description" content={description} />}
+       <link rel="canonical" href={url} />
+-      {noindex && <meta name="robots" content="noindex,nofollow" />}
++      {/* noindex,follow (not nofollow): a page kept out of the index still passes
++          its links on to related listings and category hubs. Indexable pages get
++          the same robots value the prerendered HTML ships, so the two match. */}
++      <meta
++        name="robots"
++        content={noindex ? "noindex,follow" : "index,follow,max-image-preview:large,max-snippet:-1"}
++      />
+ 
+       <meta property="og:type" content={type} />
+       <meta property="og:url" content={url} />
+-- 
+2.43.0
+

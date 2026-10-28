@@ -1,0 +1,445 @@
+From 183ea86e6e0f9166bdfa549552d4e537d52d68bb Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Wed, 28 Oct 2026 00:30:15 +0000
+Subject: [PATCH 05/10] SEO: live title and description templates; app and HTML
+ titles match
+
+Listing titles: the reviewed programme name, plus the org when the name
+doesn't already say who runs it, the programme year and the next date
+('Research Science Institute (MIT / CEE): Deadline Dec 11 | HSO'; the
+Treasury internship now says 'U.S. Treasury'). Parts drop in order to stay
+within about 65 characters; past deadlines are never shown.
+
+Descriptions are facts first and under 155 characters: Free / Paid stipend /
+Tuition or fee, grades, place, apply-by or opening date, then the first line
+of the blurb. They come from live data, so they no longer carry frozen dates
+from the reviewed copy (Duke Math Meet's still said Oct 25).
+
+Guide pages and the homepage now read their title, description and JSON-LD
+from STATIC_PAGE_META, the same source the prerender uses, so the title no
+longer changes after the page loads.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_015eydvdzcxBPZCXsPy7MGLS
+---
+ src/lib/listingSeo.test.ts                  |  71 ++++++++++
+ src/lib/listingSeo.ts                       | 140 ++++++++++++++++++++
+ src/lib/pageMeta.ts                         |  27 ++--
+ src/pages/GuideHighSchoolLawInternships.tsx |   5 +-
+ src/pages/GuideTopBusinessPrograms.tsx      |   5 +-
+ src/pages/GuideTopMedicalInternships.tsx    |   5 +-
+ src/pages/GuideTopResearchCompetitions.tsx  |   5 +-
+ src/pages/Index.tsx                         |  14 +-
+ 8 files changed, 237 insertions(+), 35 deletions(-)
+ create mode 100644 src/lib/listingSeo.test.ts
+ create mode 100644 src/lib/listingSeo.ts
+
+diff --git a/src/lib/listingSeo.test.ts b/src/lib/listingSeo.test.ts
+new file mode 100644
+index 0000000..12a2565
+--- /dev/null
++++ b/src/lib/listingSeo.test.ts
+@@ -0,0 +1,71 @@
++import { describe, expect, it } from "vitest";
++import { listingDescription, listingTitle, nameMentionsOrg, orgShortName, programName } from "@/lib/listingSeo";
++
++const today = "2026-10-28";
++
++describe("listing SEO templates", () => {
++  it("adds the org when the programme name doesn't say it (Treasury)", () => {
++    const t = listingTitle(
++      { title: "Headquarters Student Internship Program", org: "U.S. Department of the Treasury", deadline: null, opensAt: null },
++      { reviewedTitle: "Headquarters Student Internship Program 2026-27 | HSO", today },
++    );
++    expect(t).toContain("(U.S. Treasury)");
++    expect(t.endsWith(" | HSO")).toBe(true);
++  });
++
++  it("puts the next deadline and its year in the title", () => {
++    const t = listingTitle(
++      { title: "USAFA Summer Seminar", org: "United States Air Force Academy", deadline: "2027-01-15", opensAt: null },
++      { today },
++    );
++    // The org name is too long to add (over 28 characters), so it is left out.
++    expect(t).toBe("USAFA Summer Seminar 2027: Deadline Jan 15 | HSO");
++  });
++
++  it("uses the opening date while applications are not open yet", () => {
++    const t = listingTitle(
++      { title: "Susan Thompson Buffett Foundation Scholarship", org: "Susan Thompson Buffett Foundation", deadline: "2027-02-01", opensAt: "2026-11-01" },
++      { today },
++    );
++    expect(t).toContain("Opens Nov 1");
++    expect(t).not.toContain("(Susan Thompson");
++  });
++
++  it("never shows a deadline that has passed", () => {
++    const t = listingTitle({ title: "Duke Math Meet", org: "Duke University Mathematics Union", deadline: "2026-10-25", opensAt: null }, { today });
++    expect(t).toBe("Duke Math Meet: Eligibility & Cost | HSO");
++  });
++
++  it("drops a stale reviewed name in favour of the current title", () => {
++    expect(programName({ title: "Science Communication Internship Program" }, "Science and Nature Program 2026 Deadline | HSO")).toBe(
++      "Science Communication Internship Program",
++    );
++    expect(programName({ title: "High School Internship Program" }, "High School Internship Program - Lockheed Martin 2026 Deadline | HSO")).toBe(
++      "High School Internship Program - Lockheed Martin",
++    );
++  });
++
++  it("shortens orgs and recognises names that already include them", () => {
++    expect(orgShortName("Army Educational Outreach Program (AEOP)")).toBe("AEOP");
++    expect(nameMentionsOrg("Caltech Math Meet", "Caltech")).toBe(true);
++    expect(nameMentionsOrg("Research Science Institute", "MIT / CEE")).toBe(false);
++  });
++
++  it("writes a facts-first description under 155 characters without inventing prices", () => {
++    const d = listingDescription(
++      {
++        blurb: "Free summer research program run by CEE at MIT. Students take a week of STEM classes, then do a five-week research internship.",
++        cost: "Free",
++        grades: [11],
++        location: "Cambridge, Massachusetts, USA",
++        format: "In-person",
++        deadline: "2026-12-11",
++        opensAt: null,
++      },
++      today,
++    );
++    expect(d.startsWith("Free. Grade 11. Cambridge, Massachusetts. Apply by Dec 11, 2026.")).toBe(true);
++    expect(d.length).toBeLessThanOrEqual(155);
++    expect(d).not.toMatch(/\$/);
++  });
++});
+diff --git a/src/lib/listingSeo.ts b/src/lib/listingSeo.ts
+new file mode 100644
+index 0000000..5b089a9
+--- /dev/null
++++ b/src/lib/listingSeo.ts
+@@ -0,0 +1,140 @@
++import type { Opportunity } from "@/data/opportunities";
++
++/**
++ * Title and meta description templates for listing pages (SEO plan P1-3).
++ *
++ * Built from the listing's live data, so the date in a title or snippet is never
++ * older than the catalogue. A reviewed SEO title still supplies the programme
++ * name (it sometimes adds a disambiguating org, "High School Internship Program -
++ * Lockheed Martin"); the cycle, org and date around it come from here.
++ *
++ * Only facts in the catalogue are used: no prices, no guessed dates.
++ */
++
++const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
++
++export function todayIso(now: Date = new Date()): string {
++  return now.toISOString().slice(0, 10);
++}
++
++/** "2026-12-11" -> "Dec 11". */
++function shortDate(iso: string): string {
++  const [, m, d] = iso.split("-").map(Number);
++  return `${MONTHS[m - 1]} ${d}`;
++}
++
++/** The date a student should act on: an upcoming deadline, else an upcoming opening. */
++export function nextListingDate(
++  opp: Pick<Opportunity, "deadline" | "opensAt">,
++  today: string,
++): { kind: "deadline" | "opens"; iso: string } | undefined {
++  if (opp.opensAt && opp.opensAt > today) return { kind: "opens", iso: opp.opensAt };
++  if (opp.deadline && opp.deadline >= today) return { kind: "deadline", iso: opp.deadline };
++  return undefined;
++}
++
++const STOP = new Set([
++  "the", "of", "for", "and", "at", "in", "a", "an", "university", "college", "department", "foundation",
++  "institute", "center", "centre", "national", "united", "states", "school", "program", "programs", "inc",
++  "society", "association", "council", "office", "american", "state", "city", "new", "u.s.", "us",
++]);
++
++/** "U.S. Department of the Treasury" -> "U.S. Treasury"; "Army Educational Outreach Program (AEOP)" -> "AEOP". */
++export function orgShortName(org: string): string {
++  const acronym = org.match(/\(([A-Z][A-Za-z0-9&.\- ]{1,12})\)\s*$/);
++  if (acronym) return acronym[1];
++  const dept = org.match(/^(?:the\s+)?(U\.S\.|United States)\s+Department of\s+(?:the\s+)?(.+)$/i);
++  if (dept) return `U.S. ${dept[2]}`;
++  return org.trim();
++}
++
++function significantWords(s: string): string[] {
++  return s
++    .split(/[^A-Za-z0-9.&'-]+/)
++    .map((w) => w.replace(/^[.'-]+|[.'-]+$/g, ""))
++    .filter((w) => w && !STOP.has(w.toLowerCase()) && (w.length >= 4 || /^[A-Z0-9&]{2,}$/.test(w)));
++}
++
++/** True when the programme name already says who runs it ("Duke Math Meet" for Duke University ...). */
++export function nameMentionsOrg(name: string, org: string): boolean {
++  const lower = name.toLowerCase();
++  return [...significantWords(org), ...significantWords(orgShortName(org))].some((w) =>
++    lower.includes(w.toLowerCase()),
++  );
++}
++
++/** Programme name from a reviewed title, if it still matches the listing; else the listing title. */
++export function programName(opp: Pick<Opportunity, "title">, reviewedTitle?: string): string {
++  if (!reviewedTitle) return opp.title;
++  const name = reviewedTitle
++    .replace(/\s*\|\s*HSO\s*$/i, "")
++    .replace(/\s+20\d\d(?:-\d\d)?\b.*$/, "")
++    .trim();
++  // A reviewed name is kept only when it is the listing title, or the title plus a
++  // disambiguating suffix; anything else is stale (the listing was renamed since).
++  return name && (name === opp.title || name.startsWith(`${opp.title} `)) ? name : opp.title;
++}
++
++export function listingTitle(
++  opp: Pick<Opportunity, "title" | "org" | "deadline" | "opensAt">,
++  options: { reviewedTitle?: string; today: string; forceOrg?: boolean },
++): string {
++  const name = programName(opp, options.reviewedTitle);
++  const short = orgShortName(opp.org);
++  const showOrg =
++    !name.includes(" - ") &&
++    (options.forceOrg || (!nameMentionsOrg(name, opp.org) && short.length <= 28));
++  const next = nextListingDate(opp, options.today);
++  // The cycle is the programme's year: the deadline's, even while the title shows
++  // when applications open ("Summer Seminar 2027: Opens Dec 1").
++  const year = next ? (opp.deadline && opp.deadline >= options.today ? opp.deadline : next.iso).slice(0, 4) : undefined;
++  const datePart = next
++    ? `${next.kind === "opens" ? "Opens" : "Deadline"} ${shortDate(next.iso)}`
++    : "Eligibility & Cost";
++  const head = `${name}${showOrg ? ` (${short})` : ""}`;
++  const withYear = year && !head.includes(year) ? `${head} ${year}` : head;
++  // Google shows about 60 characters. Drop the year first, then the date part;
++  // the name and org always stay.
++  const candidates = [`${withYear}: ${datePart}`, `${head}: ${datePart}`, withYear, head];
++  const fits = candidates.find((c) => `${c} | HSO`.length <= 65) ?? head;
++  return `${fits} | HSO`;
++}
++
++function costPhrase(cost: Opportunity["cost"]): string {
++  if (cost === "Free") return "Free";
++  if (cost === "Stipend") return "Paid stipend";
++  return "Tuition or fee";
++}
++
++function gradesPhrase(grades: number[] | undefined): string {
++  const g = (grades ?? []).filter((n) => n >= 9 && n <= 12).sort((a, b) => a - b);
++  if (!g.length) return "High school";
++  return g.length === 1 ? `Grade ${g[0]}` : `Grades ${g[0]}-${g[g.length - 1]}`;
++}
++
++function placePhrase(opp: Pick<Opportunity, "location" | "format">): string {
++  if (opp.format === "Online") return "Online";
++  const place = opp.location.replace(/,?\s*USA$/, "").trim() || "Nationwide";
++  return opp.format === "Hybrid" ? `${place} or online` : place;
++}
++
++/** Facts first, under 155 characters: cost, grades, place, date, then what you do. */
++export function listingDescription(
++  opp: Pick<Opportunity, "blurb" | "cost" | "grades" | "location" | "format" | "deadline" | "opensAt">,
++  today: string,
++): string {
++  const next = nextListingDate(opp, today);
++  const when = next
++    ? `${next.kind === "opens" ? "Opens" : "Apply by"} ${shortDate(next.iso)}, ${next.iso.slice(0, 4)}`
++    : "Dates on the official site";
++  const facts = `${costPhrase(opp.cost)}. ${gradesPhrase(opp.grades)}. ${placePhrase(opp)}. ${when}.`;
++  const room = 154 - facts.length - 1;
++  if (room < 30) return facts.slice(0, 155);
++  const blurb = (opp.blurb ?? "").trim();
++  if (blurb.length <= room) return `${facts} ${blurb}`;
++  // A sentence ends after a lowercase word, not an abbreviation like "U.S." or "D.C.".
++  const firstSentence = blurb.match(/^.*?[a-z0-9)"'][.!?](?=\s+[A-Z"(]|\s*$)/)?.[0];
++  if (firstSentence && firstSentence.length <= room) return `${facts} ${firstSentence}`;
++  const cut = blurb.slice(0, room - 1).replace(/\s+\S*$/, "");
++  return `${facts} ${cut}…`;
++}
+diff --git a/src/lib/pageMeta.ts b/src/lib/pageMeta.ts
+index 46300d8..fc1f2d0 100644
+--- a/src/lib/pageMeta.ts
++++ b/src/lib/pageMeta.ts
+@@ -6,6 +6,7 @@ import { REMOTE_META, REMOTE_PATH, remoteOpportunities } from "@/lib/remote";
+ import { OCT2026_LISTING_SEO, OCT2026_NOINDEX, OCT2026_PAGE_SEO } from "@/data/hsoUpdateOct2026.generated";
+ import { OCT17_LISTING_SEO } from "@/data/hsoUpdateOct17.generated";
+ import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
++import { listingDescription, listingTitle, todayIso } from "@/lib/listingSeo";
+ 
+ export const SITE_URL = "https://highschoolopportunity.org";
+ export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
+@@ -77,18 +78,20 @@ export function opportunityMeta(opp: Opportunity): PageMeta {
+   const reviewed = OCT17_LISTING_SEO[opp.id] ?? OCT2026_LISTING_SEO[opp.id];
+   const url = `${SITE_URL}${opportunityPath(opp.id)}`;
+   const detail = detailFor(opp.id);
+-  const name = DUPLICATE_TITLES.has(opp.title) ? `${opp.title} — ${opp.org}` : opp.title;
++  const today = todayIso();
+ 
+   return {
+-    title: reviewed?.[0] ?? `${name} | HSO`,
+-    // Where a listing has verified long-form copy, its own first paragraph makes a
+-    // better snippet than the generated template — it describes the programme
+-    // rather than describing the page.
+-    description: clampDescription(
+-      reviewed?.[1] ??
+-        detail?.body[0] ??
+-        `${opp.title} at ${opp.org} — ${opp.category} for high schoolers in ${opp.location}. Deadline, eligibility, cost & official link.`,
+-    ),
++    // The newest reviewed title supplies the programme name; the org, year and the
++    // next date come from the listing's live data (listingSeo.ts), so titles never
++    // show a stale cycle and always say who runs the programme. Reviewed
++    // descriptions carried frozen dates, so the snippet is the live facts-first
++    // template instead.
++    title: listingTitle(opp, {
++      reviewedTitle: reviewed?.[0],
++      today,
++      forceOrg: DUPLICATE_TITLES.has(opp.title),
++    }),
++    description: listingDescription(opp, today),
+     path: opportunityPath(opp.id),
+     // Repeated state-chapter copy and non-high-school rows stay live but out of Google.
+     noindex: !isOpportunityIndexable(opp) || OCT2026_NOINDEX.has(opp.id),
+@@ -392,13 +395,13 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
+     path: "/collections",
+   },
+   "/guides/top-medical-internships": {
+-    title: "Best Medical Internships for High Schoolers, Compared | HSO",
++    title: "Best Medical Internships for High School Students 2026 | HSO",
+     description:
+       "Compare top U.S. medical internships for high schoolers: JHIBS, Stanford SIMR, NIH HiSTEP, Rockefeller SSRP. Selectivity, stipends, deadlines.",
+     path: "/guides/top-medical-internships",
+   },
+   "/guides/top-research-competitions": {
+-    title: "Top Research Competitions for High Schoolers, Compared | HSO",
++    title: "Best Research Competitions for High Schoolers 2026 | HSO",
+     description:
+       "Compare top U.S. research competitions for high schoolers: Regeneron STS, ISEF, JSHS, Davidson Fellows. Prizes, selectivity, deadlines.",
+     path: "/guides/top-research-competitions",
+diff --git a/src/pages/GuideHighSchoolLawInternships.tsx b/src/pages/GuideHighSchoolLawInternships.tsx
+index be0307a..01657c1 100644
+--- a/src/pages/GuideHighSchoolLawInternships.tsx
++++ b/src/pages/GuideHighSchoolLawInternships.tsx
+@@ -1,6 +1,7 @@
+ import { Link } from "react-router-dom";
+ import { SiteFooter } from "@/components/SiteFooter";
+ import SEO from "@/components/SEO";
++import { STATIC_PAGE_META } from "@/lib/pageMeta";
+ 
+ const PROGRAMS = [
+   {
+@@ -94,9 +95,7 @@ export default function GuideHighSchoolLawInternships() {
+   return (
+     <div className="min-h-screen">
+       <SEO
+-        title="High School Law Internships: How to Find One | HSO"
+-        description="Find high school law internships in the U.S. — DOJ and bar association programs, pre-law academies, local firm outreach scripts, and application deadlines."
+-        path="/guides/high-school-law-internships"
++        {...STATIC_PAGE_META["/guides/high-school-law-internships"]}
+         type="article"
+         jsonLd={jsonLd}
+       />
+diff --git a/src/pages/GuideTopBusinessPrograms.tsx b/src/pages/GuideTopBusinessPrograms.tsx
+index 6024f39..37e2875 100644
+--- a/src/pages/GuideTopBusinessPrograms.tsx
++++ b/src/pages/GuideTopBusinessPrograms.tsx
+@@ -1,6 +1,7 @@
+ import { Link } from "react-router-dom";
+ import { SiteFooter } from "@/components/SiteFooter";
+ import SEO from "@/components/SEO";
++import { STATIC_PAGE_META } from "@/lib/pageMeta";
+ 
+ const PROGRAMS = [
+   {
+@@ -52,9 +53,7 @@ export default function GuideTopBusinessPrograms() {
+   return (
+     <div className="min-h-screen">
+       <SEO
+-        title="Best Business Summer Programs for High Schoolers 2026 | HSO"
+-        description="Wharton Global Youth cost vs. Berkeley Haas B-BAY and NYU Stern: compare tuition, selectivity, and grade levels for top U.S. business summer programs."
+-        path="/guides/top-business-summer-programs"
++        {...STATIC_PAGE_META["/guides/top-business-summer-programs"]}
+         type="article"
+         jsonLd={jsonLd}
+       />
+diff --git a/src/pages/GuideTopMedicalInternships.tsx b/src/pages/GuideTopMedicalInternships.tsx
+index 74da156..4e3bd76 100644
+--- a/src/pages/GuideTopMedicalInternships.tsx
++++ b/src/pages/GuideTopMedicalInternships.tsx
+@@ -1,6 +1,7 @@
+ import { Link } from "react-router-dom";
+ import { SiteFooter } from "@/components/SiteFooter";
+ import SEO from "@/components/SEO";
++import { STATIC_PAGE_META } from "@/lib/pageMeta";
+ 
+ const PROGRAMS = [
+   {
+@@ -88,9 +89,7 @@ export default function GuideTopMedicalInternships() {
+   return (
+     <div className="min-h-screen">
+       <SEO
+-        title="Best Medical Internships for High School Students 2026 | HSO"
+-        description="Compare top U.S. medical internships for high schoolers: JHIBS, Stanford SIMR, NIH HiSTEP, Rockefeller SSRP. Selectivity, stipends, deadlines."
+-        path="/guides/top-medical-internships"
++        {...STATIC_PAGE_META["/guides/top-medical-internships"]}
+         type="article"
+         jsonLd={jsonLd}
+       />
+diff --git a/src/pages/GuideTopResearchCompetitions.tsx b/src/pages/GuideTopResearchCompetitions.tsx
+index c6cb468..73250b1 100644
+--- a/src/pages/GuideTopResearchCompetitions.tsx
++++ b/src/pages/GuideTopResearchCompetitions.tsx
+@@ -1,6 +1,7 @@
+ import { Link } from "react-router-dom";
+ import { SiteFooter } from "@/components/SiteFooter";
+ import SEO from "@/components/SEO";
++import { STATIC_PAGE_META } from "@/lib/pageMeta";
+ 
+ const COMPETITIONS = [
+   {
+@@ -88,9 +89,7 @@ export default function GuideTopResearchCompetitions() {
+   return (
+     <div className="min-h-screen">
+       <SEO
+-        title="Best Research Competitions for High Schoolers 2026 | HSO"
+-        description="Compare top U.S. research competitions for high schoolers: Regeneron STS, ISEF, JSHS, Davidson Fellows. Prizes, selectivity, deadlines."
+-        path="/guides/top-research-competitions"
++        {...STATIC_PAGE_META["/guides/top-research-competitions"]}
+         type="article"
+         jsonLd={jsonLd}
+       />
+diff --git a/src/pages/Index.tsx b/src/pages/Index.tsx
+index b5edc71..39d0b17 100644
+--- a/src/pages/Index.tsx
++++ b/src/pages/Index.tsx
+@@ -37,6 +37,7 @@ import { applyFilters, applySort, facetCounts } from "@/lib/filterSort";
+ import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
+ import { cn } from "@/lib/utils";
+ import { SEO } from "@/components/SEO";
++import { STATIC_PAGE_META } from "@/lib/pageMeta";
+ import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
+ 
+ const MONTH_LABELS = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+@@ -246,17 +247,8 @@ const Index = () => {
+ 
+   return (
+     <div className="relative min-h-screen overflow-x-hidden text-foreground">
+-      <SEO
+-        title="High School Internships, Scholarships & Programs | HSO"
+-        description="Free U.S. opportunity finder for high schoolers: internships, summer programs, scholarships, research, and competitions — curated and deadline-tracked."
+-        path="/"
+-        jsonLd={{
+-          "@context": "https://schema.org",
+-          "@type": "WebSite",
+-          name: "HSO",
+-          url: "https://highschoolopportunity.org/",
+-        }}
+-      />
++      {/* Same title, description and JSON-LD as the prerendered homepage. */}
++      <SEO {...STATIC_PAGE_META["/"]} />
+       <main className="relative z-10">
+         <Hero
+           isAuthed={isAuthed}
+-- 
+2.43.0
+

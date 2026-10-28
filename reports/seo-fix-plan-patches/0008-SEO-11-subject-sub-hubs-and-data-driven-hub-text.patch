@@ -1,0 +1,749 @@
+From 9a2ca90f0462d90163559760591c980c7e43144d Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Wed, 28 Oct 2026 00:42:58 +0000
+Subject: [PATCH 08/10] SEO: 11 subject sub-hubs and data-driven hub text
+
+New static, prerendered pages under the category hubs, each with its own
+title, H1, intro, filtered list of indexable listings, FAQ (with FAQPage
+JSON-LD), ItemList and BreadcrumbList JSON-LD, sitemap entry and a link from
+its parent hub:
+
+  /categories/competitions/{stem,science,math,research,
+    business-entrepreneurship,writing-essay}
+  /categories/internships/{medical,law}
+  /categories/summer-programs/{business,free,nyc}
+
+Online-only internships (3 listings) are left to /remote. Counts, free vs
+paid, deadline months and grade facts are computed from the listings, so the
+'At a glance' text and FAQ answers cannot drift from the catalogue. The six
+category hubs gain the same 'At a glance' text (now 325-378 words) and
+'Browse by subject' links to their sub-hubs and matching guides.
+
+Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
+Claude-Session: https://claude.ai/code/session_015eydvdzcxBPZCXsPy7MGLS
+---
+ public/sitemap-categories.xml |  11 ++
+ scripts/prerender.mjs         |  46 +++++++-
+ src/App.tsx                   |   2 +
+ src/lib/hubStats.ts           | 101 ++++++++++++++++++
+ src/lib/pageMeta.ts           |  62 +++++++++++
+ src/lib/subHubs.test.ts       |  28 +++++
+ src/lib/subHubs.ts            | 192 ++++++++++++++++++++++++++++++++++
+ src/pages/Category.tsx        |  25 +++++
+ src/pages/SubHub.tsx          | 106 +++++++++++++++++++
+ 9 files changed, 572 insertions(+), 1 deletion(-)
+ create mode 100644 src/lib/hubStats.ts
+ create mode 100644 src/lib/subHubs.test.ts
+ create mode 100644 src/lib/subHubs.ts
+ create mode 100644 src/pages/SubHub.tsx
+
+diff --git a/public/sitemap-categories.xml b/public/sitemap-categories.xml
+index 2f560a4..5cf8769 100644
+--- a/public/sitemap-categories.xml
++++ b/public/sitemap-categories.xml
+@@ -9,4 +9,15 @@
+   <url><loc>https://highschoolopportunity.org/categories/research</loc><lastmod>2026-10-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+   <url><loc>https://highschoolopportunity.org/categories/competitions</loc><lastmod>2026-10-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+   <url><loc>https://highschoolopportunity.org/categories/fellowships</loc><lastmod>2026-10-17</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
++  <url><loc>https://highschoolopportunity.org/categories/competitions/stem</loc><lastmod>2026-10-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
++  <url><loc>https://highschoolopportunity.org/categories/competitions/science</loc><lastmod>2026-10-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
++  <url><loc>https://highschoolopportunity.org/categories/competitions/math</loc><lastmod>2026-10-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
++  <url><loc>https://highschoolopportunity.org/categories/competitions/research</loc><lastmod>2026-10-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
++  <url><loc>https://highschoolopportunity.org/categories/competitions/business-entrepreneurship</loc><lastmod>2026-10-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
++  <url><loc>https://highschoolopportunity.org/categories/competitions/writing-essay</loc><lastmod>2026-10-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
++  <url><loc>https://highschoolopportunity.org/categories/internships/medical</loc><lastmod>2026-10-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
++  <url><loc>https://highschoolopportunity.org/categories/internships/law</loc><lastmod>2026-09-20</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
++  <url><loc>https://highschoolopportunity.org/categories/summer-programs/business</loc><lastmod>2026-10-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
++  <url><loc>https://highschoolopportunity.org/categories/summer-programs/free</loc><lastmod>2026-10-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
++  <url><loc>https://highschoolopportunity.org/categories/summer-programs/nyc</loc><lastmod>2026-10-25</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+ </urlset>
+diff --git a/scripts/prerender.mjs b/scripts/prerender.mjs
+index 0c223cf..55ff6bf 100644
+--- a/scripts/prerender.mjs
++++ b/scripts/prerender.mjs
+@@ -55,7 +55,9 @@ async function loadRouteData(root) {
+         export { NYC_META, nycAfterSchoolByBorough, nycFeatured } from "@/lib/nyc";
+         export { detailFor } from "@/data/opportunityDetails";
+         export { relatedOpportunities } from "@/lib/related";
+-        export { collectionMeta, collectionMembers } from "@/lib/pageMeta";
++        export { collectionMeta, collectionMembers, subHubMeta, subHubMembers } from "@/lib/pageMeta";
++        export { SUB_HUBS, CATEGORY_GUIDES, subHubPath, subHubsFor } from "@/lib/subHubs";
++        export { hubStats, glanceParagraphs, hubFaqs } from "@/lib/hubStats";
+         export { curatedSections, curatedCollections } from "@/data/curatedCollections";
+         export { HUB_LINKS, GUIDE_LINKS } from "@/lib/siteLinks";
+       `,
+@@ -302,6 +304,19 @@ function categoryBody(slug, data) {
+         <p>${escapeHtml(meta.intro)}</p>
+         <h2>About ${escapeHtml(meta.h1.toLowerCase())}</h2>
+         ${meta.guide.map((p) => `<p>${escapeHtml(p)}</p>`).join("\n        ")}
++        ${data
++          .glanceParagraphs(meta.h1.replace(/ for high school students$/i, "").toLowerCase(), data.hubStats(list))
++          .map((p) => `<p>${escapeHtml(p)}</p>`)
++          .join("\n        ")}
++        ${
++          data.subHubsFor(slug).length || (data.CATEGORY_GUIDES[slug] ?? []).length
++            ? `<h2>Browse by subject</h2>
++        ${linkList([
++          ...data.subHubsFor(slug).map((h) => ({ href: data.subHubPath(h), label: h.h1 })),
++          ...(data.CATEGORY_GUIDES[slug] ?? []),
++        ])}`
++            : ""
++        }
+         <h2>Programs (${list.length})</h2>
+         ${linkList(list.slice(0, 200).map((o) => ({ href: `/opportunities/${o.id}`, label: o.title })))}
+         <h2>Frequently asked questions</h2>
+@@ -422,6 +437,32 @@ function collectionBody(c, data) {
+         <p><a href="/collections">Browse all curated collections</a></p>`);
+ }
+ 
++function subHubBody(hub, data) {
++  const parent = data.CATEGORY_META[hub.parent];
++  const members = data.subHubMembers(hub);
++  const stats = data.hubStats(members);
++  return shell(`        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/categories/${hub.parent}">${escapeHtml(parent.h1)}</a> / ${escapeHtml(hub.h1)}</nav>
++        <h1>${escapeHtml(hub.h1)}</h1>
++        ${hub.intro.map((p) => `<p>${escapeHtml(p)}</p>`).join("\n        ")}
++        <h2>At a glance</h2>
++        ${data.glanceParagraphs(hub.label, stats).map((p) => `<p>${escapeHtml(p)}</p>`).join("\n        ")}
++        ${hub.guide ? `<p><a href="${hub.guide.href}">${escapeHtml(hub.guide.label)}</a></p>` : ""}
++        <h2>Programs (${members.length})</h2>
++        ${linkList(members.map((o) => ({ href: `/opportunities/${o.id}`, label: o.title })))}
++        <h2>Frequently asked questions</h2>
++        ${data
++          .hubFaqs(hub.label, stats)
++          .map((f) => `<h3>${escapeHtml(f.q)}</h3><p>${escapeHtml(f.a)}</p>`)
++          .join("\n        ")}
++        <h2>More ${escapeHtml(parent.h1.toLowerCase())}</h2>
++        ${linkList([
++          { href: `/categories/${hub.parent}`, label: `All ${parent.h1.toLowerCase()}` },
++          ...data.subHubsFor(hub.parent)
++            .filter((h) => h.slug !== hub.slug)
++            .map((h) => ({ href: data.subHubPath(h), label: h.h1 })),
++        ])}`);
++}
++
+ function staticBody(meta, data) {
+   return shell(`        <h1>${escapeHtml(meta.title.replace(/\s*\|\s*HSO.*$/, ""))}</h1>
+         <p>${escapeHtml(meta.description ?? "")}</p>
+@@ -612,6 +653,9 @@ export async function prerender({ root, distDir }) {
+       pages.push({ meta, body: staticBody(meta, data) });
+     }
+   }
++  for (const hub of data.SUB_HUBS) {
++    pages.push({ meta: data.subHubMeta(hub), body: subHubBody(hub, data) });
++  }
+   for (const c of data.curatedCollections) {
+     pages.push({ meta: data.collectionMeta(c), body: collectionBody(c, data) });
+   }
+diff --git a/src/App.tsx b/src/App.tsx
+index 5e7b95a..89ce930 100644
+--- a/src/App.tsx
++++ b/src/App.tsx
+@@ -35,6 +35,7 @@ const Terms = lazy(() => import("./pages/Terms.tsx"));
+ const Submit = lazy(() => import("./pages/Submit.tsx"));
+ const Volunteer = lazy(() => import("./pages/Volunteer.tsx"));
+ const Category = lazy(() => import("./pages/Category.tsx"));
++const SubHub = lazy(() => import("./pages/SubHub.tsx"));
+ const OpportunityDetail = lazy(() => import("./pages/OpportunityDetail.tsx"));
+ const Collections = lazy(() => import("./pages/Collections.tsx"));
+ const RemoteNationwide = lazy(() => import("./pages/RemoteNationwide.tsx"));
+@@ -150,6 +151,7 @@ const App = () => (
+               <Route path="/submit" element={<Submit />} />
+               <Route path="/volunteer" element={<Volunteer />} />
+               <Route path="/categories/:slug" element={<Category />} />
++              <Route path="/categories/:slug/:sub" element={<SubHub />} />
+               <Route path="/opportunities/:id" element={<OpportunityDetail />} />
+               <Route path="/remote" element={<RemoteNationwide />} />
+               <Route path="/deadlines" element={<Deadlines />} />
+diff --git a/src/lib/hubStats.ts b/src/lib/hubStats.ts
+new file mode 100644
+index 0000000..87f6cf0
+--- /dev/null
++++ b/src/lib/hubStats.ts
+@@ -0,0 +1,101 @@
++import type { Opportunity } from "@/data/opportunities";
++import type { CategoryFAQ } from "@/lib/categories";
++
++/**
++ * Facts about a list of listings, and sentences built only from them, for hub
++ * and sub-hub pages: how many, how many are free, when deadlines fall, which
++ * grades can apply. Nothing here is written by hand, so it cannot drift from the
++ * catalogue.
++ */
++export interface HubStats {
++  total: number;
++  free: number;
++  stipend: number;
++  paid: number;
++  online: number;
++  grade9: number;
++  grade12: number;
++  dated: number;
++  /** Months with the most deadlines, most first ("March", "January"). */
++  topMonths: string[];
++}
++
++const MONTH_NAMES = [
++  "January", "February", "March", "April", "May", "June",
++  "July", "August", "September", "October", "November", "December",
++];
++
++export function hubStats(list: Opportunity[]): HubStats {
++  const months = new Map<number, number>();
++  for (const o of list) {
++    if (!o.deadline) continue;
++    const m = Number(o.deadline.slice(5, 7)) - 1;
++    months.set(m, (months.get(m) ?? 0) + 1);
++  }
++  const topMonths = [...months.entries()]
++    .sort((a, b) => b[1] - a[1] || a[0] - b[0])
++    .slice(0, 3)
++    .map(([m]) => MONTH_NAMES[m]);
++  return {
++    total: list.length,
++    free: list.filter((o) => o.cost === "Free").length,
++    stipend: list.filter((o) => o.cost === "Stipend").length,
++    paid: list.filter((o) => o.cost === "Paid").length,
++    online: list.filter((o) => o.format === "Online").length,
++    grade9: list.filter((o) => o.grades?.includes(9)).length,
++    grade12: list.filter((o) => o.grades?.includes(12)).length,
++    dated: list.filter((o) => o.deadline).length,
++    topMonths,
++  };
++}
++
++const joinList = (items: string[]) =>
++  items.length <= 1 ? items.join("") : `${items.slice(0, -1).join(", ")} and ${items[items.length - 1]}`;
++
++function deadlineSentence(label: string, s: HubStats): string {
++  if (s.dated >= 3 && s.topMonths.length)
++    return `${s.dated} of the ${s.total} ${label} have a confirmed deadline on HSO, and most of those fall in ${joinList(s.topMonths)}.`;
++  return `Few of these ${label} have a confirmed deadline on HSO yet, so check each official page for this cycle's dates.`;
++}
++
++/** "At a glance" paragraphs for a hub page. `label` is plural and lower case ("STEM competitions"). */
++export function glanceParagraphs(label: string, s: HubStats): string[] {
++  const money = [
++    `${s.free} ${s.free === 1 ? "is" : "are"} free`,
++    s.stipend ? `${s.stipend} pay a stipend or award` : "",
++    s.paid ? `${s.paid} charge tuition or a fee` : "",
++  ].filter(Boolean);
++  return [
++    `HSO lists ${s.total} ${label}. Of those, ${joinList(money)}.${s.online ? ` ${s.online} run fully online.` : ""}`,
++    deadlineSentence(label, s),
++    `${s.grade9} accept 9th graders and ${s.grade12} are open to seniors. Every listing links to the official page, where the final word on eligibility and dates always is.`,
++  ];
++}
++
++/** FAQ answered from the data, shown on the page and mirrored in FAQPage JSON-LD. */
++export function hubFaqs(label: string, s: HubStats): CategoryFAQ[] {
++  return [
++    {
++      q: `How many ${label} does HSO list?`,
++      a: `${s.total}. Each listing shows the cost, grades and location, the deadline when one is posted, and a link to the official page.`,
++    },
++    {
++      q: `Are there free ${label}?`,
++      a: s.free
++        ? `Yes. ${s.free} of the ${s.total} are free${s.stipend ? `, and ${s.stipend} pay a stipend or award` : ""}.`
++        : `None of the ${s.total} listed here are free. Check each program's page for financial aid.`,
++    },
++    { q: `When are ${label} deadlines?`, a: deadlineSentence(label, s) },
++    {
++      q: `Can 9th graders apply to ${label}?`,
++      a: `${s.grade9} of the ${s.total} accept 9th graders, and ${s.grade12} accept seniors. Grade rules vary by program, so confirm on the official page.`,
++    },
++  ];
++}
++
++/** The application cycle a page covers: "2026-27" from July 2026 to June 2027. */
++export function academicCycle(today: string): string {
++  const year = Number(today.slice(0, 4));
++  const start = Number(today.slice(5, 7)) >= 7 ? year : year - 1;
++  return `${start}-${String(start + 1).slice(2)}`;
++}
+diff --git a/src/lib/pageMeta.ts b/src/lib/pageMeta.ts
+index 811d4fe..be06460 100644
+--- a/src/lib/pageMeta.ts
++++ b/src/lib/pageMeta.ts
+@@ -9,6 +9,8 @@ import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines
+ import { listingDescription, listingTitle, todayIso } from "@/lib/listingSeo";
+ import { latestLastModified, listingLastModified } from "@/data/listingDates";
+ import { curatedCollections, type CuratedCollection } from "@/data/curatedCollections";
++import { SUB_HUBS, subHubPath, type SubHub } from "@/lib/subHubs";
++import { academicCycle, hubFaqs, hubStats } from "@/lib/hubStats";
+ 
+ export const SITE_URL = "https://highschoolopportunity.org";
+ export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
+@@ -562,6 +564,65 @@ export function collectionMeta(c: CuratedCollection): PageMeta {
+   };
+ }
+ 
++/** Indexable listings on a sub-hub page, in catalogue order. */
++export function subHubMembers(hub: SubHub): Opportunity[] {
++  return allOpportunities.filter((o) => hub.match(o) && isOpportunityIndexable(o));
++}
++
++/** Metadata for a subject sub-hub (/categories/:parent/:sub), shared by the app and the prerender. */
++export function subHubMeta(hub: SubHub): PageMeta {
++  const members = subHubMembers(hub);
++  const stats = hubStats(members);
++  const parent = CATEGORY_META[hub.parent];
++  const path = subHubPath(hub);
++  const url = `${SITE_URL}${path}`;
++  const cycle = academicCycle(todayIso());
++  const long = `${hub.name} (${cycle}) | HSO`;
++  return {
++    title: long.length <= 70 ? long : `${hub.name} | HSO`,
++    description: clampDescription(
++      `${stats.total} ${hub.label} for high school students, ${stats.free} free. Deadlines, eligibility and official links, checked by HSO.`,
++    ),
++    path,
++    jsonLd: [
++      {
++        "@context": "https://schema.org",
++        "@type": "CollectionPage",
++        name: hub.h1,
++        url,
++        mainEntity: {
++          "@type": "ItemList",
++          numberOfItems: members.length,
++          itemListElement: members.slice(0, 50).map((o, i) => ({
++            "@type": "ListItem",
++            position: i + 1,
++            name: o.title,
++            url: `${SITE_URL}${opportunityPath(o.id)}`,
++          })),
++        },
++      },
++      {
++        "@context": "https://schema.org",
++        "@type": "BreadcrumbList",
++        itemListElement: [
++          { "@type": "ListItem", position: 1, name: "HSO", item: `${SITE_URL}/` },
++          { "@type": "ListItem", position: 2, name: parent.h1, item: `${SITE_URL}/categories/${hub.parent}` },
++          { "@type": "ListItem", position: 3, name: hub.h1, item: url },
++        ],
++      },
++      {
++        "@context": "https://schema.org",
++        "@type": "FAQPage",
++        mainEntity: hubFaqs(hub.label, stats).map((f) => ({
++          "@type": "Question",
++          name: f.q,
++          acceptedAnswer: { "@type": "Answer", text: f.a },
++        })),
++      },
++    ],
++  };
++}
++
+ export function allRoutes(): PageMeta[] {
+   const catalogueLatest = latestLastModified(idsOf(allOpportunities));
+   return [
+@@ -576,6 +637,7 @@ export function allRoutes(): PageMeta[] {
+       ...categoryMeta(slug),
+       lastmod: latestLastModified(idsOf(allOpportunities.filter((o) => o.category === CATEGORY_META[slug].category))),
+     })),
++    ...SUB_HUBS.map((hub) => ({ ...subHubMeta(hub), lastmod: latestLastModified(idsOf(subHubMembers(hub))) })),
+     // A collection page changes when its list changes or a listing on it does.
+     ...curatedCollections.map((c) => {
+       const latest = latestLastModified(c.opportunityIds) ?? "";
+diff --git a/src/lib/subHubs.test.ts b/src/lib/subHubs.test.ts
+new file mode 100644
+index 0000000..e43c5a9
+--- /dev/null
++++ b/src/lib/subHubs.test.ts
+@@ -0,0 +1,28 @@
++import { describe, expect, it } from "vitest";
++import { SUB_HUBS, subHubPath } from "@/lib/subHubs";
++import { allRoutes, subHubMembers, subHubMeta } from "@/lib/pageMeta";
++import { hubFaqs, hubStats } from "@/lib/hubStats";
++
++describe("subject sub-hubs", () => {
++  it("each has enough indexable listings to be worth a page", () => {
++    for (const hub of SUB_HUBS) expect(subHubMembers(hub).length, subHubPath(hub)).toBeGreaterThanOrEqual(15);
++  });
++
++  it("each is a distinct, indexable route in allRoutes", () => {
++    const routes = new Map(allRoutes().map((r) => [r.path, r]));
++    const paths = SUB_HUBS.map(subHubPath);
++    expect(new Set(paths).size).toBe(paths.length);
++    for (const p of paths) {
++      expect(routes.has(p), p).toBe(true);
++      expect(routes.get(p)?.noindex).toBeFalsy();
++    }
++  });
++
++  it("FAQPage JSON-LD matches the questions shown on the page", () => {
++    for (const hub of SUB_HUBS) {
++      const faq = subHubMeta(hub).jsonLd?.find((j) => j["@type"] === "FAQPage") as { mainEntity: { name: string }[] };
++      const shown = hubFaqs(hub.label, hubStats(subHubMembers(hub))).map((f) => f.q);
++      expect(faq.mainEntity.map((q) => q.name)).toEqual(shown);
++    }
++  });
++});
+diff --git a/src/lib/subHubs.ts b/src/lib/subHubs.ts
+new file mode 100644
+index 0000000..5332146
+--- /dev/null
++++ b/src/lib/subHubs.ts
+@@ -0,0 +1,192 @@
++import type { Opportunity } from "@/data/opportunities";
++import type { CategorySlug } from "@/lib/categories";
++
++/**
++ * Subject sub-hubs under the category hubs (SEO plan P1-5): real pages with
++ * their own URL, title, H1, intro and filtered list, for searches the broad
++ * category pages rank poorly for ("stem competitions for high school students",
++ * "medical internships for high school students"). Members are the indexable
++ * listings that match; counts, deadlines and FAQ answers come from those
++ * listings (hubStats.ts). Only add a sub-hub that has enough listings to be
++ * useful: online-only internships (3) are covered by /remote instead.
++ */
++export interface SubHub {
++  parent: CategorySlug;
++  slug: string;
++  /** Plural, lower case, used in sentences: "STEM competitions". */
++  label: string;
++  /** Title-case name for the <title>: "STEM Competitions for High School Students". */
++  name: string;
++  h1: string;
++  intro: string[];
++  match: (o: Opportunity) => boolean;
++  /** A guide on the same topic, linked from the page. */
++  guide?: { href: string; label: string };
++}
++
++const has = (o: Opportunity, fields: string[]) => (o.fields ?? []).some((f) => fields.includes(f));
++const text = (o: Opportunity) => `${o.title} ${o.blurb}`.toLowerCase();
++const STEM_FIELDS = ["STEM", "Math", "Engineering", "Computer Science", "Biology", "Physics", "Chemistry", "Astronomy", "Data Science"];
++const BUSINESS_FIELDS = ["Business", "Entrepreneurship", "Finance", "Economics"];
++
++export const SUB_HUBS: SubHub[] = [
++  {
++    parent: "competitions",
++    slug: "stem",
++    label: "STEM competitions",
++    name: "STEM Competitions for High School Students",
++    h1: "STEM competitions for high school students",
++    intro: [
++      "STEM competitions cover math, science, engineering and computer science, from school-level contests to national olympiads and science fairs. Some are taken alone in a single sitting; others are team builds that run for a whole season.",
++      "Start with contests your school already registers for, then add one that matches a project or subject you are deep in. Many national competitions have a qualifying round first, so the early deadline is usually the one that matters.",
++    ],
++    match: (o) => o.category === "Competition" && has(o, STEM_FIELDS),
++  },
++  {
++    parent: "competitions",
++    slug: "science",
++    label: "science competitions",
++    name: "Science Competitions for High School Students",
++    h1: "Science competitions for high school students",
++    intro: [
++      "Science competitions range from knowledge contests like science bowls and olympiads to research fairs where you present your own project. Biology, chemistry, physics, earth science and environmental science each have their own events.",
++      "Fair-style competitions reward a long project, so they suit students already doing research. Knowledge contests reward study and practice exams, and often run through school or regional teams.",
++    ],
++    match: (o) => o.category === "Competition" && (has(o, ["Biology", "Chemistry", "Physics", "Astronomy", "Environment"]) || /\bscience\b/.test(text(o))),
++  },
++  {
++    parent: "competitions",
++    slug: "math",
++    label: "math competitions",
++    name: "Math Competitions for High School Students",
++    h1: "Math competitions for high school students",
++    intro: [
++      "Math competitions include individual exams, team meets hosted by universities, and proof-based olympiads. Many students take a ladder of contests over the year, where a strong score on one qualifies you for the next.",
++      "If you are new to contest math, begin with an exam your school offers and practice on past papers. Team meets are a good way to compete with friends and see problems you would not meet in class.",
++    ],
++    match: (o) => o.category === "Competition" && has(o, ["Math"]),
++  },
++  {
++    parent: "competitions",
++    slug: "research",
++    label: "research competitions",
++    name: "Research Competitions for High School Students",
++    h1: "Research competitions for high school students",
++    intro: [
++      "Research competitions judge an original project: a question you investigated, your method, your results and how well you explain them. Most ask for a written paper, a poster or presentation, or both.",
++      "These reward months of work, so plan backwards from the deadline. A mentor, a school research class or a summer research program is the usual way students get a project far enough along to enter.",
++    ],
++    match: (o) => o.category === "Competition" && has(o, ["Research"]),
++    guide: { href: "/guides/top-research-competitions", label: "Best research competitions, compared" },
++  },
++  {
++    parent: "competitions",
++    slug: "business-entrepreneurship",
++    label: "business and entrepreneurship competitions",
++    name: "Business & Entrepreneurship Competitions for High School Students",
++    h1: "Business and entrepreneurship competitions for high school students",
++    intro: [
++      "Business competitions ask you to pitch a startup idea, write a business plan, solve a case, manage a mock investment portfolio or answer economics questions. Many are team events, and some are run through school clubs.",
++      "Pitch and plan competitions reward a clear problem, a realistic customer and numbers that add up. Case and investing contests reward practice, so look at past rounds before you enter.",
++    ],
++    match: (o) => o.category === "Competition" && has(o, BUSINESS_FIELDS),
++  },
++  {
++    parent: "competitions",
++    slug: "writing-essay",
++    label: "writing and essay competitions",
++    name: "Writing & Essay Competitions for High School Students",
++    h1: "Writing and essay competitions for high school students",
++    intro: [
++      "Writing competitions cover essays, short fiction, poetry, journalism and speeches. Most are free to enter online, judged on a single piece, and open to any high school student in the U.S.",
++      "Read the prompt and word limit closely and look at past winners if they are posted. One strong, revised piece usually does better than several rushed ones, and many contests let the same student enter more than one category.",
++    ],
++    match: (o) => o.category === "Competition" && has(o, ["Writing"]),
++  },
++  {
++    parent: "internships",
++    slug: "medical",
++    label: "medical internships",
++    name: "Medical Internships for High School Students",
++    h1: "Medical internships for high school students",
++    intro: [
++      "Medical internships for high schoolers usually mean lab research at a hospital or medical school, shadowing, or a structured program that mixes both. Direct patient care is rare at this age, so most programs focus on research and exposure to careers in medicine.",
++      "Many of the strongest programs are local to the hospital or university that runs them, so check location rules first. Applications often ask for a teacher recommendation and a short essay about why you are interested in medicine.",
++    ],
++    match: (o) => o.category === "Internship" && (has(o, ["Medicine", "Health", "Healthcare"]) || /\b(medical|hospital|clinical|medicine)\b/.test(text(o))),
++    guide: { href: "/guides/top-medical-internships", label: "Best medical internships, compared" },
++  },
++  {
++    parent: "internships",
++    slug: "law",
++    label: "law internships",
++    name: "Law Internships for High School Students",
++    h1: "Law internships for high school students",
++    intro: [
++      "Law internships for high schoolers are usually run by courts, bar associations, government offices or law schools. They range from office placements to pre-law academies where you learn how cases work and practice arguing them.",
++      "Formal programs are few and often local, so it also pays to ask nearby firms, public defenders and legal aid groups directly. Mock trial and debate experience helps an application stand out.",
++    ],
++    match: (o) => o.category === "Internship" && (has(o, ["Law"]) || /\b(law|legal|attorney|court|judicial)\b/.test(text(o))),
++    guide: { href: "/guides/high-school-law-internships", label: "How to find a high school law internship" },
++  },
++  {
++    parent: "summer-programs",
++    slug: "business",
++    label: "business summer programs",
++    name: "Business Summer Programs for High School Students",
++    h1: "Business summer programs for high school students",
++    intro: [
++      "Business summer programs teach entrepreneurship, finance, marketing and leadership, usually through case studies, team projects and a final pitch. University programs often run on campus for one to four weeks.",
++      "Compare length, cost and whether the program is residential. Several free and need-based options exist alongside the well-known paid university programs.",
++    ],
++    match: (o) => o.category === "Summer Program" && has(o, BUSINESS_FIELDS),
++    guide: { href: "/guides/top-business-summer-programs", label: "Best business summer programs, compared" },
++  },
++  {
++    parent: "summer-programs",
++    slug: "free",
++    label: "free summer programs",
++    name: "Free Summer Programs for High School Students",
++    h1: "Free summer programs for high school students",
++    intro: [
++      "Free summer programs charge no tuition. Some are run by universities and national labs, others by state governments, museums and nonprofits. Many of the most selective programs are free, so free does not mean easy to get into.",
++      "Check what free covers: some include housing and meals, others are day programs where you pay for travel. Many free programs close in winter, months before the summer starts.",
++    ],
++    match: (o) => o.category === "Summer Program" && o.cost === "Free",
++  },
++  {
++    parent: "summer-programs",
++    slug: "nyc",
++    label: "NYC summer programs",
++    name: "NYC Summer Programs for High School Students",
++    h1: "NYC summer programs for high school students",
++    intro: [
++      "New York City has summer programs at universities, museums, hospitals and city agencies across all five boroughs, many of them free for city students. Some are only open to students who live in or attend school in New York City.",
++      "Check residency and age rules first. For after-school and city-run youth programs, see the NYC hub, which groups them by borough.",
++    ],
++    match: (o) => o.category === "Summer Program" && /New York, New York|Brooklyn|Bronx|Queens|Staten Island|Manhattan/.test(o.location),
++  },
++];
++
++/** Guides that belong with each category hub. */
++export const CATEGORY_GUIDES: Partial<Record<CategorySlug, { href: string; label: string }[]>> = {
++  internships: [
++    { href: "/guides/top-medical-internships", label: "Best medical internships, compared" },
++    { href: "/guides/high-school-law-internships", label: "How to find a law internship" },
++  ],
++  competitions: [{ href: "/guides/top-research-competitions", label: "Best research competitions, compared" }],
++  research: [{ href: "/guides/top-research-competitions", label: "Best research competitions, compared" }],
++  "summer-programs": [{ href: "/guides/top-business-summer-programs", label: "Best business summer programs, compared" }],
++};
++
++export function subHubPath(h: Pick<SubHub, "parent" | "slug">): string {
++  return `/categories/${h.parent}/${h.slug}`;
++}
++
++export function findSubHub(parent: string | undefined, slug: string | undefined): SubHub | undefined {
++  return SUB_HUBS.find((h) => h.parent === parent && h.slug === slug);
++}
++
++export function subHubsFor(parent: string): SubHub[] {
++  return SUB_HUBS.filter((h) => h.parent === parent);
++}
+diff --git a/src/pages/Category.tsx b/src/pages/Category.tsx
+index d23befb..309d654 100644
+--- a/src/pages/Category.tsx
++++ b/src/pages/Category.tsx
+@@ -10,6 +10,8 @@ import { SortBar, SortKey } from "@/components/SortBar";
+ import { applySort } from "@/lib/filterSort";
+ import { categoryMeta } from "@/lib/pageMeta";
+ import { useAtmosphere, type AtmosphereTheme } from "@/lib/atmosphere";
++import { CATEGORY_GUIDES, subHubPath, subHubsFor } from "@/lib/subHubs";
++import { glanceParagraphs, hubStats } from "@/lib/hubStats";
+ 
+ const Category = () => {
+   const { slug } = useParams<{ slug: CategorySlug }>();
+@@ -32,6 +34,9 @@ const Category = () => {
+   // than redirecting to the homepage, which Google reads as a soft 404.
+   if (!slug || !meta) return <NotFound />;
+ 
++  const subHubs = subHubsFor(slug);
++  const guides = CATEGORY_GUIDES[slug] ?? [];
++
+   return (
+     <div className="min-h-screen">
+       <SEO {...categoryMeta(slug)} />
+@@ -44,7 +49,27 @@ const Category = () => {
+           <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">About {meta.h1.toLowerCase()}</h2>
+           <div className="mt-4 space-y-4 text-base leading-relaxed text-muted-foreground">
+             {meta.guide.map((p, i) => <p key={i}>{p}</p>)}
++            {glanceParagraphs(meta.h1.replace(/ for high school students$/i, "").toLowerCase(), hubStats(list)).map((p, i) => (
++              <p key={`g${i}`}>{p}</p>
++            ))}
+           </div>
++          {(subHubs.length > 0 || guides.length > 0) && (
++            <div className="mt-6">
++              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Browse by subject</p>
++              <div className="mt-3 flex flex-wrap gap-2">
++                {subHubs.map((h) => (
++                  <Link key={h.slug} to={subHubPath(h)} className="rounded-full border border-border bg-background px-4 py-2 text-sm hover:border-coral hover:text-coral">
++                    {h.h1.replace(/ for high school students$/i, "").replace(/^./, (c) => c.toUpperCase())}
++                  </Link>
++                ))}
++                {guides.map((g) => (
++                  <Link key={g.href} to={g.href} className="rounded-full border border-coral/40 bg-background px-4 py-2 text-sm font-semibold text-ink hover:border-coral hover:text-coral">
++                    {g.label}
++                  </Link>
++                ))}
++              </div>
++            </div>
++          )}
+         </section>
+ 
+         <div className="mt-8">
+diff --git a/src/pages/SubHub.tsx b/src/pages/SubHub.tsx
+new file mode 100644
+index 0000000..cad6a5b
+--- /dev/null
++++ b/src/pages/SubHub.tsx
+@@ -0,0 +1,106 @@
++import { useMemo, useState } from "react";
++import { Link, useParams } from "react-router-dom";
++import { SiteFooter } from "@/components/SiteFooter";
++import { SEO } from "@/components/SEO";
++import { OpportunityCard } from "@/components/OpportunityCard";
++import { SortBar, SortKey } from "@/components/SortBar";
++import { applySort } from "@/lib/filterSort";
++import { CATEGORY_META } from "@/lib/categories";
++import { allOpportunities } from "@/data/opportunities";
++import { subHubMeta, subHubMembers } from "@/lib/pageMeta";
++import { findSubHub, subHubPath, subHubsFor } from "@/lib/subHubs";
++import { glanceParagraphs, hubFaqs, hubStats } from "@/lib/hubStats";
++import { useAtmosphere, type AtmosphereTheme } from "@/lib/atmosphere";
++import NotFound from "@/pages/NotFound";
++
++/** A subject sub-hub such as /categories/competitions/stem (see lib/subHubs.ts). */
++const SubHub = () => {
++  const { slug, sub } = useParams<{ slug: string; sub: string }>();
++  const hub = findSubHub(slug, sub);
++
++  useAtmosphere((hub ? hub.parent : "default") as AtmosphereTheme);
++
++  const [sort, setSort] = useState<SortKey>("recommended");
++  const indexMap = useMemo(() => new Map(allOpportunities.map((o, i) => [o.id, i])), []);
++  const members = useMemo(() => (hub ? subHubMembers(hub) : []), [hub]);
++  const list = useMemo(() => applySort(members, sort, indexMap), [members, sort, indexMap]);
++
++  if (!hub) return <NotFound />;
++
++  const parent = CATEGORY_META[hub.parent];
++  const stats = hubStats(members);
++  const siblings = subHubsFor(hub.parent).filter((h) => h.slug !== hub.slug);
++
++  return (
++    <div className="min-h-screen">
++      <SEO {...subHubMeta(hub)} />
++      <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
++        <nav aria-label="Breadcrumb" className="text-sm text-muted-foreground">
++          <ol className="flex flex-wrap items-center gap-1.5">
++            <li><Link to="/" className="font-semibold hover:text-coral">Home</Link></li>
++            <li aria-hidden="true">/</li>
++            <li><Link to={`/categories/${hub.parent}`} className="font-semibold hover:text-coral">{parent.h1.replace(/ for high school students$/i, "").replace(/^./, (c) => c.toUpperCase())}</Link></li>
++            <li aria-hidden="true">/</li>
++            <li aria-current="page">{hub.h1.replace(/ for high school students$/i, "")}</li>
++          </ol>
++        </nav>
++        <h1 className="mt-4 font-display text-4xl font-semibold tracking-tight sm:text-6xl">
++          {hub.h1.replace(/^./, (c) => c.toUpperCase())}
++        </h1>
++        <div className="mt-4 max-w-3xl space-y-3 text-lg text-muted-foreground">
++          {hub.intro.map((p, i) => <p key={i}>{p}</p>)}
++        </div>
++
++        <section className="hso-glass-panel mt-10 rounded-3xl p-6 sm:p-8">
++          <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">At a glance</h2>
++          <div className="mt-4 space-y-4 text-base leading-relaxed text-muted-foreground">
++            {glanceParagraphs(hub.label, stats).map((p, i) => <p key={i}>{p}</p>)}
++          </div>
++          {hub.guide && (
++            <Link to={hub.guide.href} className="mt-5 inline-flex rounded-full bg-ink px-5 py-2.5 text-sm font-bold text-cream transition-transform hover:-translate-y-0.5 hover:bg-coral">
++              {hub.guide.label}
++            </Link>
++          )}
++        </section>
++
++        <div className="mt-8">
++          <SortBar value={sort} onChange={setSort} count={list.length} />
++        </div>
++
++        <h2 className="sr-only">Programs</h2>
++        <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
++          {list.map((o, i) => <OpportunityCard key={o.id} opp={o} index={i} />)}
++        </div>
++
++        <section className="mt-16">
++          <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">Frequently asked questions</h2>
++          <div className="mt-5 space-y-4">
++            {hubFaqs(hub.label, stats).map((f, i) => (
++              <details key={i} className="hso-glass-panel group rounded-2xl p-5 [&_summary::-webkit-details-marker]:hidden">
++                <summary className="cursor-pointer list-none font-display text-lg font-semibold text-ink">{f.q}</summary>
++                <p className="mt-3 text-base leading-relaxed text-muted-foreground">{f.a}</p>
++              </details>
++            ))}
++          </div>
++        </section>
++
++        <section className="hso-glass-panel mt-16 rounded-3xl p-6 sm:p-10">
++          <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">More {parent.h1.toLowerCase()}</p>
++          <div className="mt-4 flex flex-wrap gap-2">
++            <Link to={`/categories/${hub.parent}`} className="rounded-full border border-border bg-background px-4 py-2 text-sm hover:border-coral hover:text-coral">
++              All {parent.h1.toLowerCase()}
++            </Link>
++            {siblings.map((h) => (
++              <Link key={h.slug} to={subHubPath(h)} className="rounded-full border border-border bg-background px-4 py-2 text-sm hover:border-coral hover:text-coral">
++                {h.h1.replace(/ for high school students$/i, "").replace(/^./, (c) => c.toUpperCase())}
++              </Link>
++            ))}
++          </div>
++        </section>
++      </main>
++      <SiteFooter />
++    </div>
++  );
++};
++
++export default SubHub;
+-- 
+2.43.0
+
