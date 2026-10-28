@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
+import { GUIDE_LINKS } from "@/lib/siteLinks";
 
 export function SiteFooter() {
   return (
     <footer className="border-t border-border/70 bg-ink text-cream">
-      <div className="mx-auto grid max-w-[1400px] gap-8 px-4 py-10 sm:px-6 sm:py-12 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr]">
+      <div className="mx-auto grid max-w-[1400px] gap-8 px-4 py-10 sm:px-6 sm:py-12 md:grid-cols-[1.2fr_0.8fr_0.8fr_0.8fr_0.8fr]">
         <div>
           <p className="font-display text-3xl font-black tracking-tight">
             <span className="text-coral">H</span>S<span className="text-sage">O</span>
@@ -31,6 +32,12 @@ export function SiteFooter() {
           <li><Link to="/deadlines" className="hover:text-coral">Deadlines closing soon</Link></li>
           <li><Link to="/nyc-programs-for-high-school-students" className="hover:text-coral">NYC programs</Link></li>
           <li><Link to="/remote" className="hover:text-coral">Remote &amp; nationwide</Link></li>
+        </FooterColumn>
+        <FooterColumn title="Guides">
+          {GUIDE_LINKS.map((g) => (
+            <li key={g.href}><Link to={g.href} className="hover:text-coral">{g.label}</Link></li>
+          ))}
+          <li><Link to="/collections" className="hover:text-coral">Collections</Link></li>
         </FooterColumn>
         <FooterColumn title="Legal">
           <li><Link to="/privacy" className="hover:text-coral">Privacy</Link></li>

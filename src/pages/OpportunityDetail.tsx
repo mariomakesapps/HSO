@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { slugForCategory, CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
 import { REMOVED_OPPORTUNITY_REDIRECTS } from "@/data/removedOpportunities";
 import { detailFor } from "@/data/opportunityDetails";
+import { relatedOpportunities } from "@/lib/related";
 import { opportunityMeta } from "@/lib/pageMeta";
 import { useAtmosphere, themeForCategory } from "@/lib/atmosphere";
 import { store, useStore } from "@/store/collections";
@@ -94,9 +95,8 @@ const OpportunityDetail = () => {
   }
 
   const detail = opp ? detailFor(opp.id) : undefined;
-  const related = allOpportunities
-    .filter((o) => o.id !== opp.id && (o.category === opp.category || o.fields.some((f) => opp.fields.includes(f))))
-    .slice(0, 3);
+  const related = relatedOpportunities(opp, 6);
+  const crumbSlug = slugForCategory(opp.category);
 
   const toggleInterval = async (n: number) => {
     if (!user) { toast.info("Sign in to save reminders"); navigate(authRedirectHref(`/opportunities/${opp.id}`)); return; }
@@ -123,9 +123,28 @@ const OpportunityDetail = () => {
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,hsl(var(--coral)/0.08),transparent_34%,hsl(var(--sage)/0.08))]" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-[repeating-linear-gradient(90deg,hsl(var(--ink)/0.04)_0_1px,transparent_1px_18px)]" />
           <div className="relative">
-            <button onClick={() => navigate(-1)} className="mb-6 inline-flex items-center gap-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-coral">
-              <ArrowLeft className="h-4 w-4" /> Back
-            </button>
+            <div className="mb-6 flex flex-wrap items-center gap-x-5 gap-y-2">
+              <button onClick={() => navigate(-1)} className="inline-flex items-center gap-1 text-sm font-semibold text-muted-foreground transition-colors hover:text-coral">
+                <ArrowLeft className="h-4 w-4" /> Back
+              </button>
+              <nav aria-label="Breadcrumb" className="min-w-0 text-sm text-muted-foreground">
+                <ol className="flex flex-wrap items-center gap-1.5">
+                  <li><Link to="/" className="font-semibold hover:text-coral">Home</Link></li>
+                  {crumbSlug && (
+                    <>
+                      <li aria-hidden="true">/</li>
+                      <li>
+                        <Link to={`/categories/${crumbSlug}`} className="font-semibold hover:text-coral">
+                          {CATEGORY_META[crumbSlug].h1.replace(/ for high school students$/i, "").replace(/^./, (c) => c.toUpperCase())}
+                        </Link>
+                      </li>
+                    </>
+                  )}
+                  <li aria-hidden="true">/</li>
+                  <li aria-current="page" className="max-w-[16rem] truncate">{opp.title}</li>
+                </ol>
+              </nav>
+            </div>
 
             <div className="flex flex-wrap items-center gap-2">
               <span className="rounded-full border border-white/65 bg-card/74 px-3 py-1 text-xs font-bold uppercase tracking-wide shadow-[inset_0_1px_0_hsl(0_0%_100%/0.72)]">{opp.category}</span>

@@ -54,6 +54,8 @@ async function loadRouteData(root) {
         export { nycMeta } from "@/lib/pageMeta";
         export { NYC_META, nycAfterSchoolByBorough, nycFeatured } from "@/lib/nyc";
         export { detailFor } from "@/data/opportunityDetails";
+        export { relatedOpportunities } from "@/lib/related";
+        export { HUB_LINKS, GUIDE_LINKS } from "@/lib/siteLinks";
       `,
       resolveDir: root,
       loader: "ts",
@@ -153,8 +155,25 @@ for(var i=0;i<d.length;i++)d[i].parentNode.removeChild(d[i]);
 const HIDDEN =
   "position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;padding:0;margin:-1px;";
 
+/**
+ * Links to every hub and guide, appended to every prerendered page the way the
+ * site footer appears on every rendered one. Built once in prerender() so the
+ * category, hub and guide lists come from the same source as the app.
+ */
+let SITE_LINKS_HTML = "";
+
+function siteLinksHtml(data) {
+  return `
+        <h2>Browse HSO</h2>
+        ${linkList([
+          ...data.CATEGORY_SLUGS.map((s) => ({ href: `/categories/${s}`, label: data.CATEGORY_META[s].h1 })),
+          ...data.HUB_LINKS,
+          ...data.GUIDE_LINKS,
+        ])}`;
+}
+
 function shell(inner) {
-  return `<div style="${HIDDEN}">\n${inner}\n      </div>`;
+  return `<div style="${HIDDEN}">\n${inner}${SITE_LINKS_HTML}\n      </div>`;
 }
 
 function linkList(items) {
@@ -172,9 +191,9 @@ function opportunityBody(opp, data) {
     (s) => data.CATEGORY_META[s].category === opp.category,
   );
 
-  const related = data.allOpportunities
-    .filter((o) => o.id !== opp.id && o.category === opp.category)
-    .slice(0, 8)
+  // Same ranking as the listing page: same category, shared subjects, same state.
+  const related = data
+    .relatedOpportunities(opp, 8)
     .map((o) => ({ href: `/opportunities/${o.id}`, label: o.title }));
 
   // Long-form copy, where we have it. Only a handful of listings carry this today;
@@ -203,7 +222,12 @@ function opportunityBody(opp, data) {
         }
         <p>Details checked on ${escapeHtml(d.source.checked)} against <a href="${escapeHtml(d.source.url)}">the program's own page</a>.</p>`;
 
-  return shell(`        <h1>${escapeHtml(opp.title)}</h1>
+  const crumbs = `<nav aria-label="Breadcrumb"><a href="/">Home</a> / ${
+    slug ? `<a href="/categories/${slug}">${escapeHtml(data.CATEGORY_META[slug].h1)}</a> / ` : ""
+  }${escapeHtml(opp.title)}</nav>`;
+
+  return shell(`        ${crumbs}
+        <h1>${escapeHtml(opp.title)}</h1>
         <p>${escapeHtml(opp.blurb)}</p>
         <p>Offered by ${escapeHtml(opp.org)}. ${escapeHtml(opp.category)} for high school students in ${escapeHtml(opp.location)}. Format: ${escapeHtml(opp.format)}. Cost: ${escapeHtml(opp.cost)}. ${escapeHtml(grades)}. ${escapeHtml(deadline)}</p>
         <p>Fields: ${escapeHtml((opp.fields ?? []).join(", "))}</p>${detail}
@@ -310,23 +334,10 @@ function remoteBody(data) {
 function staticBody(meta, data) {
   return shell(`        <h1>${escapeHtml(meta.title.replace(/\s*\|\s*HSO.*$/, ""))}</h1>
         <p>${escapeHtml(meta.description ?? "")}</p>
-        <h2>Browse opportunities by category</h2>
-        ${linkList(
-          data.CATEGORY_SLUGS.map((s) => ({
-            href: `/categories/${s}`,
-            label: data.CATEGORY_META[s].h1,
-          })),
-        )}
         <h2>Explore the site</h2>
         ${linkList([
           { href: "/", label: "Home — find opportunities" },
           { href: "/about", label: "About HSO" },
-          { href: "/collections", label: "Collections — curated HSO opportunity lists" },
-          { href: "/nyc-programs-for-high-school-students", label: "NYC programs for high school students" },
-          { href: "/guides/top-medical-internships", label: "Best medical internships for high school students" },
-          { href: "/guides/top-research-competitions", label: "Best research competitions for high schoolers" },
-          { href: "/guides/top-business-summer-programs", label: "Best business summer programs for high schoolers" },
-          { href: "/guides/high-school-law-internships", label: "High school law internships" },
           { href: "/submit", label: "Submit an opportunity" },
           { href: "/volunteer", label: "Volunteer with HSO" },
           { href: "/contact", label: "Contact & corrections" },
@@ -495,6 +506,7 @@ export async function prerender({ root, distDir }) {
   const templatePath = path.join(distDir, "index.html");
   const template = await fs.readFile(templatePath, "utf8");
   const data = await loadRouteData(root);
+  SITE_LINKS_HTML = siteLinksHtml(data);
 
   const pages = [];
 
