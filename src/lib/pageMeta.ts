@@ -7,6 +7,7 @@ import { OCT2026_LISTING_SEO, OCT2026_NOINDEX, OCT2026_PAGE_SEO } from "@/data/h
 import { OCT17_LISTING_SEO } from "@/data/hsoUpdateOct17.generated";
 import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
 import { listingDescription, listingTitle, todayIso } from "@/lib/listingSeo";
+import { latestLastModified, listingLastModified } from "@/data/listingDates";
 
 export const SITE_URL = "https://highschoolopportunity.org";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
@@ -26,6 +27,8 @@ export interface PageMeta {
   path: string;
   noindex?: boolean;
   jsonLd?: Record<string, unknown>[];
+  /** Date the page's content last really changed (sitemap <lastmod>). Set in allRoutes(). */
+  lastmod?: string;
 }
 
 /** Google truncates descriptions around 160 chars; keep them under that. */
@@ -494,14 +497,42 @@ function nycMetaBase(): PageMeta {
   };
 }
 
+/**
+ * Last real change to each static page: the git date its page source (or, for
+ * collections, the curated list) last changed on main. Update the date when the
+ * page's content changes; the homepage takes the catalogue's latest change.
+ */
+const STATIC_LASTMOD: Record<string, string> = {
+  "/about": "2026-10-15",
+  "/contact": "2026-08-25",
+  "/privacy": "2026-07-20",
+  "/terms": "2026-07-20",
+  "/submit": "2026-07-20",
+  "/volunteer": "2026-09-21",
+  "/collections": "2026-08-26",
+  "/guides/top-medical-internships": "2026-07-27",
+  "/guides/top-research-competitions": "2026-07-27",
+  "/guides/top-business-summer-programs": "2026-07-29",
+  "/guides/high-school-law-internships": "2026-07-30",
+};
+
+const idsOf = (list: Opportunity[]) => list.map((o) => o.id);
+
 export function allRoutes(): PageMeta[] {
+  const catalogueLatest = latestLastModified(idsOf(allOpportunities));
   return [
-    ...Object.values(STATIC_PAGE_META),
-    remoteMeta(),
-    deadlinesMeta(),
-    nycMeta(),
-    ...CATEGORY_SLUGS.map((slug) => categoryMeta(slug)),
-    ...allOpportunities.map((opp) => opportunityMeta(opp)),
+    ...Object.values(STATIC_PAGE_META).map((m) => ({
+      ...m,
+      lastmod: m.path === "/" ? catalogueLatest : STATIC_LASTMOD[m.path],
+    })),
+    { ...remoteMeta(), lastmod: latestLastModified(idsOf(remoteOpportunities())) },
+    { ...deadlinesMeta(), lastmod: latestLastModified(idsOf(allOpportunities.filter((o) => o.deadline || o.opensAt))) },
+    { ...nycMeta(), lastmod: latestLastModified(idsOf(allOpportunities.filter((o) => /New York, New York/.test(o.location)))) },
+    ...CATEGORY_SLUGS.map((slug) => ({
+      ...categoryMeta(slug),
+      lastmod: latestLastModified(idsOf(allOpportunities.filter((o) => o.category === CATEGORY_META[slug].category))),
+    })),
+    ...allOpportunities.map((opp) => ({ ...opportunityMeta(opp), lastmod: listingLastModified(opp.id) })),
   ];
 }
 

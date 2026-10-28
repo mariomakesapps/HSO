@@ -25,7 +25,7 @@ function seoPrerenderPlugin(): Plugin {
         const sitemap = await generateSitemap({ root, distDir });
 
         this.info(
-          `prerendered ${pages.written} pages (${pages.indexable} indexable, ${pages.noindexed} noindex) · sitemap ${sitemap.indexable} URLs (${sitemap.excluded} excluded) · 404.html + ${pages.redirects} permanent redirects`,
+          `prerendered ${pages.written} pages (${pages.indexable} indexable, ${pages.noindexed} noindex) · sitemap index: ${sitemap.indexable} URLs, ${sitemap.withLastmod} with lastmod (${sitemap.excluded} excluded) · 404.html + ${pages.redirects} permanent redirects`,
         );
       } catch (err) {
         // A prerender failure must not silently ship an SPA-only build.
