@@ -95,7 +95,8 @@ function headFor(meta) {
     `<meta ${RH} name="description" content="${description}" />`,
     `<link ${RH} rel="canonical" href="${escapeHtml(url)}" />`,
     meta.noindex
-      ? `<meta ${RH} name="robots" content="noindex,nofollow" />`
+      ? // noindex,follow: kept out of the index, but its links still count.
+        `<meta ${RH} name="robots" content="noindex,follow" />`
       : `<meta ${RH} name="robots" content="index,follow,max-image-preview:large,max-snippet:-1" />`,
     `<meta ${RH} property="og:type" content="website" />`,
     `<meta ${RH} property="og:site_name" content="HSO" />`,

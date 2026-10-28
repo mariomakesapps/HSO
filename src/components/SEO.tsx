@@ -34,7 +34,13 @@ export function SEO({
       <title>{title}</title>
       {description && <meta name="description" content={description} />}
       <link rel="canonical" href={url} />
-      {noindex && <meta name="robots" content="noindex,nofollow" />}
+      {/* noindex,follow (not nofollow): a page kept out of the index still passes
+          its links on to related listings and category hubs. Indexable pages get
+          the same robots value the prerendered HTML ships, so the two match. */}
+      <meta
+        name="robots"
+        content={noindex ? "noindex,follow" : "index,follow,max-image-preview:large,max-snippet:-1"}
+      />
 
       <meta property="og:type" content={type} />
       <meta property="og:url" content={url} />
