@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import SEO from "@/components/SEO";
+import { STATIC_PAGE_META } from "@/lib/pageMeta";
 
 const COMPETITIONS = [
   {
@@ -88,9 +89,7 @@ export default function GuideTopResearchCompetitions() {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Best Research Competitions for High Schoolers 2026 | HSO"
-        description="Compare top U.S. research competitions for high schoolers: Regeneron STS, ISEF, JSHS, Davidson Fellows. Prizes, selectivity, deadlines."
-        path="/guides/top-research-competitions"
+        {...STATIC_PAGE_META["/guides/top-research-competitions"]}
         type="article"
         jsonLd={jsonLd}
       />

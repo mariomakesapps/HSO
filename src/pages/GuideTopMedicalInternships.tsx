@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import SEO from "@/components/SEO";
+import { STATIC_PAGE_META } from "@/lib/pageMeta";
 
 const PROGRAMS = [
   {
@@ -88,9 +89,7 @@ export default function GuideTopMedicalInternships() {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Best Medical Internships for High School Students 2026 | HSO"
-        description="Compare top U.S. medical internships for high schoolers: JHIBS, Stanford SIMR, NIH HiSTEP, Rockefeller SSRP. Selectivity, stipends, deadlines."
-        path="/guides/top-medical-internships"
+        {...STATIC_PAGE_META["/guides/top-medical-internships"]}
         type="article"
         jsonLd={jsonLd}
       />

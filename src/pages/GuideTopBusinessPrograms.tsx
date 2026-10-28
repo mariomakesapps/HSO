@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import SEO from "@/components/SEO";
+import { STATIC_PAGE_META } from "@/lib/pageMeta";
 
 const PROGRAMS = [
   {
@@ -52,9 +53,7 @@ export default function GuideTopBusinessPrograms() {
   return (
     <div className="min-h-screen">
       <SEO
-        title="Best Business Summer Programs for High Schoolers 2026 | HSO"
-        description="Wharton Global Youth cost vs. Berkeley Haas B-BAY and NYU Stern: compare tuition, selectivity, and grade levels for top U.S. business summer programs."
-        path="/guides/top-business-summer-programs"
+        {...STATIC_PAGE_META["/guides/top-business-summer-programs"]}
         type="article"
         jsonLd={jsonLd}
       />

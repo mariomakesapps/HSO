@@ -6,6 +6,7 @@ import { REMOTE_META, REMOTE_PATH, remoteOpportunities } from "@/lib/remote";
 import { OCT2026_LISTING_SEO, OCT2026_NOINDEX, OCT2026_PAGE_SEO } from "@/data/hsoUpdateOct2026.generated";
 import { OCT17_LISTING_SEO } from "@/data/hsoUpdateOct17.generated";
 import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
+import { listingDescription, listingTitle, todayIso } from "@/lib/listingSeo";
 
 export const SITE_URL = "https://highschoolopportunity.org";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
@@ -77,18 +78,20 @@ export function opportunityMeta(opp: Opportunity): PageMeta {
   const reviewed = OCT17_LISTING_SEO[opp.id] ?? OCT2026_LISTING_SEO[opp.id];
   const url = `${SITE_URL}${opportunityPath(opp.id)}`;
   const detail = detailFor(opp.id);
-  const name = DUPLICATE_TITLES.has(opp.title) ? `${opp.title} — ${opp.org}` : opp.title;
+  const today = todayIso();
 
   return {
-    title: reviewed?.[0] ?? `${name} | HSO`,
-    // Where a listing has verified long-form copy, its own first paragraph makes a
-    // better snippet than the generated template — it describes the programme
-    // rather than describing the page.
-    description: clampDescription(
-      reviewed?.[1] ??
-        detail?.body[0] ??
-        `${opp.title} at ${opp.org} — ${opp.category} for high schoolers in ${opp.location}. Deadline, eligibility, cost & official link.`,
-    ),
+    // The newest reviewed title supplies the programme name; the org, year and the
+    // next date come from the listing's live data (listingSeo.ts), so titles never
+    // show a stale cycle and always say who runs the programme. Reviewed
+    // descriptions carried frozen dates, so the snippet is the live facts-first
+    // template instead.
+    title: listingTitle(opp, {
+      reviewedTitle: reviewed?.[0],
+      today,
+      forceOrg: DUPLICATE_TITLES.has(opp.title),
+    }),
+    description: listingDescription(opp, today),
     path: opportunityPath(opp.id),
     // Repeated state-chapter copy and non-high-school rows stay live but out of Google.
     noindex: !isOpportunityIndexable(opp) || OCT2026_NOINDEX.has(opp.id),
@@ -392,13 +395,13 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
     path: "/collections",
   },
   "/guides/top-medical-internships": {
-    title: "Best Medical Internships for High Schoolers, Compared | HSO",
+    title: "Best Medical Internships for High School Students 2026 | HSO",
     description:
       "Compare top U.S. medical internships for high schoolers: JHIBS, Stanford SIMR, NIH HiSTEP, Rockefeller SSRP. Selectivity, stipends, deadlines.",
     path: "/guides/top-medical-internships",
   },
   "/guides/top-research-competitions": {
-    title: "Top Research Competitions for High Schoolers, Compared | HSO",
+    title: "Best Research Competitions for High Schoolers 2026 | HSO",
     description:
       "Compare top U.S. research competitions for high schoolers: Regeneron STS, ISEF, JSHS, Davidson Fellows. Prizes, selectivity, deadlines.",
     path: "/guides/top-research-competitions",

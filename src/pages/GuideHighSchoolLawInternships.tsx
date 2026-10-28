@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import SEO from "@/components/SEO";
+import { STATIC_PAGE_META } from "@/lib/pageMeta";
 
 const PROGRAMS = [
   {
@@ -94,9 +95,7 @@ export default function GuideHighSchoolLawInternships() {
   return (
     <div className="min-h-screen">
       <SEO
-        title="High School Law Internships: How to Find One | HSO"
-        description="Find high school law internships in the U.S. — DOJ and bar association programs, pre-law academies, local firm outreach scripts, and application deadlines."
-        path="/guides/high-school-law-internships"
+        {...STATIC_PAGE_META["/guides/high-school-law-internships"]}
         type="article"
         jsonLd={jsonLd}
       />
