@@ -58,6 +58,10 @@ async function loadRouteData(root) {
         export { collectionMeta, collectionMembers, subHubMeta, subHubMembers } from "@/lib/pageMeta";
         export { SUB_HUBS, CATEGORY_GUIDES, subHubPath, subHubsFor } from "@/lib/subHubs";
         export { hubStats, glanceParagraphs, hubFaqs } from "@/lib/hubStats";
+        export { opportunityFaqs } from "@/lib/pageMeta";
+        export { keyFacts, monthYear } from "@/lib/listingFacts";
+        export { todayIso } from "@/lib/listingSeo";
+        export { listingLastModified } from "@/data/listingDates";
         export { curatedSections, curatedCollections } from "@/data/curatedCollections";
         export { HUB_LINKS, GUIDE_LINKS } from "@/lib/siteLinks";
       `,
@@ -289,7 +293,25 @@ function opportunityBody(opp, data) {
         <h1>${escapeHtml(opp.title)}</h1>
         <p>${escapeHtml(opp.blurb)}</p>
         <p>Offered by ${escapeHtml(opp.org)}. ${escapeHtml(opp.category)} for high school students in ${escapeHtml(opp.location)}. Format: ${escapeHtml(opp.format)}. Cost: ${escapeHtml(opp.cost)}. ${escapeHtml(grades)}. ${escapeHtml(deadline)}</p>
-        <p>Fields: ${escapeHtml((opp.fields ?? []).join(", "))}</p>${detail}
+        <p>Fields: ${escapeHtml((opp.fields ?? []).join(", "))}</p>
+        <h2>Key facts</h2>
+        <dl>${data
+          .keyFacts(opp, data.todayIso())
+          .map((f) => `<dt>${escapeHtml(f.label)}</dt><dd>${escapeHtml(f.value)}</dd>`)
+          .join("")}</dl>
+        ${(() => {
+          const checked = data.listingLastModified(opp.id);
+          return checked ? `<p>Info checked ${escapeHtml(data.monthYear(checked))}.</p>` : "";
+        })()}${detail}
+        ${
+          d?.faqs?.length
+            ? ""
+            : `<h2>Questions about ${escapeHtml(opp.title)}</h2>
+        ${data
+          .opportunityFaqs(opp)
+          .map((f) => `<h3>${escapeHtml(f.q)}</h3><p>${escapeHtml(f.a)}</p>`)
+          .join("\n        ")}`
+        }
         <p><a href="${escapeHtml(opp.url)}">Official program page</a></p>
         ${slug ? `<p><a href="/categories/${slug}">More ${escapeHtml(data.CATEGORY_META[slug].h1.toLowerCase())}</a></p>` : ""}
         <h2>Related opportunities</h2>

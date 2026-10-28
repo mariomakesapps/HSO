@@ -7,6 +7,7 @@ import { OCT2026_LISTING_SEO, OCT2026_NOINDEX, OCT2026_PAGE_SEO } from "@/data/h
 import { OCT17_LISTING_SEO } from "@/data/hsoUpdateOct17.generated";
 import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
 import { listingDescription, listingTitle, todayIso } from "@/lib/listingSeo";
+import { listingFaqs } from "@/lib/listingFacts";
 import { latestLastModified, listingLastModified } from "@/data/listingDates";
 import { curatedCollections, type CuratedCollection } from "@/data/curatedCollections";
 import { SUB_HUBS, subHubPath, type SubHub } from "@/lib/subHubs";
@@ -85,6 +86,7 @@ export function opportunityMeta(opp: Opportunity): PageMeta {
   const url = `${SITE_URL}${opportunityPath(opp.id)}`;
   const detail = detailFor(opp.id);
   const today = todayIso();
+  const lastChecked = listingLastModified(opp.id);
 
   return {
     // The newest reviewed title supplies the programme name; the org, year and the
@@ -112,6 +114,7 @@ export function opportunityMeta(opp: Opportunity): PageMeta {
         educationalProgramMode: opp.format,
         occupationalCategory: opp.category,
         ...(opp.deadline ? { applicationDeadline: opp.deadline } : {}),
+        ...(lastChecked ? { dateModified: lastChecked } : {}),
       },
       {
         "@context": "https://schema.org",
@@ -122,6 +125,7 @@ export function opportunityMeta(opp: Opportunity): PageMeta {
         author: { "@type": "Organization", name: "HSO — High School Opportunity" },
         publisher: { "@type": "Organization", name: "HSO — High School Opportunity" },
         mainEntityOfPage: url,
+        ...(lastChecked ? { dateModified: lastChecked } : {}),
       },
       {
         "@context": "https://schema.org",
@@ -137,23 +141,29 @@ export function opportunityMeta(opp: Opportunity): PageMeta {
           { "@type": "ListItem", position: 3, name: opp.title, item: url },
         ],
       },
-      // FAQ schema only where the questions are actually on the page. Google
-      // treats FAQPage markup for questions a visitor cannot see as a violation.
-      ...(detail?.faqs?.length
-        ? [
-            {
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: detail.faqs.map((f) => ({
-                "@type": "Question",
-                name: f.q,
-                acceptedAnswer: { "@type": "Answer", text: f.a },
-              })),
-            },
-          ]
-        : []),
+      // FAQ schema only for questions that are on the page (opportunityFaqs is
+      // what the listing page renders). Google treats FAQPage markup for questions
+      // a visitor cannot see as a violation.
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: opportunityFaqs(opp).map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      },
     ],
   };
+}
+
+/**
+ * The FAQ a listing page shows: its verified long-form FAQ where it has one,
+ * otherwise questions answered from its own fields (listingFacts.ts).
+ */
+export function opportunityFaqs(opp: Opportunity) {
+  const curated = detailFor(opp.id)?.faqs;
+  return curated?.length ? curated : listingFaqs(opp, todayIso());
 }
 
 /**

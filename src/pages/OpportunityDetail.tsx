@@ -11,7 +11,10 @@ import { slugForCategory, CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories
 import { REMOVED_OPPORTUNITY_REDIRECTS } from "@/data/removedOpportunities";
 import { detailFor } from "@/data/opportunityDetails";
 import { relatedOpportunities } from "@/lib/related";
-import { opportunityMeta } from "@/lib/pageMeta";
+import { opportunityFaqs, opportunityMeta } from "@/lib/pageMeta";
+import { keyFacts, monthYear } from "@/lib/listingFacts";
+import { todayIso } from "@/lib/listingSeo";
+import { listingLastModified } from "@/data/listingDates";
 import { useAtmosphere, themeForCategory } from "@/lib/atmosphere";
 import { store, useStore } from "@/store/collections";
 import { toast } from "sonner";
@@ -96,6 +99,9 @@ const OpportunityDetail = () => {
 
   const detail = opp ? detailFor(opp.id) : undefined;
   const related = relatedOpportunities(opp, 6);
+  const today = todayIso();
+  const checked = listingLastModified(opp.id);
+  const faqs = opportunityFaqs(opp);
   const crumbSlug = slugForCategory(opp.category);
 
   const toggleInterval = async (n: number) => {
@@ -158,7 +164,7 @@ const OpportunityDetail = () => {
               <Stat label="Location" value={opp.location} />
               <Stat label="Format" value={opp.format} />
               <Stat label="Cost" value={opp.cost} />
-              <Stat label="Grades" value={`${opp.grades[0]}-${opp.grades[opp.grades.length-1]}`} />
+              <Stat label="Grades" value={opp.grades.length > 1 ? `${opp.grades[0]}-${opp.grades[opp.grades.length-1]}` : `${opp.grades[0]}`} />
             </div>
 
             <div className="mt-6 flex flex-wrap gap-2">
@@ -195,6 +201,26 @@ const OpportunityDetail = () => {
               </Button>
             </div>
           </div>
+        </section>
+
+        {/* Key facts in plain text near the top: what searchers ask first. */}
+        <section className="hso-glass-panel mt-6 rounded-2xl p-5 sm:p-6">
+          <h2 className="font-display text-2xl font-semibold text-ink">Key facts</h2>
+          <dl className="mt-4 grid gap-5 sm:grid-cols-3">
+            {keyFacts(opp, today).map((f) => (
+              <div key={f.label} className="min-w-0">
+                <dt className="text-xs font-bold uppercase tracking-[0.18em] text-muted-foreground">{f.label}</dt>
+                <dd className="mt-1.5 text-sm leading-relaxed text-ink">{f.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <p className="mt-5 text-xs text-muted-foreground">
+            {checked ? `Info checked ${monthYear(checked)}. ` : ""}Always confirm details on{" "}
+            <a href={opp.url} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-ink">
+              the official page
+            </a>
+            .
+          </p>
         </section>
 
         {/* Reminders */}
@@ -265,6 +291,18 @@ const OpportunityDetail = () => {
               </a>
               .
             </p>
+          </section>
+        )}
+
+        {!detail?.faqs?.length && (
+          <section className="mt-12 max-w-3xl">
+            <h2 className="font-display text-2xl font-semibold text-ink">Questions about {opp.title}</h2>
+            {faqs.map((f, i) => (
+              <div key={i} className="mt-5">
+                <h3 className="font-semibold text-ink">{f.q}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.a}</p>
+              </div>
+            ))}
           </section>
         )}
 
