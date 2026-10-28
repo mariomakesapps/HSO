@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
+import { GuideProgramName } from "@/components/GuideProgramName";
 import SEO from "@/components/SEO";
 import { STATIC_PAGE_META } from "@/lib/pageMeta";
 
@@ -46,7 +47,7 @@ export default function GuideTopBusinessPrograms() {
     author: { "@type": "Organization", name: "HSO" },
     publisher: { "@type": "Organization", name: "HSO — High School Opportunity" },
     datePublished: "2026-07-29",
-    dateModified: "2026-07-29",
+    dateModified: "2026-10-28",
     mainEntityOfPage: "https://highschoolopportunity.org/guides/top-business-summer-programs",
   };
 
@@ -85,7 +86,7 @@ export default function GuideTopBusinessPrograms() {
               <tbody>
                 {PROGRAMS.map((p) => (
                   <tr key={p.name} className="border-t border-border/60 align-top">
-                    <td className="px-4 py-3 font-semibold text-ink">{p.name}</td>
+                    <td className="px-4 py-3 font-semibold text-ink"><GuideProgramName name={p.name} /></td>
                     <td className="px-4 py-3 text-muted-foreground">{p.host}</td>
                     <td className="px-4 py-3 text-muted-foreground">{p.cost}</td>
                     <td className="px-4 py-3 text-muted-foreground">{p.selectivity}</td>

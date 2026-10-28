@@ -55,6 +55,8 @@ async function loadRouteData(root) {
         export { NYC_META, nycAfterSchoolByBorough, nycFeatured } from "@/lib/nyc";
         export { detailFor } from "@/data/opportunityDetails";
         export { relatedOpportunities } from "@/lib/related";
+        export { collectionMeta, collectionMembers } from "@/lib/pageMeta";
+        export { curatedSections, curatedCollections } from "@/data/curatedCollections";
         export { HUB_LINKS, GUIDE_LINKS } from "@/lib/siteLinks";
       `,
       resolveDir: root,
@@ -69,6 +71,61 @@ async function loadRouteData(root) {
     alias: { "@": path.join(root, "src") },
   });
 
+  return importBundle(result);
+}
+
+/**
+ * The guide pages keep their content (comparison tables, write-ups, FAQs) in the
+ * React components, so render those components to HTML here rather than copying
+ * the text into this script. Uses React's browser server renderer, which needs no
+ * Node streams, and returns the JSON-LD the page sets through Helmet so the
+ * prerendered head carries the same Article markup the app adds.
+ */
+const GUIDE_COMPONENTS = {
+  "/guides/top-medical-internships": "GuideTopMedicalInternships",
+  "/guides/top-research-competitions": "GuideTopResearchCompetitions",
+  "/guides/top-business-summer-programs": "GuideTopBusinessPrograms",
+  "/guides/high-school-law-internships": "GuideHighSchoolLawInternships",
+};
+
+async function loadGuideRenderer(root) {
+  const imports = Object.values(GUIDE_COMPONENTS)
+    .map((name) => `import ${name} from "@/pages/${name}";`)
+    .join("\n");
+  const table = Object.entries(GUIDE_COMPONENTS)
+    .map(([route, name]) => `${JSON.stringify(route)}: ${name}`)
+    .join(", ");
+  const result = await build({
+    stdin: {
+      contents: `
+        import { createElement } from "react";
+        import { renderToStaticMarkup } from "react-dom/server.browser";
+        import { MemoryRouter } from "react-router-dom";
+        import { HelmetProvider } from "react-helmet-async";
+        ${imports}
+        const GUIDES = { ${table} };
+        export function renderGuide(route) {
+          const context = {};
+          const html = renderToStaticMarkup(
+            createElement(HelmetProvider, { context },
+              createElement(MemoryRouter, { initialEntries: [route] }, createElement(GUIDES[route]))),
+          );
+          return { html, scripts: context.helmet ? context.helmet.script.toString() : "" };
+        }
+      `,
+      resolveDir: root,
+      loader: "tsx",
+    },
+    bundle: true,
+    format: "esm",
+    platform: "node",
+    target: "node18",
+    jsx: "automatic",
+    write: false,
+    logLevel: "error",
+    define: { "process.env.NODE_ENV": '"production"' },
+    alias: { "@": path.join(root, "src") },
+  });
   return importBundle(result);
 }
 
@@ -331,6 +388,40 @@ function remoteBody(data) {
         )}`);
 }
 
+function collectionsIndexBody(meta, data) {
+  return shell(`        <h1>Curated collections</h1>
+        <p>${escapeHtml(meta.description ?? "")}</p>
+        ${data.curatedSections
+          .map(
+            (section) => `<h2>${escapeHtml(section.title)}</h2>
+        ${linkList(
+          section.collections.map((c) => ({
+            href: `/collections/${c.id}`,
+            label: `${c.title}: ${c.description} (${data.collectionMembers(c).length} programs)`,
+          })),
+        )}`,
+          )
+          .join("\n        ")}`);
+}
+
+function collectionBody(c, data) {
+  const members = data.collectionMembers(c);
+  const items = members
+    .map(
+      (o) =>
+        `<li><a href="/opportunities/${escapeHtml(o.id)}">${escapeHtml(o.title)}</a>: ${escapeHtml(o.org)}. ${escapeHtml(
+          o.category,
+        )}, ${escapeHtml(o.location)}. ${escapeHtml(o.blurb)}</li>`,
+    )
+    .join("");
+  return shell(`        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/collections">Collections</a> / ${escapeHtml(c.title)}</nav>
+        <h1>${escapeHtml(c.title)}</h1>
+        <p>${escapeHtml(c.description)}</p>
+        <h2>Programs in this collection (${members.length})</h2>
+        <ul>${items}</ul>
+        <p><a href="/collections">Browse all curated collections</a></p>`);
+}
+
 function staticBody(meta, data) {
   return shell(`        <h1>${escapeHtml(meta.title.replace(/\s*\|\s*HSO.*$/, ""))}</h1>
         <p>${escapeHtml(meta.description ?? "")}</p>
@@ -510,8 +601,19 @@ export async function prerender({ root, distDir }) {
 
   const pages = [];
 
+  const guides = await loadGuideRenderer(root);
   for (const [routePath, meta] of Object.entries(data.STATIC_PAGE_META)) {
-    pages.push({ meta, body: staticBody(meta, data) });
+    if (GUIDE_COMPONENTS[routePath]) {
+      const { html, scripts } = guides.renderGuide(routePath);
+      pages.push({ meta, body: shell(html), extraHead: scripts });
+    } else if (routePath === "/collections") {
+      pages.push({ meta, body: collectionsIndexBody(meta, data) });
+    } else {
+      pages.push({ meta, body: staticBody(meta, data) });
+    }
+  }
+  for (const c of data.curatedCollections) {
+    pages.push({ meta: data.collectionMeta(c), body: collectionBody(c, data) });
   }
   pages.push({ meta: data.remoteMeta(), body: remoteBody(data) });
   pages.push({ meta: data.deadlinesMeta(), body: deadlinesBody(data) });
@@ -526,8 +628,8 @@ export async function prerender({ root, distDir }) {
   let written = 0;
   let noindexed = 0;
 
-  for (const { meta, body } of pages) {
-    const html = renderPage(template, headFor(meta), body);
+  for (const { meta, body, extraHead } of pages) {
+    const html = renderPage(template, headFor(meta) + (extraHead ? `\n  ${extraHead}` : ""), body);
     const outPath =
       meta.path === "/"
         ? path.join(distDir, "index.html")

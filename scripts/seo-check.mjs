@@ -39,7 +39,7 @@ for (const file of files) {
   const title = html.match(/<title[^>]*>([^<]*)<\/title>/)?.[1];
   const canonical = html.match(/<link [^>]*rel="canonical" href="([^"]*)"/)?.[1];
   const description = html.match(/<meta [^>]*name="description" content="([^"]*)"/)?.[1];
-  const h1 = html.match(/<h1>([^<]*)<\/h1>/)?.[1];
+  const h1 = html.match(/<h1(?:\s[^>]*)?>([^<]*)<\/h1>/)?.[1];
 
   if (!title) problems.push(`${route}: missing <title>`);
   if (!canonical) problems.push(`${route}: missing canonical`);

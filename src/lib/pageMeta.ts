@@ -8,6 +8,7 @@ import { OCT17_LISTING_SEO } from "@/data/hsoUpdateOct17.generated";
 import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines";
 import { listingDescription, listingTitle, todayIso } from "@/lib/listingSeo";
 import { latestLastModified, listingLastModified } from "@/data/listingDates";
+import { curatedCollections, type CuratedCollection } from "@/data/curatedCollections";
 
 export const SITE_URL = "https://highschoolopportunity.org";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
@@ -392,7 +393,7 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
     path: "/volunteer",
   },
   "/collections": {
-    title: "Curated Collections | HSO",
+    title: "Curated Collections of High School Opportunities | HSO",
     description:
       "Curated HSO collections of U.S. high school opportunities grouped by career path, field, and application season.",
     path: "/collections",
@@ -510,13 +511,56 @@ const STATIC_LASTMOD: Record<string, string> = {
   "/submit": "2026-07-20",
   "/volunteer": "2026-09-21",
   "/collections": "2026-08-26",
-  "/guides/top-medical-internships": "2026-07-27",
-  "/guides/top-research-competitions": "2026-07-27",
-  "/guides/top-business-summer-programs": "2026-07-29",
-  "/guides/high-school-law-internships": "2026-07-30",
+  "/guides/top-medical-internships": "2026-10-28",
+  "/guides/top-research-competitions": "2026-10-28",
+  "/guides/top-business-summer-programs": "2026-10-28",
+  "/guides/high-school-law-internships": "2026-10-28",
 };
 
 const idsOf = (list: Opportunity[]) => list.map((o) => o.id);
+
+/** Listings in a curated collection that are live in the catalogue, in the collection's order. */
+export function collectionMembers(c: CuratedCollection): Opportunity[] {
+  const byId = new Map(allOpportunities.map((o) => [o.id, o]));
+  return c.opportunityIds.map((id) => byId.get(id)).filter((o): o is Opportunity => !!o);
+}
+
+/** Metadata for a curated collection page (/collections/:id), shared by the app and the prerender. */
+export function collectionMeta(c: CuratedCollection): PageMeta {
+  const members = collectionMembers(c);
+  const url = `${SITE_URL}/collections/${c.id}`;
+  const long = `${c.title} for High Schoolers | HSO`;
+  return {
+    title: long.length <= 65 ? long : `${c.title} | HSO`,
+    description: clampDescription(`${c.description} ${members.length} programs with deadlines and official links.`),
+    path: `/collections/${c.id}`,
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: c.title,
+        description: c.description,
+        url,
+        numberOfItems: members.length,
+        itemListElement: members.map((o, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: o.title,
+          url: `${SITE_URL}${opportunityPath(o.id)}`,
+        })),
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "HSO", item: `${SITE_URL}/` },
+          { "@type": "ListItem", position: 2, name: "Collections", item: `${SITE_URL}/collections` },
+          { "@type": "ListItem", position: 3, name: c.title, item: url },
+        ],
+      },
+    ],
+  };
+}
 
 export function allRoutes(): PageMeta[] {
   const catalogueLatest = latestLastModified(idsOf(allOpportunities));
@@ -532,6 +576,11 @@ export function allRoutes(): PageMeta[] {
       ...categoryMeta(slug),
       lastmod: latestLastModified(idsOf(allOpportunities.filter((o) => o.category === CATEGORY_META[slug].category))),
     })),
+    // A collection page changes when its list changes or a listing on it does.
+    ...curatedCollections.map((c) => {
+      const latest = latestLastModified(c.opportunityIds) ?? "";
+      return { ...collectionMeta(c), lastmod: latest > STATIC_LASTMOD["/collections"] ? latest : STATIC_LASTMOD["/collections"] };
+    }),
     ...allOpportunities.map((opp) => ({ ...opportunityMeta(opp), lastmod: listingLastModified(opp.id) })),
   ];
 }
