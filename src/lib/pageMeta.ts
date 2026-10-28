@@ -44,9 +44,14 @@ function clampDescription(raw: string, limit = 158): string {
  * Indexing quality gate for opportunity pages: only index listings that are
  * U.S.-eligible, have a working direct link, carry complete core fields, and
  * are not flagged for manual review. Thin or broken listings are noindexed so
- * they do not dilute the site's overall quality signals.
+ * they do not dilute the site's overall quality signals. Repeated state-chapter
+ * copy and non-high-school rows (OCT2026_NOINDEX) stay live but out of Google.
+ *
+ * This is the one indexing rule: the robots tag, the sitemap, related listings,
+ * sub-hubs and the hub link lists all use it, so they always agree.
  */
 export function isOpportunityIndexable(opp: Opportunity): boolean {
+  if (OCT2026_NOINDEX.has(opp.id)) return false;
   const hasCoreFields = !!(opp.title && opp.org && opp.location && opp.blurb);
   const linkOk =
     !!opp.url && opp.url.startsWith("http") && opp.url !== "#" && opp.link_quality !== "broken";
@@ -81,6 +86,26 @@ function withPageSeo(meta: PageMeta): PageMeta {
   return o ? { ...meta, title: o[0] ?? meta.title, description: o[1] ?? meta.description } : meta;
 }
 
+/**
+ * Listings whose generated description would match another listing's (state
+ * chapters sharing a blurb, or blurbs that only differ after the cut). Worked out
+ * once per day, since descriptions depend on the date.
+ */
+let collisionsDay = "";
+let collisions: ReadonlySet<string> = new Set();
+function descriptionCollides(id: string, today: string): boolean {
+  if (collisionsDay !== today) {
+    const byText = new Map<string, string[]>();
+    for (const o of allOpportunities) {
+      const d = listingDescription(o, today);
+      byText.set(d, [...(byText.get(d) ?? []), o.id]);
+    }
+    collisions = new Set([...byText.values()].filter((ids) => ids.length > 1).flat());
+    collisionsDay = today;
+  }
+  return collisions.has(id);
+}
+
 export function opportunityMeta(opp: Opportunity): PageMeta {
   const reviewed = OCT17_LISTING_SEO[opp.id] ?? OCT2026_LISTING_SEO[opp.id];
   const url = `${SITE_URL}${opportunityPath(opp.id)}`;
@@ -99,10 +124,11 @@ export function opportunityMeta(opp: Opportunity): PageMeta {
       today,
       forceOrg: DUPLICATE_TITLES.has(opp.title),
     }),
-    description: listingDescription(opp, today),
+    // Listings that share a blurb would share a snippet: lead with their own name.
+    // A snippet that would duplicate another listing's leads with its own name.
+    description: listingDescription(opp, today, descriptionCollides(opp.id, today) ? `${opp.title}, ${opp.org}` : undefined),
     path: opportunityPath(opp.id),
-    // Repeated state-chapter copy and non-high-school rows stay live but out of Google.
-    noindex: !isOpportunityIndexable(opp) || OCT2026_NOINDEX.has(opp.id),
+    noindex: !isOpportunityIndexable(opp),
     jsonLd: [
       {
         "@context": "https://schema.org",
@@ -434,7 +460,7 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
   "/volunteer": {
     title: "HSO Internships (Unpaid) | High School Opportunity",
     description:
-      "Three unpaid internships on the student team behind HSO: finding and checking opportunities, running social, and getting schools on board. A few hours a week, remote.",
+      "Three unpaid, remote internships on the student team behind HSO: finding and checking opportunities, running social, and getting schools on board.",
     path: "/volunteer",
   },
   "/collections": {

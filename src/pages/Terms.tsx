@@ -1,10 +1,11 @@
 ﻿import { SiteFooter } from "@/components/SiteFooter";
-import { useSEO } from "@/lib/seo";
+import { SEO } from "@/components/SEO";
+import { STATIC_PAGE_META } from "@/lib/pageMeta";
 
 const Terms = () => {
-  useSEO({ title: "Terms of Use | HSO", description: "Terms of use for HSO. Always confirm program details on the official opportunity websites we link to." });
   return (
     <div className="min-h-screen">
+      <SEO {...STATIC_PAGE_META["/terms"]} />
       <main className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Legal</p>
         <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-5xl">Terms of use</h1>

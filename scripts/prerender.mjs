@@ -340,7 +340,11 @@ function categoryBody(slug, data) {
             : ""
         }
         <h2>Programs (${list.length})</h2>
-        ${linkList(list.slice(0, 200).map((o) => ({ href: `/opportunities/${o.id}`, label: o.title })))}
+        ${linkList(
+          // Every indexable listing, so none is left without a link in the HTML;
+          // noindexed rows stay in the app's list but get no link from here.
+          list.filter((o) => data.isOpportunityIndexable(o)).map((o) => ({ href: `/opportunities/${o.id}`, label: o.title })),
+        )}
         <h2>Frequently asked questions</h2>
         ${meta.faqs
           .map((f) => `<h3>${escapeHtml(f.q)}</h3><p>${escapeHtml(f.a)}</p>`)
@@ -413,7 +417,11 @@ function remoteBody(data) {
         <h2>Why remote and nationwide programs matter</h2>
         ${meta.guide.map((p) => `<p>${escapeHtml(p)}</p>`).join("\n        ")}
         <h2>Remote and nationwide programs (${list.length})</h2>
-        ${linkList(list.slice(0, 200).map((o) => ({ href: `/opportunities/${o.id}`, label: o.title })))}
+        ${linkList(
+          // Every indexable listing, so none is left without a link in the HTML;
+          // noindexed rows stay in the app's list but get no link from here.
+          list.filter((o) => data.isOpportunityIndexable(o)).map((o) => ({ href: `/opportunities/${o.id}`, label: o.title })),
+        )}
         <h2>Frequently asked questions</h2>
         ${meta.faqs.map((f) => `<h3>${escapeHtml(f.q)}</h3><p>${escapeHtml(f.a)}</p>`).join("\n        ")}
         <h2>Browse by category</h2>

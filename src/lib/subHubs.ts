@@ -76,7 +76,14 @@ export const SUB_HUBS: SubHub[] = [
       "Research competitions judge an original project: a question you investigated, your method, your results and how well you explain them. Most ask for a written paper, a poster or presentation, or both.",
       "These reward months of work, so plan backwards from the deadline. A mentor, a school research class or a summer research program is the usual way students get a project far enough along to enter.",
     ],
-    match: (o) => o.category === "Competition" && has(o, ["Research"]),
+    // Tagged Research, or described as a research competition (fairs, symposia,
+    // research papers): most science fairs are untagged state chapters.
+    match: (o) =>
+      o.category === "Competition" &&
+      (has(o, ["Research"]) ||
+        /\b(research (paper|project|competition|symposium)|original (academic )?research|science (and engineering )?fairs?|symposium)\b/i.test(
+          `${o.title} ${o.blurb}`,
+        )),
     guide: { href: "/guides/top-research-competitions", label: "Best research competitions, compared" },
   },
   {

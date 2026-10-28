@@ -95,8 +95,13 @@ export function listingTitle(
   const withYear = year && !head.includes(year) ? `${head} ${year}` : head;
   // Google shows about 60 characters. Drop the year first, then the date part;
   // the name and org always stay.
+  // A long programme name can't carry the org as well: then the org goes
+  // (unless two listings share the name, where the org is what tells them apart).
+  const bare = name;
+  const bareYear = year && !bare.includes(year) ? `${bare} ${year}` : bare;
   const candidates = [`${withYear}: ${datePart}`, `${head}: ${datePart}`, withYear, head];
-  const fits = candidates.find((c) => `${c} | HSO`.length <= 65) ?? head;
+  if (!options.forceOrg) candidates.push(`${bareYear}: ${datePart}`, `${bare}: ${datePart}`, bareYear, bare);
+  const fits = candidates.find((c) => `${c} | HSO`.length <= 65) ?? (options.forceOrg ? head : bare);
   return `${fits} | HSO`;
 }
 
@@ -122,6 +127,8 @@ function placePhrase(opp: Pick<Opportunity, "location" | "format">): string {
 export function listingDescription(
   opp: Pick<Opportunity, "blurb" | "cost" | "grades" | "location" | "format" | "deadline" | "opensAt">,
   today: string,
+  /** Text to put before the blurb, used when several listings share one blurb. */
+  lead?: string,
 ): string {
   const next = nextListingDate(opp, today);
   const when = next
@@ -130,7 +137,7 @@ export function listingDescription(
   const facts = `${costPhrase(opp.cost)}. ${gradesPhrase(opp.grades)}. ${placePhrase(opp)}. ${when}.`;
   const room = 154 - facts.length - 1;
   if (room < 30) return facts.slice(0, 155);
-  const blurb = (opp.blurb ?? "").trim();
+  const blurb = `${lead ? `${lead}. ` : ""}${(opp.blurb ?? "").trim()}`;
   if (blurb.length <= room) return `${facts} ${blurb}`;
   // A sentence ends after a lowercase word, not an abbreviation like "U.S." or "D.C.".
   const firstSentence = blurb.match(/^.*?[a-z0-9)"'][.!?](?=\s+[A-Z"(]|\s*$)/)?.[0];
