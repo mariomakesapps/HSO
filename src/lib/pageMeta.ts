@@ -9,6 +9,8 @@ import { DEADLINES_META, DEADLINES_PATH, deadlineBuckets } from "@/lib/deadlines
 import { listingDescription, listingTitle, todayIso } from "@/lib/listingSeo";
 import { latestLastModified, listingLastModified } from "@/data/listingDates";
 import { curatedCollections, type CuratedCollection } from "@/data/curatedCollections";
+import { SUB_HUBS, subHubPath, type SubHub } from "@/lib/subHubs";
+import { academicCycle, hubFaqs, hubStats } from "@/lib/hubStats";
 
 export const SITE_URL = "https://highschoolopportunity.org";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
@@ -562,6 +564,65 @@ export function collectionMeta(c: CuratedCollection): PageMeta {
   };
 }
 
+/** Indexable listings on a sub-hub page, in catalogue order. */
+export function subHubMembers(hub: SubHub): Opportunity[] {
+  return allOpportunities.filter((o) => hub.match(o) && isOpportunityIndexable(o));
+}
+
+/** Metadata for a subject sub-hub (/categories/:parent/:sub), shared by the app and the prerender. */
+export function subHubMeta(hub: SubHub): PageMeta {
+  const members = subHubMembers(hub);
+  const stats = hubStats(members);
+  const parent = CATEGORY_META[hub.parent];
+  const path = subHubPath(hub);
+  const url = `${SITE_URL}${path}`;
+  const cycle = academicCycle(todayIso());
+  const long = `${hub.name} (${cycle}) | HSO`;
+  return {
+    title: long.length <= 70 ? long : `${hub.name} | HSO`,
+    description: clampDescription(
+      `${stats.total} ${hub.label} for high school students, ${stats.free} free. Deadlines, eligibility and official links, checked by HSO.`,
+    ),
+    path,
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: hub.h1,
+        url,
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: members.length,
+          itemListElement: members.slice(0, 50).map((o, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: o.title,
+            url: `${SITE_URL}${opportunityPath(o.id)}`,
+          })),
+        },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "HSO", item: `${SITE_URL}/` },
+          { "@type": "ListItem", position: 2, name: parent.h1, item: `${SITE_URL}/categories/${hub.parent}` },
+          { "@type": "ListItem", position: 3, name: hub.h1, item: url },
+        ],
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: hubFaqs(hub.label, stats).map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      },
+    ],
+  };
+}
+
 export function allRoutes(): PageMeta[] {
   const catalogueLatest = latestLastModified(idsOf(allOpportunities));
   return [
@@ -576,6 +637,7 @@ export function allRoutes(): PageMeta[] {
       ...categoryMeta(slug),
       lastmod: latestLastModified(idsOf(allOpportunities.filter((o) => o.category === CATEGORY_META[slug].category))),
     })),
+    ...SUB_HUBS.map((hub) => ({ ...subHubMeta(hub), lastmod: latestLastModified(idsOf(subHubMembers(hub))) })),
     // A collection page changes when its list changes or a listing on it does.
     ...curatedCollections.map((c) => {
       const latest = latestLastModified(c.opportunityIds) ?? "";

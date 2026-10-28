@@ -55,7 +55,9 @@ async function loadRouteData(root) {
         export { NYC_META, nycAfterSchoolByBorough, nycFeatured } from "@/lib/nyc";
         export { detailFor } from "@/data/opportunityDetails";
         export { relatedOpportunities } from "@/lib/related";
-        export { collectionMeta, collectionMembers } from "@/lib/pageMeta";
+        export { collectionMeta, collectionMembers, subHubMeta, subHubMembers } from "@/lib/pageMeta";
+        export { SUB_HUBS, CATEGORY_GUIDES, subHubPath, subHubsFor } from "@/lib/subHubs";
+        export { hubStats, glanceParagraphs, hubFaqs } from "@/lib/hubStats";
         export { curatedSections, curatedCollections } from "@/data/curatedCollections";
         export { HUB_LINKS, GUIDE_LINKS } from "@/lib/siteLinks";
       `,
@@ -302,6 +304,19 @@ function categoryBody(slug, data) {
         <p>${escapeHtml(meta.intro)}</p>
         <h2>About ${escapeHtml(meta.h1.toLowerCase())}</h2>
         ${meta.guide.map((p) => `<p>${escapeHtml(p)}</p>`).join("\n        ")}
+        ${data
+          .glanceParagraphs(meta.h1.replace(/ for high school students$/i, "").toLowerCase(), data.hubStats(list))
+          .map((p) => `<p>${escapeHtml(p)}</p>`)
+          .join("\n        ")}
+        ${
+          data.subHubsFor(slug).length || (data.CATEGORY_GUIDES[slug] ?? []).length
+            ? `<h2>Browse by subject</h2>
+        ${linkList([
+          ...data.subHubsFor(slug).map((h) => ({ href: data.subHubPath(h), label: h.h1 })),
+          ...(data.CATEGORY_GUIDES[slug] ?? []),
+        ])}`
+            : ""
+        }
         <h2>Programs (${list.length})</h2>
         ${linkList(list.slice(0, 200).map((o) => ({ href: `/opportunities/${o.id}`, label: o.title })))}
         <h2>Frequently asked questions</h2>
@@ -420,6 +435,32 @@ function collectionBody(c, data) {
         <h2>Programs in this collection (${members.length})</h2>
         <ul>${items}</ul>
         <p><a href="/collections">Browse all curated collections</a></p>`);
+}
+
+function subHubBody(hub, data) {
+  const parent = data.CATEGORY_META[hub.parent];
+  const members = data.subHubMembers(hub);
+  const stats = data.hubStats(members);
+  return shell(`        <nav aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/categories/${hub.parent}">${escapeHtml(parent.h1)}</a> / ${escapeHtml(hub.h1)}</nav>
+        <h1>${escapeHtml(hub.h1)}</h1>
+        ${hub.intro.map((p) => `<p>${escapeHtml(p)}</p>`).join("\n        ")}
+        <h2>At a glance</h2>
+        ${data.glanceParagraphs(hub.label, stats).map((p) => `<p>${escapeHtml(p)}</p>`).join("\n        ")}
+        ${hub.guide ? `<p><a href="${hub.guide.href}">${escapeHtml(hub.guide.label)}</a></p>` : ""}
+        <h2>Programs (${members.length})</h2>
+        ${linkList(members.map((o) => ({ href: `/opportunities/${o.id}`, label: o.title })))}
+        <h2>Frequently asked questions</h2>
+        ${data
+          .hubFaqs(hub.label, stats)
+          .map((f) => `<h3>${escapeHtml(f.q)}</h3><p>${escapeHtml(f.a)}</p>`)
+          .join("\n        ")}
+        <h2>More ${escapeHtml(parent.h1.toLowerCase())}</h2>
+        ${linkList([
+          { href: `/categories/${hub.parent}`, label: `All ${parent.h1.toLowerCase()}` },
+          ...data.subHubsFor(hub.parent)
+            .filter((h) => h.slug !== hub.slug)
+            .map((h) => ({ href: data.subHubPath(h), label: h.h1 })),
+        ])}`);
 }
 
 function staticBody(meta, data) {
@@ -611,6 +652,9 @@ export async function prerender({ root, distDir }) {
     } else {
       pages.push({ meta, body: staticBody(meta, data) });
     }
+  }
+  for (const hub of data.SUB_HUBS) {
+    pages.push({ meta: data.subHubMeta(hub), body: subHubBody(hub, data) });
   }
   for (const c of data.curatedCollections) {
     pages.push({ meta: data.collectionMeta(c), body: collectionBody(c, data) });

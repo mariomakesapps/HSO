@@ -10,6 +10,8 @@ import { SortBar, SortKey } from "@/components/SortBar";
 import { applySort } from "@/lib/filterSort";
 import { categoryMeta } from "@/lib/pageMeta";
 import { useAtmosphere, type AtmosphereTheme } from "@/lib/atmosphere";
+import { CATEGORY_GUIDES, subHubPath, subHubsFor } from "@/lib/subHubs";
+import { glanceParagraphs, hubStats } from "@/lib/hubStats";
 
 const Category = () => {
   const { slug } = useParams<{ slug: CategorySlug }>();
@@ -32,6 +34,9 @@ const Category = () => {
   // than redirecting to the homepage, which Google reads as a soft 404.
   if (!slug || !meta) return <NotFound />;
 
+  const subHubs = subHubsFor(slug);
+  const guides = CATEGORY_GUIDES[slug] ?? [];
+
   return (
     <div className="min-h-screen">
       <SEO {...categoryMeta(slug)} />
@@ -44,7 +49,27 @@ const Category = () => {
           <h2 className="font-display text-2xl font-semibold text-ink sm:text-3xl">About {meta.h1.toLowerCase()}</h2>
           <div className="mt-4 space-y-4 text-base leading-relaxed text-muted-foreground">
             {meta.guide.map((p, i) => <p key={i}>{p}</p>)}
+            {glanceParagraphs(meta.h1.replace(/ for high school students$/i, "").toLowerCase(), hubStats(list)).map((p, i) => (
+              <p key={`g${i}`}>{p}</p>
+            ))}
           </div>
+          {(subHubs.length > 0 || guides.length > 0) && (
+            <div className="mt-6">
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Browse by subject</p>
+              <div className="mt-3 flex flex-wrap gap-2">
+                {subHubs.map((h) => (
+                  <Link key={h.slug} to={subHubPath(h)} className="rounded-full border border-border bg-background px-4 py-2 text-sm hover:border-coral hover:text-coral">
+                    {h.h1.replace(/ for high school students$/i, "").replace(/^./, (c) => c.toUpperCase())}
+                  </Link>
+                ))}
+                {guides.map((g) => (
+                  <Link key={g.href} to={g.href} className="rounded-full border border-coral/40 bg-background px-4 py-2 text-sm font-semibold text-ink hover:border-coral hover:text-coral">
+                    {g.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
 
         <div className="mt-8">
