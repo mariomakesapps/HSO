@@ -1,5 +1,6 @@
 ﻿import { useMemo, useState } from "react";
-import { Link, Navigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import NotFound from "@/pages/NotFound";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SEO } from "@/components/SEO";
 import { CATEGORY_META, CATEGORY_SLUGS, CategorySlug } from "@/lib/categories";
@@ -27,7 +28,9 @@ const Category = () => {
     return applySort(filtered, sort, indexMap);
   }, [meta, sort, indexMap]);
 
-  if (!slug || !meta) return <Navigate to="/" replace />;
+  // An unknown category is not a page: show the noindexed not-found page rather
+  // than redirecting to the homepage, which Google reads as a soft 404.
+  if (!slug || !meta) return <NotFound />;
 
   return (
     <div className="min-h-screen">

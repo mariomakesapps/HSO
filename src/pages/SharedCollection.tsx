@@ -16,6 +16,7 @@ import {
   useCuratedSavedStatus,
 } from "@/store/collections";
 import { useSEO } from "@/lib/seo";
+import { SEO } from "@/components/SEO";
 import { displayedLikes } from "@/lib/curatedBaseline";
 
 const CuratedCollectionDetail = () => {
@@ -60,6 +61,7 @@ const CuratedCollectionDetail = () => {
   if (!collection) {
     return (
       <div className="min-h-screen">
+        <SEO title="Collection unavailable | HSO" path={`/collections/${id ?? ""}`} noindex />
         <main className="mx-auto max-w-3xl px-4 py-16 text-center">
           <div className="hso-glass-panel rounded-[1.5rem] p-8">
             <Lock className="mx-auto h-8 w-8 text-coral" />
