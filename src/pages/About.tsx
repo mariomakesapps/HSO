@@ -1,15 +1,14 @@
 ﻿import { SiteFooter } from "@/components/SiteFooter";
-import { useSEO } from "@/lib/seo";
+import { SEO } from "@/components/SEO";
+import { STATIC_PAGE_META } from "@/lib/pageMeta";
 import { Link } from "react-router-dom";
 import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
 
 const About = () => {
-  useSEO({
-    title: "About High School Opportunity (HSO) | HSO",
-    description: "HSO is a free, student-run directory of internships, summer programs, scholarships and competitions for U.S. high schoolers, and how we check listings.",
-  });
   return (
     <div className="min-h-screen">
+      {/* Same metadata and JSON-LD (AboutPage + Organization) as the prerendered page. */}
+      <SEO {...STATIC_PAGE_META["/about"]} />
       <main className="mx-auto max-w-3xl px-4 py-14 sm:px-6 sm:py-20">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">About</p>
         <h1 className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-6xl">

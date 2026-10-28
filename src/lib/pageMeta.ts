@@ -348,6 +348,25 @@ function remoteMetaBase(): PageMeta {
  * Mirrored here so the prerenderer emits the same tags; the values must stay
  * in sync with the corresponding page component.
  */
+/**
+ * Who runs the site, for search engines: ties "High School Opportunity" and
+ * "HSO" to this domain (brand searches rank it at 2.7-3.4). Add official
+ * profile URLs (LinkedIn, Discord and so on) to sameAs once they are confirmed;
+ * none are listed rather than guessing.
+ */
+const ORGANIZATION_ID = `${SITE_URL}/#organization`;
+const ORGANIZATION: Record<string, unknown> = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": ORGANIZATION_ID,
+  name: "High School Opportunity",
+  alternateName: "HSO",
+  url: `${SITE_URL}/`,
+  logo: { "@type": "ImageObject", url: `${SITE_URL}/apple-touch-icon.png`, width: 180, height: 180 },
+  description:
+    "A free directory of internships, summer programs, scholarships, research programs and competitions for U.S. high school students.",
+};
+
 export const STATIC_PAGE_META: Record<string, PageMeta> = {
   "/": {
     title: "High School Opportunity (HSO) - Internships, Programs & Scholarships",
@@ -358,14 +377,18 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
       {
         "@context": "https://schema.org",
         "@type": "WebSite",
-        name: "HSO",
+        "@id": `${SITE_URL}/#website`,
+        name: "High School Opportunity",
+        alternateName: "HSO",
         url: `${SITE_URL}/`,
+        publisher: { "@id": ORGANIZATION_ID },
         potentialAction: {
           "@type": "SearchAction",
           target: `${SITE_URL}/?q={search_term_string}`,
           "query-input": "required name=search_term_string",
         },
       },
+      ORGANIZATION,
     ],
   },
   "/about": {
@@ -373,6 +396,16 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
     description:
       "HSO is a free, student-run directory of internships, summer programs, scholarships and competitions for U.S. high schoolers, and how we check listings.",
     path: "/about",
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        name: "About High School Opportunity (HSO)",
+        url: `${SITE_URL}/about`,
+        mainEntity: { "@id": ORGANIZATION_ID },
+      },
+      ORGANIZATION,
+    ],
   },
   "/contact": {
     title: "Contact HSO | High School Opportunity",
