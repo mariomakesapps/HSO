@@ -105,6 +105,7 @@ export const CATEGORY_META: Record<CategorySlug, {
       "Pick competitions that compound with your work. A research project naturally feeds into Regeneron STS, ISEF, and Davidson. A startup idea fits Diamond Challenge, Conrad, and Wharton Innovation.",
       "Most national competitions have fall–winter qualifying rounds. Register early — many require teacher sponsors or school registration.",
       "To narrow the list, filter by Free to see competitions with no entry fee, then by your grade and subject. Each listing links to the official rules page, so check eligibility, team size and whether a school or teacher must register you before you start.",
+      "When comparing competitions, check three things: format (timed exam, project submission, written entry or live pitch), whether you compete alone or on a team, and whether it runs online or in person. Then sort by deadline. Registration deadlines often come weeks before the actual contest or submission date, so plan from the earlier one.",
     ],
     faqs: [
       { q: "What are the best academic competitions for high school students?", a: "The most prestigious include Regeneron Science Talent Search, ISEF, USAMO, USACO Platinum, USABO, the Concord Review, and Davidson Fellows. Strong tier-2 options include DECA ICDC, Wharton Global Investment Competition, NSDA Nationals, and the Diamond Challenge." },
