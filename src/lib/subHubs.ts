@@ -123,19 +123,7 @@ export const SUB_HUBS: SubHub[] = [
     match: (o) => o.category === "Internship" && (has(o, ["Medicine", "Health", "Healthcare"]) || /\b(medical|hospital|clinical|medicine)\b/.test(text(o))),
     guide: { href: "/guides/top-medical-internships", label: "Best medical internships, compared" },
   },
-  {
-    parent: "internships",
-    slug: "law",
-    label: "law internships",
-    name: "Law Internships for High School Students",
-    h1: "Law internships for high school students",
-    intro: [
-      "Law internships for high schoolers are usually run by courts, bar associations, government offices or law schools. They range from office placements to pre-law academies where you learn how cases work and practice arguing them.",
-      "Formal programs are few and often local, so it also pays to ask nearby firms, public defenders and legal aid groups directly. Mock trial and debate experience helps an application stand out.",
-    ],
-    match: (o) => o.category === "Internship" && (has(o, ["Law"]) || /\b(law|legal|attorney|court|judicial)\b/.test(text(o))),
-    guide: { href: "/guides/high-school-law-internships", label: "How to find a high school law internship" },
-  },
+
   {
     parent: "summer-programs",
     slug: "business",
@@ -184,6 +172,15 @@ export const CATEGORY_GUIDES: Partial<Record<CategorySlug, { href: string; label
   competitions: [{ href: "/guides/top-research-competitions", label: "Best research competitions, compared" }],
   research: [{ href: "/guides/top-research-competitions", label: "Best research competitions, compared" }],
   "summer-programs": [{ href: "/guides/top-business-summer-programs", label: "Best business summer programs, compared" }],
+};
+
+/**
+ * Sub-hubs that were retired because too few listings matched, and where their
+ * URL goes now. Law internships had only about five real listings; the law
+ * internships guide covers the topic properly.
+ */
+export const RETIRED_SUB_HUBS: Record<string, string> = {
+  "/categories/internships/law": "/guides/high-school-law-internships",
 };
 
 export function subHubPath(h: Pick<SubHub, "parent" | "slug">): string {

@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SEO } from "@/components/SEO";
 import { OpportunityCard } from "@/components/OpportunityCard";
@@ -8,7 +8,7 @@ import { applySort } from "@/lib/filterSort";
 import { CATEGORY_META } from "@/lib/categories";
 import { allOpportunities } from "@/data/opportunities";
 import { subHubMeta, subHubMembers } from "@/lib/pageMeta";
-import { findSubHub, subHubPath, subHubsFor } from "@/lib/subHubs";
+import { RETIRED_SUB_HUBS, findSubHub, subHubPath, subHubsFor } from "@/lib/subHubs";
 import { glanceParagraphs, hubFaqs, hubStats } from "@/lib/hubStats";
 import { useAtmosphere, type AtmosphereTheme } from "@/lib/atmosphere";
 import NotFound from "@/pages/NotFound";
@@ -25,7 +25,10 @@ const SubHub = () => {
   const members = useMemo(() => (hub ? subHubMembers(hub) : []), [hub]);
   const list = useMemo(() => applySort(members, sort, indexMap), [members, sort, indexMap]);
 
-  if (!hub) return <NotFound />;
+  if (!hub) {
+    const moved = RETIRED_SUB_HUBS[`/categories/${slug}/${sub}`];
+    return moved ? <Navigate to={moved} replace /> : <NotFound />;
+  }
 
   const parent = CATEGORY_META[hub.parent];
   const stats = hubStats(members);
