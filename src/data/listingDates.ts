@@ -2,6 +2,7 @@ import { OCT2026_ADDITIONS, OCT2026_FIXES, OCT14_DECISION_FIXES, OCT14_FIXES } f
 import { OCT17_ADDITIONS, OCT17_FIXES } from "@/data/hsoUpdateOct17.generated";
 import { OCT25_FIXES } from "@/data/hsoUpdateOct25.generated";
 import { OCT29_FIXES } from "@/data/hsoUpdateOct29.generated";
+import { NOV03_FIXES } from "@/data/hsoUpdateNov03.generated";
 import { hsoAdditionsSep2026, hsoDeadlineReviewSep2026 } from "@/data/hsoUpdateSep2026";
 import { detailFor } from "@/data/opportunityDetails";
 
@@ -20,6 +21,7 @@ const UPDATES: [string, Iterable<string>][] = [
   ["2026-10-17", [...OCT17_ADDITIONS.map((o) => o.id), ...Object.keys(OCT17_FIXES)]],
   ["2026-10-25", Object.keys(OCT25_FIXES)],
   ["2026-10-29", Object.keys(OCT29_FIXES)],
+  ["2026-11-03", Object.keys(NOV03_FIXES)],
 ];
 
 const LAST_CHANGED = new Map<string, string>();
