@@ -104,6 +104,7 @@ export const CATEGORY_META: Record<CategorySlug, {
       "High school competitions break down by field: math (AMC, AIME, USAMO, HMMT), science (Regeneron STS, ISEF, USABO, USACO, Chemistry Olympiad), writing (Scholastic, NYT contests, Concord Review), business and finance (DECA, Wharton Investment, Diamond Challenge), and policy/debate (NSDA, We the People).",
       "Pick competitions that compound with your work. A research project naturally feeds into Regeneron STS, ISEF, and Davidson. A startup idea fits Diamond Challenge, Conrad, and Wharton Innovation.",
       "Most national competitions have fall–winter qualifying rounds. Register early — many require teacher sponsors or school registration.",
+      "To narrow the list, filter by Free to see competitions with no entry fee, then by your grade and subject. Each listing links to the official rules page, so check eligibility, team size and whether a school or teacher must register you before you start.",
     ],
     faqs: [
       { q: "What are the best academic competitions for high school students?", a: "The most prestigious include Regeneron Science Talent Search, ISEF, USAMO, USACO Platinum, USABO, the Concord Review, and Davidson Fellows. Strong tier-2 options include DECA ICDC, Wharton Global Investment Competition, NSDA Nationals, and the Diamond Challenge." },
