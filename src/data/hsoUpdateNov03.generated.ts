@@ -194,6 +194,16 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   "indiana-clinical-and-translational-sciences-institute-seed-stem": { deadline: "2027-03-01" },
   // https://eller.arizona.edu/departments-research/schools-departments/accountancy/bcap | Application Deadline Date: March 1, 2027. ... The one-week residential program runs June 6 to June 11, 2027, at the Eller College of Management in Tucson.
   "university-of-arizona-eller-college-of-management-and-ey-busines": { deadline: "2027-03-01" },
+  // https://www.fisherhouse.org/programs/scholarship-programs/scholarships-for-military-children/ | The application period for the 2027-2028 academic year will open on December 9, 2026. Deadline: February 10, 2027, at 9:00 p.m. Mountain Standard Time.
+  "fisher-house-foundation-scholarships-for-military-children": { deadline: "2027-02-10", opensAt: "2026-12-09" },
+  // https://www.sejongculturalsociety.org/writing/current/ | 2027 Sejong Writing Competition (sijo) deadline: February 28, 2027, 11:59 PM CT. Open to US and Canadian residents; pre-college division (18 and younger).
+  "sejong-cultural-society-sejong-writing-competition": { deadline: "2027-02-28" },
+  // https://yis.org/wp-content/uploads/2026/08/YIS-Student-Welcome-Packet-2026-2027-Final.pdf | Registration opens December 15, 2026 on the MyYIS Portal ... Registration for all competitions closes February 19, 2027. Report, PowerPoint, and YouTube link due by 11:59 pm PST on February 19, 2027 to Stockp
+  "young-investors-society-global-stock-pitch-competition": { deadline: "2027-02-19", opensAt: "2026-12-15" },
+  // https://sifmafoundation.org/investwrite/competition | Fall 2026 deadline: Wednesday, December 9 (all grade levels). Grades 4-5 write 300-800 words, grades 6-8 write 400-900, and grades 9-12 write 500-1000. During the Stock Market Game, which stock, bond or mutual fund investment taught you the bigge
+  "sifma-foundation-investwrite-essay-competition": { deadline: "2026-12-09" },
+  // https://stem.idaho.gov/idsef/ | Final project deadline: December 18, 2026, at 11:59 MT. Regional fair: TBD, week of February 22-26, 2027. ISEF will be held in Los Angeles, California in 2027.
+  "idaho-stem-action-center-idaho-science-and-engineering-fairs-ids": { deadline: "2026-12-18" },
 };
 
 export const NOV03_REMOVED: Record<string, string> = {
@@ -203,4 +213,6 @@ export const NOV03_REMOVED: Record<string, string> = {
   "afsa-essay": "/categories/scholarships",
   // https://www.lcfpd.org/assets/1/7/2027_BUDGET_BOOK__-_BOARD__APPROVED_10-14-26.pdf 2027 budget (board approved 10-14-26) discontinues the Youth Conservation Corps
   "lake-county-forest-perserves-youth-conservation-corp-crew-member": "/categories/internships",
+  // https://nsil.sites.unlv.edu/GUIC.html and https://nsil.sites.unlv.edu/ITEST.html: a three-year NSF project; 2023 was the camp's third year and the page's eligibility rule still refers to Fall 2023, with no later session posted
+  "university-of-nevada-las-vegas-guic-summer-camp": "/categories/summer-programs",
 };
