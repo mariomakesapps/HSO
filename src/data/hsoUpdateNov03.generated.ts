@@ -104,6 +104,30 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   "manhattan-district-attorney-s-office-high-school-internship-prog": { deadline: "2026-12-11" },
   // https://www.morgan.edu/saams | SAAMS 2027: priority deadline February 28, 2027; general deadline March 31, 2027. Program runs June 28 to July 23, 2027.
   "morgan-state-university-summer-academy-of-actuarial-and-mathemat": { deadline: "2027-03-31" },
+  // https://www.uaf.edu/rahi/apply.php | The RAHI 2027 application will open on January 1st and close on March 1st, 2027.
+  "university-of-alaska-fairbanks-rural-alaska-honors-institute-rah": { deadline: "2027-03-01", opensAt: "2027-01-01" },
+  // https://summer.virginia.edu/apply-to-uva-advance | The UVA Advance application deadline for summer 2027 is March 1, 2027. Applications for Summer 2027 open December 1.
+  "university-of-virginia-uva-advance": { deadline: "2027-03-01" },
+  // https://www.jlab.org/stem/hsshp | The Summer 2027 HSSHP Application will be live soon. Student Application Form by Wednesday, January 27, 2027 at 11:59 PM, ET; all other application components... no later than Friday, January 29, 2027 at 11:59 PM, ET.
+  "thomas-jefferson-national-accelerator-facility-suratech-high-sch": { deadline: "2027-01-27" },
+  // https://cancer.wisc.edu/research/education/high-school-education/ | Summer 2027 internship runs June 14 to August 6, 2027. Application opens January 18, 2027; closes February 22, 2026 [closing year as printed on page, apparent typo; deadline left null].
+  "university-of-wisconsin-carbone-cancer-center-arise-summer-resea": { opensAt: "2027-01-18" },
+  // https://new.sewanee.edu/sywc/frequently-asked-questions/ | Applications for summer 2027 will open in December 2026. Our application deadline is Monday, March 1st, 2027. The deadline for letters of recommendation is Friday, March 12th, 2027.
+  "university-of-the-south-sewanee-young-writers-conference": { deadline: "2027-03-01" },
+  // https://omrf.org/training-outreach/summer-scholars/ | 11:59 p.m., Feb. 1, 2027 ... incomplete application packets or materials received later than the due date will be disqualified.
+  "oklahoma-medical-research-foundation-fleming-scholars-program": { deadline: "2027-02-01" },
+  // https://www.cooperhewitt.org/design-competition/ | Entry period opens January 5, 2027. Stage One entry deadline: Monday, February 8, 2027, at 11:59 p.m. Eastern Time. The submission site is not live yet; email DesignCompetition@si.edu to be notified.
+  "cooper-hewitt-smithsonian-design-museum-national-high-school-des": { deadline: "2027-02-08", opensAt: "2027-01-05" },
+  // https://ssp.dcie.miami.edu/apply-now/application-deadlines/index.html | Applications open November 1, 2026. Early Action: December 31, 2026. Scholarship applicants and international students: March 1, 2027. Regular Decisions: April 1, 2027. Applications submitted after the April 1 deadline will be r
+  "university-of-miami-pre-college-summer-scholars": { deadline: "2027-04-01" },
+  // https://www.unmc.edu/student-success/pathway-programs/sharp/index.html | The online application opens November 1, 2026. Application deadline: February 1, 2027; all materials, including recommendation letters and transcripts, must be received by that date. Admission decisions mid-April 2027; program 
+  "university-of-nebraska-medical-center-summer-high-school-advance": { deadline: "2027-02-01" },
+  // https://www.uab.edu/medicine/surgery/prism | Applications open November 16, 2026. Application deadline: January 18, 2027 at 5 p.m. CST. Program dates (tentative): June 8 - July 30, 2027. Finalists are interviewed in March and accepted students are notified by the end of March.
+  "department-of-surgery-university-of-alabama-at-birmingham-pre-co": { deadline: "2027-01-18", opensAt: "2026-11-16" },
+  // https://scilympiad.com/data/org/az/public/2027%20Registration%20Checklist.docx.pdf | Arizona Science Olympiad 2027 Team Registration Checklist: $325 per team through December 1, 2026. Late registrations are accepted through January 15, 2027 with a $50 late fee ($375). Student releases due NLT 15 Jan
+  "science-olympiad-arizona-science-olympiad": { deadline: "2027-01-15" },
+  // https://www.engineering.iastate.edu/outreach/iowa-science-olympiad/general-guidelines/ | Early registration closes November 30, 2026. Regular registration runs from December 1, 2026 to January 15, 2027. State tournament April 10, 2027, in Ames.
+  "science-olympiad-iowa-science-olympiad": { deadline: "2027-01-15" },
 };
 
 export const NOV03_REMOVED: Record<string, string> = {
