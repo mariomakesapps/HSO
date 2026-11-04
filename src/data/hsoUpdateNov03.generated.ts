@@ -154,7 +154,31 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   "edison-scholars-program": { deadline: "2027-01-21" },
   // https://www.thedream.us/scholarships/national-scholarship/ | open from November 1, 2026 – February 28, 2027 ... You must apply for admission to your Partner College before the February 28, 2027, scholarship deadline.
   "thedream-us-national-scholarship": { deadline: "2027-02-28" },
+  // https://www.ccny.cuny.edu/collegenow/stem-research-academy | Application window: November 9, 2026 to January 5, 2027. Spring 2027 runs February 9 to May 20, 2027; 25 students will be enrolled in a 45-hour science research course.
+  "ccny-stem-ra": { deadline: "2027-01-05", opensAt: "2026-11-09" },
+  // https://www.fitnyc.edu/academics/precollege/classes/high-school-summer-workshops.php | High School Summer 4-Day Workshops: June 21-24 and June 28-July 1, 2027. Registration: February 4 through June 10, 2027. One workshop $440 with all fees.
+  "fit-precollege": { deadline: "2027-06-10", opensAt: "2027-02-04" },
+  // https://delamed.org/programs/student-internship/ | Summer 2027 (May–August): Applications open March 1.
+  "delamed-dpha-summer": { opensAt: "2027-03-01" },
+  // https://mathkangaroo.org/mks/registration/ | Math Kangaroo 2027: Enrollment Starts Sept 15 [2026]. Regular enrollment deadline December 31, 2026; late enrollment deadline February 1, 2027. Competition: Thursday, March 18, 2027.
+  "math-kangaroo": { deadline: "2026-12-31" },
+  // https://www.csssa.ca.gov/admissions/how-to-apply/ | The official schedule lists November 1, 2026 as the application opening date... The main deadline is February 28, 2027. CSSSA's FAQ says all application materials are due by 6 pm PST on February 28. Intent to enroll and pre-registration forms due: 
+  "california-state-summer-school-for-the-arts-california-state-sum": { deadline: "2027-02-28" },
+  // https://science.gmu.edu/assip | The 2027 ASSIP Application will open on our website on Monday, December 7th, 2026 and close on Friday, February 12th, 2027. Final details for 2027 program dates, tuition, and participating mentors will be updated on the website throughout November 2026.
+  "aspirit": { deadline: "2027-02-12", opensAt: "2026-12-07" },
+  // https://www.inspiritai.com/liveonline | Fall 2026: October 15, 2026 ... Winter 2026: November 15, 2026. (Summer 2027 sessions listed: June 7–18, July 5–18, and August 2–13, 2027; no summer 2027 deadline shown.)
+  "inspire": { deadline: "2026-11-15" },
+  // https://sbe.org/2026-ennes-scholarships/ | Applications for the next round are open until July 1, 2027. In July 2027, the Trust anticipates awarding five $3,000 scholarships, depending on available funds.
+  "ennes-scholarships": { deadline: "2027-07-01" },
+  // https://www.mtfchallenge.org/register/ | Registration closes Sunday, November 8 at 11:59pm Pacific. Registration for the 2026-27 season closes on November 8, 2026. Students must be attending high school in the United States or its territories during the 2026-27 academic year.
+  "soa-shark": { deadline: "2026-11-08" },
+  // https://compression.stanford.edu/outreach/shtem-summer-internships-high-schoolers | Applications expected to open December 7, 2026 ... application expected to close February 21, 2027 ... The 2027 session runs seven weeks, from Monday, June 21 through Friday, August 6.
+  "stanford-compression-forum-shtem-summer-internships-for-high-sch": { deadline: "2027-02-21", opensAt: "2026-12-07" },
 };
 
 export const NOV03_REMOVED: Record<string, string> = {
+  // https://artswestchester.org/intern-volunteer-more/ "Our internship and volunteer program are undergoing a restructuring process, and we do not have any opportunities available now."
+  "artswestchester-internship": "/categories/internships",
+  // https://afsa.org/essay-contest "The National High School Essay Contest will be on hiatus for the 2026–2027 academic year"
+  "afsa-essay": "/categories/scholarships",
 };
