@@ -236,6 +236,8 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   "ymca-new-mexico-ymca-youth-and-government": { deadline: "2027-01-14" },
   // https://www.ymcayag.org/ny-join/ | Feb 8, 2027 | Registration ... High school need-based aid applications are due by Feb 15, 2027
   "ymca-new-york-ymca-youth-and-government": { deadline: "2027-02-08" },
+  // https://www.scbar.org/for-the-public/law-related-education/mock-trial/high-school-mock-trial/hsmt-important-dates/ | August 3, 2026 - Registration Opens August 3, 2026 - Rules Released ... October 30, 2026 - Registration Deadline (No late fee) ... November 20, 2026 - Registration Deadline @ Noon (Wi
+  "south-carolina-bar-south-carolina-high-school-mock-trial-competi": { deadline: "2026-11-20" },
 };
 
 export const NOV03_REMOVED: Record<string, string> = {
