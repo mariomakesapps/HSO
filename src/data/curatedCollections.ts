@@ -103,7 +103,7 @@ export const curatedSections: CuratedSection[] = [
         "linear-gradient(135deg, #111827 0%, #274d3b 52%, #f4e8db 100%)",
         ["law", "policy", "civic"], ["Political Science", "Law", "Public Policy"],
         ["Fellowship", "Summer Program"],
-        ["ywp", "unesco-youth", "girls-state", "tasp", "ylc", "model-un", "harvard-mun", "yale-mun", "yale-law-summer", "syp-georgetown", "columbia-freedom-citizenship", "youth-debate"],
+        ["ywp", "girls-state", "tasp", "ylc", "model-un", "harvard-mun", "yale-mun", "yale-law-summer", "syp-georgetown", "columbia-freedom-citizenship", "youth-debate"],
         "Law & Policy")
     ],
   },

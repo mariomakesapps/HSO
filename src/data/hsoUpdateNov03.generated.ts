@@ -253,4 +253,6 @@ export const NOV03_REMOVED: Record<string, string> = {
   "ymca-nevada-ymca-youth-and-government": "/categories/fellowships",
   // Duplicate of columbia-precollege-ay-weekend: same page, same December 21, 2026 deadline, same courses and fees
   "columbia-precollege-ay-weekend-early": "/opportunities/columbia-precollege-ay-weekend",
+  // Not a high school opportunity: one participant per UNESCO National Commission, selected by the Secretariat; national calls for the 14th forum (Oct 2025) asked for ages 18-35
+  "unesco-youth": "/categories/fellowships",
 };
