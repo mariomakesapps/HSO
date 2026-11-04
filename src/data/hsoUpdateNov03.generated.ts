@@ -128,6 +128,32 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   "science-olympiad-arizona-science-olympiad": { deadline: "2027-01-15" },
   // https://www.engineering.iastate.edu/outreach/iowa-science-olympiad/general-guidelines/ | Early registration closes November 30, 2026. Regular registration runs from December 1, 2026 to January 15, 2027. State tournament April 10, 2027, in Ames.
   "science-olympiad-iowa-science-olympiad": { deadline: "2027-01-15" },
+  // https://www.scscioly.org/getting-started | Registration for the 2026-27 season opens September 1, 2026; December 31, 2026 is the last day to register without a $50/team late fee; registration closes January 20, 2027. State tournament Saturday, February 27, 2027 at Presbyterian College.
+  "science-olympiad-south-carolina-science-olympiad": { deadline: "2027-01-20" },
+  // https://dos.fl.gov/cultural/programs/poetry-out-loud/ | Schools that would like to participate in Florida's official Poetry Out Loud program and send a student to Florida's Poetry Out Loud State Finals should register their school: deadline December 11, 2026. January 22, 2027: deadline to register t
+  "florida-division-of-arts-and-culture-poetry-out-loud-florida": { deadline: "2026-12-11" },
+  // https://www.nvartscouncil.org/programs/arts-learning/pol/teacher-registration/ | Deadline: Dec. 18, 2026, 5 p.m. PST. Please complete this form in its entirety. (2027 page timeline: January 2027 · District competitions are held. March 6, 2027 · statewide Nevada Poetry Out Loud Competition.)
+  "nevada-arts-council-poetry-out-loud-nevada": { deadline: "2026-12-18" },
+  // https://www.njpol.org/important-dates-1 | October 22, 2026 | NJPOL Registration Opens ... NJPOL Registration Closes January 22, 2027. Regional competitions February 1-8, 2027.
+  "new-jersey-state-council-on-the-arts-poetry-out-loud-new-jersey": { deadline: "2027-01-22" },
+  // https://okaplus.org/poetry-out-loud/ | 2026-2027 Poetry Out Loud timeline: School registration closes on November 6, 2026; state-level registration deadline January 22, 2027; state competition March 3, 2027.
+  "oklahoma-a-schools-poetry-out-loud-oklahoma": { deadline: "2026-11-06" },
+  // https://www.oregon.gov/biz/programs/pol/pages/importantdates.aspx | January 13, 2027 deadline for school and organization registration (register before winter break encouraged); school contest completion and winner registration deadline January 28, 2027.
+  "oregon-arts-commission-poetry-out-loud-oregon": { deadline: "2027-01-13" },
+  // https://wyoarts.state.wy.us/programs/poetry-out-loud/ | 2026–2027 season: Sept. 1, 2026 – Anthology and school registration open. Dec. 31, 2026 – Schools must register. Jan. 31, 2027 – Intent to attend state competition. Feb. 14, 2027 – School competitions and Poetry Ourselves submissions due. March
+  "wyoming-arts-council-poetry-out-loud-wyoming": { deadline: "2026-12-31" },
+  // https://www.worldfoodprize.org/en/youth_programs/global_youth_institute/colorado/ | Colorado GROW Youth Institute: Date: April 13, 2027, CSU Spur campus, Denver. Registration & Paper Submission Deadline: March 16, 2027. No registration fee; ninth through twelfth grade students are eligible.
+  "world-food-prize-foundation-colorado-grow-youth-institute": { deadline: "2027-03-16" },
+  // https://www.worldfoodprize.org/en/youth_programs/global_youth_institute/maryland/ | Maryland Youth Institute: Date: April 9, 2027, University of Maryland Eastern Shore. Registration Deadline: March 4, 2027. There is no registration cost to participate in the Institute; ninth through twelfth grade st
+  "world-food-prize-foundation-maryland-youth-institute": { deadline: "2027-03-04" },
+  // https://www.worldfoodprize.org/en/youth_programs/global_youth_institute/mississippi/ | Mississippi Youth Institute: Date: February 19, 2027, Mississippi State University. Paper Submission Deadline: January 29, 2027. No registration cost; ninth through twelfth grade students are eligible.
+  "world-food-prize-foundation-mississippi-youth-institute": { deadline: "2027-01-29" },
+  // https://www.worldfoodprize.org/en/youth_programs/global_youth_institute/wisconsin/ | Date: May 19, 2027; Venue: University of Wisconsin-Madison; Registration & Paper Submission Deadline: May 5, 2027
+  "world-food-prize-foundation-wisconsin-youth-institute": { deadline: "2027-05-05" },
+  // https://newsroom.edison.com/releases/edison-scholars-program-now-accepting-applications | Edison Scholars Program Now Accepting Applications (Oct. 30, 2026): the deadline to apply... is Jan. 21, 2027. High school seniors in SCE's service area planning to study STEM full-time in fall 2027; recipients
+  "edison-scholars-program": { deadline: "2027-01-21" },
+  // https://www.thedream.us/scholarships/national-scholarship/ | open from November 1, 2026 – February 28, 2027 ... You must apply for admission to your Partner College before the February 28, 2027, scholarship deadline.
+  "thedream-us-national-scholarship": { deadline: "2027-02-28" },
 };
 
 export const NOV03_REMOVED: Record<string, string> = {
