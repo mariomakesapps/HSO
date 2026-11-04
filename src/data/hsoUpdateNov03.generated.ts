@@ -251,4 +251,6 @@ export const NOV03_REMOVED: Record<string, string> = {
   "university-of-nevada-las-vegas-guic-summer-camp": "/categories/summer-programs",
   // The listed page (https://lasvegasymca.org/programs/youth-sports-activities/teen-programs/) has no Youth and Government program, and no Nevada YMCA Youth and Government program could be found
   "ymca-nevada-ymca-youth-and-government": "/categories/fellowships",
+  // Duplicate of columbia-precollege-ay-weekend: same page, same December 21, 2026 deadline, same courses and fees
+  "columbia-precollege-ay-weekend-early": "/opportunities/columbia-precollege-ay-weekend",
 };
