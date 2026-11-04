@@ -2,7 +2,7 @@
  * Long-form detail for the listings that already rank.
  *
  * Opportunity pages are thin because the catalogue stores one short blurb per
- * programme — three words for the NYT podcast contest, eight for Horizon. A
+ * program — three words for the NYT podcast contest, eight for Horizon. A
  * blurb that short has to stay short: it is also the card text on every listing
  * grid. So the longer copy lives here instead, keyed by id, and only the detail
  * page and the prerenderer render it.
@@ -25,7 +25,7 @@ export interface OpportunityDetail {
 export const OPPORTUNITY_DETAILS: Record<string, OpportunityDetail> = {
   "ccc-youthaction-nyc": {
     body: [
-      "A year-long civic engagement programme run by Citizens' Committee for Children of New York, split into two semesters of work.",
+      "A year-long civic engagement program run by Citizens' Committee for Children of New York, split into two semesters of work.",
       "The first semester runs October to December and teaches the steps of effective advocacy, how to conduct and analyse research, and leadership skills. Participants meet weekly in person, identify the issues facing young New Yorkers and work up possible solutions.",
       "The second semester runs January to May and puts that to use: campaigning and rallying on the issues the group picked, including meetings with council members and legislators.",
     ],
@@ -34,10 +34,10 @@ export const OPPORTUNITY_DETAILS: Record<string, OpportunityDetail> = {
     faqs: [
       {
         q: "Does the YouthAction NYC internship pay?",
-        a: "Yes. CCC's page states it is paying participants $400 a semester to take part in the internship programme.",
+        a: "Yes. CCC's page states it is paying participants $400 a semester to take part in the internship program.",
       },
       {
-        q: "How long is the programme?",
+        q: "How long is the program?",
         a: "A full year, split into two semesters: October to December, then January to May.",
       },
     ],
@@ -54,12 +54,12 @@ export const OPPORTUNITY_DETAILS: Record<string, OpportunityDetail> = {
       "Spring 2027 applications open on 1 November 2026.",
       "Summer 2027 applications open on 1 March 2027.",
       "The Autumn 2026 application period has closed.",
-      "Questions go to the internship programme coordinator at ksmith@delamed.org.",
+      "Questions go to the internship program coordinator at ksmith@delamed.org.",
     ],
     faqs: [
       {
         q: "Is the Delaware Academy of Medicine internship in person?",
-        a: "No. The Academy's page states the high school internship programme is entirely virtual and is scheduled around the student's other commitments.",
+        a: "No. The Academy's page states the high school internship program is entirely virtual and is scheduled around the student's other commitments.",
       },
       {
         q: "When can I apply?",
@@ -133,7 +133,7 @@ export const OPPORTUNITY_DETAILS: Record<string, OpportunityDetail> = {
 
   horizon: {
     body: [
-      "A one-to-one research programme, founded in 2016 by Columbia researchers, that pairs a student with a scholar for an original project.",
+      "A one-to-one research program, founded in 2016 by Columbia researchers, that pairs a student with a scholar for an original project.",
       "There are two tracks. Professor Seminar Courses put you in a small group led by a professor from a top university. The 1-1 PhD Labs pair you directly with a PhD or post-doctoral researcher.",
       "Subjects on offer range across AI and machine learning, behavioural economics, computational neuroscience, cybersecurity, gene editing and CRISPR, international relations, protein biophysics, political theory and theoretical mathematics.",
     ],

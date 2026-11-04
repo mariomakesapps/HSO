@@ -138,11 +138,34 @@ export const GRADE_FIXES: Record<string, number[]> = {
   "harborview-injury-prevention-and-research-center-university-of-w": [10, 11, 12],
 };
 
+/**
+ * The site is for U.S. students, but some imported blurbs use British spelling
+ * ("programme", "centre", "enrolment"). Only lower-case forms and a sentence-start
+ * "Organised" are changed, and only in blurbs, so proper names such as Centre College
+ * or a title an organiser chose are left as written.
+ */
+const US_SPELLING: [RegExp, string][] = [
+  [/\bprogrammes\b/g, "programs"],
+  [/\bprogramme\b/g, "program"],
+  [/\bcentres\b/g, "centers"],
+  [/\bcentre\b/g, "center"],
+  [/\borganisations\b/g, "organizations"],
+  [/\borganisation\b/g, "organization"],
+  [/\borganised\b/g, "organized"],
+  [/\bOrganised\b/g, "Organized"],
+  [/\benrolment\b/g, "enrollment"],
+  [/\bhonours\b/g, "honors"],
+];
+
+export function americanSpelling(s: string): string {
+  return US_SPELLING.reduce((t, [re, to]) => t.replace(re, to), s);
+}
+
 /** Apply every rule above to one listing, in place. */
 export function applyDataHygiene(o: Opportunity): void {
   if (o.title) o.title = collapseSpaces(o.title);
   if (o.org) o.org = collapseSpaces(o.org);
-  if (o.blurb) o.blurb = endWithStop(repairTruncation(spaceAfterCommas(collapseSpaces(o.blurb))));
+  if (o.blurb) o.blurb = americanSpelling(endWithStop(repairTruncation(spaceAfterCommas(collapseSpaces(o.blurb)))));
   if (o.url) o.url = cleanUrl(o.url);
   const grades = GRADE_FIXES[o.id];
   if (grades) o.grades = [...grades];
