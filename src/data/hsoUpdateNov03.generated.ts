@@ -72,6 +72,38 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   "stanford-medicine-pediatrics-internship-program-at-stanford-pips": { deadline: "2027-02-22", opensAt: "2027-01-06" },
   // https://www.seattlechildrens.org/research/centers-programs/science-education-department/high-school-training-programs/ | Application deadline is Monday, March 8, 2027, at 5 p.m. Pacific time; late applications are not considered. Letters of recommendation due March 29, 2027. Applications opened Janu
   "seattle-children-s-research-institute-research-training-program": { deadline: "2027-03-08", opensAt: "2027-01-04" },
+  // https://www.depts.ttu.edu/clarkscholars/ApplicationDetails.php | The 2027 application will open on January 2, 2027. Deadline: February 15, 2027 at 11:59 PM CT.
+  "texas-tech-university-anson-l-clark-scholars-program": { deadline: "2027-02-15", opensAt: "2027-01-02" },
+  // https://globalyouth.wharton.upenn.edu/application-information/ | Applications to the Leadership in the Business World program and the Management & Technology Summer Institute will close on January 27, 2027 at 5pm ET. (LBW page: priority deadline January 27, 2027; final deadline March 19, 2027.)
+  "wharton-school-leadership-in-the-business-world-lbw": { deadline: "2027-01-27" },
+  // https://www.usna.edu/Admissions/Programs/NASS.php | Application open January 5 - March 31, 2027.
+  "united-states-naval-academy-naval-academy-summer-seminar": { deadline: "2027-03-31", opensAt: "2027-01-05" },
+  // https://www.rockefeller.edu/outreach/lab-jumpstart/ | The LAB Jumpstart 2027 application deadline is Monday, January 4, 2027 at 5:00pm Eastern Time. Late applications will not be considered. Letters of Recommendation are also due on Monday, January 4, 2027 at 5:00pm Eastern Time. After-school portio
+  "the-rockefeller-university-learning-at-the-bench-lab-jumpstart": { deadline: "2027-01-04" },
+  // https://wsb.wharton.upenn.edu/wharton-data-competition/timeline-and-dates/ | Registration will open on December 1, 2026. Registration closes January 26, 2027 at 9:00 AM EST. Phase 1 submission due March 1, 2027.
+  "wharton-sports-analytics-and-business-initiative-wharton-high-sc": { deadline: "2027-01-26", opensAt: "2026-12-01" },
+  // https://wpafbstem.com/Wright_Scholar/Wright_scholar.html | Applications open November 1, 2026 and close January 10, 2027, at 5:00 PM EST. Internship runs June 7 to July 30, 2027.
+  "air-force-research-laboratory-wright-patterson-afb-wright-schola": { deadline: "2027-01-10" },
+  // https://sites.wustl.edu/wustlysp/programs/summer-focus/ | Summer Focus 2027 application opened November 2, 2026; application deadline January 25, 2027. Recommendation letters due February 1, 2027. Program runs May 31 to July 23, 2027.
+  "washington-university-in-st-louis-young-scientist-program-summer": { deadline: "2027-01-25" },
+  // https://cancer.iu.edu/education/summer/future-scientist.html | Applications open Dec. 1, 2026. ... The program is for high school juniors at the time of application who attend a Marion County public high school and have a minimum 3.0 GPA.
+  "iu-melvin-and-bren-simon-comprehensive-cancer-center-future-scie": { opensAt: "2026-12-01" },
+  // https://summer.ucla.edu/summer-programs/summer-college-immersion-program/scip/ | Application deadline: International applicants requiring a visa · April 1, 2027. All other applicants · April 30, 2027. All deadlines are at 5:00 PM Pacific.
+  "ucla-summer-sessions-summer-college-immersion-program-scip": { deadline: "2027-04-30" },
+  // https://www.usna.edu/Admissions/Programs/STEM.php | The Summer STEM application will open January 5, 2027 at 9:00am EST. ... The 2027 Summer STEM application ... closes March 31, 2027. Three sessions are offered: June 7–12, June 14–19, and June 21–25, 2027.
+  "united-states-naval-academy-naval-academy-summer-stem-program": { deadline: "2027-03-31", opensAt: "2027-01-05" },
+  // https://cure.dfhcc.harvard.edu/welcome/cure | The application deadline for the 2027 summer CURE high school program is January 13, 2027 ... The high school program dates are June 14th, 2027 - August 6th, 2027.
+  "dana-farber-harvard-cancer-center-continuing-umbrella-of-researc": { deadline: "2027-01-13" },
+  // https://www.smith.edu/academics/departments-programs-courses/precollege-programs/applying | Applications open December 10, 2026. ... The last day for domestic applications is May 1, 2027, at 11:59 p.m. ET, or once programs reach capacity, whichever comes first. The deadline for international student
+  "smith-college-summer-science-and-engineering-program-ssep": { deadline: "2027-05-01", opensAt: "2026-12-10" },
+  // https://www.uvm.edu/admissions/vermont-pitch-challenge/news/2027-vermont-pitch-challenge-opens-submissions | 2027 Vermont Pitch Challenge Opens for Submissions ... submissions running from October 15, 2026 to February 15, 2027. The Final Pitch Event is set for April 13, 2027.
+  "university-of-vermont-vermont-pitch-challenge": { deadline: "2027-02-15" },
+  // https://outreach.engineering.columbia.edu/shape/apply | SHAPE Summer 2027 application: tentative opening November 16, 2026; priority deadline December 16, 2026; final deadline March 5, 2027 at 11:59 PM; final materials (recommendation letters, transcripts, scholarship applications) due March 12, 202
+  "columbia-university-summer-high-school-academic-program-for-engi": { deadline: "2027-03-05", opensAt: "2026-11-16" },
+  // https://manhattanda.org/careers/internship-opportunities/high-school-internship/ | Applications open November 2, 2026, and will close at 5:00 P.M. EST on December 11, 2026. The program runs from Monday, January 11th, 2027 – Wednesday, March 17th, 2027; applicants must reside in Manhattan and be 16 –
+  "manhattan-district-attorney-s-office-high-school-internship-prog": { deadline: "2026-12-11" },
+  // https://www.morgan.edu/saams | SAAMS 2027: priority deadline February 28, 2027; general deadline March 31, 2027. Program runs June 28 to July 23, 2027.
+  "morgan-state-university-summer-academy-of-actuarial-and-mathemat": { deadline: "2027-03-31" },
 };
 
 export const NOV03_REMOVED: Record<string, string> = {
