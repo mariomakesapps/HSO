@@ -204,6 +204,38 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   "sifma-foundation-investwrite-essay-competition": { deadline: "2026-12-09" },
   // https://stem.idaho.gov/idsef/ | Final project deadline: December 18, 2026, at 11:59 MT. Regional fair: TBD, week of February 22-26, 2027. ISEF will be held in Los Angeles, California in 2027.
   "idaho-stem-action-center-idaho-science-and-engineering-fairs-ids": { deadline: "2026-12-18" },
+  // https://www.sarahlawrence.edu/precollege/young-writers/ | Young Writers Studio (July 19–23, 2027): The general admission deadline is May 1, 2027, with applications reviewed on a rolling basis. Painting From Poetry (July 12–30, 2027) and Rising Artists Musical Theater Intensive (July 19 – August 6, 2
+  "sarah-lawrence-college-pre-college-programs-at-sarah-lawrence": { deadline: "2027-05-01" },
+  // https://www.otis.edu/extension/youth-programs/summer-art/important-dates.html | Summer of Art scholarship application deadline April 16, 2027; no exceptions will be made. Registration and the scholarship application open November 16, 2026. The housing application closes June 14, 2027. The program ru
+  "otis-college-of-art-and-design-summer-of-art": { opensAt: "2026-11-16" },
+  // https://summer.ucsb.edu/programs/research-mentorship-program/admissions | Research Mentorship Program (RMP): Applications open December 15, 2026, and the program runs June 14 to July 31, 2027. Summer Research Academies (SRA): Applications also open December 15, 2026, with sessions from June 25 to Ju
+  "university-of-california-santa-barbara-pre-college-programs-at-u": { opensAt: "2026-12-15" },
+  // https://www.pcs.udel.edu/neuroscience/ | Neuroscience Pre-College Program: Registration opens December 1, 2026. Session 1 runs June 21-25, 2027 and Session 2 runs June 28-July 2, 2027. Forensic Science Pre-College Program: Registration opens December 1, 2026. The 2027 CRSI program will run from June
+  "university-of-delaware-pre-college-programs-at-the-university-of": { opensAt: "2026-12-01" },
+  // https://meca.edu/academics/pre-college/ | MECA&D's 2027 Pre-College deadlines are February 1, 2027 for priority and scholarship consideration, and April 15, 2027 for the general application deadline. The program runs July 11 to July 31, 2027. ... applications are reviewed on a rolling basis until th
+  "maine-college-of-art-and-design-pre-college-art-and-design-progr": { deadline: "2027-04-15" },
+  // https://www.babson.edu/summer-at-babson/high-school-learners/summer-study/key-dates/ | The 2027 Babson Academy Summer Study has two application rounds. The early round closes February 12, 2027, and the standard round closes March 12, 2027. ... February 12: Round One (Early Bird) Application Deadline
+  "babson-college-summer-study-for-high-school-students": { deadline: "2027-03-12" },
+  // https://www.smith.edu/academics/departments-programs-courses/precollege-programs/applying | Domestic applicants: The application closes May 1, 2027, at 11:59 p.m. ET, or earlier if programs reach capacity. International applicants: The deadline is March 1, 2027. Priority deadline: February 1, 2027. 
+  "smith-college-precollege-programs-at-smith-college": { deadline: "2027-05-01", opensAt: "2026-12-10" },
+  // https://www.fdu.edu/lifelong-learning-at-fdu/high-school-programs/summer/ | FDU's Early College Summer page says registration for Early College Summer 2027 classes will open on February 3, 2027.
+  "fairleigh-dickinson-university-early-college-programs-for-high-s": { opensAt: "2027-02-03" },
+  // https://precollege.adelphi.edu/ | The final deadline for Adelphi's 2027 Summer Pre-College Program is June 4, 2027. Applications are reviewed on a rolling basis until the program fills. The credit-bearing program's dates are July 11–31, 2027.
+  "adelphi-university-summer-pre-college-at-adelphi": { deadline: "2027-06-04" },
+  // https://www.colorado.edu/business/oda/programs-high-school-students/business-leadership-program | January 4, 2027: Application opens; March 7, 2027: Application closes; March 22, 2027: Notification of accepted students; April 4, 2027: Deadline to accept program offer. Program Dates: Sunday, June 20–
+  "university-of-colorado-boulder-leeds-school-of-business-business": { deadline: "2027-03-07", opensAt: "2027-01-04" },
+  // https://www.ymcayag.org/ri-join/ | The Rhode Island registration deadline for the 2027 program is February 5, 2027 ... The page's deadline table lists that date as "Registration," with the State House Day assembly on Saturday, March 13, 2027. The table also lists Feb 12, 2027 for bills, the candidat
+  "ymca-rhode-island-ymca-youth-and-government": { deadline: "2027-02-05" },
+  // https://www.hsfilmfest.com/submit | The final deadline is July 2, 2027 ... Entries are free through March 1, 2027, then cost $20 (April 26), $45 (May 24), and $65 (July 2). Submissions open November 2, 2026, and official selections are announced July 21, 2027
+  "all-american-high-school-film-festival": { deadline: "2027-07-02" },
+  // https://www.ymcayag.org/ct-calendar/ | Jan 29, 2027 | Registration
+  "ymca-connecticut-ymca-youth-and-government": { deadline: "2027-01-29" },
+  // https://www.ymcade.org/youth-in-government/ | opens December 1, 2026 ... Registration Deadline: February 19, 2027
+  "ymca-delaware-ymca-youth-and-government": { deadline: "2027-02-19", opensAt: "2026-12-01" },
+  // https://www.nmyag.org/2027-hs-program | Early registration deadline: December 11, 2026 ($310) ... Late registration deadline: January 14, 2027 ($330)
+  "ymca-new-mexico-ymca-youth-and-government": { deadline: "2027-01-14" },
+  // https://www.ymcayag.org/ny-join/ | Feb 8, 2027 | Registration ... High school need-based aid applications are due by Feb 15, 2027
+  "ymca-new-york-ymca-youth-and-government": { deadline: "2027-02-08" },
 };
 
 export const NOV03_REMOVED: Record<string, string> = {
@@ -215,4 +247,6 @@ export const NOV03_REMOVED: Record<string, string> = {
   "lake-county-forest-perserves-youth-conservation-corp-crew-member": "/categories/internships",
   // https://nsil.sites.unlv.edu/GUIC.html and https://nsil.sites.unlv.edu/ITEST.html: a three-year NSF project; 2023 was the camp's third year and the page's eligibility rule still refers to Fall 2023, with no later session posted
   "university-of-nevada-las-vegas-guic-summer-camp": "/categories/summer-programs",
+  // The listed page (https://lasvegasymca.org/programs/youth-sports-activities/teen-programs/) has no Youth and Government program, and no Nevada YMCA Youth and Government program could be found
+  "ymca-nevada-ymca-youth-and-government": "/categories/fellowships",
 };
