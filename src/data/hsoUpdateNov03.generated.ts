@@ -174,6 +174,26 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   "soa-shark": { deadline: "2026-11-08" },
   // https://compression.stanford.edu/outreach/shtem-summer-internships-high-schoolers | Applications expected to open December 7, 2026 ... application expected to close February 21, 2027 ... The 2027 session runs seven weeks, from Monday, June 21 through Friday, August 6.
   "stanford-compression-forum-shtem-summer-internships-for-high-sch": { deadline: "2027-02-21", opensAt: "2026-12-07" },
+  // https://www.moffitt.org/education/research-education-and-training/pre-college-programs/hip-imo/ | Complete applications and recommendation letters must be submitted before December 1, 2026. Late recommendation letters will not be accepted and applications will be considered incomplete. Program runs 
+  "moffitt-cancer-center-high-school-internship-program-in-integrat": { deadline: "2026-12-01" },
+  // https://www.uchicagomedicine.org/en/cancer/education-outreach/student-education/high-school-undergraduate/researchstart | Application deadline: January 11, 2027, at 11:59 p.m. CT. Summer experience June 14 – August 6 (35-40 hours/week). On-campus interviews February 2027; acceptance notifications Ma
+  "uchicago-medicine-university-of-chicago-medicine-researchstart-p": { deadline: "2027-01-11" },
+  // https://www.bbg.org/learn/gap | Applications to the 2027 Garden Apprentice Program will be accepted until Friday, December 4. ... Applicants who submit application materials before December 4, 2026, will be invited for an interview.
+  "brooklyn-botanic-garden-the-garden-apprentice-program-gap": { deadline: "2026-12-04" },
+  // https://www.umassmed.edu/gsbs/outreach-programs/high-school-health-careers-program/ | 2027 High School Health Careers Program (HSHCP): Application opens: December 1, 2026. Application deadline: March 1, 2027. Sunday July 11, 2027 - Friday August 6, 2027 (Four-Week Program).
+  "umass-chan-medical-school-high-school-health-careers-program-hsh": { deadline: "2027-03-01", opensAt: "2026-12-01" },
+  // https://metasummeracademy.com/ | Applications for Meta Summer Academy 2027 open Dec 1, 2026 and close Feb 14, 2027. Letters of recommendation and transcripts must be submitted by February 14, 2027; incomplete applications will not be considered.
+  "meta-meta-summer-academy": { deadline: "2027-02-14", opensAt: "2026-12-01" },
+  // https://raleighnc.gov/careers-jobs-and-volunteering/services/raleigh-summer-youth-employment | 2027 key dates: Application and Interviews: January 25 - March 15; Program dates: June 14 to August 6, 2027. Applicants must be 15 to 18 and a high school student as of May 31, 2027; mandatory onboarding d
+  "city-of-raleigh-raleigh-summer-youth-employment-program-rsyep": { deadline: "2027-03-15", opensAt: "2027-01-25" },
+  // https://info.umkc.edu/stahr/scholars/high-school/ | The 2027 application opens November 15, 2026. (Page lists deadline as February 1, 2026, which predates the opening and appears to be a typo; deadline not used.)
+  "university-of-missouri-kansas-city-stahr-high-school-scholars-pr": { opensAt: "2026-11-15" },
+  // https://school.wakehealth.edu/research/institutes-and-centers/wake-forest-institute-for-regenerative-medicine/education-and-training/high-school-summer-research-exposure-program | Applications to both programs will open on January 15, 2027 with a deadline of February 15, 2027 by 5 PM EST. ... not la
+  "wake-forest-institute-for-regenerative-medicine-mentored-researc": { deadline: "2027-02-15", opensAt: "2027-01-15" },
+  // https://indianactsi.org/education/student/seed-stem/ | The main SEED/STEM Summer Program page lists a March 1, 2027 deadline. Applications opened November 1, 2026, and the page gives the deadline as 11:59 p.m. EST that day. ... The program runs June 7 to July 29, 2027
+  "indiana-clinical-and-translational-sciences-institute-seed-stem": { deadline: "2027-03-01" },
+  // https://eller.arizona.edu/departments-research/schools-departments/accountancy/bcap | Application Deadline Date: March 1, 2027. ... The one-week residential program runs June 6 to June 11, 2027, at the Eller College of Management in Tucson.
+  "university-of-arizona-eller-college-of-management-and-ey-busines": { deadline: "2027-03-01" },
 };
 
 export const NOV03_REMOVED: Record<string, string> = {
@@ -181,4 +201,6 @@ export const NOV03_REMOVED: Record<string, string> = {
   "artswestchester-internship": "/categories/internships",
   // https://afsa.org/essay-contest "The National High School Essay Contest will be on hiatus for the 2026–2027 academic year"
   "afsa-essay": "/categories/scholarships",
+  // https://www.lcfpd.org/assets/1/7/2027_BUDGET_BOOK__-_BOARD__APPROVED_10-14-26.pdf 2027 budget (board approved 10-14-26) discontinues the Youth Conservation Corps
+  "lake-county-forest-perserves-youth-conservation-corp-crew-member": "/categories/internships",
 };
