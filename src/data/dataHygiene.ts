@@ -168,6 +168,72 @@ export const GRADE_FIXES: Record<string, number[]> = {
   "indiana-university-bloomington-jim-holland-summer-enrichment-pro": [9, 10],
   // https://mmia.medicine.iu.edu/: "Indiana high school students in grades 10 to 12"
   "indiana-university-school-of-medicine-molecular-medicine-in-acti": [10, 11, 12],
+  // https://www.amnh.org/learn-teach/teens/science-communication-internship-program: "Applicants are in 10th grade, no prior experience is required, and interns earn a $2,000 stipend."
+  "amnh-scip": [10],
+  // https://precollege.nd.edu/summer-scholars/dates-deadlines/: "Current sophomores and juniors who are at least 16 live in a Notre Dame residence hall during a two-week Summer Scholars session on campus."
+  "notre-dame": [10, 11],
+  // https://www.citytech.cuny.edu/collegenow/stem-research-academy.aspx: "A free College Now research program at City Tech for New York City public high school sophomores and juniors from partner schools under-served by science programs."
+  "citytech-stem-ra": [10, 11],
+  // https://www.hypothekids.org/hkmakerlab: "A free five-week summer engineering design program run by HYPOTHEkids with Columbia Engineering in New York City for high school sophomores and juniors."
+  "columbia-engineering-hk-maker-lab": [10, 11],
+  // https://www.scgsah.org/residential-high-school: "A public residential arts high school in South Carolina that is tuition-free and serves juniors and seniors, plus exceptional sophomores in Music and Dance; accepted students pay a residence hall deposit and a meal plan fee."
+  "sc-governors-school-arts": [10, 11, 12],
+  // https://www.utsouthwestern.edu/education/nondegree-programs/stars/programs/summer-research-opportunities.html: "Eight-week, non-residential summer program at UT Southwestern in Dallas where high school juniors do research in a faculty host's lab and present their results."
+  "ut-southwestern-medical-center-stars-summer-research-program": [11],
+  // https://www.roswellpark.org/education/high-school-undergrad/high-school-summer-research-program: "Open only to juniors enrolled in Erie, Niagara, Cattaraugus or Chautauqua county; it is commuter-based and there is no application fee."
+  "roswell-park-comprehensive-cancer-center-high-school-summer-rese": [11],
+  // https://www.feinberg.northwestern.edu/sites/stem-programs/hs.html: "High school applicants must be juniors when they apply and at least 16."
+  "northwestern-university-feinberg-school-of-medicine-kimberly-que": [11],
+  // https://farmvet2b.vetmed.ucdavis.edu/opportunities: "Its Farm Vet internship is a roughly 40-hour spring-break program for Tulare County juniors at the Veterinary Medicine Teaching and Research Center, with visits to a cow dairy, goat dairy and beef feedlot."
+  "uc-davis-school-of-veterinary-medicine-student-opportunities-in": [11],
+  // https://www.charlestoncounty.gov/ads/slip.php: "Applicants must live in the county and be juniors at a Charleston County public high school."
+  "charleston-county-student-leadership-intern-program-cdc-ems": [11],
+  // https://www.bu.edu/lernet/grow/about.html: "Applicants must be juniors at a Massachusetts school, live within 30 miles of Boston and be at least 16."
+  "boston-university-greater-boston-research-opportunities-for-youn": [11],
+  // https://sps.northwestern.edu/pre-college/college-bridge/: "A summer partnership between Northwestern University and Chicago Public Schools that lets high school juniors take a college course for credit."
+  "northwestern-university-northwestern-pre-college-college-bridge": [11],
+  // https://k12stem.engineering.nyu.edu/programs/cs4cs: "It is open to students in 10th or 11th grade who live in New York City or specific New Jersey and Nassau County areas."
+  "new-york-university-computer-science-for-cyber-security-cs4cs": [10, 11],
+  // https://www.thedoseum.org/internships: "An internship at The DoSeum, a children's museum in San Antonio, open to high school seniors and college students."
+  "the-doseum-internship": [12],
+  // https://skillsforri.com/prepareri-high-school-internship-program: "A paid 7-week summer internship run by Skills for Rhode Island's Future for Rhode Island public high school juniors, including charter and home school students."
+  "skills-for-rhode-island-s-future-prepareri-high-school-internshi": [11],
+  // https://indianactsi.org/education/student/seed-stem/: "An eight-week summer program from the Indiana CTSI that pairs Indiana high school sophomores, juniors and seniors with faculty mentors on research projects."
+  "indiana-clinical-and-translational-sciences-institute-seed-stem": [10, 11, 12],
+  // https://college.mayo.edu/academics/office-of-education-engagement-and-outreach/programs/mayo-clinic-cares/: "Applicants must be current sophomores or juniors at an Arizona high school, and no prior clinical experience is needed."
+  "mayo-clinic-office-of-education-engagement-and-outreach-mayo-cli": [10, 11],
+  // https://vpse.upenn.edu/smp/apply/: "A four-week summer college and career preparatory program at the University of Pennsylvania for Philadelphia high school students in 9th or 10th grade with at least a 3."
+  "university-of-pennsylvania-provosts-summer-mentorship-program-sm": [9, 10],
+  // https://www.shu.edu/undergraduate-admissions/pirates-pitch-competition.html: "A Shark Tank-style pitch competition run by Seton Hall University's Stillman School of Business for high school sophomores, juniors and seniors with a GPA of 3."
+  "seton-hall-university-pirates-pitch-competition-for-high-school": [10, 11, 12],
+  // https://geog.umd.edu/high-school-hub/high-school-internship-program-hip: "A paid six-week summer internship run remotely by the University of Maryland Department of Geographical Sciences for high school juniors and seniors from the DC, Maryland and Virginia region."
+  "university-of-maryland-high-school-internship-program-in-geograp": [11, 12],
+  // https://new.sewanee.edu/sywc/: "Applicants are in 9th, 10th or 11th grade when they apply and under 18 during the conference, and they live in Humphreys Hall with college-student counselors."
+  "university-of-the-south-sewanee-young-writers-conference": [9, 10, 11],
+  // https://newmanu.edu/academics/scholars-programs/investigative-summer-science-program: "A residential summer STEM camp at Newman University in Wichita for high school sophomores, juniors and seniors with at least a 3."
+  "newman-university-investigative-summer-stem-program-issp": [10, 11, 12],
+  // https://annieruthfoundation.org/programs/summer-internship/: "A paid summer internship program from the AnnieRuth Foundation for high school juniors and seniors in Duval County and nearby counties in Florida."
+  "annieruth-foundation-annieruth-foundation-summer-internship-prog": [11, 12],
+  // https://www.getty.edu/education/teen-programs/teen-gallery-guides/: "Applicants must be current sophomores or juniors in Los Angeles County, be 16 by the program start, and live within 25 miles of the Getty Center."
+  "the-getty-villa-teen-gallery-guide": [10, 11],
+  // https://www.hofstra.edu/academics/summer-science-research-program/: "Applicants must be in 10th or 11th grade, at least 15 by the start, U."
+  "hofstra-university-hofstra-summer-science-research-program": [10, 11],
+  // https://www.colorado.edu/business/oda/programs-high-school-students/business-leadership-program: "A free, week-long summer program run by the Opening Doors to Achievement office at CU Boulder's Leeds School of Business for Colorado high school juniors."
+  "university-of-colorado-boulder-leeds-school-of-business-business": [11],
+  // https://www.medschool.lsuhsc.edu/cancer_center/education-and-training/education-and-training-for-high-school-students.aspx: "Applicants must live in or near the New Orleans area, be high school juniors or seniors aged 16-18 when they apply, and attend a mandatory all-day orientation."
+  "lsu-lcmc-health-cancer-center-cancer-center-summer-research-inte": [11, 12],
+  // https://pageprogram.senate.gov/apply/: ", where high school pages work as Senate Sergeant at Arms employees and attend the Page School, which teaches junior-year Honors courses."
+  "united-states-senate-us-senate-page-program": [11],
+  // https://www.afsascholarship.org/high-school-scholarships/: "A no-essay scholarship contest from the American Fire Sprinkler Association for high school seniors who are U."
+  "csv-sch-afsa-high-school-senior-scholarship-contest": [12],
+  // https://www.jimmyranefoundation.org/scholarship-eligibility: "High school seniors need at least a 3."
+  "csv-sch-jimmy-rane-foundation-scholarships": [12],
+  // https://beyondtheboroughs.org/scholarship-eligibility: "Applicants are high school seniors or GED recipients entering college for the first time who plan to enroll full-time at an accredited two- or four-year or vocational-technical school, have a FAFSA Student Aid Index below $8,000, and are U."
+  "csv-sch-beyond-the-boroughs-scholarship": [12],
+  // https://www.elks.org/scholars/scholarships/mvs.cfm: "citizen high school seniors, with male and female applicants competing separately."
+  "csv-sch-elks-national-foundation-scholarship": [12],
+  // https://learnmore.scholarsapply.org/equitableexcellence/: "A scholarship from the Equitable Foundation, administered by Scholarship America, for high school seniors in the 50 states, D."
+  "csv-sch-equitable-excellence-scholarship": [12],
 };
 
 /**
