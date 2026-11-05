@@ -136,6 +136,38 @@ export const GRADE_FIXES: Record<string, number[]> = {
   // the safe one: it never tells a student they qualify when they do not, and it is
   // what the listing's own blurb already says.
   "harborview-injury-prevention-and-research-center-university-of-w": [10, 11, 12],
+  // 2026-11-05: grade filters that disagreed with the eligibility the official page states
+  // (the listing's own blurb, written from that page, already says the same).
+  // https://globalyouth.wharton.upenn.edu/on-campus-programs/: "students currently enrolled in grades 9-11"
+  "wharton-global": [9, 10, 11],
+  // https://whitney.org/education/teens/youth-insights: Youth Insights Leaders are "high school students in grades 11 and 12"
+  "whitney-youth-insights": [11, 12],
+  // engineering.nyu.edu (IESoSC): "New York City high school students in grades 9 to 11"
+  "nyu-iesosc": [9, 10, 11],
+  // https://delamed.org/programs/student-internship/: "enrolled in a Delaware high school in grades 10 to 12"
+  "delamed-dpha-spring": [10, 11, 12],
+  // https://delamed.org/programs/student-internship/: "enrolled in a Delaware high school in grades 10 to 12"
+  "delamed-dpha-summer": [10, 11, 12],
+  // https://about.asianart.org/art-speak/: "students in grades 10 through 12"
+  "asian-art-museum-art-speak": [10, 11, 12],
+  // https://belinblank.education.uiowa.edu/students/sstp/: "high school students in grades 10 and 11"
+  "state-iowa-sstp": [10, 11],
+  // https://www.cyber.nj.gov/connect/careers/internships/high-school-internship-program: "New Jersey high school students in grades 9 through 12"
+  "new-jersey-cybersecurity-communications-integration-cell-cyberse": [9, 10, 11, 12],
+  // https://www.biobus.org/internship/highschool/: "students currently in grades 9-11 are eligible to apply"
+  "biobus-junior-scientist-internship": [9, 10, 11],
+  // https://www.griffinmsi.org/youth-and-families/rise-teen-program: "high school students in grades 9 through 12"
+  "griffin-museum-of-science-and-industry-rise-teen-program": [9, 10, 11, 12],
+  // https://k12education.lbl.gov/programs/high-school/sea-bilingual-stem-camp: "Students in grades 9 to 12 can apply"
+  "berkeley-lab-k-12-sea-bilingual-stem-camp": [9, 10, 11, 12],
+  // https://www.uvm.edu/admissions/vermont-pitch-challenge: "high school students in grades 10-12"
+  "university-of-vermont-vermont-pitch-challenge": [10, 11, 12],
+  // https://belinblank.education.uiowa.edu/students/swo/: "high school students in grades 9 to 11"
+  "belin-blank-center-university-of-iowa-summer-writing-online": [9, 10, 11],
+  // biology.indiana.edu (Holland SEP): "students in grades 8 to 10"; grade 8 is not a high school grade
+  "indiana-university-bloomington-jim-holland-summer-enrichment-pro": [9, 10],
+  // https://mmia.medicine.iu.edu/: "Indiana high school students in grades 10 to 12"
+  "indiana-university-school-of-medicine-molecular-medicine-in-acti": [10, 11, 12],
 };
 
 /**
