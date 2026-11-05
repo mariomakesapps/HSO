@@ -83,7 +83,8 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   // https://wsb.wharton.upenn.edu/wharton-data-competition/timeline-and-dates/ | Registration will open on December 1, 2026. Registration closes January 26, 2027 at 9:00 AM EST. Phase 1 submission due March 1, 2027.
   "wharton-sports-analytics-and-business-initiative-wharton-high-sc": { deadline: "2027-01-26", opensAt: "2026-12-01" },
   // https://wpafbstem.com/Wright_Scholar/Wright_scholar.html | Applications open November 1, 2026 and close January 10, 2027, at 5:00 PM EST. Internship runs June 7 to July 30, 2027.
-  "air-force-research-laboratory-wright-patterson-afb-wright-schola": { deadline: "2027-01-10" },
+  // Dropped "the last cycle closed January 10": the 2027 deadline (January 10, 2027) is now in the deadline field.
+  "air-force-research-laboratory-wright-patterson-afb-wright-schola": { deadline: "2027-01-10", blurb: "Full-time paid eight-week summer research assistant positions with the Air Force Research Laboratory at Wright-Patterson for high school juniors and seniors who are 16 by June 1 and can pass a background check." },
   // https://sites.wustl.edu/wustlysp/programs/summer-focus/ | Summer Focus 2027 application opened November 2, 2026; application deadline January 25, 2027. Recommendation letters due February 1, 2027. Program runs May 31 to July 23, 2027.
   "washington-university-in-st-louis-young-scientist-program-summer": { deadline: "2027-01-25" },
   // https://cancer.iu.edu/education/summer/future-scientist.html | Applications open Dec. 1, 2026. ... The program is for high school juniors at the time of application who attend a Marion County public high school and have a minimum 3.0 GPA.
