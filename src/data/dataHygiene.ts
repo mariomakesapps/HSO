@@ -234,6 +234,10 @@ export const GRADE_FIXES: Record<string, number[]> = {
   "csv-sch-elks-national-foundation-scholarship": [12],
   // https://learnmore.scholarsapply.org/equitableexcellence/: "A scholarship from the Equitable Foundation, administered by Scholarship America, for high school seniors in the 50 states, D."
   "csv-sch-equitable-excellence-scholarship": [12],
+  // https://www.uft.org/your-union/uft-programs/uft-scholarship-fund: "A college scholarship from the United Federation of Teachers for New York City public high school seniors graduating from vocational, academic, or alternative schools."
+  "csv-sch-uft-scholarship-fund": [12],
+  // https://imagine-america.org/students: "A scholarship from the Imagine America Foundation that gives graduating high school seniors a $1,000 award toward tuition at participating accredited career colleges and trade schools."
+  "csv-sch-imagine-america-high-school-scholarship": [12],
 };
 
 /**
