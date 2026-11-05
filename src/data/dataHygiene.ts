@@ -259,11 +259,19 @@ export function americanSpelling(s: string): string {
   return US_SPELLING.reduce((t, [re, to]) => t.replace(re, to), s);
 }
 
+const MONTHS = "January|February|March|April|May|June|July|August|September|October|November|December";
+const DAY_FIRST = new RegExp(`\\b(\\d{1,2}) (${MONTHS}),? (20\\d\\d)\\b`, "g");
+
+/** "1 March 2027" -> "March 1, 2027": U.S. date order, as everywhere else on the site. */
+export function usDates(s: string): string {
+  return s.replace(DAY_FIRST, (_m, day: string, month: string, year: string) => `${month} ${Number(day)}, ${year}`);
+}
+
 /** Apply every rule above to one listing, in place. */
 export function applyDataHygiene(o: Opportunity): void {
   if (o.title) o.title = collapseSpaces(o.title);
   if (o.org) o.org = collapseSpaces(o.org);
-  if (o.blurb) o.blurb = americanSpelling(endWithStop(repairTruncation(spaceAfterCommas(collapseSpaces(o.blurb)))));
+  if (o.blurb) o.blurb = usDates(americanSpelling(endWithStop(repairTruncation(spaceAfterCommas(collapseSpaces(o.blurb))))));
   if (o.url) o.url = cleanUrl(o.url);
   const grades = GRADE_FIXES[o.id];
   if (grades) o.grades = [...grades];

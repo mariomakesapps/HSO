@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { americanSpelling, repairTruncation } from "@/data/dataHygiene";
+import { americanSpelling, repairTruncation, usDates } from "@/data/dataHygiene";
 
 describe("truncation detection", () => {
   it("preserves terminal punctuation after a trailing preposition", () => {
@@ -18,5 +18,15 @@ describe("American spelling in blurbs", () => {
   });
   it("leaves proper names with a capital letter alone", () => {
     expect(americanSpelling("Held at Centre College.")).toBe("Held at Centre College.");
+  });
+});
+
+describe("U.S. date order in blurbs", () => {
+  it("rewrites day-first dates", () => {
+    expect(usDates("Chapters must pay state dues by 1 March 2027.")).toBe("Chapters must pay state dues by March 1, 2027.");
+    expect(usDates("Held 04 December 2026 and 17 April 2027.")).toBe("Held December 4, 2026 and April 17, 2027.");
+  });
+  it("leaves U.S.-order dates alone", () => {
+    expect(usDates("Due March 1, 2027.")).toBe("Due March 1, 2027.");
   });
 });
