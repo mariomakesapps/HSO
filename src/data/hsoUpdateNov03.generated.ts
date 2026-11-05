@@ -332,6 +332,12 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   "syp-michigan": { fields: ["STEM", "Math"] },
   "langston-university-math-and-science-academy": { fields: ["STEM", "Math"] },
   "university-of-wyoming-upward-bound-math-science-summer-program": { fields: ["Education", "STEM", "Math"] },
+  // cost: https://youngarts.org (FAQ) | "The fee for applying to the YoungArts competition is $35 per submitted application." Fee waivers are available.
+  "youngarts-national-arts": { cost: "Paid" },
+  // cost: https://www.waicy.org/ | Entry is free, and judges award winners by category, including high school divisions, at a final event held in December.
+  "waicy-world-artificial-intelligence-competition-for-youth-waicy": { cost: "Free" },
+  // cost: https://www.sband.org/page/HighSchoolMockTrial | Registration is free, and SBAND helps teams find an attorney coach.
+  "state-bar-association-of-north-dakota-north-dakota-high-school-m": { cost: "Free" },
 };
 
 export const NOV03_REMOVED: Record<string, string> = {
