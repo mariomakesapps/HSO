@@ -320,6 +320,14 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   "bronx-museum-teen-council": { title: "Bronx Museum Teen Council" },
   "art-institute-of-chicago-teen-council": { title: "Art Institute of Chicago Teen Council" },
   "san-diego-museum-of-art-teen-council": { title: "San Diego Museum of Art Teen Council" },
+  // https://www.apsu.edu/governors-school/dates.php | Nov 20, 2026 Student Portion of the Application Due; Dec 11, 2026 Teacher/Counselor/Recommender Portion of Application Due
+  "austin-peay-state-university-governors-school-for-computational": { deadline: "2026-11-20" },
+  // https://www.tntech.edu/engineering/pre-college-programs/gset.php | Applications open October 1, 2026. Applications must be received via TN Governor's Schools 2027 Unified Application by Friday November 20, 2026. Parent Verification Form, Counselor Information and Verification Form and Teacher Letter
+  "tennessee-technological-university-governors-school-for-emerging": { deadline: "2026-11-20" },
+  // https://www.etsu.edu/coe/stem-education/govschool/application.php | The 2027 student application process is online only and became available on October 1, 2026 at 8:00 am ET. Deadline to submit all student application material is 11:59 pm ET, Friday, November 20, 2026.
+  "east-tennessee-state-university-governors-school-for-the-integra": { deadline: "2026-11-20" },
+  // https://gsse.utk.edu/gsse-application/ | All students will complete the 2027 Governor's School Unified Application ... November 20, 2026 ... December 11, 2026 (recommendation and counselor forms)
+  "university-of-tennessee-knoxville-governors-school-for-the-scien": { deadline: "2026-11-20" },
 };
 
 export const NOV03_REMOVED: Record<string, string> = {
