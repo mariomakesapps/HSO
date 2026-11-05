@@ -34,7 +34,7 @@ export const CATEGORY_META: Record<CategorySlug, {
       "Apply early. The most competitive free programs close in January or February — paid pre-college programs roll into spring. Have an essay and one teacher recommendation ready before December.",
     ],
     faqs: [
-      { q: "What are the best summer programs for high school students?", a: "The most academically rigorous free programs include MIT RSI, SSP, Clark Scholars, the Garcia Program at Stony Brook, MITES, and TASP. Strong paid pre-college options include Stanford SSI, Brown Pre-College, Harvard Summer School, and Notre Dame Leadership Seminars." },
+      { q: "What are the best summer programs for high school students?", a: "The most academically rigorous free programs include MIT RSI, SSP, Clark Scholars, the Garcia Program at Stony Brook, and MITES. Strong paid pre-college options include Stanford SSI, Brown Pre-College, Harvard Summer School, and Notre Dame Summer Scholars." },
       { q: "Are summer programs for high school students free?", a: "Some are fully free and even pay a stipend (RSI, SSP, MITES, Garcia, Clark Scholars). Most university pre-college programs charge tuition between $4,000 and $14,000, though many offer need-based aid." },
       { q: "When should I apply to summer programs?", a: "Free, highly selective programs are due January–February. University pre-college programs roll January through April. Apply to your top 3–5 programs at least 6 weeks before the earliest deadline." },
       { q: "What grade can I start summer programs?", a: "A few programs accept rising 9th graders, but most target rising 10th, 11th, and 12th graders. The most competitive research programs (RSI, SSP) require rising seniors." },
@@ -121,12 +121,12 @@ export const CATEGORY_META: Record<CategorySlug, {
     intro: "Selective long-term U.S. fellowships combining mentorship, research, leadership, and stipends — for ambitious 10th, 11th, and 12th graders.",
     description: "{n} selective fellowships for high school students in the U.S. — mentorship, a real project and usually a stipend or scholarship. {free} cost you nothing to take part.",
     guide: [
-      "Fellowships go deeper than internships or summer programs. They usually combine year-round mentorship, a project, and either a stipend or college support. Examples: Coca-Cola Scholars, Knight-Hennessy, Bezos Scholars, Davidson Fellows, Telluride Association Summer Seminar.",
+      "Fellowships go deeper than internships or summer programs. They usually combine year-round mentorship, a project, and either a stipend or college support. Examples: Coca-Cola Scholars, Bezos Scholars and Davidson Fellows.",
       "Most fellowships are competitive and require a clear story — what you've done, what you want to do, and why you. Generic applications don't survive the first round.",
       "Application timing varies. Year-long fellowships often open in late summer or fall. Summer-based fellowships close December–February.",
     ],
     faqs: [
-      { q: "What is a fellowship for high school students?", a: "A fellowship is a selective program that combines mentorship, project work, and often a stipend or college funding — usually deeper and longer than a typical internship or summer program. Examples include Bezos Scholars, Davidson Fellows, and Telluride Association Summer Seminar." },
+      { q: "What is a fellowship for high school students?", a: "A fellowship is a selective program that combines mentorship, project work, and often a stipend or college funding — usually deeper and longer than a typical internship or summer program. Examples include Bezos Scholars and Davidson Fellows." },
       { q: "How are fellowships different from internships?", a: "Internships are short-term work placements. Fellowships are longer mentored programs with a project, networking community, and frequently a stipend or scholarship attached." },
       { q: "Are high school fellowships paid?", a: "Most major U.S. fellowships either pay a stipend, cover all program costs, or offer scholarship money — Davidson Fellows ($10K–$50K), Bezos Scholars (full ride to program), Coca-Cola Scholars ($20K)." },
       { q: "How selective are fellowships?", a: "Very. Top fellowships accept under 5% of applicants. Apply if you have a clear, sustained interest in a field — a record of related work matters more than perfect grades alone." },
