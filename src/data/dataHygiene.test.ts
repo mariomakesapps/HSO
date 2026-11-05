@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { americanSpelling, repairTruncation, tidyStops, usDates, withMainSubjects } from "@/data/dataHygiene";
+import { americanSpelling, repairTruncation, softenShouting, tidyStops, usDates, withMainSubjects } from "@/data/dataHygiene";
 
 describe("truncation detection", () => {
   it("preserves terminal punctuation after a trailing preposition", () => {
@@ -48,5 +48,19 @@ describe("full stops from feed artefacts", () => {
   it("drops a site name cut off inside a bracket, and keeps ellipses and closed brackets", () => {
     expect(tidyStops("Site: MAXWELL HIGH SCHOOL (K6. Contact: 1.")).toBe("Site: MAXWELL HIGH SCHOOL. Contact: 1.");
     expect(tidyStops("A camp (in July) for teens... and more.")).toBe("A camp (in July) for teens... and more.");
+  });
+});
+
+describe("shouted NYC site names", () => {
+  it("title-cases runs of capitals but keeps acronyms, initials and numbers", () => {
+    expect(softenShouting("Beacon Satellite at NYCHA BAY VIEW HOUSES")).toBe("Beacon Satellite at NYCHA Bay View Houses");
+    expect(softenShouting("NYCHA BUSHWICK/HYLAN HOUSES")).toBe("NYCHA Bushwick/Hylan Houses");
+    expect(softenShouting("Site: W. H. MAXWELL CAREER AND TECHNICAL EDUCATION HIGH SCHOOL.")).toBe(
+      "Site: W. H. Maxwell Career And Technical Education High School.",
+    );
+    expect(softenShouting("NYCHA CONEY ISLAND I SURFSIDE GARDENS")).toBe("NYCHA Coney Island I Surfside Gardens");
+  });
+  it("leaves a single acronym alone", () => {
+    expect(softenShouting("Beacon at IS 10 with NYC DYCD")).toBe("Beacon at IS 10 with NYC DYCD");
   });
 });

@@ -313,10 +313,36 @@ export function tidyStops(s: string): string {
   return out;
 }
 
+/**
+ * The NYC DYCD feed writes many site names in capitals ("Beacon Satellite at NYCHA BAY
+ * VIEW HOUSES"). Runs of two or more shouted words become title case; acronyms, short
+ * words (PS, IS, roman numerals, initials) and anything with a digit stay as written.
+ * Only used for that feed, so real acronyms elsewhere ("NASA OSTEM") are not touched.
+ */
+const KEEP_CAPS = new Set(["NYCHA", "NYC", "DYCD", "YMCA", "YWCA", "CUNY", "SUNY", "STEM", "STEAM", "CTE", "HS", "JHS", "IS", "MS", "PS", "LGBTQ"]);
+const SHOUTED_RUN = /\b[A-Z][A-Z.'&/-]*[A-Z.](?:\s+[A-Z0-9][A-Z0-9.'&/-]*)+/g;
+
+function titleWord(w: string): string {
+  if (KEEP_CAPS.has(w.replace(/[.,]/g, "")) || /\d/.test(w) || w.replace(/[^A-Z]/g, "").length <= 2) return w;
+  return w
+    .split(/([/-])/)
+    .map((p) => (p.length > 1 && /^[A-Z']+[.,]?$/.test(p) && !KEEP_CAPS.has(p.replace(/[.,]$/, "")) ? p[0] + p.slice(1).toLowerCase() : p))
+    .join("");
+}
+
+export function softenShouting(s: string): string {
+  return s.replace(SHOUTED_RUN, (run) => {
+    const loud = run.split(/\s+/).filter((w) => /[A-Z]{4,}/.test(w) && !KEEP_CAPS.has(w.replace(/[.,]/g, "")));
+    return loud.length >= 2 ? run.split(/(\s+)/).map((w) => (/\s/.test(w) ? w : titleWord(w))).join("") : run;
+  });
+}
+
 /** Apply every rule above to one listing, in place. */
 export function applyDataHygiene(o: Opportunity): void {
-  if (o.title) o.title = collapseSpaces(o.title);
+  const nycFeed = typeof o.id === "string" && o.id.startsWith("nyc-");
+  if (o.title) o.title = collapseSpaces(nycFeed ? softenShouting(o.title) : o.title);
   if (o.org) o.org = collapseSpaces(o.org);
+  if (o.blurb && nycFeed) o.blurb = softenShouting(o.blurb);
   if (o.blurb) o.blurb = tidyStops(usDates(americanSpelling(endWithStop(repairTruncation(spaceAfterCommas(collapseSpaces(o.blurb)))))));
   if (o.url) o.url = cleanUrl(o.url);
   if (Array.isArray(o.fields)) o.fields = withMainSubjects(o.fields);
