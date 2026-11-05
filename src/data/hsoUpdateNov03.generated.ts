@@ -160,7 +160,8 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   // https://www.fitnyc.edu/academics/precollege/classes/high-school-summer-workshops.php | High School Summer 4-Day Workshops: June 21-24 and June 28-July 1, 2027. Registration: February 4 through June 10, 2027. One workshop $440 with all fees.
   "fit-precollege": { deadline: "2027-06-10", opensAt: "2027-02-04" },
   // https://delamed.org/programs/student-internship/ | Summer 2027 (May–August): Applications open March 1.
-  "delamed-dpha-summer": { opensAt: "2027-03-01" },
+  // format: https://delamed.org/programs/student-internship/ | The high school track is entirely virtual, with a schedule that can fit around other commitments.
+  "delamed-dpha-summer": { opensAt: "2027-03-01", format: "Online" },
   // https://mathkangaroo.org/mks/registration/ | Math Kangaroo 2027: Enrollment Starts Sept 15 [2026]. Regular enrollment deadline December 31, 2026; late enrollment deadline February 1, 2027. Competition: Thursday, March 18, 2027.
   "math-kangaroo": { deadline: "2026-12-31" },
   // https://www.csssa.ca.gov/admissions/how-to-apply/ | The official schedule lists November 1, 2026 as the application opening date... The main deadline is February 28, 2027. CSSSA's FAQ says all application materials are due by 6 pm PST on February 28. Intent to enroll and pre-registration forms due: 
@@ -284,6 +285,20 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   "ncwit-aspirations": { cost: "Free" },
   // cost: https://cmap.illinois.gov/engagement/future-leaders-in-planning/ | A free five-day summer program from the Chicago Metropolitan Agency for Planning that introduces high school students from Cook, DuPage, Kane, Kendall, Lake, McHenry and Will counties to urban and regional planning.
   "chicago-metropolitan-agency-for-planning-future-leaders-in-plann": { cost: "Free" },
+  // format: https://delamed.org/programs/student-internship/ | The high school program is entirely virtual and is scheduled around the student's other commitments.
+  "delamed-dpha-fall": { format: "Online" },
+  // format: https://delamed.org/programs/student-internship/ | The high school track is entirely virtual, and the schedule can be built around other commitments.
+  "delamed-dpha-spring": { format: "Online" },
+  // format: https://www.loc.gov/item/internships/high-school-summer-internship/ | The program hosts twelve students in virtual and hybrid formats and is open to current high school students or recent graduates who are 16 or older.
+  "library-of-congress-high-school-summer-internship": { format: "Hybrid" },
+  // format: https://college.mayo.edu/academics/office-of-education-engagement-and-outreach/programs/mayo-clinic-cares/ | Students attend six program days in June, with in-person and virtual options.
+  "mayo-clinic-office-of-education-engagement-and-outreach-mayo-cli": { format: "Hybrid" },
+  // format: https://www.bethelks.edu/summer-camps/ | Held on campus in the first week of June, it offers in-person and online options with several research groups, in past years covering topics such as astronomy, robotics, chemistry and molecular genetics.
+  "bethel-college-summer-science-institute": { format: "Hybrid" },
+  // format: https://summer.ucla.edu/student-types/high-school-students/ | UCLA Summer Sessions lets high school students 15 years of age or older enroll in one or two regular UCLA courses alongside university students, with online, hybrid and in-person options.
+  "university-of-california-los-angeles-high-school-summer-sessions": { format: "Hybrid" },
+  // format: https://www.cuny.edu/academics/current-initiatives/p20/college-now/ | Classes run in fall, spring and summer, online, hybrid or in person, mostly before or after school or on Saturdays.
+  "city-university-of-new-york-college-now": { format: "Hybrid" },
 };
 
 export const NOV03_REMOVED: Record<string, string> = {
