@@ -103,7 +103,8 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   // https://manhattanda.org/careers/internship-opportunities/high-school-internship/ | Applications open November 2, 2026, and will close at 5:00 P.M. EST on December 11, 2026. The program runs from Monday, January 11th, 2027 – Wednesday, March 17th, 2027; applicants must reside in Manhattan and be 16 –
   "manhattan-district-attorney-s-office-high-school-internship-prog": { deadline: "2026-12-11" },
   // https://www.morgan.edu/saams | SAAMS 2027: priority deadline February 28, 2027; general deadline March 31, 2027. Program runs June 28 to July 23, 2027.
-  "morgan-state-university-summer-academy-of-actuarial-and-mathemat": { deadline: "2027-03-31" },
+  // cost: https://www.morgan.edu/saams | A free summer academy at Morgan State University for rising 11th and 12th graders interested in math, actuarial science and computer science.
+  "morgan-state-university-summer-academy-of-actuarial-and-mathemat": { deadline: "2027-03-31", cost: "Free" },
   // https://www.uaf.edu/rahi/apply.php | The RAHI 2027 application will open on January 1st and close on March 1st, 2027.
   "university-of-alaska-fairbanks-rural-alaska-honors-institute-rah": { deadline: "2027-03-01", opensAt: "2027-01-01" },
   // https://summer.virginia.edu/apply-to-uva-advance | The UVA Advance application deadline for summer 2027 is March 1, 2027. Applications for Summer 2027 open December 1.
@@ -179,7 +180,8 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   // https://www.uchicagomedicine.org/en/cancer/education-outreach/student-education/high-school-undergraduate/researchstart | Application deadline: January 11, 2027, at 11:59 p.m. CT. Summer experience June 14 – August 6 (35-40 hours/week). On-campus interviews February 2027; acceptance notifications Ma
   "uchicago-medicine-university-of-chicago-medicine-researchstart-p": { deadline: "2027-01-11" },
   // https://www.bbg.org/learn/gap | Applications to the 2027 Garden Apprentice Program will be accepted until Friday, December 4. ... Applicants who submit application materials before December 4, 2026, will be invited for an interview.
-  "brooklyn-botanic-garden-the-garden-apprentice-program-gap": { deadline: "2026-12-04" },
+  // cost: https://www.bbg.org/learn/gap | There is no fee, Tier 1 to 3 apprentices receive a one-time reimbursement of $600 to $800, and Tier 4 apprentices earn $17 per hour.
+  "brooklyn-botanic-garden-the-garden-apprentice-program-gap": { deadline: "2026-12-04", cost: "Stipend" },
   // https://www.umassmed.edu/gsbs/outreach-programs/high-school-health-careers-program/ | 2027 High School Health Careers Program (HSHCP): Application opens: December 1, 2026. Application deadline: March 1, 2027. Sunday July 11, 2027 - Friday August 6, 2027 (Four-Week Program).
   "umass-chan-medical-school-high-school-health-careers-program-hsh": { deadline: "2027-03-01", opensAt: "2026-12-01" },
   // https://metasummeracademy.com/ | Applications for Meta Summer Academy 2027 open Dec 1, 2026 and close Feb 14, 2027. Letters of recommendation and transcripts must be submitted by February 14, 2027; incomplete applications will not be considered.
@@ -248,6 +250,40 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   "blue-ocean-entrepreneurship": { blurb: "A free, fully virtual pitch competition where high school students worldwide develop a business idea using blue ocean strategy tools and present it in a three-to-five-minute video. Students can enter solo or in teams. Pitches are judged on creativity and value innovation, impact potential, technical feasibility, commercial viability and presentation by a panel of entrepreneurs, business people and professors. A free mini-course and pitch template help students prepare." },
   // https://cse.umn.edu/bme/bme-high-school-internship-program
   "university-of-minnesota-biomedical-high-school-internship": { blurb: "A six-week paid summer internship in the University of Minnesota Department of Biomedical Engineering for high school students in the summer before their senior year. Interns do research with a BME graduate student mentor, tour labs including the Visible Heart Lab, explore careers and build skills such as scientific writing. A stipend and bus transportation are provided, and the program has offered paid internships to students from local Twin Cities high schools." },
+  // cost: https://www.amnh.org/learn-teach/teens/science-communication-internship-program | A paid summer internship at the American Museum of Natural History where New York City high school students learn to explain science to museum visitors using the collections and hands-on stations.
+  "amnh-scip": { cost: "Stipend" },
+  // cost: https://www.cancer.columbia.edu/education/educational-opportunities/high-school-and-undergraduate-programs/yes-heights-program | A paid summer research internship at Columbia's Herbert Irving Comprehensive Cancer Center for high school and undergraduate students.
+  "columbia-yes-heights": { cost: "Stipend" },
+  // cost: https://naturalhistory.si.edu/education/youth-programs/high-school-internship-program | A paid eight-week summer internship at the Smithsonian National Museum of Natural History in Washington, D.
+  "smithsonian-nmnh-high-school-internship": { cost: "Stipend" },
+  // cost: http://engineering.nyu.edu/k12stem/arise/ | Students spend five weeks in a participating NYU faculty lab with mentoring from a graduate or postdoctoral student, plus two weeks of workshops and college advising, and receive a stipend.
+  "nyu-arise": { cost: "Stipend" },
+  // cost: https://www.saturdayacademy.org/ase | Interns receive a learning stipend of $1,500, $1,000, or $500 based on total hours, and the application has a $40 fee that is waived for some students.
+  "state-oregon-saturday-ase": { cost: "Stipend" },
+  // cost: https://www.theinternproject.org/ | Interns attend evening workshops, are paid at least minimum wage, get a transportation stipend and earn college credit through Los Angeles Trade Tech College.
+  "the-intern-project-the-intern-project-tip": { cost: "Stipend" },
+  // cost: https://my.clevelandclinic.org/departments/education/center-for-youth-and-college-education/internships | A paid seven-week summer internship at Cleveland Clinic for students in grades 9 to 12 who live and attend school in one of eight Northeast Ohio counties.
+  "cleveland-clinic-high-school-summer-internship-program": { cost: "Stipend" },
+  // cost: https://cic.cs.washington.edu/ | It meets in person in Seattle Monday through Thursday, roughly 9am to 3pm, and pays a $1200 stipend.
+  "university-of-washington-allen-school-uw-allen-school-changemake": { cost: "Stipend" },
+  // cost: https://mtc.ca.gov/jobs-contracts/job-opportunities/internships-summer-academy/norman-mineta-high-school-summer-academy | Completers receive a stipend.
+  "metropolitan-transportation-commission-the-norman-mineta-bay-are": { cost: "Stipend" },
+  // cost: https://www.nyhistory.org/education/student-historian-internship-program | Interns meet on Wednesdays from 4:30 to 7 pm from October to June and receive a $1200 stipend on completion.
+  "new-york-historical-society-student-historian-internship-program": { cost: "Stipend" },
+  // cost: https://www.creighton.edu/healthsciences/diversity/research/summer-research-institute | In its six-week high school community-based track, sophomores through seniors are trained in health disparities and carry out research projects at a community organization in Omaha from June into July, earning a $1,200 stipend.
+  "creighton-university-health-sciences-multicultural-and-community": { cost: "Stipend" },
+  // cost: https://labor.hawaii.gov/wdd/intern/hele-imua/ | A paid internship program run by the Hawaii Department of Labor and Industrial Relations Workforce Development Division that places students and recent graduates in internships of up to 12 weeks, mainly in state government.
+  "hawaii-department-of-labor-and-industrial-relations-hele-imua-st": { cost: "Stipend" },
+  // cost: https://hi.umn.edu/summer-scholar | 5 GPA or higher, can apply, and a $3,000 stipend is offered.
+  "the-hormel-institute-university-of-minnesota-high-school-summer": { cost: "Stipend" },
+  // cost: https://www.aacr.org/professionals/education-and-training/aacr-cares-high-school-scholars-program/ | Selected students receive a $4,000 stipend and attend a virtual pre-summer orientation and a virtual post-summer mentoring program.
+  "american-association-for-cancer-research-aacr-cares-high-school": { cost: "Stipend" },
+  // cost: https://www.dpr.com/build-up-high-school-internship | A paid eight-week summer internship with DPR Construction in Houston, Texas, where high school students work 35 to 40 hours per week on an active jobsite.
+  "dpr-construction-high-school-internship": { cost: "Stipend" },
+  // cost: https://www.aspirations.org/award-programs/aic-high-school-award | overseas military base, and join the free Aspirations in Computing Community.
+  "ncwit-aspirations": { cost: "Free" },
+  // cost: https://cmap.illinois.gov/engagement/future-leaders-in-planning/ | A free five-day summer program from the Chicago Metropolitan Agency for Planning that introduces high school students from Cook, DuPage, Kane, Kendall, Lake, McHenry and Will counties to urban and regional planning.
+  "chicago-metropolitan-agency-for-planning-future-leaders-in-plann": { cost: "Free" },
 };
 
 export const NOV03_REMOVED: Record<string, string> = {
