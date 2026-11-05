@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { americanSpelling, repairTruncation, usDates, withMainSubjects } from "@/data/dataHygiene";
+import { americanSpelling, repairTruncation, tidyStops, usDates, withMainSubjects } from "@/data/dataHygiene";
 
 describe("truncation detection", () => {
   it("preserves terminal punctuation after a trailing preposition", () => {
@@ -36,5 +36,17 @@ describe("main subject tags", () => {
     expect(withMainSubjects(["Physics"])).toEqual(["Physics", "STEM"]);
     expect(withMainSubjects(["Music", "Arts"])).toEqual(["Music", "Arts"]);
     expect(withMainSubjects(["Health", "Civic Leadership"])).toEqual(["Health", "Civic Leadership", "Medicine", "Leadership"]);
+  });
+});
+
+describe("full stops from feed artefacts", () => {
+  it("collapses a doubled full stop after an abbreviation", () => {
+    expect(tidyStops("Site: Sesame Flyers International, Inc.. Contact: 718.693.0500.")).toBe(
+      "Site: Sesame Flyers International, Inc. Contact: 718.693.0500.",
+    );
+  });
+  it("drops a site name cut off inside a bracket, and keeps ellipses and closed brackets", () => {
+    expect(tidyStops("Site: MAXWELL HIGH SCHOOL (K6. Contact: 1.")).toBe("Site: MAXWELL HIGH SCHOOL. Contact: 1.");
+    expect(tidyStops("A camp (in July) for teens... and more.")).toBe("A camp (in July) for teens... and more.");
   });
 });

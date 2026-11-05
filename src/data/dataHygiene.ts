@@ -300,11 +300,24 @@ export function withMainSubjects(fields: string[]): string[] {
   return out;
 }
 
+/**
+ * Feed artefacts around full stops: "Workshops, Inc.. Contact" (an org name ending in
+ * "Inc." followed by the template's own full stop) and a site name cut off inside a
+ * bracket ("HIGH SCHOOL (K6. Contact"). Ellipses are left alone.
+ */
+export function tidyStops(s: string): string {
+  let out = s.replace(/(?<!\.)\.\.(?!\.)/g, ".");
+  if ((out.match(/\(/g) ?? []).length !== (out.match(/\)/g) ?? []).length) {
+    out = out.replace(/\s\(([^()]*?)(?=\.)/g, "");
+  }
+  return out;
+}
+
 /** Apply every rule above to one listing, in place. */
 export function applyDataHygiene(o: Opportunity): void {
   if (o.title) o.title = collapseSpaces(o.title);
   if (o.org) o.org = collapseSpaces(o.org);
-  if (o.blurb) o.blurb = usDates(americanSpelling(endWithStop(repairTruncation(spaceAfterCommas(collapseSpaces(o.blurb))))));
+  if (o.blurb) o.blurb = tidyStops(usDates(americanSpelling(endWithStop(repairTruncation(spaceAfterCommas(collapseSpaces(o.blurb)))))));
   if (o.url) o.url = cleanUrl(o.url);
   if (Array.isArray(o.fields)) o.fields = withMainSubjects(o.fields);
   const grades = GRADE_FIXES[o.id];

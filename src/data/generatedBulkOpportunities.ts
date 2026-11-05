@@ -16670,7 +16670,7 @@ export const generatedBulkOpportunities: Opportunity[] = [
   },
   {
     "id": "nyc-dycd-high-school-aged-youth-council-of-jewish-orgainzations-of-flatbush-inc",
-    "title": "High-School Aged Youth at Council of Jewish Orgainzations of Flatbush, Inc.",
+    "title": "High-School Aged Youth at Council of Jewish Organizations of Flatbush, Inc.",
     "org": "CAMBA Adult Literacy Center",
     "category": "Summer Program",
     "fields": [
@@ -16688,7 +16688,7 @@ export const generatedBulkOpportunities: Opportunity[] = [
     ],
     "deadline": null,
     "prestige": 1,
-    "blurb": "Official NYC DYCD youth opportunity listing. Program type: After-School Programs,NDA Programs,Youth Educational Support. Eligibility: High School. Site: Council of Jewish Orgainzations of Flatbush, Inc.. Contact: (718) 377-2900.",
+    "blurb": "Official NYC DYCD youth opportunity listing. Program type: After-School Programs,NDA Programs,Youth Educational Support. Eligibility: High School. Site: Council of Jewish Organizations of Flatbush, Inc.. Contact: (718) 377-2900.",
     "url": "https://data.cityofnewyork.us/Education/DYCD-Afterschool-Programs/xrqn-xmys?row_id=row-7nb2~fi2x~63ec",
     "link_quality": "exact_program",
     "link_quality_score": 69,
