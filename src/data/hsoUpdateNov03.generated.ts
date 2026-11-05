@@ -280,7 +280,7 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   // cost: https://www.aacr.org/professionals/education-and-training/aacr-cares-high-school-scholars-program/ | Selected students receive a $4,000 stipend and attend a virtual pre-summer orientation and a virtual post-summer mentoring program.
   "american-association-for-cancer-research-aacr-cares-high-school": { cost: "Stipend" },
   // cost: https://www.dpr.com/build-up-high-school-internship | A paid eight-week summer internship with DPR Construction in Houston, Texas, where high school students work 35 to 40 hours per week on an active jobsite.
-  "dpr-construction-high-school-internship": { cost: "Stipend" },
+  "dpr-construction-high-school-internship": { cost: "Stipend", title: "DPR Construction High School Internship" },
   // cost: https://www.aspirations.org/award-programs/aic-high-school-award | overseas military base, and join the free Aspirations in Computing Community.
   "ncwit-aspirations": { cost: "Free" },
   // cost: https://cmap.illinois.gov/engagement/future-leaders-in-planning/ | A free five-day summer program from the Chicago Metropolitan Agency for Planning that introduces high school students from Cook, DuPage, Kane, Kendall, Lake, McHenry and Will counties to urban and regional planning.
@@ -299,6 +299,26 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   "university-of-california-los-angeles-high-school-summer-sessions": { format: "Hybrid" },
   // format: https://www.cuny.edu/academics/current-initiatives/p20/college-now/ | Classes run in fall, spring and summer, online, hybrid or in person, mostly before or after school or on Saturdays.
   "city-university-of-new-york-college-now": { format: "Hybrid" },
+  // Titles that were only a generic word ("Internships", "Teen Council") now say who runs the program; the URL is unchanged.
+  "girls-inc-nyc": { title: "Girls Inc. of New York City High School Programs" },
+  "sva-precollege": { title: "SVA Pre-College Program" },
+  "port-of-seattle-high-school-internships": { title: "Port of Seattle High School Internships" },
+  "the-art-institute-of-chicago-internships": { title: "Art Institute of Chicago Internships" },
+  "university-of-houston-mohan-lab-summer-internship": { title: "Mohan Lab Summer Internship" },
+  "senator-cory-booker-s-office-high-school-internship": { title: "Senator Cory Booker High School Internship" },
+  "the-city-and-county-of-san-francisco-high-school-internships": { title: "City and County of San Francisco High School Internships" },
+  "illinois-institute-of-technology-summer-programs": { title: "Illinois Tech Summer Programs" },
+  "the-university-of-nebraska-omaha-high-school-internships": { title: "University of Nebraska Omaha High School Internships" },
+  "the-doseum-internship": { title: "The DoSeum Internship" },
+  "pawschicago-high-school-internship": { title: "PAWS Chicago High School Internship" },
+  "the-brooklyn-district-attorney-s-office-high-school-internship": { title: "Brooklyn District Attorney's Office High School Internship" },
+  "northern-michigan-university-s-career-and-technical-education-de": { title: "Northern Michigan University CTE High School Internships" },
+  "world-affairs-council-of-san-antonio-internships": { title: "World Affairs Council of San Antonio Internships" },
+  "best-healthcare-institute-summer-program": { title: "BESt Healthcare Institute Summer Program" },
+  "base-pair-research-internship": { title: "Base Pair Research Internship" },
+  "bronx-museum-teen-council": { title: "Bronx Museum Teen Council" },
+  "art-institute-of-chicago-teen-council": { title: "Art Institute of Chicago Teen Council" },
+  "san-diego-museum-of-art-teen-council": { title: "San Diego Museum of Art Teen Council" },
 };
 
 export const NOV03_REMOVED: Record<string, string> = {
