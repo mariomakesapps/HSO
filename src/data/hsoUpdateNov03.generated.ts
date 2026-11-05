@@ -105,7 +105,7 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   "manhattan-district-attorney-s-office-high-school-internship-prog": { deadline: "2026-12-11" },
   // https://www.morgan.edu/saams | SAAMS 2027: priority deadline February 28, 2027; general deadline March 31, 2027. Program runs June 28 to July 23, 2027.
   // cost: https://www.morgan.edu/saams | A free summer academy at Morgan State University for rising 11th and 12th graders interested in math, actuarial science and computer science.
-  "morgan-state-university-summer-academy-of-actuarial-and-mathemat": { deadline: "2027-03-31", cost: "Free" },
+  "morgan-state-university-summer-academy-of-actuarial-and-mathemat": { deadline: "2027-03-31", cost: "Free", fields: ["STEM", "Math"] },
   // https://www.uaf.edu/rahi/apply.php | The RAHI 2027 application will open on January 1st and close on March 1st, 2027.
   "university-of-alaska-fairbanks-rural-alaska-honors-institute-rah": { deadline: "2027-03-01", opensAt: "2027-01-01" },
   // https://summer.virginia.edu/apply-to-uva-advance | The UVA Advance application deadline for summer 2027 is March 1, 2027. Applications for Summer 2027 open December 1.
@@ -178,7 +178,7 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   // https://compression.stanford.edu/outreach/shtem-summer-internships-high-schoolers | Applications expected to open December 7, 2026 ... application expected to close February 21, 2027 ... The 2027 session runs seven weeks, from Monday, June 21 through Friday, August 6.
   "stanford-compression-forum-shtem-summer-internships-for-high-sch": { deadline: "2027-02-21", opensAt: "2026-12-07" },
   // https://www.moffitt.org/education/research-education-and-training/pre-college-programs/hip-imo/ | Complete applications and recommendation letters must be submitted before December 1, 2026. Late recommendation letters will not be accepted and applications will be considered incomplete. Program runs 
-  "moffitt-cancer-center-high-school-internship-program-in-integrat": { deadline: "2026-12-01" },
+  "moffitt-cancer-center-high-school-internship-program-in-integrat": { deadline: "2026-12-01", fields: ["STEM", "Math"] },
   // https://www.uchicagomedicine.org/en/cancer/education-outreach/student-education/high-school-undergraduate/researchstart | Application deadline: January 11, 2027, at 11:59 p.m. CT. Summer experience June 14 – August 6 (35-40 hours/week). On-campus interviews February 2027; acceptance notifications Ma
   "uchicago-medicine-university-of-chicago-medicine-researchstart-p": { deadline: "2027-01-11" },
   // https://www.bbg.org/learn/gap | Applications to the 2027 Garden Apprentice Program will be accepted until Friday, December 4. ... Applicants who submit application materials before December 4, 2026, will be invited for an interview.
@@ -328,6 +328,10 @@ export const NOV03_FIXES: Record<string, Partial<Opportunity>> = {
   "east-tennessee-state-university-governors-school-for-the-integra": { deadline: "2026-11-20" },
   // https://gsse.utk.edu/gsse-application/ | All students will complete the 2027 Governor's School Unified Application ... November 20, 2026 ... December 11, 2026 (recommendation and counselor forms)
   "university-of-tennessee-knoxville-governors-school-for-the-scien": { deadline: "2026-11-20" },
+  // Math programs whose title names math but which lacked the Math subject tag.
+  "syp-michigan": { fields: ["STEM", "Math"] },
+  "langston-university-math-and-science-academy": { fields: ["STEM", "Math"] },
+  "university-of-wyoming-upward-bound-math-science-summer-program": { fields: ["Education", "STEM", "Math"] },
 };
 
 export const NOV03_REMOVED: Record<string, string> = {

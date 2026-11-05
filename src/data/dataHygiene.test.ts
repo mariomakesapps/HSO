@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { americanSpelling, repairTruncation, usDates } from "@/data/dataHygiene";
+import { americanSpelling, repairTruncation, usDates, withMainSubjects } from "@/data/dataHygiene";
 
 describe("truncation detection", () => {
   it("preserves terminal punctuation after a trailing preposition", () => {
@@ -28,5 +28,13 @@ describe("U.S. date order in blurbs", () => {
   });
   it("leaves U.S.-order dates alone", () => {
     expect(usDates("Due March 1, 2027.")).toBe("Due March 1, 2027.");
+  });
+});
+
+describe("main subject tags", () => {
+  it("adds the main subject a specific tag belongs to", () => {
+    expect(withMainSubjects(["Physics"])).toEqual(["Physics", "STEM"]);
+    expect(withMainSubjects(["Music", "Arts"])).toEqual(["Music", "Arts"]);
+    expect(withMainSubjects(["Health", "Civic Leadership"])).toEqual(["Health", "Civic Leadership", "Medicine", "Leadership"]);
   });
 });

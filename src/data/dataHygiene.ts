@@ -267,12 +267,42 @@ export function usDates(s: string): string {
   return s.replace(DAY_FIRST, (_m, day: string, month: string, year: string) => `${month} ${Number(day)}, ${year}`);
 }
 
+/**
+ * Each specific subject tag and the main subject it belongs to. The subject filter and
+ * the subject hubs only use main subjects, and they assume a listing carries its main
+ * subject alongside any specific tag; a Physics Olympiad tagged only "Physics" was
+ * missing from STEM filters and from the STEM competitions page.
+ */
+export const SUBJECT_PARENTS: Record<string, string> = {
+  Physics: "STEM", Chemistry: "STEM", Astronomy: "STEM", "Earth Science": "STEM", "Materials Science": "STEM",
+  "Data Science": "STEM", Technology: "STEM", Science: "STEM",
+  AI: "Computer Science", Robotics: "Engineering", Aerospace: "Engineering",
+  Music: "Arts", Film: "Arts", Photography: "Arts", Design: "Arts", Architecture: "Arts", Media: "Arts",
+  Finance: "Business", Entrepreneurship: "Business", Economics: "Business", Marketing: "Business",
+  Journalism: "Writing",
+  Law: "Policy", Government: "Policy", Civics: "Policy", Civic: "Policy",
+  "Civic Leadership": "Leadership",
+  Health: "Medicine", "Public Health": "Medicine", Healthcare: "Medicine", "Cancer Research": "Medicine",
+  History: "Humanities", Philosophy: "Humanities", Languages: "Humanities", Linguistics: "Humanities", Ethics: "Humanities",
+};
+
+/** The fields with each specific tag's main subject added after it (no duplicates). */
+export function withMainSubjects(fields: string[]): string[] {
+  const out = [...fields];
+  for (const f of fields) {
+    const parent = SUBJECT_PARENTS[f];
+    if (parent && !out.includes(parent)) out.push(parent);
+  }
+  return out;
+}
+
 /** Apply every rule above to one listing, in place. */
 export function applyDataHygiene(o: Opportunity): void {
   if (o.title) o.title = collapseSpaces(o.title);
   if (o.org) o.org = collapseSpaces(o.org);
   if (o.blurb) o.blurb = usDates(americanSpelling(endWithStop(repairTruncation(spaceAfterCommas(collapseSpaces(o.blurb))))));
   if (o.url) o.url = cleanUrl(o.url);
+  if (Array.isArray(o.fields)) o.fields = withMainSubjects(o.fields);
   const grades = GRADE_FIXES[o.id];
   if (grades) o.grades = [...grades];
 }
