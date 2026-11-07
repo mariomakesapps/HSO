@@ -9,12 +9,20 @@ export const NOV07_FIXES: Record<string, Partial<Opportunity>> = {
   "tanglewood": { deadline: "2027-01-15" },
   // AFRL Scholars page | "applications will open October 12th, 2026, and remain open until January 11th, 2027, 23:59:59 US/Central"
   "afrl-scholars": { opensAt: "2026-10-12" },
-  // https://uwc.org/how-to-apply/ | Each UWC national committee sets its own deadline (e.g. 20 Nov 2026 in one country, 10 January 2027 in another); the stored January 1 date is not on the official page, so no single date is shown.
-  "uwc": { deadline: null },
-  // https://sciences.pa-gov-schools.org/ | "PGSS 2027 applications will be available in October, 2026." No 2027 deadline is posted. The 2027-01-31 date was cleared in the Sep 2026 review as never announced and later put back by the Oct 2026 update; it is cleared again.
-  "state-pennsylvania-pgss": { deadline: null },
+  // https://www.uwc-usa.org/admissions/uwc-usa/ (admissions for U.S. citizens and permanent residents) | "Early application deadline: November 1, 2026. Regular Application Deadline: January 1, 2027."
+  "uwc": { deadline: "2027-01-01" },
+  // https://pgss-applications.pa-gov-schools.org/applicants | "Sunday, January 31 at 11:59 PM". The page gives no year, but January 31 is a Sunday in 2027 (not 2026), and the home page says "PGSS 2027 applications will be available in October, 2026" with decisions by April 1, 2027.
+  "state-pennsylvania-pgss": { deadline: "2027-01-31" },
   // IJAS students page (2027 cycle): State Exposition April 30 - May 1, 2027 at Bradley University, Peoria
   "illinois-junior-academy-of-science-illinois-junior-academy-of-sc": { location: "Peoria, Illinois, USA" },
+  // https://www.societyforscience.org/regeneron-sts/frequently-asked-questions/ | The 2028 application will open June 1, 2027 and close in early November 2027.
+  "regeneron-sts": { opensAt: "2027-06-01" },
+  // https://gsfta.com/ | "Vocal/Instrumental Music and Filmmaking Application Deadline (Student Portion): January 15, 2027"; dance, theatre and visual arts student applications are due November 20, 2026. The earlier date is shown so no applicant misses it.
+  "middle-tennessee-state-university-governors-school-for-the-arts": { deadline: "2026-11-20" },
+  // https://nhsee.org/High-School-Fair | Pre-Approval: Friday December 4, 2026. Forms and Research Plan Final Submittal: Sunday February 7, 2027 by 5:00pm.
+  "new-hampshire-science-and-engineering-exposition-new-hampshire-s": { deadline: "2027-02-07" },
+  // https://www.nyssef.org/ | NYSSEF ISEF 2027 registration opens Dec. 7, 2026 and closes January 22, 2027
+  "new-york-state-science-and-engineering-fair-new-york-state-scien": { deadline: "2027-01-22", opensAt: "2026-12-07" },
 };
 
 export const NOV07_REMOVED: Record<string, string> = {
