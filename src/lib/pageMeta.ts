@@ -460,7 +460,7 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
   "/volunteer": {
     title: "HSO Internships (Unpaid) | High School Opportunity",
     description:
-      "Three unpaid, remote internships on the student team behind HSO: finding and checking opportunities, running social, and getting schools on board.",
+      "Three unpaid, remote internships on the student team behind HSO: finding and checking opportunities, running social, and outreach to schools and sponsors.",
     path: "/volunteer",
   },
   "/collections": {

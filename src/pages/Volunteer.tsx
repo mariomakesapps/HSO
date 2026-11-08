@@ -21,7 +21,7 @@ import {
 const ROLES = [
   "Opportunity Research Associate",
   "Social Media Manager",
-  "School Partnerships Lead",
+  "Outreach Lead",
 ] as const;
 
 const HOURS = ["1-2 hours", "3-5 hours", "5+ hours"] as const;
@@ -226,17 +226,17 @@ const Volunteer = () => {
             <RolePanel
               accent="ink"
               index="03"
-              title="School Partnerships Lead"
-              hook="Get your school using it."
+              title="Outreach Lead"
+              hook="Get HSO in front of the people who can spread it."
               does={[
-                "Take HSO to your counseling office, your clubs, and the student newsletter.",
-                "Get to know the counselors and club leads who reach hundreds of students at once.",
-                "Do your own school first, then help with the next one.",
+                "Reach out to schools, counselors and student clubs so more students find HSO.",
+                "Find sponsors and partners (nonprofits, programs, local businesses) and pitch working together.",
+                "Keep track of who you've contacted, follow up, and report what came of it.",
               ]}
               gets={[
-                "Your school is yours, and so are the numbers.",
-                "Practice at cold outreach and pitching, which is hard to come by in high school.",
-                "Students at your school applying to things they wouldn't have found.",
+                "Real practice at cold emails, pitching and following up.",
+                "Partnerships you started and numbers you can point to.",
+                "A say in who HSO works with next.",
               ]}
             />
           </div>
