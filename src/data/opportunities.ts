@@ -13,6 +13,7 @@ import { OCT25_FIXES, OCT25_REMOVED } from "@/data/hsoUpdateOct25.generated";
 import { OCT29_FIXES, OCT29_REMOVED } from "@/data/hsoUpdateOct29.generated";
 import { NOV03_FIXES, NOV03_REMOVED } from "@/data/hsoUpdateNov03.generated";
 import { NOV07_FIXES, NOV07_REMOVED } from "@/data/hsoUpdateNov07.generated";
+import { NOV08_ADDITIONS } from "@/data/hsoAdditionsNov08.generated";
 import {
   normalizeOpportunityUrl,
   removedOpportunityUrls,
@@ -403,6 +404,7 @@ export const opportunities: Opportunity[] = [
   ...hsoAdditionsSep2026,
   ...OCT2026_ADDITIONS.map((o) => ({ ...o })),
   ...OCT17_ADDITIONS.map((o) => ({ ...o })),
+  ...NOV08_ADDITIONS.map((o) => ({ ...o })),
 ];
 
 for (const opportunity of opportunities) {
