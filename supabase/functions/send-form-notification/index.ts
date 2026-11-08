@@ -21,6 +21,13 @@ function rateLimited(ip: string): boolean {
   return false
 }
 
+// Resumes live in a private bucket; the path is a random folder plus a cleaned
+// file name (see src/lib/internshipApplication.ts, which builds it).
+const RESUME_BUCKET = 'internship-resumes'
+const RESUME_PATH_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\/[\w.-]{1,90}\.(pdf|docx?)$/
+// HR's download link lasts 60 days; after that the file is still in Cloud storage.
+const RESUME_LINK_SECONDS = 60 * 24 * 60 * 60
+
 const baseFields = {
   // Honeypot — bots tend to fill every field. Real users leave it blank.
   website: z.string().max(0).optional().or(z.literal('')),
@@ -63,6 +70,18 @@ const VolunteerSchema = z.object({
   hours_per_week: z.enum(['1-2 hours', '3-5 hours', '5+ hours']),
   portfolio_url: z.string().trim().url().max(500).optional().or(z.literal('')),
   motivation: z.string().trim().min(20).max(2000),
+  // Added Nov 2026. Optional here so an older page still in someone's browser
+  // keeps working; the page itself requires the resume, location and questions.
+  age: z.number().int().min(10).max(25).optional(),
+  city: z.string().trim().max(120).optional().or(z.literal('')),
+  country: z.string().trim().max(120).optional().or(z.literal('')),
+  time_zone: z.string().trim().max(80).optional().or(z.literal('')),
+  contribution: z.string().trim().max(2000).optional().or(z.literal('')),
+  about: z.string().trim().max(2000).optional().or(z.literal('')),
+  experience: z.string().trim().max(2000).optional().or(z.literal('')),
+  referral_source: z.string().trim().max(200).optional().or(z.literal('')),
+  resume_path: z.string().regex(RESUME_PATH_PATTERN).optional().or(z.literal('')),
+  resume_name: z.string().trim().max(200).optional().or(z.literal('')),
 })
 
 const Schema = z.discriminatedUnion('type', [ContactSchema, OpportunitySchema, VolunteerSchema])
@@ -126,6 +145,22 @@ Deno.serve(async (req) => {
     }
   } else if (data.type === 'volunteer') {
     templateName = 'volunteer-signup-notification'
+    let resumeUrl: string | undefined
+    let resumeNote: string | undefined
+    if (data.resume_path) {
+      const admin = createClient(supabaseUrl, serviceKey)
+      const { data: signed, error } = await admin.storage
+        .from(RESUME_BUCKET)
+        .createSignedUrl(data.resume_path, RESUME_LINK_SECONDS)
+      if (error || !signed?.signedUrl) {
+        console.error('Resume link failed', { message: error?.message })
+        resumeNote = `Uploaded as ${data.resume_path}, but a download link could not be made. Find it in Cloud storage (bucket ${RESUME_BUCKET}).`
+      } else {
+        resumeUrl = signed.signedUrl
+      }
+    } else {
+      resumeNote = 'No resume was uploaded. The applicant was asked to email it to HR.'
+    }
     templateData = {
       fullName: data.full_name,
       email: data.email,
@@ -135,6 +170,17 @@ Deno.serve(async (req) => {
       hoursPerWeek: data.hours_per_week,
       portfolioUrl: data.portfolio_url || undefined,
       motivation: data.motivation,
+      age: data.age ? String(data.age) : undefined,
+      city: data.city || undefined,
+      country: data.country || undefined,
+      timeZone: data.time_zone || undefined,
+      contribution: data.contribution || undefined,
+      about: data.about || undefined,
+      experience: data.experience || undefined,
+      referralSource: data.referral_source || undefined,
+      resumeName: data.resume_name || undefined,
+      resumeUrl,
+      resumeNote,
       submittedAt,
     }
   } else {
