@@ -2,6 +2,7 @@ import { corsHeaders } from 'npm:@supabase/supabase-js@2/cors'
 import { z } from 'npm:zod@3.23.8'
 import { createClient } from 'npm:@supabase/supabase-js@2'
 import { sendTemplateEmail } from '../_shared/transactional-email-templates/send-email.ts'
+import { formNotificationRecipient } from '../_shared/form-notification-routing.ts'
 
 // In-memory rate limit: max 5 requests / 10 minutes per IP per function instance.
 const RATE_LIMIT_MAX = 5
@@ -154,7 +155,7 @@ Deno.serve(async (req) => {
   }
 
   const supabase = createClient(supabaseUrl, serviceKey)
-  const recipient = 'highschoolopportunity@gmail.com'
+  const recipient = formNotificationRecipient(data.type)
   const logRow = (status: string, error_message?: string) =>
     supabase.from('email_send_log').insert({
       message_id: null,

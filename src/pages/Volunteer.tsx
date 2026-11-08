@@ -81,7 +81,7 @@ const Volunteer = () => {
     setSubmitting(false);
     if (emailResult.error) {
       console.error("Volunteer email failed", emailResult.error, dbResult?.error);
-      toast.error("Something went wrong. Please try again or email us directly at highschoolopportunity@gmail.com.");
+      toast.error("Something went wrong. Please try again or email us directly at highschoolopportunityhr@gmail.com.");
       return;
     }
     toast.success("Thanks — we'll be in touch by email.");
