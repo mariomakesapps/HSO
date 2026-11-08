@@ -12,6 +12,7 @@ import {
   Text,
 } from 'npm:@react-email/components@0.0.22'
 import type { TemplateEntry } from './registry.ts'
+import { APPLICATION_RECIPIENT } from '../form-notification-routing.ts'
 
 interface VolunteerSignupProps {
   fullName?: string
@@ -75,7 +76,7 @@ const Row = ({ label, value }: { label: string; value?: string }) => {
 export const template = {
   component: VolunteerSignup,
   subject: 'New HSO Volunteer Signup',
-  to: 'highschoolopportunity@gmail.com',
+  to: APPLICATION_RECIPIENT,
   displayName: 'Volunteer signup notification',
   previewData: {
     fullName: 'Jordan Rivera',
