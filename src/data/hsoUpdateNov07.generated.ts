@@ -23,6 +23,10 @@ export const NOV07_FIXES: Record<string, Partial<Opportunity>> = {
   "new-hampshire-science-and-engineering-exposition-new-hampshire-s": { deadline: "2027-02-07" },
   // https://www.nyssef.org/ | NYSSEF ISEF 2027 registration opens Dec. 7, 2026 and closes January 22, 2027
   "new-york-state-science-and-engineering-fair-new-york-state-scien": { deadline: "2027-01-22", opensAt: "2026-12-07" },
+  // https://precollege.wisc.edu/badger-summer-scholars/ | Applications open January 12, 2027 ... application deadline May 1, 2027
+  "state-wisconsin-badger": { deadline: "2027-05-01", opensAt: "2027-01-12" },
+  // https://www.asfaschool.org/apply | Application window open runs from late October 2026 through January 22, 2027.
+  "alabama-school-fine-arts": { deadline: "2027-01-22" },
 };
 
 export const NOV07_REMOVED: Record<string, string> = {
