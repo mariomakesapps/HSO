@@ -27,6 +27,19 @@ export const NOV07_FIXES: Record<string, Partial<Opportunity>> = {
   "state-wisconsin-badger": { deadline: "2027-05-01", opensAt: "2027-01-12" },
   // https://www.asfaschool.org/apply | Application window open runs from late October 2026 through January 22, 2027.
   "alabama-school-fine-arts": { deadline: "2027-01-22" },
+  // Cost and format labels that disagreed with the listing's own description (written from the official page).
+  // the 2026 session cost $350
+  "university-of-wyoming-engineering-summer-program": { cost: "Paid" },
+  // The $500 fee covers meals, housing and field trips
+  "wvu-tech-camp-stem": { cost: "Paid" },
+  // Each workshop costs $120
+  "university-of-colorado-denver-college-of-architecture-and-planni": { cost: "Paid" },
+  // in person or fully online
+  "university-of-maryland-pre-college-programs-at-the-university-of": { format: "Hybrid" },
+  // offered fully online or in person
+  "babson-college-summer-study-for-high-school-students": { format: "Hybrid" },
+  // Selected students receive a $1,000 scholarship
+  "moffitt-cancer-center-high-school-internship-program-in-integrat": { cost: "Stipend" },
 };
 
 export const NOV07_REMOVED: Record<string, string> = {
