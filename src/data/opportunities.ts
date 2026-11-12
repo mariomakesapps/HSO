@@ -431,7 +431,7 @@ for (const opportunity of opportunities) {
 // shifts labeled "Scholarship"). Reclassify based on the title + blurb so
 // students don't see service shifts inside the Scholarship tab.
 const SCHOLARSHIP_WORDS =
-  /\b(scholarship|financial aid|tuition (award|grant|funding)?|award money|cash award|college funding|merit (award|scholarship)|need-based (aid|award)|bursary)\b/i;
+  /\b(scholarships?|financial aid|tuition (award|grant|funding)?|award money|cash award|college funding|merit (award|scholarship)|need-based (aid|award)|bursary)\b/i;
 const VOLUNTEER_WORDS =
   /\b(volunteer(s|ing)?|community service|service[- ]learning|food (pantry|bank|rescue|drive)|soup kitchen|meal delivery|bread run|collect bread|redistribut(e|ion)|donation sorting|shelter|cleanup|clean[- ]up|park clean|library (helper|volunteer)|museum volunteer|blood drive|animal shelter|hospice|community outreach|mentor(ing)? volunteer|tutoring volunteer|event support)\b/i;
 
