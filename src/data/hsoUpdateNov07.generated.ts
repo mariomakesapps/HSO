@@ -43,4 +43,10 @@ export const NOV07_FIXES: Record<string, Partial<Opportunity>> = {
 };
 
 export const NOV07_REMOVED: Record<string, string> = {
+  // Checked 2026-11-13: https://healthinfo.montana.edu/pathways-programs/medstart.html and its parent page return 404.
+  "montana-office-of-rural-health-and-area-health-education-center": "/categories/summer-programs",
+  // Checked 2026-11-13: the camp page has no readable content and points to a site style-guide page; facts can't be confirmed.
+  "sheet-metal-and-air-conditioning-contractors-national-associatio": "/categories/summer-programs",
+  // Checked 2026-11-13: the camp page is marked noindex and shows no readable content; facts can't be confirmed.
+  "unlv-school-of-nursing-nurse-camp": "/categories/summer-programs",
 };
