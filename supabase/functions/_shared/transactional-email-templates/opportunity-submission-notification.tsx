@@ -79,7 +79,7 @@ const Row = ({ label, value }: { label: string; value?: string }) => {
 export const template = {
   component: OpportunitySubmission,
   subject: 'New HSO Opportunity Submission',
-  to: 'highschoolopportunity@gmail.com',
+  to: 'contact@highschoolopportunity.org',
   displayName: 'Opportunity submission notification',
   previewData: {
     title: 'Example Research Program',

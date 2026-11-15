@@ -63,7 +63,7 @@ const Submit = () => {
     setSubmitting(false);
     if (emailResult.error) {
       console.error("Submit email failed", emailResult.error, dbResult?.error);
-      toast.error("Something went wrong. Please try again or email us directly at highschoolopportunity@gmail.com.");
+      toast.error("Something went wrong. Please try again or email us directly at contact@highschoolopportunity.org.");
       return;
     }
     toast.success("Thanks — your submission was sent.");
