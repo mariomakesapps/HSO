@@ -308,6 +308,7 @@ export function SiteHeader() {
                   <SheetTitle className="font-display text-xl font-medium text-ink">Menu</SheetTitle>
                 </SheetHeader>
                 <nav className="mt-4 grid gap-1 text-base font-medium text-ink">
+                  <Link to="/" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">Home</Link>
                   <Link to="/about" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">About</Link>
                   <Link to="/submit" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">Submit</Link>
                   <Link to="/volunteer" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">HSO Internships</Link>
