@@ -51,7 +51,7 @@ const Contact = () => {
     setSubmitting(false);
     if (emailResult.error) {
       console.error("Contact email failed", emailResult.error, dbResult?.error);
-      toast.error("Something went wrong. Please try again or email us directly at highschoolopportunity@gmail.com.");
+      toast.error("Something went wrong. Please try again or email us directly at contact@highschoolopportunity.org.");
       return;
     }
     toast.success("Thanks — your message was sent.");
@@ -107,8 +107,8 @@ const Contact = () => {
 
           <p className="text-center text-sm text-muted-foreground">
             Email us directly at{" "}
-            <a href="mailto:highschoolopportunity@gmail.com" className="font-semibold text-foreground underline decoration-1 underline-offset-4 hover:text-coral">
-              highschoolopportunity@gmail.com
+            <a href="mailto:contact@highschoolopportunity.org" className="font-semibold text-foreground underline decoration-1 underline-offset-4 hover:text-coral">
+              contact@highschoolopportunity.org
             </a>
           </p>
         </form>
