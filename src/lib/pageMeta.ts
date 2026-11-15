@@ -13,6 +13,7 @@ import { curatedCollections, type CuratedCollection } from "@/data/curatedCollec
 import { SUB_HUBS, subHubPath, type SubHub } from "@/lib/subHubs";
 import { academicCycle, hubFaqs, hubStats } from "@/lib/hubStats";
 import { DONATE_URL, SPONSOR_EMAIL } from "@/lib/support";
+import { SOCIAL_LINKS } from "@/lib/siteLinks";
 
 export const SITE_URL = "https://highschoolopportunity.org";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
@@ -375,12 +376,6 @@ function remoteMetaBase(): PageMeta {
  * Mirrored here so the prerenderer emits the same tags; the values must stay
  * in sync with the corresponding page component.
  */
-/**
- * Who runs the site, for search engines: ties "High School Opportunity" and
- * "HSO" to this domain (brand searches rank it at 2.7-3.4). Add official
- * profile URLs (LinkedIn, Discord and so on) to sameAs once they are confirmed;
- * none are listed rather than guessing.
- */
 /** Questions on /donate, shared by the page and its FAQPage structured data. */
 export const DONATE_FAQS: { q: string; a: string }[] = [
   {
@@ -401,6 +396,11 @@ export const DONATE_FAQS: { q: string; a: string }[] = [
   },
 ];
 
+/**
+ * Who runs the site, for search engines: ties "High School Opportunity" and
+ * "HSO" to this domain (brand searches rank it at 2.7-3.4). sameAs lists the
+ * official social profiles from SOCIAL_LINKS; add new ones there.
+ */
 const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 const ORGANIZATION: Record<string, unknown> = {
   "@context": "https://schema.org",
@@ -412,6 +412,7 @@ const ORGANIZATION: Record<string, unknown> = {
   logo: { "@type": "ImageObject", url: `${SITE_URL}/apple-touch-icon.png`, width: 180, height: 180 },
   description:
     "A free directory of internships, summer programs, scholarships, research programs and competitions for U.S. high school students.",
+  sameAs: SOCIAL_LINKS.map((s) => s.href),
 };
 
 export const STATIC_PAGE_META: Record<string, PageMeta> = {

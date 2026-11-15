@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
-import { GUIDE_LINKS } from "@/lib/siteLinks";
+import { Instagram, Linkedin } from "lucide-react";
+import { GUIDE_LINKS, SOCIAL_LINKS } from "@/lib/siteLinks";
 import { SPONSOR_LINK_REL, footerSponsors } from "@/lib/support";
 
 export function SiteFooter() {
@@ -59,6 +60,30 @@ export function SiteFooter() {
           </div>
         </div>
       )}
+      <div className="border-t border-cream/10 px-4 py-6 sm:px-6">
+        <div className="mx-auto flex max-w-[1400px] flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-5">
+          <p className="font-display text-lg font-semibold text-cream">Follow us!</p>
+          <ul className="flex flex-wrap justify-center gap-3">
+            {SOCIAL_LINKS.map((s) => {
+              const Icon = s.network === "instagram" ? Instagram : Linkedin;
+              return (
+                <li key={s.href}>
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer me"
+                    className="inline-flex items-center gap-2 rounded-full border border-cream/20 px-4 py-2 text-sm font-semibold text-cream/85 transition hover:border-coral hover:bg-coral hover:text-coral-foreground"
+                  >
+                    <Icon className="h-4 w-4" aria-hidden="true" />
+                    {s.label}
+                    <span className="sr-only">(HSO on {s.label}, opens in a new tab)</span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </div>
       <div className="border-t border-cream/10 px-4 py-4 text-center text-xs text-cream/52 sm:px-6">
         {new Date().getFullYear()} HSO - High School Opportunity Finder. Always confirm details on official program sites.
       </div>

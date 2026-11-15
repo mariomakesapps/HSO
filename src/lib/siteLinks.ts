@@ -21,3 +21,16 @@ export const GUIDE_LINKS: SiteLink[] = [
   { href: "/guides/top-business-summer-programs", label: "Best business summer programs" },
   { href: "/guides/high-school-law-internships", label: "High school law internships" },
 ];
+
+/**
+ * HSO's official social profiles: the "Follow us" buttons in the site footer and
+ * the Organization's sameAs in structured data. Clean URLs only (no tracking params).
+ */
+export interface SocialLink extends SiteLink {
+  network: "instagram" | "linkedin";
+}
+
+export const SOCIAL_LINKS: SocialLink[] = [
+  { network: "instagram", href: "https://www.instagram.com/highschoolopportunity/", label: "Instagram" },
+  { network: "linkedin", href: "https://www.linkedin.com/company/highschoolopportunity", label: "LinkedIn" },
+];
