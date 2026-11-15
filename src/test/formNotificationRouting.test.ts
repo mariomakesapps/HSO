@@ -7,9 +7,9 @@ describe('form notification destinations', () => {
     expect(APPLICATION_RECIPIENT).toBe('highschoolopportunityhr@gmail.com');
   });
   it('keeps contact notifications in the general inbox', () => {
-    expect(formNotificationRecipient('contact')).toBe('highschoolopportunity@gmail.com');
+    expect(formNotificationRecipient('contact')).toBe('contact@highschoolopportunity.org');
   });
   it('keeps opportunity submissions in the general inbox', () => {
-    expect(formNotificationRecipient('opportunity')).toBe('highschoolopportunity@gmail.com');
+    expect(formNotificationRecipient('opportunity')).toBe('contact@highschoolopportunity.org');
   });
 });

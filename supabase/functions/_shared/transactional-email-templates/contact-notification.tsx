@@ -69,7 +69,7 @@ const Row = ({ label, value }: { label: string; value?: string }) => {
 export const template = {
   component: ContactNotification,
   subject: 'New HSO Contact Form Message',
-  to: 'highschoolopportunity@gmail.com',
+  to: 'contact@highschoolopportunity.org',
   displayName: 'Contact form notification',
   previewData: {
     reason: 'General contact',
