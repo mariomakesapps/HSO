@@ -34,6 +34,7 @@ const Privacy = lazy(() => import("./pages/Privacy.tsx"));
 const Terms = lazy(() => import("./pages/Terms.tsx"));
 const Submit = lazy(() => import("./pages/Submit.tsx"));
 const Volunteer = lazy(() => import("./pages/Volunteer.tsx"));
+const Donate = lazy(() => import("./pages/Donate.tsx"));
 const Category = lazy(() => import("./pages/Category.tsx"));
 const SubHub = lazy(() => import("./pages/SubHub.tsx"));
 const OpportunityDetail = lazy(() => import("./pages/OpportunityDetail.tsx"));
@@ -67,6 +68,7 @@ function WarmRouteCache() {
       void import("./pages/Profile.tsx");
       void import("./pages/Submit.tsx");
       void import("./pages/Volunteer.tsx");
+      void import("./pages/Donate.tsx");
       void import("./pages/Terms.tsx");
       void import("./pages/Category.tsx");
       void import("./pages/Deadlines.tsx");
@@ -150,6 +152,7 @@ const App = () => (
               <Route path="/terms" element={<Terms />} />
               <Route path="/submit" element={<Submit />} />
               <Route path="/volunteer" element={<Volunteer />} />
+              <Route path="/donate" element={<Donate />} />
               <Route path="/categories/:slug" element={<Category />} />
               <Route path="/categories/:slug/:sub" element={<SubHub />} />
               <Route path="/opportunities/:id" element={<OpportunityDetail />} />

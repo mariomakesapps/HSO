@@ -12,6 +12,7 @@ import { latestLastModified, listingLastModified } from "@/data/listingDates";
 import { curatedCollections, type CuratedCollection } from "@/data/curatedCollections";
 import { SUB_HUBS, subHubPath, type SubHub } from "@/lib/subHubs";
 import { academicCycle, hubFaqs, hubStats } from "@/lib/hubStats";
+import { DONATE_URL, SPONSOR_EMAIL } from "@/lib/support";
 
 export const SITE_URL = "https://highschoolopportunity.org";
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
@@ -380,6 +381,26 @@ function remoteMetaBase(): PageMeta {
  * profile URLs (LinkedIn, Discord and so on) to sameAs once they are confirmed;
  * none are listed rather than guessing.
  */
+/** Questions on /donate, shared by the page and its FAQPage structured data. */
+export const DONATE_FAQS: { q: string; a: string }[] = [
+  {
+    q: "Is my donation tax-deductible?",
+    a: "HSO is fiscally sponsored by The Hack Foundation (Hack Club), a 501(c)(3) nonprofit with EIN 81-2908499. Donations made through HCB are tax-deductible to the extent allowed by law, and HCB emails a receipt. Check with a tax advisor about your own situation.",
+  },
+  {
+    q: "Do sponsors affect which opportunities HSO lists?",
+    a: "No. Sponsors are thanked on this page, but no one can pay for a listing, a higher spot in search results, or a better review. Every opportunity is listed and checked by the same rules.",
+  },
+  {
+    q: "Can I donate without being listed?",
+    a: "Yes. Supporters are only named on this page if they ask to be.",
+  },
+  {
+    q: "How do I become a sponsor?",
+    a: `Donate any amount through HCB, then email ${SPONSOR_EMAIL} with the name, logo and link you would like listed. You can also email first to talk it through.`,
+  },
+];
+
 const ORGANIZATION_ID = `${SITE_URL}/#organization`;
 const ORGANIZATION: Record<string, unknown> = {
   "@context": "https://schema.org",
@@ -462,6 +483,36 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
     description:
       "Three unpaid, remote internships on the student team behind HSO: finding and checking opportunities, running social, and outreach to schools and sponsors.",
     path: "/volunteer",
+  },
+  "/donate": {
+    title: "Donate to or Sponsor High School Opportunity (HSO)",
+    description:
+      "Support HSO, the free student-run directory of high school opportunities. Donate through HCB by Hack Club (501(c)(3)) or sponsor HSO and be listed here.",
+    path: "/donate",
+    jsonLd: [
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: "Donate to or Sponsor High School Opportunity (HSO)",
+        url: `${SITE_URL}/donate`,
+        about: { "@id": ORGANIZATION_ID },
+        potentialAction: {
+          "@type": "DonateAction",
+          target: DONATE_URL,
+          recipient: { "@id": ORGANIZATION_ID },
+        },
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: DONATE_FAQS.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      },
+      ORGANIZATION,
+    ],
   },
   "/collections": {
     title: "Curated Collections of High School Opportunities | HSO",
@@ -581,6 +632,7 @@ const STATIC_LASTMOD: Record<string, string> = {
   "/terms": "2026-07-20",
   "/submit": "2026-07-20",
   "/volunteer": "2026-09-21",
+  "/donate": "2026-11-15",
   "/collections": "2026-08-26",
   "/guides/top-medical-internships": "2026-10-28",
   "/guides/top-research-competitions": "2026-10-28",

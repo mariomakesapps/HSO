@@ -39,6 +39,11 @@ const About = () => {
           <p className="mt-1 text-muted-foreground">Help other students by submitting one.</p>
           <Link to="/submit" className="mt-4 inline-flex rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-cream hover:bg-coral hover:text-coral-foreground">Submit an opportunity</Link>
         </div>
+        <div className="hso-glass-panel mt-4 rounded-2xl p-6">
+          <p className="font-display text-xl">Want to help keep HSO free?</p>
+          <p className="mt-1 text-muted-foreground">Donate through HCB by Hack Club, or sponsor HSO and be thanked on our sponsors page.</p>
+          <Link to="/donate" className="mt-4 inline-flex rounded-full bg-ink px-5 py-2.5 text-sm font-semibold text-cream hover:bg-coral hover:text-coral-foreground">Donate or sponsor</Link>
+        </div>
       </main>
       <SiteFooter />
     </div>

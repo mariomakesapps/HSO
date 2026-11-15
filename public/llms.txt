@@ -11,6 +11,7 @@ HSO is editorial: every program links to its official page, with eligibility, de
 - [Collections](/collections): Curated collections of opportunities by major, career, and interest.
 - [Submit an opportunity](/submit): Suggest a program for the HSO catalog.
 - [Contact & corrections](/contact): Report outdated deadlines, broken links, or missing programs.
+- [Donate & sponsor](/donate): Support HSO through HCB by Hack Club, or sponsor HSO and be listed.
 - [Privacy](/privacy): How HSO handles accounts and saved data.
 - [Terms](/terms): Terms of use for the HSO directory.
 

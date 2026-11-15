@@ -45,6 +45,7 @@ const NAV_ITEMS = [
   { to: "/volunteer", label: "HSO Internships" },
   { to: "/collections", label: "Collections" },
   { to: "/contact", label: "Contact" },
+  { to: "/donate", label: "Donate" },
 ];
 
 /**
@@ -313,6 +314,7 @@ export function SiteHeader() {
                   <Link to="/deadlines" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">Deadlines</Link>
                   <Link to="/collections" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">Collections</Link>
                   <Link to="/contact" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">Contact</Link>
+                  <Link to="/donate" onClick={close} className="rounded-xl px-3 py-3 hover:bg-coral/10 hover:text-coral">Donate</Link>
                   <button
                     onClick={() => { close(); setShowShelf(true); }}
                     className="flex items-center justify-between rounded-xl px-3 py-3 text-left hover:bg-coral/10 hover:text-coral"

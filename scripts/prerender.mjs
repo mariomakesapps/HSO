@@ -502,6 +502,7 @@ function staticBody(meta, data) {
           { href: "/about", label: "About HSO" },
           { href: "/submit", label: "Submit an opportunity" },
           { href: "/volunteer", label: "Volunteer with HSO" },
+          { href: "/donate", label: "Donate to or sponsor HSO" },
           { href: "/contact", label: "Contact & corrections" },
           { href: "/privacy", label: "Privacy policy" },
           { href: "/terms", label: "Terms of use" },
