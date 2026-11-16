@@ -1,4 +1,5 @@
 import { Suspense, lazy, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { isConstrainedDevice } from "@/lib/device";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Bookmark, LogOut, Menu, User as UserIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -139,8 +140,11 @@ export function SiteHeader() {
     if (showShelf) setShelfPanelLoaded(true);
   }, [showShelf]);
 
-  // Fetch the shelf chunk during idle time so the first open is instant.
+  // Fetch the shelf chunk during idle time so the first open is instant. It
+  // includes the full catalogue, so phones and slow connections skip this and
+  // load it when the shelf is opened (or hovered/focused) instead.
   useEffect(() => {
+    if (isConstrainedDevice()) return;
     const warm = () => void importCollectionsPanel();
     if ("requestIdleCallback" in window) {
       const id = window.requestIdleCallback(warm, { timeout: 2500 });

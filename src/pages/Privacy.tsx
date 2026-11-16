@@ -1,6 +1,6 @@
 import { SiteFooter } from "@/components/SiteFooter";
 import { SEO } from "@/components/SEO";
-import { STATIC_PAGE_META } from "@/lib/pageMeta";
+import { STATIC_PAGE_META } from "@/lib/staticPageMeta";
 
 const Privacy = () => {
   return (

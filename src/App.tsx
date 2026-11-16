@@ -1,4 +1,5 @@
 import React, { Suspense, lazy as reactLazy, useEffect, useRef } from "react";
+import { isConstrainedDevice } from "@/lib/device";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Outlet, Route, Routes, useLocation } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -60,16 +61,20 @@ function PageFallback() {
 
 function WarmRouteCache() {
   useEffect(() => {
+    // Pages that pull in the full catalogue are only warmed on larger screens with
+    // a decent connection (see isConstrainedDevice).
+    const constrained = isConstrainedDevice();
     const warm = () => {
       void import("./pages/About.tsx");
-      void import("./pages/Collections.tsx");
       void import("./pages/Contact.tsx");
       void import("./pages/Privacy.tsx");
-      void import("./pages/Profile.tsx");
       void import("./pages/Submit.tsx");
       void import("./pages/Volunteer.tsx");
       void import("./pages/Donate.tsx");
       void import("./pages/Terms.tsx");
+      if (constrained) return;
+      void import("./pages/Collections.tsx");
+      void import("./pages/Profile.tsx");
       void import("./pages/Category.tsx");
       void import("./pages/Deadlines.tsx");
       void import("./pages/OpportunityDetail.tsx");

@@ -1,6 +1,6 @@
 ﻿import { SiteFooter } from "@/components/SiteFooter";
 import { SEO } from "@/components/SEO";
-import { STATIC_PAGE_META } from "@/lib/pageMeta";
+import { STATIC_PAGE_META } from "@/lib/staticPageMeta";
 import { Link } from "react-router-dom";
 import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
 

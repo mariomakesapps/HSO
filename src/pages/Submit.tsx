@@ -2,7 +2,7 @@ import { useState } from "react";
 import { z } from "zod";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SEO } from "@/components/SEO";
-import { STATIC_PAGE_META } from "@/lib/pageMeta";
+import { STATIC_PAGE_META } from "@/lib/staticPageMeta";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";

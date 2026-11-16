@@ -7,6 +7,14 @@ import { getDeadlineStatus } from "@/lib/deadline";
 
 const searchTextCache = new Map<string, string>();
 const locationStateCache = new Map<string, string>();
+/**
+ * Per-listing caches for sorting. A sort compares each listing ~log(n) times, and
+ * recommendedScore runs a large regex, so scoring inside the comparator cost
+ * hundreds of milliseconds per keystroke on phones. Records never change after
+ * the catalogue is built, so each score and deadline is worked out once.
+ */
+const scoreCache = new WeakMap<Opportunity, number>();
+const deadlineTimeCache = new WeakMap<Opportunity, number>();
 
 const STATUS_MAP = {
   Open: "open",
@@ -122,7 +130,7 @@ export function applySort(list: Opportunity[], sort: SortKey, originalIndex: Map
         const aClosed = deadlineTime(a) < now ? 1 : 0;
         const bClosed = deadlineTime(b) < now ? 1 : 0;
         if (aClosed !== bClosed) return aClosed - bClosed;
-        const diff = recommendedScore(b) - recommendedScore(a);
+        const diff = cachedScore(b) - cachedScore(a);
         if (diff !== 0) return diff;
         // Stable tie-break so equal-scoring programs do not shuffle between renders.
         return a.id.localeCompare(b.id);
@@ -212,10 +220,23 @@ export function recommendedScore(o: Opportunity): number {
   return s;
 }
 
+function cachedScore(o: Opportunity): number {
+  let s = scoreCache.get(o);
+  if (s === undefined) {
+    s = recommendedScore(o);
+    scoreCache.set(o, s);
+  }
+  return s;
+}
+
 function deadlineTime(o: Opportunity) {
-  if (!o.deadline) return Infinity;
-  const time = new Date(o.deadline).getTime();
-  return Number.isNaN(time) ? Infinity : time;
+  let t = deadlineTimeCache.get(o);
+  if (t === undefined) {
+    const time = o.deadline ? new Date(o.deadline).getTime() : Infinity;
+    t = Number.isNaN(time) ? Infinity : time;
+    deadlineTimeCache.set(o, t);
+  }
+  return t;
 }
 
 function costRank(c: string) {
@@ -237,7 +258,7 @@ function getSearchText(o: Opportunity) {
   return text;
 }
 
-function getCachedLocationState(location: string) {
+export function getCachedLocationState(location: string) {
   const cached = locationStateCache.get(location);
   if (cached) return cached;
   const state = locationState(location);

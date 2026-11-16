@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { ExternalLink, Heart } from "lucide-react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SEO } from "@/components/SEO";
-import { STATIC_PAGE_META, DONATE_FAQS } from "@/lib/pageMeta";
+import { STATIC_PAGE_META, DONATE_FAQS } from "@/lib/staticPageMeta";
 import {
   DONATE_URL,
   SPONSOR_EMAIL,

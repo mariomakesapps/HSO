@@ -1,4 +1,4 @@
-import { useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import {
   ArrowRight,
   BookmarkPlus,
@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useAuthSession } from "@/hooks/useAuthSession";
-import { allOpportunities as opportunities, locationState } from "@/data/opportunities";
+import { allOpportunities as opportunities } from "@/data/opportunities";
 import type { Category, Opportunity } from "@/data/opportunities";
 import { OpportunityCard } from "@/components/OpportunityCard";
 import { FilterState, COST_OPTIONS, FORMAT_OPTIONS, GRADE_OPTIONS } from "@/components/Filters";
@@ -33,7 +33,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { ReturnToFiltersButton } from "@/components/ReturnToFiltersButton";
 import { Pagination } from "@/components/Pagination";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { applyFilters, applySort, facetCounts } from "@/lib/filterSort";
+import { applyFilters, applySort, facetCounts, getCachedLocationState } from "@/lib/filterSort";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { cn } from "@/lib/utils";
 import { SEO } from "@/components/SEO";
@@ -61,6 +61,41 @@ const CATEGORY_ACCENT: Record<string, { strip: string; tint: string; chip: strin
   Volunteer: { strip: "bg-sage", tint: "from-sage/10", chip: "bg-sage/10 text-sage border-sage/20" },
   Fellowship: { strip: "bg-coral", tint: "from-coral/10", chip: "bg-coral/10 text-coral border-coral/20" },
 };
+
+/**
+ * The search box keeps what is being typed to itself and hands the query to the
+ * page after a short pause. Every committed query re-filters the whole catalogue
+ * seven times (results plus each filter's counts) and re-renders the page, so
+ * doing that on every keystroke made typing feel sticky on phones. Clearing the
+ * box commits at once. A query changed from outside (such as a ?q= link) flows
+ * back into the box.
+ */
+function SearchBox({ value, onCommit }: { value: string; onCommit: (query: string) => void }) {
+  const [text, setText] = useState(value);
+  const committed = useRef(value);
+  useEffect(() => {
+    if (value !== committed.current) {
+      committed.current = value;
+      setText(value);
+    }
+  }, [value]);
+  useEffect(() => {
+    if (text === committed.current) return;
+    const t = window.setTimeout(() => {
+      committed.current = text;
+      onCommit(text);
+    }, text ? 200 : 0);
+    return () => window.clearTimeout(t);
+  }, [text, onCommit]);
+  return (
+    <Input
+      value={text}
+      onChange={(e) => setText(e.target.value)}
+      placeholder="Search programs, fields, organizations…"
+      className="h-12 rounded-full border-border bg-card pl-12 pr-4 text-base shadow-soft focus-visible:ring-coral"
+    />
+  );
+}
 
 const Index = () => {
   const { isAuthed, loading: authLoading } = useAuthSession();
@@ -107,6 +142,7 @@ const Index = () => {
     const raw = Number(searchParams.get("page"));
     return Number.isFinite(raw) && raw > 0 ? Math.floor(raw) : 1;
   });
+  const commitQuery = useCallback((query: string) => setFilters((f) => ({ ...f, query })), []);
   const deferredFilters = useDeferredValue(filters);
   const deferredExtra = useDeferredValue(extra);
   const deferredSort = useDeferredValue(sort);
@@ -129,7 +165,7 @@ const Index = () => {
       formats: facetCounts(opportunities, deferredFilters, deferredExtra, "formats", (o) => [o.format]),
       fields: facetCounts(opportunities, deferredFilters, deferredExtra, "fields", (o) => o.fields),
       states: facetCounts(opportunities, deferredFilters, deferredExtra, "states", (o) => {
-        const s = locationState(o.location);
+        const s = getCachedLocationState(o.location);
         // A remote program is reachable from every state, so it counts toward
         // "Nationwide" even when its location names a city.
         return o.format === "Online" && s !== "Nationwide" ? [s, "Nationwide"] : [s];
@@ -292,12 +328,7 @@ const Index = () => {
                 </div>
                 <div className="relative mt-4">
                   <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
-                  <Input
-                    value={filters.query}
-                    onChange={(e) => setFilters({ ...filters, query: e.target.value })}
-                    placeholder="Search programs, fields, organizations…"
-                    className="h-12 rounded-full border-border bg-card pl-12 pr-4 text-base shadow-soft focus-visible:ring-coral"
-                  />
+                  <SearchBox value={filters.query} onCommit={commitQuery} />
                 </div>
               </div>
 
