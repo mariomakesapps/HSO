@@ -37,7 +37,7 @@ import { applyFilters, applySort, facetCounts, getCachedLocationState } from "@/
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
 import { cn } from "@/lib/utils";
 import { SEO } from "@/components/SEO";
-import { STATIC_PAGE_META } from "@/lib/pageMeta";
+import { STATIC_PAGE_META } from "@/lib/staticPageMeta";
 import { CATEGORY_META, CATEGORY_SLUGS } from "@/lib/categories";
 
 const MONTH_LABELS = ["January","February","March","April","May","June","July","August","September","October","November","December"];

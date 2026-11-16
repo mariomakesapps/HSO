@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FilterDropdown, type DropdownOption } from "@/components/FilterDropdown";
 import { SEO } from "@/components/SEO";
-import { STATIC_PAGE_META } from "@/lib/pageMeta";
+import { STATIC_PAGE_META } from "@/lib/staticPageMeta";
 import { useAuthSession } from "@/hooks/useAuthSession";
 import {
   careerPaths,

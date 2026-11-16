@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import { GuideProgramName } from "@/components/GuideProgramName";
 import SEO from "@/components/SEO";
-import { STATIC_PAGE_META } from "@/lib/pageMeta";
+import { STATIC_PAGE_META } from "@/lib/staticPageMeta";
 
 const PROGRAMS = [
   {

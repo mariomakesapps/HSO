@@ -7,7 +7,7 @@ import { NOV07_FIXES } from "@/data/hsoUpdateNov07.generated";
 import { NOV15_FIXES } from "@/data/hsoUpdateNov15.generated";
 import { NOV08_ADDITIONS } from "@/data/hsoAdditionsNov08.generated";
 import { hsoAdditionsSep2026, hsoDeadlineReviewSep2026 } from "@/data/hsoUpdateSep2026";
-import { detailFor } from "@/data/opportunityDetails";
+import { makeListingDates } from "@/data/listingDatesModel";
 
 /**
  * When each listing last really changed: the date the dated update that touched
@@ -30,25 +30,10 @@ const UPDATES: [string, Iterable<string>][] = [
   ["2026-11-15", Object.keys(NOV15_FIXES)],
 ];
 
-const LAST_CHANGED = new Map<string, string>();
+/** Listing id -> date of the latest dated update that touched it. */
+export const LAST_CHANGED: Record<string, string> = Object.create(null);
 for (const [date, ids] of UPDATES) {
-  for (const id of ids) if ((LAST_CHANGED.get(id) ?? "") < date) LAST_CHANGED.set(id, date);
+  for (const id of ids) if ((LAST_CHANGED[id] ?? "") < date) LAST_CHANGED[id] = date;
 }
 
-export function listingLastModified(id: string): string | undefined {
-  const fromUpdates = LAST_CHANGED.get(id);
-  const checked = detailFor(id)?.source.checked;
-  if (!checked) return fromUpdates;
-  if (!fromUpdates) return checked;
-  return checked > fromUpdates ? checked : fromUpdates;
-}
-
-/** Latest date among these listings, for hub pages that list them. */
-export function latestLastModified(ids: Iterable<string>): string | undefined {
-  let latest: string | undefined;
-  for (const id of ids) {
-    const d = listingLastModified(id);
-    if (d && (!latest || d > latest)) latest = d;
-  }
-  return latest;
-}
+export const { listingLastModified, latestLastModified } = makeListingDates(LAST_CHANGED);
