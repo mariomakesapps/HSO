@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Session } from "@supabase/supabase-js";
-import { supabase } from "@/integrations/supabase/client";
+import { getSupabase } from "@/integrations/supabase/lazy";
 import { store } from "@/store/collections";
 
 const AUTH_EVENT = "hso-auth-change";
@@ -14,6 +14,7 @@ async function ensureUserProfile(session: Session | null) {
   const emailPrefix = user.email?.split("@")[0] || "hso_user";
   const usernameBase = emailPrefix.toLowerCase().replace(/[^a-z0-9_]+/g, "_").replace(/^_+|_+$/g, "") || "hso_user";
 
+  const supabase = await getSupabase();
   await (supabase as any)
     .from("users")
     .upsert(
@@ -53,6 +54,7 @@ export async function sendWelcomeEmailIfNew(session: Session | null) {
 
 
   try {
+    const supabase = await getSupabase();
     const { error } = await supabase.functions.invoke("send-welcome-email", { body: {} });
     if (error) {
       if (import.meta.env.DEV) console.error("[welcome email] send failed", error);
@@ -74,6 +76,7 @@ async function initializeAuth() {
   if (initialized) return;
   initialized = true;
 
+  const supabase = await getSupabase();
   const { data } = await supabase.auth.getSession();
   cachedSession = data.session;
   store.setUser(data.session?.user.id ?? null);
@@ -128,6 +131,7 @@ export function useAuthSession() {
 export async function localSignUp(email: string, password: string) {
   const normalized = email.trim().toLowerCase();
   const username = normalized.split("@")[0]?.replace(/[^a-z0-9_]+/gi, "_").toLowerCase() || "hso_user";
+  const supabase = await getSupabase();
   const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
     email: normalized,
     password,
@@ -164,6 +168,7 @@ export async function localSignUp(email: string, password: string) {
 }
 
 export async function localSignIn(email: string, password: string) {
+  const supabase = await getSupabase();
   const { data, error } = await supabase.auth.signInWithPassword({
     email: email.trim().toLowerCase(),
     password,
@@ -173,6 +178,7 @@ export async function localSignIn(email: string, password: string) {
 }
 
 export async function localSignOut() {
+  const supabase = await getSupabase();
   const { error } = await supabase.auth.signOut();
   if (error) throw error;
   publishSession(null);

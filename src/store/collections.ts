@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { getSupabase } from "@/integrations/supabase/lazy";
 
 type State = {
   favorites: string[];
@@ -10,7 +10,8 @@ type State = {
   error: string | null;
 };
 
-const db = supabase as any;
+// The Supabase client loads on first use (see lazy.ts); tables here are untyped.
+const getDb = async () => (await getSupabase()) as any;
 const listeners = new Set<() => void>();
 let userId: string | null = null;
 
@@ -79,7 +80,8 @@ export function useCuratedCounts() {
 
 export async function loadCuratedCounts() {
   try {
-    const { data, error } = await (supabase as any).rpc("get_curated_collection_counts");
+    const db = await getDb();
+    const { data, error } = await db.rpc("get_curated_collection_counts");
     if (error || !Array.isArray(data)) return;
     const next: Record<string, { likes: number; saves: number }> = {};
     for (const row of data as any[]) {
@@ -101,6 +103,7 @@ async function loadCloudState() {
     return;
   }
   setState({ loading: true, error: null });
+  const db = await getDb();
   const [savesRes, curatedSavesRes, curatedLikesRes] = await Promise.all([
     db.from("saved_opportunities").select("opportunity_id").eq("user_id", userId),
     db.from("curated_collection_saves").select("curated_id").eq("user_id", userId),
@@ -116,6 +119,7 @@ async function loadCloudState() {
 }
 
 async function requireUser() {
+  const supabase = await getSupabase();
   const { data, error } = await supabase.auth.getUser();
   if (error || !data.user?.id) throw new Error("Sign in to save opportunities.");
   userId = data.user.id;
@@ -143,6 +147,7 @@ export const store = {
 
   async toggleFavorite(id: string) {
     const uid = await requireUser();
+    const db = await getDb();
     const exists = state.favorites.includes(id);
     const previous = state.favorites;
     const next = exists ? previous.filter((x) => x !== id) : [...previous, id];
@@ -163,6 +168,7 @@ export const store = {
 
   async toggleCuratedSave(curatedId: string) {
     const uid = await requireUser();
+    const db = await getDb();
     const exists = state.savedCurated.includes(curatedId);
     const previous = state.savedCurated;
     const next = exists ? previous.filter((x) => x !== curatedId) : [...previous, curatedId];
@@ -181,6 +187,7 @@ export const store = {
 
   async toggleCuratedLike(curatedId: string) {
     const uid = await requireUser();
+    const db = await getDb();
     const exists = state.likedCurated.includes(curatedId);
     const previous = state.likedCurated;
     const next = exists ? previous.filter((x) => x !== curatedId) : [...previous, curatedId];
