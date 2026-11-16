@@ -52,6 +52,16 @@ export const NOV15_FIXES: Record<string, Partial<Opportunity>> = {
   "drexel-university-college-of-medicine-neuroscience-camp-for-high": { grades: [11, 12] },
   // JCamp: "open to all high school sophomores and juniors" for a summer program, so rising juniors and seniors.
   "asian-american-journalists-association-jcamp": { grades: [11, 12] },
+  // Blurb: "for 10 rising sophomores and juniors" -> [10, 11].
+  "mad-artslife": { grades: [10, 11] },
+  // Blurb: "High school applicants are rising sophomores and juniors" -> [10, 11].
+  "musc-hollings-cancer-center-sc-cheer-youth-enjoy-science-yes-pro": { grades: [10, 11] },
+  // Blurb: "Fellows apply as rising juniors" -> [11].
+  "youthbridge-ny-youthbridge-ny-fellowship": { grades: [11] },
+  // Blurb: a multi-year program "starting as rising sophomores" -> [10, 11, 12].
+  "pomona-college-pomona-college-academy-for-youth-success-pays": { grades: [10, 11, 12] },
+  // Blurb: "a compensated two-week virtual summer program ... for rising high school sophomores and juniors"
+  "huntsman-cancer-institute-university-of-utah-cancer-research-hig": { grades: [10, 11], format: "Online" },
   // Scholarships are labeled Stipend (students receive money); these full-ride and award
   // scholarships were marked Free.
   "morehead-cain": { cost: "Stipend" },
