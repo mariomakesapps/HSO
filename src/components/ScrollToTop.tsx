@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import { useLocation, useNavigationType } from "react-router-dom";
+import { markAppNavigated } from "@/hooks/useProgressiveList";
 
 /**
  * Scroll behavior:
@@ -15,6 +16,7 @@ const ScrollToTop = () => {
   const prevPathname = useRef<string>(pathname);
   const keyRef = useRef(key);
   keyRef.current = key;
+  const firstKey = useRef(key);
 
   // Disable the browser's own scroll restoration; we manage it.
   useEffect(() => {
@@ -40,6 +42,7 @@ const ScrollToTop = () => {
   }, []);
 
   useLayoutEffect(() => {
+    if (key !== firstKey.current) markAppNavigated();
     if (navType === "POP") {
       const y = positions.current.get(key) ?? 0;
       window.scrollTo({ top: y, left: 0, behavior: "auto" });

@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useProgressiveList } from "@/hooks/useProgressiveList";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SEO } from "@/components/SEO";
@@ -24,6 +25,7 @@ const SubHub = () => {
   const indexMap = useMemo(() => new Map(allOpportunities.map((o, i) => [o.id, i])), []);
   const members = useMemo(() => (hub ? subHubMembers(hub) : []), [hub]);
   const list = useMemo(() => applySort(members, sort, indexMap), [members, sort, indexMap]);
+  const shown = useProgressiveList(list);
 
   if (!hub) {
     const moved = RETIRED_SUB_HUBS[`/categories/${slug}/${sub}`];
@@ -72,7 +74,7 @@ const SubHub = () => {
 
         <h2 className="sr-only">Programs</h2>
         <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {list.map((o, i) => <OpportunityCard key={o.id} opp={o} index={i} />)}
+          {shown.map((o, i) => <OpportunityCard key={o.id} opp={o} index={i} />)}
         </div>
 
         <section className="mt-16">

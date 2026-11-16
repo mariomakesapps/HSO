@@ -1,4 +1,5 @@
 ﻿import { useMemo, useState } from "react";
+import { useProgressiveList } from "@/hooks/useProgressiveList";
 import { Link, useParams } from "react-router-dom";
 import NotFound from "@/pages/NotFound";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -29,6 +30,7 @@ const Category = () => {
     const filtered = allOpportunities.filter((o) => o.category === meta.category);
     return applySort(filtered, sort, indexMap);
   }, [meta, sort, indexMap]);
+  const shown = useProgressiveList(list);
 
   // An unknown category is not a page: show the noindexed not-found page rather
   // than redirecting to the homepage, which Google reads as a soft 404.
@@ -78,7 +80,7 @@ const Category = () => {
 
         <h2 className="sr-only">Programs</h2>
         <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {list.map((o, i) => <OpportunityCard key={o.id} opp={o} index={i} />)}
+          {shown.map((o, i) => <OpportunityCard key={o.id} opp={o} index={i} />)}
         </div>
 
         <section className="mt-16">

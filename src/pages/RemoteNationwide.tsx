@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import { useProgressiveList } from "@/hooks/useProgressiveList";
 import { Link } from "react-router-dom";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SEO } from "@/components/SEO";
@@ -25,6 +26,7 @@ const RemoteNationwide = () => {
     const filtered = category === "All" ? all : all.filter((o) => o.category === category);
     return applySort(filtered, sort, indexMap);
   }, [all, category, sort, indexMap]);
+  const shown = useProgressiveList(list);
 
   // Only offer filters for categories that actually have remote listings.
   const availableCategories = useMemo(() => {
@@ -74,7 +76,7 @@ const RemoteNationwide = () => {
 
         <h2 className="sr-only">Remote and nationwide programs</h2>
         <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {list.map((o, i) => (
+          {shown.map((o, i) => (
             <OpportunityCard key={o.id} opp={o} index={i} />
           ))}
         </div>
