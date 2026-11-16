@@ -15,4 +15,6 @@ export const NOV15_FIXES: Record<string, Partial<Opportunity>> = {
 };
 
 export const NOV15_REMOVED: Record<string, string> = {
+  // https://carnegiehall.org/Education/Programs/National-Youth-Ensembles/NYO2 "In summer 2027, NYO2 will not convene as preparations are underway for a new iteration of the program to debut in summer 2028."
+  "carnegie-hall-weill-music-institute-nyo2": "/categories/summer-programs",
 };
