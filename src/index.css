@@ -1394,6 +1394,20 @@ All colors MUST be HSL.
   to   { opacity: 1; transform: none; }
 }
 
+/* Phones: fade only. Sliding the whole page with will-change made the browser
+   promote the entire (often very tall) page to its own layer and repaint it on
+   every navigation, about a third of the paint cost of a page change. */
+@media (max-width: 768px) {
+  .hso-route-enter {
+    animation-name: hso-route-fade;
+    will-change: auto;
+  }
+}
+@keyframes hso-route-fade {
+  from { opacity: 0.4; }
+  to   { opacity: 1; }
+}
+
 /* ---- Sheets / drawers -------------------------------------------------- */
 .hso-sheet {
   animation-timing-function: var(--ease-ios);
@@ -1735,4 +1749,18 @@ All colors MUST be HSL.
     transform: none !important;
   }
   :root { transition: none !important; }
+}
+
+/* Phones: no backdrop blur inside the page content. Everything in <main> sits
+   over the flat cream background and soft gradients, where a blur is all but
+   invisible, but each blurred layer (glass panels, a full-width section, every
+   filter chip and pagination button) had to be repainted on every scroll frame,
+   which made scrolling and page changes stutter. The sticky nav, menus and
+   dialogs live outside <main>, overlap moving content, and keep their blur. */
+@media (max-width: 768px) {
+  main,
+  main * {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
 }
