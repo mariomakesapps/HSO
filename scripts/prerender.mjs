@@ -665,6 +665,72 @@ async function writeRedirects(distDir, data) {
   return entries.length;
 }
 
+/**
+ * Which page component renders each fixed route (see the routes in src/App.tsx).
+ * Used to preload that page's code from its prerendered HTML.
+ */
+const STATIC_PAGE_SOURCES = {
+  "/": "Index",
+  "/about": "About",
+  "/contact": "Contact",
+  "/privacy": "Privacy",
+  "/terms": "Terms",
+  "/submit": "Submit",
+  "/volunteer": "Volunteer",
+  "/donate": "Donate",
+  "/collections": "Collections",
+  "/guides/top-medical-internships": "GuideTopMedicalInternships",
+  "/guides/top-research-competitions": "GuideTopResearchCompetitions",
+  "/guides/top-business-summer-programs": "GuideTopBusinessPrograms",
+  "/guides/high-school-law-internships": "GuideHighSchoolLawInternships",
+};
+
+/**
+ * <link rel="modulepreload"> tags for a page component and everything it imports.
+ *
+ * Without them the browser found the page's code only after the main bundle ran,
+ * and the catalogue data only after the page's code ran: three downloads one
+ * after another, which on a phone connection delayed the first paint by seconds.
+ * Listing them in each prerendered page lets them download in parallel with the
+ * main bundle. Reads Vite's build manifest; files the template already loads
+ * are skipped. Returns "" if there is no manifest, so prerendering still works.
+ */
+async function loadPreloader(distDir) {
+  let manifest;
+  try {
+    manifest = JSON.parse(await fs.readFile(path.join(distDir, ".vite", "manifest.json"), "utf8"));
+  } catch {
+    return () => "";
+  }
+  const collect = (key, out = new Set()) => {
+    const chunk = manifest[key];
+    if (!chunk || out.has(chunk.file)) return out;
+    out.add(chunk.file);
+    for (const dep of chunk.imports ?? []) collect(dep, out);
+    return out;
+  };
+  const entryKey = Object.keys(manifest).find((k) => manifest[k].isEntry);
+  const loadedByTemplate = entryKey ? collect(entryKey) : new Set();
+  const cache = new Map();
+  return (page) => {
+    if (!page) return "";
+    if (!cache.has(page)) {
+      const files = [...collect(`src/pages/${page}.tsx`)].filter((f) => f.endsWith(".js") && !loadedByTemplate.has(f));
+      // The big data chunks (the catalogue, per-listing SEO metadata) start early
+      // but at low priority, so they do not hold up the main bundle and the first
+      // paint; the page's own code keeps normal priority.
+      const big = (f) => /(^|\/)(_hso-precompiled|pageMeta)/.test(f);
+      cache.set(
+        page,
+        files
+          .map((f) => `<link rel="modulepreload" crossorigin href="/${f}"${big(f) ? ' fetchpriority="low"' : ""}>`)
+          .join("\n  "),
+      );
+    }
+    return cache.get(page);
+  };
+}
+
 export async function prerender({ root, distDir }) {
   const templatePath = path.join(distDir, "index.html");
   const template = await fs.readFile(templatePath, "utf8");
@@ -672,39 +738,45 @@ export async function prerender({ root, distDir }) {
   SITE_LINKS_HTML = siteLinksHtml(data);
 
   const pages = [];
+  const preloadsFor = await loadPreloader(distDir);
 
   const guides = await loadGuideRenderer(root);
   for (const [routePath, meta] of Object.entries(data.STATIC_PAGE_META)) {
     if (GUIDE_COMPONENTS[routePath]) {
       const { html, scripts } = guides.renderGuide(routePath);
-      pages.push({ meta, body: shell(html), extraHead: scripts });
+      pages.push({ meta, body: shell(html), extraHead: scripts, page: STATIC_PAGE_SOURCES[routePath] });
     } else if (routePath === "/collections") {
-      pages.push({ meta, body: collectionsIndexBody(meta, data) });
+      pages.push({ meta, body: collectionsIndexBody(meta, data), page: "Collections" });
     } else {
-      pages.push({ meta, body: staticBody(meta, data) });
+      pages.push({ meta, body: staticBody(meta, data), page: STATIC_PAGE_SOURCES[routePath] });
     }
   }
   for (const hub of data.SUB_HUBS) {
-    pages.push({ meta: data.subHubMeta(hub), body: subHubBody(hub, data) });
+    pages.push({ meta: data.subHubMeta(hub), body: subHubBody(hub, data), page: "SubHub" });
   }
   for (const c of data.curatedCollections) {
-    pages.push({ meta: data.collectionMeta(c), body: collectionBody(c, data) });
+    pages.push({ meta: data.collectionMeta(c), body: collectionBody(c, data), page: "SharedCollection" });
   }
-  pages.push({ meta: data.remoteMeta(), body: remoteBody(data) });
-  pages.push({ meta: data.deadlinesMeta(), body: deadlinesBody(data) });
-  pages.push({ meta: data.nycMeta(), body: nycBody(data) });
+  pages.push({ meta: data.remoteMeta(), body: remoteBody(data), page: "RemoteNationwide" });
+  pages.push({ meta: data.deadlinesMeta(), body: deadlinesBody(data), page: "Deadlines" });
+  pages.push({ meta: data.nycMeta(), body: nycBody(data), page: "NycPrograms" });
   for (const slug of data.CATEGORY_SLUGS) {
-    pages.push({ meta: data.categoryMeta(slug), body: categoryBody(slug, data) });
+    pages.push({ meta: data.categoryMeta(slug), body: categoryBody(slug, data), page: "Category" });
   }
   for (const opp of data.allOpportunities) {
-    pages.push({ meta: data.opportunityMeta(opp), body: opportunityBody(opp, data) });
+    pages.push({ meta: data.opportunityMeta(opp), body: opportunityBody(opp, data), page: "OpportunityDetail" });
   }
 
   let written = 0;
   let noindexed = 0;
 
-  for (const { meta, body, extraHead } of pages) {
-    const html = renderPage(template, headFor(meta) + (extraHead ? `\n  ${extraHead}` : ""), body);
+  for (const { meta, body, extraHead, page } of pages) {
+    const preloads = preloadsFor(page);
+    const html = renderPage(
+      template,
+      headFor(meta) + (preloads ? `\n  ${preloads}` : "") + (extraHead ? `\n  ${extraHead}` : ""),
+      body,
+    );
     const outPath =
       meta.path === "/"
         ? path.join(distDir, "index.html")
@@ -722,7 +794,7 @@ export async function prerender({ root, distDir }) {
   const nf = notFoundMeta();
   await fs.writeFile(
     path.join(distDir, "404.html"),
-    renderPage(template, headFor(nf), notFoundBody(data)),
+    renderPage(template, headFor(nf) + (preloadsFor("NotFound") ? `\n  ${preloadsFor("NotFound")}` : ""), notFoundBody(data)),
     "utf8",
   );
 

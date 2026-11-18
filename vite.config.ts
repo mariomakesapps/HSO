@@ -23,6 +23,9 @@ function seoPrerenderPlugin(): Plugin {
 
         const pages = await prerender({ root, distDir });
         const sitemap = await generateSitemap({ root, distDir });
+        // The build manifest is only needed by the prerenderer (route preloads);
+        // keep it out of the deployed site.
+        await import("node:fs/promises").then((fs) => fs.rm(path.resolve(distDir, ".vite"), { recursive: true, force: true }));
 
         this.info(
           `prerendered ${pages.written} pages (${pages.indexable} indexable, ${pages.noindexed} noindex) · sitemap index: ${sitemap.indexable} URLs, ${sitemap.withLastmod} with lastmod (${sitemap.excluded} excluded) · 404.html + ${pages.redirects} permanent redirects`,
@@ -110,6 +113,10 @@ export default defineConfig(({ mode }) => ({
     hmr: {
       overlay: false,
     },
+  },
+  build: {
+    // Read by scripts/prerender.mjs to preload each page's code; removed after.
+    manifest: true,
   },
   resolve: {
     alias: {
