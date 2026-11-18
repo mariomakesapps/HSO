@@ -11,43 +11,19 @@ export function ReturnToFiltersButton({ targetId = "opportunity-filters" }: { ta
     setMounted(true);
   }, []);
 
+  // Visible once the filters section has scrolled fully above the viewport.
+  // This used to re-check el.offsetTop on every scroll frame, which forced a
+  // full-page layout each time and made scrolling stutter on phones; the
+  // observer already reports both facts without touching layout.
   useEffect(() => {
     const el = document.getElementById(targetId);
     if (!el) return;
-
-    let intersecting = true;
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        intersecting = entry.isIntersecting;
-        update();
-      },
+      ([entry]) => setShow(!entry.isIntersecting && entry.boundingClientRect.top < 0),
       { threshold: 0, rootMargin: "-80px 0px 0px 0px" },
     );
     observer.observe(el);
-
-    const update = () => {
-      const past = window.scrollY > el.offsetTop + 200;
-      setShow(!intersecting && past);
-    };
-
-    let raf = 0;
-    const onScroll = () => {
-      if (raf) return;
-      raf = window.requestAnimationFrame(() => {
-        raf = 0;
-        update();
-      });
-    };
-
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-      if (raf) cancelAnimationFrame(raf);
-    };
+    return () => observer.disconnect();
   }, [targetId]);
 
   const handleClick = () => {
