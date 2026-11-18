@@ -14,7 +14,7 @@ import { store, useFavoriteStatus } from "@/store/collections";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getDeadlineStatus, STATUS_STYLES } from "@/lib/deadline";
-import { useAuthSession, authRedirectHref } from "@/hooks/useAuthSession";
+import { authRedirectHref, getCurrentSession } from "@/hooks/useAuthSession";
 import { toast } from "sonner";
 
 const CATEGORY_BADGE: Record<string, string> = {
@@ -38,7 +38,6 @@ const CATEGORY_STRIP: Record<string, string> = {
 };
 
 function OpportunityCardComponent({ opp, index = 0 }: { opp: Opportunity; index?: number }) {
-  const { isAuthed } = useAuthSession();
   const navigate = useNavigate();
   const fav = useFavoriteStatus(opp.id);
   const dl = getDeadlineStatus(opp.deadline, opp.opensAt);
@@ -49,7 +48,7 @@ function OpportunityCardComponent({ opp, index = 0 }: { opp: Opportunity; index?
       : `https://duckduckgo.com/?q=${encodeURIComponent(`${opp.title} ${opp.org} high school`)}`;
 
   const handleFavorite = async () => {
-    if (!isAuthed) {
+    if (!(await getCurrentSession())) {
       // Do NOT auto-redirect. Show a toast with an explicit action button.
       toast.message("Sign-in required", {
         description: "Create a free account to save opportunities to your shelf.",

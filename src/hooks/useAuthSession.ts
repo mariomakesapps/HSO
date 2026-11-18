@@ -96,6 +96,17 @@ async function initializeAuth() {
   });
 }
 
+/**
+ * The current session, for one-off checks such as "is this visitor signed in?"
+ * when a save button is clicked. Unlike useAuthSession it does not subscribe to
+ * changes, so a list of hundreds of cards does not add hundreds of listeners and
+ * re-render them all when the session check finishes after page load.
+ */
+export async function getCurrentSession(): Promise<Session | null> {
+  await initializeAuth();
+  return cachedSession;
+}
+
 export function useAuthSession() {
   const [session, setSession] = useState<Session | null>(cachedSession);
   const [loading, setLoading] = useState(!initialized);
