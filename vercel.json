@@ -3,8 +3,705 @@
   "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/((?!assets/|_next/|.*\.[a-zA-Z0-9]+$).*)",
+      "source": "/((?!assets/|_next/|.*\\.[a-zA-Z0-9]+$).*)",
       "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/opportunities/afsa-essay",
+      "destination": "/categories/scholarships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/ai4all",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/alaska-geographic-anchorage-fishing-intern",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/americorps",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/argonne-national-laboratory-seasonal-internship-program",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/arkansas-childrens-research-institute-summer-science-program-at",
+      "destination": "/categories/research",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/artswestchester-internship",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/artswestchester-young-adult-leadership-council",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/ascend",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/aspire-summit",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/atlas-fellowship",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/ayia",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/boston-debate-league-bdl-debate-camp",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/breakthrough",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/burger-king-scholars",
+      "destination": "/opportunities/csv-sch-burger-king-scholarship",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/carnegie-hall-weill-music-institute-nyo2",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/clicked-learning-head-positions",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/columbia-precollege-ay-weekend-early",
+      "destination": "/opportunities/columbia-precollege-ay-weekend",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/comcast-leaders-achievers",
+      "destination": "/categories/scholarships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/connecticut-office-of-the-attorney-general-internship-program",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/correlation-one-apex-high-school-ai-championship",
+      "destination": "/categories/competitions",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/cssi",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/csv-sch-amazon-future-engineers",
+      "destination": "/opportunities/amazon-future-eng",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/csv-sch-dell-scholars-program",
+      "destination": "/opportunities/dell",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/csv-sch-discover-scholarship-award",
+      "destination": "/categories/scholarships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/csv-sch-dr-pepper-tuition-giveaway",
+      "destination": "/categories/scholarships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/csv-sch-ge-reagan-foundation-scholarship-program",
+      "destination": "/opportunities/ge-reagan",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/csv-sch-generation-google-scholarship",
+      "destination": "/categories/scholarships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/csv-sch-horatio-alger-national-scholarship",
+      "destination": "/opportunities/horatio-alger",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/csv-sch-national-security-language-institute-for-youth",
+      "destination": "/opportunities/nsli-y",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/csv-sch-questbridge-scholarship",
+      "destination": "/opportunities/questbridge-match",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/csv-sch-scholars-helping-collars-scholarship",
+      "destination": "/categories/scholarships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/csv-sch-sezzle-scholarship",
+      "destination": "/categories/scholarships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/csv-sch-the-alert-scholarship",
+      "destination": "/categories/scholarships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/csv-sch-the-science-ambassador-scholarship",
+      "destination": "/opportunities/science-ambassador",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/csv-sch-william-randolph-hearst-foundation-united-states-senate-yout",
+      "destination": "/opportunities/usef",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/dartmouth-health-high-school-foundations-summer-internship",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/davis-projects",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/dell-discover",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/department-of-teacher-education-of-michigan-state-university-hig",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/ds-davis",
+      "destination": "/categories/scholarships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/eastern-connecticut-state-university-pre-college-summer",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/elks",
+      "destination": "/opportunities/csv-sch-elks-national-foundation-scholarship",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/exploratorium-high-school-explainer-program",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/feinstein-institutes-for-medical-research-summer-student-interns",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/foot-locker-scholar-athletes",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/fred-hutch-lab-tech",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/future-city",
+      "destination": "/categories/competitions",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/girls-who-code-pathways",
+      "destination": "/opportunities/girls-who-code",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/global-citizen-year",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/google-csi",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/heisman-high-school-scholarship",
+      "destination": "/categories/scholarships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/high-museum-of-art-summer-internship-program",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/hinksey-business-essay-competition",
+      "destination": "/categories/competitions",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/hinksey-clubs",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/hinksey-research-scholars",
+      "destination": "/categories/research",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/hopkins-med",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/idaho-mock-trial-idaho-high-school-mock-trial-competition",
+      "destination": "/categories/competitions",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/johns-hopkins-school-of-medicine-summer-internship-program",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/jpl",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/kaggle",
+      "destination": "/categories/competitions",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/kansas-university-medical-center-health-sciences-enrichment-inst",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/lake-county-forest-perserves-youth-conservation-corp-crew-member",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/lapps",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/mclean-mentorship",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/mercer-science-and-engineering-fair-mercer-science-and-engineeri",
+      "destination": "/categories/competitions",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/montana-office-of-rural-health-and-area-health-education-center",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/montana-technological-university-summer-environmental-engineerin",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/museum-of-fine-arts-boston-internships",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nasa-lunabotics-junior-contest",
+      "destination": "/categories/competitions",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nasa-nasa-app-development-challenge-adc",
+      "destination": "/categories/competitions",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/national-gallery-of-art-summer-internships",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/national-institute-of-mental-health-speaking-up-about-mental-hea",
+      "destination": "/categories/competitions",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-c-e-s-42-claremont-school",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-c-e-s-55-benjamin-franklin-sc",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-c-e-s-88-the-sidney-silverste",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-c-e-s-c-i-s-218-rafael-herna-2",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-i-s-113-ronald-edmonds-school",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-i-s-126-albert-shanker-school",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-i-s-171-abraham-lincoln-schoo",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-i-s-311-essence-school",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-i-s-7-elias-bernstein-school",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-i-s-77-i-s-77",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-m-s-223-m-s-223-the-labora",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-m-s-584-m-s-584-upper-acad",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-p-s-i-s-111-adolph-s-ochs-s",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-p-s-i-s-12-tag-young-scholars",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-p-s-i-s-124-osmond-a-church",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-p-s-i-s-225-eileen-e-zaglin",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/nyc-dycd-out-of-school-time-p-s-i-s-42-robert-vernam-sch",
+      "destination": "/nyc-programs-for-high-school-students",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/oakland-zoo-intro-to-climate-solutions-internship",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/oliver-scholars",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/oregon-health-science-university-knight-scholars-program",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/peace-corps",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/pmready-tce",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/point-defiance-zoo-aquarium-paid-internship-opportunities",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/project-coin-internship",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/putnam-jr",
+      "destination": "/categories/competitions",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/s-w-a-g-camden-summer-intern-program",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/saint-louis-university-stars-slu",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/save-the-bay-environmental-education-fall-internship",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/science-olympiad-minnesota-science-olympiad",
+      "destination": "/categories/competitions",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/science-olympiad-new-hampshire-science-olympiad",
+      "destination": "/categories/competitions",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/sfmoma-internship-program",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/sheet-metal-and-air-conditioning-contractors-national-associatio",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/shriners-childrens-philadelphia-medical-research-summer-immersio",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/siemens",
+      "destination": "/categories/competitions",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/socrateens",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/solomon-leadership-nyc",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/sortmyprep-founders-office",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/southwest-airlines-southwest-airlines-high-school-internship",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/ssb-ucl",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/ssi-naval",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/state-hawaii-hycc",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/state-maryland-histep",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/state-minnesota-umtymp",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/synapse-state-fellowship",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/tasp",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/teachers-and-writers-collaborative-with-the-new-york-state-counc",
+      "destination": "/categories/competitions",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/the-jackson-laboratory-summer-student-program",
+      "destination": "/categories/research",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/the-ohio-state-university-college-of-medicine-explorations-in-ne",
+      "destination": "/categories/research",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/the-university-of-alabama-at-birmingham-pre-college-research-int",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/u-s-department-of-state-virtual-student-federal-service-vsfs",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/unesco-youth",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/university-of-central-florida-competitive-programming-summer-ins",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/university-of-illinois-chicago-s-office-of-the-vice-provost-for",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/university-of-michigan-rogel-cancer-center-healthcare-experience",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/university-of-nevada-las-vegas-guic-summer-camp",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/university-of-new-hampshire-interoperability-lab-hightech-bound",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/university-of-southern-mississippi-marine-education-center-art-a",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/university-of-tennessee-institute-of-agriculture-ut-extension-su",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/unlv-school-of-nursing-nurse-camp",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/usra",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/world-affairs-council-of-jacksonville-high-school-internships-at",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/worldquant",
+      "destination": "/categories/competitions",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/yefa-chapter-founder-program",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/yes-abroad-kennedy-lugar",
+      "destination": "/opportunities/flex-global-abroad",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/ymca-nevada-ymca-youth-and-government",
+      "destination": "/categories/fellowships",
+      "statusCode": 301
+    },
+    {
+      "source": "/opportunities/zero-robotics",
+      "destination": "/categories/competitions",
+      "statusCode": 301
     }
   ]
 }

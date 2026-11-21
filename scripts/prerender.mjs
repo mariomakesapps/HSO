@@ -666,6 +666,33 @@ async function writeRedirects(distDir, data) {
 }
 
 /**
+ * Vercel ignores _redirects; it reads redirects from vercel.json in the repo root
+ * before the build starts. Keep that file's "redirects" list equal to the same
+ * removed-listing map so the 301s work there too. Run locally, this rewrites
+ * vercel.json (commit the change); a test fails if the two drift apart. Other
+ * keys in vercel.json are left as they are.
+ */
+export function vercelRedirects(map) {
+  return Object.entries(map)
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([id, target]) => ({ source: `/opportunities/${id}`, destination: target, statusCode: 301 }));
+}
+
+async function syncVercelRedirects(root, data) {
+  const file = path.join(root, "vercel.json");
+  let config;
+  try {
+    config = JSON.parse(await fs.readFile(file, "utf8"));
+  } catch {
+    return; // no vercel.json: not deployed on Vercel
+  }
+  const next = { ...config, redirects: vercelRedirects(data.REMOVED_OPPORTUNITY_REDIRECTS ?? {}) };
+  const text = JSON.stringify(next, null, 2) + "\n";
+  const current = await fs.readFile(file, "utf8");
+  if (text !== current) await fs.writeFile(file, text, "utf8");
+}
+
+/**
  * Which page component renders each fixed route (see the routes in src/App.tsx).
  * Used to preload that page's code from its prerendered HTML.
  */
@@ -799,6 +826,7 @@ export async function prerender({ root, distDir }) {
   );
 
   const redirects = await writeRedirects(distDir, data);
+  await syncVercelRedirects(root, data);
 
   return { written, noindexed, indexable: written - noindexed, redirects };
 }
