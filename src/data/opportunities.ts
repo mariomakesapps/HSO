@@ -17,6 +17,7 @@ import { OCT29_FIXES, OCT29_REMOVED } from "@/data/hsoUpdateOct29.generated";
 import { NOV03_FIXES, NOV03_REMOVED } from "@/data/hsoUpdateNov03.generated";
 import { NOV07_FIXES, NOV07_REMOVED } from "@/data/hsoUpdateNov07.generated";
 import { NOV15_FIXES, NOV15_REMOVED } from "@/data/hsoUpdateNov15.generated";
+import { NOV23_FIXES } from "@/data/hsoUpdateNov23.generated";
 import { NOV08_ADDITIONS } from "@/data/hsoAdditionsNov08.generated";
 import {
   normalizeOpportunityUrl,
@@ -424,6 +425,8 @@ for (const opportunity of opportunities) {
   if (nov7) Object.assign(opportunity, nov7);
   const nov15 = NOV15_FIXES[opportunity.id];
   if (nov15) Object.assign(opportunity, nov15);
+  const nov23 = NOV23_FIXES[opportunity.id];
+  if (nov23) Object.assign(opportunity, nov23);
 }
 
 // Normalise city-only locations ("Cambridge, USA" -> "Cambridge, Massachusetts, USA")

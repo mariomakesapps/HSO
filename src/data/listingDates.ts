@@ -5,6 +5,7 @@ import { OCT29_FIXES } from "@/data/hsoUpdateOct29.generated";
 import { NOV03_FIXES } from "@/data/hsoUpdateNov03.generated";
 import { NOV07_FIXES } from "@/data/hsoUpdateNov07.generated";
 import { NOV15_FIXES } from "@/data/hsoUpdateNov15.generated";
+import { NOV23_FIXES } from "@/data/hsoUpdateNov23.generated";
 import { NOV08_ADDITIONS } from "@/data/hsoAdditionsNov08.generated";
 import { hsoAdditionsSep2026, hsoDeadlineReviewSep2026 } from "@/data/hsoUpdateSep2026";
 import { makeListingDates } from "@/data/listingDatesModel";
@@ -28,6 +29,7 @@ const UPDATES: [string, Iterable<string>][] = [
   ["2026-11-07", Object.keys(NOV07_FIXES)],
   ["2026-11-08", NOV08_ADDITIONS.map((o) => o.id)],
   ["2026-11-15", Object.keys(NOV15_FIXES)],
+  ["2026-11-23", Object.keys(NOV23_FIXES)],
 ];
 
 /** Listing id -> date of the latest dated update that touched it. */
