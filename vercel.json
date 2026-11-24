@@ -229,6 +229,11 @@
       "statusCode": 301
     },
     {
+      "source": "/opportunities/federal-reserve-bank-of-cleveland-fed-future-professionals-progr",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
       "source": "/opportunities/feinstein-institutes-for-medical-research-summer-student-interns",
       "destination": "/categories/internships",
       "statusCode": 301

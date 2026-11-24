@@ -73,4 +73,6 @@ export const NOV15_FIXES: Record<string, Partial<Opportunity>> = {
 export const NOV15_REMOVED: Record<string, string> = {
   // https://carnegiehall.org/Education/Programs/National-Youth-Ensembles/NYO2 "In summer 2027, NYO2 will not convene as preparations are underway for a new iteration of the program to debut in summer 2028."
   "carnegie-hall-weill-music-institute-nyo2": "/categories/summer-programs",
+  // https://www.clevelandfed.org/diversity-equity-inclusion/career-readiness (checked 2026-11-24): the page now holds only lesson plans; the only mention of Fed Futures found is a 2021 press release.
+  "federal-reserve-bank-of-cleveland-fed-future-professionals-progr": "/categories/internships",
 };
