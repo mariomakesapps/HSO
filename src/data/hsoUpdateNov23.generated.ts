@@ -6,7 +6,6 @@ import type { Opportunity } from "@/data/opportunities";
 
 export const NOV23_FIXES: Record<string, Partial<Opportunity>> = {
   "isef": { blurb: "International science fair where students in grades 9-12 present an independent research project. Students cannot apply directly: they qualify by winning at one of nearly 400 Society-affiliated fairs. Entrants must be under 20 and may enter only one project." },
-  "nyt-essay": { blurb: "Students write a 450-word editorial on an issue they care about." },
   "concord": { blurb: "Submit a history research essay, typically 5,000 to 10,000 words or more with Turabian endnotes, written in English before the author finishes secondary school. The $70 submission fee includes a year of the eBook edition, and about 5% of papers are published." },
   "interlochen": { blurb: "Summer arts camp for teen artists. January 15, 2027 is the priority deadline for programs that need an audition or portfolio; after that, applications are taken as space allows, and programs without auditions enroll on a rolling basis." },
   "usef": { blurb: "Two student leaders from each state, DC and the Department of Defense Education Activity spend Washington Week in D.C. in March and each receive a $12,500 college scholarship. Students apply through their state's selection contact, not nationally: each state sets its own deadline, and most fall in October." },
@@ -23,6 +22,11 @@ export const NOV23_FIXES: Record<string, Partial<Opportunity>> = {
   "bgca-youth-of-the-year": { blurb: "Boys & Girls Clubs' top honor for members aged 14 to 18, recognizing service, academic success, character and long-term goals. Each Club's winner advances through state ($2,500 scholarship) and regional ($20,000) rounds to the National Youth of the Year, who receives a $50,000 college scholarship. Applicants must be Club members." },
   // https://highschool.latimes.com/hero/apply-hsi-summer-internship-2024/ | "a high school student graduating in 2024, 2025, or 2026 ... covering breaking news, crafting feature enterprise stories and experimenting in multimedia storytelling ... with the support of mentors, extensive training and workshops ... Must be legally authorized to work in the United States" (checked 2026-11-24)
   "los-angeles-times-high-school-insider-summer-internship": { grades: [11, 12], blurb: "The L.A. Times High School Insider youth journalism program runs a paid summer internship for high school student journalists. Interns cover breaking news, write feature enterprise stories and experiment with multimedia storytelling, with support from mentors, training and workshops from the newsroom. Applicants must be legally authorized to work in the United States and available for the full length of the program." },
+  // Stub blurbs expanded using only facts already in these records (organizer, cost, format, grades, the 450-word length, "annual" for the photo contest);
+  // nytimes.com cannot be fetched by the checking tools, so nothing new is added.
+  "nyt-essay": { blurb: "The New York Times runs this free online contest, in which students write a 450-word editorial on an issue they care about. It is one of the newspaper's student contests and is open to students in grades 9 to 12." },
+  "nytlearning-photo": { blurb: "The New York Times runs this free online photo storytelling contest for students. It is one of the newspaper's annual student contests and is open to students in grades 9 to 12." },
+  "nytlearning-podcast": { blurb: "The New York Times runs this free online contest, in which students create and submit their own podcasts. It is one of the newspaper's student contests and is open to students in grades 9 to 12." },
 };
 
 /** Listings added on 2026-11-23 (their records live in hsoAdditionsNov08.generated.ts). */
