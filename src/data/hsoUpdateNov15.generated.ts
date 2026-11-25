@@ -75,4 +75,6 @@ export const NOV15_REMOVED: Record<string, string> = {
   "carnegie-hall-weill-music-institute-nyo2": "/categories/summer-programs",
   // https://www.clevelandfed.org/diversity-equity-inclusion/career-readiness (checked 2026-11-24): the page now holds only lesson plans; the only mention of Fed Futures found is a 2021 press release.
   "federal-reserve-bank-of-cleveland-fed-future-professionals-progr": "/categories/internships",
+  // https://auburn.edu/cosam/outreach/stem_outreach/programs/SSI (checked 2026-11-25): redirects to the COSAM outreach homepage; auburn.edu/cosam/ssi redirects to the COSAM homepage; no current program page.
+  "auburn-university-college-of-sciences-and-mathematics-summer-sci": "/categories/summer-programs",
 };

@@ -64,6 +64,11 @@
       "statusCode": 301
     },
     {
+      "source": "/opportunities/auburn-university-college-of-sciences-and-mathematics-summer-sci",
+      "destination": "/categories/summer-programs",
+      "statusCode": 301
+    },
+    {
       "source": "/opportunities/ayia",
       "destination": "/categories/internships",
       "statusCode": 301
