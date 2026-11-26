@@ -5,6 +5,7 @@ import { OCT29_REMOVED } from "@/data/hsoUpdateOct29.generated";
 import { NOV03_REMOVED } from "@/data/hsoUpdateNov03.generated";
 import { NOV07_REMOVED } from "@/data/hsoUpdateNov07.generated";
 import { NOV15_REMOVED } from "@/data/hsoUpdateNov15.generated";
+import { NOV26_REMOVED } from "@/data/hsoUpdateNov26.generated";
 /**
  * Opportunities that are no longer listed, and where their URL should now go.
  *
@@ -27,6 +28,7 @@ export const REMOVED_OPPORTUNITY_REDIRECTS: Record<string, string> = {
   ...NOV03_REMOVED,
   ...NOV07_REMOVED,
   ...NOV15_REMOVED,
+  ...NOV26_REMOVED,
   // Removed 2026-09-28: Google's Build Your Future site is retired and renders no content.
   "csv-sch-generation-google-scholarship": "/categories/scholarships",
   // Removed 2026-09-28: Google's Build Your Future site is retired and renders no content.
