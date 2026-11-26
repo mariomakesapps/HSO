@@ -268,6 +268,8 @@ export const NOV26_FIXES: Record<string, Partial<Opportunity>> = {
 };
 
 export const NOV26_REMOVED: Record<string, string> = {
+  // https://conservationcorps.org/programs/summer-youth-corps/ (checked 2026-11-26): "The Summer Youth Corps (SYC) program will not be active in 2026"; no 2027 season announced.
+  "conservation-corps-minnesota-iowa-summer-youth-corps": "/categories/internships",
 };
 
 /** Listings added on 2026-11-26 (their records live in hsoAdditionsNov08.generated.ts). */

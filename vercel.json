@@ -114,6 +114,11 @@
       "statusCode": 301
     },
     {
+      "source": "/opportunities/conservation-corps-minnesota-iowa-summer-youth-corps",
+      "destination": "/categories/internships",
+      "statusCode": 301
+    },
+    {
       "source": "/opportunities/correlation-one-apex-high-school-ai-championship",
       "destination": "/categories/competitions",
       "statusCode": 301
