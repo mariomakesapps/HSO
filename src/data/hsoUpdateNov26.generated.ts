@@ -295,6 +295,8 @@ export const NOV26_FIXES: Record<string, Partial<Opportunity>> = {
   "north-dakota-state-university-north-dakota-governors-school": {"url": "https://und.edu/academics/nd-governor-school.html", "blurb": "A state-funded residential academy for North Dakota students who have finished their sophomore or junior year, alternating between North Dakota State University and the University of North Dakota, which hosts in summer 2027. Students stay on campus for three weeks, June 7 to 23, 2027, and need a cumulative GPA of 3.5 or higher to apply. The state pays for in-state students.", "location": "Grand Forks, North Dakota, USA"},
   // https://med.stanford.edu/che/smysp/about.html | About page: "The 2027 SMYSP Program Application will be available in December 2026." / "The 2027 Application will be available in mid-December." Main page: "Applications for the 2027 SMYSP program are now open."
   "stanford-medical-youth-science-program-smysp": {"opensAt": null},
+  // https://massart.edu/youth-teen-programs/pre-college-summer-studios/ | "Summer 2027 Program Dates: July 19 – August 13, 2027 Registration will open on January 12 and close on May 31, 2027 For credit application deadline: May 3, 2027"
+  "massachusetts-college-of-art-and-design-pre-college-summer-studi": {"opensAt": "2027-01-12", "blurb": "Massachusetts College of Art and Design runs Pre-College Summer Studios, a four-week studio art program in Boston for students entering grades 11 and 12. All students take three core courses, 2D Fundamentals, 3D Fundamentals and Issues & Images, plus one elective. Students may apply to take the program for college credit, and those who are accepted and complete it receive three college credits from MassArt.", "deadline": "2027-05-31"},
 };
 
 export const NOV26_REMOVED: Record<string, string> = {
@@ -319,4 +321,18 @@ export const NOV26_ADDED_IDS: string[] = [
   "nc-state-university-college-of-agriculture-and-life-sciences-and",
   "nc-state-university-department-of-horticultural-science-horticul",
   "university-of-wisconsin-madison-college-of-agricultural-and-life",
+  "university-of-north-carolina-school-of-the-arts-filmmaking-summe",
+  "george-mason-university-the-washington-journalism-and-media-conf",
+  "the-walden-school-young-musicians-program-ymp",
+  "ringling-college-of-art-and-design-precollege",
+  "columbia-college-chicago-summer-at-columbia",
+  "pbs-news-student-reporting-labs-srl-summer-academy",
+  "massachusetts-college-of-art-and-design-pre-college-summer-studi",
+  "denison-university-reynolds-young-writers-workshop",
+  "bowdoin-international-music-festival-summer-classical-music-inst",
+  "huntsman-cancer-institute-university-of-utah-rise-program",
+  "university-of-kentucky-markey-cancer-center-summer-health-experi",
+  "montana-ahec-montana-state-university-medstart-summer-camp",
+  "northwest-area-health-education-center-wake-forest-university-sc",
+  "uthealth-houston-school-of-public-health-rio-grande-valley-summe",
 ];
