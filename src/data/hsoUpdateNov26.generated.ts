@@ -265,6 +265,36 @@ export const NOV26_FIXES: Record<string, Partial<Opportunity>> = {
   "huntington-theatre-company-for-the-mass-cultural-council-poetry": {"deadline": null},
   // https://swe.org/outreach/high-school-leadership-academy-shla/ | The 2026-2027 SHLA program will run from January 13, 2027 – June 1, 2027. ... The application for the 2026-2027 SHLA program will be open from Nov. 11 – Nov. 25, 2026 at 11:59 p.m. CT. ... Students will be notified by mid-December whether they have been accepted into the program.
   "society-of-women-engineers-swenext-high-school-leadership-academ": {"deadline": null},
+  // https://ssp.org/getting-started/ | Applications for Summer Science Program 2027 will open on January 4, 2027, at 10 A.M. ET.
+  "ssp": {"opensAt": "2027-01-04"},
+  // https://bwsi.mit.edu/ | Beaver Works Summer Institute: Project-based classes for high school students nationwide! ... https://bwsi.mit.edu/ | (bwsi.mit.edu) The MIT Beaver Works Summer Institute (BWSI) is a challenging and prestigious STEM program designed for high-achieving students entering their senior year of high scho
+  "beaver-works": {"url": "https://bwsi.mit.edu/"},
+  // https://sumac.spcs.stanford.edu/sumac-admissions | Application Deadline Thursday, January 7, 2027 at 11:59 pm Pacific Time
+  "ill-mathematics": {"deadline": "2027-01-07"},
+  // https://www.amnh.org/learn-teach/teens/science-research-mentoring-program/join-srmp | Applications Now Open Deadline: March 8, 2027, at 5 pm ET
+  "amnh-srmp": {"deadline": "2027-03-08"},
+  // https://ai4all.spcs.stanford.edu/ai4all-admissions | Summer 2027 Admissions ... Application Deadline Monday, February 1, 2027 at 11:59pm Pacific Time
+  "stanford-ai4all": {"deadline": "2027-02-01"},
+  // https://m3challenge.siam.org/the-challenge/important-dates/ | November 16, 2026 Registration opens. February 19, 2027 Registration closes February 19, 2027 at 11:59 p.m. ET.
+  "m3-challenge": {"deadline": "2027-02-19"},
+  // https://www.stonybrook.edu/garcia/summer-program/apply.html | Summer Research Program - 2027 June 23 - August 6 ... at least 16 years old on, or before July 4, 2027 ... Application Deadline: February 22nd 2027, 11:59PM ... Laboratory usage fee: TBA (2026 Fee: $4,000) ... Non-Refundable $50 Registration fee
+  "garcia-program": {"deadline": "2027-02-22", "blurb": "Seven-week polymer and materials science research program at Stony Brook University for high school students who are at least 16 by July 4 of the program year and have an unweighted 3.8+ GPA. Participants often enter their work in Regeneron STS and ISEF. The 2026 laboratory fee was $4,000, the 2027 fee is still to be announced, and there is a $50 registration fee. Housing and meals cost extra."},
+  // https://hs.sas.upenn.edu/summer-programs/academies/3-week/neuroscience | Eligibility: Current 9th-11th grade students ... Program dates: July 11 - July 31, 2027
+  "university-of-pennsylvania-neuroscience-research-academy": {"grades": [10, 11, 12]},
+  // https://latino.si.edu/yap | Application open: February 23, 2026  EXTENDED APPLICATION DEADLINE: APRIL 24, 2026 ... The Young Ambassadors Program is a nationally recognized program for rising high school seniors
+  "smithsonian-institution-young-ambassadors-program": {"grades": [12]},
+  // https://www.mnmas.org/2027-state-science-fair-details | February 13, 2027 - Northeast Region deadline to register for State; February 26, 2027 - Northern Region deadline to register for State; February 26, 2027 - Western Region deadline to register for State; March 5, 2027 - Rochester Region deadline to register for State; March 5, 2027 - Southern Region
+  "minnesota-academy-of-science-minnesota-state-science-and-enginee": {"deadline": "2027-02-13"},
+  // https://www.ohiosci.org/bsef/ | Project Submission Opens: December 7, 2026 Project Submission Closes: 5:00 PM on Wednesday, February 3 2027 2027 BSEF Fair - In-person at CAS on Saturday, February 27, 2027
+  "the-ohio-academy-of-science-buckeye-science-and-engineering-fair": {"opensAt": "2026-12-07", "deadline": "2027-02-03"},
+  // https://bssef.org/fair-info/ | The 2027 Badger State Science & Engineering Fair (BSSEF) will be held at Marian University in Fond du Lac, WI on Saturday, March 13, 2027.
+  "badger-state-science-and-engineering-fair-badger-state-science-a": {"blurb": "The state's ISEF-affiliated science fair: grades 9-12 present original research, qualifying through a school or regional fair, with top projects going on to Regeneron ISEF. The 2027 fair is held at Marian University in Fond du Lac on March 13, 2027. Each fair sets its own entry fee.", "location": "Fond du Lac, Wisconsin, USA"},
+  // https://wyostatefair-xiauh.wordpress.com/ | UW page: "New Website!" (links to wyostatefair-xiauh.wordpress.com, which redirects to wyomingstatesciencefair.com). New site: "research must be conducted between January 1, 2026 – December 31, 2026 ... youth researcher must have qualified to submit their work from a regional-level science fair in W
+  "university-of-wyoming-wyoming-state-science-fair": {"url": "https://wyomingstatesciencefair.com/"},
+  // https://und.edu/academics/nd-governor-school.html | NDSU: "The University of North Dakota will host North Dakota Governor's School in summer 2027." UND: "Students stay on campus for three weeks, June 7 - 23, 2027. ... To apply for NDGS 2027, students must have a cumulative GPA of 3.5 or higher."
+  "north-dakota-state-university-north-dakota-governors-school": {"url": "https://und.edu/academics/nd-governor-school.html", "blurb": "A state-funded residential academy for North Dakota students who have finished their sophomore or junior year, alternating between North Dakota State University and the University of North Dakota, which hosts in summer 2027. Students stay on campus for three weeks, June 7 to 23, 2027, and need a cumulative GPA of 3.5 or higher to apply. The state pays for in-state students.", "location": "Grand Forks, North Dakota, USA"},
+  // https://med.stanford.edu/che/smysp/about.html | About page: "The 2027 SMYSP Program Application will be available in December 2026." / "The 2027 Application will be available in mid-December." Main page: "Applications for the 2027 SMYSP program are now open."
+  "stanford-medical-youth-science-program-smysp": {"opensAt": null},
 };
 
 export const NOV26_REMOVED: Record<string, string> = {
