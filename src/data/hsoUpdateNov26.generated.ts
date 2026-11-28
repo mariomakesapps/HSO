@@ -348,4 +348,5 @@ export const NOV26_ADDED_IDS: string[] = [
   "idaho-senate-senate-legislative-page-program",
   "the-florida-senate-senate-page-program",
   "california-state-board-of-education-student-member-of-the-state-",
+  "poetry-society-of-america-louise-louis-emily-f-bourne-student-po",
 ];
